@@ -111,13 +111,16 @@ pg:
 html:
 	install -d $(OUTPUT)
 	install -d $(HTMLOUT)
+	install -d $(HTMLOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
 	-rm $(HTMLOUT)/*.html
 	-rm $(HTMLOUT)/knowl/*.html
 	-rm $(HTMLOUT)/images/*
 	-rm $(HTMLOUT)/*.css
-	cp -a $(IMAGESOUT)/* $(HTMLOUT)/images/
-	cp -a $(IMAGESSRC)/* $(HTMLOUT)/images/
-	cp $(CSS)/*.css $(HTMLOUT)
+	cp -a $(IMAGESOUT) $(HTMLOUT)
+	cp -a $(IMAGESSRC) $(HTMLOUT)
+	cp $(CSS) $(HTMLOUT)
 	cd $(HTMLOUT); \
 	xsltproc -xinclude --stringparam webwork.server $(SERVER) --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(MBXSL)/mathbook-html.xsl $(MAINFILE)
 
