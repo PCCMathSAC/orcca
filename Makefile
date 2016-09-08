@@ -162,8 +162,8 @@ pdf:
 	-rm $(PDFOUT)/*.tex
 	cd $(PDFOUT); \
 	xsltproc -xinclude --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
-	xelatex index.tex; \
-	xelatex index.tex
+	xelatex orcca.tex; \
+	xelatex orcca.tex
 
 ###########
 # Utilities
