@@ -18,11 +18,11 @@
 
 #   1) Make a copy of Makefile.paths.original
 #      as Makefile.paths, which git will ignore.
-#   2) Edit Makefile.paths to provide full paths to the root folders 
+#   2) Edit Makefile.paths to provide full paths to the root folders
 #      of your local clones of the project repository and the mathbook
 #      repository as described below.
 #   3) The files Makefile and Makefile.paths.original
-#      are managed by git revision control and any edits you make to 
+#      are managed by git revision control and any edits you make to
 #      these will conflict. You should only be editing Makefile.paths.
 
 ##############
@@ -92,10 +92,10 @@ IMAGESOUT  = $(OUTPUT)/images
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
 SERVER = https://webwork.pcc.edu
 
-#  Write out each WW problem as a standalone problem in PGML ready 
-#  for use on a WW server.  "def" files and "header" files are 
-#  produced. Directories and filenames are derived from titles of 
-#  chapters, sections, etc., in addition to the titles of the 
+#  Write out each WW problem as a standalone problem in PGML ready
+#  for use on a WW server.  "def" files and "header" files are
+#  produced. Directories and filenames are derived from titles of
+#  chapters, sections, etc., in addition to the titles of then
 #  problems themselves.
 #
 #  Results land in the subdirectory:  $(PGOUT)/local
@@ -106,7 +106,7 @@ pg:
 	cd $(PGOUT); \
 	xsltproc -xinclude --stringparam chunk.level 2 $(MBXSL)/mathbook-webwork-archive.xsl $(MAINFILE)
 
-#  HTML output 
+#  HTML output
 #  Output lands in the subdirectory:  $(HTMLOUT)
 html:
 	install -d $(OUTPUT)
@@ -131,6 +131,13 @@ images:
 	-rm $(IMAGESOUT)/*.svg
 	$(MB)/script/mbx -c latex-image -f svg -d $(IMAGESOUT) $(MAINFILE)
 #	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(MAINFILE)
+
+# run this to scrape thumbnail images from YouTube for any YouTube videos
+youtube:
+	install -d $(OUTPUT)
+	install -d $(IMAGESOUT)
+	-rm $(IMAGESOUT)/*.jpg
+	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(MAINFILE)
 
 # for pdf output, a one-time prerequisite for LaTeX conversion of
 # problems living on a server, and image construction at server
@@ -159,7 +166,13 @@ latex:
 pdf:
 	install -d $(OUTPUT)
 	install -d $(PDFOUT)
+	install -d $(PDFOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
+	-rm $(PDFOUT)/images/*
 	-rm $(PDFOUT)/*.tex
+	cp -a $(IMAGESOUT) $(PDFOUT)
+	cp -a $(IMAGESSRC) $(PDFOUT)
 	cd $(PDFOUT); \
 	xsltproc -xinclude --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
 	xelatex orcca.tex; \
