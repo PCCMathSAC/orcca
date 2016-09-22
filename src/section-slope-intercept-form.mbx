@@ -221,6 +221,9 @@
                     <var name="$m">
                         <static>-\frac{6}{5}</static>
                     </var>
+                    <var name="$f">
+                        <static>-\frac{6x}{5}-8</static>
+                    </var>
                     <var name="$yInt">
                         <static>(0,-8)</static>
                     </var>
@@ -233,7 +236,8 @@
                         if($envir{problemSeed}==1){$num=6;$den=5;$b=-8};
                         $m = -Fraction($num,$den);
                         Context("LimitedFraction")->flags->set(requirePureFractions=>1,showMixedNumbers=>0);
-                        $m = Compute($m);
+                        $m=Compute($m);
+                        $f=Formula("-($num x / $den)+$b");
                         Context("Point");
                         Context()->parens->set("[" => {type => "Interval", close => "]"},"{" => {type => "Set", close => "}"},"&lt;" => {type => "Vector", close => ">"});
                         $yInt = Compute("(0,$b)");
@@ -243,14 +247,14 @@
                     </pg-code>
                 </setup>
                 <statement>
-                    <p>A line has the equation <me>y=-\frac{<var name="$num" />x}{<var name="$den" />}+<var name="$b" />\text{.}</me> Find this line's slope and <m>y</m>-intercept. If either of these do not exist, you may enter <c>DNE</c> or <c>NONE</c>.</p>
+                    <p>A line has the equation <me>y=<var name="$f" /></me> Find this line's slope and <m>y</m>-intercept. If either of these do not exist, you may enter <c>DNE</c> or <c>NONE</c>.</p>
                     <p>This line's slope is <var name="$m" width="10" />.</p>
                     <p>This line's <m>y</m>-intercept is <var name="$yInt" evaluator="$evaluator" width="10" />.</p>
                 </statement>
                 <solution>
                     <p>When an equation of a line is written in the form <m>y=mx+b</m>, it is said to be in <em>slope-intercept form</em>. In this form, <m>m</m> is the line's slope, and <m>b</m> is the coordinate on the <m>y</m>-axis where the line intercepts the <m>y</m>-axis.</p>
 
-                    <p>In this problem, the line's equation is given as <me>y=-\frac{<var name="$num" />x}{<var name="$den" />}+<var name="$b" />\text{.}</me> We can think of the first term as <me>-\frac{<var name="$num" />}{<var name="$den" />}x\text{.}</me> This is because: <md>
+                    <p>In this problem, the line's equation is given as <me>y=<var name="$f" />\text{.}</me> We can think of the first term as <me>-\frac{<var name="$num" />}{<var name="$den" />}x\text{.}</me> This is because: <md>
                         <mrow>-\frac{<var name="$num" />x}{<var name="$den" />}\amp=-\frac{<var name="$num" />}{<var name="$den" />}\cdot\frac{x}{1}</mrow>
                         <mrow>\amp=-\frac{<var name="$num" />}{<var name="$den" />}x</mrow>
                     </md>Thus the line's slope is <m>-\frac{<var name="$num" />}{<var name="$den" />}</m>, and its <m>y</m>-intercept has coordinates <m>\point{0}{<var name="$b" />}</m>.</p>
