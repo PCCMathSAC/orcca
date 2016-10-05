@@ -14,18 +14,15 @@
 <!-- https://creativecommons.org/licenses/by/4.0/                         --> 
 <!-- *********************************************************************--> 
 
-<section xml:id="section-comparison-operators-and-notation-for-sets">
+<section xml:id="section-comparison-symbols">
 
-    <title>Comparison Operators and Notation for Sets</title>
+    <title>Comparison Symbols</title>
 
     <introduction>
         <p>As you know, <m>8</m> is larger than <m>3</m>; that's a specific comparison between two numbers. We can also make a comparison between two less specific numbers, like if we say that average rent in Portland in 2016 is larger than it was in 2009. This section will go over the mathematical shorthand notation for making these kinds of comparisons.</p>
 
-        <p>In Oregon, only people who are <m>18</m> years old or older can vote in statewide elections.<fn>Some other states like Washington allow 17-year-olds to vote in primary elections provided they will be 18 by the general election.</fn> Does that seem like a statement about the number <m>18</m>? Maybe. But it's also a statment about numbers like <m>37</m> and <m>62</m>: it says that people these ages may vote as well.  This section will also get into the mathematical notation for large collections of numbers like this.</p>
-    </introduction>
+        <p>In Oregon, only people who are <m>18</m> years old or older can vote in statewide elections.<fn>Some other states like Washington allow 17-year-olds to vote in primary elections provided they will be 18 by the general election.</fn> Does that seem like a statement about the number <m>18</m>? Maybe. But it's also a statement about numbers like <m>37</m> and <m>62</m>: it says that people these ages may vote as well.  This section will also get into the mathematical notation for large collections of numbers like this.</p>
 
-    <subsection>
-        <title>Comparison Symbols</title>
         <p>In everyday language you can say something like <q><m>8</m> is larger than <m>3</m>.</q> In mathematical writing, it's not convenient to write that out in English. Instead the symbol <q><m>\gt</m></q> has been adopted, and it's used like this: <me>8\gt3</me> and read out loud as <q><m>8</m> is greater than <m>3</m>.</q> The symbol <q><m>\gt</m></q> is called the <term>greater-than symbol.</term><index><main>greater-than symbol</main></index></p>
 
         <exercise>
@@ -80,7 +77,7 @@
                     <![CDATA[\begin{tikzpicture}
                         \begin{axis}[numberline,
                                     xtick={-8,-3,3,8},
-                                    clip=false]
+                                    ]
                             \addplot[soliddot] coordinates {(-8,0)};
                             \addplot[soliddot] coordinates {(-3,0)};
                             \addplot[soliddot] coordinates {(3,0)};
@@ -284,7 +281,7 @@
                 </row>
             </tabular>
         </table>
-    </subsection>
+    </introduction>
     <exercises>
         <exercise>
             <title>Ordering Integers</title>
@@ -624,19 +621,8 @@
                     <var name="$TF[4]"><static>False</static></var>
                     <var name="$statement[5]"><static>-8=-8</static></var>
                     <var name="$TF[5]"><static>True</static></var>
-                    <var name="$statement[6]"><static>-5\neq2</static></var>
-                    <var name="$TF[6]"><static>True</static></var>
-                    <var name="$statement[7]"><static>8\lt8</static></var>
-                    <var name="$TF[7]"><static>False</static></var>
-                    <var name="$statement[8]"><static>-8\lt-6</static></var>
-                    <var name="$TF[8]"><static>True</static></var>
-                    <var name="$statement[9]"><static>7\leq7</static></var>
-                    <var name="$TF[9]"><static>True</static></var>
-                    <var name="$statement[10]"><static>5\gt5</static></var>
-                    <var name="$TF[10]"><static>False</static></var>
-                    <var name="$statement[11]"><static>5\leq3</static></var>
-                    <var name="$TF[11]"><static>False</static></var>
                     <pg-code>
+                        #randomizes from 12, only presents 6
                         ($left[1],$left[3],$left[5],$left[7],$left[9],$left[11])=map{$_-10}(NchooseK(20,6));
                         ($right[1],$right[3],$right[5],$right[7],$right[9],$right[11])=($left[1],$left[3],$left[5],$left[7],$left[9],$left[11]);
                         ($left[0],$right[0])=map{$_-10}(NchooseK(20,2));
@@ -657,6 +643,7 @@
                         for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
                         for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
                         for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        if($envir{problemSeed}==1){@statement=('-5\geq6','-3\neq-3','-6\geq-6','-1=-7','-7\gt3','-8=-8');@TF=($False,$False,$True,$False,$False,$True);};
                     </pg-code>
                 </setup>
                 <statement>
@@ -687,35 +674,249 @@
                                 <cell><m><var name="$statement[5]" /></m></cell>
                                 <cell><var name="$TF[5]" form="popup"/></cell>
                             </row>
+                        </tabular>
+                    </table>
+                </statement>
+            </webwork>
+        </exercise>
+        <exercise>
+            <title>True/False with Integers</title>
+            <webwork seed="1">
+                <pg-macros>
+                    <macro-file>PGchoicemacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <var name="$statement[0]"><static>-5\neq2</static></var>
+                    <var name="$TF[0]"><static>True</static></var>
+                    <var name="$statement[1]"><static>8\lt8</static></var>
+                    <var name="$TF[1]"><static>False</static></var>
+                    <var name="$statement[2]"><static>-8\lt-6</static></var>
+                    <var name="$TF[2]"><static>True</static></var>
+                    <var name="$statement[3]"><static>7\leq7</static></var>
+                    <var name="$TF[3]"><static>True</static></var>
+                    <var name="$statement[4]"><static>5\gt5</static></var>
+                    <var name="$TF[4]"><static>False</static></var>
+                    <var name="$statement[5]"><static>5\leq3</static></var>
+                    <var name="$TF[5]"><static>False</static></var>
+                    <pg-code>
+                        #randomizes from 12, only presents 6
+                        ($left[1],$left[3],$left[5],$left[7],$left[9],$left[11])=map{$_-10}(NchooseK(20,6));
+                        ($right[1],$right[3],$right[5],$right[7],$right[9],$right[11])=($left[1],$left[3],$left[5],$left[7],$left[9],$left[11]);
+                        ($left[0],$right[0])=map{$_-10}(NchooseK(20,2));
+                        ($left[2],$right[2])=map{$_-10}(NchooseK(20,2));
+                        ($left[4],$right[4])=map{$_-10}(NchooseK(20,2));
+                        ($left[6],$right[6])=map{$_-10}(NchooseK(20,2));
+                        ($left[8],$right[8])=map{$_-10}(NchooseK(20,2));
+                        ($left[10],$right[10])=map{$_-10}(NchooseK(20,2));
+                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                        @j=NchooseK(12,12);
+                        @statement=map{$left[$j[$_]].$comp[$j[$_]].$right[$j[$_]]}(0..11);
+                        $True=PopUp(["?","True","False"],"True");
+                        $False=PopUp(["?","True","False"],"False");
+                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        if($envir{problemSeed}==1){@statement=('-5\neq2','8\lt8','-8\lt-6','7\leq7','5\gt5','5\leq3');@TF=($True,$False,$True,$True,$False,$False);};
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Decide if each comparison is true or false.</p>
+                    <table>
+                        <tabular>
                             <row>
-                                <cell><m><var name="$statement[6]" /></m></cell>
-                                <cell><var name="$TF[6]" form="popup"/></cell>
+                                <cell><m><var name="$statement[0]" /></m></cell>
+                                <cell><var name="$TF[0]" form="popup"/></cell>
                             </row>
                             <row>
-                                <cell><m><var name="$statement[7]" /></m></cell>
-                                <cell><var name="$TF[7]" form="popup"/></cell>
+                                <cell><m><var name="$statement[1]" /></m></cell>
+                                <cell><var name="$TF[1]" form="popup"/></cell>
                             </row>
                             <row>
-                                <cell><m><var name="$statement[8]" /></m></cell>
-                                <cell><var name="$TF[8]" form="popup"/></cell>
+                                <cell><m><var name="$statement[2]" /></m></cell>
+                                <cell><var name="$TF[2]" form="popup"/></cell>
                             </row>
                             <row>
-                                <cell><m><var name="$statement[9]" /></m></cell>
-                                <cell><var name="$TF[9]" form="popup"/></cell>
+                                <cell><m><var name="$statement[3]" /></m></cell>
+                                <cell><var name="$TF[3]" form="popup"/></cell>
                             </row>
                             <row>
-                                <cell><m><var name="$statement[10]" /></m></cell>
-                                <cell><var name="$TF[10]" form="popup"/></cell>
+                                <cell><m><var name="$statement[4]" /></m></cell>
+                                <cell><var name="$TF[4]" form="popup"/></cell>
                             </row>
                             <row>
-                                <cell><m><var name="$statement[11]" /></m></cell>
-                                <cell><var name="$TF[11]" form="popup"/></cell>
+                                <cell><m><var name="$statement[5]" /></m></cell>
+                                <cell><var name="$TF[5]" form="popup"/></cell>
                             </row>
                         </tabular>
                     </table>
                 </statement>
             </webwork>
         </exercise>
-        <todo>More like the previous webwork, but with decimals, fractions.</todo>
+
+        <exercise>
+            <title>True/False with Fractions</title>
+            <webwork seed="1">
+                <pg-macros>
+                    <macro-file>PGchoicemacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <var name="$statement[0]"><static>\frac{5}{7}\gt\frac{5}{7}</static></var>
+                    <var name="$TF[0]"><static>False</static></var>
+                    <var name="$statement[1]"><static>-\frac{35}{4}\geq-\frac{12}{9}</static></var>
+                    <var name="$TF[1]"><static>False</static></var>
+                    <var name="$statement[2]"><static>-\frac{13}{2}\neq\frac{33}{8}</static></var>
+                    <var name="$TF[2]"><static>True</static></var>
+                    <var name="$statement[3]"><static>-\frac{3}{6}\neq-\frac{3}{6}</static></var>
+                    <var name="$TF[3]"><static>False</static></var>
+                    <var name="$statement[4]"><static>\frac{7}{7}\leq\frac{21}{21}</static></var>
+                    <var name="$TF[4]"><static>True</static></var>
+                    <var name="$statement[5]"><static>\frac{11}{3}\lt\frac{42}{5}</static></var>
+                    <var name="$TF[5]"><static>True</static></var>
+                    <pg-code>
+                        #randomizes from 12, only presents 6
+                        ($ln[1],$ln[3],$ln[5],$ln[7],$ln[9],$ln[11])=map{$_-10}(NchooseK(20,6));
+                        Context("Fraction");
+                        Context()->flags->set(reduceFractions=>0);
+                        for my$i(1,3,5,7,9,11){$g[$i]=random(1,3,1);
+                            $ld[$i]=random(2,9,1);
+                            $left[$i]=Fraction($ln[$i],$ld[$i]);
+                            $right[$i]=Fraction($ln[$i]*$g[$i],$ld[$i]*$g[$i])};
+                        for my$i(0,2,4,6,8,10){$ld[$i]=random(2,9,1);
+                            $left[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$ld[$i]+random(1,$ld[$i]-1,1),$ld[$i]);
+                            $rd[$i]=random(2,9,1);
+                            $right[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$rd[$i]+random(1,$rd[$i]-1,1),$rd[$i]);};
+                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                        @j=NchooseK(12,12);
+                        @statement=map{$left[$j[$_]]->TeX.$comp[$j[$_]].$right[$j[$_]]->TeX}(0..11);
+                        $True=PopUp(["?","True","False"],"True");
+                        $False=PopUp(["?","True","False"],"False");
+                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        if($envir{problemSeed}==1){@statement=('\frac{5}{7}\gt\frac{5}{7}','-\frac{35}{4}\geq-\frac{12}{9}','-\frac{13}{2}\neq\frac{33}{8}','-\frac{3}{6}\neq-\frac{3}{6}','\frac{7}{7}\leq\frac{21}{21}','\frac{11}{3}\lt\frac{42}{5}');@TF=($False,$False,$True,$False,$True,$True);};
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Decide if each comparison is true or false.</p>
+                    <table>
+                        <tabular>
+                            <row>
+                                <cell><m><var name="$statement[0]" /></m></cell>
+                                <cell><var name="$TF[0]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[1]" /></m></cell>
+                                <cell><var name="$TF[1]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[2]" /></m></cell>
+                                <cell><var name="$TF[2]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[3]" /></m></cell>
+                                <cell><var name="$TF[3]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[4]" /></m></cell>
+                                <cell><var name="$TF[4]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[5]" /></m></cell>
+                                <cell><var name="$TF[5]" form="popup"/></cell>
+                            </row>
+                        </tabular>
+                    </table>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <title>True/False with Fractions</title>
+            <webwork seed="1">
+                <pg-macros>
+                    <macro-file>PGchoicemacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <var name="$statement[0]"><static>\frac{6}{5}\gt\frac{5}{3}</static></var>
+                    <var name="$TF[0]"><static>False</static></var>
+                    <var name="$statement[1]"><static>\frac{80}{9}\leq-\frac{17}{4}</static></var>
+                    <var name="$TF[1]"><static>False</static></var>
+                    <var name="$statement[2]"><static>-\frac{8}{9}=-\frac{16}{18}</static></var>
+                    <var name="$TF[2]"><static>True</static></var>
+                    <var name="$statement[3]"><static>-\frac{6}{3}\geq-\frac{6}{3}</static></var>
+                    <var name="$TF[3]"><static>True</static></var>
+                    <var name="$statement[4]"><static>\frac{8}{3}\lt\frac{8}{3}</static></var>
+                    <var name="$TF[4]"><static>False</static></var>
+                    <var name="$statement[5]"><static>\frac{21}{5}=-\frac{29}{3}</static></var>
+                    <var name="$TF[5]"><static>False</static></var>
+                    <pg-code>
+                        #randomizes from 12, only presents 6
+                        ($ln[1],$ln[3],$ln[5],$ln[7],$ln[9],$ln[11])=map{$_-10}(NchooseK(20,6));
+                        Context("Fraction");
+                        Context()->flags->set(reduceFractions=>0);
+                        for my$i(1,3,5,7,9,11){$g[$i]=random(1,3,1);
+                            $ld[$i]=random(2,9,1);
+                            $left[$i]=Fraction($ln[$i],$ld[$i]);
+                            $right[$i]=Fraction($ln[$i]*$g[$i],$ld[$i]*$g[$i])};
+                        for my$i(0,2,4,6,8,10){$ld[$i]=random(2,9,1);
+                            $left[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$ld[$i]+random(1,$ld[$i]-1,1),$ld[$i]);
+                            $rd[$i]=random(2,9,1);
+                            $right[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$rd[$i]+random(1,$rd[$i]-1,1),$rd[$i]);};
+                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                        @j=NchooseK(12,12);
+                        @statement=map{$left[$j[$_]]->TeX.$comp[$j[$_]].$right[$j[$_]]->TeX}(0..11);
+                        $True=PopUp(["?","True","False"],"True");
+                        $False=PopUp(["?","True","False"],"False");
+                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        if($envir{problemSeed}==1){@statement=('\frac{6}{5}\gt\frac{5}{3}','\frac{80}{9}\leq-\frac{17}{4}','-\frac{8}{9}=-\frac{16}{18}','-\frac{6}{3}\geq-\frac{6}{3}','\frac{8}{3}\lt\frac{8}{3}','\frac{21}{5}=-\frac{29}{3}');@TF=($False,$False,$True,$True,$False,$False);};
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Decide if each comparison is true or false.</p>
+                    <table>
+                        <tabular>
+                            <row>
+                                <cell><m><var name="$statement[0]" /></m></cell>
+                                <cell><var name="$TF[0]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[1]" /></m></cell>
+                                <cell><var name="$TF[1]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[2]" /></m></cell>
+                                <cell><var name="$TF[2]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[3]" /></m></cell>
+                                <cell><var name="$TF[3]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[4]" /></m></cell>
+                                <cell><var name="$TF[4]" form="popup"/></cell>
+                            </row>
+                            <row>
+                                <cell><m><var name="$statement[5]" /></m></cell>
+                                <cell><var name="$TF[5]" form="popup"/></cell>
+                            </row>
+                        </tabular>
+                    </table>
+                </statement>
+            </webwork>
+        </exercise>
     </exercises>
 </section>
