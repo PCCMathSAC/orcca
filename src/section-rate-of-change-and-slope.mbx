@@ -15,7 +15,886 @@
 <!-- *********************************************************************--> 
 
 <section xml:id="section-rate-of-change-and-slope">
-
     <title>Rate of Change and Slope</title>
+
+    <p>We will start this lesson with a video as an overview.</p>
+
+    <video youtube="MeU-KzdCBps" width="70%" />
+
+    <subsection>
+    	<title>Introduction to Slope</title>
+
+    	<p><em>Scenario:</em> On Dec. 31, Matthew found that he had only <m>5</m> dollars left in his piggy bank. He decided to save <m>3</m> dollars per day in the new year and not spend any. We can model the amount of money in his piggy bank with a linear equation: <m>y=3x+5\text{.}</m> The number in front of <m>x\text{,}</m> <m>3\text{,}</m> is the rate of change (<m>3</m> dollars per day). We give it a special name in math: <term>slope</term>.</p>
+
+    	<p>Let's build a table to model the amount of money Matthew has saved in the scenario above.</p>
+
+		<table xml:id="matthew-money">
+			<caption>Amount of Money in Matthew's Piggie Bank Since Dec. 31</caption>
+			<tabular>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<col halign="center"/>
+				<row>
+					<cell/>
+					<cell>Number of Days</cell>
+					<cell>Amount of Money</cell>
+					<cell/>
+				</row>
+				<row>
+					<cell/>
+					<cell>Since Dec. 31</cell>
+					<cell>Saved in Dollars</cell>
+					<cell/>
+				</row>
+				<row bottom="medium">
+					<cell/>
+					<cell><m>x</m>-values</cell>
+					<cell><m>y</m>-values</cell>
+					<cell/>
+				</row>
+				<row>
+					<cell/>
+					<cell><m>0</m></cell>
+					<cell><m>5</m></cell>
+					<cell/>
+				</row>
+				<row>
+					<cell><m>x</m> increases by <m>1</m></cell>
+					<cell/>
+					<cell/>
+					<cell><m>y</m> increases by <m>3</m></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><m>1</m></cell>
+					<cell><m>8</m></cell>
+					<cell/>
+				</row>
+				<row>
+					<cell><m>x</m> increases by <m>1</m></cell>
+					<cell/>
+					<cell/>
+					<cell><m>y</m> increases by <m>3</m></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><m>2</m></cell>
+					<cell><m>11</m></cell>
+					<cell/>
+				</row>
+				<row>
+					<cell><m>x</m> increases by <m>1</m></cell>
+					<cell/>
+					<cell/>
+					<cell><m>y</m> increases by <m>3</m></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><m>3</m></cell>
+					<cell><m>14</m></cell>
+					<cell/>
+				</row>
+				<row>
+					<cell><m>x</m> increases by <m>2</m></cell>
+					<cell><m>\vdots</m></cell>
+					<cell><m>\vdots</m></cell>
+					<cell><m>y</m> increases by <m>6</m></cell>
+				</row>
+				<row>
+					<cell/>
+					<cell><m>5</m></cell>
+					<cell><m>20</m></cell>
+					<cell/>
+				</row>
+			</tabular>
+		</table>
+
+		<p>Matthew saves <m>3</m> dollars per day; as a result, in the table, each time when <m>x</m> increases by <m>1\text{,}</m> <m>y</m> increases by <m>3\text{.}</m> This is how we find a linear relationship's slope from a table of data.</p>
+
+		<p>Note that when <m>x</m> increases by <m>2\text{,}</m> <m>y</m> increases by <m>6\text{.}</m> The rate of change (slope) is still <m>\frac{6}{2}=3\text{.}</m></p>
+
+		<p>Here are some scenarios with different slopes. Note that a slope is more meaningful with units.</p>
+		<ul>
+			<li>If a tree grows <m>2.5</m> feet every year, to model the tree's height, the slope would be <m>2.5</m> feet per year.</li>
+			<li>If a company loses <m>2</m> millions dollars every year, to model the amount of total loss, the slope would be <m>-2</m> million dollars per year.</li>
+			<li>If Cara has stopped growing, to model her height, the slope would be <m>0</m> inches per year.</li>
+		</ul>
+
+		<p>Next, we will see how to find slope in a graph. Let's put the amount of Matthew's saved money into a graph according to <xref ref="matthew-money">Table</xref></p>
+
+        <figure>
+            <caption>Amount of Money Saved by Matthew</caption>
+            <image>
+            <description>This is a Cartesian grid with the following points: (0,5),(1,8),(2,11),(3,14),(5,20), with a few slope triangles. The first one starts at (0,5), goes through (1,5), and ends at (1,8). The base of the triangle is labeled "1 day," and the height is labeled "3 dollars". The last slope triangle starts at (3,14), goes through (5,14), and ends at (5,20). The base of the triangle is labeled "2 days," and the height is labeled "6 dollars". The other two slope triangles don't have labels. One starts at (1,8), goes through (2,8) and ends at (2,11). The other one starts at (2,11), goes through (3,11), and ends at (3,14).</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                    	xlabel={days},ylabel={money (in dollars)},
+                    	xmin=-1,xmax=8,ymin=-1,ymax=24,
+                        minor ytick=,
+                    	xtick={0,1,...,7},ytick={2,5,...,23}
+                    ]
+	                    \addplot[only marks,]
+	                    	coordinates{
+	                    		(0,5)
+	                    		(1,8)
+	                    		(2,11)
+	                    		(3,14)
+	                    		(5,20)
+	          				};
+	          			\addplot[
+	            			domain = -1:6.33,
+	            			<->,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{3*x+5};
+	          			\addplot[guideline,->] coordinates {(0,5) (1,5) (1,8)};
+	          			\addplot[guideline,->] coordinates {(1,8) (2,8) (2,11)};
+	          			\addplot[guideline,->] coordinates {(2,11) (3,11) (3,14)};
+	          			\addplot[guideline,->] coordinates {(3,14) (5,14) (5,20)};
+	          			\node at (axis cs: 0.5,5) [below] {$1$ year};
+	          			\node at (axis cs: 1,6.5) [right] {$3$ dollars};
+	          			\node at (axis cs: 4,14) [below] {$2$ years};
+	          			\node at (axis cs: 5,17) [right] {$6$ dollars};
+                    \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code>
+            </image>
+        </figure>
+
+        <p>We call triangles in the graph <term>slope triangles</term>, because they can tell us this line's slope:</p>
+
+        <ul>
+        	<li>The smaller slope triangle on the left side implies: When <m>1</m> day passes, <m>3</m> dollars are saved. The line's slope is <m>\frac{3}{1}=3</m> dollars per day.</li>
+        	<li>The bigger slope triangle on the top right implies: When <m>2</m> days pass, <m>6</m> dollars are saved. The line's slope is <m>\frac{6}{2}=3</m> dollars per day.</li>
+        </ul>
+
+        <p>Both slope triangles give us the same slope. This implies, to find a line's slope, we can choose any two points on the line, draw a slope triangle, and then do a division. Many math textbooks use the formula <me>\text{slope}=\frac{\text{rise}}{\text{run}}</me>In the smaller slope triangle, <m>\text{rise}=2\text{,}</m> and <m>\text{run}=1\text{.}</m> Feel free to use that formula, but this textbook will use the formula <men xml:id="slope-definition-formula">\text{slope} =\frac{\text{change in }y}{\text{change in }x} =\frac{\Delta y}{\Delta x}</men>By math convention, we use the Greek letter <m>\Delta</m> to represent <q>change</q>. We choose not to use the first formula because when a slope is negative, the phrase <q>change in <m>y</m></q> is better than the word <q>rise.</q></p>
+
+        <p>We could have drawn the slope triangle in a different way:</p>
+
+        <figure>
+            <caption>Amount of Money Saved by Matthew</caption>
+            <image>
+            <description>This is a Cartesian grid with the following points: (0,5),(1,8),(2,11),(3,14),(5,20), with a slope triangle. It starts at (3,14), goes through (3,20), and ends at (5,20). The base of the triangle is labeled "2 days," and the height is labeled "6 dollars". </description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                    	xlabel={days},ylabel={money (in dollars)},
+                    	xmin=-1,xmax=8,ymin=-1,ymax=26,
+                        minor ytick=,
+                    	xtick={0,1,...,7},ytick={2,5,...,23}
+                    ]
+	                    \addplot[only marks,]
+	                    	coordinates{
+	                    		(3,14)
+	                    		(5,20)
+	          				};
+	          			\addplot[
+	            			domain = -1:6.33,
+	            			<->,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{3*x+5};
+	          			\addplot[guideline,->] coordinates {(3,14) (3,20) (5,20)};
+	          			\node at (axis cs: 3,17) [left] {$6$ dollars};
+	          			\node at (axis cs: 4,20) [above] {$2$ days};
+                    \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code>
+            </image>
+        </figure>
+
+        <p>Drawing a slope triangle this way would imply: "Each time when <m>6</m> dollars are saved, <m>2</m> days pass." Compare this with drawing <em>change in <m>x</m></em> first, which implies "When <m>2</m> days pass, <m>6</m> dollars are saved." The latter approach makes more sense. Mathematically, it's ok to use both ways to draw slope triangles, and we will get the same answer. However, in this textbook, we will always draw <em>change in <m>x</m></em> first.</p>
+
+        <p>The following video summarizes what we learned above.</p>
+
+        <video youtube="R948Tsyq4vA" width="70%" />
+        
+        <example>
+        	<statement>
+        		<p>The following line models the amount of gas, in gallons, in a car's tank as it drives. Find the line's slope, and interpret its meaning in this context.</p>
+		        <figure>
+		            <caption>Amount of Gas in a Car's Tank</caption>
+		            <image>
+		            <description>This is a grid with a line, passing the points (3,8),(6,6),(9,4)...</description>
+		            <latex-image-code>
+		            <![CDATA[\begin{tikzpicture}
+		                \begin{axis}[
+		                    	xlabel={hours},ylabel={gas in gallons},
+		                    	xmin=-1,xmax=11,ymin=-1,ymax=11,
+		                        minor ytick=,
+		                        minor xtick=,
+		                    	xtick={0,1,...,11},ytick={0,1,...,10}
+		                    ]
+			          		\addplot[
+			            		domain = 1:8,
+			           			<->,
+			           			smooth,
+			           			thin,
+			           			color = red,
+			      			]{-2/3*x+10};
+		                \end{axis}
+		            \end{tikzpicture}
+		            ]]>
+		            </latex-image-code>
+		            </image>
+		        </figure>
+        	</statement>
+        	<solution>
+        		<p>To find a line's slope, we first pick two points on it, and then draw a slope triangle. Naturally, we would want to choose two points whose <m>x</m>-coordinate are <m>0</m> and <m>1\text{.}</m> However, the given line doesn't clearly show those two points, so we will pick two points when <m>x=2</m> and <m>x=3{\text{:}}</m></p>
+		        <figure>
+		            <caption>A Bad Slope Triangle</caption>
+		            <image>
+		            <description>This is a grid with a line, passing the points (3,8),(6,6),(9,4)... There is a slope triangle starting from (2,8.66), passing (3,8.66) and ending at (3,8).</description>
+		            <latex-image-code>
+		            <![CDATA[\begin{tikzpicture}
+		                    \begin{axis}[
+		                    	xlabel={hours},ylabel={gas in gallons},
+		                    	xmin=-1,xmax=11,ymin=-1,ymax=11,
+		                        minor ytick=,
+		                        minor xtick=,
+		                    	xtick={0,1,...,11},ytick={0,1,...,10}
+		                    ]
+		                    	\addplot[only marks,]
+			                    	coordinates{
+			                    		(2,8.66)
+			                    		(3,8)
+			          			};
+			          			\addplot[
+			            			domain = 1:8,
+			            			<->,
+			            			smooth,
+			            			thin,
+			            			color = red,
+			          			]{-2/3*x+10};
+			          			\addplot[guideline,->] coordinates {(2,8.66) (3,8.66) (3,8)};
+		                    \end{axis}
+		            \end{tikzpicture}
+		            ]]>
+		            </latex-image-code>
+		            </image>
+		        </figure>
+
+				<p>According to <xref ref="slope-definition-formula">Equation</xref>, we need to find <em>change in <m>x</m></em> and <em>change in <m>y\text{.}</m></em> However, it's hard to identify the <m>y</m>-value of the first point, because it's a decimal. We have realized we didn't make a good choice of points. We should instead choose points with integer coordinates:</p>
+
+				<figure>
+		            <caption>A Good Slope Triangle</caption>
+		            <image>
+		            <description>This is a grid with a line, passing the points (3,8),(6,6),(9,4)...There is a slope triangle starting from (3,8), passing (6,8) and ending at (6,6). The label from (3,8) to (6,8) is "3 hours"; and the label from (6,8) to (6,6) is "-2 gallons".</description>
+		            <latex-image-code>
+		            <![CDATA[\begin{tikzpicture}
+		                    \begin{axis}[
+		                    	xlabel={hours},ylabel={gas in gallons},
+		                    	xmin=-1,xmax=11,ymin=-1,ymax=11,
+		                        minor ytick=,
+		                        minor xtick=,
+		                    	xtick={0,1,...,11},ytick={0,1,...,10}
+		                    ]
+		                    	\addplot[only marks,]
+			                    	coordinates{
+			                    		(3,8)
+			                    		(6,6)
+			          			};
+			          			\addplot[
+			            			domain = 1:8,
+			            			<->,
+			            			smooth,
+			            			thin,
+			            			color = red,
+			          			]{-2/3*x+10};
+			          			\addplot[guideline,->] coordinates {(3,8) (6,8) (6,6)};
+	          					\node at (axis cs: 4.5,8) [above] {$3$ hours};
+	          					\node at (axis cs: 6,7) [right] {$-2$ gallons};
+		                    \end{axis}
+		            \end{tikzpicture}
+		            ]]>
+		            </latex-image-code>
+		            </image>
+		        </figure>
+
+		        <p>Notice that <em>change in <m>y</m></em> is negative, because the amount of gas is decreasing. Since we chose points with integer coordiantes, we can easily calculate the slope:<me>\text{slope}=\frac{-2}{3}=-\frac{2}{3}</me> In the given context, the slope implies gas in the tank is decreasing at the rate of <m>\frac{2}{3}</m> gallons per hour. Another way to understand the slope is: Gas in the tank is decreasing by <m>2</m> gallons every <m>3</m> hours.</p>
+
+        	</solution>
+        </example>
+    </subsection>
+
+	<exercises>
+		<title>Exercises on Finding Slope by Graph</title>
+		<exercise>
+			<webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" seed="1"/>
+		</exercise>
+	</exercises>
+
+    <subsection>
+    	<title>Comparing Slopes</title>
+    	<p>We will learn how to compare slopes in the same coordinate system.</p>
+
+		<p><em>Scenario:</em> Effie, Ivan and Cleo are in a race. The following graph models their distance from the starting point in the first few seconds. Find each line's slope, and interpret its meaning in this context. How can we compare different lines' slopes in a graph?</p>
+		<figure>
+            <caption>Three People's Distance from the Stating Point</caption>
+            <image>
+            <description>This is a grid with 3 lines to model 3 people's distance from the starting line. Effie's line passes (0,0) and (3,4). This line is colored blue. Ivan's line passes (0,0) and (1,2). This line is colored red. Cleo's line passes (0,0) and (1,3). This line is colored black.</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                    	xlabel={seconds},ylabel={meters},
+                    	xmin=-1,xmax=6,ymin=-1,ymax=10,
+                        minor ytick=,
+                        minor xtick=,
+                    	xtick={0,1,...,5},ytick={0,1,...,9}
+                    ]
+	          			\addplot[
+	            			domain = 0:6,
+	            			->,
+	            			smooth,
+	            			thin,
+	            			color = blue,
+	          			]{4/3*x};
+	          			\node at (axis cs: 5,7) [color = blue] {Effie};
+	          			\addplot[
+	            			domain = 0:6,
+	            			->,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{2*x};
+	          			\node at (axis cs: 4,8) [color = red] {Ivan};
+	          			\addplot[
+	            			domain = 0:6,
+	            			->,
+	            			smooth,
+	            			thin,
+	            			color = black,
+	          			]{3*x};
+	          			\node at (axis cs: 2,8) [color = black] {Cleo};
+                    \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code>
+            </image>
+        </figure>
+
+        <p>We will draw slope triangles to find each line's slope.</p>
+
+		<sidebyside>
+		<caption>Find the Slope of Each Line</caption>
+
+			<figure>
+	            <image>
+	            <description>This is a grid with a line to model Effie's distance from the starting line. The line passes (0,0) and (3,4). There is a slope triangle starting at (0,0), passes (3,0) and ends at (3,4). The label from (0,0) to (3,0) is "3 hours"; and the label from (3,0) to (3,4) is "4 meters".</description>
+	            <latex-image-code>
+	            <![CDATA[\begin{tikzpicture}
+	                    \begin{axis}[
+	                    	xlabel={seconds},ylabel={meters},
+	                    	xmin=-1,xmax=6,ymin=-1,ymax=10,
+	                        minor ytick=,
+	                        minor xtick=,
+	                    	xtick={0,1,...,5},ytick={0,1,...,9}
+	                    ]
+		          			\addplot[
+		            			domain = 0:6,
+		            			->,
+		            			smooth,
+		            			thin,
+		            			color = blue,
+		          			]{4/3*x};
+		          			\node at (axis cs: 5,7) [color = blue] {Effie};
+		          			\addplot[only marks, color=blue]
+	                    		coordinates{
+	                    			(0,0)
+	                    			(3,4)
+	          				};
+	          				\addplot[guideline,->] coordinates {(0,0) (3,0) (3,4)};
+	          				\node at (axis cs: 1.5,0) [color = blue, above] {$3$ seconds};
+      						\node at (axis cs: 3,2) [color = blue, right] {$4$ meters};
+	                    \end{axis}
+	            \end{tikzpicture}
+	            ]]>
+	            </latex-image-code>
+	            </image>
+	        </figure>
+
+	        <figure>
+	            <image>
+	            <description>This is a grid with a line to model Ivon's distance from the starting line. The line passes (0,0) and (1,2). There is a slope triangle starting at (0,0), passes (1,0) and ends at (1,2). The label from (0,0) to (1,0) is "1 hour"; and the label from (1,0) to (1,2) is "2 meters".</description>
+	            <latex-image-code>
+	            <![CDATA[\begin{tikzpicture}
+	                    \begin{axis}[
+	                    	xlabel={seconds},ylabel={meters},
+	                    	xmin=-1,xmax=6,ymin=-1,ymax=10,
+	                        minor ytick=,
+	                        minor xtick=,
+	                    	xtick={0,1,...,5},ytick={0,1,...,9}
+	                    ]
+		          			\addplot[
+		            			domain = 0:6,
+		            			->,
+		            			smooth,
+		            			thin,
+		            			color = red,
+		          			]{2*x};
+		          			\node at (axis cs: 4,8) [color = red] {Ivon};
+		          			\addplot[only marks,color = red]
+	                    		coordinates{
+	                    			(0,0)
+	                    			(1,2)
+	          				};
+	          				\addplot[guideline,->] coordinates {(0,0) (1,0) (1,2)};
+	          				\node at (axis cs: 0.5,0) [color = red, above] {$1$ seconds};
+      						\node at (axis cs: 1,1) [color = red, right] {$2$ meters};
+	                    \end{axis}
+	            \end{tikzpicture}
+	            ]]>
+	            </latex-image-code>
+	            </image>
+	        </figure>
+
+	        <figure>
+	            <image>
+	            <description>This is a grid with a line to model Cleo's distance from the starting line. The line passes (0,0) and (1,3). There is a slope triangle starting at (0,0), passes (1,0) and ends at (1,3). The label from (0,0) to (1,0) is "1 hour"; and the label from (1,0) to (1,3) is "3 meters".</description>
+	            <latex-image-code>
+	            <![CDATA[\begin{tikzpicture}
+	                    \begin{axis}[
+	                    	xlabel={seconds},ylabel={meters},
+	                    	xmin=-1,xmax=6,ymin=-1,ymax=10,
+	                        minor ytick=,
+	                        minor xtick=,
+	                    	xtick={0,1,...,5},ytick={0,1,...,9}
+	                    ]
+		          			\addplot[
+		            			domain = 0:6,
+		            			->,
+		            			smooth,
+		            			thin,
+		            			color = black,
+		          			]{3*x};
+		          			\node at (axis cs: 2,8) [color = black] {Cleo};
+		          			\addplot[only marks,]
+	                    		coordinates{
+	                    			(0,0)
+	                    			(1,3)
+	          				};
+	          				\addplot[guideline,->] coordinates {(0,0) (1,0) (1,3)};
+	          				\node at (axis cs: 0.5,0) [color = black, above] {$1$ seconds};
+      						\node at (axis cs: 1,1.5) [color = black, right] {$3$ meters};
+	                    \end{axis}
+	            \end{tikzpicture}
+	            ]]>
+	            </latex-image-code>
+	            </image>
+	        </figure>
+	    </sidebyside>
+
+		<p>By <xref ref="slope-definition-formula">Formula</xref>, we have:</p>
+		<ul>
+			<li>In Effie's line, <m>\text{slope}=\frac{4}{3}</m> meters per second</li>
+			<li>In Ivan's line, <m>\text{slope}=\frac{2}{1}=2</m> meters per second</li>
+			<li>In Cleo's line, <m>\text{slope}=\frac{3}{1}=3</m> meters per second</li>
+		</ul>
+		
+		<p>In a time-distance graph, the slope of a line represents speed. We can clearly see this relationship from the slope triangles, such as <m>2</m> meters per second in the second graph. Another important relationship we can see is that, the more sharply a line is slanted, the bigger the slope is (Note that the opposite is true for negative slopes). This should make sense because for each passing second, the faster person travels longer, making a slope triangle's height taller.</p>
+
+    </subsection>
+
+    <subsection>
+
+    	<title>Zero Slope</title>
+
+    	<p>Next, we will learn what zero slope means.</p>
+
+		<p><em>Scenario:</em> Emiliano is training for a race along a straight path. The following graph models his distance from the starting point. Find the slopes of those 3 line segments, and interpret their meanings in this context.</p>
+
+		<figure>
+            <caption>Emiliano's Distance from the Stating Point</caption>
+            <image>
+            <description>This is a grid with 3 line segments. The first one starts at (0,0) and ends at (3,12); the second one starts (3,12), and ends at (5,12); the third one starts at (5,12), and ends at (9,0).</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                    	xlabel={hours},ylabel={miles},
+                    	xmin=-1,xmax=10,ymin=-1,ymax=14,
+                        minor ytick=,
+                        minor xtick=,
+                    	xtick={0,1,...,9},ytick={0,1,...,13}
+                    ]
+	          			\addplot[
+	            			domain = 0:3,
+	            			-,
+	            			smooth,
+	            			thin,
+	            			color = blue,
+	          			]{4*x};
+	          			\addplot[
+	            			domain = 3:5,
+	            			-,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{12};
+	          			\addplot[
+	            			domain = 5:9,
+	            			-,
+	            			smooth,
+	            			thin,
+	            			color = black,
+	          			]{-3*x+27};
+                    \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code>
+            </image>
+        </figure>
+
+		<p>Here is an example of how to interpret a point: The point <m>(3,12)</m> implies, <m>3</m> hours since Emiliano started traveling, he was <m>12</m> miles away from the starting point. We will find the first segment's slope and the third segment's slopes by slope triangles.</p>
+
+		<figure>
+            <caption>Emiliano's Distance from the Stating Point</caption>
+            <image>
+            <description>This is a grid with 3 line segments. The first one starts at (0,0) and ends at (3,12); the second one starts (3,12), and ends at (5,12); the third one starts at (5,12), and ends at (9,0). There are two slope triangles drawn. The first one starts at (0,0), passes (1,0), and ends at (1,4). The label from (0,0) to (1,0) is "1 hour"; and the label from (1,0) to (1,4) is "4 miles". The second one starts at (5,12), passes (6,12), and ends at (6,9). The label from (5,12) to (6,12) is "1 hour"; and the label from (6,12) to (6,9) is "-3 miles".</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                    	xlabel={hours},ylabel={miles},
+                    	xmin=-1,xmax=10,ymin=-1,ymax=14,
+                        minor ytick=,
+                        minor xtick=,
+                    	xtick={0,1,...,9},ytick={0,1,...,13}
+                    ]
+	          			\addplot[
+	            			domain = 0:3,
+	            			-,
+	            			smooth,
+	            			thin,
+	            			color = blue,
+	          			]{4*x};
+	          			\addplot[
+	            			domain = 3:5,
+	            			-,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{12};
+	          			\addplot[
+	            			domain = 5:9,
+	            			-,
+	            			smooth,
+	            			thin,
+	            			color = black,
+	          			]{-3*x+27};
+	          			\addplot[only marks,color=blue]
+	                    	coordinates{
+	                    		(0,0)
+	                   			(1,4)
+	          			};
+	          			\addplot[guideline,->] coordinates {(0,0) (1,0) (1,4)};
+	          			\node at (axis cs: 0.5,0) [color = blue, above] {$1$ hour};
+	          			\node at (axis cs: 1,2) [color = blue, right] {$4$ miles};
+	          			\addplot[only marks,color=black]
+	                    	coordinates{
+	                    		(5,12)
+	                   			(6,9)
+	          			};
+	          			\addplot[guideline,->] coordinates {(5,12) (6,12) (6,9)};
+	          			\node at (axis cs: 5.5,12) [color = black, above] {$1$ hour};
+      					\node at (axis cs: 6,10.5) [color = black, right] {$-3$ miles};
+                    \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code>
+            </image>
+        </figure>
+
+        <p>The first segment (blue) started from <m>(0,0)</m> and stopped at <m>(3,12)</m>. This implies, Emiliano started at the starting point, traveled <m>3</m> hours and reached a point <m>12</m> miles from the starting point. By the slope triangle, his speed in this segment was <m>4</m> miles per hour.</p>
+
+         <p>The third segment (black) started from <m>(5,12)</m> and stopped at <m>(9,0)</m>. This implies, Emiliano started from a spot <m>12</m> miles away from the starting point, traveled <m>4</m> hours and returned to the starting point. By the slope triangle, his speed in this segment was <m>-3</m> miles per hour. The negative slope implies he was traveling backward.</p>
+
+         <p>What happened in the second segment (red), which started at <m>(3,12)</m> and ended at <m>(5,12)\text{?}</m> This implies he started at a point <m>12</m> miles from the starting point, and didn't move for <m>2</m> hours. His speed in this segment was <m>0</m> miles per hour. So, <em>a horizontal line's slope is <m>0\text{.}</m></em></p>
+
+         <p>If we try to draw a slope triangle for the second segment, once we draw the triangle's base from <m>(3,12)</m> to <m>(5,12)\text{,}</m> we cannot draw the height; or, the height of the slope triangle is <m>0\text{.}</m> As a result, the slope of this segment is <m>\text{slope}=\frac{0}{2}=0</m> miles per hour.</p>
+
+         <p>To summarize what we learned:</p>
+
+         <ul>
+         	<li>For a linear relationship, as its <m>x</m>-value increases, if the line goes up, its slope is positive. The more sharply a line is slanted, the bigger its slope.</li>
+         	<li>For a linear relationship, as its <m>x</m>-value increases, if the line goes down, its slope is negative. The more sharply a line is slanted, the smaller its slope. For example, a line with a slope of <m>-4</m> is slanted more sharply than a line with a slope of <m>-3\text{,}</m> but <m>-4\lt-3\text{.}</m></li>
+         	<li>If a line is horizontal, its slope is <m>0\text{.}</m></li>
+         </ul>
+
+    </subsection>
+
+    <subsection>
+    	<title>Slope of Vertical Lines</title>
+
+    	<p>We have learned that, for lines with positive slopes, the more sharply a line is slanted, the bigger its slope. Let's look at the following graph:</p>
+
+		<figure>
+            <caption>Comparing Slopes</caption>
+            <image>
+            <description>This is a grid with 5 lines. One line is horizontal, one line is vertical. The others are all slanted toward the positive direction. The horizontal line's label is "slope=0"; The green line's label is "slope=0.5"; The blue line's label is "slope=1"; The brown line's label is "slope=2"; The black line's label is "slope=?".</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+	            \begin{axis}[
+	            	xlabel={},ylabel={},
+	            	xmin=-1,xmax=10,ymin=-1,ymax=10,
+	                minor ytick=,
+	                minor xtick=,
+	            	xtick=,ytick=,
+	            	xticklabels={,,},yticklabels={,,},
+	            ]
+      			\addplot[
+        			domain = -1:10,
+        			<->,
+        			smooth,
+        			thin,
+        			color = green,
+      			]{0.5*x};
+      			\addplot[
+        			domain = -1:10,
+        			<->,
+        			smooth,
+        			thin,
+        			color = blue,
+      			]{x};
+      			\addplot[
+        			domain = -0.5:5,
+        			<->,
+        			smooth,
+        			thin,
+        			color = brown,
+      			]{2*x};
+      			\node at (axis cs: 4,0) [color = black] {slope$=0$};
+      			\node at (axis cs: 4,2) [color = green] {slope$=0.5$};
+				\node at (axis cs: 4,4) [color = blue] {slope$=1$};
+				\node at (axis cs: 4,8) [color = brown] {slope$=2$};
+				\node at (axis cs: -1,8) [color = black, right] {slope$=?$};
+            \end{axis}
+		    \end{tikzpicture}
+		    ]]>
+		    </latex-image-code>
+		    </image>
+		</figure>
+
+        <p>The horizontal line's slope is <m>0</m>. As the line is slanted more and more sharply, its slope becomes bigger and bigger. By this pattern, the vertical line's slope would be infinitely large. We say a vertical line's slope is <em>undefined</em>, or the slope <em>does not exist</em>. We will learn when horizontal and vertical lines are used in the next lesson.</p>
+
+    </subsection>
+
+	<exercises>
+		<title>Exercises on Slope of Horizontal and Vertical Lines</title>
+		<exercise>
+			<webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" seed="1"/>
+		</exercise>
+	</exercises>
+
+	<subsection>
+		<title>Finding Slope by Two Given Points</title>
+
+		<p>Earlier, we learned how to find a line's slope by drawing a slope triangle. In this section, we will learn how to find a line's slope without drawing a slope triangle. We will start with a video lecture as an overview.</p>
+
+		<video youtube="WkspBxrzuZo" width="70%" />
+
+		<p>In the next example, we will learn how to find a line's slope with the slope formula.</p>
+
+		<p><em>Scenario:</em> Since planted, a tree has been growing at a constant rate for a few years. By the end of the third year, the tree was <m>15</m> feet tall; by the end of the sixth year, the tree was <m>27</m> feet tall. What's the rate of growth (slope of the line)?</p>
+
+		<p>First, we will sketch a graph for this scenario.</p>
+
+		<figure>
+            <caption>Height of a Tree</caption>
+            <image>
+            <description>This is a grid with a line, passing the points (3,15) and (6,27). A slope triangle is drawn, starting at (3,15), passing (6,15), and ends at (6,27). The label from (3,15) to (6,15) is "6-3=3 years"; the label from (6,15) to (6,27) is "27-15=12 feet".</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                \begin{axis}[
+                	xlabel={years since planted},ylabel={height in feet},
+                	xmin=-1,xmax=9,ymin=-1,ymax=30,
+                    minor ytick=,
+                    minor xtick=,
+                	xtick={0,1,...,8},ytick={0,3,...,27}
+                ]
+          			\addplot[
+            			domain = 1:7,
+            			<->,
+            			smooth,
+            			thin,
+            			color = red,
+          			]{4*x+3};
+          			\addplot[soliddot, color=red] coordinates {(3, 15)} node[above left] {$(3,15)$};
+          			\addplot[soliddot, color=red] coordinates {(6, 15)} node[below right] {$(6,15)$};
+          			\addplot[soliddot, color=red] coordinates {(6, 27)} node[above left] {$(6,27)$};
+          			\addplot[guideline,->] coordinates {(3,15) (6,15) (6,27)};
+	          		\node at (axis cs: 4.5,15) [color = black, below] {$6-3=3$ years};
+      				\node at (axis cs: 6,21) [color = black, right] {$21-15=12$ feet};
+                \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code><todo>Alex please fix labels</todo>
+            </image>
+        </figure>
+
+        <p>By the slope triangle, we have:</p>
+
+        <me>
+        	\begin{aligned}
+        		\text{slope} &amp; =\frac{\Delta y}{\Delta x} \\
+        		&amp; =\frac{27-15}{6-3} \\
+        		&amp; =\frac{12}{3} \\
+        		&amp; =4 \text{ feet per year}
+        	\end{aligned}
+        </me>
+
+        <p><q>Change in <m>y</m></q> means <q>difference in <m>y\text{.}</m></q> To find two numbers' difference, we use subtraction. In the graph, we can observe that:</p>
+
+        <ul>
+        	<li><q>Change in <m>y</m></q> can be calculated by <m>27-15</m> (a subtraction between two <m>y</m>-values);</li>
+        	<li><q>Change in <m>x</m></q> can be calculated by <m>6-3</m> (a subtraction between two <m>x</m>-values);</li>
+        </ul>
+
+        <p>We can label <m>(3,6)</m> as <m>(\overset{x_1}{3},\overset{y_1}{6})</m>, and label <m>(6,27)</m> as <m>(\overset{x_2}{6},\overset{y_2}{27})\text{.}</m> Here, <m>x_1</m> and <m>y_1</m> represent the first point's <m>x</m>-value and <m>y</m>-value, and <m>x_2</m> and <m>y_2</m> represent the second point's <m>x</m>-value and <m>y</m>-value. It's important to use subscript instead of superscript, because <m>y_2</m> and <m>y^2</m> mean different things! Now we can write an equivalent formula of <xref ref="slope-definition-formula">Equation</xref>:</p>
+
+        <men ref="slope-formula">\text{slope}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}</men>
+
+        <p>We name it the <term>slope formula.</term> The following graph will help you understand why this formula works. Basically, we are still using a slope triangle to calculate the slope.</p>
+
+        <sidebyside>
+        	<caption>Understanding Slope Formula</caption>
+
+			<figure>
+	            <image>
+	            <description>This is a grid with a line, passing the points (3,15) and (6,27). A slope triangle is drawn, starting at (3,15), passing (6,15), and ends at (6,27). The label from (3,15) to (6,15) is "6-3=3 years"; the label from (6,15) to (6,27) is "27-15=12 feet".</description>
+	            <latex-image-code>
+	            <![CDATA[\begin{tikzpicture}
+	                \begin{axis}[
+	                	xlabel={years since planted},ylabel={height in feet},
+	                	xmin=-1,xmax=9,ymin=-1,ymax=30,
+	                    minor ytick=,
+	                    minor xtick=,
+	                	xtick={0,1,...,8},ytick={0,3,...,27}
+	                ]
+	          			\addplot[
+	            			domain = 1:7,
+	            			<->,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{4*x+3};
+	          			\addplot[soliddot, color=red] coordinates {(3, 15)} node[above left] {$(3,15)$};
+	          			\addplot[soliddot, color=red] coordinates {(6, 15)} node[below right] {$(6,15)$};
+	          			\addplot[soliddot, color=red] coordinates {(6, 27)} node[above left] {$(6,27)$};
+	          			\addplot[guideline,->] coordinates {(3,15) (6,15) (6,27)};
+		          		\node at (axis cs: 4.5,15) [color = black, below] {$6-3=3$ years};
+	      				\node at (axis cs: 6,21) [color = black, right] {$21-15=12$ feet};
+	                \end{axis}
+	            \end{tikzpicture}
+	            ]]>
+	            </latex-image-code><todo>Alex please fix labels</todo>
+	            </image>
+	        </figure>
+
+			<figure>
+	            <image>
+	            <description>This is a grid with a line, passing the points (3,15) and (6,27). A slope triangle is drawn, starting at (3,15), passing (6,15), and ends at (6,27). The label from (3,15) to (6,15) is "x2-x1"; the label from (6,15) to (6,27) is "y2-y1".</description>
+	            <latex-image-code>
+	            <![CDATA[\begin{tikzpicture}
+	                \begin{axis}[
+	                	xmin=-1,xmax=9,ymin=-1,ymax=30,
+	                    minor ytick=,
+	                    minor xtick=,
+	                	xtick={0,1,...,8},ytick={0,3,...,27}
+	                ]
+	          			\addplot[
+	            			domain = 1:7,
+	            			<->,
+	            			smooth,
+	            			thin,
+	            			color = red,
+	          			]{4*x+3};
+	          			\addplot[soliddot, color=red] coordinates {(3, 15)} node[above left] {$(x_1,y_1)$};
+	          			\addplot[soliddot, color=red] coordinates {(6, 15)} node[below right] {$(x_2,y_1)$};
+	          			\addplot[soliddot, color=red] coordinates {(6, 27)} node[above left] {$(x_2,y_2)$};
+	          			\addplot[guideline,->] coordinates {(3,15) (6,15) (6,27)};
+		          		\node at (axis cs: 4.5,15) [color = black, below] {$x_2-x_1$};
+	      				\node at (axis cs: 6,21) [color = black, right] {$y_2-y_1$};
+	                \end{axis}
+	            \end{tikzpicture}
+	            ]]>
+	            </latex-image-code><todo>Alex please fix labels</todo>
+	            </image>
+	        </figure>
+	    </sidebyside>
+
+	    <p>The beauty of slope formula is, to find a line's slope, we don't need to draw a slope triangle any more. Let's look at an example.</p>
+
+	    <example>
+	    	<statement>
+				<p>A line passes the points <m>(-5,25)</m> and <m>(4,-2)\text{.}</m> Find this line's slope.</p>
+			</statement>
+			<solution>
+				<p>If you are new to this formula, it's important to label each number before using the formula. Those two given points are:</p>
+				<me>(\overset{x_1}{-5},\overset{y_1}{25}) \text{ and } (\overset{x_2}{4},\overset{y_2}{-2})</me>
+				<p>Next, we use the slope formula:</p>
+				<me>
+					\begin{aligned}
+						\text{slope} 	&amp; = \frac{y_2-y_1}{x_2-x_1} \\
+										&amp; = \frac{-2-(25)}{4-(-5)} \\
+										&amp; = \frac{-27}{9} \\
+										&amp; = -3
+					\end{aligned}
+				</me>
+				<p>Note the importance of using parentheses when we substitute in numbers!</p>
+			</solution>
+		</example>
+
+	</subsection>
+
+	<exercises>
+		<title>Exercises on Slope Formula</title>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula10.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula20.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula30.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula40.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula50.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula60.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" seed="1"/>
+		</exercise>
+		<exercise>
+			<webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" seed="1"/>
+		</exercise>
+	</exercises>
+
+
 
 </section>
