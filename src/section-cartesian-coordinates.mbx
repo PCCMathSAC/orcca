@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *********************************************************************--> 
+<!-- Copyright 2016                                                       --> 
+<!-- Portland Community College                                           --> 
+<!--                                                                      --> 
+<!-- Authors                                                              --> 
+<!-- Ann Cary, Alex Jordan, Carl Yao, Ralf Youtz                          --> 
+<!--                                                                      --> 
+<!-- This file is part of Open Resources for Community College Algebra    --> 
+<!-- (ORCCA).                                                             --> 
+<!--                                                                      --> 
+<!-- Creative Commons BY 4.0 license                                      --> 
+<!-- https://creativecommons.org/licenses/by/4.0/                         --> 
+<!-- *********************************************************************--> 
+
+<section xml:id="section-cartesian-coordinates">
+
+    <title>Cartesian Coordinates</title>
+
+    <introduction>
+        <p>When we model real-life data with graphs, we use the <term>Cartesian coordinate system</term>. This section covers the basic vocabulary and ideas that come with the Cartesian coordinate system.</p>
+
+        <figure>
+            <caption>Alternative Video Lesson</caption>
+            <video youtube="N4nrdf0yYfM" />
+        </figure>
+    </introduction>
+
+    <p>The Cartesian coordinate system is just a way to identify <em>where</em> points are on a flat area. It's basically an address, so we will start with an example that uses a street grid. Here is a street map with Carl's home at the center, covering some nearby businesses. Assume each unit represents one city block.</p>
+
+    <figure xml:id="figure-carls-neighborhood">
+        <caption>Carl's neighborhood</caption>
+        <image width="60%">
+            <description>a Cartesian grid with Carl's home at (0,0), a restaurant at (2, 3), a pet shop at (-3,2), a gas station at (-2,-4), and a bar at (3, -3)</description>
+            <latex-image-code>
+            <![CDATA[\begin{tikzpicture}
+                \begin{axis}[xlabel={},ylabel={},
+                            xmin=-5,xmax=5,
+                            ymin=-5,ymax=5,
+                            xtick={-4,4},
+                            ytick={-4,4},
+                            clip=false]
+                    \addplot[soliddot] coordinates {(0,0)} node[pin=240:{Carl's house}] {};
+                    \addplot[soliddot] coordinates {(2, 3)} node[pin=-30:{restaurant}] {};
+                    \addplot[soliddot] coordinates {(-3, 2)} node[pin=100:{pet shop}] {};
+                    \addplot[soliddot] coordinates {(-2, -4)} node[pin=150:{gas station}] {};
+                    \addplot[soliddot] coordinates {(3, -3)} node[pin=120:{bar}] {};
+                    \addplot[mark=none] coordinates {(5, 0)} node[above left] {east};
+                    \addplot[mark=none] coordinates {(-5, 0)} node[above right] {west};
+                    \addplot[mark=none] coordinates {(0, 5)} node[below right] {north};
+                    \addplot[mark=none] coordinates {(0, -5)} node[above right] {south};
+                \end{axis}
+            \end{tikzpicture}
+            ]]>
+            </latex-image-code>
+        </image>
+    </figure>
+
+    <p>If Carl has an out-of-town guest who asks him how to get to the restaurant, one way to give directions is:</p>
+    <blockquote><p><q>Go <m>2</m> blocks east, and then <m>3</m> blocks north.</q></p></blockquote>
+
+    <sidebyside>
+        <p>So two numbers are needed to locate the restaurant. In a Cartesian coordinate system, we write these numbers this way: <m>(2,3)</m>, to represent the restaurant's location. Note that the first number, <m>2</m>, represents the location in the east-west direction, and the second number, <m>3</m>, represents the location in north-south direction.</p>
+
+        <figure>
+            <caption>Carl's neighborhood</caption>
+            <image>
+                <description>a Cartesian grid with Carl's home at (0,0), a restaurant at (2, 3), a pet shop at (-3,2), a gas station at (-2,-4), and a bar at (3, -3)</description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[xlabel={},ylabel={},
+                                xmin=-5,xmax=5,
+                                ymin=-5,ymax=5,
+                                xtick={-4,4},
+                                ytick={-4,4},
+                                clip=false]
+                        \addplot[soliddot] coordinates {(0,0)} node[pin=240:{Carl's house}] {};
+                        \addplot[soliddot] coordinates {(2, 3)} node[pin=-30:{restaurant}] {} node[left] {$(2,3)$};
+                        \addplot[mark=none] coordinates {(5, 0)} node[above left] {east};
+                        \addplot[mark=none] coordinates {(-5, 0)} node[above right] {west};
+                        \addplot[mark=none] coordinates {(0, 5)} node[below right] {north};
+                        \addplot[mark=none] coordinates {(0, -5)} node[above right] {south};
+                        \addplot[primarycurve,-] coordinates {(0,0) (2,0)} node[below,pos=0.5] {right $2$};
+                        \addplot[primarycurve,->] coordinates {(2,0) (2,2.8)} node[below,pos=0.5,rotate=90] {up $3$};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+                </latex-image-code>
+            </image>
+        </figure>
+    </sidebyside>
+
+    <p>To travel from Carl's home to the pet shop, he would go <m>3</m> blocks west, and then <m>2</m> blocks north.</p>
+
+    <sidebyside>
+        <p>We think of rightward and upward as <em>positive</em> directions, and leftward and downward as <em>negative</em> directions. So we use positive numbers to represent the east, and negative numbers to represent the west. The pet shop's location would be <m>(-3,2)</m> in a Cartesian coordinate system.</p>
+
+        <figure>
+            <caption>Carl's neighborhood</caption>
+            <image>
+                <description>a Cartesian grid with Carl's home at (0,0), a restaurant at (2, 3), a pet shop at (-3,2), a gas station at (-2,-4), and a bar at (3, -3)</description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[xlabel={},ylabel={},
+                                xmin=-5,xmax=5,
+                                ymin=-5,ymax=5,
+                                xtick={-4,4},
+                                ytick={-4,4},
+                                clip=false]
+                        \addplot[soliddot] coordinates {(0,0)} node[pin=240:{Carl's house}] {};
+                        \addplot[soliddot] coordinates {(-3, 2)} node[pin=100:{pet shop}] {} node[above right] {$(-3,2)$};
+                        \addplot[mark=none] coordinates {(5, 0)} node[above left] {east};
+                        \addplot[mark=none] coordinates {(-5, 0)} node[above right] {west};
+                        \addplot[mark=none] coordinates {(0, 5)} node[below right] {north};
+                        \addplot[mark=none] coordinates {(0, -5)} node[above right] {south};
+                        \addplot[primarycurve,-] coordinates {(0,0) (-3,0)} node[below,pos=0.5] {left $3$};
+                        \addplot[primarycurve,->] coordinates {(-3,0) (-3,1.8)} node[below,pos=0.5,rotate=90] {up $2$};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+    </sidebyside>
+
+    <remark>
+        <p>It's important to not mix up which coordinate comes first. Since we read from left to right, the left-right coordinate is the first number in the ordered pair. This idea of putting the horizontal information <em>before</em> the vertical information is consistent through most of mathematics.</p>
+    </remark>
+
+    <remark>
+        <p>Unfortunately, the way we write ordered pairs looks exactly like the way we write open intervals in interval notation. It's up to you to use <em>context</em> to understand if something like <m>(2,3)</m> is the point <m>2</m> units right of the origin and <m>3</m> units up, or the interval of all numbers between <m>2</m> and <m>3</m>.</p>
+    </remark>
+
+    <exercise>
+        <introduction>
+            <p>Use <xref ref="figure-carls-neighborhood">Figure</xref> to answer the following questions.</p>
+        </introduction>
+
+        <webwork seed="1">
+            <setup>
+                <pg-code>
+                    Context("Point");
+                    $bar=Point("(3,-3)");
+                    $gas=Point("(-2,-4)");
+                    $carls=Point("(0,0)");
+                </pg-code>
+            </setup>
+            <statement>
+                <p><ol>
+                    <li><p>What are the coordinates for the bar? <var name="$bar" width="10" /></p></li>
+                    <li><p>What are the coordinates for the gas station? <var name="$gas" width="10" /></p></li>
+                    <li><p>What are the coordinates for Carl's house? <var name="$carls" width="10" /></p></li>
+                </ol></p>
+            </statement>
+        </webwork>
+    </exercise>
+
+    <p>In a Cartesian coordinate system, the map of Carl's neightbrhood would look like this:</p>
+
+    <figure>
+        <caption>Carl's Neighborhood in a Cartesian Coordinate System</caption>
+        <image width="50%">
+            <description>a Cartesian grid points <m>(0,0), (2, 3), (-3,2), (-2,-4),</m> and <m>(3, -3)</m>, with <m>x</m>-axis and <m>y</m>-axis labeled</description>
+            <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[xmin=-5,xmax=5,
+                                ymin=-5,ymax=5,
+                                xtick={-4,4},
+                                ytick={-4,4}]
+                        \addplot[soliddot] coordinates {(0,0)} node[above right] {(0,0)};
+                        \addplot[soliddot] coordinates {(2, 3)} node[above] {(2,3)};
+                        \addplot[soliddot] coordinates {(-3, 2)} node[above] {(-3,2)};
+                        \addplot[soliddot] coordinates {(-2, -4)} node[above] {(-2,-4)};
+                        \addplot[soliddot] coordinates {(3, -3)} node[above] {(3,-3)};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+            </latex-image-code>
+        </image>
+    </figure>
+
+    <p>It's traditional to use the variable <m>x</m> to represent numbers on the east-west axis, so we call that axis the <term><m>x</m>-axis</term>. For similar reasons we call the north-south axis the <term><m>y</m>-axis</term>. The point <m>(0,0)</m> is where the two axes meet, and we call it the <term>origin</term>. <index><main>origin</main></index> We use an <term>ordered pair</term>, like <m>(2,3)</m>, to represent the location of a point. We are ready for a formal definition of the <term>Cartesian Coordinate System</term> and several associated vocabulary terms.</p>
+
+
+    <definition>
+        <title>Cartesian Coordinate System</title>
+        <index><main>Cartesian</main><sub>Coordinate System</sub></index>
+        <statement>
+            <p>A Cartesian coordinate system is a coordinate system that specifies each point uniquely in a plane by a pair of numerical coordinates, which are the signed (positive/negative) distances to the point from two fixed perpendicular directed lines, measured in the same unit of length. Those two reference lines are called the <term><m>x</m>-axis</term> and <term><m>y</m>-axis</term>, and the point where they meet is its <term>origin</term>, the <term>ordered pair</term> <m>(0, 0)</m>. (Visit <url href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system">Wikipedia</url> for more.)</p>
+
+            <p>The plane based on the <m>x</m>-axis and <m>y</m>-axis is called a <term>coordinate plane</term>. The ordered pair used to locate a point is called the point's <term>coordinates</term>, which consists of an <term><m>x</m>-coordinate</term> and a <term><m>y</m>-coordinate</term>. For example, for the point <m>(1,2)\text{,}</m> its <m>x</m>-coordinate is <m>1\text{,}</m> and its <m>y</m>-coordinate is <m>2\text{.}</m></p>
+
+            <p>A Cartesian coordinate system is divided into four <term>quadrants</term>, as shown in <xref ref="figure-quadrants">Figure</xref>. The quadrants are traditionally labeled with Roman numerals.</p>
+
+            <figure xml:id="figure-quadrants">
+                <caption>A Cartesian grid with four quardrants marked</caption>
+                <image width="50%">
+                    <description>a Cartesian grid with Quardrant I marked in the top right section, Quardrant II marked in the top left section, Quardrant III marked in the bottom left section, Quardrant IV marked in the bottom right section.</description>
+                    <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[xmin=-5,xmax=5,
+                                    ymin=-5,ymax=5,
+                                    xtick={-4,-3,...,4},
+                                    ytick={-4,-3,...,4}]
+                            \addplot[mark=none] coordinates {(3,3)} node[below] {Quardrant I};
+                            \addplot[mark=none] coordinates {(-3, 3)} node[below] {Quardrant II};
+                            \addplot[mark=none] coordinates {(-3, -3)} node[above] {Quardrant III};
+                            \addplot[mark=none] coordinates {(3, -3)} node[above] {Quardrant IV};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+        </statement>
+    </definition>
+
+
+    <example xml:id="example-cartesian-points">
+        <statement>
+            <p>On paper, sketch a Cartesian coordinate system with units, and then plot the following points: <m>(3,2),(-5,-1),(0,-3),(4,0)</m>.</p>
+        </statement>
+        <todo>Make this a sidebyside, with a video right next to the tikz picture. The video will be an overhead of someone doing this by hand on real paper.</todo>
+        <solution>
+            <figure>
+                <caption>Solution to <xref ref="example-cartesian-points">Example</xref></caption>
+                <image width="50%">
+                    <description>a Cartesian grid points <m>(3,2),(-2,-1),(0,-3),(4,0)</m> plotted</description>
+                    <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[xmin=-5,xmax=5,
+                                    ymin=-5,ymax=5,
+                                    xtick={-4,-3,...,4},
+                                    ytick={-4,-3,...,4}]
+                            \addplot[soliddot] coordinates {(3, 2)} node[above] {$(3,2)$};
+                            \addplot[soliddot] coordinates {(-2, -1)} node[below] {$(-2,-1)$};
+                            \addplot[soliddot] coordinates {(0, -3)} node[right] {$(0,-3)$};
+                            \addplot[soliddot] coordinates {(4, 0)} node[above] {$(4,0)$};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+        </solution>
+    </example>
+
+    <exercises>
+        <exercise>
+            <webwork source="Library/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant10.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphOrderedPairs50.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/NewHampshire/NECAP/grade6/gr6-2006/n6-2006-12s.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/ASU-topics/setCartesianPlane/jay1.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/Mizzou/Algebra/graph_basics/match_points_01.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/Mizzou/Algebra/graph_basics/determine_quad_point_01.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/Mizzou/Algebra/graph_basics/determine_quad_point_02.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/Mizzou/Algebra/graph_basics/list_points_01.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/MC/PreAlgebra/setPreAlgebraC01S10/CoordinatePlane02.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/MC/Trigonometry/IdentifyPointsInPlane01.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/CollegeOfIdaho/setAlgebra_01_03_GraphingEquations/13IntAlg_01_GraphingEq.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2005/n8-2005-12.pg" seed="1"/>
+        </exercise>
+    </exercises>
+
+</section>
