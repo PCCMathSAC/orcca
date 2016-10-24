@@ -24,11 +24,26 @@
         <video youtube="33kaIpvncag" />
     </figure>
 
-    <p>We are trying to take an equation like <m>y=-2x+3</m> and produce a picture like <xref ref="figure-graph-line">Figure</xref>. What is this picture? The background for it is the entire Cartesian plane. But the part that matters now is all those points that have been colored in. There are so many of them that together, they form what looks like a straight line.</p>
+    <p>We are trying to take an equation like <m>y=-2x+3</m> and produce a picture that might look like <xref ref="figure-graph-line-full">Figure</xref>. We're hoping to capture all the ordered pairs that you could substitute in to <m>y=-2x+3</m> and make a true equation, and then shade in those ordered pairs. For several examples, see <xref ref="table-plotting-a-line">Table</xref>.</p>
 
-    <sidebyside widths="31% 31% 31%"> 
+    <table xml:id="table-plotting-a-line">
+        <caption />
+        <p><md>
+            <mrow>y\amp=-2x+3\amp\amp(x,y)</mrow>
+            <mrow>\hline\highlight{5}\amp\stackrel{\checkmark}{=}-2(\highlight{-1})+3\amp\amp(\highlight{-1},\highlight{5})</mrow>
+            <mrow>\highlight{3}\amp\stackrel{\checkmark}{=}-2(\highlight{0})+3\amp\amp(\highlight{0},\highlight{3})</mrow>
+            <mrow>\highlight{1}\amp\stackrel{\checkmark}{=}-2(\highlight{1})+3\amp\amp(\highlight{1},\highlight{1})</mrow>
+            <mrow>\highlight{-1}\amp\stackrel{\checkmark}{=}-2(\highlight{2})+3\amp\amp(\highlight{2},\highlight{-1})</mrow>
+            <mrow>\highlight{-3}\amp\stackrel{\checkmark}{=}-2(\highlight{3})+3\amp\amp(\highlight{3},\highlight{-3})</mrow>
+            <mrow>\highlight{-5}\amp\stackrel{\checkmark}{=}-2(\highlight{4})+3\amp\amp(\highlight{4},\highlight{-5})</mrow>
+        </md></p>
+    </table>
+
+    <p><xref ref="table-plotting-a-line">Table</xref> tells us that the points <m>(-1,5)</m>, <m>(0,3)</m>, <m>(1,1)</m>, <m>(2,-1)</m>, <m>(3,-3)</m>, and <m>(4,-5)</m> are all solutions to the equation <m>y=-2x+3</m>, and so they should all be shaded as part of that equation's graph. You can see them in <xref ref="figure-graph-line-sparse">Figure</xref>. But there are many more points that make the equation true. Some more are marked in <xref ref="figure-graph-line-more">Figure</xref>. Even more are marked in <xref ref="figure-graph-line-full">Figure</xref>; so many that together they form what looks like a straight line.</p>
+
+    <sidebyside widths="31% 31% 31%">
         <caption>Graphs of the Equation <m>y=-2x+3</m></caption>
-        <figure>
+        <figure xml:id="figure-graph-line-sparse">
             <caption>A few points<ellipsis/></caption>
             <image>
                 <description></description>
@@ -47,7 +62,7 @@
                 </latex-image-code>
             </image>
         </figure>
-        <figure>
+        <figure xml:id="figure-graph-line-more">
             <caption>More points<ellipsis /></caption>
             <image>
                 <description></description>
@@ -61,7 +76,7 @@
                 </latex-image-code>
             </image>
         </figure>
-        <figure xml:id="figure-graph-line">
+        <figure xml:id="figure-graph-line-full">
             <caption>So many points it looks like a straight line</caption>
             <image>
                 <description></description>
@@ -77,7 +92,11 @@
         </figure>
     </sidebyside>
 
-    <p>Each point has an <m>x</m>-value and a <m>y</m>-value, and our intention is that substituting these into <m>y=-2x+3</m> makes a true equation.</p>
+    <p>So<ellipsis /></p>
+
+    <remark>
+        <p>Points are shaded on the graph of an equation exacltly when they make the equation true (when the <m>x</m>- and <m>y</m>-values are substituted in).</p>
+    </remark>
 
     <exercise>
         <webwork>
@@ -90,13 +109,13 @@
                 </pg-code>
             </setup>
             <statement>
-                <p>The point <m>(4,-5)</m> is on the graph in <xref ref="figure-graph-line" />. What happens when you substitute these values into the equation <m>y=-2x+3</m>?</p>
+                <p>The point <m>(4,-5)</m> is on the graph in <xref ref="figure-graph-line-full" />. What happens when you substitute these values into the equation <m>y=-2x+3</m>?</p>
                 <table>
                     <tabular>
                         <col halign="right" />
                         <col/>
                         <col/>
-                        <row>
+                        <row bottom="medium">
                             <cell><m>y</m></cell>
                             <cell><m>=</m></cell>
                             <cell><m>-2x+3</m></cell>
@@ -113,108 +132,165 @@
         </webwork>
     </exercise>
 
+    <exercise>
+        <webwork>
+            <setup>
+                <pg-code>
+                    Context()->variables->add(y=>'Real');
+                    @y=(-2,-7);
+                    @x=(5,-10);
+                    Context()->flags->set(reduceConstants=>0);
+                    $f=Compute("-(3/5)x+1");
+                    @right=map{$f->substitute(x=>Formula($x[$_]))}(0,1);
+                    @truefalse=(PopUp(['?','true','false'],1),PopUp(['?','true','false'],2));
+                    @shaded=(PopUp(['?','shaded','not shaded'],1),PopUp(['?','shaded','not shaded'],2));
+                </pg-code>
+            </setup>
+            <statement>
+                <p>Decide whether the points <m>(5,-2)</m> and <m>(-10,-7)</m> will be on the graph of the equation <m>y=-\frac{3}{5}x+1\text{.}</m></p>
+                <p>At <m>(5,-2)</m>:</p>
+                <table>
+                    <tabular>
+                        <col halign="right" />
+                        <col/>
+                        <col/>
+                        <row bottom="medium">
+                            <cell><m>y</m></cell>
+                            <cell><m>=</m></cell>
+                            <cell><m>-\frac{3}{5}x+1</m></cell>
+                        </row>
+                        <row>
+                            <cell><var name="$y[0]" width="1" /></cell>
+                            <cell><m>=</m></cell>
+                            <cell><var name="$right[0]" width="10" /></cell>
+                        </row>
+                    </tabular>
+                </table>
+                <p>This equation is <var name="$truefalse[0]" form="popup" />, and <m>(5,-2)</m> is <var name="$shaded[0]" form="popup" /> on the graph of <m>y=-\frac{3}{5}x+1\text{.}</m>.</p>
+                <p>At <m>(-10,-7)</m>:</p>
+                <table>
+                    <tabular>
+                        <col halign="right" />
+                        <col/>
+                        <col/>
+                        <row bottom="medium">
+                            <cell><m>y</m></cell>
+                            <cell><m>=</m></cell>
+                            <cell><m>-\frac{3}{5}x+1</m></cell>
+                        </row>
+                        <row>
+                            <cell><var name="$y[1]" width="1" /></cell>
+                            <cell><m>=</m></cell>
+                            <cell><var name="$right[1]" width="10" /></cell>
+                        </row>
+                    </tabular>
+                </table>
+                <p>This equation is <var name="$truefalse[1]" form="popup" />, and <m>(5,-2)</m> is <var name="$shaded[1]" form="popup" /> on the graph of <m>y=-\frac{3}{5}x+1\text{.}</m>.</p>
+            </statement>
+            <solution>
+                <p>If the point <m>(5,-2)</m> is on <m>y=-\frac{3}{5}x+1\text{,}</m> once we substitute <m>x=5</m> and <m>y=-2</m> into the line's equaiton, the equation should be true. Let's try:<md>
+                    <mrow>y\amp=-\frac{3}{5}x+1</mrow>
+                    <mrow>-2\amp\stackrel{?}{=}-\frac{3}{5}(5)+1</mrow>
+                    <mrow>-2\amp\stackrel{?}{=} -3+1</mrow>
+                    <mrow>-2\amp\stackrel{?}{=} -2</mrow>
+                </md>Because this last equation is true, we can definitively say that <m>(5,-2)</m> is on the graph of <m>y=-\frac{3}{5}x+1\text{.}</m></p>
+
+                <p>However if we substitute <m>x=-10</m> and <m>y=-7</m> into the equation, it leads to <m>-7=7</m>, which is false. This definitively tells us that <m>(-10,-7)</m> is not on the graph.</p>
+            </solution>
+        </webwork>
+    </exercise>
+
+    <p>All of this suggests a way to make our own graphs for equations using a little bit of calculation. All we need to do is make up a list of reasonable <m>x</m>-values, calculate the corresponding <m>y</m>-values, and then plot the corresponding points.</p>
+
     <example>
-        <statement>
-            <p>Decide whether the points <m>(5,-2)</m> and <m>(-10,-7)</m> will be on the graph of the equation <m>y=-\frac{3}{5}x+1\text{.}</m></p>
-        </statement>
-        <solution>
-             <p>If the point <m>(5,-2)</m> is on <m>y=-\frac{3}{5}x+1\text{,}</m> once we substitute <m>x=5</m> and <m>y=-2</m> into the line's equaiton, the equation should be true. We will try both points:<md>
-                <mrow>y\amp=-\frac{3}{5}x+1</mrow>
-                <mrow>-2\amp\stackrel{?}{=}-\frac{3}{5}(5)+1</mrow>
-                <mrow>-2\amp\stackrel{?}{=} -3+1</mrow>
-                <mrow>-2\amp\stackrel{?}{=} -2</mrow>
-            </md>Because this last equation is true, we can definitively say that <m>(5,-2)</m> is on the graph of <m>y=-\frac{3}{5}x+1\text{.}</m></p>
-
-            <p>However if we substitute <m>x=-10</m> and <m>y=-7</m> into the equation, it leads to <m>-7=7</m>, which is false. This definitively tells us that <m>(-10,-7)</m> is not on the graph.</p>
-        </solution>
-    </example>
-
-    <p>All of this suggests a way to create our own graphs for equations like this using a little bit of calculation. We can use a table to organize <m>x</m>-values and <m>y</m>-values, then plot the corresponding points.</p>
-
-    <example>
-        <p>Let's plot a graph for the equation <m>y=-2x+5</m>. We use the following table:</p>
+        <p>Let's plot a graph for the equation <m>y=-2x+5</m>. We use a table to organize our work:</p>
 
         <sidebyside>
             <caption>Making a table for <m>y=-2x+5</m></caption>
             <table>
                 <caption>Set up the table</caption>
                 <tabular valign="top" bottom="minor">
-                    <col halign="center" />
-                    <col halign="left"/>
+                    <col halign="right" right="minor"/>
+                    <col halign="right" right="minor"/>
                     <col halign="center"/>
                     <row bottom="medium">
                         <cell><m>x</m></cell>
-                        <cell><m>y=-2x+5</m></cell>
+                        <cell halign="center"><m>y=-2x+5</m></cell>
                         <cell>Point</cell>
                     </row>
                     <row>
                         <cell><m>-2</m></cell>
-                        <cell/>
-                        <cell/>
+                        <cell><m>\phantom{-2(-2)+5=\highlight{9}}</m></cell>
+                        <cell><m>\phantom{(-2,9)}</m></cell>
                     </row>
                     <row>
                         <cell><m>-1</m></cell>
-                        <cell/>
-                        <cell/>
+                        <cell><m>\phantom{-2(-1)+5=\highlight{7}}</m></cell>
+                        <cell><m>\phantom{(-1,7)}</m></cell>
                     </row>
                     <row>
                         <cell><m>0</m></cell>
-                        <cell/>
-                        <cell/>
+                        <cell><m>\phantom{-2(0)+5=\highlight{5}}</m></cell>
+                        <cell><m>\phantom{(0,5)}</m></cell>
                     </row>
                     <row>
                         <cell><m>1</m></cell>
-                        <cell/>
-                        <cell/>
+                        <cell><m>\phantom{-2(1)+5=\highlight{3}}</m></cell>
+                        <cell><m>\phantom{(1,3)}</m></cell>
                     </row>
-                    <row>
+                    <row bottom="none">
                         <cell><m>2</m></cell>
-                        <cell/>
-                        <cell/>
+                        <cell><m>\phantom{-2(2)+5=\highlight{1}}</m></cell>
+                        <cell><m>\phantom{(2,1)}</m></cell>
                     </row>
                 </tabular>
             </table>
             <table>
-                <caption>Completing the table</caption>
+                <caption>Complete the table</caption>
                 <tabular valign="top" bottom="minor">
-                    <col halign="center" />
-                    <col halign="left"/>
+                    <col halign="right" right="minor"/>
+                    <col halign="right" right="minor"/>
                     <col halign="center"/>
                     <row bottom="medium">
                         <cell><m>x</m></cell>
-                        <cell><m>y=-2x+5</m></cell>
+                        <cell halign="center"><m>y=-2x+5</m></cell>
                         <cell>Point</cell>
                     </row>
                     <row>
                         <cell><m>-2</m></cell>
-                        <cell><m>\begin{aligned}[t]y\amp=-2(-2)+5\\\amp=9\end{aligned}</m></cell>
+                        <cell><m>-2(-2)+5=\highlight{9}</m></cell>
                         <cell><m>(-2,9)</m></cell>
                     </row>
                     <row>
                         <cell><m>-1</m></cell>
-                        <cell><m>\begin{aligned}[t]y\amp=-2(-1)+5\\\amp=7\end{aligned}</m></cell>
+                        <cell><m>-2(-1)+5=\highlight{7}</m></cell>
                         <cell><m>(-1,7)</m></cell>
                     </row>
                     <row>
                         <cell><m>0</m></cell>
-                        <cell><m>\begin{aligned}[t]y\amp=-2(0)+5\\\amp=5\end{aligned}</m></cell>
+                        <cell><m>-2(0)+5=\highlight{5}</m></cell>
                         <cell><m>(0,5)</m></cell>
                     </row>
                     <row>
                         <cell><m>1</m></cell>
-                        <cell><m>\begin{aligned}[t]y\amp=-2(1)+5\\\amp=3\end{aligned}</m></cell>
+                        <cell><m>-2(1)+5=\highlight{3}</m></cell>
                         <cell><m>(1,3)</m></cell>
                     </row>
-                    <row>
+                    <row bottom="none">
                         <cell><m>2</m></cell>
-                        <cell><m>\begin{aligned}[t]y\amp=-2(2)+5\\\amp=1\end{aligned}</m></cell>
+                        <cell><m>-2(2)+5=\highlight{1}</m></cell>
                         <cell><m>(2,1)</m></cell>
                     </row>
                 </tabular>
             </table>
         </sidebyside>
-    
+
         <p>With the points we've made in the table, we can plot the equation's graph. Just plot the points first, and then assume that the complete graph would be the apparent shape that the points are suggesting. In this case, the points are in a straight line.</p>
+
+        <aside>
+            <title>Arrowheads</title>
+            <p>To communicate that the full graph extends beyond the viewing window we are using, it's good to put arrowheads on your graphs.</p>
+        </aside>
 
         <sidebyside widths="46% 46%">
             <caption>Graphing the Equation <m>y=-2x+5</m></caption>
@@ -264,122 +340,93 @@
                 </image>
             </figure>
         </sidebyside>
-
-        <p>Note that we could have chosen any <m>x</m>-values, and we would get the same graph. If there is no good reason to use other <m>x</m>-values, we often choose integers from <m>-2</m> to <m>2</m>. Those numbers are easy to calculate with. However sometimes the equation comes with context that suggests using other <m>x</m>-values, as in this next example.</p>
     </example>
+
+    <remark>
+        <p>Note that we could have chosen any <m>x</m>-values, and we would get the same graph. If there is no good reason to use other <m>x</m>-values, we often choose integers from <m>-2</m> to <m>2</m>. Those numbers are easy to calculate with. However sometimes the equation comes with context that suggests using other <m>x</m>-values, as in this next example.</p>
+    </remark>
 
     <example>
         <statement>
-            <p>Renting a car for the day costs <m>\$100</m> outright plus <m>\$0.50</m> per mile driven. The equation <m>y=0.5x+100</m> models this situation. The variable<m>x</m> represents the number of miles driven, and <m>y</m> represents what the rental agency will charge you. Build a table and graph for this equation.</p>
+            <p>Your gas tank holds up to <quantity><mag>14</mag><unit base="gallon" /></quantity>, and on a long road trip, your car uses <quantity><mag>0.032</mag><unit base="gallon"/><per base="mile"/></quantity>. So if you fill your tank and then drive <m>x</m> miles, your tank will still have <m>14-0.032x</m> gallons of gas. In other words the equation <m>y=14-0.032x</m> models this situation. The variable <m>x</m> represents the number of miles driven, and <m>y</m> represents what the amount of gas still in your tank. Build a table and graph for this equation.</p>
         </statement>
         <solution>
-            <p>Choosing <m>x</m>-values like <m>-2</m> or <m>1</m> seems a bit nonsensical. We won't be driving a negative number of miles, and who would rent a car only to drive it one mile? Given the context of the problem, let's choose <m>x</m>-values that are more reasonable as a number of miles we might drive in a day.</p>
+            <p>Choosing <m>x</m>-values like <m>-2</m> or <m>1</m> seems a bit nonsensical. We won't be driving a negative number of miles, and this is a road trip certainly longer than <m>1</m> mile. Given the context of the problem, let's choose <m>x</m>-values that are more reasonable as a number of miles we might drive in a day.</p>
 
             <sidebyside>
                 <table>
-                    <caption>Set up the table</caption>
+                    <caption>Make the table</caption>
                     <tabular valign="top" bottom="minor">
-                        <col halign="center" />
-                        <col halign="left"/>
+                        <col halign="right" right="minor"/>
+                        <col halign="center" right="minor"/>
                         <col halign="center"/>
                         <row bottom="medium">
                             <cell><m>x</m></cell>
-                            <cell><m>y=0.5x+100</m></cell>
+                            <cell halign="center"><m>y=14-0.032x</m></cell>
                             <cell>Point</cell>
                         </row>
                         <row>
                             <cell><m>20</m></cell>
-                            <cell/>
-                            <cell/>
+                            <cell><m>13.36</m></cell>
+                            <cell><m>(20,13.36)</m></cell>
                         </row>
                         <row>
                             <cell><m>50</m></cell>
-                            <cell/>
-                            <cell/>
+                            <cell><m>12.4</m></cell>
+                            <cell><m>(50,12.4)</m></cell>
                         </row>
                         <row>
                             <cell><m>80</m></cell>
-                            <cell/>
-                            <cell/>
+                            <cell><m>11.44</m></cell>
+                            <cell><m>(80,11.44)</m></cell>
                         </row>
                         <row>
                             <cell><m>100</m></cell>
-                            <cell/>
-                            <cell/>
+                            <cell><m>10.8</m></cell>
+                            <cell><m>(100,10.8)</m></cell>
                         </row>
-                        <row>
+                        <row bottom="none">
                             <cell><m>200</m></cell>
-                            <cell/>
-                            <cell/>
+                            <cell><m>7.6</m></cell>
+                            <cell><m>(200,7.6)</m></cell>
                         </row>
                     </tabular>
                 </table>
-                <table>
-                    <caption>Completing the table</caption>
-                    <tabular valign="top" bottom="minor">
-                        <col halign="center" />
-                        <col halign="center"/>
-                        <col halign="center"/>
-                        <row bottom="medium">
-                            <cell><m>x</m></cell>
-                            <cell><m>y=0.5x+100</m></cell>
-                            <cell>Point</cell>
-                        </row>
-                        <row>
-                            <cell><m>20</m></cell>
-                            <cell><m>110</m></cell>
-                            <cell><m>(20,110)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>50</m></cell>
-                            <cell><m>125</m></cell>
-                            <cell><m>(50,125)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>80</m></cell>
-                            <cell><m>140</m></cell>
-                            <cell><m>(80,140)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>100</m></cell>
-                            <cell><m>150</m></cell>
-                            <cell><m>(100,150)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>200</m></cell>
-                            <cell><m>200</m></cell>
-                            <cell><m>(200,200)</m></cell>
-                        </row>
-                    </tabular>
-                </table>
+                <figure>
+                    <caption>Make the graph</caption>
+                    <image>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=0,xmax=250,
+                                            ymin=0,ymax=20,
+                                            xlabel={$x$ (miles)},
+                                            ylabel={$y$ (gallons)},
+                                            xtick=,
+                                            minor xtick={0,10,...,250},
+                                            ytick=,
+                                            minor ytick={0,1,...,20},
+                                            clip=false,
+                                            axis line style={->}]
+                                    \addplot+[domain=0:250,->] {14-0.032*x};
+                                    \addplot[soliddot] coordinates {(20,13.36)} node[above right,rotate=30]{$(20,13.36)$};
+                                    \addplot[soliddot] coordinates {(50,12.4)} node[above right,rotate=30]{$(50,12.4)$};
+                                    \addplot[soliddot] coordinates {(80,11.44)} node[above right,rotate=30]{$(80,11.44)$};
+                                    \addplot[soliddot] coordinates {(100,10.8)} node[above right,rotate=30]{$(100,10.8)$};;
+                                    \addplot[soliddot] coordinates {(200,7.6)} node[above right,rotate=30]{$(200,7.6)$};;
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
             </sidebyside>
-            <figure>
-                <caption>Make the graph</caption>
-                <image width="50%">
-                    <latex-image-code>
-                        <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[xmin=0,xmax=250,
-                                        ymin=0,ymax=250,
-                                        xtick=,
-                                        minor xtick={0,10,...,250},
-                                        ytick=,
-                                        minor ytick={0,10,...,250},
-                                        clip=false,
-                                        axis line style={->}]
-                                \addplot+[domain=0:250,->] {0.5*x+100};
-                                \addplot[soliddot] coordinates {(20,110)} node[below right,rotate=-30]{$(20,110)$};
-                                \addplot[soliddot] coordinates {(50,125)} node[below right,rotate=-30]{$(50,125)$};
-                                \addplot[soliddot] coordinates {(80,140)} node[below right,rotate=-30]{$(80,140)$};
-                                \addplot[soliddot] coordinates {(100,150)} node[below right,rotate=-30]{$(100,150)$};;
-                                \addplot[soliddot] coordinates {(200,200)} node[below right,rotate=-30]{$(200,200)$};;
-                            \end{axis}
-                        \end{tikzpicture}
-                        ]]>
-                    </latex-image-code>
-                </image>
-            </figure>
         </solution>
     </example>
+
+    <aside>
+        <title>Units on axes labels</title>
+        <p>In this last example, note how the graph's axes also tell us what units the variables are measured in. Always do this when you are making a graph with context behind it.</p>
+    </aside>
 
     <example>
         <statement>
@@ -389,47 +436,47 @@
             <sidebyside>
                 <table>
                     <tabular valign="top" bottom="minor">
-                        <col halign="center" />
-                        <col halign="center"/>
+                        <col halign="right" right="minor"/>
+                        <col halign="right" right="minor"/>
                         <col halign="center"/>
                         <row bottom="medium">
                             <cell><m>x</m></cell>
-                            <cell><m>y=x^2</m></cell>
+                            <cell halign="center"><m>y=x^2</m></cell>
                             <cell>Point</cell>
                         </row>
                         <row>
                             <cell><m>-3</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(-3)^2\\\amp=9\end{aligned}</m></cell>
+                            <cell><m>(-3)^2=9</m></cell>
                             <cell><m>(-3,9)</m></cell>
                         </row>
                         <row>
                             <cell><m>-2</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(-2)^2\\\amp=4\end{aligned}</m></cell>
+                            <cell><m>(-2)^2=4</m></cell>
                             <cell><m>(-2,4)</m></cell>
-                        </row>                    
+                        </row>
                         <row>
                             <cell><m>-1</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(-1)^2\\\amp=1\end{aligned}</m></cell>
+                            <cell><m>(-1)^2=1</m></cell>
                             <cell><m>(-1,1)</m></cell>
-                        </row>                    
+                        </row>
                         <row>
                             <cell><m>0</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(0)^2\\\amp=0\end{aligned}</m></cell>
+                            <cell><m>(0)^2=0</m></cell>
                             <cell><m>(0,0)</m></cell>
-                        </row>                    
+                        </row>
                         <row>
                             <cell><m>1</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(1)^2\\\amp=1\end{aligned}</m></cell>
+                            <cell><m>(1)^2=1</m></cell>
                             <cell><m>(0,1)</m></cell>
-                        </row>                    
+                        </row>
                         <row>
                             <cell><m>2</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(2)^2\\\amp=4\end{aligned}</m></cell>
+                            <cell><m>(2)^2=4</m></cell>
                             <cell><m>(2,4)</m></cell>
-                        </row>                    
-                        <row>
+                        </row>
+                        <row bottom="none">
                             <cell><m>3</m></cell>
-                            <cell><m>\begin{aligned}[t]y\amp=(3)^2\\\amp=9\end{aligned}</m></cell>
+                            <cell><m>(3)^2=9</m></cell>
                             <cell><m>(3,9)</m></cell>
                         </row>
                     </tabular>
@@ -515,6 +562,316 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/XYTable60.pg" seed="1"/>
+            </exercise>
+        </exercisegroup>
+        <exercisegroup>
+            <introduction>
+                <p>These exercises have Cartesian plots with some context.</p>
+            </introduction>
+            <exercise>
+                <statement>
+                    <p>A certain water heater will cost you <m>\$900</m> to buy and have installed. This water heater claims that its operating expense (money spent on electricity or gas) will be about <m>\$31</m> per month. According to this information, the equation <m>y=900+31x</m> models the total cost of the water heater after <m>x</m> months. Make a table of at least five values and plot a graph of this equation.</p>
+                </statement>
+                <solution>
+                    <p>We'll include <m>x=0</m> representing the total expense right after buying and installing the equipment. Then we'll use some <m>x</m>-values several months and years into the future.</p>
+                    <sidebyside>
+                        <table>
+                            <caption>Make the table</caption>
+                            <tabular valign="top" bottom="minor">
+                                <col halign="right" right="minor"/>
+                                <col halign="center" right="minor"/>
+                                <col halign="center"/>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell halign="center"><m>y</m></cell>
+                                    <cell>Point</cell>
+                                </row>
+                                <row>
+                                    <cell><m>0</m></cell>
+                                    <cell><m>900</m></cell>
+                                    <cell><m>(0,900)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>1</m></cell>
+                                    <cell><m>931</m></cell>
+                                    <cell><m>(1,931)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>6</m></cell>
+                                    <cell><m>1086</m></cell>
+                                    <cell><m>(6,1086)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>12</m></cell>
+                                    <cell><m>1272</m></cell>
+                                    <cell><m>(12,1272)</m></cell>
+                                </row>
+                                <row bottom="none">
+                                    <cell><m>24</m></cell>
+                                    <cell><m>1644</m></cell>
+                                    <cell><m>(24,1644)</m></cell>
+                                </row>
+                            </tabular>
+                        </table>
+                        <figure>
+                            <caption>Make the graph</caption>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}[xmin=0,xmax=30,
+                                                    ymin=0,ymax=2000,
+                                                    xlabel={$x$ (months)},
+                                                    ylabel={$y$ (dollars)},
+                                                    xtick={0,6,...,30},
+                                                    minor xtick={0,1,...,30},
+                                                    ytick=,
+                                                    minor ytick={0,100,...,2000},
+                                                    clip=false,
+                                                    axis line style={->}]
+                                            \addplot+[domain=0:30,->] {900+31*x};
+                                            \addplot[soliddot] coordinates {(0,900)};% node[below right,rotate=-30]{$(0,900)$};
+                                            \addplot[soliddot] coordinates {(1,931)} node[below right,rotate=-30]{$(1,931)$};
+                                            \addplot[soliddot] coordinates {(6,1086)} node[below right,rotate=-30]{$(6,1086)$};
+                                            \addplot[soliddot] coordinates {(12,1272)} node[below right,rotate=-30]{$(12,1272)$};;
+                                            \addplot[soliddot] coordinates {(24,1644)} node[below right,rotate=-30]{$(24,1644)$};;
+                                        \end{axis}
+                                    \end{tikzpicture}
+                                    ]]>
+                                </latex-image-code>
+                            </image>
+                        </figure>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>You bought a new Toyota Corolla for <m>\$18{,}600</m> with a zero interest loan over a five-year period. That means you'll have to pay <m>\$310</m> each month for the next five years (sixty months) to pay it off. According to this information, the equation <m>y=18600-310x</m> models the loan balance after <m>x</m> months. Make a table of at least five values and plot a graph of this equation. Make sure to include a data point representing when you will have paid off the loan.</p>
+                </statement>
+                <solution>
+                    <p>We'll include <m>x=0</m> representing the loand balance right after buying the car. Then we'll use some <m>x</m>-values for years into the future, all the way up to <m>x=60</m> when the loan is paid off.</p>
+                    <sidebyside>
+                        <table>
+                            <caption>Make the table</caption>
+                            <tabular valign="top" bottom="minor">
+                                <col halign="right" right="minor"/>
+                                <col halign="center" right="minor"/>
+                                <col halign="center"/>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell halign="center"><m>y</m></cell>
+                                    <cell>Point</cell>
+                                </row>
+                                <row>
+                                    <cell><m>0</m></cell>
+                                    <cell><m>18600</m></cell>
+                                    <cell><m>(0,18600)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>12</m></cell>
+                                    <cell><m>14880</m></cell>
+                                    <cell><m>(12,14880)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>24</m></cell>
+                                    <cell><m>11160</m></cell>
+                                    <cell><m>(24,11160)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>36</m></cell>
+                                    <cell><m>7440</m></cell>
+                                    <cell><m>(36,7440)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>48</m></cell>
+                                    <cell><m>3720</m></cell>
+                                    <cell><m>(48,3720)</m></cell>
+                                </row>
+                                <row bottom="none">
+                                    <cell><m>60</m></cell>
+                                    <cell><m>0</m></cell>
+                                    <cell><m>(60,0)</m></cell>
+                                </row>
+                            </tabular>
+                        </table>
+                        <figure>
+                            <caption>Make the graph</caption>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}[xmin=0,xmax=72,
+                                                    ymin=0,ymax=2000,
+                                                    xlabel={$x$ (months)},
+                                                    ylabel={$y$ (dollars)},
+                                                    xtick={0,12,...,72},
+                                                    minor xtick={0,3,...,72},
+                                                    ytick={0,500,...,2000},
+                                                    yticklabels={0,5000,10000,15000,20000},
+                                                    minor ytick={0,100,...,2000},
+                                                    clip=false,
+                                                    axis line style={->}]
+                                            \addplot+[domain=0:60,-] {1860-31*x};
+                                            \addplot[soliddot] coordinates {(0,1860)};% node[above right,rotate=30]{$(0,18600)$};
+                                            \addplot[soliddot] coordinates {(12,1488)} node[above right,rotate=30]{$(12,14880)$};
+                                            \addplot[soliddot] coordinates {(24,1116)} node[above right,rotate=30]{$(24,11160)$};
+                                            \addplot[soliddot] coordinates {(36,744)} node[above right,rotate=30]{$(36,7440)$};
+                                            \addplot[soliddot] coordinates {(48,372)} node[above right,rotate=30]{$(48,3720)$};
+                                            \addplot[soliddot] coordinates {(60,0)};% node[above right,rotate=30]{$(60,0)$};
+                                        \end{axis}
+                                    \end{tikzpicture}
+                                    ]]>
+                                </latex-image-code>
+                            </image>
+                        </figure>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>The pressure inside a full propane tank will rise and fall if the ambient temperature rises and falls. The equation <m>P=0.1963(T+459.67)</m> models this relationship, where the temperature <m>T</m> is measured in <quantity><unit base="fahrenheit"/></quantity> and the pressure and the pressure <m>P</m> is measured in <quantity><unit base="pound" /><per base="inch" exp="2" /></quantity>. Make a table of at least five values and plot a graph of this equation. Make sure to use <m>x</m>-values that make sense in context.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <table>
+                            <caption>Make the table</caption>
+                            <tabular valign="top" bottom="minor">
+                                <col halign="right" right="minor"/>
+                                <col halign="center" right="minor"/>
+                                <col halign="center"/>
+                                <row bottom="medium">
+                                    <cell><m>T</m></cell>
+                                    <cell halign="center"><m>P</m></cell>
+                                    <cell>Point</cell>
+                                </row>
+                                <row>
+                                    <cell><m>20</m></cell>
+                                    <cell><m>\approx94.16</m></cell>
+                                    <cell><m>(20,94.16)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>40</m></cell>
+                                    <cell><m>\approx98.09</m></cell>
+                                    <cell><m>(40,98.09)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>60</m></cell>
+                                    <cell><m>\approx102.0</m></cell>
+                                    <cell><m>(60,102.0)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>80</m></cell>
+                                    <cell><m>\approx105.9</m></cell>
+                                    <cell><m>(80,105.9)</m></cell>
+                                </row>
+                                <row bottom="none">
+                                    <cell><m>100</m></cell>
+                                    <cell><m>\approx109.9</m></cell>
+                                    <cell><m>(100,109.9)</m></cell>
+                                </row>
+                            </tabular>
+                        </table>
+                        <figure>
+                            <caption>Make the graph</caption>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}[xmin=0,xmax=120,
+                                                    ymin=0,ymax=120,
+                                                    xlabel={$T$ (°F)},
+                                                    ylabel={$P$ (lb/in²)},
+                                                    xtick=,
+                                                    minor xtick={0,5,...,120},
+                                                    ytick=,
+                                                    minor ytick={0,5,...,120},
+                                                    clip=false,
+                                                    axis line style={->}]
+                                            \addplot+[domain=0:120] {0.1963*(x+459.67)};
+                                            \addplot[soliddot] coordinates {(20,94.16)} node[below right,rotate=-30]{$(20,94.16)$};
+                                            \addplot[soliddot] coordinates {(40,98.09)} node[below right,rotate=-30]{$(40,98.09)$};
+                                            \addplot[soliddot] coordinates {(60,102.0)} node[below right,rotate=-30]{$(60,102.0)$};
+                                            \addplot[soliddot] coordinates {(80,105.9)} node[below right,rotate=-30]{$(80,105.9)$};
+                                            \addplot[soliddot] coordinates {(100,109.9)} node[below right,rotate=-30]{$(100,109.9)$};
+                                        \end{axis}
+                                    \end{tikzpicture}
+                                    ]]>
+                                </latex-image-code>
+                            </image>
+                        </figure>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>A beloved coworker is retiring and you want to give her a gift of week-long vacation rental at the coast that costs <m>\$1400</m> for the week. You might end up paying for it yourself, but you ask around to see if the other <m>29</m> office coworkers want to split the cost evenly. The equation <m>y=\frac{1400}{x}</m> models this situation, where <m>x</m> people contribute to the gift, and <m>y</m> is the dollar amount everyone contributes. Make a table of at least five values and plot a graph of this equation. Make sure to use <m>x</m>-values that make sense in context.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <table>
+                            <caption>Make the table</caption>
+                            <tabular valign="top" bottom="minor">
+                                <col halign="right" right="minor"/>
+                                <col halign="center" right="minor"/>
+                                <col halign="center"/>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell halign="center"><m>y</m></cell>
+                                    <cell>Point</cell>
+                                </row>
+                                <row>
+                                    <cell><m>1</m></cell>
+                                    <cell><m>1400</m></cell>
+                                    <cell><m>(1,1400)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>5</m></cell>
+                                    <cell><m>280</m></cell>
+                                    <cell><m>(5,280)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>10</m></cell>
+                                    <cell><m>140</m></cell>
+                                    <cell><m>(10,140)</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>20</m></cell>
+                                    <cell><m>70</m></cell>
+                                    <cell><m>(20,70)</m></cell>
+                                </row>
+                                <row bottom="none">
+                                    <cell><m>30</m></cell>
+                                    <cell><m>46.67</m></cell>
+                                    <cell><m>(30,46.67)</m></cell>
+                                </row>
+                            </tabular>
+                        </table>
+                        <figure>
+                            <caption>Make the graph</caption>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}[xmin=0,xmax=40,
+                                                    ymin=0,ymax=1500,
+                                                    xlabel={$x$ (people)},
+                                                    ylabel={$y$ (dollars)},
+                                                    xtick=,
+                                                    minor xtick={0,1,...,40},
+                                                    ytick=,
+                                                    minor ytick={0,100,...,1400},
+                                                    clip=false,
+                                                    axis line style={->}]
+                                            \addplot+[domain=0:3.401,-] ({exp(x)},{1400*exp(-x)});
+                                            \addplot[soliddot] coordinates {(1,1400)} node[below right,rotate=-30]{$(1,1400)$};
+                                            \addplot[soliddot] coordinates {(5,280)} node[above right,rotate=30]{$(5,280)$};
+                                            \addplot[soliddot] coordinates {(10,140)} node[above right,rotate=30]{$(10,140)$};
+                                            \addplot[soliddot] coordinates {(20,70)} node[above right,rotate=30]{$(20,70)$};
+                                            \addplot[soliddot] coordinates {(30,46.67)} node[above right,rotate=30]{$(30,46.67)$};
+                                        \end{axis}
+                                    \end{tikzpicture}
+                                    ]]>
+                                </latex-image-code>
+                            </image>
+                        </figure>
+                    </sidebyside>
+                </solution>
             </exercise>
         </exercisegroup>
         <exercisegroup>
