@@ -18,6 +18,14 @@
 
   <title>Exploring Two-Variable Data and Rate of Change</title>
 
+    <objectives>
+        <title>PCC Course Content and Outcome Guide</title>
+        <ol>
+             <li><xref ref="mth60-interpret-graphs" /></li>
+             <li><xref ref="mth60-find-slope-from-two-points" /></li>
+         </ol>
+    </objectives>
+
     <introduction>
         <p>This section is about examining data that has been plotted on a Cartesian coordinate system, and then making observations. In some cases, we'll be able to turn those observations into useful mathematical calculations.</p>
         <figure>
@@ -676,7 +684,7 @@
                 </figure>
             </sidebyside>
 
-            <p>What is the <term>rate of change</term> in Oregon invasive cancer diagnoses between 2000 and 2010? The actual (net) change in diagnoses is <me>19727-17446=2281</me> and <m>10</m> years passed in between (which you can calculate as <m>2010-2000</m>). So the rate of change is <m>2281</m> diagnoses per <m>10</m> years, or: <me>\frac{2281\,\text{diagnoses}}{10\,\text{year}}=228.1\,\frac{\text{diagnoses}}{\text{year}}\text{.}</me></p> 
+            <p>What is the <term>rate of change</term> in Oregon invasive cancer diagnoses between 2000 and 2010? The actual (net) change in diagnoses is <me>19727-17446=2281</me> and <m>10</m> years passed in between (which you can calculate as <m>2010-2000</m>). So the rate of change is <m>2281</m> diagnoses per <m>10</m> years, or: <me>\frac{2281\,\text{diagnoses}}{10\,\text{year}}=228.1\,\frac{\text{diagnoses}}{\text{year}}\text{.}</me>That last quantity is read as <q><m>228.1</m> diagnoses per year</q>, and says that the overall change between 2000 and 2010 is the same <em>as if</em> the diagnoses had risen by <m>228.1</m> each and every year in between. (Of course they did not, but the final change would have been the same as if they had.)</p> 
         </example>
 
         <p>Now you try:</p>
@@ -699,8 +707,8 @@
                     <p><var name="$r[1]" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
                 </statement>
                 <solution>
-                    <p>To find the rate of chage between 1999 and 2002, calculate <me>\frac{17887-17599}{2002-1999}=96\text{.}</me></p>
-                    <p>To find the rate of chage between 2003 and 2011, calculate <me>\frac{20636-17559}{2011-2003}=384.625\text{.}</me></p>
+                    <p>To find the rate of change between 1999 and 2002, calculate <me>\frac{17887-17599}{2002-1999}=96\text{.}</me></p>
+                    <p>To find the rate of change between 2003 and 2011, calculate <me>\frac{20636-17559}{2011-2003}=384.625\text{.}</me></p>
                 </solution>
             </webwork>
         </exercise>
@@ -1439,6 +1447,152 @@
             <introduction>
                 <p>Calculate some rates of change.</p>
             </introduction>
+            <exercise>
+                <webwork seed="1">
+                    <pg-macros>
+                        <macro-file>PGchoicemacros.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <var name="$year[0]"><static>1992</static></var>
+                        <var name="$year[1]"><static>1995</static></var>
+                        <var name="$year[2]"><static>2009</static></var>
+                        <var name="$year[3]"><static>2012</static></var>
+                        <var name="$rate[0]"><static>1547</static></var>
+                        <var name="$rate[1]"><static>12270</static></var>
+                        <pg-code>
+                            @x=(1990..2014);
+                            @y=(487849,491064,493754,497432,497659,498396,501646,503205,502945,503637,529922,535185,538803,539546,533120,534112,538091,546747,556442,566143,585261,593859,602954,609520,619360);
+                            %f=map{$x[$_]=>$y[$_]}(0..24); 
+                            @year=num_sort(@x[NchooseK(25,4)]);
+                            @rate=map{Real(($f{$year[2*$_+1]}-$f{$year[2*$_]})/($year[2*$_+1]-$year[2*$_]))}(0,1);
+                            $declines=List(1997,2003);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>This table gives population estimates for Portland, Oregon from 1990 through 2014 (<url href="https://www.google.com/publicdata/explore?ds=kf7tgg1uo9ude_&amp;met_y=population&amp;idim=place:4159000:5363000&amp;hl=en&amp;dl=en">Source</url> as of Oct 11, 2016; Google may update with better estimates).</p>
+                        <table>
+                            <tabular>
+                                <col />
+                                <col right="medium"/>
+                                <col />
+                                <col />
+                                <row bottom="medium">
+                                    <cell>Year</cell>
+                                    <cell>Population</cell>
+                                    <cell>Year</cell>
+                                    <cell>Population</cell>
+                                </row>
+                                <row><cell>1990</cell><cell>487849</cell><cell>2003</cell><cell>539546</cell></row>
+                                <row><cell>1991</cell><cell>491064</cell><cell>2004</cell><cell>533120</cell></row>
+                                <row><cell>1992</cell><cell>493754</cell><cell>2005</cell><cell>534112</cell></row>
+                                <row><cell>1993</cell><cell>497432</cell><cell>2006</cell><cell>538091</cell></row>
+                                <row><cell>1994</cell><cell>497659</cell><cell>2007</cell><cell>546747</cell></row>
+                                <row><cell>1995</cell><cell>498396</cell><cell>2008</cell><cell>556442</cell></row>
+                                <row><cell>1996</cell><cell>501646</cell><cell>2009</cell><cell>566143</cell></row>
+                                <row><cell>1997</cell><cell>503205</cell><cell>2010</cell><cell>585261</cell></row>
+                                <row><cell>1998</cell><cell>502945</cell><cell>2011</cell><cell>593859</cell></row>
+                                <row><cell>1999</cell><cell>503637</cell><cell>2012</cell><cell>602954</cell></row>
+                                <row><cell>2000</cell><cell>529922</cell><cell>2013</cell><cell>609520</cell></row>
+                                <row><cell>2001</cell><cell>535185</cell><cell>2014</cell><cell>619360</cell></row>
+                                <row><cell>2002</cell><cell>538803</cell></row>
+                            </tabular>
+                        </table>
+                        <p>Find the rate of change in Portand population between <var name="$year[0]" /> and <var name="$year[1]" />. Just give the numerical value; the units are provided.</p>
+                        <p><var name="$rate[0]" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m></p>
+                        <p>And what was the rate of change between <var name="$year[2]" /> and <var name="$year[3]" />?</p>
+                        <p><var name="$rate[1]" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m></p>
+                        <p>List all the years where there is a negative rate of change between that year and the next year. (Use commas to separate your answers.)</p>
+                        <p><var name="$declines" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>To find the rate of change between <var name="$year[0]" /> and <var name="$year[1]" />, calculate <me>\frac{<var name="$f{$year[1]}"/>-<var name="$f{$year[0]}"/>}{<var name="$year[1]"/>-<var name="$year[0]"/>}=<var name="$rate[0]"/>\text{.}</me></p>
+                        <p>To find the rate of change between <var name="$year[2]" /> and <var name="$year[3]" />, calculate <me>\frac{<var name="$f{$year[3]}"/>-<var name="$f{$year[2]}"/>}{<var name="$year[3]"/>-<var name="$year[2]"/>}=<var name="$rate[1]"/>\text{.}</me></p>
+                        <p>The rate of change is negative for the year following 1997 and the year following 2003, and no other years. These are the only years in the data table where the population goes down the next year.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork seed="1">
+                    <pg-macros>
+                        <macro-file>PGchoicemacros.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <var name="$answer"><static>1999,2001</static></var>
+                        <var name="$rate"><static>15774</static></var>
+                        <pg-code>
+                            @x=(1990..2014);
+                            @y=(487849,491064,493754,497432,497659,498396,501646,503205,502945,503637,529922,535185,538803,539546,533120,534112,538091,546747,556442,566143,585261,593859,602954,609520,619360);
+                            %f=map{$x[$_]=>$y[$_]}(0..24); 
+                            @year=num_sort(@x[NchooseK(25,4)]);
+                            @rate=map{Real(($f{$year[2*$_+1]}-$f{$year[2*$_]})/($year[2*$_+1]-$year[2*$_]))}(0,1);
+                            $answer=List(1999,2001);
+                            $rate=($f{2001}-$f{1999})/2;
+                            for my$j(0,1){
+                              $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[400,400]);
+                              $graph[$j]->lb('reset');
+                              $graph[$j]->lb(new Label(2014,6000,'year','black','right','bottom'));
+                              $graph[$j]->lb(new Label(1990.5,690000,'population','black','left','top'));
+                              for my$i(0..24){$graph[$j]->moveTo($x[$i],-6000);$graph[$j]->lineTo($x[$i],6000);
+                                $graph[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));
+                              };
+                              for my$i(1995,2000,2005,2010){$graph[$j]->moveTo($x[$i],-12000);$graph[$j]->lineTo($x[$i],12000);
+                                $graph[$j]->lb(new Label($i,-12000,$i,'black','center','top'));
+                              };
+                              for my$i(1..6){$graph[$j]->moveTo(1989.8,$i*10**5);$graph[$j]->lineTo(1990.2,$i*10**5);};
+                              for my$i(2,4,6){$graph[$j]->lb(new Label(1990.3,$i*100000,$i*100000,'black','left','middle'));};
+                            };
+                            for my$i(1998,1999,2008,2009){
+                              $slope{$i}=($f{$i+2}-$f{$i})/2;
+                              add_functions($graph[1],"$slope{$i}*(x-$i)+$f{$i} for x in &lt;1989,2015> using color:black and weight:1");
+                            };
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>This table and graph gives population estimates for Portland, Oregon from 1990 through 2014 (<url href="https://www.google.com/publicdata/explore?ds=kf7tgg1uo9ude_&amp;met_y=population&amp;idim=place:4159000:5363000&amp;hl=en&amp;dl=en">Source</url> as of Oct 11, 2016; Google may update with better estimates).</p>
+                        <table>
+                            <tabular>
+                                <col />
+                                <col right="medium"/>
+                                <col />
+                                <col />
+                                <row bottom="medium">
+                                    <cell>Year</cell>
+                                    <cell>Population</cell>
+                                    <cell>Year</cell>
+                                    <cell>Population</cell>
+                                </row>
+                                <row><cell>1990</cell><cell>487849</cell><cell>2003</cell><cell>539546</cell></row>
+                                <row><cell>1991</cell><cell>491064</cell><cell>2004</cell><cell>533120</cell></row>
+                                <row><cell>1992</cell><cell>493754</cell><cell>2005</cell><cell>534112</cell></row>
+                                <row><cell>1993</cell><cell>497432</cell><cell>2006</cell><cell>538091</cell></row>
+                                <row><cell>1994</cell><cell>497659</cell><cell>2007</cell><cell>546747</cell></row>
+                                <row><cell>1995</cell><cell>498396</cell><cell>2008</cell><cell>556442</cell></row>
+                                <row><cell>1996</cell><cell>501646</cell><cell>2009</cell><cell>566143</cell></row>
+                                <row><cell>1997</cell><cell>503205</cell><cell>2010</cell><cell>585261</cell></row>
+                                <row><cell>1998</cell><cell>502945</cell><cell>2011</cell><cell>593859</cell></row>
+                                <row><cell>1999</cell><cell>503637</cell><cell>2012</cell><cell>602954</cell></row>
+                                <row><cell>2000</cell><cell>529922</cell><cell>2013</cell><cell>609520</cell></row>
+                                <row><cell>2001</cell><cell>535185</cell><cell>2014</cell><cell>619360</cell></row>
+                                <row><cell>2002</cell><cell>538803</cell></row>
+                            </tabular>
+                        </table>
+                        <p><image pg-name="$graph[0]" /></p>
+                        <p>Between what two years that are two years apart was the rate of change highest? (Use commas to separate your answers.)</p>
+                        <p><var name="$answer" width="20" /></p>
+                        <p>What was that rate of change? Just give the numerical value; the units are provided.</p>
+                        <p><var name="$rate" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m></p>
+                    </statement>
+                    <solution>
+                        <p>It's not clear where that steepest two-year jump is, but the candidates periods start in 1998, 1999, 2008, and 2009.</p> 
+                        <p><image pg-name="$graph[1]" /></p>
+                        <p>Between 1998 and 2000:<me>\frac{529922-502945}{2000-1998}=13488.5\text{.}</me></p>
+                        <p>Between 1999 and 2001:<me>\frac{535185-503637}{2001-1999}=15774\text{.}</me></p>
+                        <p>Between 2008 and 2010:<me>\frac{585261-556442}{2010-2008}=14409.5\text{.}</me></p>
+                        <p>Between 2009 and 2011:<me>\frac{593858-566143}{2011-2009}=13857.5\text{.}</me></p>
+                        <p>So the rate of change was highest between 1999 and 2001.</p>
+                    </solution>
+                </webwork>
+            </exercise>
         </exercisegroup>
         <exercisegroup>
             <introduction>
