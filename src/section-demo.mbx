@@ -235,16 +235,16 @@
                         <static>(0,-8)</static>
                     </var>
                     <pg-code>
-                        Context("Fraction");
                         $num = random(2,8,2);
                         $den = random(3,9,2);
                         while (gcd($num,$den)!=1) {$den = random(3,9,2);}
                         $b = non_zero_random(-10,10,1);
                         if($envir{problemSeed}==1){$num=6;$den=5;$b=-8};
+                        $f=Formula("-($num x / $den)+$b");
+                        Context("Fraction");
                         $m = -Fraction($num,$den);
                         Context("LimitedFraction")->flags->set(requirePureFractions=>1,showMixedNumbers=>0);
                         $m=Compute($m);
-                        $f=Formula("-($num x / $den)+$b");
                         Context("Point");
                         Context()->parens->set("[" => {type => "Interval", close => "]"},"{" => {type => "Set", close => "}"},"&lt;" => {type => "Vector", close => ">"});
                         $yInt = Compute("(0,$b)");
