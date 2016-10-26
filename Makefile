@@ -195,3 +195,10 @@ check:
 	-rm $(OUTPUT)/dtderrors.*
 	-xmllint --xinclude --postvalid --noout --dtdvalid $(DTD)/mathbook.dtd $(MAINFILE) 2> $(OUTPUT)/dtderrors.txt
 	less $(OUTPUT)/dtderrors.txt
+
+gource:
+	install -d $(OUTPUT)
+	-rm $(OUTPUT)/gource.mp4
+	-gource --hide dirnames,filenames --seconds-per-day 0.1 --auto-skip-seconds 1 -1280x720 -o - | ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264 -preset medium -pix_fmt yuv420p -crf 23 -threads 0 -bf 0 $(OUTPUT)/gource.mp4
+	-mv gource.mp4 $(OUTPUT)/gource.mp4
+    
