@@ -58,7 +58,8 @@
     <latex-image-preamble>
     <![CDATA[
     \usepackage{pgfplots}
-
+	\usetikzlibrary{positioning,fit,backgrounds}		%needed for nested diagrams
+	
     % curve, dot, and graph custom styles
     \pgfplotsset{primarycurve/.style   = {color=red,  mark=none, line width=1pt, <->, solid}}         % primary style for curves
     \pgfplotsset{secondarycurve/.style = {color=blue, mark=none, line width=1pt, <->, dashdotted}}    % secondary style for curves
@@ -148,6 +149,41 @@
     \pgfplotsset{framed/.style={axis background/.style ={draw=gray}}}
     % next line is a bit more colorful
     %\pgfplotsset{framed/.style={axis background/.style ={draw=gray,fill=yellow!20,rounded corners=3ex}}}
+
+%for nested diagram in types of numbers
+\newcommand\drawnestedsets[4]{
+  % initial position
+  \def\position{#1}
+  % number of sets
+  \def\nbsets{#2}
+  % list of sets
+  \def\listofnestedsets{#3}
+  % reversed list of colors
+  \def\reversedlistofcolors{#4}
+
+  % position and draw labels of sets
+  \coordinate (circle-0) at (#1);
+  \coordinate (set-0) at (#1);
+  \foreach \set [count=\c] in \listofnestedsets {
+    \pgfmathtruncatemacro{\cminusone}{\c - 1}
+    % label of current set (below previous nested set)
+    \node[below=3pt of circle-\cminusone,inner sep=0]
+    (set-\c) {\set};
+    % current set (fit current label and previous set)
+    \node[circle,inner sep=0,fit=(circle-\cminusone)(set-\c)]
+    (circle-\c) {};
+  }
+
+  % draw and fill sets in reverse order
+  \begin{scope}[on background layer]
+    \foreach \col[count=\c] in \reversedlistofcolors {
+      \pgfmathtruncatemacro{\invc}{\nbsets-\c}
+      \pgfmathtruncatemacro{\invcplusone}{\invc+1}
+      \node[circle,draw,fill=\col,inner sep=0,
+      fit=(circle-\invc)(set-\invcplusone)] {};
+    }
+  \end{scope}
+  }
 
     ]]>
     </latex-image-preamble>
