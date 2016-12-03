@@ -26,6 +26,404 @@
     	</figure>
     </introduction>
 
+<subsection>
+<title>Introduction</title>
+<p>When working with two variables, we are interest in the relationship between those two variables. For example, if we know the value of one variable, are we able to determine the value of the second variable?</p>
 
+<p>A <term>relation</term> is a rule or set of rules that maps an element in the domain to an element in the range. A <term>function</term> is a relation that maps an element in the domain onto a single element in the range. There are multiple ways that we can represent relations and functions: graphically, algebraically, numerically, and verbally. </p>
+</subsection>
+
+<subsection>
+<title>Identifying Functions</title>
+
+<p>To start, let's look at two variables, <q>chicken name</q> and <q>egg color</q> for a set of <m>5</m> chickens.
+
+    <image>
+      <latex-image-code>
+        <![CDATA[\begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=2pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}]
+  \node[ele,label=left:Hazel] (a1) at (0,5) {};
+  \node[ele,label=left:Yvonne] (a2) at (0,4) {};
+  \node[ele,label=left:Georgia] (a3) at (0,3) {};
+  \node[ele,label=left:Emma] (a4) at (0,2) {};
+  \node[ele,label=left:Isabella] (a5) at (0,1) {};
+
+  \node[ele,,label=right:Tan] (b1) at (8,4) {};
+  \node[ele,,label=right:Brown] (b2) at (8,3) {};
+  \node[ele,,label=right:Green] (b3) at (8,2) {};
+  \node[ele,,label=right:White] (b4) at (8,1) {};
+
+  \node[draw,fit= (a5) (a4) (a3) (a2) (a1),minimum width=5cm] {} ;
+  \node[draw,fit= (b1) (b2) (b3) (b4),minimum width=5cm] {} ;
+  \draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b1);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a2) -- (b2);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a3) -- (b2);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a4) -- (b3);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a5) -- (b4);
+ \end{tikzpicture}]]>
+      </latex-image-code>
+</image>
+
+If we write ordered pairs in the form (chicken name, egg color), then this set of ordered pairs represents a function. Each input maps to exactly one output. This means that if given the chicken name, such as Hazel, you know precisely what color of eggs that chicken has.</p>
+
+<p>What if we now reversed these two variables and wrote ordered pairs of the form (egg color, chicken name). If you are given the egg color, are you able to determine exactly which chicken produced this egg? That answer is no<mdash />and this underlies the fact that this relation is not a function. If we may egg color the input, one of these inputs (brown) maps to more than one output (Yvonne and Georgia).</p>
+
+<remark><p>When determining if a relation is a function based on a set of ordered pairs or a table, we focus in on the inputs. In order to be a function, each input must correspond to <em>exactly one output</em>
+</p></remark>
+</subsection>
+
+<subsection>
+	<title>Identifying Functions Graphically</title>
+
+<p>To determine if a relation that is represented graphically is a function, we need to visually determine if each input corresponds to exactly one output. One way of doing this is referred to as the <term>vertical line test</term>. In short, if any vertical line passes through the graph more than once, then that graph does not represent a function. In the graph in Figure   , we can see that a given vertical line passes through the graph more than once. This means that this graph is <em>not</em> a function. However, in Figure , we see that nowhere could we draw a vertical line that would pass through this graph more than once. Therefore, this graph is a function.</p>
+
+<sidebyside widths="47% 47%">
+<figure xml:id="figure-graph-not-function">
+<caption>Not a Function: Fails the Vertical Line Test</caption>
+                    <image>
+                        <description>a Cartesian grid with points (-3,9), (-2,4),(-1,1),(0,0),(1,1),(2,4),(3,9)</description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[variable=\t,domain=-2:4] ({(t-1)^2-2},{t});
+                                    \addplot[guideline,<->]coordinates {(1.5,-7) (1.5,7)};
+                                    \addplot[soliddot]coordinates {(1.5,2.87) (1.5,-0.87)};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+</figure>
+<figure xml:id="figure-graph-function">
+<caption>A Function: Passes the Vertical Line Test</caption>
+	<image>
+	<description></description>
+		<latex-image-code>
+		<![CDATA[\begin{tikzpicture}
+			\begin{axis}[]
+                                    \addplot+[domain=-2.85:0.6] {2*(x+2)*(x+1)*x+2};
+			\end{axis}
+				\end{tikzpicture}
+		]]>
+		</latex-image-code>
+	</image>
+</figure>
+</sidebyside>
+
+</subsection>
+
+
+<subsection>
+<title>Function Notation</title>
+<p>We know that the equation <m>y=5x+3</m> represents a function. If we want to determine the value of the output when the input is <m>1</m>, we'd replace <m>x</m> with <m>1</m> and find the value of <m>y</m>:
+	<md>
+		<mrow>y\amp= 5(1)+3</mrow>
+		<mrow>\amp= 5+3</mrow>
+		<mrow>\amp=8</mrow>
+	</md>
+Our end result is that <m>y=8</m>. Notice that this does not communicate the value of the input variable<mdash />we'd have to look back at our work to see that. <term>Function notation</term> will allow us to communicate both the input and the output. It will also allow us to each function a name, which is helpful when we have multiple functions. </p>
+
+<p>When we write <m>y=f(x)</m>, we are communicating three important things:
+	<ol>
+		<li>the function's name is <m>f</m></li>
+		<li>the input variable is <m>x</m></li>
+		<li> the output variable is <m>y</m></li>
+	</ol>
+	To then find the value of this function when <m>x=1</m>, we'd evaluate <m>f</m> at <m>1</m>:
+	<md>
+		<mrow>f(1)\amp= 5(1)+3</mrow>
+		<mrow>\amp= 5+3</mrow>
+		<mrow>\amp=8</mrow>
+	</md>
+	Our end result now is that <m>f(1)=8</m>, which tells us that the value of the function <m>f</m> is <m>8</m> when the input is <m>1</m>.
+</p>
+</subsection>
+
+<remark><p>
+The most common letters used to represent functions are <m>f,g,</m> and <m>h</m>. The most common variables we use are <m>x,y,</m> and <m>z</m>. But we can use any function name and any input and output variable. When dealing with functions in context, it often makes sense to use meaningful function names and variables. For example, if we are modeling temperature of a cup of coffee as a function of time with a function <m>C</m>, we could use <m>T=C(t)</m>, where <m>T</m> is the temperature (in degrees Fahrenheit) after <m>t</m> minutes.
+</p></remark>
+
+<remark><p>Parentheses have a lot of uses in mathematics. Their use with functions is very specific, and it's important to note that <m>f</m> is <em>not</em> being multiplied by anything when we write <m>f(x)</m>. In fact, we can only write <m>f</m> when calling the function by name. We won't ever use a function name inside an expression or equation; there we will only use <m>f(x)</m>.
+</p></remark>
+
+<subsection>
+<title>Evaluating Functions and Solving Equations with Function Notation</title>
+When we determine a function's value for a specific input, this is known as <term>evaluating a function</term>. To do so, we replace the input with the numerical value given and determine the associated output.
+
+<example xml:id="example-introductory-function-evaluation">
+<statement>
+<p>Find the given function values for a function <m>g</m> where <m>g(x)=5x^2-3x+4</m>
+	<ol>
+		<li><m>g(3)</m></li>
+		<li><m>g(0)</m></li>
+		<li><m>g(-2)</m></li>
+	</ol>
+</p>
+</statement>
+<solution>
+<p>
+	<ol>
+		<li><p><md>
+			<mrow>g(3) \amp= 5(3)^2-3(3)+4</mrow>
+			<mrow>\amp= 5(9)-9+4</mrow>
+			<mrow>\amp= 40</mrow>
+		</md></p></li>
+		<li><p><md>
+			<mrow>g(0) \amp= 5(0)^2-3(0)+4</mrow>
+			<mrow>\amp= 5(0)+0+4</mrow>
+			<mrow>\amp= 4</mrow>
+		</md></p></li>
+		<li><p><md>
+			<mrow>g(-2)\amp= 5(-2)^2-3(-2)+4</mrow>
+			<mrow>\amp= 5(4)+6+4</mrow>
+			<mrow>\amp= 30</mrow>
+		</md></p></li>
+	</ol>
+</p>
+</solution>
+</example>
+
+
+<p>In <xref ref="example-introductory-function-evaluation">Example</xref> To solve an equation involving function notation, we need to solve for the value of the variable that makes an equation true, just like in any other equation.</p>
+
+<example>
+<statement>
+<p>Solve the equations below for a function <m>h</m> where <m>h(t)=-4t+7</m>. Check each answer and state the solution set.
+	<ol>
+		<li><p><m>h(t)=-1</m></p></li>
+		<li><p><m>h(t)=0</m></p></li>
+		<li><p><m>h(t)=11</m></p></li>
+	</ol>
+</p>
+</statement>
+<solution>
+<p>
+	<ol>
+		<li><p>
+		<md>
+			<mrow>h(t) \amp= -1</mrow>
+			<mrow>-4t+7 \amp= -1</mrow>
+			<mrow>-4t \amp= -8</mrow>
+			<mrow>t \amp=2</mrow>
+		</md>
+		To check, we will verify that <m>h(2)=-1</m>:
+		<md>
+			<mrow>h(2) \amp= -4(2)+7</mrow>
+			<mrow>\amp= -8+7</mrow>
+			<mrow>\amp= -1 \checkmark</mrow>
+		</md>
+		The solution set is <m>\{2\}</m>.
+		</p></li>
+		<li><p>
+		<md>
+			<mrow>h(t) \amp= 0</mrow>
+			<mrow>-4t+7 \amp= 0</mrow>
+			<mrow>-4t \amp= -7</mrow>
+			<mrow>t \amp=\frac{7}{4}</mrow>
+		</md>
+		To check, we will verify that <m>h\left(\frac{7}{4}\right)=0</m>:
+		<md>
+			<mrow>h\left(\frac{7}{4}\right) \amp = -4\left(\frac{7}{4}\right)+7</mrow>
+			<mrow>\amp= -7+7</mrow>
+			<mrow>\amp= 0 \checkmark</mrow>
+		</md>
+		The solution set is <m>\left\{\frac{7}{4}\right\}</m>.
+		</p></li>
+		<li><p>
+		<md>
+			<mrow>h(t) \amp= 11</mrow>
+			<mrow>-4t+7 \amp= 11</mrow>
+			<mrow>-4t \amp= 4</mrow>
+			<mrow>t \amp=-1</mrow>
+		</md>
+		To check, we will verify that <m>h(-1)=11</m>:
+		<md>
+			<mrow>h(-1) \amp= -4(-1)+7</mrow>
+			<mrow>\amp= 4+7</mrow>
+			<mrow>\amp= 11 \checkmark</mrow>
+		</md>
+		The solution set is <m>\{-1\}</m>.
+		</p></li>
+	</ol>
+</p>
+</solution>
+</example>
+
+
+<example>
+<statement><p>Temperature readings for Portland, OR, on a given day are recorded in <xref ref="table-temperature">Table</xref> . Let <m>f(t)</m> be the temperature in degrees Fahrenheit <m>t</m> hours after midnight.
+
+<table xml:id="table-temperature">
+<caption>Recorded Temperatures</caption>
+	<tabular valign="top" bottom="medium" top="medium" left="medium" right="medium">
+	<col halign="center" right="minor" left="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="minor"/>
+	<col halign="center" right="medium"/>
+		<row bottom="medium" top="medium">
+			<cell><m>t</m>, hours after midnight</cell>
+			<cell><m>0</m></cell>
+			<cell><m>1</m></cell>
+			<cell><m>2</m></cell>
+			<cell><m>3</m></cell>
+			<cell><m>4</m></cell>
+			<cell><m>5</m></cell>
+			<cell><m>6</m></cell>
+			<cell><m>7</m></cell>
+			<cell><m>8</m></cell>
+			<cell><m>9</m></cell>
+			<cell><m>10</m></cell>
+			<cell><m>11</m></cell>
+			<cell><m>12</m></cell>
+		</row>
+		<row bottom="medium">
+			<cell><m>f(t)</m>, temperature in <quantity><unit base="fahrenheit" /></quantity> </cell>
+			<cell><m>45</m></cell>
+			<cell><m>44</m></cell>
+			<cell><m>42</m></cell>
+			<cell><m>42</m></cell>
+			<cell><m>43</m></cell>
+			<cell><m>44</m></cell>
+			<cell><m>45</m></cell>
+			<cell><m>48</m></cell>
+			<cell><m>49</m></cell>
+			<cell><m>50</m></cell>
+			<cell><m>53</m></cell>
+			<cell><m>52</m></cell>
+			<cell><m>53</m></cell>
+		</row>
+	</tabular>
+</table>
+<ol>
+	<li><p>What was the temperature at midnight?</p></li>
+	<li><p>Find <m>f(9)</m>. Explain what this function value represents in the context of the problem.</p></li>
+	<li><p>When was the temperature <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>?</p></li>
+	<li><p>Solve <m>f(t)=52</m>. Explain what this solution set represents in the context of the problem.</p></li>
+</ol>
+</p></statement>
+<solution>
+<ol>
+	<li><p>
+	To determine the temperature at midnight, we look in the table where <m>t=0</m> and see that the output is <m>45</m>. Using function notation, we would write:
+	<md>
+		<mrow>f(0) \amp= 45</mrow>
+	</md>
+	Thus at midnight the temperature was <quantity><mag>45</mag><unit base="fahrenheit" /></quantity>.
+	</p></li>
+	<li><p>
+	To determine the value of <m>f(9)</m>, we look in the table where <m>t=9</m> and read the output:
+	<md>
+		<mrow>f(9) \amp= 50</mrow>
+	</md>
+	In context, this means that at 9am the temperature was <quantity><mag>50</mag><unit base="fahrenheit" /></quantity>.
+	</p></li>
+	<li><p>
+	To determine when the temperature was <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>, we look in the table to see where the output was <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>. This occurs when <m>t=1</m> and again when <m>t=5</m>. In summary, this means that the temperature was  <quantity><mag>44</mag><unit base="fahrenheit" /></quantity> at 1am and again at 5am.
+	</p></li>
+	<li><p>Solve <m>f(t)=52</m>. Explain what this solution set represents in the context of the problem.</p></li>
+	<li><p>
+	To solve <m>f(t)=52</m>, we need to find the value of <m>t</m> that makes the equation true. Looking at the table, we look at the outputs and see that the output is <m>52</m> when <m>t=11</m>. Stating this with function notation, we write:
+	<md>
+		<mrow>f(t) \amp= 52</mrow>
+		<mrow>t \amp= 11</mrow>
+	</md>
+	In context, this means that the temperature was <quantity><mag>52</mag><unit base="fahrenheit" /></quantity> at 11am.
+	</p></li>
+</ol>
+</solution>
+</example>
+
+
+<example>
+<p>A colony of bees was happily residing in Ann's backyard in 2012. Let <m>B(t)</m> be the size of the bee colony (in thousands) <m>t</m> months after April 1, 2012. This function is modeled in <xref ref="figure-bees">Figure</xref>.</p>
+
+<figure xml:id="figure-bees">
+<caption>Bee Growth</caption>
+	<image width="47%">
+	<description></description>
+		<latex-image-code>
+		<![CDATA[\begin{tikzpicture}
+			\begin{axis}[
+				x axis line style = {->},
+				y axis line style = {->},
+				xmin=0,xmax=12,
+				ymin=0,ymax=16,
+				xlabel={$t$, months after April 1, 2012},
+				ylabel={$y$, thousands of bees},
+				x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+				y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+				xtick={0,2,...,10},
+					 minor xtick={1,2,...,11},
+				ytick={0,2,...,14},
+					 minor ytick={1,2,...,15}
+				]
+				% use TeX as calculator:
+				\addplot[primarycurve,domain=0:6,-,samples=100]{-5/9*x^2+10/3*x+10};
+				\addplot[primarycurve,soliddot] coordinates {(0,10)};
+				\addplot[primarycurve,domain=6:9,-]{-10/3*(x-6)+10};
+				\addplot[primarycurve,soliddot] coordinates {(9,0)};
+	\end{axis}
+				\end{tikzpicture}
+		]]>
+		</latex-image-code>
+	</image>
+</figure>
+
+<statement><p>
+<ol>
+	<li><p>Determine the number of bees in the colony after <m>3</m> months.</p></li>
+	<li><p>Find <m>B(0)</m>. Explain what this function value represents in the context of the problem.</p></li>
+	<li><p>When did the number of bees reach <m>13,000</m> bees?</p></li>
+	<li><p>Solve <m>B(t)=0</m>. Explain what this solution set represents in the context of the problem.</p></li>
+</ol>
+</p></statement>
+<solution><p>
+	<li><p>Looking at the graph, when <m>t=3</m> we see the graph contains the point <m>(3,15)</m>. A value of <m>y=15</m> when <m>t=3</m> tells us that there were <m>15,000</m> bees <m>3</m> months after April 1, 2012 (or on July 1, 2012).</p></li>
+	<li><p>To find <m>B(0)</m>, we recognize that this will be the output of the function when <m>t=0</m>. The point <m>(0,10)</m> on the graph of <m>y=B(t)</m> tells us that <m>B(0)=10</m>. In the context of this problem, this means on April 1, 2012 there were <m>10,000</m> bees in the colony.</p></li>
+	<li><p>To determine when the number of bees reached <m>13,000</m>, we need to find the input value of which <m>y=13</m>. The approximate points <m>(1,13)</m> and <m>(5,13)</m> on the graph of <m>y=B(t)</m> indicate that <m>B(t)=13</m> when <m>t\approx 1</m> and <m>t\approx 5</m>. Thus there will be <m>13,000</m> bees in the colony approximately 1 month after April 1, 2012 and again 5 months after April 1, 2012.</p></li>
+	<li><p>To solve <m>B(t)=0</m>, we need to determine the value of <m>t</m> for which <m>y=0</m>. The point <m>(9,0)</m> on the graph of <m>y=B(t)</m> tells us that <m>B(t)=0</m> when <m>t=9</m>. In the context of this problem, this means there were <m>0</m> bees in the colony <m>9</m> months after April 1, 2012. (or on January 1, 2013).</p></li>
+</p></solution>
+
+</example>
+</subsection>
+
+<subsection>
+<title>Domain and Range</title>
+
+<p>When working with relations and functions, one of the things we need to identify is all possible values for each variable. We define the <term>domain</term> to be the set of all possible inputs. We define the <term>range</term> to be the set of all possible outputs.</p>
+
+<!--One of each format?-->
+<example>
+<statement><p>Determine the domain and range for each function shown below.
+
+</p></statement>
+<solution><p>
+
+</p></solution>
+</example>
+
+
+<!--my generic graph examples-->
+<example>
+<statement><p>Determine the domain and range for each function shown below.
+
+</p></statement>
+<solution><p>
+
+</p></solution>
+</example>
+
+
+
+</subsection>
 
 </section>
