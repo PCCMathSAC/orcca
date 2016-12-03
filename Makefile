@@ -174,7 +174,7 @@ pdf:
 	cp -a $(IMAGESOUT) $(PDFOUT)
 	cp -a $(IMAGESSRC) $(PDFOUT)
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
+	xsltproc -xinclude --stringparam exercise.text.solution no --stringparam exercise.text.hint no --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
