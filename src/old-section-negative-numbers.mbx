@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- *********************************************************************-->
+<!-- Copyright 2016                                                       -->
+<!-- Portland Community College                                           -->
+<!--                                                                      -->
+<!-- Authors                                                              -->
+<!-- Ann Cary, Alex Jordan, Carl Yao, Ralf Youtz                          -->
+<!--                                                                      -->
+<!-- This file is part of Open Resources for Community College Algebra    -->
+<!-- (ORCCA).                                                             -->
+<!--                                                                      -->
+<!-- Creative Commons BY 4.0 license                                      -->
+<!-- https://creativecommons.org/licenses/by/4.0/                         -->
+<!-- *********************************************************************-->
+
+<section xml:id="section-negative-numbers">
+
+    <title>Arithmetic with Negative Numbers</title>
+
+    <introduction>
+        <p>We've all seen positive and negative numbers in math classes growing up, but few of us have any need to deal with negative numbers in daily life. We'll discuss techniques that will help us make sense of how negative numbers affect the basic operations.</p>
+    </introduction>
+
+    <subsection>
+        <title>Signed Numbers</title>
+
+        <p>As long as we compute using <term>whole numbers</term> <mdash /> which are the numbers <m>0, 1, 2, 3, 4</m>, <etc /> <mdash /> and the order makes sense for subtraction or division, the concepts of arithmetic are fairly well understood by most people. But as soon as we consider reversing the order of subtraction, these concepts can become more complicated. We use <term>signed numbers</term> (some positive, some negative) to deal with these complications.</p>
+
+        <p>In daily life, the signed numbers we might see most often are temperatures. Most people on Earth use the Celsius scale; if you're not familiar with the Celsius temperature scale, think about these examples:</p>
+
+        <table>
+            <caption>Celsius temperatures.</caption>
+            <tabular>
+                <col />
+                <col halign="right" />
+                <row>
+                    <cell>Water boils</cell>
+                    <cell><quantity><mag>100</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Hot summer day</cell>
+                    <cell><quantity><mag>32</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Human body temperature</cell>
+                    <cell><quantity><mag>27</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Room temperature</cell>
+                    <cell><quantity><mag>23</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Cool autumn day</cell>
+                    <cell><quantity><mag>13</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Water freezes</cell>
+                    <cell><quantity><mag>0</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Cold winter day</cell>
+                    <cell><quantity><mag>-6</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Celsius equals Fahrenheit</cell>
+                    <cell><quantity><mag>-40</mag><unit base="celsius" /></quantity></cell>
+                </row>
+                <row>
+                    <cell>Coldest possible temperature</cell>
+                    <cell><quantity><mag>-273.15</mag><unit base="celsius" /></quantity></cell>
+                </row>
+            </tabular>
+        </table>
+
+        <p>A thermometer displays temperatures above and below zero. In mathematics, values above and below zero are called <term>positive</term> and <term>negative numbers</term>, respectively. We can use a <term>number line</term> to visualize numbers and their relationships. Each number line looks like a ruler, with ticks marking even distances from zero in both the positive and the negative direction.<index>positive</index><index>negative</index><index><main>number</main><sub>positive</sub></index><index><main>number</main><sub>negative</sub></index></p>
+
+        <figure>
+            <caption>Number line with temperature <m>-40</m> degrees Celsius.</caption>
+            <image width="47%">
+                <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline,
+                                    xmin=-273,xmax=120,
+                                    xtick={-250,-200,...,100},
+                                    minor xtick={-273,-270,-260,...,120},
+                                    xlabel={$^{\circ}$C},
+                                    tick label style={rotate=45},
+                                    ]
+                        \addplot+[soliddot] coordinates {(-40,0)} node[above] {$-40$};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <warning>
+            <title>Subtraction Sign versus Negative Sign</title>
+            <p>Unfortunately, the symbol we use for subtraction looks just like the symbol we use for marking a negative number. It will helps to identify when a <q>minus</q> sign means <q>subtract</q> or means <q>negative</q>. The key is to see if there is a number to its left, not counting anything farther left than an open parenthesis. Here are some examples.</p>
+
+            <sidebyside widths="23% 23% 23% 23%">
+                <p><me>-13</me>One negative sign; no subtraction sign.</p>
+                <p><me>20-13</me>No negative signs; one subtraction sign.</p>
+                <p><me>-20-13</me>One of each.</p>
+                <p><me>(-20)(-13)</me>Two negative signs; no subtraction sign.</p>
+            </sidebyside>
+        </warning>
+
+        <exercise>
+            <introduction>
+                <p>Identify <q>minus</q> signs.</p>
+            </introduction>
+            <webwork seed="1">
+                <statement>
+                    <p>In each expression, how many times do you see a <em>negative</em> sign? (Don't count <em>subtraction</em> signs.)</p>
+                    <p><ol label="a">
+                        <li>
+                            <p><m>1-9</m></p>
+                            <p><var name="0" width="1" /></p>
+                        </li>
+                        <li>
+                            <p><m>-12+(-50)</m></p>
+                            <p><var name="2" width="1" /></p>
+                        </li>
+                        <li>
+                            <p><m>\dfrac{-13-(-15)-(-17)}{23-4}</m></p>
+                            <p><var name="3" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+    </subsection>
+
+    <subsection>
+        <title>Adding and Subtracting</title>
+
+        <p>We can use temperature change to understand what it means to start with a negative number, and then either add or subtract a positive number to it. If it is <quantity><mag>-12</mag><unit base="celsius" /></quantity>, and the temperature increases by <m>28</m> degrees to <quantity><mag>16</mag><unit base="celsius" /></quantity>, then the mercury on a thermometer has moved toward the right, as illustrated in <xref ref="figure-getting-warmer">Figure</xref>.</p>
+
+        <figure xml:id="figure-getting-warmer">
+            <caption>Getting Warmer</caption>
+            <image width="47%">
+                <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline,
+                                    xmin=-20,xmax=20,
+                                    xtick={-20,-15,...,20},
+                                    minor xtick={-20,-19,...,20},
+                                    xlabel={$^{\circ}$C},
+                                    tick label style={rotate=45},
+                                    ]
+                        \addplot+[soliddot] coordinates {(-12,0)} node[above] {$-12$};
+                        \addplot[primarycurve, ultra thick, ->] coordinates {(-12,0) (15,0)} node[above,pos=0.5] {add $28$};
+                        \addplot+[soliddot] coordinates {(16,0)} node[above] {$16$};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <p>Symbolically, we are seeing the arithmetic:<me>-12+28=16\text{.}</me></p>
+
+        <exercise>
+            <introduction>
+                <p>Find a temperature yourself.</p>
+            </introduction>
+            <webwork seed="1">
+                <statement>
+                    <p>If the temperature was <m>-48^{\circ}\text{F}</m> and it rose by <m>27</m> degrees, what would the new tempearture be?</p>
+                    <p><var name="-21" width="5" /><m>^{\circ}\text{F}</m></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <p>Similarly, if the temperature falls by <m>28</m> degrees to <quantity><mag>-40</mag><unit base="celsius" /></quantity> then the thermometer is going to move farther left, deeper into the negative, as seen in  <xref ref="figure-getting-colder">Figure</xref>.</p>
+
+        <figure xml:id="figure-getting-colder">
+            <caption>Getting Warmer</caption>
+            <image width="47%">
+                <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline,
+                                    xmin=-45,xmax=-5,
+                                    xtick={-45,-40,...,-5},
+                                    minor xtick={-45,-44,...,-5},
+                                    xlabel={$^{\circ}$C},
+                                    tick label style={rotate=45},
+                                    after end axis/.code={},
+                                    ]
+                        \addplot[soliddot] coordinates {(-12,0)} node[above] {$-12$};
+                        \addplot[primarycurve, ultra thick, ->] coordinates {(-12,0) (-39,0)} node[above,pos=0.5] {subtract $28$};
+                        \addplot[soliddot] coordinates {(-40,0)} node[above] {$-40$};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <p>Symbolically, we are seeing the arithmetic<me>-12-28=-40\text{.}</me></p>
+
+        <p>Everything we are seeing is consistent with adding or subracting positive numbers using a number line. Adding a positive number moves the result to the right, and subtracting a positive number moves the result to the left. </p>
+
+        <exercise>
+            <introduction>
+                <p>Take a moment to practice adding/subtracting positive numbers to/from positive or negative numbers.</p>
+            </introduction>
+            <webwork>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p>Add <m>1</m> to <m>-9</m>.</p>
+                            <p><var name="-8" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Add <m>-12+98</m>.</p>
+                            <p><var name="86" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Subtract <m>123</m> from <m>100</m>.</p>
+                            <p><var name="-23" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Find the difference <m>-34.67-81.53</m>.</p>
+                            <p><var name="-116.2" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <p>More challenges come when we must add/subtract a <em>negative</em> number to/from some other number. Consider having bad heartburn (acid reflux). The acidity in your stomach might be measured at <m>15</m> using some scientific scale for acidity. Now, you <em>could</em> drink some acidic tomato juice and raise your acidity level by <m>5</m> to <m>20</m>. You would make your stomach <em>more</em> acidic and add: <m>15+5=20</m>. (Why would you do that to yourself?!)</p>
+
+        <p>Instead of drinking tomato juice, you want to nullify some of that acid. So you take an antacid tablet. You're <em>adding</em> something to your stomach, but it is going to do the <em>opposite</em> of what things like tomato juice do. This tablet counteracts <m>10</m> units of acidity, bringing your stomach down to just <m>5</m> acidity units. Since you were adding the <em>opposite</em> of an acid, the tablet can be represented by <m>-10</m>, and the arithmetic we are experiencing is:<me>15+(-10)=5\text{.}</me>Perhaps you would prefer to think of this experience as having subtracted <m>15-10</m>. That is perhaps the point: <em>adding a negative number is the same as subtracting its positive equivalent</em>.</p>
+
+        <sidebyside widths="47% 47%">
+            <figure xml:id="figure-less-acidity">
+                <caption>Less Acidity</caption>
+                <image>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[numberline,
+                                        xmin=0,xmax=20,
+                                        xtick={0,5,...,20},
+                                        minor xtick={0,1,...,20},
+                                        xlabel={},
+                                        tick label style={rotate=45},
+                                        ]
+                            \addplot[soliddot] coordinates {(15,0)};
+                            \addplot[primarycurve, ultra thick, ->] coordinates {(15,0) (5.5,0)} node[above,pos=0.5] {add $-10$};
+                            \addplot[soliddot] coordinates {(5,0)};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+
+            <figure>
+                <image>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[numberline,
+                                        xmin=0,xmax=20,
+                                        xtick={0,5,...,20},
+                                        minor xtick={0,1,...,20},
+                                        xlabel={},
+                                        tick label style={rotate=45},
+                                        ]
+                            \addplot[soliddot] coordinates {(15,0)};
+                            \addplot[primarycurve, ultra thick, ->] coordinates {(15,0) (5.5,0)} node[above,pos=0.5] {subtract $10$};
+                            \addplot[soliddot] coordinates {(5,0)};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+        </sidebyside>
+
+        <exercise>
+            <introduction>
+                <p>Take some more time to practice adding <em>negative</em> numbers to positive or negative numbers.</p>
+            </introduction>
+            <webwork>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p>Add <m>-20</m> to <m>50</m>.</p>
+                            <p><var name="30" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Add <m>-32+(-23)</m>.</p>
+                            <p><var name="-55" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Add <m>-100</m> to <m>100</m>.</p>
+                            <p><var name="0" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Find the sum: <m>1.41+(-3.14)</m>.</p>
+                            <p><var name="-1.73" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <p>Lastly we consider <em>subtracting</em> a <en>negative</en> number. In the analogy, <m>-10</m> represents that antacid tablet. To subract this, you'd have to reach in and pull out the tablet. This would result in <em>raising</em> your acidity just as if you'd drunk two glasses of tomato juice. The point is that subtracting a negative number would result in moving right on the number line scale. <em>Removing a negative is equivalent to adding a positive.</em></p>
+
+        <exercise>
+            <introduction>
+                <p>Here is a little practice <em>subtracting</em> negative numbers from positive or negative numbers.</p>
+            </introduction>
+            <webwork>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p>Subtract <m>-20</m> from <m>50</m>.</p>
+                            <p><var name="30" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Subtract <m>-15-(-15)</m>.</p>
+                            <p><var name="-55" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Subtract <m>10-(-100)</m>.</p>
+                            <p><var name="0" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Find the difference: <m>1.41-(-3.14)</m>.</p>
+                            <p><var name="-1.73" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+
+
+
+
+
+        <p><quantity><mag>21</mag><unit base="celsius" /></quantity>, then the temperature falls by <quantity><mag>6</mag><unit base="celsius" /></quantity>, we can think of the change as losing some heat, giving us <me>21 - 6 = 15,</me> or we can think of the cahnge as <q>getting colder</q> and use the negative value <m>-6</m> to represent that coldness for <me>21 + (-6) = 15.</me> Ah, subtracting a positve number has the same effect as adding a negative number.</p>
+
+        <p>What's cool here is that we can view  any sum or difference of numbers as a sum, then since addition is commutative, we don't have to worry about the order of the operation. This may seem silly now, but as we deal with increasingly complicated combinations of operations, like in coming sections, it's nice to have one less mathematical issue to worry about. Also, we can visualize addition very nicely on a number line like so:</p>
+
+<todo>Showing the sum -12 + 7 on a number line... vector fun!</todo>
+
+        <sidebyside widths="47% 47%">
+            <caption>Number lines for calculating <m>-12+7</m>.</caption>
+            <figure>
+                <image>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[numberline,
+                                        xmin=-15,xmax=5,
+                                        xtick={-15,-10,...,5},
+                                        minor xtick={-15,-14,...,5},
+                                        ]
+                            \addplot+[soliddot] coordinates {(-12,0)} node[above]{start at $-12$};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+            <figure>
+                <image>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[numberline,
+                                        xmin=-15,xmax=5,
+                                        xtick={-15,-10,...,5},
+                                        minor xtick={-15,-14,...,5},
+                                        ]
+                            \addplot+[soliddot] coordinates {(-12,0)};
+                            \addplot+[ultra thick,->] coordinates {(-12,0) (-7,0)} node[above,pos=0.5]{add $5$ to land at $-7$};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+        </sidebyside>
+
+
+        <example>
+            <statement>
+                <p>Rewrite each operation as a sum, then perform each operation.</p>
+                <p><ol>
+                    <li><m>25 - (-4)</m></li>
+                    <li><m>7 - 3</m></li>
+                    <li><m>0.25 - (-0.75)</m></li> 
+                </ol></p> 
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><m>25 - (-4) = 25 + 4 = 29</m></li>
+                    <li><m>7 - 3 = 7 + (-3) = 4</m></li>
+                    <li><m>0.25 - (-0.75) = 0.25 + 0.75 = 1.00</m></li> 
+                </ol></p> 
+            </solution>
+        </example> 
+
+        <p>Making sense of multiplication of negative numbers isn't quite so straightforward, but it's possible. Should the product of <m>-7</m> and <m>3</m> be a positive number or a negative number? Remembering that we can view multiplication as repeated addition, we can see this result on a number line:</p>
+
+<todo>lovely number line showing that (-7)(3) = (-7) + (-7) + (-7) = -21</todo>
+
+        <p>So what about the product of <m>-12</m> and <m>-4</m>? Should it be positive or negative? There's an important concept we haven't yet discussed that might help see how this makes sense: opposites.</p>
+
+        <p>Two numbers are <term>opposites</term> if their sum equals <m>0</m>. (Mathematicians call opposites <q>additive inverses</q>.)</p>
+
+        <example>
+            <statement>
+                <p>Are the pairs of numbers given below opposites?</p>
+                <p><ol>
+                    <li><m>8</m> and <m>-8</m></li>
+                    <li><m>1/4</m> and <m>3/4</m></li>
+                    <li><m>-23</m> and <m>23</m></li>
+                    <li><m>0.333333</m> and <m>-0.33333</m></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p>We check if the pairs of numbers sum to <m>0</m> to verify if they are opposites..</p>
+                <p><ol>
+                    <li><m>8 = (-8) = 0</m> so <m>8</m> and <m>-8</m> are opposites.</li>
+                    <li><m>1/4 + 3/4 = 1</m> so <m>1/4</m> and <m>3/4</m> are not opposites.</li>
+                    <li><m>-23 + 23 = 0</m> so <m>-23</m> and <m>23</m> are opposites.</li>
+                    <li><m>0.333333 + (-0.33333) = 0.000003</m> so <m>0.333333</m> and <m>-0.33333</m> are not opposites.</li>
+                </ol></p>
+            </solution>
+        </example>
+
+        <p>On a number line, opposites are positive and negative numbers that are the same distance from zero.</p>
+
+        <example>
+            <statement>
+                <p>Sketch each number and its opposite on a number line.</p>
+                <p><ol>
+                    <li><m>3</m></li>
+                    <li><m>-44</m></li>
+                    <li><m>1.25</m></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p>Remember when sketching a number line to use evenly-spaced tick marks, and to label enough ticks so that any intelligent reader will understand the scale.</p>
+<todo>Lovely number lines</todo>
+            </solution>
+        </example>
+
+<!--        <p>Okay, what do opposites have to do with the product of <m>-12</m> and <m>-4</m>? We can think of multiplication as repeated addition when on factor is positive. So if both multipliers are negative values, we can view multiplication by a negative number as repeated </p> -->
+        <p>Most folks (at some point in life) have memorized <q>rules</q> for multiplying a positive and a negative number together, and for multiplying two negative numbers together. If we focus on the idea that multiplication can be viewed as repeated addition, the <q>rule</q> for multiplying a negative number and and positive number makes plenty of sense:</p> 
+
+        <p><md>
+            <mrow>(-5)(4)   \amp =  (-5) + (-5) + (-5) + (-5)   \amp = -20</mrow>
+            <mrow>(-5)(3)   \amp =  (-5) + (-5) + (-5)          \amp = -15</mrow>
+            <mrow>(-5)(2)   \amp =  (-5) + (-5)                 \amp = -10</mrow>
+            <mrow>(-5)(1)   \amp =  (-5)                        \amp = -5 </mrow>
+        </md></p>
+
+        <p>Of course multiplying by <m>0</m> makes sense as well:</p>
+
+        <p><md>
+            <mrow>(-5)(0)   \amp =                              \amp = 0  </mrow>
+        </md></p>
+
+        <p>Notice we've multiplied <m>-5</m> by <m>4, 3, 2, 1, 0</m> and that the results are <m>-20, -15, -10, -5, 0</m>, respcetively. We can keep this pattern going multiplying <m>5</m> by <em>negative</em> numbers:</p>
+
+        <p><md>
+            <mrow>(-5)(-1)   \amp =  (5)                        \amp = 5  </mrow>
+            <mrow>(-5)(-2)   \amp =  (5) + (5)                 \amp = 10  </mrow>
+        </md></p>
+
+       <p>From this pattern, it appears that  multiplying by a negative value can be viewed as repeated addition of the opposite. That's a complicated idea, but if we think about it carefully  (work out a few more examples, sketch these products on number lines, etc.) it makes sense.  One of the charms of mathematics is that whenever we carefully consider <em>how</em> or <em>why</em> a <q>rule</q> makes sense, we get a chance to understand <q>simple</q> ideas more deeply.</p>
+    </subsection>
+
+</section>
