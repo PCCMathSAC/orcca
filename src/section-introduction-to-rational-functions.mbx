@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- *********************************************************************-->
+<!-- Copyright 2016                                                       -->
+<!-- Portland Community College                                           -->
+<!--                                                                      -->
+<!-- Authors                                                              -->
+<!-- Ann Cary, Alex Jordan, Carl Yao, Ralf Youtz                          -->
+<!--                                                                      -->
+<!-- This file is part of Open Resources for Community College Algebra    -->
+<!-- (ORCCA).                                                             -->
+<!--                                                                      -->
+<!-- Creative Commons BY 4.0 license                                      -->
+<!-- https://creativecommons.org/licenses/by/4.0/                         -->
+<!-- *********************************************************************-->
+
+<section xml:id="section-introduction-to-rational-functions">
+
+    <title>Introduction to Rational Functions</title>
+
+    <introduction>
+		<p>In this chapter, we will learn rational functions, which looks like <m>f(x)=\frac{P(x)}{Q(x)}</m>. We can see rational functions are needed when division is involved. In this lesson, we will look at a rational function's domain, range and graph.</p>
+
+    	<figure>
+        	<caption>Alternative Video Lesson</caption>
+        	<video youtube="2rSd1aoHK3k" />
+        	<video youtube="v0IhvIzCc_I" />
+    	</figure>
+    </introduction>
+
+	<subsection>
+		<title>Graph of Rational Functions</title>
+
+		<p>Scenario: When a drug is injected into a patient, the drug's concentration in the patient's bloodstream can be modeled by the function <me>C(t)=\frac{3t}{t^2+8}</me>where <m>C</m> stands for the drug's concentration in milligrams per liter, and <m>t</m> stands for the number of hours since the injection. A new injection is needed when the concentration falls to <m>\frac{1}{3}</m> milligrams per liter. After how many hours since the first inject should the next injection be given?</p>
+
+		<p>The function <m>C(t)=\frac{3t}{t^2+8}</m> is a rational function. Let's look at its formal definition:</p>
+
+        <definition xml:id="definition-rational-function">
+            <statement>
+                <p>A <term>rational function</term> <m>f(x)</m> is in the form of <me>f(x)=\frac{P(x)}{Q(x)}</me>where <m>P(x)</m> and <m>Q(x)</m> are polynomials, but <m>Q(x)</m> is not the constant zero function.</p>
+            </statement>
+        </definition>
+
+		<p>Let's look at the graph of <m>C(t)=\frac{3t}{t^2+8}</m>:</p>
+
+        <figure>
+            <caption>Graph of <m>C(t)=\frac{3t}{t^2+8}</m></caption>
+            <image width="50%">
+                <description></description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[ymin=-1/3,ymax=1,xmin=-1,xmax=10,
+                                minor ytick={-0.3333,0,...,1},
+                                xtick={0,1,...,9},
+                                minor xtick={0,1,...,9},
+                                xlabel={time in hours},ylabel={concentration (milligrams per liter)}]
+                        \addplot+[domain=-1:10] {3*x/(x^2+8)};
+                        \node at (axis cs: 0,1/3) [left] {$\frac{1}{3}$};
+                        \node at (axis cs: 0,2/3) [left] {$\frac{2}{3}$};
+                        \node at (axis cs: 5,2/3) [red] {$C(t)=\frac{3t}{t^2+8}$};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <p>We can see this rational function's graph is a smooth curve. In this context, only positive values make sense, so we focus on the first quadrant. Since the drug is injected, its concentration in the bloodstream increases, and starts to decrease at about <m>3</m> hours. We need to find out when the concentration will become <m>\frac{1}{3}</m> milligrams per liter, so we substitute <m>C(t)</m> in the function with <m>\frac{1}{3}</m> and solve for <m>t</m>:<md>
+        	<mrow>C(t)\amp=\frac{3t}{t^2+8}</mrow>
+        	<mrow>\frac{1}{3}\amp=\frac{3t}{t^2+8}</mrow>
+        	<mrow>1(t^2+8)\amp=3(3t)\amp\text{cross multiply}</mrow>
+        	<mrow>t^2+8\amp=9t</mrow>
+        	<mrow>t^2-9t+8\amp=0</mrow>
+        	<mrow>(t-1)(t-8)\amp=0</mrow>
+        	<mrow>t-1\amp=0\text{ or }t-8=0</mrow>
+        	<mrow>t\amp=1\text{ or }t=8</mrow>
+        </md>The concentration will be <m>\frac{1}{3}</m> milligrams per liter at <m>1</m> hour since the injection, and then at <m>8</m> hours again. We can verify those two solutions by <m>(1,\frac{1}{3})</m> and <m>(8,\frac{1}{3})</m> on the curve.</p>
+
+        <p>Solution: The patient should receive a second injection <m>8</m> hours since the first injection.</p>
+
+        <p>Next, let's study the long-term behavior of <m>C(t)</m> with a calculator.</p>
+        <todo>add in a calculator activity to find horizontal asymptote of C(t)</todo>
+
+        <p>A rational function's graph is not always smooth. It could have breaks. Let's look at another example.</p>
+
+		<example xml:id="example-boat-river-rational-function">
+			<statement>
+        		<p>Two towns are connected by a <m>12</m>-mile-long river, which flows from Town A to Town B at the velocity of <m>2</m> miles per hour. A boat will travel at a constant velocity, <m>v</m> miles per hour, from Town A to Town B, and then back to Town A. Due to the river's flow, the boat's actual speed is <m>v+2</m> miles per hour from Town A to Town B, and <m>v-2</m> miles per hour from Town B back to Town A. If the boat driver plans to spend <m>8</m> hours for the whole trip, how fast should he/she drive the boat?</p>
+
+				<p>We need to review 3 formulas for constant-rate movement:<md>
+					<mrow>d\amp=vt</mrow>
+					<mrow>v\amp=\frac{d}{t}</mrow>
+					<mrow>t\amp=\frac{d}{v}</mrow>
+				</md>where <m>d</m> stands for distance, <m>v</m> stands for velocity, and <m>t</m> stands for time. According to the third formula, the time it takes the boat to travel from Town A to Town B is <m>\frac{12}{v+2}</m>, and <m>\frac{12}{v-2}</m> from Town B to Town A. The function to model the whole trip's time is<me>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</me>where <m>t</m> stands for time in hours. Let's look at the graph of this function:</p>
+
+		        <figure>
+                    <caption>Graph of <m>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</m></caption>
+		            <image width="50%">
+		                <description></description>
+		                <latex-image-code>
+		                <![CDATA[\begin{tikzpicture}
+		                    \begin{axis}[ymin=-10,ymax=10,xmin=-10,xmax=10,
+		                    			ytick={-8,-6,...,8},
+		                                minor ytick={-8,-6,...,8},
+		                                xtick={-8,-6,...,8},
+		                                minor xtick={-8,-6,...,8},
+		                                xlabel={velocity},ylabel={time}]
+		                        \addplot [<->, domain=-10:-3.532, color=red] {12/(x-2)+12/(x+2)};
+		                        \addplot [<->, domain=-1.132:1.132, color=red] {12/(x-2)+12/(x+2)};
+		                        \addplot [<->, domain=3.532:10, color=red] {12/(x-2)+12/(x+2)};
+		                        \draw [<->, dashed, blue, thick] (axis cs: -2,-10) -- (axis cs: -2,10);
+		                        \draw [<->, dashed, blue, thick] (axis cs: 2,-10) -- (axis cs: 2,10);
+		                        \addplot [soliddot, color=black, right] coordinates {(4, 8)} node{$(4,8)$};
+		                    \end{axis}
+		                \end{tikzpicture}
+		                ]]>
+		                </latex-image-code>
+		            </image>
+		        </figure>
+
+		        <p>The curve passes <m>(4,8)</m>. This implies if the boat drives at <m>4</m> miles per hour, it would take <m>8</m> hours to complete the trip. From Town A to Town B, it would take <m>\frac{12}{v+2}=\frac{12}{4+2}=2</m> hours; and from Town B to Town A, it would take <m>\frac{12}{v-2}=\frac{12}{4-2}=6</m> hours. In a later section, we will learn how to solve this equation algebraically.</p>
+		    </statement>
+		</example>
+
+		<p>In the example, the curve is still smooth, but there are two breaks at <m>x=-2</m> and <m>x=2</m>. Those two vertical lines are called <term>asymptotes</term>. A function's graph approaches an asymptote infinitely close, but never touches it.</p>
+
+		<p>In math, we use <m>\infty</m> to represent infinity. In the graph, the function's value approaches <m>\infty</m> as its <m>x</m> value approaches <m>2</m> from the right side, and approaches <m>-\infty</m> as its <m>x</m> value approaches <m>2</m> from the left side. Let's investigate why this is happening.</p>
+
+		<p>We will build a table of values for <m>t(v)</m>:</p>
+
+		<table>
+			<caption>Values of <m>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</m></caption>
+			<tabular>
+                <col halign="center"/>
+                <col halign="center"/>
+                <col halign="center"/>
+                <row bottom="medium">
+                    <cell><m>v</m></cell>
+                    <cell><m>t(v)</m></cell>
+                    <cell>interpretation</cell>
+                </row>
+                <row>
+                    <cell><m>2.1</m></cell>
+                    <cell><m>122.92</m></cell>
+                    <cell><line>If the boat drives at <m>2.1</m> miles per hour,</line><line>the trip would take approximately <m>122.93</m> hours.</line></cell>
+                </row>
+                <row>
+                    <cell><m>2.01</m></cell>
+                    <cell><m>1202.99</m></cell>
+                    <cell><line>If the boat drives at <m>2.01</m> miles per hour,</line><line>the trip would take approximately <m>1202.99</m> hours.</line></cell>
+                </row>
+        	</tabular>
+		</table>
+
+		<p>To understand the interpretations, we need to find a pattern of division:<md>
+			<mrow>\frac{1}{0.1}\amp=10</mrow>
+			<mrow>\frac{1}{0.01}\amp=100</mrow>
+			<mrow>\frac{1}{0.001}\amp=1000</mrow>
+			<mrow>\amp\ldots</mrow>
+			<mrow>\frac{1}{\text{infinitely small}}\amp=\infty</mrow>
+		</md>When the boat drives from Town B back to Town A at <m>2.1</m> miles per hour, the river's current would decrease the actual velocity to <m>0.1</m> mile per hour. It would take the boat <m>\frac{12}{0.1}=120</m> hours to complete the travel from Town B back to Town A.</p>
+
+		<p>Similarly, as the boat drives from Town B to Town A at a velocity closer and closer to <m>2</m>, the division <m>\frac{12}{v-2}</m> would produce a larger and larger value, approaching <m>\infty</m>. When we graph the function, we would plot <m>(2.1,122.93), (2.01,1202.99), (2.001,12003), \ldots</m>. This is why we see a vertical asymptote at <m>x=2</m>.</p>
+
+		<remark><p>The rational function <m>f(x)=\frac{1}{x-a}</m> has a vertical asymptote at <m>x=a</m>, as this value makes the denominator <m>0</m>.</p></remark>
+
+		<p>Now we understand why <m>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</m> has two vertical asymptotes at <m>x=-2</m> and <m>x=2</m>. The domain of <m>t(v)</m> is <m>(-\infty,-2)\cup(-2,2)\cup(2,\infty)</m> in interval notation, and <lbrace /><m>x \mid x\ne-2, x\ne2</m><rbrace /> in set notation.</p>
+
+        <todo>add a calculator activity to find the function's hoirzontal asymptote.</todo>
+
+        <p>Let's look at some examples of rational functions.</p>
+
+        <example>
+            <statement>
+                <p>Build a table and sketch the graph of the function <m>f(x)=\frac{1}{x}</m>. Find the function's domain and range.</p>
+
+                <p>Since <m>x=0</m> makes the denominator <m>0</m>, the function has a vertical asymptote at <m>x=0</m>. This implies, as <m>x</m>-values approaches to <m>0</m>, the function's values approaches <m>\infty</m> or <m>-\infty</m>. We will choose <m>x</m> values properly and build a table:</p>
+
+                <table>
+                    <caption>Values of <m>f(x)=\frac{1}{x}</m></caption>
+                    <tabular>
+                        <col halign="center"/>
+                        <col halign="center"/>
+                        <col halign="center"/>
+                        <row bottom="medium">
+                            <cell><m>x</m></cell>
+                            <cell><m>f(x)</m></cell>
+                            <cell>Points on the Curve</cell>
+                        </row>
+                        <row>
+                            <cell><m>-10</m></cell>
+                            <cell><m>\frac{1}{-10}=-0.1</m></cell>
+                            <cell><m>(-10,-0.1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-2</m></cell>
+                            <cell><m>\frac{1}{-2}=-0.5</m></cell>
+                            <cell><m>(-2,-0.5)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-1</m></cell>
+                            <cell><m>\frac{1}{-1}=-1</m></cell>
+                            <cell><m>(-1,-1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-0.5</m></cell>
+                            <cell><m>\frac{1}{-0.5}=-2</m></cell>
+                            <cell><m>(-0.5,-2)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-0.1</m></cell>
+                            <cell><m>\frac{1}{-0.1}=-10</m></cell>
+                            <cell><m>(-0.1,-10)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0.1</m></cell>
+                            <cell><m>\frac{1}{0.1}=10</m></cell>
+                            <cell><m>(0.1,10)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0.5</m></cell>
+                            <cell><m>\frac{1}{0.5}=2</m></cell>
+                            <cell><m>(0.5,2)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1</m></cell>
+                            <cell><m>\frac{1}{1}=1</m></cell>
+                            <cell><m>(1,1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2</m></cell>
+                            <cell><m>\frac{1}{2}=0.5</m></cell>
+                            <cell><m>(2,0.5)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>10</m></cell>
+                            <cell><m>\frac{1}{10}=0.1</m></cell>
+                            <cell><m>(10,0.1)</m></cell>
+                        </row>
+                    </tabular>
+                </table>
+
+                <p>Next, we will plot those points and then connect them:</p>
+
+                <figure>
+                    <caption>Graph of <m>f(x)=\frac{1}{x}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-11,ymax=11,xmin=-11,xmax=11,
+                                        ytick={-10,-8,...,10},
+                                        minor ytick={-10,-8,...,10},
+                                        xtick={-10,-8,...,10},
+                                        minor xtick={-10,-8,...,10},
+                                        xlabel={x},ylabel={y}]
+                                \addplot [red, <->, domain=-11:-1/11] {1/x};
+                                \addplot [red, <->, domain=1/11:11] {1/x};
+                                \addplot [soliddot, color=red] coordinates {(-10,-0.1) (-2,-1/2) (-1,-1) (-0.5,-2) (-0.1,-10) (0.1,10) (0.5,2) (1,1) (2,1/2) (10,0.1)};
+                                \draw [<->, dashed, blue, thick] (axis cs: 0,-11) -- (axis cs: 0,11);
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <p>The function <m>f(x)=\frac{1}{x}</m> has a vertical asymptote at <m>x=0</m>. As a result, its domain is <m>(-\infty,0)\cup(0,\infty)</m> in interval notation, or <lbrace /><m>x \mid x\ne0</m><rbrace /> in set notation.</p>
+
+                <p>By the graph, the function's value cannot be <m>0</m>, so its range is also <m>(-\infty,0)\cup(0,\infty)</m>. In other words, the function <m>f(x)</m> has a horizontal asymptote at <m>y=0</m>.</p>
+            </statement>
+        </example>
+
+        <example>
+            <statement>
+                <p>Build a table and sketch the graph of the function <m>f(x)=\frac{1}{x^2}</m>. Find the function's domain and range.</p>
+            </statement>
+            <solution>
+                <p>Similar to the last example, this function also has a vertical asymptote at <m>x=0</m>. We will choose <m>x</m> values properly and build a table:</p>
+
+                <table>
+                    <caption>Values of <m>f(x)=\frac{1}{x^2}</m></caption>
+                    <tabular>
+                        <col halign="center"/>
+                        <col halign="center"/>
+                        <col halign="center"/>
+                        <row bottom="medium">
+                            <cell><m>x</m></cell>
+                            <cell><m>f(x)</m></cell>
+                            <cell>Points on the Curve</cell>
+                        </row>
+                        <row>
+                            <cell><m>-4</m></cell>
+                            <cell><m>\frac{1}{(-4)^2}=0.0625</m></cell>
+                            <cell><m>(-4,0.01)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-2</m></cell>
+                            <cell><m>\frac{1}{(-2)^2}=0.25</m></cell>
+                            <cell><m>(-2,0.25)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-1</m></cell>
+                            <cell><m>\frac{1}{(-1)^2}=1</m></cell>
+                            <cell><m>(-1,1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-0.5</m></cell>
+                            <cell><m>\frac{1}{(-0.5)^2}=4</m></cell>
+                            <cell><m>(-0.5,4)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0.5</m></cell>
+                            <cell><m>\frac{1}{0.5^2}=4</m></cell>
+                            <cell><m>(0.5,4)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1</m></cell>
+                            <cell><m>\frac{1}{1^2}=1</m></cell>
+                            <cell><m>(1,1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2</m></cell>
+                            <cell><m>\frac{1}{2^2}=0.25</m></cell>
+                            <cell><m>(2,0.25)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>4</m></cell>
+                            <cell><m>\frac{1}{4^2}=0.01</m></cell>
+                            <cell><m>(4,0.0625)</m></cell>
+                        </row>
+                    </tabular>
+                </table>
+
+                <p>Next, we will plot those points and then connect them:</p>
+
+                <figure>
+                    <caption>Graph of <m>f(x)=\frac{1}{x^2}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-1,ymax=5,xmin=-6,xmax=6,
+                                        ytick={-1,0,...,4},
+                                        minor ytick={-10,-8,...,3},
+                                        xtick={-5,-4,...,5},
+                                        minor xtick={-5,-4,...,5},
+                                        xlabel={x},ylabel={y}]
+                                \addplot [red, <->, domain=-6:-sqrt(1/5), samples=100] {1/x^2};
+                                \addplot [red, <->, domain=sqrt(1/5):6, samples=100] {1/x^2};
+                                \addplot [soliddot, color=red] coordinates {(-4,0.0625) (-2,1/4) (-1,1) (-0.5,4) (0.5,4) (1,1) (2,1/4) (4,0.0625)};
+                                \draw [<->, dashed, blue, thick] (axis cs: 0,-1) -- (axis cs: 0,5);
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <p>The function <m>f(x)=\frac{1}{x^2}</m> has a vertical asymptote at <m>x=0</m>. As a result, its domain is <m>(-\infty,0)\cup(0,\infty)</m> in interval notation, or <lbrace /><m>x \mid x\ne0</m><rbrace /> in set notation.</p>
+
+                <p>By the graph, the function's range is also <m>(0,\infty)</m>. The function <m>f(x)</m> has a horizontal asymptote at <m>y=0</m>.</p>
+            </solution>
+        </example>
+
+        <remark><p>It is important to be able to quickly sketch the graphs of the following types of basic functions:<md>
+            <mrow>f(x)\amp=mx+b</mrow>
+            <mrow>g(x)\amp=a(x-h)^2+k</mrow>
+            <mrow>h(x)\amp=\abs{x}</mrow>
+            <mrow>p(x)\amp=\frac{1}{x}</mrow>
+            <mrow>q(x)\amp=\frac{1}{x^2}</mrow>
+        </md></p></remark>
+
+        <example>
+            <statement>
+                <p>Find the domain and vertical asymptote(s) of <m>g(x)=\frac{4x^2}{x^2-2x-24}</m>. Use technology to find the range and horizontal asymptotes of <m>g(x)</m>.</p>
+            </statement>
+            <solution>
+                <p>To find a rational function's domain, we set the denominator to be <m>0</m>, and solve for the variable:<md>
+                    <mrow>x^2-2x-24\amp=0</mrow>
+                    <mrow>(x-6)(x+4)\amp=0</mrow>
+                    <mrow>x-6\amp=0\text{ or }x+4=0</mrow>
+                    <mrow>x\amp=6\text{ or }x=-4</mrow>
+                </md>Since <m>x=6</m> and <m>x=-4</m> will cause the denominator to be <m>0</m>, we eliminate them from the domain. The function's domain is <lbrace /><m>x \mid x\ne6, x\ne-4</m><rbrace />. The function has two vertical asymptotes at <m>x=6</m> and <m>x=-4</m>.</p>
+
+                <todo>add in technology activity to find horizontal asymptotes.</todo>
+            </solution>
+        </example>
+
+        <p>Sometimes no numbers were excluded from a rational function's domain, like in the next example.</p>
+
+        <example>
+            <statement>
+                <p>Find the domain and vertical asymptote(s) of <m>C(t)=\frac{3t}{t^2+8}</m>. Use technology to find the range and horizontal asymptotes of <m>g(x)</m>.</p>
+            </statement>
+            <solution>
+                <p>To find a rational function's domain, we set the denominator to be <m>0</m>, and solve for the variable:<md>
+                    <mrow>t^2+8\amp=0</mrow>
+                    <mrow>t^2\amp=-8</mrow>
+                </md>Since the equation has no real solution, C(t)'s domain is "all real numbers."</p>
+
+                <todo>add in technology activity to find horizontal asymptotes.</todo>
+            </solution>
+        </example>
+
+	</subsection>
+
+    <exercises>
+         <exercisegroup>
+            <introduction>
+                <p>Rational Functions</p>
+            </introduction>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionDefinition10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionAsymptote10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionAsymptote20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionAsymptote30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionAsymptote40.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionDomain10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionDomain20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionDomain30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionDomain40.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionDomain50.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph50.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph60.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionApplication10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionApplication20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RationalFunctions/rationalFunctionGraph10.pg" seed="1"/>
+            </exercise>
+        </exercisegroup>
+    </exercises>
+
+</section>
