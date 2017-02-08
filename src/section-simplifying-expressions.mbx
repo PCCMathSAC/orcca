@@ -18,680 +18,775 @@
 
     <title>Simplifying Expressions</title>
 
+    <introduction>
+        <p>As we looked at in <xref ref="section-arithmetic">Section</xref>, we know that if we have two apples and add three more, then our result is the same as if we'd had three apples and added two more. In this section, we'll formally define and extend these basic properties we know about numbers to variable expressions.</p>
+
+        <figure>
+            <caption>Alternative Video Lesson</caption>
+            <video youtube="x9hoPIMNPw4"/>
+            <video youtube="T0a92gEDukY"/>
+        </figure>
+    </introduction>
+
+    <subsection>
+    	<title>Identities and Inverses</title>
+
+    	<p>We will start with some definitions.</p>
+
+    	<p>The number <m>0</m> is called the <term>additive identity</term>. If the sum of two numbers is the additive identity, <m>0</m>, these two numbers are called <term>additive inverses</term>. For example, <m>2</m> is the additive inverse of <m>-2</m>, and the additive inverse of <m>-2</m> is <m>2</m>.</p>
+
+    	<p>Similarly, the number <m>1</m> is called the <term>multiplicative identity</term>. If the product of two numbers is the multiplicative identity, <m>1</m>, these two numbers are called <term>multiplicative inverses</term>. For example, <m>2</m> is the multiplicative inverse of <m>\frac{1}{2}</m>, and the multiplicative inverse of <m>-\frac{2}{3}</m> is <m>-\frac{3}{2}</m>. The multiplicative inverse is also called <term>reciprocal</term>.</p>
+    </subsection>
+
+    <subsection>
+        <title>Introduction to Algebraic Properties</title>
+
+        <paragraphs>
+            <title>Commutative Property</title>
+
+            <p>When we compute the area of a rectangle, we generally multiply the length by the width. Does the result change if we multiply the width by the length?</p>
+
+            <figure>
+                <caption>Horizontal and Vertical Rectangles</caption>
+                <image width="70%">
+                    <description></description>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \draw[red,fill=yellow] (0,2) -- (0,0) -- (4,0) -- (4,2) -- cycle; %horizontal
+                                \node[below] at (2,0) {\small{$4$ cm}};
+                                \node[right] at (4,1) {\small{$2$ cm}};
+                                \node[] at (2,1) {\small{Area=$4\cdot2=8$}};
+                            \draw[red,fill=yellow] (6,4) -- (6,0) -- (8,0) -- (8,4) -- cycle; %vertical
+                                \node[right] at (6.5,-0.2) {\small{$2$ cm}};
+                                \node[right] at (8.1,2) {\small{$4$ cm}};
+                                \node[right] at (6,2.1) {$\quad$\small{Area}};
+                                \node[right] at (6,1.7) {\small{$=2\cdot4$}};
+                                \node[right] at (6,1.4) {\small{$=8$}};
+                                \end{tikzpicture}
+                        ]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+
+            <p>We can see <m>4\cdot2=2\cdot4</m>. If we denote the length of a rectangle with <m>L</m> and the width with <m>W</m>, this implies <m>LW=WL</m>. This is referred to as the <term>commutative property of multiplication</term>.</p>
+
+            <p>The commutative property also applies to addition, as in <m>1+2=2+1</m>, which is called the <term>commutative property of addition</term>. However, there is no commutative property of subtraction or division, as <m>2-1\ne1-2</m>, and <m>\frac{4}{2}\ne\frac{2}{4}</m>.</p>
+        </paragraphs>
+
+        <paragraphs>
+            <title>Associative Property</title>
+
+            <p>Let's extend that example to a rectangular prism with length <m>L=4\text{ cm}</m>, width <m>W=3\text{ cm}</m>, and height <m>H=2\text{ cm}</m>. To compute the volume of this solid, we multiply the length, width and height, which we write as <m>LWH</m>.</p>
+
+            <p>In the following figure, on the left side, we multiply the length and width first, and then multiply the height; on the right side, we multiply the width and height first, and then multiply the length. Let's compare the products.</p>
+
+            <sidebyside widths="46% 46%"> 
+            	<figure>
+            		<caption><m>(4\cdot3)\cdot2=24</m></caption>
+            			<image>
+        				<description>A rectangular prism with the side showing the length and the width highlighted.</description>
+    					<latex-image-code>
+    						<![CDATA[\begin{tikzpicture}%(x,z,y)
+    							\node[white] at (2,0,0) {.};
+    							\draw[red] (0,0,0) -- ++(-4,0,0) -- ++(0,-2,0) -- ++(4,0,0) -- cycle; %front face
+    							\draw[red] (0,0,0) -- ++(0,0,-2) -- ++(0,-2,0) -- ++(0,0,2) -- cycle; %side
+    							\draw[red,fill=yellow] (0,0,0) -- ++(-4,0,0) -- ++(0,0,-2) -- ++(4,0,0) -- cycle; %top
+    									\node[above] at (-2,0,0) {\tiny{$L=4\text{ cm}$}};
+    									\node[left] at (0,-1,0) {\tiny{$H=2\text{ cm}$}};
+    									\node[left] at (0,0,-1) {\tiny{$W=3\text{ cm}$}};
+    								\end{tikzpicture}
+    						]]>
+    					</latex-image-code>
+        			</image>
+            	</figure>
+
+            	<figure>
+            		<caption><m>4\cdot(3\cdot2)=24</m></caption>
+        			<image>
+        				<description>A rectangular prism with the side showing the width and the height highlighted.</description>
+    					<latex-image-code>
+    						<![CDATA[\begin{tikzpicture}%(x,z,y)
+    							\node[white] at (2,0,0) {.};
+    							\draw[red] (0,0,0) -- ++(-4,0,0) -- ++(0,-2,0) -- ++(4,0,0) -- cycle; %front face
+    							\draw[red,fill=yellow] (0,0,0) -- ++(0,0,-2) -- ++(0,-2,0) -- ++(0,0,2) -- cycle; %side
+    							\draw[red] (0,0,0) -- ++(-4,0,0) -- ++(0,0,-2) -- ++(4,0,0) -- cycle; %top
+    									\node[above] at (-2,0,0) {\tiny{$L=4\text{ cm}$}};
+    									\node[left] at (0,-1,0) {\tiny{$H=2\text{ cm}$}};
+    									\node[left] at (0,0,-1) {\tiny{$W=3\text{ cm}$}};
+    								\end{tikzpicture}
+    						]]>
+    					</latex-image-code>
+        			</image>
+            	</figure>
+            </sidebyside>
+
+            <p>We can see <m>(LW)H=L(WH)</m>. This is known as the <term>associative property of multiplication</term>.</p>
+
+            <p>The associative property also applies to addition, as in <m>(1+2)+3=1+(2+3)</m>, which is called the <term>associative property of addition</term>. However, there is no associative property of subtraction, as <m>(3-2)-1\ne3-(2-1)</m>.</p>
+        </paragraphs>
+<!--
+        <p>Now let's define <m>a</m> to be the cost of one apple, <m>b</m> to be the cost of one loaf of bread, and <m>c</m> to be the cost of one chocolate bar. Under these definitions, an expression such as <m>2a</m> would denote the cost of 2 apples. In the examples that follow, we'll visualize the cost of one apple with &#127823;, the cost of one loaf of bread with &#127838;, and the cost of one chocolate bar with &#127851;.</p>
+
+        <p>According to the <term>commutative property of addition</term>, <m>a+b=b+a</m>. We can visualize this with:
+        <me> \text{&#127823;}+ \text{&#127838;} =\text{&#127838;}+\text{&#127823;} </me>
+        The above isn't too surprising-if we purchase two apples and three loaves of bread or three loaves of bread and two apples, the total cost should be the same.</p>
+
+        <p>According to the <term>associative property of addition</term>, <m>a+(b+c)=(a+b)+c</m>. Conceptually, we can think of the left side as adding the cost of one apple to the (already-totaled) cost of one loaf of bread and one bar of chocolate.  The right side is then the (already-totaled) cost of one apple and one loaf of bread added to the cost of one bar of chocolate. A visualization is shown below:<me>\text{&#127823;}+( \text{&#127838;} +\text{&#127851;})=(\text{&#127823;}+\text{&#127838;})+\text{&#127851;}</me></p>
+-->
+
+        <paragraphs>
+            <title>Distributive Property</title>
+
+            <p>The final property we'll explore is called the <term>distributive property</term>, which involves both multiplication and addition. To conceptualize this property, let's consider what happens if we buy 3 sets that each contain one apple and one loaf of bread. This will have the exact same total cost as if we'd bought 3 apples and 3 loaves of bread. We write this algebraically as<me>3(a+b)=3a+3b</me>Visually, we can see that it's just a means of re-grouping:<me>3(\text{&#127823;}+ \text{&#127838;}) = 3(\text{&#127823;})+ 3(\text{&#127838;})</me></p>
+        </paragraphs>
+
+    </subsection>
+
+    <subsection>
+        <title>Summary of Algebraic Properties</title>
+        <p>Let <m>a,b</m>, and <m>c</m> represent real numbers, variables, or algebraic expressions. Then the following properties hold:<list xml:id="list-algebraic-properties">
+                <dl>
+                    <li xml:id="item-commutative-property-of-multiplication">
+                        <title>Commutative Property of Multiplication:</title>
+                        <p><m>a\cdot b=b\cdot a</m></p>
+                    </li>
+                    <li xml:id="item-associative-property-of-multiplication">
+                        <title>Associative Property of Multiplication:</title>
+                        <p><m>a\cdot(b\cdot c)=(a\cdot b)\cdot c</m></p>
+                    </li>
+                    <li xml:id="item-commutative-property-of-addition">
+                        <title>Commutative Property of Addition:</title>
+                        <p><m>a+b=b+a</m></p>
+                    </li>
+                    <li xml:id="item-associative-property-of-addition">
+                        <title>Associative Property of Addition:</title>
+                        <p><m>a+(b+c)=(a+b)+c</m></p>
+                    </li>
+                    <li xml:id="item-distributive-property">
+                        <title>Distributive Property:</title>
+                        <p><m>a(b+c)=ab+ac</m></p>
+                    </li>
+                </dl>
+            </list>
+        </p>
+
+        <p>Let's practice these properties in the following exercises.</p>
+
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyMultiplication10.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyMultiplication10.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyAddition10.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyAddition10.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty10.pg" seed="1"/>
+        </exercise>
+
+    </subsection>
 
 
-<introduction>
-<p>As we looked at in <xref ref="section-arithmetic">Section</xref>, we know that if we have two apples and add three more, then our result is the same as if we'd had three apples and added two more. In this section, we'll formally define and extend these basic properties we know about numbers to variable expressions.</p>
-  <todo> need video that covers all properties; only found separate videos for each property </todo>
+    <subsection>
+        <title>Applying the Commutative, Associative, and Distributive Properties</title>
+        <paragraphs>
+            <title>Like Terms</title>
+            <p>One of the main ways that we will use the commutative, associative, and distributive properties is to simplify expressions. In order to do this, we need to recognize <term>like terms</term>. Two terms are considered <term>like terms</term> if they contain the same variable raised to the same exponent. <!--(In this context, we can think of constant terms as having a variable raised to the zero power, e.g. <m>7=7x^0</m>).-->Here's a table comparing like terms and non-like terms:</p>
+        </paragraphs>
 
-    <figure>
-        <caption>Alternative Video Lesson</caption>
-       <video youtube=""/>
-    </figure>
-</introduction>
-
-
-<subsection>
-<title> Introduction</title>
-
-
-<p>When we compute the area of a rectangle, we generally multiply the length by the width. Does the result change if we multiply the width by the length? Logically (and geometrically), we know that these will be identical. If we denote the length of a rectangle with <m>L</m> and the width with <m>W</m>, this means that <m>LW=WL</m>. This is referred to as the <term>commutative property of multiplication</term>.</p>
-
-<todo>add labels and fix scale</todo>
-
-	<figure>
-		<caption>Horizontal Rectangle</caption>
-			<image>
-				<description>A horizontal rectangle with length L and width W.</description>
-					<latex-image-code>
-						<![CDATA[\begin{tikzpicture}
-							\node[white] at (10,0) {.};
-							\draw[red,fill=yellow] (0,2) -- (0,0) -- (4,0) -- (4,2) -- cycle; %horizontal
-								\node[below] at (2,0) {\tiny{$L$}};
-								\node[right] at (4,1) {\tiny{$W$}};
-							\draw[red,fill=yellow] (6,4) -- (6,0) -- (8,0) -- (8,4) -- cycle; %vertical
-								\node[right] at (7,0) {\tiny{$W$}};
-								\node[below] at (8,2) {\tiny{$L$}};
-								\end{tikzpicture}
-						]]>
-					</latex-image-code>
-			</image>
-	</figure>
-
-
-<p>Let's extend that example to a rectangular prism with length <m>L</m>, width <m>W</m>, and height <m>H</m>. To compute the volume of this solid, we multiply the length, width and height, which we write as <m>LWH</m>. We know from the properties of numbers that we can first multiply <m>LW</m> and then multiply by <m>H</m> and obtain the same result as if we multiplied <m>L</m> by an already-computed <m>WH</m>. Algebraically, we'd write this as <m>(LW)H=L(WH)</m>. This is known as the <term>associative property of multiplication</term>.</p>
-
-<todo>add labels to rectangle</todo>
-<sidebyside widths="46% 46%"> 
-	<figure>
-		<caption><m>(LW)H</m></caption>
-			<image>
-				<description>A rectangular prism with the side showing the length and the width highlighted.</description>
-					<latex-image-code>
-						<![CDATA[\begin{tikzpicture}%(x,z,y)
-							\node[white] at (2,0,0) {.};
-							\draw[red] (0,0,0) -- ++(-4,0,0) -- ++(0,-2,0) -- ++(4,0,0) -- cycle; %front face
-							\draw[red] (0,0,0) -- ++(0,0,-2) -- ++(0,-2,0) -- ++(0,0,2) -- cycle; %side
-							\draw[red,fill=yellow] (0,0,0) -- ++(-4,0,0) -- ++(0,0,-2) -- ++(4,0,0) -- cycle; %top
-									\node[above] at (-2,0,0) {\tiny{$L$}};
-									\node[left] at (0,-1,0) {\tiny{$H$}};
-									\node[left] at (0,0,-1) {\tiny{$W$}};
-								\end{tikzpicture}
-						]]>
-					</latex-image-code>
-			</image>
-	</figure>
-	<figure>
-		<caption><m>L(WH)</m></caption>
-			<image>
-				<description>A rectangular prism with the side showing the width and the height highlighted.</description>
-					<latex-image-code>
-						<![CDATA[\begin{tikzpicture}%(x,z,y)
-							\node[white] at (2,0,0) {.};
-							\draw[red] (0,0,0) -- ++(-4,0,0) -- ++(0,-2,0) -- ++(4,0,0) -- cycle; %front face
-							\draw[red,fill=yellow] (0,0,0) -- ++(0,0,-2) -- ++(0,-2,0) -- ++(0,0,2) -- cycle; %side
-							\draw[red] (0,0,0) -- ++(-4,0,0) -- ++(0,0,-2) -- ++(4,0,0) -- cycle; %top
-									\node[above] at (-2,0,0) {\tiny{$L$}};
-									\node[left] at (0,-1,0) {\tiny{$H$}};
-									\node[left] at (0,0,-1) {\tiny{$W$}};
-								\end{tikzpicture}
-						]]>
-					</latex-image-code>
-			</image>
-	</figure>
-</sidebyside>
-
-
-<p>Now let's define <m>a</m> to be the cost of one apple, <m>b</m> to be the cost of one loaf of bread, and <m>c</m> to be the cost of one chocolate bar. Under these definitions, an expression such as <m>2a</m> would denote the cost of 2 apples. In the examples that follow, we'll visualize the cost of one apple with &#127823;, the cost of one loaf of bread with &#127838;, and the cost of one chocolate bar with &#127851;.</p>
-
-
-<p>According to the <term>commutative property of addition</term>, <m>a+b=b+a</m>. We can visualize this with:
-<me> \text{&#127823;}+ \text{&#127838;} =\text{&#127838;}+\text{&#127823;} </me>
-The above isn't too surprising--if we purchase two apples and three loaves of bread or three loaves of bread and two apples, the total cost should be the same.</p>
-
-<p>According to the <term>associative property of addition</term>, <m>a+(b+c)=(a+b)+c</m>. Conceptually, we can think of the left side as adding the cost of one apple to the (already-totaled) cost of one loaf of bread and one bar of chocolate.  The right side is then the (already-totaled) cost of one apple and one loaf of bread added to the cost of one bar of chocolate. A visualization is shown below:
-<me>\text{&#127823;}+( \text{&#127838;} +\text{&#127851;})=(\text{&#127823;}+\text{&#127838;})+\text{&#127851;} </me></p>
-
-<p>The final property we'll explore is called the <term>distributive property</term>, which involves both multiplication and addition. To conceptualize this property, let's consider what happens if we buy 3 sets that each contain one apple and one loaf of bread. This will have the exact same total cost as if we'd bought 3 apples and 3 loaves of bread. We write this algebraically as <m>3(a+b)=3a+3b</m>. Visually, we can see that it's just a means of re-grouping:
-<me>3(\text{&#127823;}+ \text{&#127838;}) = 3(\text{&#127823;})+ 3(\text{&#127838;})</me>
-</p>
-</subsection>
-
-<subsection>
-<title>Summary of Algebraic Properties</title>
-<p>Let <m>a,b</m>, and <m>c</m> represent real numbers, variables, or algebraic expressions. Then the following properties hold:</p>
-<list xml:id="list-algebraic-properties">
-<dl>
-    <li xml:id="item-commutative-property-of-multiplication">
-        <title>Commutative Property of Multiplication:</title>
-        <p><m>a\cdot b=b\cdot a</m></p>
-    </li>
-    <li xml:id="item-associative-property-of-multiplication">
-        <title>Associative Property of Multiplication:</title>
-        <p><m>a\cdot(b\cdot c)=(a\cdot b)\cdot c</m></p>
-    </li>
-    <li xml:id="item-commutative-property-of-addition">
-        <title>Commutative Property of Addition:</title>
-        <p><m>a+b=b+a</m></p>
-    </li>
-    <li xml:id="item-associative-property-of-addition">
-        <title>Associative Property of Addition:</title>
-        <p><m>a+(b+c)=(a+b)+c</m></p>
-    </li>
-    <li xml:id="item-distributive-property">
-        <title>Distributive Property:</title>
-        <p><m>a(b+c)=ab+ac</m></p>
-    </li>
-</dl>
-</list>
-
-
-<todo>Make WeBWorK</todo>
-
-<exercise>
-<statement>
-<p>
-<ol>
-<li><p>Apply the commutative property of multiplication to the expression <m>dz</m></p></li>
-<li><p>Apply the associative property of multiplication to the expression <m>(dz)r</m></p></li>
-<li><p>Apply the commutative property of addition to the expression <m>d+z</m></p></li>
-<li><p>Apply the associative property of addition to the expression <m>(d+z)+r</m></p></li>
-<li><p>Apply the distributive property to the expression <m>d(z+r)</m></p></li>
-</ol>
-</p>
-</statement>
-</exercise>
-
-
-<todo>? fix irrelevance of a(b+c) in that example</todo>
-
-<!-- apple: &#127823; -->
-<!-- bread: &#127838; -->
-<!-- chocolate: &#127851; -->
-
-</subsection>
-
-<subsection>
-<title>Applying the Commutative, Associative, and Distributive Properties</title>
-<paragraphs>
-<title>Like Terms</title>
-<p>One of the main ways that we will use the commutative, associative, and distributive properties is to simplify expressions. In order to do this, we need to recognize <term>like terms</term>. Two terms are considered <term>like terms</term> if they contain the same variable raised to the same exponent. (In this context, we can think of constant terms as having a variable raised to the zero power, e.g. <m>7=7x^0</m>). Here's a table comparing like terms and non-like terms:
-</p>
-</paragraphs>
-
-
-<table>
-    <tabular>
+        <table>
+            <tabular>
                 <row bottom="medium">
-        <cell>Like Terms</cell>
-        <cell>Non-Like Terms</cell>
-        </row>
-        <row>
-        <cell><m>7x,2x</m></cell>
-        <cell><m>7x,7y</m></cell>
-        </row>
-        <row>
-        <cell><m>-5xy,\frac{1}{3}xy</m></cell>
-        <cell><m>-5x^2,-4x</m></cell>
-        </row>
-        <row>
-        <cell><m>4y^3,y^3</m></cell>
-        <cell><m>3x,4</m></cell>
-        </row>
-        <row>
-        <cell><m>3,-10</m></cell>
-        <cell><m>2xy,5y</m></cell>
-        </row>
-    </tabular>
-</table>
+                    <cell>Like Terms</cell>
+                    <cell>Non-Like Terms</cell>
+                </row>
+                <row>
+                    <cell><m>7x,2x</m></cell>
+                    <cell><m>7x,7y</m></cell>
+                </row>
+                <row>
+                    <cell><m>-5xy,\frac{1}{3}xy</m></cell>
+                    <cell><m>-5x^2,-4x</m></cell>
+                </row>
+                <row>
+                    <cell><m>4y^3,y^3</m></cell>
+                    <cell><m>3x,4</m></cell>
+                </row>
+                <row>
+                    <cell><m>3,-10</m></cell>
+                    <cell><m>2xy,5y</m></cell>
+                </row>
+            </tabular>
+        </table>
 
-<todo>Make WeBWorK</todo>
+        <paragraphs>
+            <title>Combining Like Terms</title>
 
-<exercise>
-<statement>
-<p>Determine which of the following are like terms:
-<ol>
-<li><p><m>-12x,\frac{2}{3}x</m></p></li>
-<li><p><m>4x,4xy</m></p></li>
-<li><p><m>3x^2,y^2    </m></p></li>
-<li><p><m>-2y,7</m></p></li>
-<li><p><m>3yz,10yz    </m></p></li>
-</ol>
-</p>
-</statement>
-</exercise>
+            <p>We combine like terms when we take <m>2a+3a</m> and write the result as <m>5a</m>. The formal process actually involves invoking the distributive property, as we obtain:<md>
+                <mrow>2a+3a \amp=(2+3)a</mrow>
+                <mrow>\amp=5a</mrow>
+            </md>In practice, it's helpful to think of this as having <m>2</m> of an object and then an additional <m>3</m> of that same object. In total, we then have <m>5</m> of that object.</p>
+        </paragraphs>
 
+        <example>
+            <statement>
+                <p>Where possible, simplify the following expressions by combining like terms.<ol>
+                    <li><p><m>6c+12c-5c</m></p></li>
+                    <li><p><m>-5q-3q</m></p></li>
+                    <li><p><m>-3x-5y+4x</m></p></li>
+                    <li><p><m>2x-3y+4z</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>We will combine all three like terms: <m>6c</m>, <m>12c</m> and <m>-5c</m>:<md>
+                        <mrow>6c+12c-5c \amp=18c-5c</mrow>
+                        <mrow>\amp=13c</mrow>
+                    </md></p></li>
+                    <li><p>We will combine like terms <m>-5q</m> and <m>-3q</m>:<md>
+                        <mrow>-5q-3q \amp=-8q</mrow>
+                    </md></p></li>
+                    <li><p>We will combine like terms <m>-5x</m> and <m>4x</m>:<md>
+                        <mrow>-3x-5y+4x \amp=-3x+4x+(-5y)</mrow>
+                        <mrow>\amp=x-5y</mrow>
+                    </md></p></li>
+                    <li><p>The expression <m>2x-3y+4z</m> cannot be simplified as there are no like terms.</p></li>
+                </ol></p>
+            </solution>
+        </example>
 
-<paragraphs>
-<title>Combining Like Terms </title>
+        <remark>
+            <p>The expression <m>x</m> represents <m>1x</m> and the expression <m>-x</m> represents <m>-1x</m>, but we don't write either the <q><m>1</m></q> or the <q><m>-1</m></q> as each is implied. However, it's helpful when combining like terms to remember that <m>x=1x</m> and <m>-x=-1x</m>.</p>
+        </remark>
 
-<p>When we take <m>2a+3a</m> and write this as <m>5a</m> we <term>combine like terms</term>. The formal process actually involves invoking the distributive property, as we obtain:
-<md>
-    <mrow>2a+3a \amp=(2+3)a    </mrow>
-    <mrow>\amp=5a</mrow>
-</md>
-In practice, it's helpful to think of this as having <m>2</m> of an object and then an additional <m>3</m> of that same object. In total, we then have <m>5</m> of that object.</p>
-</paragraphs>
+        <paragraphs>
+            <title>Adding Expressions</title>
 
-<example>
-    <statement>
-        <p>Where possible, simplify the following expressions by combining like terms.
-        <ol>
-            <li><p><m>6c+12c-5c</m></p></li>
-            <li><p><m>-5q-3q</m></p></li>
-            <li><p><m>-3x-5y+4x</m></p></li>
-            <li><p><m>2x-3y+4z</m></p></li>
-        </ol>
-        </p>
-    </statement>
-    <solution>
-        <p><ol>
-            <li><p><md>
-                <mrow>6c+12c-5c \amp=18c-5c</mrow>
-                <mrow>\amp=13c</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>-5q-3q \amp=-8q</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>-3x-5y+4x \amp=-3x+4x+(-5y)</mrow>
-                <mrow>\amp=x-5y</mrow>
-            </md></p></li>
-            <li><p>The expression <m>2x-3y+4z</m> cannot be simplified as there are no like terms.
-            </p></li>
-        </ol></p>
-    </solution>
-</example>
+            <p>When we add an expression like <m>4x-5</m> to an expression like <m>3x-7</m>, we write them as follows:<me>(4x-5)+(3x-7)</me>In order to remove the given sets of parentheses and apply the commutative property of addition, we will rewrite the subtraction operation as <q>adding the opposite</q>:<me>4x+(-5)+3x+(-7)</me>At this point we can apply the commutative property of addition and then combine like terms. Here's how the entire problem will look:<md>
+                <mrow>(4x-5)+(3x-7)\amp=4x+(-5)+3x+(-7)</mrow>
+                <mrow>\amp=4x+3x+(-5)+(-7)</mrow>
+                <mrow>\amp=7x+(-12)</mrow>
+                <mrow>\amp=7x-12</mrow>
+            </md></p>
+        </paragraphs>
 
-<remark><p>The expression <m>x</m> represents <m>1x</m> and the expression <m>-x</m> represents <m>-1x</m>, but we don't write either the <q><m>1</m></q> or the <q><m>-1</m></q> as each is implied. However, it's helpful when combining like terms to remember that <m>x=1x</m> and <m>-x=-1x</m>.</p></remark>
+        <remark>
+            <p>Once we get more comfortable simplifying such expressions, we will simply write the following:<me>(4x-5)+(3x-7)=7x-12</me></p>
+        </remark>
 
+        <example>
+            <statement>
+                <p>Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.<ol>
+                    <li><p><m>(2x+3)+(4x+5)</m></p></li>
+                    <li><p><m>(-5x+3)+(4x-7)</m></p></li>
+                    <li><p><m>(-2x-1)+(-4x-9)</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>We will remove parentheses, and then combine like terms:<md>
+                        <mrow>(2x+3)+(4x+5) \amp=2x+3+4x+5</mrow>
+                        <mrow>\amp=2x+4x+3+5</mrow>
+                        <mrow>\amp=6x+8</mrow>
+                    </md></p></li>
+                    <li><p>We will remove parentheses, and then combine like terms::<md>
+                        <mrow>(-5x+3)+(4x-7)\amp=-5x+3+4x+(-7)</mrow>
+                        <mrow>\amp=7x+(-4)</mrow>
+                        <mrow>\amp=7x-4</mrow>
+                    </md></p></li>
+                    <li><p>We will remove parentheses, and then combine like terms:<md>
+                        <mrow>(-2x-1)+(-4x-9) \amp=-2x+(-1)+(-4x)+(-9)</mrow>
+                        <mrow>\amp=-2x+(-4x)+(-1)+(-9)</mrow>
+                        <mrow>\amp=-6x+(-10)</mrow>
+                        <mrow>\amp=-6x-10</mrow>
+                    </md></p></li>
+                </ol></p>
+            </solution>
+        </example>
 
+        <paragraphs>
+            <title>Applying the Distributive Property with Negative Coefficients</title>
 
-<paragraphs>
-<title>Adding Expressions</title>
+            <p>Applying the distributive property in an expression such as <m>2(3x+4)</m> is fairly straightforward, in that this becomes <m>2(3x)+2(4)</m> which we then simplify to <m>6x+8</m>. Applying the distributive property is a little trickier when subtraction or a negative constant is involved, for example, with the expression <m>2(3x-4)</m>. Recalling that subtraction is defined as <q>adding the opposite</q>, we can change the subtraction of positive <m>4</m> to the addition of negative <m>4</m>:<me>2\big(3x+(-4)\big)</me>Now when we distribute, we obtain:<me>2(3x)+2(-4)</me>As a final step, we see that this simplifies to:<me>6x-8</me></p>
+        </paragraphs>
 
-<p>When we add an expression like <m>4x-5</m> to an expression like <m>3x-7</m>, we write the expression as follows:
-<me>(4x-5)+(3x-7)</me>
-In order to remove the given sets of parentheses and apply the commutative property of addition, we will rewrite the subtraction operation as <q>adding the opposite</q>:
-<me>4x+(-5)+3x+(-7)</me>
-At this point we can apply the commutative property of addition and then combine like terms. Here's how the entire problem will look:
-<md>
-    <mrow>(4x-5)+(3x-7)\amp=4x+(-5)+3x+(-7)</mrow>
-    <mrow>\amp=4x+3x+(-5)+(-7)</mrow>
-    <mrow>\amp=7x+(-12)</mrow>
-    <mrow>\amp=7x-12</mrow>
-</md>
-</p>
-</paragraphs>
+        <remark>
+            <p>We can also extend the distributive property to one involving subtraction, which states that <m>a(b-c)=ab-ac</m>. With this property, we would simplify <m>2(3x-4)</m> more efficiently:<md>
+                <mrow>2(3x-4) \amp=2(3x)-2(4)</mrow>
+                <mrow>\amp=6x-8</mrow>
+            </md>In general, we will use this approach.</p>
+        </remark>
 
+        <example>
+            <statement>
+                <p>Apply the distributive property to each expression and simplify it as much as possible.<ol>
+                    <li><p><m>-3(5x+7)</m></p></li>
+                    <li><p><m>2(-4x-1)</m></p></li>
+                    <li><p><m>-4(2x-3)</m></p></li>
+                    <li><p><m>-7(-x-9)</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>We will distribute <m>-3</m> into the parentheses:<md>
+                        <mrow>-3(5x+7)\amp=-3(5x)+(-3)(7)</mrow>
+                        <mrow>\amp=-15x-21</mrow>
+                    </md></p></li>
+                    <li><p>We will distribute <m>2</m> into the parentheses:<md>
+                        <mrow>2(-4x-1)\amp=2(-4x)-2(1)</mrow>
+                        <mrow>\amp=-8x-2</mrow>
+                    </md></p></li>
+                    <li><p>We will distribute <m>-4</m> into the parentheses:<md>
+                        <mrow>-4(2x-3)\amp=-4(2x)-(-4)(3)</mrow>
+                        <mrow>\amp=-8x+12</mrow>
+                    </md></p></li>
+                    <li><p>We will distribute <m>-7</m> into the parentheses:<md>
+                        <mrow>-7(-x-9)\amp=-7(-x)-(-7)(9)</mrow>
+                        <mrow>\amp=7x+63</mrow>
+                    </md></p></li>
+                </ol></p>
+            </solution>
+        </example>
 
-<remark><p>Once we get more comfortable simplifying such expressions, we will simply write the following:
-<me>(4x-5)+(3x-7)=7x-12</me>
-</p></remark>
+		<exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty20.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty30.pg" seed="1"/>
+        </exercise>
 
-<example>
-    <statement>
-        <p>Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.
-        <ol>
-            <li><p><m>(2x+3)+(4x+5)</m></p></li>
-            <li><p><m>(-5x+3)+(4x-7)</m></p></li>
-            <li><p><m>(-2x-1)+(-4x-9)</m></p></li>
-        </ol>
-        </p>
-    </statement>
-    <solution>
-        <p><ol>
-            <li><p><md>
-                <mrow>(2x+3)+(4x+5) \amp=2x+3+4x+5</mrow>
-                <mrow>\amp=2x+4x+3+5</mrow>
-                <mrow>\amp=6x+8</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>(-5x+3)+(4x-7)\amp=-5x+3+4x+(-7)</mrow>
-                <mrow>\amp=7x+(-4)</mrow>
-                <mrow>\amp=7x-4</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>(-2x-1)+(-4x-9) \amp=-2x+(-1)+(-4x)+(-9)</mrow>
-                <mrow>\amp=-2x+(-4x)+(-1)+(-9)</mrow>
-                <mrow>\amp=-6x+(-10)</mrow>
-                <mrow>\amp=-6x-10</mrow>
-            </md></p></li>
-        </ol></p>
-    </solution>
-</example>
+        <paragraphs>
+            <title>Subtracting Expressions</title>
 
-<paragraphs>
-<title>Applying the Distributive Property with Negative Coefficients</title>
-
-<p>Applying the distributive property in an expression such as <m>2(3x+4)</m> is fairly straightforward, in that this becomes <m>2(3x)+2(4)</m> which we then simplify to <m>6x+8</m>. Applying the distributive property is a little trickier when subtraction or a negative constant is involved, for example with the expression <m>2(3x-4)</m>. Recalling that subtraction is defined as <q>adding the opposite</q>, we can change the subtraction of positive <m>4</m> to the addition of negative <m>4</m>:
-<me>2(3x+(-4))</me>
-Now when we distribute, we obtain:
-<me>2(3x)+2(-4)</me>
-As a final step, we see that this simplifies to:
-<me>6x-8</me>
-</p>
-</paragraphs>
-
-
-<remark><p>We can also extend the distributive property to one involving subtraction, which states that <m>a(b-c)=ab-ac</m>. With this property, we would simplify <m>2(3x-4)</m> more efficiently:
-<md>
-    <mrow>2(3x-4) \amp=2(3x)-2(4)</mrow>
-    <mrow>\amp=6x-8</mrow>
-</md>
-In general, we will use this approach. 
-</p></remark>
-
-<example>
-    <statement>
-        <p>Apply the distributive property to each expression and simplify it as much as possible.
-        <ol>
-            <li><p><m>-3(5x+7)</m></p></li>
-            <li><p><m>2(-4x-1)</m></p></li>
-            <li><p><m>-4(2x-3)</m></p></li>
-            <li><p><m>-7(-x-9)</m></p></li>
-        </ol>
-        </p>
-    </statement>
-    <solution>
-        <p><ol>
-            <li><p><md>
-                <mrow>-3(5x+7)\amp=-3(5x)+(-3)(7)</mrow>
-                <mrow>\amp=-15x-21</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>2(-4x-1)\amp=2(-4x)-2(1)</mrow>
-                <mrow>\amp=-8x-2</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>-4(2x-3)\amp=-4(2x)-(-4)(3)</mrow>
-                <mrow>\amp=-8x+12</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>-7(-x-9)\amp=-7(-x)-(-7)(9)</mrow>
-                <mrow>\amp=7x+63</mrow>
-            </md></p></li>
-        </ol></p>
-    </solution>
-</example>
-
-<todo>make WeBWorK</todo>
-<exercise>
-<statement><p>Apply the distributive property and simplify the expression as much as possible.
-    <m>-5(-3x+8)</m>
-</p></statement>
-
-</exercise>
+            <p>To subtract one expression from another expression, such as <m>(5x+9)-(3x+2)</m>, we will again rely on the fact that subtraction is defined as <q>adding the opposite.</q> To add the <em>opposite</em> of an expression, we will technically distribute a constant factor of <m>-1</m> and simplify from there:<md>
+                <mrow>(5x+9)-(3x+2)\amp=(5x+9)+(-1)(3x+2)</mrow>
+                <mrow>\amp=5x+9+(-1)(3x)+(-1)(2)</mrow>
+                <mrow>\amp=5x+9+(-3x)+(-2)</mrow>
+                <mrow>\amp=2x+7</mrow>
+            </md></p>
+        </paragraphs>
 
 
-<paragraphs>
-<title>Subtracting Expressions</title>
+        <remark>
+            <p>The above example demonstrates <em>how</em> we apply the distributive property in order to subtract two expressions. But in practice, it can be pretty cumbersome. A shorter (and often clearer) approach is to instead subtract every term in the expression we are subtracting, which is shown like this:<md>
+                <mrow>(5x+9)-(3x+2)\amp=5x+9-3x-2</mrow>
+                <mrow>\amp=6x+7</mrow>
+                </md>In general, we'll use this approach.</p>
+        </remark>
 
-<p>To subtract one expression from another expression, such as <m>(5x+9)-(3x+2)</m>, we will again rely on the fact that subtraction is defined as <q>adding the opposite.</q> To add the <em>opposite</em> of an expression, we will technically distribute a constant factor of <m>-1</m> and simplify from there:
-<md>
-    <mrow>(5x+9)-(3x+2)\amp=(5x+9)+(-1)(3x+2)</mrow>
-    <mrow>\amp=5x+9+(-1)(3x)+(-1)(2)</mrow>
-    <mrow>\amp=5x+9+(-3x)+(-2)</mrow>
-    <mrow>\amp=6x+7</mrow>
-</md>
-</p>
-</paragraphs>
+        <example>
+            <statement>
+                <p>Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.<ol>
+                    <li><p><m>(-6x+4)-(3x-7)</m></p></li>
+                    <li><p><m>(-2x-5)-(-4x-6)</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                        <mrow>(-6x+4)-(3x-7) \amp=-6x+4-3x-(-7)</mrow>
+                        <mrow>\amp=-6x+4-3x+7</mrow>
+                        <mrow>\amp=-9x+11</mrow>
+                    </md></p></li>
+                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                        <mrow>(-2x-5)-(-4x-6)\amp=-2x-5-(-4x)-(-6)</mrow>
+                        <mrow>\amp=-2x-5+4x+6</mrow>
+                        <mrow>\amp=2x+1</mrow>
+                    </md></p></li>
+                </ol></p>
+            </solution>
+        </example>
+    </subsection>
 
+    <subsection>
+        <title>The Role of the Order of Operations in Applying the Commutative, Associative, and Distributive Properties</title>
 
-<remark><p>The above example demonstrates <em>how</em> we apply the distributive property in order to subtract two expressions. But in practice, it can be pretty cumbersome. A shorter (and often clearer) approach is to instead subtract every term in the expression we are subtracting, which is shown like this:
-<md>
-    <mrow>(5x+9)-(3x+2)\amp=5x+9-3x-2</mrow>
-    <mrow>\amp=6x+7</mrow>
-</md>
-In general, we'll still with this approach.
-</p></remark>
+        <p>When simplifying an expression such as <m>3+4(5x+7)</m>, we need to apply the order of operations and do multiplication <m>4(5x+7)</m> before doing addition. We cannot do <m>3+4(5x+7)=7(5x+7)</m>, which is not following the order of operations.</p>
 
-<example>
-    <statement>
-        <p>Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.
-        <ol>
-            <li><p><m>(-6x+4)-(3x-7)</m></p></li>
-            <li><p><m>(-2x-5)-(-4x-6)</m></p></li>
-        </ol>
-        </p>
-    </statement>
-    <solution>
-        <p><ol>
-            <li><p><md>
-                <mrow>(-6x+4)-(3x-7) \amp=(-6x+4)-3x-(-7)</mrow>
-                <mrow>\amp=-6x+4-3x+7</mrow>
-                <mrow>\amp=-9x+11</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>(-2x-5)-(-4x-6)\amp=-2x-5-(-4x)-(-6)</mrow>
-                <mrow>\amp=-2x-5+4x+6</mrow>
-                <mrow>\amp=2x+1</mrow>
-            </md></p></li>
-        </ol></p>
-    </solution>
-</example>
-</subsection>
+        <p>To simplify <m>3+4(5x+7)</m>, we will first apply the distributive property. After that, we will use the commutative and associative properties:<md>
+            <mrow>3+4(5x+7)\amp=3+4(5x)+4(7)</mrow>
+            <mrow>\amp=3+20x+28</mrow>
+            <mrow>\amp=20x+3+28</mrow>
+            <mrow>\amp=20x+31</mrow>
+        </md></p>
 
-<subsection>
-<title>The Role of the Order of Operations in Applying the Commutative, Associative, and Distributive Properties</title>
+        <exercise>
+            <statement>
+                <p>Simplify the following expressions using the commutative, associative, and distributive properties.<ol>
+                    <li><p><m>4-(3x-9)</m></p></li>
+                    <li><p><m>5x+9(-2x+3)</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                        <mrow>4-(3x-9) \amp=4-3x-(-9)</mrow>
+                        <mrow>\amp=4-3x+9</mrow>
+                        <mrow>\amp=-3x+13</mrow>
+                    </md></p></li>
+                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                        <mrow>5x+9(-2x+3)\amp=5x+9(-2x)+9(3)</mrow>
+                        <mrow>\amp=5x-18x+27</mrow>
+                        <mrow>\amp=-13x+27</mrow>
+                    </md></p></li>
+                </ol></p>
+            </solution>
+        </exercise>
 
-<p>When simplifying an expression such as <m>3+4(5x+7)</m>, we will need to use each of the commutative, associative, and distributive properties. In order to know where to start, we will rely on the order of operations. Noting that the expression inside parentheses, <m>5x+7</m>, is already simplified and we do not have exponents, the first thing we will do is multiply. This means that we will first apply the distributive property. After that, we will use the commutative and associative properties in order to finish simplifying the expression:
-<md>
-    <mrow>3+4(5x+7)\amp=3+4(5x)+4(7)</mrow>
-    <mrow>\amp=3+20x+28</mrow>
-    <mrow>\amp=20x+31</mrow>
-</md>
-</p>
-
-<todo>Make WeBWorK</todo>
-<exercise>
-<statement>
-<p>Simplify the following expressions using the commutative, associative, and distributive properties. of exponents.
-<ol>
-<li><p><m>4-(3x-9)</m></p></li>
-<li><p><m>5x+9(-2x+3)</m></p></li>
-</ol>
-</p>
-</statement>
-   <solution>
-        <p><ol>
-            <li><p><md>
-                <mrow>4-(3x-9) \amp=4-3x-(-9)</mrow>
-                <mrow>\amp=4-3x+9</mrow>
-                <mrow>\amp=-3x+13</mrow>
-            </md></p></li>
-            <li><p><md>
-                <mrow>5x+9(-2x+3)\amp=5x+9(-2x)+9(3)</mrow>
-                <mrow>\amp=5x-18x+27</mrow>
-                <mrow>\amp=-13x+27</mrow>
-            </md></p></li>
-        </ol></p>
-    </solution>
-</exercise>
-
-</subsection>
+        <exercise>
+            <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty50.pg" seed="1"/>
+        </exercise>
+    </subsection>
 
 
-<subsection>
-<title>An Introduction to the Rules of Exponents</title>
+    <subsection>
+        <title>An Introduction to the Rules of Exponents</title>
 
-<p>So far, we have added and subtracted expressions like <m>5x^2</m> and <m>x^2</m>. We discovered that these could only be added or subtracted if the two expressions were like terms. In this section, we're going to look at what happens when we multiply two such expressions and what happens when we raise one such expression to an exponent. One key thing to note is that we don't need like terms in order to do this.</p>
+        <p>In this section, we're going to look at some exponent rules.</p>
 
-<example>
-    <statement>
-        <p><ol>
-            <li><p>Let's look at what happens when we try to simplify <m>x^2x^3</m>. If we write this out entirely with <m>x</m>, we have
-            <md>
-                <mrow>x^2\cdot x^3 \amp=(x\cdot x)(x \cdot x \cdot x)</mrow>
-                <mrow>\amp=x\cdot x\cdot x \cdot x \cdot x</mrow>
-                <mrow>\amp=x^5</mrow>
-            </md>
-            Note that to determine how many times <m>x</m> appeared as a factor (simply by counting this out), we see that we obtained the exponent of <m>5</m> by adding <m>2</m> and <m>3</m>.
-            </p></li>
-            <li><p>Let's look at what happens when we try to simplify <m>\left(x^2\right)^3</m>. If we write this out entirely with <m>x</m>, we have
-            <md>
-                <mrow>\left(x^2\right)^3 \amp=\left(x^2\right)\left(x^2\right)\left(x^2\right)</mrow>
-                <mrow>\amp=(x\cdot x)(x \cdot x) (x \cdot x)</mrow>
-                <mrow>\amp=x\cdot x \cdot x \cdot x \cdot x \cdot x</mrow>
-                <mrow>\amp=x^6</mrow>
-            </md>
-            Note that to determine how many times <m>x</m> appeared as a factor (simply by multiplying this out), we see that we obtained the exponent of <m>6</m> by multiplying <m>2</m> and <m>3</m>.
-            </p></li>
-            <li><p>Let's look at what happens when we try to simplify <m>(xy)^2</m>. If we write this out entirely with <m>x</m> and <m>y</m>, we have
-            <md>
-                <mrow>(xy)^2 \amp=(xy)(xy)</mrow>
-                <mrow>\amp=x \cdot y \cdot x \cdot y</mrow>
-                <mrow>\amp=x \cdot x \cdot y \cdot y</mrow>
-                <mrow>\amp=x^2y^2</mrow>
-            </md>
-            Note that to determine how many times <m>x</m> and <m>y</m> appear as a factors (simply by counting this out and rearranging), the exponent on <m>xy</m> can simply be applied to both <m>x</m> and <m>y</m>.
-            </p></li>
-        </ol></p>
-    </statement>
-</example>
+        <example>
+            <statement>
+                <p><ol>
+                    <li>
+                        <p>Let's look at what happens when we try to simplify <m>x^2\cdot x^3</m>. If we write this out entirely with <m>x</m>, we have<md>
+                            <mrow>x^2\cdot x^3 \amp=(x\cdot x)(x \cdot x \cdot x)</mrow>
+                            <mrow>\amp=x\cdot x\cdot x \cdot x \cdot x</mrow>
+                            <mrow>\amp=x^5</mrow>
+                        </md>Note that to determine how many times <m>x</m> appeared as a factor (simply by counting this out), we see that we obtained the exponent of <m>5</m> by adding <m>2</m> and <m>3</m>.</p>
+                    </li>
 
-<list xml:id="list-rules-of-exponents">
-<title>Summary of the Rules of Exponents</title>
-<ol>
-    <li xml:id="item-product-to-sum-exponent-rule"><p><m>x^m\cdot x^n=x^{m+n}</m></p></li>
-    <li xml:id="item-exponent-on-an-exponent-rule"><p><m>(x^m)^n=x^{m\cdot n}</m></p></li>
-    <li xml:id="item-exponent-on-a-product-rule"><p><m>(xy)^n = x^n\cdot y^n</m></p></li>
-</ol>
-</list>
+                    <li>
+                        <p>Let's look at what happens when we try to simplify <m>\left(x^2\right)^3</m>. If we write this out entirely with <m>x</m>, we have<md>
+                            <mrow>\left(x^2\right)^3 \amp=\left(x^2\right)\left(x^2\right)\left(x^2\right)</mrow>
+                            <mrow>\amp=(x\cdot x)(x \cdot x) (x \cdot x)</mrow>
+                            <mrow>\amp=x\cdot x \cdot x \cdot x \cdot x \cdot x</mrow>
+                            <mrow>\amp=x^6</mrow>
+                        </md>Note that to determine how many times <m>x</m> appeared as a factor (simply by multiplying this out), we see that we obtained the exponent of <m>6</m> by multiplying <m>2</m> and <m>3</m>.</p>
+                    </li>
 
-<todo>Make WeBWorK</todo>
-<exercise>
-<statement>
-<p>Simplify the following expressions using the rules of exponents.
-<ol>
-<li><p><m>y^7y^4</m></p></li>
-<li><p><m>(y^7)^4</m></p></li>
-<li><p><m>(yz)^4</m></p></li>
-</ol>
-</p>
-</statement>
-</exercise>
+                    <li>
+                        <p>Let's look at what happens when we try to simplify <m>(xy)^2</m>. If we write this out entirely with <m>x</m> and <m>y</m>, we have<md>
+                            <mrow>(xy)^2 \amp=(xy)(xy)</mrow>
+                            <mrow>\amp=x \cdot y \cdot x \cdot y</mrow>
+                            <mrow>\amp=x \cdot x \cdot y \cdot y</mrow>
+                            <mrow>\amp=x^2y^2</mrow>
+                        </md>Note that to determine how many times <m>x</m> and <m>y</m> appear as a factors (simply by counting this out and rearranging), the exponent on <m>xy</m> can simply be applied to both <m>x</m> and <m>y</m>.</p>
+                    </li>
+                </ol></p>
+            </statement>
+        </example>
+
+        <list xml:id="list-rules-of-exponents">
+            <title>Summary of the Rules of Exponents</title>
+            <ol>
+                <li xml:id="item-product-to-sum-exponent-rule"><p><m>x^m\cdot x^n=x^{m+n}</m></p></li>
+                <li xml:id="item-exponent-on-an-exponent-rule"><p><m>(x^m)^n=x^{m\cdot n}</m></p></li>
+                <li xml:id="item-exponent-on-a-product-rule"><p><m>(xy)^n = x^n\cdot y^n</m></p></li>
+            </ol>
+        </list>
+
+		<exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication0.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication23.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication20.pg" seed="1"/>
+        </exercise>
+
+        <example>
+            <statement>
+                <p>Simplify the following expressions using the rules of exponents.<ol>
+                    <li><p><m>-2t^3\cdot 4t^5</m></p></li>
+                    <li><p><m>5\left(v^4\right)^2</m></p></li>
+                    <li><p><m>-(3u)^2</m></p></li>
+                    <li><p><m>(-3u)^2</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li>
+                        <p>To simplify <m>-2t^3\cdot 4t^5</m>, we want to multiply and simplify the constant factors and then apply the <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:<md>
+                            <mrow>-2t^3\cdot 4t^5 \amp=-2\cdot 4 \cdot t^3\cdot t^5</mrow>
+                            <mrow>\amp=-8t^{3+5}</mrow>
+                            <mrow>\amp=-8t^8</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>To start simplifying <m>5\left(v^4\right)^2</m>, we want to first identify that the number <m>5</m> is outside the parentheses to which the exponent of <m>2</m> applies. According to the order of operations, this means that we will first apply the exponent in <m>\left(v^4\right)^2</m>, and then multiply <m>5</m>. In applying this exponent, we'll use <xref ref="item-exponent-on-an-exponent-rule">exponent rule</xref>:<md>
+                            <mrow>5\left(v^4\right)^2 \amp=5\left(v^{4\cdot 2}\right)</mrow>
+                            <mrow>\amp=5v^8</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>As we simplify <m>-(3u)^2</m>, we will again note that the exponent of <m>2</m> only applies to the part inside the parentheses. This means that we will first simplify <m>(3u)^2</m> according to the <xref ref="item-exponent-on-a-product-rule">exponent rule</xref>:<md>
+                            <mrow>-(3u)^2\amp=-\left(3^2\cdot u^2\right)</mrow>
+                            <mrow>\amp=-\left(9u^2\right)</mrow>
+                            <mrow>\amp=-9u^2</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>In this problem, the exponent of <m>2</m> applies to <m>(-3u)</m>. We have:<md>
+                            <mrow>(-3u)^2\amp=(-3)^2\cdot u^2</mrow>
+                            <mrow>\amp=9u^2</mrow>
+                        </md></p>
+                    </li>
+                </ol></p>
+            </solution>
+        </example>
+
+        <remark>
+            <p>We cannot simplify an expression like <m>x^2y^3</m> using <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>, as these two terms do not have the same base.</p>
+        </remark>
+
+        <p>When we add/subtract two expressions, we can only combine like terms. For example:<ul>
+        	<li><p><m>3x-x=2x</m></p></li>
+        	<li><p><m>x^2+x^2=2x^2</m></p></li>
+        	<li><p><m>x^2+x</m> cannot be combined.</p></li>
+        </ul></p>
+
+        <p>However, we can multiply two expressions regardless of whether they are like terms or not. For example:<ul>
+        	<li><p><m>x\cdot x=x^2</m></p></li>
+        	<li><p><m>x^2\cdot x^2=x^4</m></p></li>
+        	<li><p><m>(x^2)(x)=x^3</m></p></li>
+        </ul></p>
+
+        <p>Compare the following problems:<ul>
+        	<li><p>When we combine like terms, the variable's exponent doesn't change, as in <m>x^2+x^2=2x^2</m>.</p></li>
+        	<li><p>When we multiply expressions with the same variable, its exponent will change, as in <m>(x^2)(x^2)=x^4</m>.</p></li>
+        	<li><p>We cannot combine "unlike terms," as <m>x^2+x</m> will stay like it is.</p></li>
+        	<li><p>We can multiply expressions with "unlike terms," as in <m>(x^2)(x)=x^3</m>.</p></li>
+        </ul>The next few examples test your understanding of these concepts.</p>
+
+        <example>
+            <statement>
+                <p>Simplify the following expressions using the rules of exponents and the distributive property.<ol>
+                	<li><p><m>3x^2+2x+x^2</m></p></li>
+                	<li><p><m>(3x^2)(2x)(x^2)</m></p></li>
+                    <li><p><m>2x(3x+4)</m></p></li>
+                    <li><p><m>3x^2(5x-2)</m></p></li>
+                    <li><p><m>x^3-3x^2(5x-2)</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                	<li>
+                        <p>We will combine like terms <m>3x^2</m> and <m>x^2</m>:<md>
+                            <mrow>3x^2+2x+x^2\amp=4x^2+2x</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>We will apply <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:<md>
+                            <mrow>(3x^2)(2x)(x^2)\amp=6x^5</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>To simplify <m>2x(3x+4)</m>, we want to first distribute <m>2x</m>, and then we can apply the <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:<md>
+                            <mrow>2x(3x+4)\amp=2x(3x)+2x(4)</mrow>
+                            <mrow>\amp=6x^2+8x</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>We will use the distributive property first, and then apply <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:<md>
+                            <mrow>3x^2(5x-2)\amp=3x^2(5x)-3x^2(2)</mrow>
+                            <mrow>\amp=15x^3-6x^2</mrow>
+                        </md></p>
+                    </li>
+                    <li>
+                        <p>We will use the distributive property first, and then apply <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:<md>
+                            <mrow>x^3-3x^2(5x-2)\amp=x^3-3x^2(5x)-(-3x^2)(2)</mrow>
+                            <mrow>\amp=x^3-15x^3+6x^2</mrow>
+                            <mrow>\amp=-14x^3+6x^2</mrow>
+                        </md></p>
+                    </li>
+                </ol></p>
+            </solution>
+        </example>
+
+    </subsection>
 
 
-
-<example>
-    <statement>
-        <p>Simplify the following expressions using the rules of exponents.
-        <ol>
-            <li><p><m>-2t^3\cdot 4t^5</m></p></li>
-            <li><p><m>5\left(v^4\right)^2</m></p></li>
-            <li><p><m>4(3u)^2</m></p></li>
-        </ol></p>
-    </statement>
-    <solution>
-        <p><ol>
-            <li><p>To simplify <m>-2t^3\cdot 4t^5</m>, we want to multiply and simplify the constant factors and then apply the <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:
-            <md>
-                <mrow>-2t^3\cdot 4t^5 \amp=-2\cdot 4 \cdot t^3\cdot t^5</mrow>
-                <mrow>\amp=-8t^{3+5}</mrow>
-                <mrow>\amp=-8t^8</mrow>
-            </md></p></li>
-            <li><p>To start simplifying <m>5\left(v^4\right)^2</m>, we want to first identify that the factor of <m>5</m> is <em>outside</em> the parentheses to which the exponent of <m>2</m> applies. According to the order of operations, this means that we will first apply the exponent and then multiply. In applying this exponent, we'll use <xref ref="item-exponent-on-an-exponent-rule">exponent rule</xref>:
-            <md>
-                <mrow>5\left(v^4\right)^2 \amp=5\left(v^{4\cdot 2}\right)</mrow>
-                <mrow>5v^8</mrow>
-            </md></p></li>
-            <li><p>As we simplify <m>4(3u)^2</m>, we will again note that the exponent of <m>2</m> only applies to part of the expression. This means that we will first simplify <m>(3u)^2</m> according to the <xref ref="item-exponent-on-an-exponent-rule">exponent rule</xref>:
-            <md>
-                <mrow>4(3u)^2</mrow>
-                <mrow>4\left(3^2\cdot u^2\right)</mrow>
-                <mrow>4\left(9u^2\right)</mrow>
-                <mrow>36u^2</mrow>
-            </md></p></li>
-        </ol></p>
-    </solution>
-</example>
-
-<remark><p>We cannot simplify an expression like <m>x^2y^3</m> using the rules of exponents. If we tried to apply <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>, we'd get stuck as the two terms do not have the same base. (One has <m>x</m> as a base and the other has <m>y</m>). If we tried to apply  <xref ref="item-exponent-on-an-exponent-rule">exponent rule</xref>, we'd get stuck as the exponents on each are not the same. (One has an exponent of <m>2</m> whereas the other has an exponent of <m>3</m>.)</p></remark>
-
-<example>
-    <statement>
-        <p>Simplify the following expressions using the rules of exponents and the distributive property.
-        <ol>
-            <li><p><m>2x(3x+4)</m></p></li>
-            <li><p><m>3x^2(5x-2)</m></p></li>
-        </ol></p>
-    </statement>
-    <solution>
-        <p><ol>
-            <li><p>To simplify <m>2x(3x+4)</m>, we want to first distribute <m>2x</m>, and then we can apply the <xref ref="item-product-to-sum-exponent-rule">exponent rule</xref>:
-            <md>
-                <mrow>2x(3x+4)\amp=2x(3x)+2x(4)</mrow>
-                <mrow>6x^2+8x</mrow>
-            </md></p></li>
-            <li><p>To start simplifying <m>5\left(v^4\right)^2</m>, we want to first identify that the factor of <m>5</m> is <em>outside</em> the parentheses to which the exponent of <m>2</m> applies. According to the order of operations, this means that we will first apply the exponent and then multiply. In applying this exponent, we'll use <xref ref="item-exponent-on-an-exponent-rule">exponent rule</xref>:
-            <md>
-                <mrow>3x^2(5x-2)\amp=3x^2(5x)-3x^2(2)</mrow>
-                <mrow>\amp=15x^3-6x^2</mrow>
-            </md></p></li>
-        </ol></p>
-    </solution>
-</example>
-
-</subsection>
-
-
-<exercises>
+    <exercises>
        <exercisegroup>
             <introduction>
                 <p>These exercises involve the concepts of like terms and the commutative, associative, and distributive properties.</p>
             </introduction>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyAddition10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyMultiplication10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyAddition20.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyAddition30.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyMultiplication30.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty20.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty40.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty50.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty60.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty70.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty80.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty90.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/IdentifyProperties10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/SimplifyInContext10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/AlgebraicProperties/SimplifyInContext10.pg" seed="1"/>
-        </exercise>
-</exercisegroup>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/inverses10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/inverses20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyAddition10.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyAddition20.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyAddition30.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/AssociativePropertyMultiplication10.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyAddition10.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyAddition20.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyAddition30.pg" seed="2"/>
+            </exercise>
+            <exercise>
+            	<webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyMultiplication10.pg" seed="2"/>
+            </exercise>
+            <exercise>
+            	<webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyMultiplication20.pg" seed="2"/>
+            </exercise>
+            <exercise>
+            	<webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyMultiplication30.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty10.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty20.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty30.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty40.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty50.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty60.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty70.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty80.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty90.pg" seed="2"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/IdentifyProperties10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/SimplifyInContext10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/SimplifyInContext10.pg" seed="2"/>
+            </exercise>
+        </exercisegroup>
 
-<exercisegroup>
+        <exercisegroup>
             <introduction>
                 <p>These exercises involve the rules of exponents.</p>
             </introduction>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication0.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication09.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication20.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication23.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication25.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication30.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/Exponents/exponentsMultiplication45.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication0.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication5.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication10.pg" seed="1"/>
-        </exercise>
-    <exercise>
-        <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication15.pg" seed="1"/>
-        </exercise>
-</exercisegroup>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication0.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication09.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication23.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication25.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication45.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/exponentsMultiplication44.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication0.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication5.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication15.pg" seed="1"/>
+            </exercise>
+        </exercisegroup>
 
-</exercises>
+        <exercisegroup>
+            <introduction>
+                <p>These exercises involve rules of exponents and combining like terms.</p>
+            </introduction>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill40.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill50.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill60.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill70.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill80.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/ExpressionAlgebraSkill90.pg" seed="1"/>
+            </exercise>
+        </exercisegroup>
+
+        <exercisegroup>
+            <introduction>
+                <p>These exercises involve the distributive property and rules of exponents.</p>
+            </introduction>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty21.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty22.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty41.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty51.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty52.pg" seed="1"/>
+            </exercise>
+        </exercisegroup>
+    </exercises>
 </section>
