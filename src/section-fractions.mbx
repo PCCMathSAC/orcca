@@ -18,198 +18,492 @@
 
     <title>Fractions and Fraction Arithmetic</title>
 
-    <aside>
-        <title>Drawings</title>
-        <p>Illustrations in this section are <em>rough</em>; hopefully they make sense with the exposition and examples. Ralf's open to any suggestions for making them prettier (tikz, better drawings, a combination of the two, etc.)</p>
-
-    </aside>
     <subsection>
 
-        <title>Loving Fractions</title>
+        <title>Appreciating Fractions</title>
 
-        <p>Many people hate fractions. This is understandable, since fraction arithmeitc seems to be presented as torture to many elementary school students. But hating fractions is terrible. Fractions are for sharing, and sharing is good. So it's important that we all work on learning to love fractions. Love is difficult without understanding, so let's work on understanding fractions better.</p>
+        <p>Many people find fractions frustrating to calculate with. Having an open-minded attitude is possibly the most important thing you can do to combat this. Fractions are for sharing, and sharing is good. So it's important that we work on learning to appreciate fractions. Appreciation is difficult without understanding, so let's work on understanding fractions better.</p>
 
-        <p>The word <q>fraction</q> comes from the Latin word <em>fractio</em>, which means <q>break into pieces.</q> Ancient cultures all over the world uses fractions to understand parts of wholes, but it took humanity thousands of years to develop the symbols we use today.</p>
+        <p>The word <q>fraction</q> comes from the Latin word <foreign>fractio</foreign>, which means <q>break into pieces.</q> Ancient cultures all over the world uses fractions to understand parts of wholes, but it took humanity thousands of years to develop the symbols we use today.</p>
 
-        <p> If we use a rectangle to represent a whole amount, we can sketch fractions to help us develop our understanding of these numbers. (At least one of the authors still sketches fractions like this to help themself understand fractions better.)</p>
+        <subsubsection>
+            <title>Parts of a Whole</title>
 
-        <todo>illustrations of 1 whole amount and 3/7 of that whole amount</todo>
-        <figure>
-            <image source = "images/fractions-one-whole-and-three-sevenths-low-res.jpg" width = "50%">
-                        <description></description>
-                    </image>
-        </figure> 
+            <p>One approach to understanding fractions is to think of them as counting parts of a whole.</p>
 
-        <p>In the figure, we see <m>1</m> whole amount divided into <m>7</m> parts. Since <m>3</m> of the <m>7</m> parts are highlighted, we have an illustration of the fraction <m>\frac{3}{7}</m>. The denominator <m>7</m> lets us know how many equal parts of the whole amount we're considering; since we've got <m>7</m> parts here, they're called <q>sevenths</q>. The <term>numerator</term> <m>3</m> tells us how many of those sevenths we're considering.</p>
+            <figure xml:id="figure-fraction">
+                <caption>Representing <m>\frac{3}{7}</m> as parts of a whole.</caption>
+                <image width="75%">
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \draw (0,1.5) rectangle (7,2.5);
+                            \node at (3.5,2) {1};
+                            \draw (0,0) rectangle (7,1);
+                            \draw[fill=red!20] (0,0) rectangle (3,1);
+                            \draw (1,0)--(1,1);
+                            \draw (2,0)--(2,1);
+                            \draw (3,0)--(3,1);
+                            \draw (4,0)--(4,1);
+                            \draw (5,0)--(5,1);
+                            \draw (6,0)--(6,1);
+                            \node at (0.5,0.5) {$\frac{1}{7}$};
+                            \node at (1.5,0.5) {$\frac{1}{7}$};
+                            \node at (2.5,0.5) {$\frac{1}{7}$};
+                            \node at (9,2) {one whole};
+                            \node at (9,0.5) {three sevenths};
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
 
+            <p>In <xref ref="figure-fraction">Figure</xref>, we see <m>1</m> whole amount divided into <m>7</m> parts. Since <m>3</m> of the <m>7</m> parts are highlighted, we have an illustration of the fraction <m>\frac{3}{7}</m>. The <term>denominator</term> <m>7</m> lets us know how many equal parts of the whole amount we're considering; since we've got <m>7</m> parts here, they're called <q>sevenths</q>. The <term>numerator</term> <m>3</m> tells us how many of those sevenths we're considering.</p>
 
-        <todo>Same figure as above into exercise statement.</todo>
-        <todo>figure with highligthed whole amount after first p in solution</todo>
-        <todo>figure with seven thirds highlighted after second p in solution</todo>
+            <exercise>
+                <title>A Fraction as Parts of a Whole</title>
+                <webwork>
+                    <statement>
+                        <p>To visualize the fraction <m>\frac{14}{35}</m>, you might cut a rectangle into <var name="35" width="2" /> equal parts, and then count up <var name="14" width="2" /> of them.</p>
+                    </statement>
+                </webwork>
+            </exercise>
 
-        <exercise>
-            <statement>
-                <p>Identify the whole amount and the parts we're considerig in the figure for the fraction <m>\frac{7}{3}</m>.</p>
+            <p>Instead of using rectangles, we can also locate fractions on number lines. When a number line is marked off with whole numbers, equal divisions of the unit <m>1</m> can represent the equal parts, as in <xref ref="figure-fraction-number-line">Fraction</xref>.</p>
 
-            <todo>Wrong figure here still---good one sent via email FractionsIV</todo>
-                <figure>
-                    <image source = "images/fractions-one-whole-and-three-sevenths-low-res.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
-            </statement>
+            <figure xml:id="figure-fraction-number-line">
+                <caption>Representing <m>\frac{3}{7}</m> on a number line.</caption>
+                <image width="75%">
+                    <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline,
+                                    xmin=-1.5,xmax=1.5,
+                                    xtick={-1,0,1},
+                                    minor xtick={-2,-1.8571428,...,2},
+                                    extra x ticks={0.42},
+                                    extra x tick labels={$\frac{3}{7}$},
+                                    ]
+                            \addplot[primarycurve, -, smooth] coordinates {(0,0) (0.071428,0.5) (0.142857,0)};
+                            \addplot[primarycurve, -, smooth] coordinates {(0.142857,0) (0.214228,0.5) (0.285714,0)};
+                            \addplot[primarycurve,->, smooth] coordinates {(0.285714,0) (0.35714,0.5) (0.42857,0)};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
 
-            <solution>
-                <p>Looking for seven thirds, we must identify <m>3</m> equal parts as our whole.</p>
-                <p>Then we can identify <m>7</m> of those parts as our fractional amount.</p>
-                <p>We can use the same illustration for fractions <m>\frac{3}{7}</m> and <m>\frac{7}{3}</m> (fractions for which the roles of numerator and denominator are reversed are called <term>reciprocals</term>), but we need to change our perspective to <em>see</em> the whole amount of interest.</p>
-            <todo>solution figure!</todo>
-            </solution>
-        </exercise>
+            <exercise>
+                <title>A Fraction on a Number Line</title>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $numberline=init_graph(-1.5,-0.15,1.5,0.15,size=>[400,40]);
+                            $numberline->moveTo(-1.5,0);
+                            $numberline->lineTo(1.5,0,'black');
+                            for my$i(-12..12){$numberline->moveTo($i/8,-0.05);$numberline->lineTo($i/8,0.05,'black');};
+                            $numberline->lb(new Label(0,-0.05,"0",'black','center','top'));
+                            $numberline->lb(new Label(1,-0.05,"1",'black','center','top'));
+                            $numberline->lb(new Label(-1,-0.05,"-1",'black','center','top'));
+                            $numberline->stamps(closed_circle(5/8,0,'blue'));
+                            Context("LimitedFraction");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>In the given number line, what fraction is marked?</p>
+                        <figure>
+                            <image pg-name="$numberline" height="40"/>
+                        </figure>
+                        <p>The mark represents the fraction <var name="5/8" width="5" />.</p>
+                    </statement>
+                    <hint>
+                        <p>Count how many subdivisions there are between <m>0</m> and <m>1</m>.</p>
+                    </hint>
+                </webwork>
+            </exercise>
+        </subsubsection>
 
-        <p>We can also represent fractions on number lines. When a number line is marked off with whole numbers, we use the unit <m>1</m> as our whole amount, and equal divisions of the unit <m>1</m> for our equal parts like so:</p>
+        <subsubsection>
+            <title>Division</title>
 
-        <todo>(reciprocals 3/7 and 7/3 on two number lines.)</todo>
-                <figure>
-                    <image source = "images/fractions-number-line-three-sevenths.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
+            <p>Another helpful way to understand fractions like <m>\frac{3}{7}</m> is to see them as division of the numerator by the denominator. In this case, <m>3</m> is divided into <m>7</m> parts, as in <xref ref="figure-fraction-division">Figure</xref>.</p>
 
-                <figure>
-                    <image source = "images/fractions-number-line-seven-thirds.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
-        <p>As soon as we'd like to graph fractions with different denominators on the same number line, the picture gets more complicated. To graph both <m>\frac{2}{3}</m> and <m>\frac{2}{5}</m> on the same number line, we need to divide up our whole so we can see <m>3</m> equal parts and <m>5</m> equal parts. That requires us to divide the unit <m>1</m> into <m>3 \cdot 5 = 15</m> equal parts like so:</p>
+            <figure xml:id="figure-fraction-division">
+                <caption>Representing <m>\frac{3}{7}</m> on a number line.</caption>
+                <image width="75%">
+                    <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline,
+                                    xmin=-4,xmax=4,
+                                    xtick={-4,-3,...,4},
+                                    minor xtick={{}},
+                                    extra x ticks={0.42},
+                                    extra x tick labels={$\frac{3}{7}$},
+                                    ]
+                            \addplot[guideline] coordinates {(0,0) (0,1) (3,1) (3,0)};
+                            \addplot[guideline,<-] coordinates {(0.428571,0) (0.428571,1)} node[above] {$3$ divided by $7$};
+                            \addplot[guideline] coordinates {(0.857142,0.8) (0.857142,1)};
+                            \addplot[guideline] coordinates {(1.285714,0.8) (1.285714,1)};
+                            \addplot[guideline] coordinates {(1.71428,0.8) (1.71428,1)};
+                            \addplot[guideline] coordinates {(2.142857,0.8) (2.1428575,1)};
+                            \addplot[guideline] coordinates {(2.571428,0.8) (2.5714282,1)};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
 
-        <todo>(number line with both 2/3 and 2/5 graphed carefully.)</todo>
-                <figure>
-                    <image source = "images/fractions-number-line-two-thirds-and-two-fifths.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
-
-        <p>How about rectangular sketches for <m>\frac{2}{3}</m> and <m>\frac{2}{5}</m> on the same scale? We can break <m>1</m> whole amount into parts more than one way:</p>
-
-        <todo>(Look at “candy bars” representing 1, 2/3, and 2/5.)</todo>
-                <figure>
-                    <image source = "images/fractions-rectangles-whole-two-thirds-and-two-fifths.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
-
-        <p>On both the number line and the rectangular sketches, we can see <m>15</m> equal parts. Then <m>\frac{2}{3}</m> is the same part of the whole as <m>\frac{10}{15}</m>. That means <m>\frac{2}{3} = \frac{10}{15}</m>. We can also see that <m>\frac{2}{5}=\frac{6}{15}</m>. <term>Equivalent fractions</term> are fractions written with different numerators and denominators which both represent the same part of a whole.</p>
-
-        <p>Loving fractions is challenging, but if we focus on the the basic idea that <m>\frac{2}{3}</m> means <q>two of three equal parts of a whole amount</q> and we have a few ways to <em>see</em> that value, we've got the basic understanding we need.</p>
-
-        <p>Once we've got some love for fractions, we start to notice them everywhere. Especially in recipes.</p>
-    </subsection>
-
-    <subsection>
-        <title>Mixed Numbers and Improper Fractions</title>
-        <p>A simple recipe for bread contains only a few ingredients:</p>
-
-        <todo>reference</todo>
-        <table xml:id="table-bread-recipe">
-            <caption>Ingredients for simple crusty bread.</caption>
-            <tabular>
-                <row>
-                    <cell><m>1\, 1/2</m></cell>
-                    <cell>tablespoons yeast</cell>
-                </row>
-                <row>
-                    <cell><m>1\, 1/2</m></cell>
-                    <cell>tablespoons kosher salt</cell>
-                </row>
-                <row>
-                    <cell><m>6\, 1/2</m></cell>
-                    <cell>cups unbleached, all-purpose flour (more for dusting)</cell>
-                </row>
-            </tabular>
-        </table>
-
-        <p>Each ingredient is listed as a <term>mixed number</term> that quickly communicates how many whole amounts and how many parts are needed. Unfortunately, mixed number notation didn't catch on among mathematicians or computer scientists, so we will need to use <term>improper fractions</term> (fractions whose numerators are greater than their denominators) to represent these amounts in our work. How to do so?</p>
-
-        <todo>Should this be an Example?</todo>
-        <p>Let's <q>see</q> the fraction for <m>1\, 1/2</m> tablespoons of yeast using the number line:</p>
-
-        <todo>(Picture of 1 1/2 on the number line)</todo>
-                <figure>
-                    <image source = "images/fractions-number-line-one-and-a-half.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
-
-        <p>On the number line, we quickly <q>see</q> that there are <m>3</m> halves, so <m>1\, 1/2 = 3/2</m>.</p>
-
-        <p>Let’s look at <m>6\, 1/2</m> cups of flour using our sketches of whole amounts.</p>
-
-        <todo>(Picture of 6 1/2 whole rectangles)</todo>
-                <figure>
-                    <image source = "images/fractions-rectangles-six-and-a-half.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
-
-        <p>With <m>6</m> whole cups, we have <m>6 \cdot 2 = 12</m> half cups, or the fraction <m>\frac{12}{2}</m>. Adding one more half cup, we have <m>6\, 1/2 + 1/2 = 12/2 + 1/2 = 13/2</m> cups of flour.</p>
-
-
-        <p>Here's a reminder of how adding fractions with the same denominator works. Since <m>\frac{12}{2}</m> means <q>twelve halves</q> and <m>\frac{1}{2}</m> means <q>one half,</q> <m>\frac{12}{2} + \frac{1}{2}</m> must mean <q>twelve halves plus one more half</q> or <q>thirteen halves.</q> Using mathematical symbols, we write <m>\frac{12}{2} + \frac{1}{2} = \frac{12+1}{2} = \frac{13}{2}</m>. Adding <m>12</m> and <m>1</m> in the numerator makes sense because the terms <m>12</m> and <m>1</m> both represent amounts of halves. That gives a rule for adding fractions with the same denominator: <m>\frac{a}{b} + \frac{c}{b} = \frac{a+c}{b}</m>.</p>
+            <exercise>
+                <title>Seeing a Fraction as Division Arithmetic</title>
+                <webwork>
+                    <statement>
+                        <p>The fraction <m>\frac{21}{40}</m> can be thought of as dividing <var name="21" width="5" /> by <var name="40" width="5" />. In other words, dividing the whole number <var name="21" width="5" /> into <var name="40" width="5" /> equal-sized parts.</p>
+                    </statement>
+                </webwork>
+            </exercise>
+        </subsubsection>
     </subsection>
 
     <subsection>
         <title>Equivalent Fractions</title>
-        <p>Still need this section after discussion above?</p>
+        <p>It's common to have two fractions that represent the same amount. Consider <m>\frac{2}{5}</m> and <m>\frac{6}{15}</m> represented in various ways in <xref ref="figure-equivalent-fractions">Figure</xref>.</p>
+
+        <sbsgroup xml:id="figure-equivalent-fractions">
+            <caption>Various ways to see that <m>\frac{2}{5}=\frac{6}{15}</m></caption>
+            <sidebyside widths="47% 47%">
+                <figure>
+                    <caption><m>\frac{2}{5}</m> as parts of a whole</caption>
+                    <image>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \draw (0,1.5) rectangle (5,2.5);
+                                \node at (2.5,2) {1};
+                                \draw (0,0) rectangle (5,1);
+                                \draw[fill=red!20] (0,0) rectangle (2,1);
+                                \draw (1,0)--(1,1);
+                                \draw (2,0)--(2,1);
+                                \draw (3,0)--(3,1);
+                                \draw (4,0)--(4,1);
+                                \node at (0.5,0.5) {$\frac{1}{5}$};
+                                \node at (1.5,0.5) {$\frac{1}{5}$};
+                                \node at (2.5,0.5) {$\frac{1}{5}$};
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+                <figure>
+                    <caption><m>\frac{6}{15}</m> as parts of a whole</caption>
+                    <image>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \draw (0,1.5) rectangle (5,2.5);
+                                \node at (2.5,2) {1};
+                                \draw (0,0) rectangle (5,1);
+                                \draw[fill=red!20] (0,0) rectangle (2,1);
+                                \draw (0.3333,0)--(0.3333,1);
+                                \draw (0.6667,0)--(0.6667,1);
+                                \draw (1,0)--(1,1);
+                                \draw (1.3333,0)--(1.3333,1);
+                                \draw (1.6667,0)--(1.6667,1);
+                                \draw (2,0)--(2,1);
+                                \draw (2.3333,0)--(2.3333,1);
+                                \draw (2.6667,0)--(2.6667,1);
+                                \draw (3,0)--(3,1);
+                                \draw (3.3333,0)--(3.3333,1);
+                                \draw (3.6667,0)--(3.6667,1);
+                                \draw (4,0)--(4,1);
+                                \draw (4.3333,0)--(4.3333,1);
+                                \draw (4.6667,0)--(4.6667,1);
+                                \node at (0.1667,0.5) {$\frac{1}{15}$};
+                                \node at (0.5,0.5) {$\frac{1}{15}$};
+                                \node at (0.8333,0.5) {$\frac{1}{15}$};
+                                \node at (1.1667,0.5) {$\frac{1}{15}$};
+                                \node at (1.5,0.5) {$\frac{1}{15}$};
+                                \node at (1.8333,0.5) {$\frac{1}{15}$};
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            </sidebyside>
+            <sidebyside widths="47% 47%">
+                <figure>
+                    <caption><m>\frac{2}{5}</m> on a number line</caption>
+                    <image>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline,
+                                            xmin=-1.5,xmax=1.5,
+                                            xtick={-1,0,1},
+                                            minor xtick={-2,-1.8,...,2},
+                                            extra x ticks={0.4},
+                                            extra x tick labels={$\frac{2}{5}$},
+                                            ]
+                                    \addplot[primarycurve, -, smooth] coordinates {(0,0) (0.1,0.5) (0.2,0)};
+                                    \addplot[primarycurve, -, smooth] coordinates {(0.2,0) (0.3,0.5) (0.4,0)};
+                                    \addplot[primarycurve,->, smooth] coordinates {(0.4,0) (0.5,0.5) (0.6,0)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+                <figure>
+                    <caption><m>\frac{6}{15}</m> on a number line</caption>
+                    <image>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline,
+                                            xmin=-1.5,xmax=1.5,
+                                            xtick={-1,0,1},
+                                            minor xtick={-2,-1.9333333,...,2},
+                                            extra x ticks={0.4},
+                                            extra x tick labels={$\frac{6}{15}$},
+                                            ]
+                                    \addplot[primarycurve, -, smooth] coordinates {(0,0) (0.0333333,0.5) (0.0666667,0)};
+                                    \addplot[primarycurve, -, smooth] coordinates {(0.0666666,0) (0.1,0.5) (0.1333333,0)};
+                                    \addplot[primarycurve,->, smooth] coordinates {(0.1333333,0) (0.1666667,0.5) (0.2,0)};
+                                    \addplot[primarycurve,->, smooth] coordinates {(0.2,0) (0.2333333,0.5) (0.2666667,0)};
+                                    \addplot[primarycurve, -, smooth] coordinates {(0.2666666,0) (0.3,0.5) (0.3333333,0)};
+                                    \addplot[primarycurve,->, smooth] coordinates {(0.3333333,0) (0.3666667,0.5) (0.4,0)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+             </sidebyside>
+            <sidebyside widths="47% 47%">
+                <figure>
+                    <caption><m>\frac{2}{5}</m> as <m>2\div5</m></caption>
+                    <image>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[numberline,
+                                        xmin=-2,xmax=8,
+                                        xtick={-2,-1,...,8},
+                                        minor xtick={{}},
+                                        extra x ticks={0.4},
+                                        extra x tick labels={$\frac{2}{5}$},
+                                        ]
+                                \addplot[guideline] coordinates {(0,0) (0,1) (2,1) (2,0)};
+                                \addplot[guideline,<-] coordinates {(0.4,0) (0.4,1)} node[above] {$2$ divided by $5$};
+                                \addplot[guideline] coordinates {(0.8,0.8) (0.8,1)};
+                                \addplot[guideline] coordinates {(1.2,0.8) (1.2,1)};
+                                \addplot[guideline] coordinates {(1.6,0.8) (1.6,1)};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+                <figure>
+                    <caption><m>\frac{6}{15}</m> as <m>6\div15</m></caption>
+                    <image>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[numberline,
+                                        xmin=-2,xmax=8,
+                                        xtick={-2,-1,...,8},
+                                        minor xtick={{}},
+                                        extra x ticks={0.4},
+                                        extra x tick labels={$\frac{6}{15}$},
+                                        ]
+                                \addplot[guideline] coordinates {(0,0) (0,1) (6,1) (6,0)};
+                                \addplot[guideline,<-] coordinates {(0.4,0) (0.4,1)} node[above] {$6$ divided by $15$};
+                                \addplot[guideline] coordinates {(0.8,0.8) (0.8,1)};
+                                \addplot[guideline] coordinates {(1.2,0.8) (1.2,1)};
+                                \addplot[guideline] coordinates {(1.6,0.8) (1.6,1)};
+                                \addplot[guideline] coordinates {(2,0.8) (2,1)};
+                                \addplot[guideline] coordinates {(2.4,0.8) (2.4,1)};
+                                \addplot[guideline] coordinates {(2.8,0.8) (2.8,1)};
+                                \addplot[guideline] coordinates {(3.2,0.8) (3.2,1)};
+                                \addplot[guideline] coordinates {(3.6,0.8) (3.6,1)};
+                                \addplot[guideline] coordinates {(4,0.8) (4,1)};
+                                \addplot[guideline] coordinates {(4.4,0.8) (4.4,1)};
+                                \addplot[guideline] coordinates {(4.8,0.8) (4.8,1)};
+                                \addplot[guideline] coordinates {(5.2,0.8) (5.2,1)};
+                                \addplot[guideline] coordinates {(5.6,0.8) (5.6,1)};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+             </sidebyside>
+        </sbsgroup>
+
+        <p>These fractions, <m>\frac{2}{5}</m> and <m>\frac{6}{15}</m> are equal, as each of the figures demonstrates. Also, because they each equal <m>0.4</m> as a decimal. If we must work with this number, the fraction that uses smaller numbers, <m>\frac{2}{5}</m>, is preferable. Working with smaller numbers decreases the likelihood of making a human arithmetic error. And it also increases the chances that you might make useful observations about the nature of that number.</p>
+
+        <p>So if you are handed a fraction like <m>\frac{6}{15}</m>, it is important to try to <term>reduce</term> it to <q>lowest terms.</q><index><main>reduced fraction</main></index> The most important skill you can have to help you do this is to know the multiplciation table very well. If you know it well, you know that <m>6=2\cdot3</m> and <m>15=3\cdot5</m>, so you know<md>
+            <mrow>\frac{6}{15}\amp=\frac{2\cdot3}{3\cdot5}</mrow>
+            <mrow>\amp=\frac{2\cdot\cancelto{1}{3}}{\cancelto{1}{3}\cdot5}</mrow>
+            <mrow>\amp=\frac{2}{5}</mrow>
+        </md>. Both the numerator and denominator were divisible by <m>3</m>, so they could be <q>factored out</q> and then as factors, canceled out.</p>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <var name="$f[0]">
+                        <static>\frac{1}{3}</static>
+                    </var>
+                    <var name="$f[1]">
+                        <static>\frac{4}{15}</static>
+                    </var>
+                    <var name="$f[2]">
+                        <static>\frac{7}{9}</static>
+                    </var>
+                    <pg-code>
+                        Context("LimitedFraction");
+                        @f=(Fraction(1,3),Fraction(4,15),Fraction(7,9));
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Reduce these fractions into lowest terms.<ol label="a">
+                        <li>
+                            <p><m>\dfrac{14}{42}=</m><var name="$f[0]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\dfrac{8}{30}=</m><var name="$f[1]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\dfrac{70}{90}=</m><var name="$f[2]" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p>With <m>\frac{14}{42}</m>, we have <m>\frac{2\cdot7}{2\cdot3\cdot7}</m>, which reduces to <m>\frac{1}{3}</m>.</p>
+                    <p>With <m>\frac{8}{30}</m>, we have <m>\frac{2\cdot2\cdot2}{2\cdot3\cdot5}</m>, which reduces to <m>\frac{4}{15}</m>.</p>
+                    <p>With <m>\frac{70}{90}</m>, we have <m>\frac{7\cdot10}{9\cdot10}</m>, which reduces to <m>\frac{7}{9}</m>.</p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <p>Sometimes it is useful to do the opposite of reducing a fraction, and <term>build up</term> the fraction to use larger numbers.</p>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("LimitedRadical");
+                        $p=Formula("84/100");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Sayid scored <m>\frac{21}{25}</m> on a recent exam. Build up this fraction so that the denominator is <m>100</m>, so that Sayid can understand what percent score he earned.</p>
+                    <p><var name="$p" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>To change the denominator from <m>25</m> to <m>100</m>, it needs to be multiplied by <m>4</m>. So we calculate<md>
+                        <mrow>\frac{21}{25}\amp=\frac{21\cdot4}{25\cdot4}</mrow>
+                        <mrow>\amp=\frac{84}{100}</mrow>
+                    </md></p>
+                    <p>So the fraction <m>\frac{21}{25}</m> is equivalent to <m>\frac{84}{100}</m>. (This means Sayid scored an <m>84/%</m>.</p>
+                </solution>
+            </webwork>
+        </exercise>
     </subsection>
 
     <subsection>
-        <title>Multiplying and dividing fractions</title>
-        <p>To double or half a recipe, we need to consider fractions of fractions. Say a recipe calls for ⅔ cup of milk, but we’d like to double it. Using rectangular sketches exactly how we’d use a measuring cup in life we have:</p>
+        <title>Multiplying with Fractions</title>
+        <p>To double a recipe or cut it in half, we need to consider fractions of fractions.</p>
 
-        <todo>(two rectangles with ⅔ highlighted)</todo>
-                <figure>
-                    <image source = "images/fractions-rectangles-two-thirds-times-two.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
+        <example>
+            <p>Say a recipe calls for <m>\frac{2}{3}</m> cup of milk, but we’d like to double the recipe. One way to measure this out is to fill a measuring cup to <m>\frac{2}{3}</m>, two times:</p>
 
-        <p>So <m>\frac{2}{3} \cdot 2 = \frac{4}{3}</m>. This sketch shows <m>\frac{2}{3}</m> of two wholes. Two wholes can be written as <m>2</m>, or as the fraction <m>\frac{2}{1}</m>. So mathematically, our figure says <m>\frac{2}{3} \cdot 2 = \frac{2}{3} \cdot \frac{2}{1} = \frac{4}{3}</m>.</p>
+            <figure>
+                <image width="47%">
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \draw (0,0) rectangle (3,3);
+                            \draw (4,0) rectangle (7,3);
+                            \fill[color=blue!20] (0,0) rectangle (3,2);
+                            \fill[color=blue!20] (4,0) rectangle (7,2);
+                            \draw (0,1) -- (3,1);
+                            \draw (0,2) -- (3,2);
+                            \draw (4,1) -- (7,1);
+                            \draw (4,2) -- (7,2);
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
 
-        <p>We can also see this on the number line:</p>
+            <p>Altogether there are four thirds of a whole here. So <m>\frac{2}{3} \cdot 2 = \frac{4}{3}</m>. The figure shows <m>\frac{2}{3}</m> of two wholes. Two wholes can be written as <m>2</m>, or as the fraction <m>\frac{2}{1}</m>. So mathematically, our figure says <me>\frac{2}{3} \cdot 2 = \frac{2}{3} \cdot \frac{2}{1} = \frac{4}{3}</me>.</p>
+        </example>
 
-        <todo>(number line indicated two 2/3s)</todo>
-                <figure>
-                    <image source = "images/fractions-number-line-two-thirds-times-two.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
+        <example>
+            <p>We could also use multiplication to decrease amounts. How much is <m>\frac{1}{2}</m> of <m>\frac{2}{3}</m> cup?</p>
 
-        <p>The number line also shows that <m>\frac{2}{3} \cdot 2 = \frac{4}{3}</m>.</p>
+            <figure>
+                <image width="18.8%">
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \draw (0,0) rectangle (3,3);
+                            \fill[color=blue!05] (0,0) rectangle (1.5,2);
+                            \fill[color=blue!20] (1.5,0) rectangle (3,2);
+                            \draw[dashed] (1.5,0) -- (1.5,3);
+                            \draw (0,1) -- (3,1);
+                            \draw (0,2) -- (3,2);
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
 
-        <p>We can also use multiplication to decrease amounts. How much is <m>\frac{1}{2}</m> of <m>\frac{2}{3}</m> cup? Looking at a sketch of <m>\frac{2}{3}</m>:</p>
+            <p>So <m>\frac{1}{2}</m> of <m>\frac{2}{3}</m> cup is <m>\frac{2}{6}</m> cup. Mathematically, we can write <me>\frac{2}{3} \cdot \frac{1}{2} = \frac{2}{6}</me>.</p>
+        </example>
 
-        <todo>(rectangular sketch showing ⅔)</todo>
-                <figure>
-                    <image source = "images/fractions-rectangle-two-thirds.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
+        <p>In our two examples, we have observed that<md>
+            <mrow>\frac{2}{3}\cdot\frac{2}{1}\amp=\frac{2\cdot2}{3\cdot1}\amp\frac{2}{3}\cdot\frac{1}{2}\amp=\frac{2\cdot1}{3\cdot2}</mrow>
+        </md>This idea works generally, no matter what numbers are involved with the fractions.</p>
 
-        <p>We can <q>break</q> that in half like so:</p>
+        <fact>
+            <title>Multiplication with Fractions</title>
+            <statement>
+                <p>As long as <m>b</m> and <m>d</m> are not <m>0</m>, then fractions multiply this way:<me>\frac{a}{b} \cdot \frac{c}{d} = \frac{a\cdot c}{b \cdot d}</me></p>
+            </statement>
+        </fact>
 
-        <todo>(rectangular sketch showing 1/2 of ⅔)</todo>
-                <figure>
-                    <image source = "images/fractions-rectangle-one-half-of-two-thirds.jpg" width = "50%">
-                        <description></description>
-                    </image>
-                </figure> 
+        <p>Try some fraction multiplications for practice:</p>
+        <exercise>
+            <webwork>
+                <title>Fraction Multiplication Practice</title>
+                <setup>
+                    <var name="$f[0]">
+                        <static>\frac{10}{21}</static>
+                    </var>
+                    <var name="$f[1]">
+                        <static>20</static>
+                    </var>
+                    <var name="$f[2]">
+                        <static>-\frac{28}{15}</static>
+                    </var>
+                    <var name="$f[3]">
+                        <static>-\frac{14}{9}</static>
+                    </var>
+                    <pg-code>
+                        Context("LimitedFraction");
+                        @f=(Fraction(10,21),Fraction(20,1),Fraction(-28,15),Fraction(-14,9));
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify these fraction products.<ol label="a">
+                        <li>
+                            <p><m>\frac{1}{3}\cdot\frac{10}{7}=</m><var name="$f[0]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\frac{12}{3}\cdot\frac{15}{3}=</m><var name="$f[1]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>-\frac{14}{5}\cdot\frac{2}{3}=</m><var name="$f[2]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\frac{70}{27}\cdot\frac{12}{-20}=</m><var name="$f[3]" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
 
-        <p>So <m>\frac{1}{2}</m> of <m>\frac{2}{3}</m> cup is <m>\frac{2}{6}</m> cup. Mathematically, we can write <m>\frac{2}{3} \cdot \frac{1}{2} = \frac{2}{6}</m>.</p>
+    </subsection>
 
-        <p>This idea works generally, no matter what amounts we use: <m>\frac{a}{b} \cdot \frac{c}{d} = \frac{a\cdot c}{b \cdot d}</m>.</p>
+    <subsection>
+        <title>Division with Fractions</title>
 
-        <p>Multiplication works when we ask about <q>How much is this fraction of that amount?</q> Division answers the question <q>How many of those amounts fit into that amount?</q></p>
+        <!-- First stab at this has this scenario of measuring cups below. I find it confusing to read and possibly uninteresting to a typical student. Replacing with something less ambitious. -->
+
+        <!--<p>Multiplication works when we ask about <q>How much is this fraction of that amount?</q> Division answers the question <q>How many of those amounts fit into that amount?</q></p>
 
         <p>Suppose a baker lost their <m>\frac{1}{3}</m> cup measuring cup, and wanted to use a <m>\frac{1}{2}</m> cup measuring cup to measure out <m>\frac{2}{3}</m> cup of brown sugar. They'd need to answer <q>How many <m>\frac{1}{2}</m> cups are in <m>\frac{2}{3}</m> cup?</q> That is, they'd need to find <m>\frac{2}{3}</m> divided by <m>\frac{1}{2}</m>. Let's start by sketching amounts:</p>
 
@@ -242,16 +536,152 @@
 
         <p>If we look back at the sketch, and ask <q>How much is <m>\frac{2}{1}</m> of <m>\frac{2}{3}</m>?</q> Looking carefully, we <q>see</q> that <m>\frac{2}{3} \cdot \frac{2}{1} = \frac{4}{3}</m>. We've sketched both division and multiplication in one sketch. If we love fractions enough, we can <q>see</q> that <m>\frac{2}{3} \div \frac{1}{2} = \frac{2}{3} \cdot \frac{2}{1} = \frac{4}{3}</m>.</p>
 
-        <p>This works no matter what amounts we use as well: <m>\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \cdot \frac{d}{c} = \frac{ad}{bc}</m></p>
+        <p>This works no matter what amounts we use as well: <m>\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \cdot \frac{d}{c} = \frac{ad}{bc}</m></p>-->
+
+        <p>How does division with fractions work? Are we able to compute/simplify each of these examples?<me>3\div\frac{2}{7}\qquad\frac{18}{19}\div5\qquad\frac{14}{3}\div\frac{8}{9}\qquad\frac{\ \frac{2}{5}\ }{\frac{5}{2}}</me></p>
+
+        <p>Just as with whole number division, each of these expressions can be interpreted as asking <q>how many times does the denominator go into the numerator?</q> When the result itself is some fraction, this can be hard to process mentally. With <m>3\div\frac{2}{7}</m>, perhaps you can see that ten multiples of <m>\frac{2}{7}</m> will <em>almost</em> get you to <m>3</m>, because <m>10\cdot\frac{2}{7}=\frac{20}{7}</m> is just a little shy of <m>\frac{21}{7}=3</m>. But what do you make of the leftover <m>\frac{1}{7}</m>? It's challenging to interpret that correctly to get the correct final result.</p>
+
+        <p>The purely mechanical way to divide by a fraction is to recognize that:<ul>
+            <li>
+                <p>Multiplying a number by <m>\frac{a}{b}</m> and then immediately dividing the result by the same number <m>\frac{a}{b}</m> leaves the orignal number unchanged.</p>
+            </li>
+            <li>
+                <p>Multiplying a number by <m>\frac{a}{b}</m> and then immediately <em>multiplying</em> the result by <m>\frac{b}{a}</m> also leaves the orignal number unchanged. (Note that the numerators and denominators have switched places.) This must be true because in symbols, <m>{}\cdot\frac{a}{b}\cdot\frac{b}{a}={}\cdot\frac{ab}{ab}={}\cdot1</m>.</p>
+            </li>
+        </ul></p>
+
+        <p>It is reasonable to conclue that dividing by <m>\frac{a}{b}</m> is equivalent to multiplying by <m>\frac{b}{a}</m>.</p>
+
+        <fact>
+            <title>Division with Fractions</title>
+            <statement>
+                <p>As long as <m>b</m>, <m>c</m> and <m>d</m> are not <m>0</m>, then division with fractions works this way:<me>\frac{a}{b} \div \frac{c}{d} = \frac{a}{b}\cdot\frac{d}{c}</me> Then you may continue by using what you know about multiplying fractions.</p>
+            </statement>
+        </fact>
+
+        <example>
+            <p>With our examples from the beginning of this subsection:<md>
+                <mrow>3\div\frac{2}{7}\amp=3\highlight{{}\cdot\frac{7}{2}}\amp\frac{18}{19}\div5\amp=\frac{18}{19}\div\frac{\highlight{5}}{\highlight{1}}</mrow>
+                <mrow>\amp=\frac{\highlight{3}}{\highlight{1}}\cdot\frac{7}{2}\amp\amp=\frac{18}{19}\highlight{{}\cdot\frac{1}{5}}</mrow>
+                <mrow>\amp=\frac{21}{2}\amp\amp=\frac{18}{95}</mrow>
+                <mrow></mrow>
+                <mrow>\frac{14}{3}\div\frac{8}{9}\amp=\frac{14}{3}\highlight{{}\cdot\frac{9}{8}}\amp\frac{\ \frac{2}{5}\ }{\frac{5}{2}}\amp=\frac{2}{5}\highlight{{}\div{}}\frac{5}{2}</mrow>
+                <mrow>\amp=\frac{14}{\highlight{1}}\cdot\frac{\highlight{3}}{8}\amp\amp=\frac{2}{5}\highlight{{}\cdot\frac{2}{5}}</mrow>
+                <mrow>\amp=\frac{\highlight{7}}{1}\cdot\frac{3}{\highlight{4}}\amp\amp=\frac{4}{25}</mrow>
+                <mrow>\amp=\frac{21}{4}</mrow>
+            </md></p>
+        </example>
+
+        <p>Try some divisions with fractions for practice:</p>
+        <exercise>
+            <webwork>
+                <title>Fraction Division Practice</title>
+                <setup>
+                    <pg-code>
+                        Context("LimitedFraction");
+                        @f=(Fraction(7,30),Fraction(12,25),Fraction(-28,3),Fraction(-1400,99));
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify these fraction products.<ol label="a">
+                        <li>
+                            <p><m>\frac{1}{3}\div\frac{10}{7}=</m><var name="$f[0]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\frac{12}{5}\div5=</m><var name="$f[1]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>-14\div\frac{3}{2}=</m><var name="$f[2]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\frac{70}{9}\div\frac{11}{-20}=</m><var name="$f[3]" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
     </subsection>
 
-
     <subsection>
-        <title>Adding and subtracting fractions</title>
+        <title>Adding and Subtracting Fractions</title>
 
-        <p>With whole numbers and integers, operations of addition and subtraction are simple. As long as fractions are given with the same denominator, the situation remains simple as we discussed working with mixed numbers above, <me>\frac{12}{2} + \frac{1}{2} = \frac{12+1}{2} = \frac{13}{2}</me>.</p>
+        <p>With whole numbers and integers, operations of addition and subtraction are relatively straightforward. The situation is almost as straightforward with fractions <em>if the two fractions have the same denominator</em>. Consider <me>\frac{7}{2} + \frac{3}{2} = 7\text{ halves}+3\text{ halves}</me>. In the same way that <m>7</m> tacos and <m>3</m> tacos make <m>10</m> tacos, we have that <md alignment="alignat">
+            <mrow>7\text{ halves}\amp{}+{}\amp3\text{ halves}\amp=10\text{ halves}</mrow>
+            <mrow>\frac{7}{2}\amp{}+{}\amp\frac{3}{2}\amp=\frac{10}{2}</mrow>
+            <mrow>\amp\amp\amp=2</mrow>
+        </md>.</p>
 
-        <p>Whenever we'd like to combine fractional amounts that don't represent the same number of parts of a whole, finding sums and differences is more complicated. Luckily, we've already done some of the work. Let's add the fractions <m>\frac{2}{3}</m> and <m>\frac{2}{5}</m> together.</p>
+        <fact>
+            <title>Adding/Subtracting with Fractions Having the Same Denominator</title>
+            <statement>
+                <p>To add or subtract two fractions having the same denominator, <em>keep</em> that denominator, and add or subtract the numerators.<md>
+                    <mrow>\frac{a}{b}+\frac{c}{b}\amp=\frac{a+c}{b}\amp\frac{a}{b}-\frac{c}{b}\amp=\frac{a-c}{b}</mrow>
+                </md>If it's possible, useful, or required of you, simplify the result by reducing to lowest terms.</p>
+            </statement>
+        </fact>
+
+        <exercise>
+            <webwork>
+                <title>Fraction Addition/Subtraction Practice</title>
+                <setup>
+                    <var name="$f[0]">
+                        <static>\frac{11}{3}</static>
+                    </var>
+                    <var name="$f[1]">
+                        <static>\frac{4}{3}</static>
+                    </var>
+                    <pg-code>
+                        Context("LimitedFraction");
+                        @f=(Fraction(11,3),Fraction(4,3));
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Add or subtract these fractions.<ol label="a">
+                        <li>
+                            <p><m>\frac{1}{3}+\frac{10}{3}=</m><var name="$f[0]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>\frac{13}{6}-\frac{5}{6}=</m><var name="$f[1]" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <p>Whenever we'd like to combine fractional amounts that don't represent the same number of parts of a whole (that is, when the denominators are different), finding sums and differences is more complicated.</p>
+
+        <example>
+            <title>Quarters and Dimes</title>
+            <p>Find the sum <m>\frac{3}{4}+\frac{2}{10}</m>. Does this seem intimidating? Consider this:<ul>
+                <li>
+                    <p><m>\frac{1}{4}</m> of a dollar is a quarter, and so <m>\frac{3}{4}</m> of a dollar is <m>75</m> cents.</p>
+                </li>
+                <li>
+                    <p><m>\frac{1}{10}</m> of a dollar is a dime, and so <m>\frac{2}{10}</m> of a dollar is <m>20</m> cents.</p>
+                </li>
+            </ul></p>
+            <p>So if you know what to look for, the expression <m>\frac{3}{4}+\frac{2}{10}</m> is like adding <m>75</m> cents and <m>20</m> cents, which gives you <m>95</m> cents. As a fraction of one dollar, that is <m>\frac{95}{100}</m>. So we can report <me>\frac{3}{4}+\frac{2}{10}=\frac{95}{100}</me>. (Although we should probably reduce that last fraction to <m>\frac{19}{20}</m>.)</p>
+        </example>
+
+        <p>This example was not something you can apply to other fraction addition situations, because the denominators here worked especially well with money amounts. But there is something we can learn here. The fraction <m>\frac{3}{4}</m> was equivalent to <m>\frac{75}{100}</m>, and the other fraction <m>\frac{2}{10}</m> was equivalent to <m>\frac{20}{100}</m>. These <em>equivalent</em> fractions have the same denominator and are therefore <q>easy</q> to add. What we saw happen was:<md>
+            <mrow>\frac{3}{4}+\frac{2}{10}\amp=\frac{75}{100}+\frac{20}{100}</mrow>
+            <mrow>\amp=\frac{95}{100}</mrow>
+        </md></p>
+
+        <p>This realization gives us a strategy for adding (or subtracting) fractions.</p>
+
+        <fact>
+            <title>Adding/Subtracting Fractions with Different Denominators</title>
+            <statement>
+                <p>To add (or subtract) generic fractions together, use their denominators to find a <term>common denominator</term>. This means some whole number that is a whole multiple of both of the original denominators. Then rewrite the two fractions as <em>equivalent</em> fractions that use this common denominator. Write the result be <em>keeping</em> that denominator and adding (or subtracting) the numerators. Reduce the fraction if that is useful or required.</p> 
+            </statement>
+        </fact>
+
+        <!-- Original content below being commented out by Alex -->
+        <!--
+        <p>Luckily, we've already done some of the work. Let's add the fractions <m>\frac{2}{3}</m> and <m>\frac{2}{5}</m> together.</p>
 
         <p>To graph both <m>\frac{2}{3}</m> and <m>\frac{2}{5}</m> on the same number line, we needed to see the values as equivalent fractions <m>\frac{10}{15}</m> and <m>\frac{6}{15}</m>. Adding those amounts works just like addition on the number line.</p>
 
@@ -280,161 +710,191 @@
                     <image source = "images/fractions-rectangles-ten-fifteenths-and-six-fifteenths.jpg" width = "50%">
                         <description></description>
                     </image>
-                </figure> 
+                </figure>
+        -->
 
-        <p>Mathematically, dividing both sketches into fifteenths works like this: <me>\frac{2}{3} + \frac{2}{5} = \frac{2 \cdot 5}{3 \cdot 5} + \frac{2 \cdot 3}{5 \cdot 3} = \frac{10}{15} + \frac{6}{15}</me> Multiplying both the numerator and denominator of a fraction doesn't affect the amount it represents<mdash />doing so always gives an equivalent fraction. To add or subtract fractions, we first must rewrite the fractions as equivalent fractions with a common denominator.</p>
+        <example>
+            <p>Let's add <m>\frac{2}{3}+\frac{2}{5}</m>. The denominators are <m>3</m> and <m>5</m>, so the number <m>15</m> would be a good common denominator.<md>
+                <mrow>\frac{2}{3}+\frac{2}{5}\amp=\frac{2\highlight{{}\cdot5}}{3\highlight{{}\cdot5}}+\frac{2\highlight{{}\cdot3}}{5\highlight{{}\cdot3}}</mrow>
+                <mrow>\amp=\frac{10}{15}+\frac{6}{15}</mrow>
+                <mrow>\amp=\frac{21}{15}</mrow>
+                <mrow>\amp=\frac{7}{5}</mrow>
+            </md></p>
+        </example>
 
-        <p>A baker needed to subtract <m>\frac{1}{8}</m> cup from <m>\frac{2}{3}</m> cup. (She'd read a recipe slightly out of order.) Mathematically, that’s <me>\frac{2}{3} - \frac{1}{8} = \frac{2 \cdot 8}{3 \cdot 8} - \frac{1 \cdot 3}{8 \cdot 3} = \frac{16}{24} - \frac{3}{24} = \frac{13}{24}</me> cup.</p>
-
-
-        <p>Generally, building a common denominator for addition works like so: <me>\frac{a}{b} + \frac{c}{d} = \frac{ad}{bd} + \frac{bc}{bd} = \frac{ad + bc}{bd}</me> And for subtraction: <me>\frac{a}{b} - \frac{c}{d} = \frac{ad}{bd} - \frac{bc}{bd} = \frac{ad - bc}{bd}</me></p>
-
+        <exercise>
+            <webwork>
+                <title>Using Some Flour</title>
+                <setup>
+                    <pg-code>
+                        Context()->flags->set(reduceConstants=>0);
+                        $flour=NumberWithUnits("13/24",'cup');
+                        $ev=$flour->cmp(correct_ans_latex_string => "\frac{13}{24}\text{ cup}");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>A chef had <m>\frac{2}{3}</m> cup flour left, and needed to use up <m>\frac{1}{8}</m> cup to thicken a sauce. How much flour is left?</p>
+                    <p><var name="$flour" evaluator="$ev" width="15" /></p>
+                </statement>
+                <solution>
+                    <p>We need to compute <me>\frac{2}{3} - \frac{1}{8}</me>. The denominators are <m>3</m> and <m>8</m>. One common denominator is <m>24</m>, so we move to rewrite each fraction using <m>24</m> as the denominator:<md>
+                        <mrow>\frac{2}{3} - \frac{1}{8}\amp\frac{2\cdot8}{3\cdot8} - \frac{1\cdot3}{8\cdot3}</mrow>
+                        <mrow>\amp=\frac{16}{24}-\frac{3}{24}</mrow>
+                        <mrow>\amp=\frac{13}{24}</mrow>
+                    </md>.</p>
+                    <p>The numerical result is <m>\frac{13}{24}</m>, but a pure number does not answer this question. The amount of flour remaining is <m>\frac{13}{24}</m> <em>cups</em>.</p>
+                </solution>
+            </webwork>
+        </exercise>
     </subsection>
 
     <subsection>
-        <title>Simplifying fractions</title>
-        <p>Here we'll deal with lowest terms. Do we need some prime factorization talk before this? Or jst focus on dividing common factors from numerator and denominator?</p>
+        <title>Mixed Numbers and Improper Fractions</title>
+        <p>A simple recipe for bread contains only a few ingredients:</p>
 
-        <p>To simplify a fraction, or to write a fraction in lowest terms, means to write an equivalent fraction where the numerator and denominator share no common factors, that is, no whole number divides both the numerator and the denominator. </p>
+        <todo>reference</todo>
+        <table xml:id="table-bread-recipe">
+            <caption>Ingredients for simple crusty bread.</caption>
+            <tabular>
+                <row>
+                    <cell><m>1\, 1/2</m></cell>
+                    <cell>tablespoons yeast</cell>
+                </row>
+                <row>
+                    <cell><m>1\, 1/2</m></cell>
+                    <cell>tablespoons kosher salt</cell>
+                </row>
+                <row>
+                    <cell><m>6\, 1/2</m></cell>
+                    <cell>cups unbleached, all-purpose flour (more for dusting)</cell>
+                </row>
+            </tabular>
+        </table>
 
-        <p>For example, <m>\frac{16}{15}</m> is a simplified fraction, since no whole number divides both numerator <m>16</m> and denominator <m>15</m>. But a fraction like <m>\frac{10}{15}</m> is not simplified, since both the numerator <m>10</m> and the denominator <m>15</m> are divisible by <m>5</m>.</p>
+        <p>Each ingredient is listed as a <term>mixed number</term> that quickly communicates how many whole amounts and how many parts are needed. It's useful for quickly communicating a practical amount of something you are cooking with, measuring on a ruler, purchasing at the grocery store, etc. But it causes trouble in an algebra class. The number <m>1\, 1/2</m> means <q>one <alert>and</alert> one half</q>. So really, <me>1\, 1/2=1+\frac{1}{2}</me>. The issue is that on the left, you have two numbers written right next to each other. Earlier in <xref ref="section-arithmetic">Section</xref> we reviewed that two things written right next to eachother (possibly with parentheses) means the numbers should be <em>multiplied</em>, not <em>added</em>.</p>
 
-<!-- MBX tags needed from here on  -->
-        <p>In the days before computers and calculators, people simplified fractions to help with arithmetic. Today, mathematicians still follow this tradtition, prefering that any fractional results are simplified to lowest terms..</p>
-
-        <p>Example adding <m>\frac{5}{12}</m> to <m>\frac{3}{12}</m> yields <m>\frac{8}{12}</m>. Is 8/12 simplified?</p>
-
-        <p>If we look at a picture of a fraction that isn't simplified, we can <q>see</q> the simplified fraction.</p>
-
-        <todo>Make a picture of 8/12, indicating that 2/3 is right there.</todo>
-
-        <p>Notice in the picture that each third has four parts? That means we can simplify <m>\frac{8}{12}</m> by dividing both the numerator and denominator by <m>4</m> like so: <me>\frac{8}{12} = \frac{8 \div 4}{12 \div 4} = \frac{2}{3}</me></p>
-
+        <p>Fortunately we just reviewed how to add fractions. Id we need to do any arithmetic with a mixed number like <m>1\, 1/2</m>, we can treat it as <m>1+\frac{1}{2}</m> and simplify to get a <q>nice</q> fraction instead:<md>
+            <mrow>1\, 1/2\amp1+\frac{1}{2}</mrow>
+            <mrow>\amp\frac{1}{1}+\frac{1}{2}</mrow>
+            <mrow>\amp\frac{2}{2}+\frac{1}{2}</mrow>
+            <mrow>\amp\frac{3}{2}</mrow>
+        </md> A fraction like <m>\frac{3}{2}</m> is called an <term>improper fraction</term> because it's actually larger than <m>1</m>. And a <q>proper</q> fraction would be something small that is only <em>part</em> of a whole instead of <em>more</em> than a whole.</p>
     </subsection>
 
     <exercises>
+        <exercisegroup>
+            <introduction>
+                <p>Ralf's first draft exercises. Some/many may want to be converted to WBWK.</p>
+            </introduction>
 
-        <exercise>
-            <statement>
-                <p><ol>
-                    <todo>pictures</todo>
-                    <li><p>If picture is the whole amount, write a fraction for picture.</p></li>
-                    <li><p>If picture is the whole amount, write a fraction for picture.</p></li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <todo>number line with 6 ticks per unit, marking 5/6, 7/6, 16/6, 25/6 as A, B, C, D</todo>
-                <p>Write a fraction representing each number indicated on the number line</p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p>Sketch a number line showing each fraction. (Be sure to carefully indicate the correct number of equal parts of the whole.)</p>
-                <p><ol>
-                    <li><m>\frac{1}{2}</m></li>
-                    <li><m>\frac{2}{3}</m></li>
-                    <li><m>\frac{3}{4}</m></li>
-                    <li><m>\frac{4}{5}</m></li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p>Sketch each fraction using rectangles to indicate parts of the whole.</p>
-                <p><ol>
-                    <li><m>\frac{1}{3}</m></li>
-                    <li><m>\frac{2}{4}</m></li>
-                    <li><m>\frac{3}{5}</m></li>
-                    <li><m>\frac{4}{6}</m></li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <todo>pictures of rectangles indicating a) 2/6 = 1/3, b) 6/9 = 2/3</todo>
-                <p>Write equivalent fractions for each pair of rectangles.</p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p><ol>
-                    <li><p>Which of the following fractions are equivalent to <m>\frac{7}{8}</m>?
-                    <md>
-                        <mrow>\frac{6}{7} \amp\amp
-                            \frac{17}{20} \amp\amp
-                            \frac{32}{28} \amp\amp
-                            \frac{14}{16} \amp\amp
-                            \frac{21}{24} \amp\amp
-                            \frac{8}{7} \amp\amp
-                            \frac{28}{32}</mrow>
-                    </md></p></li>
-                    <li><p>Sketch each equivalent fraction as
-                        <ol>
-                            <li><p>a rectangle,</p></li>
-                            <li><p>on a number line.</p></li>
-                        </ol></p></li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p>Sketch a picture of the product <m>\frac{3}{5} \cdot \frac{1}{2}</m>
-                <ol>
-                    <li>using rectangles</li>
-                    <li>on a number line</li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p>Sketch a picture of the quotient <m>\frac{3}{5} \div \frac{1}{4}</m>
-                <ol>
-                    <li>using rectangles</li>
-                    <li>on a number line</li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p>Sketch a picture of the difference <m>\frac{2}{3} - \frac{1}{8}</m>
-                <ol>
-                    <li>using rectangles</li>
-                    <li>on a number line</li>
-                </ol></p>
-            </statement>
-        </exercise>
-
-        <exercise>
-            <statement>
-                <p>Simplify each fraction (if possible).
-                    <ol>
-                        <li><m>\frac{6}{18}</m></li>
+            <exercise>
+                <statement>
+                    <p><ol>
+                        <todo>pictures</todo>
+                        <li><p>If picture is the whole amount, write a fraction for picture.</p></li>
+                        <li><p>If picture is the whole amount, write a fraction for picture.</p></li>
                     </ol></p>
-            </statement>
-        </exercise>
+                </statement>
+            </exercise>
 
-        <exercise>
-            <statement>
-                <p></p>
-            </statement>
-        </exercise>
+            <exercise>
+                <statement>
+                    <todo>number line with 6 ticks per unit, marking 5/6, 7/6, 16/6, 25/6 as A, B, C, D</todo>
+                    <p>Write a fraction representing each number indicated on the number line</p>
+                </statement>
+            </exercise>
 
-        <exercise>
-            <statement>
-                <p></p>
-            </statement>
-        </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch a number line showing each fraction. (Be sure to carefully indicate the correct number of equal parts of the whole.)</p>
+                    <p><ol>
+                        <li><m>\frac{1}{2}</m></li>
+                        <li><m>\frac{2}{3}</m></li>
+                        <li><m>\frac{3}{4}</m></li>
+                        <li><m>\frac{4}{5}</m></li>
+                    </ol></p>
+                </statement>
+            </exercise>
 
+            <exercise>
+                <statement>
+                    <p>Sketch each fraction using rectangles to indicate parts of the whole.</p>
+                    <p><ol>
+                        <li><m>\frac{1}{3}</m></li>
+                        <li><m>\frac{2}{4}</m></li>
+                        <li><m>\frac{3}{5}</m></li>
+                        <li><m>\frac{4}{6}</m></li>
+                    </ol></p>
+                </statement>
+            </exercise>
+
+            <exercise>
+                <statement>
+                    <todo>pictures of rectangles indicating a) 2/6 = 1/3, b) 6/9 = 2/3</todo>
+                    <p>Write equivalent fractions for each pair of rectangles.</p>
+                </statement>
+            </exercise>
+
+            <exercise>
+                <statement>
+                    <p><ol>
+                        <li><p>Which of the following fractions are equivalent to <m>\frac{7}{8}</m>?
+                        <md>
+                            <mrow>\frac{6}{7} \amp\amp
+                                \frac{17}{20} \amp\amp
+                                \frac{32}{28} \amp\amp
+                                \frac{14}{16} \amp\amp
+                                \frac{21}{24} \amp\amp
+                                \frac{8}{7} \amp\amp
+                                \frac{28}{32}</mrow>
+                        </md></p></li>
+                        <li><p>Sketch each equivalent fraction as
+                            <ol>
+                                <li><p>a rectangle,</p></li>
+                                <li><p>on a number line.</p></li>
+                            </ol></p></li>
+                    </ol></p>
+                </statement>
+            </exercise>
+
+            <exercise>
+                <statement>
+                    <p>Sketch a picture of the product <m>\frac{3}{5} \cdot \frac{1}{2}</m>
+                    <ol>
+                        <li>using rectangles</li>
+                        <li>on a number line</li>
+                    </ol></p>
+                </statement>
+            </exercise>
+
+            <exercise>
+                <statement>
+                    <p>Sketch a picture of the quotient <m>\frac{3}{5} \div \frac{1}{4}</m>
+                    <ol>
+                        <li>using rectangles</li>
+                        <li>on a number line</li>
+                    </ol></p>
+                </statement>
+            </exercise>
+
+            <exercise>
+                <statement>
+                    <p>Sketch a picture of the difference <m>\frac{2}{3} - \frac{1}{8}</m>
+                    <ol>
+                        <li>using rectangles</li>
+                        <li>on a number line</li>
+                    </ol></p>
+                </statement>
+            </exercise>
+
+            <exercise>
+                <statement>
+                    <p>Simplify each fraction (if possible).
+                        <ol>
+                            <li><m>\frac{6}{18}</m></li>
+                        </ol></p>
+                </statement>
+            </exercise>
+        </exercisegroup>
     </exercises>
-
 </section>
