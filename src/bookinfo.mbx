@@ -57,21 +57,23 @@
     <latex-image-preamble>
     <![CDATA[
     \usepackage{pgfplots}
-	\usetikzlibrary{positioning,fit,backgrounds}		%needed for nested diagrams
-	\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}		%needed for set diagrams
+	  \usetikzlibrary{positioning,fit,backgrounds}		%needed for nested diagrams
+	  \usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}		%needed for set diagrams
+    \usetikzlibrary{arrows,arrows.meta} %needed for open/closed intervals
 
+    \colorlet{firstcolor}{red}
+    \colorlet{secondcolor}{blue}
+    \colorlet{thirdcolor}{gray}
+      
 	
     % curve, dot, and graph custom styles
-    \pgfplotsset{primarycolor/.style   = {color=red}}
-    \pgfplotsset{secondarycolor/.style = {color=blue}}
-    \pgfplotsset{tertiarycolor/.style  = {color=gray}}
-    \pgfplotsset{primarycurve/.style   = {primarycolor,  mark=none, line width=1pt, <->, solid}}         % primary style for curves
-    \pgfplotsset{secondarycurve/.style = {secondarycolor, mark=none, line width=1pt, <->, dashdotted}}    % secondary style for curves
-    \pgfplotsset{tertiarycurve/.style  = {tertiarycolor, mark=none, line width=1pt, <->, dashdotdotted}} % tertiary style for curves
+    \pgfplotsset{primarycurve/.style   = {color=firstcolor,  mark=none, line width=1pt, <->, solid}}         % primary style for curves
+    \pgfplotsset{secondarycurve/.style = {color=secondcolor, mark=none, line width=1pt, <->, dashdotted}}    % secondary style for curves
+    \pgfplotsset{tertiarycurve/.style  = {color=thirdcolor, mark=none, line width=1pt, <->, dashdotdotted}} % tertiary style for curves
     \pgfplotsset{asymptote/.style      = {color=gray, mark=none, line width=1pt, <->, dashed}}
     \pgfplotsset{guideline/.style      = {color=gray, mark=none, line width=1pt, -}}
-    \pgfplotsset{soliddot/.style       = {primarycolor,  mark=*, only marks}}
-    \pgfplotsset{hollowdot/.style      = {primarycolor,  mark=*, only marks, fill=yellow!30}} %this color is set to match axis background/.style
+    \pgfplotsset{soliddot/.style       = {color=firstcolor,  mark=*, only marks}}
+    \pgfplotsset{hollowdot/.style      = {color=firstcolor,  mark=*, only marks, fill=yellow!30}} %this color is set to match axis background/.style
     \pgfplotsset{blankgraph/.style     = {xmin=-10, xmax=10,
                                           ymin=-10, ymax=10,
                                           axis line style={-, draw opacity=0 },
@@ -95,7 +97,6 @@
                                           y=15pt,
                                           axis lines=middle,
                                           enlarge x limits,
-                                          xlabel={},
                                           grid=none,
                                           clip=false,
                                           axis background/.style={},
@@ -104,6 +105,12 @@
                                             node [anchor=north,yshift=-0.075cm] {\footnotesize 0};
                                           },
                                           }}
+    \pgfplotsset{openinterval/.style={color=firstcolor,mark=none,ultra thick,{Parenthesis}-{Parenthesis}}}                                      
+    \pgfplotsset{closedinterval/.style={color=firstcolor,mark=none,ultra thick,{Bracket}-{Bracket}}}                                      
+    \pgfplotsset{infiniteopeninterval/.style={color=firstcolor,mark=none,ultra thick,<-{Parenthesis}}}                                      
+    \pgfplotsset{openinfiniteinterval/.style={color=firstcolor,mark=none,ultra thick,{Parenthesis}->}}                                      
+    \pgfplotsset{infiniteclosedinterval/.style={color=firstcolor,mark=none,ultra thick,<-{Bracket}}}                                      
+    \pgfplotsset{closedinfiniteinterval/.style={color=firstcolor,mark=none,ultra thick,{Bracket}->}}                                      
     \pgfplotsset{interval/.style       = {ultra thick, -}}
 
     % cycle list of plot styles for graphs with multiple plots
