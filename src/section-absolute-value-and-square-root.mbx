@@ -19,17 +19,17 @@
     <title>Absolute Value and Square Root</title>
 
     <introduction>
-    	<p>In this section, we will learn the basics of absolute value and square root, two concepts frequently used in later lessons. We will start with video lectures.</p>
+        <p>In this section, we will learn the basics of <term>absolute value</term> and <term>square root</term>. These are actions you can <em>do</em> to a given number, often changing the number into something else.</p>
 
-    	 <figure>
-        	<caption>Alternative Video Lesson</caption>
-        	<video youtube="L8fGfc7Wcco" width="70%"/>
-        	<video youtube="Ymcf14wC9Ck" width="70%"/>
-    	</figure>
+        <figure>
+            <caption>Alternative Video Lesson</caption>
+            <video youtube="L8fGfc7Wcco"/>
+            <video youtube="Ymcf14wC9Ck"/>
+        </figure>
     </introduction>
 
     <subsection>
-    	<title>Introdcution to Absolute Value</title>
+        <title>Introduction to Absolute Value</title>
 
         <definition xml:id="definition-absolute-value">
             <notation>
@@ -37,30 +37,35 @@
                 <description>absolute value</description>
             </notation>
             <statement>
-                <p>The <term>absolute value</term> of a number is the distance between <m>0</m> and that number on the number line. For the absolute value of <m>x</m>, we write <m>\abs{x}</m>.</p>
+                <p>The <term>absolute value</term><index><main>absolute value</main></index> of a number is the distance between that number and <m>0</m> on a number line. For the absolute value of <m>x</m>, we write <m>\abs{x}</m>.</p>
             </statement>
         </definition>
 
-        <p>Let's look at the absolute value of <m>2</m> and <m>-2</m>.</p>
+        <p>Let's look at <m>\abs{2}</m> and <m>\abs{-2}</m>, the absolute value of <m>2</m> and <m>-2</m>.</p>
 
         <figure>
             <caption><m>\abs{2}</m> and <m>\abs{-2}</m></caption>
-            <image width="70%">
+            <image width="47%">
+                <latex-image-code>
                 <latex-image-code>
                     <![CDATA[\begin{tikzpicture}
-						\draw [<->, color=black] (-4,0) -- (4,0);
-						\foreach \x in {-3,-2,...,3}
-			    			\draw (\x,-1pt) -- (\x,1pt);
-						\foreach \x in {-3,-2,...,3}
-			    			\node [below] at (\x,0) {\x};
-			    		\draw [-] (0,0.5) -- (0,1);
-			    		\draw [-] (2,0.5) -- (2,1);
-			    		\draw [-] (-2,0.5) -- (-2,1);
-			    		\draw [<->] (0,0.75) -- (2,0.75);
-			    		\draw [<->] (0,0.75) -- (-2,0.75);
-			    		\node at (1,1) {$\mid2\mid=2$};
-			    		\node at (-1,1) {$\mid-2\mid=2$};
+                        \begin{axis}[numberline,
+                                    xmin=-3,xmax=3,
+                                    xtick={-3,-2,...,3},
+                                    minor xtick=,
+                                    y={},
+                                    x=1cm, y=1cm,
+                                    ]
+                            \addplot[guideline,
+                                    domain=270:-90,
+                                    samples=120,
+                                    postaction={decorate,decoration={text along path,text align=center,text={distance 2 from 0}}}] ({2*cos(x)},{2*sin(x)});
+                            \addplot[soliddot] coordinates {(-2,0) (2,0)};
+                            \addplot[guideline,|->] coordinates {(0,0) (2,0)} node[pos=0.5,above] {dist.~$2$};
+                            \addplot[guideline,|->] coordinates {(0,0) (-2,0)} node[pos=0.5,above] {dist.~$2$};
+                        \end{axis}
                     \end{tikzpicture}]]>
+                </latex-image-code>
                 </latex-image-code>
             </image>
         </figure>
@@ -69,154 +74,380 @@
 
         <p>Since the distance between <m>-2</m> and <m>0</m> on the number line is also <m>2</m> units, the absolute value of <m>-2</m> is also <m>2</m>. We write <m>\abs{-2}=2</m>.</p>
 
-        <p>In summary, absolute value can remove a negative number's negative sign, but it doesn't change the value of a positive number.</p>
-
-        <example>
-        	<statement>
-	        	<p>Evalue the following expressions:<md>
-	        		<mrow>\abs{-5}\amp=<fillin/></mrow>
-	        		<mrow>\abs{1-2}\amp=<fillin/></mrow>
-	        		<mrow>-\abs{-5}\amp=<fillin/></mrow>
-	        	</md></p>
-        	</statement>
-        	<solution>
-	        	<p><md>
-	        		<mrow>\abs{-5}\amp=5</mrow>
-	        		<mrow>\abs{1-2}\amp=\abs{-1}=1</mrow>
-	        		<mrow>-\abs{-5}\amp=-5</mrow>
-	        	</md></p>
-
-	        	<p>For the second problem, we may not do: <m>\abs{1-2}=\abs{1}+\abs{2}</m>. We have to complete calculation inside the absolute value symbols before applying the absolute value.</p>
-
-	        	<p>For the third problem, the absolute value cannot remove the negative sign <em>outside</em> the absolute symbols.</p>
-        	</solution>
-        </example>
+        <fact>
+            <title>Absolute Value</title>
+            <statement>
+                <p>Taking the absolute value of a number results in whatever the <q>positive version.</q>of that number is. This is because the real meaning of absolute value is a <em>distance</em>.</p>
+            </statement>
+        </fact>
 
         <exercise>
-        	<introduction><p>Definition of Absolute Value</p></introduction>
-	        <exercise>
-	            <webwork source="BasicMath/IntegerAndSquareRoot/AbsoluteValue11.pg" seed="1"/>
-	        </exercise>
+            <title>Calculating Absolute Value</title>
+            <introduction>
+                <p>Try calculating some absolute values.</p>
+            </introduction>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("LimitedNumeric");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p><m>\abs{57}=</m><var name="57" width="5" /></p>
+                        </li>
+                        <li>
+                            <p><m>\abs{-43}=</m><var name="43" width="5" /></p>
+                        </li>
+                        <li>
+                            <p><m>\abs{\frac{2}{-5}}=</m><var name="2/5" width="5" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p><ol label="a">
+                        <li>
+                            <p><m>57</m> is <m>57</m> units away from <m>0</m> on a number line, so <m>\abs{57}=57</m>. Another way to think about this is that the <q>positive version.</q>of <m>57</m> is <m>57</m>.</p>
+                        </li>
+                        <li>
+                            <p><m>-43</m> is <m>43</m> units away from <m>0</m> on a number line, so <m>\abs{-43}=43</m>. Another way to think about this is that the <q>positive version.</q>of <m>-43</m> is <m>43</m>.</p>
+                        </li>
+                        <li>
+                            <p><m>\frac{2}{-5}</m> is <m>\frac{2}{5}</m> units away from <m>0</m> on a number line, so <m>\abs{\frac{2}{-5}}=\frac{2}{5}</m>. Another way to think about this is that the <q>positive version.</q>of <m>\frac{2}{-5}</m> is <m>\frac{2}{5}</m>.</p>
+                        </li>
+                    </ol></p>                    
+                </solution>
+            </webwork>
         </exercise>
 
+        <warning>
+            <title>Absolute Value Does Not Exactly <q>Make Everything Positive.</q>/title>
+            <p>Students may see an expression like <m>\abs{2-5}</m> and incorrectly think it is OK to <q>make everything positive.</q>and write <m>2+5</m>. This is incorrect since <m>\abs{2-5}</m> works out to be <m>3</m>, not <m>7</m>. The understanding that absolute value creates the <q>positive version.</q>of a number is only for absolute value applied to a <em>single</em> number.</p>
+        </warning>
     </subsection>
 
     <subsection>
-    	<title>Square Root Facts</title>
+        <title>Square Root Facts</title>
 
-    	<p>It would be very helpful if you can memorize the first few perfect square numbers:<md>
-    		<mrow>0^2\amp=0</mrow>
-    		<mrow>1^2\amp=1</mrow>
-    		<mrow>2^2\amp=4</mrow>
-    		<mrow>3^2\amp=9</mrow>
-    		<mrow>4^2\amp=16</mrow>
-    		<mrow>5^2\amp=25</mrow>
-    		<mrow>6^2\amp=36</mrow>
-    		<mrow>7^2\amp=49</mrow>
-    		<mrow>8^2\amp=64</mrow>
-    		<mrow>9^2\amp=81</mrow>
-    		<mrow>10^2\amp=100</mrow>
-    	</md></p>
+        <p>If you have learned your basic multiplication table, you know:</p>
+        <table>
+            <caption>Multilication table with squares</caption>
+            <tabular top="major" bottom="minor" left="major" right="minor">
+                <col right="medium" />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col right="major"/>
+                <row bottom="medium">
+                    <cell><m>\times</m></cell>
+                    <cell><m>1</m></cell>
+                    <cell><m>2</m></cell>
+                    <cell><m>3</m></cell>
+                    <cell><m>4</m></cell>
+                    <cell><m>5</m></cell>
+                    <cell><m>6</m></cell>
+                    <cell><m>7</m></cell>
+                    <cell><m>8</m></cell>
+                    <cell><m>9</m></cell>
+                </row>
+                <row>
+                    <cell><m>1</m></cell>
+                    <cell><m>1</m></cell>
+                    <cell><m>\lowlight{2}</m></cell>
+                    <cell><m>\lowlight{3}</m></cell>
+                    <cell><m>\lowlight{4}</m></cell>
+                    <cell><m>\lowlight{5}</m></cell>
+                    <cell><m>\lowlight{6}</m></cell>
+                    <cell><m>\lowlight{7}</m></cell>
+                    <cell><m>\lowlight{8}</m></cell>
+                    <cell><m>\lowlight{9}</m></cell>
+                </row>
+                <row>
+                    <cell><m>2</m></cell>
+                    <cell><m>\lowlight{2}</m></cell>
+                    <cell><m>4</m></cell>
+                    <cell><m>\lowlight{6}</m></cell>
+                    <cell><m>\lowlight{8}</m></cell>
+                    <cell><m>\lowlight{10}</m></cell>
+                    <cell><m>\lowlight{12}</m></cell>
+                    <cell><m>\lowlight{14}</m></cell>
+                    <cell><m>\lowlight{16}</m></cell>
+                    <cell><m>\lowlight{18}</m></cell>
+                </row>
+                <row>
+                    <cell><m>3</m></cell>
+                    <cell><m>\lowlight{3}</m></cell>
+                    <cell><m>\lowlight{6}</m></cell>
+                    <cell><m>9</m></cell>
+                    <cell><m>\lowlight{12}</m></cell>
+                    <cell><m>\lowlight{15}</m></cell>
+                    <cell><m>\lowlight{18}</m></cell>
+                    <cell><m>\lowlight{21}</m></cell>
+                    <cell><m>\lowlight{24}</m></cell>
+                    <cell><m>\lowlight{27}</m></cell>
+                </row>
+                <row>
+                    <cell><m>4</m></cell>
+                    <cell><m>\lowlight{4}</m></cell>
+                    <cell><m>\lowlight{8}</m></cell>
+                    <cell><m>\lowlight{12}</m></cell>
+                    <cell><m>16</m></cell>
+                    <cell><m>\lowlight{20}</m></cell>
+                    <cell><m>\lowlight{24}</m></cell>
+                    <cell><m>\lowlight{28}</m></cell>
+                    <cell><m>\lowlight{32}</m></cell>
+                    <cell><m>\lowlight{36}</m></cell>
+                </row>
+                <row>
+                    <cell><m>5</m></cell>
+                    <cell><m>\lowlight{5}</m></cell>
+                    <cell><m>\lowlight{10}</m></cell>
+                    <cell><m>\lowlight{15}</m></cell>
+                    <cell><m>\lowlight{20}</m></cell>
+                    <cell><m>25</m></cell>
+                    <cell><m>\lowlight{30}</m></cell>
+                    <cell><m>\lowlight{35}</m></cell>
+                    <cell><m>\lowlight{40}</m></cell>
+                    <cell><m>\lowlight{45}</m></cell>
+                </row>
+                <row>
+                    <cell><m>6</m></cell>
+                    <cell><m>\lowlight{6}</m></cell>
+                    <cell><m>\lowlight{12}</m></cell>
+                    <cell><m>\lowlight{18}</m></cell>
+                    <cell><m>\lowlight{24}</m></cell>
+                    <cell><m>\lowlight{30}</m></cell>
+                    <cell><m>36</m></cell>
+                    <cell><m>\lowlight{42}</m></cell>
+                    <cell><m>\lowlight{48}</m></cell>
+                    <cell><m>\lowlight{54}</m></cell>
+                </row>
+                <row>
+                    <cell><m>7</m></cell>
+                    <cell><m>\lowlight{7}</m></cell>
+                    <cell><m>\lowlight{14}</m></cell>
+                    <cell><m>\lowlight{21}</m></cell>
+                    <cell><m>\lowlight{28}</m></cell>
+                    <cell><m>\lowlight{35}</m></cell>
+                    <cell><m>\lowlight{42}</m></cell>
+                    <cell><m>49</m></cell>
+                    <cell><m>\lowlight{56}</m></cell>
+                    <cell><m>\lowlight{63}</m></cell>
+                </row>
+                <row>
+                    <cell><m>8</m></cell>
+                    <cell><m>\lowlight{8}</m></cell>
+                    <cell><m>\lowlight{16}</m></cell>
+                    <cell><m>\lowlight{24}</m></cell>
+                    <cell><m>\lowlight{32}</m></cell>
+                    <cell><m>\lowlight{40}</m></cell>
+                    <cell><m>\lowlight{48}</m></cell>
+                    <cell><m>\lowlight{56}</m></cell>
+                    <cell><m>64</m></cell>
+                    <cell><m>\lowlight{72}</m></cell>
+                </row>
+                <row bottom="major">
+                    <cell><m>9</m></cell>
+                    <cell><m>\lowlight{9}</m></cell>
+                    <cell><m>\lowlight{18}</m></cell>
+                    <cell><m>\lowlight{27}</m></cell>
+                    <cell><m>\lowlight{36}</m></cell>
+                    <cell><m>\lowlight{45}</m></cell>
+                    <cell><m>\lowlight{54}</m></cell>
+                    <cell><m>\lowlight{63}</m></cell>
+                    <cell><m>\lowlight{72}</m></cell>
+                    <cell><m>81</m></cell>
+                </row>
+            </tabular>
+        </table>
 
-    	<p>Square root is the opposite operation of square. For example, since <m>3^2=9</m>, the square root of <m>9</m> is <m>3</m>. Square root of <m>9</m> is looking for a positive number whose square is <m>9</m>.</p>
+        <p>The numbers along the diagonal are special; they are known as <term>perfect squares</term>. And for working with square roots, it will be helpful if you can memorize these first few perfect square numbers.</p>
 
-        <p>The following facts should be memorized:<md>
-        	<mrow>0^2\amp=0\amp\sqrt{0}=0</mrow>
-        	<mrow>1^2\amp=1\amp\sqrt{1}=1</mrow>
-    		<mrow>2^2\amp=4\amp\sqrt{4}=2</mrow>
-    		<mrow>3^2\amp=9\amp\sqrt{9}=3</mrow>
-    		<mrow>4^2\amp=16\amp\sqrt{16}=4</mrow>
-    		<mrow>5^2\amp=25\amp\sqrt{25}=5</mrow>
-    		<mrow>6^2\amp=36\amp\sqrt{36}=6</mrow>
-    		<mrow>7^2\amp=49\amp\sqrt{49}=7</mrow>
-    		<mrow>8^2\amp=64\amp\sqrt{64}=8</mrow>
-    		<mrow>9^2\amp=81\amp\sqrt{81}=9</mrow>
-    		<mrow>10^2\amp=100\amp\sqrt{100}=10</mrow>
-    	</md></p>
+        <p><q>Taking a square root.</q>is the opposite action of squaring a number. For example, when you square <m>3</m>, the result is <m>9</m>. So when you take the square root of <m>9</m>, the result is <m>3</m>. Just knowing that <m>9</m> comes about as <m>3^2</m> lets us realize that <m>3</m> is the square root of <m>9</m>. This is why memorizing the perfect squares from the multiplication table can be so helpful.</p>
 
-    	<p>We should also be able to calculate related facts, such as<md>
-        	<mrow>0.1^2\amp=0.01\amp\sqrt{0.01}=0.1</mrow>
-        	<mrow>0.2^2\amp=0.04\amp\sqrt{0.04}=0.2</mrow>
-    		<mrow>30^2\amp=900\amp\sqrt{900}=30</mrow>
-    		<mrow>100^2\amp=10,000\amp\sqrt{10,000}=100</mrow>
-    	</md></p>
+        <p>The notation we use for taking a square root is the <term>radical</term>, <m>\sqrt{\phantom{x}}</m>. For example, <q>the square root of <m>9</m>.</q>is denoted <m>\sqrt{9}</m>. And now we know enough to be able to write <m>\sqrt{9}=3</m>.</p>
 
+        <p>Tossing in a few extra special square roots, it's advisable to memorize the following:</p>
+        <table>
+            <tabular halign="center">
+                <row>
+                    <cell><m>\sqrt{0}=0</m></cell>
+                    <cell><m>\sqrt{1}=1</m></cell>
+                    <cell><m>\sqrt{4}=2</m></cell>
+                    <cell><m>\sqrt{9}=3</m></cell>
+                </row>
+                <row>
+                    <cell><m>\sqrt{16}=4</m></cell>
+                    <cell><m>\sqrt{25}=5</m></cell>
+                    <cell><m>\sqrt{36}=6</m></cell>
+                    <cell><m>\sqrt{49}=7</m></cell>
+                </row>
+                <row>
+                    <cell><m>\sqrt{64}=8</m></cell>
+                    <cell><m>\sqrt{81}=9</m></cell>
+                    <cell><m>\sqrt{100}=10</m></cell>
+                    <cell><m>\sqrt{121}=11</m></cell>
+                </row>
+                <row>
+                    <cell><m>\sqrt{144}=12</m></cell>
+                    <cell><m>\sqrt{169}=13</m></cell>
+                    <cell><m>\sqrt{196}=14</m></cell>
+                    <cell><m>\sqrt{225}=15</m></cell>
+                </row>
+            </tabular>
+        </table>
     </subsection>
 
     <subsection>
-    	<title>Calculating Square Root with Calculator</title>
+        <title>Calculating Square Root with Calculator</title>
 
-    	<p>Most square root numbers are actually decimals. Take <m>\sqrt{5}</m> as an example:<md>
-    		<mrow>\sqrt{4}\amp=2</mrow>
-    		<mrow>\sqrt{5}\amp=?</mrow>
-    		<mrow>\sqrt{9}\amp=3</mrow>
-    	</md></p>
+        <p>Most square roots are actually numbers with decimal places that go on forever. Take <m>\sqrt{5}</m> as an example:<md>
+            <mrow>\sqrt{4}\amp=2</mrow>
+            <mrow>\sqrt{5}\amp=\mathord{?}</mrow>
+            <mrow>\sqrt{9}\amp=3</mrow>
+        </md></p>
 
-    	<p>Since <m>5</m> is between <m>4</m> and <m>9</m>, the square root of <m>5</m> must be between <m>2</m> and <m>3</m>. Because <m>5</m> is closer to <m>4</m> than <m>9</m>, the square root of <m>5</m> must be closer to <m>2</m> than <m>3</m>. With a calculator, we can see<me>\sqrt{5}=2.236...</me>Actually the decimal will not terminate. With a calculator, we can verify that<me>2.236^2=4.999...</me>If we use a more accurate value than <m>2.236</m>, its square will be closer to <m>5</m>.</p>
-
+        <p>The square root of <m>5</m> must be somewhere between <m>2</m> and <m>3</m>, since <m>5</m> is between <m>4</m> and <m>9</m>. There are no whole numbers between <m>2</m> and <m>3</m>, so it is reasonable that <m>\sqrt{5}</m> would be a number with decimal places that go on forever.  With a calculator, we can see<me>\sqrt{5}\approx2.236</me>Actually the decimal will not terminate, and that is why we used the <m>\approx</m> symbol instead of an equals sign. To get <m>2.236</m> we rounded down slightly from the true value of <m>\sqrt{5}</m>. With a calculator, we can check that <m>2.236^2=4.999696</m>, a little shy of <m>5</m>.</p>
     </subsection>
 
     <subsection>
-    	<title>Square Root of Fractions</title>
+        <title>Square Root of Fractions</title>
 
-    	<p>We should be able to calculate the square root of some fractions, such as<md>
-    		<mrow>\sqrt{\frac{1}{4}}\amp=\frac{1}{2}</mrow>
-    		<mrow>\sqrt{\frac{4}{9}}\amp=\frac{2}{3}</mrow>
-    		<mrow>\sqrt{\frac{9}{4}}\amp=\frac{3}{2}</mrow>
-    	</md></p>
+        <p>We should be able to calculate the square root of some fractions, such as <m>\sqrt{\frac{1}{4}}</m>. The idea is the same: can you think of a number that you would square to get <m>\frac{1}{4}</m>?  Being familiar with fraction mltiplication, we know that <me>\frac{1}{2}\cdot\frac{1}{2}=\frac{1}{4}</me> and so <m>\sqrt{\frac{1}{4}}=\frac{1}{2}</m>.</p>
 
+        <exercise>
+            <title>Square Roots of Fractions</title>
+            <introduction>
+                <p>Try calculating some absolute values.</p>
+            </introduction>
+            <webwork>
+                <setup>
+                    <var name="$a[0]">
+                        <static>\frac{1}{5}</static>
+                    </var>
+                    <var name="$a[1]">
+                        <static>\frac{2}{3}</static>
+                    </var>
+                    <var name="$a[2]">
+                        <static>\frac{9}{11}</static>
+                    </var>
+                    <pg-code>
+                        Context("LimitedFraction");
+                        $a[0]=Fraction(1,5);
+                        $a[1]=Fraction(2,3);
+                        $a[2]=Fraction(9,11);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p><m>\sqrt{\frac{1}{25}}=</m><var name="$a[0]" width="5" /></p>
+                        </li>
+                        <li>
+                            <p><m>\sqrt{\frac{4}{9}}=</m><var name="$a[1]" width="5" /></p>
+                        </li>
+                        <li>
+                            <p><m>\sqrt{\frac{81}{121}}=</m><var name="$a[2]" width="5" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
     </subsection>
 
     <subsection>
-    	<title>Square Root of Negative Numbers</title>
+        <title>Square Root of Negative Numbers</title>
 
-    	<p>Can we find the square root of negative numbers, such as <m>\sqrt{-1}</m>? Assume <m>\sqrt{-1}=x</m>, and let's try to find <m>x</m>:<md>
-    		<mrow>\sqrt{9}=3 \text{ because } 3^2=9</mrow>
-    		<mrow>\sqrt{-1}=x \text{ because } x^2=-1</mrow>
-    	</md></p>
+        <p>Can we find the square root of a negative number, such as <m>\sqrt{-25}</m>? That would mean that there is some number out there that multiplies by itself to make <m>-25</m>. Would <m>\sqrt{-25}</m> be positive or negative? Either way, once you square it (multiply it by itself) the result would be positive. So it couldn't possibly square to <m>-25</m>. So there is no square root of <m>-25</m> or of any negative number for that matter.</p>
 
-    	<p>Which number's square is <m>-1</m>? Nothing! It's not <m>-1</m> because <m>(-1)^2=1</m>. Since no number's square is <m>-1</m>, we say the square root of <m>-1</m> (actually the square root of all negative numbers) is <term>undefined</term>.</p>
+        <aside>
+            <title>Imaginary Numbers</title>
+            <p>Mathematicians imagined a new type of number, neither positive nor negative, that would square to a negative result. But that is beyond the scope of this chapter.</p>
+        </aside>
+
+        <p>If you are confronted with an expression like <m>\sqrt{-25}</m>, or any other <q>square root of a negative number,.</q>you can state that <q>there is no real square root,.</q>that the result <q>does not exist,.</q>or just <q>DNE.</q>for short.</p>
 
     </subsection>
 
     <exercises>
-    	<title>Square Root</title>
-        <exercise>
-            <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers10.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers20.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers30.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers40.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers50.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers60.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EstimateRadical10.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot20.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot25.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot30.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot40.pg" seed="1"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot50.pg" seed="1"/>
-        </exercise>
-	</exercises>
+        <exercisegroup>
+            <introduction>
+                <p>These skills practice familiarity with absolute value.</p>
+            </introduction>
+            <exercise>
+                <webwork source="BasicAlgebra/NumberBasics/AbsoluteValue10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/AbsoluteValue11.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/NumberBasics/AbsoluteValue20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/NumberBasics/AbsoluteValue30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/NumberBasics/AbsoluteValue10.pg" seed="1"/>
+            </exercise>
+
+
+
+        </exercisegroup>
+
+        <exercisegroup>
+            <introduction>
+                <p>These skills practice familiarity with square roots.</p>
+            </introduction>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers40.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers50.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/IntegerAndSquareRoot/identifySquareNumbers60.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EstimateRadical10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot25.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot40.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot50.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/EvaluateSquareRoot60.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/RadicalsAndRationalExponents/RationalizeDenominator10.pg" seed="1"/>
+            </exercise>
+
+        </exercisegroup>
+    </exercises>
 
 </section>
