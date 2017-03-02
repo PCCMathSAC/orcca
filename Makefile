@@ -122,7 +122,7 @@ html:
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cp $(CSS) $(HTMLOUT)
 	cd $(HTMLOUT); \
-	xsltproc -xinclude -stringparam html.annotation hypothesis --stringparam webwork.server $(SERVER) --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(MBXSL)/mathbook-html.xsl $(MAINFILE)
+	xsltproc -xinclude --stringparam html.knowl.webwork.inline no --stringparam html.annotation hypothesis --stringparam webwork.server $(SERVER) --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(MBXSL)/mathbook-html.xsl $(MAINFILE)
 
 # make all the image files in svg format
 images:
