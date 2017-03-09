@@ -18,7 +18,7 @@
 
     <title>Comparison Symbols</title>
 
-        <p>As you know, <m>8</m> is larger than <m>3</m>; that's a specific comparison between two numbers. We can also make a comparison between two less specific numbers, like if we say that average rent in Portland in 2016 is larger than it was in 2009. This section will go over the mathematical shorthand notation for making these kinds of comparisons.</p>
+        <p>As you know, <m>8</m> is larger than <m>3</m>; that's a specific comparison between two numbers. We can also make a comparison between two less specific numbers, like if we say that average rent in Portland in 2016 is larger than it was in 2009. That makes a comparison using unspecified amounts. This section will go over the mathematical shorthand notation for making these kinds of comparisons.</p>
 
         <p>In Oregon, only people who are <m>18</m> years old or older can vote in statewide elections.<fn>Some other states like Washington allow 17-year-olds to vote in primary elections provided they will be 18 by the general election.</fn> Does that seem like a statement about the number <m>18</m>? Maybe. But it's also a statement about numbers like <m>37</m> and <m>62</m>: it says that people these ages may vote as well.  This section will also get into the mathematical notation for large collections of numbers like this.</p>
 
@@ -27,22 +27,10 @@
         <exercise>
             <webwork seed="1">
                 <setup>
-                    <var name="$a">
-                        <static>11.5</static>
-                    </var>
-                    <var name="$b">
-                        <static>4.2</static>
-                    </var>
-                    <var name="$comparison">
-                        <static>a\gt b</static>
-                    </var>
                     <var name="$overage">
                         <static>\text{age}\gt20</static>
                     </var>
                     <pg-code>
-                        $b=random(2,9,0.1);
-                        $a=$b+random(6,9,0.1);
-                        if($envir{problemSeed}==1){$a=11.5;$b=4.2;};
                         package context::Ordering::BOP::ordering;
                         *isOrdering = sub {
                             my $self = shift; my $obj = shift; my $class = $obj->class;
@@ -51,16 +39,33 @@
                         package main;
                         Context("Ordering");
                         Context()->strings->add('age'=>{isLetter => 1,TeX=>'\text{age}'});
-                        $comparison=Compute("$a>$b");
-                        $overage=Compute("age>20");
+                        Context()->strings->add('a'=>{isLetter => 1,TeX=>'\text{a}'});
+                        Context()->strings->add('x'=>{isLetter => 1,TeX=>'\text{x}'});
+                        $overage=OneOf(Compute("age>20"),Compute("a>20"),Compute("x>20"));
                     </pg-code>
                 </setup>
                 <statement>
-                    <p>Use mathematical notation to write <q><var name="$a" /> is greater than <var name="$b" />.</q></p>
-                    <p><var name="$comparison" width="15" /></p>
-                    <p>Use mathematical notation to write <q>age is greater than <m>20</m>.</q></p>
-                    <p><var name="$overage" width="15" /></p>
+                    <p><ol label="a">
+                        <li>
+                            <p>Use mathematical notation to write <q><m>11.5</m> is greater than <m>4.2</m>.</q></p>
+                            <p><var name="'11.5>4.2'" width="15" /></p>
+                        </li>
+                        <li>
+                            <p>Use mathematical notation to write <q>age is greater than <m>20</m>.</q></p>
+                            <p><var name="$overage" width="15" /></p>
+                        </li>
+                    </ol></p>
                 </statement>
+                <solution>
+                    <p><ol label="a">
+                        <li>
+                            <p><m>11.5\gt4.2</m></p>
+                        </li>
+                        <li>
+                            <p>We can just write the word <c>age</c> to represent age, and write <m>\text{age}\gt20</m>. Or we could use an abbreviation like <m>a</m> for age, and write <m>a\gt20</m>. Or, it is common to use <m>x</m> as a generic abbreviation, and we could write <m>x\gt20</m>.</p>
+                        </li>
+                    </ol></p>
+                </solution>
             </webwork>
         </exercise>
 
@@ -71,7 +76,7 @@
             <p>Grade school teachers sometimes teach children that <q>the alligator wants to eat the larger number</q> as a way of remembering which direction to write the symbol.</p>
         </aside>
 
-        <p>We have to be careful when negative numbers are part of the comparison though. Is <m>-8</m> larger or smaller than <m>-3</m>? In some sense <m>-8</m> is larger, because if you owe someone <m>8</m> dollars, that's <em>more</em> than owing them <m>3</m> dollars. But that is not how the <m>\gt</m> symbol works. Everyone has agreed that this symbol is meant to tell you which number is farther to the right on a number line. And if that's how it goes, then <m>-3\gt-8</m>.</p>
+        <p>We have to be careful when negative numbers are part of the comparison though. Is <m>-8</m> larger or smaller than <m>-3</m>? In some sense <m>-8</m> is larger, because if you owe someone <m>8</m> dollars, that's <em>more</em> than owing them <m>3</m> dollars. But that is not how the <m>\gt</m> symbol works. This symbol is meant to tell you which number is farther to the right on a number line. And if that's how it goes, then <m>-3\gt-8</m>.</p>
 
         <figure>
             <caption>How the <m>\gt</m> symbol works.</caption>
@@ -80,10 +85,10 @@
                     <![CDATA[\begin{tikzpicture}
                         \begin{axis}[numberline,
                                     xtick={-8,-3,3,8},
+                                    every axis x label/.style={at={(current axis.right of origin)},anchor=north}
                                     ]
                             \addplot[soliddot] coordinates {(-8,0)};
                             \addplot[soliddot] coordinates {(-3,0)};
-                            \addplot[soliddot] coordinates {(3,0)};
                             \addplot[soliddot] coordinates {(8,0)};
                             \node[above] at (axis cs: -5.5,1) {$-3>-8$};
                                 \draw[<-](axis cs: -7.5,0.2) --(axis cs: -5.5,1);
@@ -153,6 +158,9 @@
             </webwork>
         </exercise>
 
+<!-- Having two of these here causes a bug with the number line image int he solution. The image is repeated rahter than showing a fresh image for the new problem. -->
+
+<!--
         <exercise>
             <webwork seed="1">
                 <setup>
@@ -201,6 +209,7 @@
                         $numberline->lb(new Label(0,-0.2,"0",'black','center','top'));
                         for my$i(0,2,4){$numberline->lb(new Label($c[$i],-0.2,"$b[$i]",'blue','center','top'));$numberline->stamps(closed_circle($c[$i],0,'blue'));};
                         for my$i(1,3){$numberline->lb(new Label($c[$i],0.2,"$b[$i]",'blue','center','bottom'));$numberline->stamps(closed_circle($c[$i],0,'blue'));};
+                        $refreshCachedImages=1;
                     </pg-code>
                 </setup>
                 <statement>
@@ -216,11 +225,13 @@
             </webwork>
         </exercise>
 
+-->
+
         <p>The greater-than symbol has a close relative, the <term>greater-than-or-equal-to symbol</term>, <q><m>\geq</m>.</q><index><main>greater-than-or-equal-to symbol</main></index> It means just like it sounds, that the first number is maybe greater than, or maybe equal to, the second number. These are all true statements:<md>
             <mrow>8\amp\geq3\amp3\amp\geq-8\amp3\amp\geq3</mrow>
         </md>but one of these three statements is false:<md>
             <mrow>8\amp\gt3\amp3\amp\gt-8\amp3\amp\gt3</mrow>
-        </md>Can you see which one is false? This symbol may seem unnecessary if it's clear to you that <m>8\gt3</m> but <m>3=3</m>. It's useful when specific numbers aren't explicitly used on at least one side, like in these examples: <me>(\text{hourly pay rate})\geq(\text{minimum wage})</me> <me>(\text{age of a voter})\geq18</me></p>
+        </md>Can you see which one is false? This symbol may seem unnecessary if it's clear to you that <m>8\gt3</m> while <m>3=3</m>. It is more useful when specific numbers aren't explicitly used on at least one side, like in these examples: <me>(\text{hourly pay rate})\geq(\text{minimum wage})</me> <me>(\text{age of a voter})\geq18</me></p>
 
         <p>Sometimes you want to emphasize that one number is <em>less than</em> another number instead of emphasizing which number is greater. To do this, we have symbols that are reversed from <m>\gt</m> and <m>\geq</m>. The symbol <q><m>\lt</m></q> is the <term>less-than symbol</term> and it's used like this: <me>3\lt8</me> and read out loud as <q><m>3</m> is less than <m>8</m>.</q><index><main>less-than symbol</main></index></p>
 
@@ -379,11 +390,11 @@
                         <static>7.67\gt2.4\gt-2.01\gt-5.73\gt-5.83</static>
                     </var>
                     <pg-code>
-                        @a=map{($_-10)+random(0,0.8,0.2)+random(0,0.09,0.01))}NchooseK(19,4);
+                        @a=map{($_-10)+random(0,0.8,0.2)+random(0,0.09,0.01)}NchooseK(19,4);
                         if($a[1]&lt;0){$a[4]=$a[1]+0.1;}
                         elsif($a[1]=-$a[0]){$a[4]=$a[0]+0.1;}
                         elsif($a[1]=-$a[2]){$a[4]=$a[2]+0.1;}
-                        else($a[1]=-$a[3]){$a[4]=$a[3]+0.1;};
+                        elsif($a[1]=-$a[3]){$a[4]=$a[3]+0.1;};
                         if($envir{problemSeed}==1){@a=(2.4,-5.83,7.67,-2.01,-5.73)};
                         Context()->texStrings;
                         $as='{'.join('}\quad{',@a).'}';
@@ -891,8 +902,20 @@
             <webwork seed="1" source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
         </exercise>
         <exercise>
+            <title>Compare Mixed Numbers</title>
+            <webwork seed="1" source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
+        </exercise>
+        <exercise>
+            <title>Compare Mixed Numbers</title>
+            <webwork seed="1" source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
+        </exercise>
+        <exercise>
             <title>Compare Absolute Value</title>
             <webwork seed="1" source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
+        </exercise>
+        <exercise>
+            <title>Compare Negative Numbers</title>
+            <webwork seed="1" source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers40.pg" />
         </exercise>
     </exercises>
 </section>
