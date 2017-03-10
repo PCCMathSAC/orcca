@@ -201,6 +201,13 @@
                 </p>
             </solution>
         </exercise>
+
+        <exercise>
+            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition50.pg" seed="1"/>
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition50.pg" seed="2"/>
+        </exercise>
     </subsection>
 
     <subsection>
@@ -313,24 +320,117 @@
 
     <subsection>
         <title>Solving Right Triangle Application Problems</title>
+
+        <p>There are a lot of real-world applications of right triangles and trigonometric functions. Here we will look at a few.  </p>
+
         <example>
             <statement>
-                <p>
+                <p>An airplane takes off at an angle of <quantity><mag>9</mag><unit base="degree"/></quantity>. After it has traveled a horizontal distance of <quantity><mag>500</mag><unit base="meter"/></quantity>, what is its height?
                 </p>
             </statement>
             <solution>
-                <p>
+                <p>To start, it is helpful to sketch a diagram of this scenario. We'll label the vertical height as <m>h</m>, which will be measured in feet.
+                <figure xml:id="figure-right-triangle-application-airplane">
+                    <caption>Airplane Diagram</caption>%not drawn to scale
+                    <image width="70%">
+                        <description></description>
+                        <latex-image-code>
+                           <![CDATA[
+                                 \begin{tikzpicture}
+                                    \draw (0,0) -- (10,0) node[midway, below]{$500$ m} -- (10,2) node[midway, right] {$h$} -- (0,0) node[midway,above]{};
+                                    \draw (1,0) arc (0:11.18:1);
+                                    \draw (2,0.25) node{$9^{\circ}$};
+                                    \draw (9.5,0) -- (9.5,0.5) -- (10,0.5);
+                                    \draw (10,2.1) node{\huge\ding{40}};
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image-code>
+                    </image>
+                </figure>
+                With the information given, we know the angle and the side length adjacent to this angle. We do not know the opposite side length. Thus we will use the tangent function to determine the opposite side length (denoted as <m>h</m>):
+                    <me>\tan(9^{\circ})=\frac{h}{500}</me>
+                To solve, we'll multiply each side by <m>500</m> and then use technology to approximate this result:
+                    <md>
+                        <mrow>\multiplyleft{500}\tan(9^{\circ})\amp=\frac{h}{500}\multiplyright{500}</mrow>
+                        <mrow>500\tan(9^{\circ})\amp=h</mrow>
+                        <mrow>h\amp\approx79.19</mrow>
+                    </md>
+                </p>
+                The vertical height of the airplane is about <quantity><mag>79.19</mag><unit base="foot"/></quantity>.
+            </solution>
+        </example>
+
+        <example xml:id="example-right-triangle-roof">
+            <statement>
+                <p>Use right triangles and a basic trigonometric function to determine the diagonal length <m>d</m> of the horizontal roof in <xref ref="figure-right-triangle-application-roof">Figure</xref>. 
+                <figure xml:id="figure-right-triangle-application-roof">
+                    <caption>Roof Diagram</caption>
+                    <image width="70%">
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}%(x,z,y)
+                                \draw[red] (0,0,0) -- ++(-10,0,0) -- ++(0,-5,0) -- ++(10,0,0) -- cycle; %front face
+                                \draw[red] (0,0,0) -- ++(0,0,-15) -- ++(0,-5,0) -- ++(0,0,15) -- cycle; %side
+                                \draw[red] (0,0,0) -- ++(-10,0,0) -- ++(0,0,-15) -- ++(10,0,0) -- cycle; %top
+                                \draw[blue] (0,0,0) -- (-5,2.5,0) -- (-10,0,0); %front triangle
+                                \draw[blue] (-5,2.5,0) -- (-5,0,0); %front triangle split
+                                \draw[black] (-5.5,0,0) -- (-5.5,0.5,0) -- (-5,0.5,0); %right angle
+                                \draw[red] (0,0,-15) -- (-5,2.5,-15) -- (-10,0,-15) -- cycle; %back triangle
+                                \draw[red] (-5,2.5,0) -- (-5,2.5,-15); %top triangle
+                                        \node[below] at (-5,-5,0) {$20\text{ ft}$};
+                                        \node[right] at (-7.5,2,0) {$d$};
+                                        \node[right] at (0,-5,-7.5) {$30\text{ ft}$};
+                                    \draw (-9,0,0) arc (0:26.57:1);
+                                    \draw (-8.5,0.25,0) node{$21.8^{\circ}$};
+                                    \end{tikzpicture}
+                            ]]>
+                           </latex-image-code>
+                    </image>
+                </figure>
+                </p>
+            </statement>
+            <solution>
+                <p>This roof inclines at an angle of <quantity><mag>21.8</mag><unit base="degree"/></quantity> (this is known as the pitch of the roof). The total distance across is <quantity><mag>20</mag><unit base="foot"/></quantity>. We see that two right triangles are created. So we will use the right triangle with an angle of  and an adjacent side length of <quantity><mag>10</mag><unit base="foot"/></quantity>. Since we need the hypotenuse, we'll use the cosine function to write the following:
+                    <me>\cos(21.8^{\circ})=\frac{10}{h}</me>
+                To solve for <m>h</m>, we'll multiply each side by <m>h</m> and then divide each side by <m>\cos(21.8^{\circ})</m>. Once we have solved for <m>h</m>, we'll use technology to round our result:
+                    <md>
+                        <mrow>\multiplyleft{h}\cos(21.8^{\circ})\amp=\frac{10}{h}\multiplyright{h}</mrow>
+                        <mrow>h\cos(21.8^{\circ})\amp=10</mrow>
+                        <mrow>\frac{h\cos(21.8^{\circ})}{\cos(21.8^{\circ})}\amp=\frac{10}{\cos(21.8^{\circ})}</mrow>
+                        <mrow>h\amp=\frac{10}{\cos(21.8^{\circ})}</mrow>
+                        <mrow>h\amp\approx 10.77</mrow>
+                    </md>
+                The diagonal length is about <quantity><mag>10.77</mag><unit base="foot"/></quantity>.
                 </p>
             </solution>
         </example>
 
-        <example>
+        <example xml:id="example-right-triangle-roof-total-area">
             <statement>
-                <p>
+                <p>Suppose we want to estimate the cost of re-roofing the roof in <xref ref="figure-right-triangle-application-roof">Figure</xref> from <xref ref="example-right-triangle-roof">Example</xref>. 
+                    <ol>
+                        <li><p>Calculate the total area of the roof using the approximate length found in <xref ref="example-right-triangle-roof">Example</xref>.</p></li>
+                        <li><p>Assume a company charges <m>\$7.14</m> per square foot to install new roofing. Calculate the total cost.</p></li>
+                    </ol> 
                 </p>
             </statement>
             <solution>
                 <p>
+                    <ol>
+                        <li><p>Since the roof contains two rectangles, we will multiply two by the product of the length and the width of each rectangle:
+                            <md>
+                                <mrow>2\cdot LW \amp\approx 2\cdot 30 \cdot 10.77</mrow>
+                                <mrow>\amp646.2</mrow>
+                            </md>
+                            The total area of the roof is about <quantity><mag>646.2</mag><unit base="foot" exp="2"/></quantity>.
+                        </p></li>
+                        <li><p>To calculate the total cost, we want to multiply the cost per square foot by the total number of square feet. Note that it can be helpful to include units within this calculation, which is shown here:
+                            <md>
+                                <mrow>\frac{\$7.14}{\text{ft}^2}\cdot 646.2 \text{ft}^2 \amp\approx  \$4613.87</mrow>
+                            </md>
+                        Therefore the total cost to re-roof this roof is about <m>\$4613.87</m>.
+                        </p></li>
+                    </ol> 
                 </p>
             </solution>
         </example>
