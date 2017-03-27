@@ -26,84 +26,111 @@
                 <li><xref ref="mth60-write-trig-ratios" /></li>
             </ul>
         </objectives>
-        
+
          <figure>
             <caption>Alternative Video Lesson</caption>
-            <video youtube="" width="70%"/>
+            <video youtube="Ujyl_zQw2zE"/>
+            <video youtube="rbokZWrwCJE"/>
+            <video youtube="NEYRNqOZRgE"/>
         </figure>
+        
     </introduction>
 
     <subsection>
         <title>Introduction</title>
 
-        <p>Trigonometric functions show the relationship between an angle of a right triangle and a ratio of two of the side lengths. The <term>sine function</term> compares the opposite side length to the hypotenuse, the <term>cosine function</term> compares the adjacent side length to the hypotenuse, and the <term>tangent function</term> compares the opposite side length to the adjacent side length.</p>
+        <p>We will start this section with an application problem.</p>
 
-        <p>Let's start by looking at a right triangle with side lengths <quantity><mag>1</mag><unit base="foot"/></quantity>, <quantity><mag>1</mag><unit base="foot"/></quantity>, and <m>\sqrt{2}</m> ft. Since the two side lengths next to the right angle are the same, we know that the other angle is 
-        <quantity><mag>45</mag><unit base="degree"/></quantity> as it's half of <quantity><mag>90</mag><unit base="degree"/></quantity>.
+        <example xml:id="example-right-triangle-application-cable">
+            <p>A ramp will be built, leading up to the top of a play structure. The structure is <quantity><mag>3</mag><unit base="foot"/></quantity> tall. The ramp will form a <quantity><mag>30</mag><unit base="degree"/></quantity> angle with the ground. What's the length of the ramp (marked as <m>L</m> in the following figure)?</p>
 
-        <figure xml:id="figure-right-triangle-intro">
-            <caption>A Right Triangle with Side Lengths of <quantity><mag>1</mag><unit base="foot"/></quantity></caption>
-            <image width="70%">
-                <description></description>
+            <figure>
+                <caption>Play Structure Diagram</caption>
+                <image width="50%">
+                    <description></description>
                     <latex-image-code>
-                        <![CDATA[
+                       <![CDATA[
                             \begin{tikzpicture}
-                                \draw (0,0) -- (10,0) node[midway, below]{$1$ ft} -- (10,10) node[rotate=90, midway, below] {$1$ ft} -- (0,0) node[midway, above, sloped]{$\sqrt{2}$ ft};
-                                \draw[dashed] (0,0) -- (0,10) -- (10,10);
-                                \draw (1,0) arc (0:45:1);
-                                \draw (2,0.5) node{$45^{\circ}$};
-                                \draw (9,0) -- (9,1) -- (10,1);
+                                \draw (0,0) -- (8.66,0) -- (8.66,5) node[midway,right] {$3 \text{ ft}$} -- (0,0) node[midway,left,above]{$L$};
+                                \draw (0.5,0) arc (0:30:0.5);
+                                \draw (1,0.25) node{$30^{\circ}$};
+                                \draw (8.16,0) -- (8.16,0.4) -- (8.66,0.4);
+                                \node at (6.8,4) [left] {ramp};
                             \end{tikzpicture}
-                            ]]>
-                    </latex-image-code>
+                       ]]>
+                       </latex-image-code>
+                </image>
+            </figure>
+        </example>
+
+        <p>We cannot use Pythagorean Theoream, <m>a^2+b^2=c^2</m>, because we would need to know the length of two sides. Let's draw a few right triangles with a <m>30^{\circ}</m> angle, measure the lengths of their sides, and see whether we can find a pattern.</p>
+
+        <figure>
+            <caption>A few right triangles</caption>
+            <image width="50%">
+                <description></description>
+                <latex-image-code>
+                   <![CDATA[
+                        \begin{tikzpicture}
+                                \draw (0,8.33) -- (2.89,8.33) -- (2.89,10) node[midway,right] {$1 \text{ in}$} -- (0,8.33) node[midway,above,left]{$2$ \text{ in}};
+                                \draw (0.5,8.33) arc (0:30:0.5);
+                                \draw (1,8.58) node{$30^{\circ}$};
+                                \draw (2.39,8.33) -- (2.39,8.73) -- (2.89,8.73);
+
+                                \draw (0,5) -- (5.77,5) -- (5.77,8.33) node[midway,right] {$2 \text{ in}$} -- (0,5) node[midway,above,left]{$4$ \text{ in}};
+                                \draw (0.5,5) arc (0:30:0.5);
+                                \draw (1,5.25) node{$30^{\circ}$};
+                                \draw (5.27,5) -- (5.27,5.4) -- (5.77,5.4);
+
+                                \draw (0,0) -- (8.66,0) -- (8.66,5) node[midway,right] {$3 \text{ in}$} -- (0,0) node[midway,above,left]{$6$ \text{ in}};
+                                \draw (0.5,0) arc (0:30:0.5);
+                                \draw (1,0.25) node{$30^{\circ}$};
+                                \draw (8.16,0) -- (8.16,0.4) -- (8.66,0.4);
+                        \end{tikzpicture}
+                   ]]>
+                   </latex-image-code>
             </image>
         </figure>
-        
-        Using the definitions for sine, cosine, and tangent, we can write the following statements for the triangle in <xref ref="figure-right-triangle-intro">Figure</xref>:
-            <md>
-                <mrow>\sin(45^{\circ})\amp=\frac{1}{\sqrt{2}}\approx 0.707</mrow>
-                <mrow>\cos(45^{\circ})\amp=\frac{1}{\sqrt{2}}\approx 0.707</mrow>
-                <mrow>\tan(45^{\circ})\amp=\frac{1}{1}=1 </mrow>
-            </md>
-        </p>
 
-        <remark><p>We haven't yet formally studied functions, but we've seen quite a few of them. One example is the square root function. There's a defined meaning for <m>\sqrt{\ \ \  }</m>, and we use this defined meaning to state things like <m>\sqrt{9}=3</m> and <m>\sqrt{10}\approx3.162</m>.  This notation is quite helpful in terms of brevity. If we defined the square root funciton in words, we'd have something like: <q>The square root of a number <m>a</m> is the number that when squared yields <m>a</m>.</q> Similarly, we use <m>\sin(\theta)</m> to denote the <q>The ratio of the length of the side opposite the angle <m>\theta</m> and the length of the hypotenuse in a right triangle.</q>
-        </p></remark>
+        <p>We can see the following pattern: For a right triangle with a <m>30^{\circ}</m> acute angle, the ratio of its <q>opposite side</q> and the triangle's hypotenuse is always <m>\frac{1}{2}</m>. In math, we define "sine" to be "the ratio of an angle's opposite side and the triangle's hypotenuse." The pattern can be written as<me>\sin{30^{\circ}}=\frac{1}{2}</me>Note that we write <m>\sin</m> to represent "sine" in math expressions. With this ratio, we can easily figure out that, in <xref ref="example-right-triangle-application-cable">Example</xref>, the ramp should be <quantity><mag>6</mag><unit base="foot"/></quantity> long.</p>
 
-        <remark><p>To denote an unknown angle, we often use Greek letters such as <m>\theta, \alpha, \beta, \gamma</m>, etc. These angles are still representing variables, but it's a mathematical convention to use Greek letters when denoting angles instead of <m>x,y,</m> or <m>z</m>.
-        </p></remark>
+        <p>Instead of drawing triangles and measuring lengths, a scientific calculator can tell us the value of trignometry ratios. Try <m>\sin{30}</m> on your calculator, and you should get the output <m>0.5</m>.</p>
 
-        <p>
-<xref ref="figure-right-triangle-with-adj-opp-hyp-abbr-labels">Figure</xref>
+        <p>In the next two subsections, we will look at the formal definitions of trigonometry ratios.</p>
+    </subsection>
 
+    <subsection>
+        <title>Naming a Right Triangle's Sides</title>
+
+        <p>We will learn how to name a right triangle's <m>3</m> sides. Look at the next figure.</p>
 
         <sidebyside widths="47% 47%">
-            <figure xml:id="figure-right-triangle-with-adj-opp-hyp-full-labels">
+            <figure>
                 <caption>Right Triangle Labels</caption>
                 <image width="70%">
                     <description></description>
                         <latex-image-code>
                             <![CDATA[
                                 \begin{tikzpicture}
-                                    \draw (0,0) -- (5,0) node[midway, below]{adjacent side} -- (5,8.66) node[rotate=90, midway, below] {opposite side} -- (0,0) node[midway, above, sloped]{hypotenuse};
+                                    \draw (0,0) -- (5,0) node[midway, below]{$\angle \alpha$'s adjacent side} -- (5,8.66) node[rotate=90, midway, below] {$\angle \alpha$'s opposite side} -- (0,0) node[midway, above, sloped]{hypotenuse};
                                     \draw (0.5,0) arc (0:60:0.5);
-                                    \draw (0.5,0.5) node{$\theta$};
+                                    \draw (0.5,0.5) node{$\alpha$};
                                     \draw (4.5,0) -- (4.5,0.5) -- (5,0.5);
                                 \end{tikzpicture}
                             ]]>
                     </latex-image-code>
                 </image>
             </figure>
-            <figure xml:id="figure-right-triangle-with-adj-opp-hyp-abbr-labels">
+            <figure>
                 <caption>Abbrevations</caption>
                 <image width="70%">
                     <description></description>
                         <latex-image-code>
                             <![CDATA[
                                 \begin{tikzpicture}
-                                    \draw (0,0) -- (5,0) node[midway, below]{adj} -- (5,8.66) node[rotate=90, midway, below] {opp} -- (0,0) node[midway, above, sloped]{hyp};
-                                    \draw (0.5,0) arc (0:60:0.5);
-                                    \draw (0.5,0.5) node{$\theta$};
+                                    \draw (0,0) -- (5,0) node[midway, below]{$\angle \beta$'s opposite side} -- (5,8.66) node[rotate=90, midway, below] {$\angle \beta$'s adjacent side} -- (0,0) node[midway, above, sloped]{hypotenuse};
+                                    \draw (4.72,8.16) arc (240:270:0.5);
+                                    \draw (4.8,7.8) node{$\beta$};
                                     \draw (4.5,0) -- (4.5,0.5) -- (5,0.5);
                                 \end{tikzpicture}
                             ]]>
@@ -111,20 +138,35 @@
                 </image>
             </figure>
         </sidebyside>
-        </p>
 
-        <p>Let's summarize the definitions for the sine, cosine and tangent functions using the abbreviations in <xref ref="figure-right-triangle-with-adj-opp-hyp-abbr-labels">Figure</xref>:</p>
+        <remark><p>To denote an unknown angle, we often use Greek letters such as <m>\theta, \alpha, \beta, \gamma</m>, etc. These angles are still representing variables, but it's a mathematical convention to use Greek letters when denoting angles instead of <m>x,y,</m> or <m>z</m>.
+        </p></remark>
 
-        <list xml:id="list-trig-function-definitions-sin-cos-tan">
-            <title>Basic Trigonometric Function Definitions</title>
-            <dl>
-                <li><title>Sine Function</title><p><m>\sin(\theta)=\frac{\text{opp}}{\text{hyp}}</m></p></li>
-                <li><title>Cosine Function</title><p><m>\cos(\theta)=\frac{\text{adj}}{\text{hyp}}</m></p></li>
-                <li><title>Tangent Function</title><p><m>\tan(\theta)=\frac{\text{opp}}{\text{adj}}</m></p></li>
-            </dl>
+        <p>In a right triangle, the longest side, which is always opposite to the right angle, is called the triangle's <term>hypotenuse</term>.</p>
+
+        <p>In the first right triangle, for <m>\angle \alpha</m>, the side opposite to it is called its <q>opposite side</q>, and the other side is called its <q>adjacent side</q>.</p>
+
+        <p>The same definitions apply to <m>\angle \beta</m> in the second right triangle. Notice that when we refer to different accute angles in a right triangle, the positions of the angle's opposite side and adjacent side change.</p>
+    </subsection>
+
+    <subsection>
+        <title>Definition of Trignometry Ratios</title>
+
+        <p>Trigonometric ratios show the relationship between an acute angle in a right triangle and a ratio of two of the side lengths.</p>
+
+        <list xml:id="list-trig-ratio-definitions-sin-cos-tan">
+            <title>Basic Trigonometric Ratio Definitions</title>
+            <ul>
+                <li><p>The <term>sine ratio</term> compares the opposite side length to the hypotenuse: <me>\sin(\theta)=\frac{\text{opppsite side}}{\text{hypotenuse}}</me></p></li>
+                <li><p>The <term>cosine ratio</term> compares the adjacent side length to the hypotenuse; <me>\cos(\theta)=\frac{\text{adjacent side}}{\text{hypotenuse}}</me></p></li>
+                <li><p>The <term>tangent ratio</term> compares the opposite side length to the adjacent side length: <me>\tan(\theta)=\frac{\text{opposite side}}{\text{adjacent side}}</me></p></li>
+            </ul>
         </list>
 
-        <p>In addition to those three functions, there are also three more functions (which are the reciprocals of the original three functions). These are defined below.</p>
+        <p>The acronym <em>SOH CAH TOA</em> is often used to help memorize those three definitions.</p> 
+
+<!--
+        <p>In addition to those three ratios, there are also three more ratios (which are the reciprocals of the original three ratios). These are defined below.</p>
 
         <list xml:id="list-trig-function-definitions-sec-csc-cot">
             <title>Reciprocal Trigonometric Function Definitions</title>
@@ -134,15 +176,58 @@
                 <li><title>Cotangent Function</title><p><m>\cot(\theta)=\frac{\text{adj}}{\text{opp}}</m></p></li>
             </dl>
         </list>
+-->
 
-<todo>Make WeBWorK, similar to Library/ASU-topics/setRightAngleTrig/srw6_2_17.pg but with graphic given instead of sin(theta)=3/5.</todo>
         <example>
             <statement>
-                <p>Use the triangle in <xref ref="figure-triangle-3-4-5">Figure</xref> to find the ratios for each of the six trigonometric functions.
+                <p>There is a right triangle with side lengths <quantity><mag>1</mag><unit base="foot"/></quantity>, <quantity><mag>1</mag><unit base="foot"/></quantity>, and <m>\sqrt{2}</m> ft. Since the two side lengths next to the right angle are the same, we know that the other angle is 
+                <quantity><mag>45</mag><unit base="degree"/></quantity> as it's half of <quantity><mag>90</mag><unit base="degree"/></quantity>.</p>
+
+                <p>Find the following trigonometry ratios:<md>
+                        <mrow>\sin(45^{\circ})\amp</mrow>
+                        <mrow>\cos(45^{\circ})\amp</mrow>
+                        <mrow>\tan(45^{\circ})\amp</mrow>
+                    </md>
+                </p>
+
+                <figure xml:id="figure-right-triangle-intro">
+                    <caption>A Right Triangle with Side Lengths of <quantity><mag>1</mag><unit base="foot"/></quantity></caption>
+                    <image width="50%">
+                        <description></description>
+                            <latex-image-code>
+                                <![CDATA[
+                                    \begin{tikzpicture}
+                                        \draw (0,0) -- (10,0) node[midway, below]{$1$ ft (adjacent side)} -- (10,10) node[rotate=90, midway, below] {$1$ ft (opposite side)} -- (0,0) node[midway, above, sloped]{$\sqrt{2}$ ft (hypotenuse)};
+                                        \draw[dashed] (0,0) -- (0,10) -- (10,10);
+                                        \draw (1,0) arc (0:45:1);
+                                        \draw (2,0.5) node{$45^{\circ}$};
+                                        \draw (9.5,0) -- (9.5,0.5) -- (10,0.5);
+                                    \end{tikzpicture}
+                                    ]]>
+                            </latex-image-code>
+                    </image>
+                </figure>
+                
+                <p>Using the definitions for sine, cosine, and tangent, we can write the following ratios for the <m>45^{\circ}</m>-degree angle in <xref ref="figure-right-triangle-intro">Figure</xref>:
+                    <md>
+                        <mrow>\sin(45^{\circ})\amp=\frac{\text{opppsite side}}{\text{hypotenuse}}=\frac{1}{\sqrt{2}}\approx 0.707</mrow>
+                        <mrow>\cos(45^{\circ})\amp=\frac{\text{adjacent side}}{\text{hypotenuse}}=\frac{1}{\sqrt{2}}\approx 0.707</mrow>
+                        <mrow>\tan(45^{\circ})\amp=\frac{\text{opppsite side}}{\text{adjacent side}}=\frac{1}{1}=1 </mrow>
+                    </md>
+                </p>
+            </statement>
+        </example>
+<!--
+        <remark><p>We haven't yet formally studied functions, but we've seen quite a few of them. One example is the square root function. There's a defined meaning for <m>\sqrt{\ \ \  }</m>, and we use this defined meaning to state things like <m>\sqrt{9}=3</m> and <m>\sqrt{10}\approx3.162</m>.  This notation is quite helpful in terms of brevity. If we defined the square root funciton in words, we'd have something like: <q>The square root of a number <m>a</m> is the number that when squared yields <m>a</m>.</q> Similarly, we use <m>\sin(\theta)</m> to denote the <q>The ratio of the length of the side opposite the angle <m>\theta</m> and the length of the hypotenuse in a right triangle.</q>
+        </p></remark>
+-->
+        <example>
+            <statement>
+                <p>Use the triangle in <xref ref="figure-triangle-3-4-5">Figure</xref> to find each of the three trigonometric ratios for <m>\angle \alpha</m>.</p>
 
                 <figure xml:id="figure-triangle-3-4-5">
                     <caption>Right Triangle with Side Lengths <m>3,4</m>, and <m>5</m></caption>
-                    <image width="70%">
+                    <image width="50%">
                         <description></description>
                         <latex-image-code>
                             <![CDATA[
@@ -156,26 +241,25 @@
                            </latex-image-code>
                     </image>
                 </figure>
-                </p>
             </statement>
             <solution>
-                <p>Using the definitions of the six trigonometric functions, we find that the ratios are:
+                <p>Using the definitions of trigonometric ratios, we have:
                     <md>
                         <mrow>\sin(\alpha)\amp=\frac{4}{5}</mrow>
                         <mrow>\cos(\alpha)\amp=\frac{3}{5}</mrow>
                         <mrow>\tan(\alpha)\amp=\frac{3}{4}</mrow>
-                        <mrow>\csc(\alpha)\amp=\frac{5}{4}</mrow>
+<!--                        <mrow>\csc(\alpha)\amp=\frac{5}{4}</mrow>
                         <mrow>\sec(\alpha)\amp=\frac{5}{3}</mrow>
                         <mrow>\cot(\alpha)\amp=\frac{4}{3}</mrow>
+-->
                     </md>                
                 </p>
             </solution>
         </example>
 
-<todo>Make WeBWorK, similar to example above.</todo>
         <exercise>
             <statement>
-                <p>Use the triangle in <xref ref="figure-triangle-5-12-13">Figure</xref> to find the ratios for each of the six trigonometric functions.
+                <p>Use the triangle in <xref ref="figure-triangle-5-12-13">Figure</xref> to find the ratios for each of the three trigonometric ratios for <m>\angle \beta</m>.</p>
 
                 <figure xml:id="figure-triangle-5-12-13">
                     <caption>Right Triangle with Side Lengths <m>5,12</m>, and <m>13</m></caption>
@@ -193,38 +277,33 @@
                            </latex-image-code>
                     </image>
                 </figure>
-                </p>
             </statement>
             <solution>
-                <p>Using the definitions of the six trigonometric functions, we find that the ratios are:
+                <p>Using the definitions of trigonometric ratios, we have:
                     <md>
                         <mrow>\sin(\beta)\amp=\frac{12}{13}</mrow>
                         <mrow>\cos(\beta)\amp=\frac{5}{13}</mrow>
                         <mrow>\tan(\beta)\amp=\frac{12}{5}</mrow>
-                        <mrow>\csc(\beta)\amp=\frac{13}{12}</mrow>
+<!--                        <mrow>\csc(\beta)\amp=\frac{13}{12}</mrow>
                         <mrow>\sec(\beta)\amp=\frac{13}{5}</mrow>
-                        <mrow>\cot(\beta)\amp=\frac{5}{12}</mrow>
+                        <mrow>\cot(\beta)\amp=\frac{5}{12}</mrow>-->
                     </md>                
                 </p>
             </solution>
         </exercise>
 
-<todo>These WeBWorK problems are close to the ones above, but don't match with notation/labeling. Can they be adjusted?</todo>
         <exercise>
-            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition50.pg" seed="1"/>
+            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek50.pg" seed="6"/>
         </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition50.pg" seed="2"/>
-        </exercise>
+
     </subsection>
 
     <subsection>
-        <title>Evaluating Trignometric Functions Using Technology</title>
+        <title>Finding Missing Lengths with Trigonometry</title>
 
-        <p>The right triangles in <xref ref="figure-triangle-3-4-5">Figure</xref> and <xref ref="figure-triangle-5-12-13">Figure</xref> all have side lengths that are exact integer values. This results in the ratios being exact rational values. These are known as Pythagorean triples and don't occur very often. Most often, we don't get exact rational expressions when evaluating trigonometric functions. Instead, we'll need to use technology to approximate these values. 
+        <p>The right triangles in <xref ref="figure-triangle-3-4-5">Figure</xref> and <xref ref="figure-triangle-5-12-13">Figure</xref> all have side lengths that are exact integer values. This results in the ratios being exact rational values. These are known as Pythagorean triples and don't occur very often. Most often, we don't get exact rational expressions when evaluating trigonometric ratios. Instead, we'll need to use technology to approximate these values. 
         </p>
 
-<todo>Make WeBWorK</todo>
         <example>
             <statement>
                 <p>Use technology to approximate the following values.
@@ -248,7 +327,7 @@
 
         <example>
             <statement>
-                <p>Using the triangle in <xref ref="figure-triangle-32-deg">Figure</xref> to create an equation with one of the basic trigonometric functions and solve for the unknown value <m>x</m>. 
+                <p>Using the triangle in <xref ref="figure-triangle-32-deg">Figure</xref> to create an equation with one of the basic trigonometric ratios and solve for the unknown value <m>x</m>. 
                 <figure xml:id="figure-triangle-32-deg">
                     <caption>Right Triangle with Unknown Side Length</caption>
                     <image width="70%">
@@ -268,31 +347,37 @@
                 </p>
             </statement>
             <solution>
-                <p>Using the triangle, we can see that the angle of <quantity><mag>32</mag><unit base="degree"/></quantity> is given. The side length opposite this angle is given as <quantity><mag>3</mag><unit base="foot"/></quantity> and the unknown length (the hypotenuse) is labeled with <m>x</m>. Since we are working with the opposite side length and the hypotenuse, we will use the sine function. Using the definition of sine, we can write the following equation:
-                    <me>\sin(32^{\circ})=\frac{3}{x}</me>
-                To solve for <m>x</m>, we will eliminate the denominator by first multiplying each side by <m>x</m>:
+                <p>Using the triangle, we can see that the angle of <quantity><mag>32</mag><unit base="degree"/></quantity> is given. The side length opposite this angle is given as <quantity><mag>3</mag><unit base="foot"/></quantity> and the unknown length (the hypotenuse) is labeled with <m>x</m>. Since we are working with the opposite side length and the hypotenuse, we will use the sine ratio. Using the definition of sine, we can write the following equation:<md>
+                        <mrow>\sin{\theta}\amp=\frac{\text{opppsite side}}{\text{hypotenuse}}</mrow>
+                        <mrow>\sin(32^{\circ})\amp=\frac{3}{x}</mrow>
+                    </md>
+                    To solve for <m>x</m>, we will eliminate the denominator by first multiplying each side by <m>x</m>:
                     <md>
                         <mrow>\sin(32^{\circ})\amp=\frac{3}{x}</mrow>
                         <mrow>\multiplyleft{x}\sin(32^{\circ})\amp=\frac{3}{x}\multiplyright{x}</mrow>
                     </md>    
-                After this, we'll need to divide each side by <m>\sin(32^{\circ})</m> to isolate <m>x</m>. As a final step, we'll use technology to approximate this result:
+                    After this, we'll need to divide each side by <m>\sin(32^{\circ})</m> to isolate <m>x</m>. As a final step, we'll use technology to approximate this result:
                     <md>
                         <mrow>x\cdot\sin(32^{\circ})\amp=3</mrow>
                         <mrow>\frac{x\cdot\sin(32^{\circ})}{\sin(32^{\circ})}\amp=\frac{3}{\sin(32^{\circ})}</mrow>
                         <mrow>x\amp=\frac{3}{\sin(32^{\circ})}</mrow>
                         <mrow>x\amp\approx5.661</mrow>
                     </md>  
-                   Therefore the unknown side length marked with <m>x</m> has an approximate length of <quantity><mag>5.661</mag><unit base="foot"/></quantity>.   
+                    Therefore the unknown side length marked with <m>x</m> has an approximate length of <quantity><mag>5.661</mag><unit base="foot"/></quantity>.   
                 </p>
             </solution>
         </example>
 
+        <exercise>
+            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig15.pg" seed="2"/>
+        </exercise>
+
         <example>
             <statement>
-                <p>Using the triangle in <xref ref="figure-triangle-44-deg">Figure</xref> to create an equation with one of the basic trigonometric functions and solve for the unknown value <m>x</m>. 
+                <p>Using the triangle in <xref ref="figure-triangle-44-deg">Figure</xref> to create an equation with one of the basic trigonometric ratios and solve for the unknown value <m>x</m>. 
                 <figure xml:id="figure-triangle-44-deg">
                     <caption>Right Triangle with Unknown Side Length</caption>
-                    <image width="70%">
+                    <image width="50%">
                         <description></description>
                         <latex-image-code>
                             <![CDATA[
@@ -309,9 +394,11 @@
                 </p>
             </statement>
             <solution>
-                <p>Using the triangle, we can see that the angle of <quantity><mag>44</mag><unit base="degree"/></quantity> is given. The side length adjacent to this angle is given as <quantity><mag>6</mag><unit base="meter"/></quantity> and the unknown length is opposite the angle and is labeled with <m>y</m>. Since we are working with the adjacent and opposite side lengths, we will use the tangent function. Using the definition of tangent, we can write the following equation:
-                    <me>\tan(44^{\circ})=\frac{y}{6}</me>
-                To solve for <m>y</m>, we will eliminate the denominator by multiplying each side by <m>6</m>. After this, we will use technology to approximate the value of <m>y</m>:
+                <p>The angle of <quantity><mag>44</mag><unit base="degree"/></quantity> is given. The side length adjacent to this angle is given as <quantity><mag>6</mag><unit base="meter"/></quantity> and the unknown length is opposite the angle and is labeled with <m>y</m>. Since we are working with the adjacent and opposite side lengths, we will use the tangent ratio to write the following equation:<md>
+                        <mrow>\tan{\theta}\amp=\frac{\text{opppsite side}}{\text{adjacent side}}</mrow>
+                        <mrow>\tan(44^{\circ})\amp=\frac{y}{6}</mrow>
+                    </md>
+                    To solve for <m>y</m>, we will eliminate the denominator by multiplying each side by <m>6</m>. After this, we will use technology to approximate the value of <m>y</m>:
                     <md>
                         <mrow>\tan(44^{\circ})\amp=\frac{y}{6}</mrow>
                         <mrow>\multiplyleft{6}\tan(44^{\circ})\amp=\frac{y}{6}\multiplyright{6}</mrow>
@@ -323,24 +410,26 @@
             </solution>
         </example>
 
-
+        <exercise>
+            <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig30.pg" seed="2"/>
+        </exercise>
     </subsection>
 
     <subsection>
         <title>Solving Right Triangle Application Problems</title>
 
-        <p>There are a lot of real-world applications of right triangles and trigonometric functions. Here we will look at a few.  </p>
+        <p>There are a lot of real-world applications of trigonometric ratios. We will look at a few.</p>
 
         <example>
             <statement>
-                <p>A telephone pole is to be <quantity><mag>30</mag><unit base="foot"/></quantity> tall. It will be attached to the ground with cable that makes a <quantity><mag>60</mag><unit base="degree"/></quantity> angle with the ground. How long does the cable need to be?
-                </p>
+                <p>A telephone pole is to be <quantity><mag>30</mag><unit base="foot"/></quantity> tall. It will be attached to the ground with a cable that makes a <quantity><mag>60</mag><unit base="degree"/></quantity> angle with the ground. How long does the cable need to be?</p>
             </statement>
             <solution>
-                <p>To start, we'll draw a right triangle representing this scenario. We'll label the diagonal length as <m>L</m>, which will be measured in feet.
+                <p>To start, we'll draw a right triangle representing this scenario. We'll label the diagonal length as <m>L</m>, which will be measured in feet.</p>
+
                 <figure xml:id="figure-right-triangle-application-cable">
                     <caption>Telephone Pole Diagram</caption>
-                    <image width="70%">
+                    <image width="40%">
                         <description></description>
                         <latex-image-code>
                            <![CDATA[
@@ -349,25 +438,22 @@
                                     \draw (0.5,0) arc (0:60:0.5);
                                     \draw (1,0.5) node{$60^{\circ}$};
                                     \draw (4.5,0) -- (4.5,0.5) -- (5,0.5);
+                                    \node at (5,7) [right] {pole};
+                                    \node at (4,7) [left] {cable};
                                 \end{tikzpicture}
                            ]]>
                            </latex-image-code>
                     </image>
                 </figure>
-                With the information given, we know the angle and the side length opposite to this angle. We do not know the hypotenuse length. Thus we will use the sine function to determine the hypotenuse length (denoted as <m>L</m>):
-                    <me>\sin(60^{\circ})=\frac{30}{L}</me>
-                To solve, we'll multiply each side by <m>L</m>:
-                    <md>
+
+                <p>With the information given, we know the angle and the side length opposite to this angle. We do not know the hypotenuse length. Thus we will use the sine ratio to determine the hypotenuse length (denoted as <m>L</m>):<md>
+                        <mrow>\sin(60^{\circ})\amp=\frac{30}{L}</mrow>
                         <mrow>\multiplyleft{L}\sin(60^{\circ})\amp=\frac{30}{L}\multiplyright{L}</mrow>
                         <mrow>L\sin(60^{\circ})\amp=30</mrow>
-                    </md>
-                After that, we'll divide each side by <m>\sin(60^{\circ})</m> and then use technology to approximate this result:
-                    <md>
                         <mrow>\frac{L\sin(60^{\circ})}{\sin(60^{\circ})}\amp=\frac{30}{\sin(60^{\circ})}</mrow>
                         <mrow>L\amp=\frac{30}{\sin(60^{\circ})}</mrow>
                         <mrow>L\amp\approx 34.64</mrow>
-                    </md>
-                The length of the cable is about <quantity><mag>34.64</mag><unit base="foot"/></quantity>.
+                    </md>The length of the cable is about <quantity><mag>34.64</mag><unit base="foot"/></quantity>.
                 </p>
             </solution>
         </example>
@@ -378,7 +464,8 @@
                 </p>
             </statement>
             <solution>
-                <p>To start, it is helpful to sketch a diagram of this scenario. We'll label the vertical height as <m>h</m>, which will be measured in feet.
+                <p>To start, it is helpful to sketch a diagram of this scenario. We'll label the vertical height as <m>h</m>, which will be measured in meters.</p>
+                
                 <figure xml:id="figure-right-triangle-application-airplane">
                     <caption>Airplane Diagram</caption>%not drawn to scale
                     <image width="70%">
@@ -396,22 +483,21 @@
                            </latex-image-code>
                     </image>
                 </figure>
-                With the information given, we know the angle and the side length adjacent to this angle. We do not know the opposite side length. Thus we will use the tangent function to determine the opposite side length (denoted as <m>h</m>):
-                    <me>\tan(9^{\circ})=\frac{h}{500}</me>
-                To solve, we'll multiply each side by <m>500</m> and then use technology to approximate this result:
-                    <md>
+
+                <p>With the information given, we know the angle and the side length adjacent to this angle. We do not know the opposite side length. Thus we will use the tangent ratio to determine the opposite side length (denoted as <m>h</m>):<md>
+                        <mrow>\tan(9^{\circ})\amp=\frac{h}{500}</mrow>
                         <mrow>\multiplyleft{500}\tan(9^{\circ})\amp=\frac{h}{500}\multiplyright{500}</mrow>
                         <mrow>500\tan(9^{\circ})\amp=h</mrow>
                         <mrow>h\amp\approx79.19</mrow>
-                    </md>
+                    </md>The vertical height of the airplane is about <quantity><mag>79.19</mag><unit base="meter"/></quantity>.
                 </p>
-                The vertical height of the airplane is about <quantity><mag>79.19</mag><unit base="foot"/></quantity>.
             </solution>
         </example>
 
         <example xml:id="example-right-triangle-roof">
             <statement>
-                <p>Use right triangles and a basic trigonometric function to determine the diagonal length <m>d</m> of the horizontal roof in <xref ref="figure-right-triangle-application-roof">Figure</xref>. 
+                <p>Use a trigonometric ratio to determine the diagonal length <m>d</m> of the horizontal roof in <xref ref="figure-right-triangle-application-roof">Figure</xref>.</p>
+
                 <figure xml:id="figure-right-triangle-application-roof">
                     <caption>Roof Diagram</caption>
                     <image width="70%">
@@ -420,14 +506,16 @@
                             <![CDATA[\begin{tikzpicture}%(x,z,y)
                                 \draw[red] (0,0,0) -- ++(-10,0,0) -- ++(0,-5,0) -- ++(10,0,0) -- cycle; %front face
                                 \draw[red] (0,0,0) -- ++(0,0,-15) -- ++(0,-5,0) -- ++(0,0,15) -- cycle; %side
-                                \draw[red] (0,0,0) -- ++(-10,0,0) -- ++(0,0,-15) -- ++(10,0,0) -- cycle; %top
+                                \draw[red] (0,0,0) -- ++(-10,0,0) -- ++(0,0,-15); %top
+                                \draw[red,dashed] (-10,0,-15) -- ++(10,0,0); %top
                                 \draw[blue] (0,0,0) -- (-5,2.5,0) -- (-10,0,0); %front triangle
                                 \draw[blue] (-5,2.5,0) -- (-5,0,0); %front triangle split
                                 \draw[black] (-5.5,0,0) -- (-5.5,0.5,0) -- (-5,0.5,0); %right angle
-                                \draw[red] (0,0,-15) -- (-5,2.5,-15) -- (-10,0,-15) -- cycle; %back triangle
+                                \draw[red] (0,0,-15) -- (-5,2.5,-15) -- (-10,0,-15); %back triangle
                                 \draw[red] (-5,2.5,0) -- (-5,2.5,-15); %top triangle
                                         \node[below] at (-5,-5,0) {$20\text{ ft}$};
-                                        \node[right] at (-7.5,2,0) {$d$};
+                                        \node[right] at (-7.5,1.6,0) {$d$};
+                                        \node[below] at (-7.5,0,0) {$10$\text{ ft}};
                                         \node[right] at (0,-5,-7.5) {$30\text{ ft}$};
                                     \draw (-9,0,0) arc (0:26.57:1);
                                     \draw (-8.5,0.25,0) node{$21.8^{\circ}$};
@@ -436,20 +524,16 @@
                            </latex-image-code>
                     </image>
                 </figure>
-                </p>
             </statement>
             <solution>
-                <p>This roof inclines at an angle of <quantity><mag>21.8</mag><unit base="degree"/></quantity> (this is known as the pitch of the roof). The total distance across is <quantity><mag>20</mag><unit base="foot"/></quantity>. We see that two right triangles are created. So we will use the right triangle with an angle of  and an adjacent side length of <quantity><mag>10</mag><unit base="foot"/></quantity>. Since we need the hypotenuse, we'll use the cosine function to write the following:
-                    <me>\cos(21.8^{\circ})=\frac{10}{h}</me>
-                To solve for <m>h</m>, we'll multiply each side by <m>h</m> and then divide each side by <m>\cos(21.8^{\circ})</m>. Once we have solved for <m>h</m>, we'll use technology to round our result:
-                    <md>
+                <p>This roof inclines at an angle of <quantity><mag>21.8</mag><unit base="degree"/></quantity> (this is known as the pitch of the roof). The total distance across is <quantity><mag>20</mag><unit base="foot"/></quantity>. We see that two right triangles are created. We will focus on the triangle on the left side, with an angle of <quantity><mag>21.8</mag><unit base="degree"/></quantity> and an adjacent side length of <quantity><mag>10</mag><unit base="foot"/></quantity>. Since we need the hypotenuse, we'll use the cosine ratio to write the following:<md>
+                        <mrow>\cos(21.8^{\circ})\amp=\frac{10}{h}</mrow>
                         <mrow>\multiplyleft{h}\cos(21.8^{\circ})\amp=\frac{10}{h}\multiplyright{h}</mrow>
                         <mrow>h\cos(21.8^{\circ})\amp=10</mrow>
                         <mrow>\frac{h\cos(21.8^{\circ})}{\cos(21.8^{\circ})}\amp=\frac{10}{\cos(21.8^{\circ})}</mrow>
                         <mrow>h\amp=\frac{10}{\cos(21.8^{\circ})}</mrow>
                         <mrow>h\amp\approx 10.77</mrow>
-                    </md>
-                The diagonal length is about <quantity><mag>10.77</mag><unit base="foot"/></quantity>.
+                    </md>The diagonal length is about <quantity><mag>10.77</mag><unit base="foot"/></quantity>.
                 </p>
             </solution>
         </example>
@@ -469,15 +553,13 @@
                         <li><p>Since the roof contains two rectangles, we will multiply two by the product of the length and the width of each rectangle:
                             <md>
                                 <mrow>2\cdot LW \amp\approx 2\cdot 30 \cdot 10.77</mrow>
-                                <mrow>\amp646.2</mrow>
-                            </md>
-                            The total area of the roof is about <quantity><mag>646.2</mag><unit base="foot" exp="2"/></quantity>.
+                                <mrow>\amp\approx646.2</mrow>
+                            </md>The total area of the roof is about <quantity><mag>646.2</mag><unit base="foot" exp="2"/></quantity>.
                         </p></li>
                         <li><p>To calculate the total cost, we want to multiply the cost per square foot by the total number of square feet. Note that it can be helpful to include units within this calculation, which is shown here:
                             <md>
                                 <mrow>\frac{\$7.14}{\text{ft}^2}\cdot 646.2 \text{ft}^2 \amp\approx  \$4613.87</mrow>
-                            </md>
-                        Therefore the total cost to re-roof this roof is about <m>\$4613.87</m>.
+                            </md>Therefore the total cost to re-roof this roof is about <m>\$4613.87</m>.
                         </p></li>
                     </ol> 
                 </p>
@@ -488,103 +570,109 @@
     <exercises>
         <exercisegroup>
             <introduction>
-                <p>Evaluating Trigonometric Functions</p>
+                <p>Evaluating Trigonometric Ratios</p>
             </introduction>
             <exercise>
-                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition50.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek50.pg" seed="3"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-02/Connally3-6-Tools-02.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek50.pg" seed="4"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-02/Connally3-6-Tools-02.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek50.pg" seed="5"/>
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition10.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek10.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition20.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek20.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition30.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek30.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinition40.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigDefinitionGreek40.pg" seed="1"/>
             </exercise>
         </exercisegroup>
         <exercisegroup>
             <introduction>
-                <p>Solving Equations with Right Triangles and Trigonometric Functions</p>
+                <p>Solving Equations with Right Triangles and Trigonometric Ratios</p>
             </introduction>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/srw6_2_11.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig10.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/p11.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig15.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/srw6_2_15.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig20.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/p8.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig25.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/p11.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig30.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-14/Connally3-6-Tools-14.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig35.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-04/Connally3-6-Tools-04.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig40.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-12/Connally3-6-Tools-12.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig50.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrig60.pg" seed="1"/>
             </exercise>
         </exercisegroup>
 
 
         <exercisegroup>
             <introduction>
-                <p>Application Problems with Right Triangles and Trigonometric Functions</p>
+                <p>Application Problems with Right Triangles and Trigonometric Ratios</p>
             </introduction>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-23.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication05.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-22.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication10.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/LoyolaChicago/Precalc/Chap6Tools/Connally3-6-Tools-21/Connally3-6-Tools-21.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication20.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/p1.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication30.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/p6.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication40.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/srw6_2_39.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication50.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setTrig03FunctionsRightAngle/srw6_2_35.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication60.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Rochester/setVectors0Introduction/ur_vc_0_2.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication70.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/NAU/setTrigRightTriangle/WPRtTriangle3.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication80.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Utah/Trigonometry/set5_Trigonometry/s5p6.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication90.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Utah/Trigonometry/set5_Trigonometry/s5p5.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication100.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/Utah/Trigonometry/set13_Additional_Topics_in_Trigonometry/p15.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication110.pg" seed="1"/>
             </exercise>
             <exercise>
-                <webwork source="Library/NAU/setTrigRightTriangle/WPRtTriangle1.pg" seed="1"/>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication120.pg" seed="1"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Trigonometry/RightTriangleTrigApplication130.pg" seed="1"/>
             </exercise>
         </exercisegroup>
     </exercises>
