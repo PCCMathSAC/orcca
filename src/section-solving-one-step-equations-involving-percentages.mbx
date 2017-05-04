@@ -25,6 +25,7 @@
             <li><xref ref="mth60-applications-of-linear-equations-and-inequalities" /></li>
             <li><xref ref="mth60-apply-percent-equations" /></li>
             <li><xref ref="mth60-solve-percent-increase-and-decrease-problems" /></li>
+            <li><xref ref="mth60-review-various-graphs" /></li>
         </ul>
     </objectives>
 
@@ -63,13 +64,13 @@
             <solution>
                 <p>Each question can be translated from English into a math equation by reading it slowly and looking for the right signals.<ol label="a">
                     <li>
-                        <p>The word <q>is</q> means about the same thing as the <m>=</m> sign. <q>How much</q> is a question phrase, and we can let <m>x</m> be the unknown amount (in dollars).The word <q>of</q> translates to multiplication, as discussed earlier. So we have:<me>\underbrace{\strut x}_{\text{How much}}\underbrace{\strut =}_{\text{is}}\underbrace{\strut 0.30}_{\text{30\%}}\underbrace{\strut\cdot}_{\text{of}}\underbrace{\strut 24}_{\text{\$24}}</me></p>
+                        <p>The word <q>is</q> means about the same thing as the <m>=</m> sign. <q>How much</q> is a question phrase, and we can let <m>x</m> be the unknown amount (in dollars).The word <q>of</q> translates to multiplication, as discussed earlier. So we have:<me>\underbrace{\strut x}_{\text{How much}}\underbrace{\strut =}_{\text{is}}\underbrace{\strut 0.30}_{\text{30}\%}\underbrace{\strut\cdot}_{\text{of}}\underbrace{\strut 24}_{\text{\$24}}</me></p>
                     </li>
                     <li>
                         <p>Let <m>P</m> be the unknown value. We have:<me>\underbrace{\strut 7.2}_{\text{\$7.20}}\underbrace{\strut =}_{\text{is}}\underbrace{\strut P}_{\text{what percent}}\underbrace{\strut\cdot}_{\text{of}}\underbrace{\strut 24}_{\text{\$24}}</me>With this setup, <m>P</m> is going to be a decimal value (<m>0.30</m>) that you would translate into a percentage (<m>30\%</m>).</p>
                     </li>
                     <li>
-                        <p>Let <m>x</m> be the unknown amount (in dollars). We have:<me>\underbrace{\strut 7.2}_{\text{\$7.20}}\underbrace{\strut =}_{\text{is}}\underbrace{\strut 0.30}_{\text{30\%}}\underbrace{\strut\cdot}_{\text{of}}\underbrace{\strut x}_{\text{how much money}}</me></p>
+                        <p>Let <m>x</m> be the unknown amount (in dollars). We have:<me>\underbrace{\strut 7.2}_{\text{\$7.20}}\underbrace{\strut =}_{\text{is}}\underbrace{\strut 0.30}_{\text{30}\%}\underbrace{\strut\cdot}_{\text{of}}\underbrace{\strut x}_{\text{how much money}}</me></p>
                     </li>
                 </ol></p>
             </solution>
@@ -136,10 +137,52 @@
 
         <example>
             <statement>
-                <p>As of Fall 2016, Portland Community College had <m>89{,}900</m> enrolled students. Among them, <m>6\%</m> were black. How many black students were enrolled at PCC as of Fall 2016 term?</p>
+                <p>As of Fall 2016, Portland Community College had <m>89{,}900</m> enrolled students. According to the chart below, how many black students were enrolled at PCC as of Fall 2016 term?</p>
+
+                <figure>
+                    <caption>Racial Breakdown of PCC Students in Fall 2016</caption>
+                    <image width="70%">
+                        <latex-image-code>
+                            <![CDATA[
+                                \def\angle{0}
+                                \def\radius{3}
+                                \def\cyclelist{{"red","blue","brown","green","yellow"}}
+                                \newcount\cyclecount \cyclecount=-1
+                                \newcount\ind \ind=-1
+                                \begin{tikzpicture}[nodes = {font=\sffamily}]
+                                  \foreach \percent/\name in {
+                                      68/Caucasian,
+                                      11/Hispanic,
+                                      8/Asian,
+                                      6/Black,
+                                      7/Other
+                                    } {
+                                      \ifx\percent\empty\else               % If \percent is empty, do nothing
+                                        \global\advance\cyclecount by 1     % Advance cyclecount
+                                        \global\advance\ind by 1            % Advance list index
+                                        \ifnum4<\cyclecount                 % If cyclecount is larger than list
+                                          \global\cyclecount=0              %   reset cyclecount and
+                                          \global\ind=0                     %   reset list index
+                                        \fi
+                                        \pgfmathparse{\cyclelist[\the\ind]} % Get color from cycle list
+                                        \edef\color{\pgfmathresult}         %   and store as \color
+                                        % Draw angle and set labels
+                                        \draw[fill={\color!50},draw={\color}] (0,0) -- (\angle:\radius)
+                                          arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+                                        \node at (\angle+0.5*\percent*3.6:0.7*\radius) {\percent\,\%};
+                                        \node[pin=\angle+0.5*\percent*3.6:\name]
+                                          at (\angle+0.5*\percent*3.6:\radius) {};
+                                        \pgfmathparse{\angle+\percent*3.6}  % Advance angle
+                                        \xdef\angle{\pgfmathresult}         %   and store in \angle
+                                      \fi
+                                    };
+                                \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
             </statement>
             <solution>
-                <p>After reading this word problem, we can translate the problem into <q>what is <m>6\%</m> of <m>89{,}900</m>?</q> Let <m>x</m> be the number of black students enrolled at PCC in Fall 2016. We can set up and solve the equation:<md>
+                <p>After reading this word problem and the chart, we can translate the problem into <q>what is <m>6\%</m> of <m>89{,}900</m>?</q> Let <m>x</m> be the number of black students enrolled at PCC in Fall 2016. We can set up and solve the equation:<md>
                     <mrow>x\amp=0.06\cdot89900</mrow>
                     <mrow>x\amp=5394</mrow>
                 </md>(There was not much <q>solving</q> to do, since the variable we wanted to isolate was already isolated.)</p>
@@ -150,7 +193,77 @@
 
         <example>
             <statement>
+                <p>According to the bar graph, what percentage of the school's student population is freshman?</p>
+
+                <figure>
+                    <caption>Number of students at a high school by class</caption>
+                    <image width="60%">
+                        <latex-image-code>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[
+                                        ytick={},
+                                        minor ytick={},
+                                        xmin={},xmax={},
+                                        ymin=0,ymax={},
+                                        grid = none,
+                                        %axis x line = bottom,
+                                        axis y line = left,
+                                        axis line style={->}, % arrows on the axis
+                                        yticklabel style={},
+                                        y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+                                        ybar,
+                                        enlargelimits=0.15,
+                                        legend style={at={(0.5,-0.2)},
+                                          anchor=north,legend columns=-1},
+                                        ylabel={Number of Students},
+                                        xlabel={},
+                                        symbolic x coords={freshman,sophamore,junior,senior},
+                                        xtick=data,
+                                        nodes near coords, 
+                                        nodes near coords align={vertical},
+                                        x tick label style={rotate=45,anchor=east},
+                                        ]
+                                        \addplot coordinates {(freshman,134) (sophamore,96) 
+                                            (junior,86) (senior,103)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>The school's total number of students is:<me>134+96+86+103=419</me></p>
+
+                <p>Now, we can translate the main question:</p>
+
+                <blockquote>
+                    <p><q>What percentage of the school's student population is freshman?</q></p>
+                </blockquote>
+
+                <p>into:</p>
+
+                <blockquote>
+                    <p><q>What percent of <m>419</m> is <m>134</m>?</q></p>
+                </blockquote>
+
+                <p>Using <m>P</m> to represent the unknown quantity, we write and solve the equation:<md>
+                    <mrow>\overbrace{\strut P}^{\text{what percent}}\overbrace{\strut \cdot}^{\text{of}} \overbrace{\strut 419}^{\text{419}}\amp\overbrace{\strut =}^{\text{is}}\overbrace{\strut 134}^{\text{134}}</mrow>
+                    <mrow>\divideunder{P\cdot 419}{419}\amp=\divideunder{134}{419}</mrow>
+                    <mrow>P\amp=0.319809\ldots</mrow>
+                    <mrow>P\amp\approx31.98\%</mrow>
+                </md></p>
+
+                <p>Approximately <m>31.98\%</m> of the school's student population is freshman.</p>
+            </solution>
+        </example>
+
+<!--        
+        <example>
+            <statement>
                 <p>Kim just received her monthly paycheck. Her gross pay (the amount before taxes and related things are deducted) was <m>\$2{,}346.19</m>, and her total tax and other deductions was <m>\$350.21</m>. The rest was deposited directly into her checking account. What percent of her gross pay went into her checking account?</p>
+
             </statement>
             <solution>
                 <p>Train yourself to read the word problem and not try to pick out numbers to substitute into formulas. You may find it helps to read the problem over to yourself three or more times before you attempt to solve it. There are <em>three</em> dollar amounts to discuss in this problem, and many students fall into a trap of using the wrong values in the wrong places. There is the gross pay, the amount that was deducted, and the amount that was deposited.</p>
@@ -179,6 +292,7 @@
                 <p>Approximately <m>85.07\%</m> of her gross pay went into her checking account.</p>
             </solution>
         </example>
+-->
 
         <example>
             <statement>
@@ -217,10 +331,59 @@
 
         <example>
             <statement>
-                <p>Your monthly internet bill increased from <m>\$40.00</m> to <m>\$48.00</m>. What was the percent of increase?</p>
+                <p>The following shart keeps track of a stock's price change over a week. What was the stock price's percent of increase from Monday to Friday?</p>
+
+                <figure>
+                    <caption>Change in Stock Price Over a Week</caption>
+                    <image width="60%">
+                        <latex-image-code>
+                            <![CDATA[
+                                \pgfplotsset{primarycurve/.style   = {color=firstcolor,  mark=none, line width=1pt, solid}}
+                                \begin{tikzpicture}
+                                        \begin{axis}[
+                                            ytick={},
+                                            minor ytick={},
+                                            xmin={},xmax={},
+                                            ymin=0,ymax={},
+                                            grid = none,
+                                            %axis x line = bottom,
+                                            axis y line = left,
+                                            axis line style={->}, % arrows on the axis
+                                            yticklabel style={},
+                                            y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+                                            %ybar,
+                                            enlargelimits=0.15,
+                                            legend style={at={(0.5,-0.2)},
+                                              anchor=north,legend columns=-1},
+                                            ylabel={Stock Price Change},
+                                            xlabel={},
+                                            symbolic x coords={Monday,Tuesday,Wednesday,Thursday,Friday},
+                                            xtick=data,
+                                            %nodes near coords, 
+                                            %nodes near coords align={vertical},
+                                            x tick label style={rotate=45,anchor=east},
+                                            ]                                
+
+                                            \addplot coordinates {
+                                                (Monday,42.00)
+                                                (Tuesday,38.11)
+                                                (Wednesday,46.87)
+                                                (Thursday,52.11)
+                                                (Friday,48.00)
+                                            };
+                                            \addplot[soliddot] coordinates {(Monday,42.00)} node [above] {\$42.00};
+                                            \addplot[soliddot] coordinates {(Tuesday,38.11)} node [below] {\$38.11};
+                                            \addplot[soliddot] coordinates {(Wednesday,46.87)} node [above] {\$46.87};
+                                            \addplot[soliddot] coordinates {(Thursday,52.11)} node [above] {\$52.11};
+                                            \addplot[soliddot] coordinates {(Friday,48.00)} node [above] {\$48.00};
+                                        \end{axis}
+                                \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
             </statement>
             <solution>
-                <p>The actual amount of increase was <m>48-40</m>, or <m>8</m>, dollars. We need to answer the question <q><m>8</m> is what percent of <m>40</m>?</q> Note that we are comparing the <m>8</m> to <m>40</m>, not to <m>48</m>. In these situations where one amount is the earlier amount, the earler original amount is the one that represents <m>100\%</m>. Let <m>x</m> represent the percent of increase. We can set up and solve the equation:<md>
+                <p>The actual amount of increase from Monday to Friday was <m>48-40</m>, or <m>8</m>, dollars. We need to answer the question <q><m>8</m> is what percent of <m>40</m>?</q> Note that we are comparing the <m>8</m> to <m>40</m>, not to <m>48</m>. In these situations where one amount is the earlier amount, the earler original amount is the one that represents <m>100\%</m>. Let <m>x</m> represent the percent of increase. We can set up and solve the equation:<md>
                     <mrow>8\amp=x\cdot40</mrow>
                     <mrow>8\amp=40x</mrow>
                     <mrow>\divideunder{8}{40}\amp=\divideunder{40x}{40}</mrow>
@@ -228,7 +391,7 @@
                     <mrow>x\amp=20\%</mrow>
                 </md></p>
 
-                <p>The internet bill increased by <m>20\%</m>.</p>
+                <p>The stock's price increased by <m>20\%</m> from Monday to Friday.</p>
             </solution>
         </example>
 
