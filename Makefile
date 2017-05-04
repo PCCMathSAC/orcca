@@ -122,7 +122,7 @@ html:
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cp $(CSS) $(HTMLOUT)
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam html.annotation hypothesis --stringparam html.knowl.webwork.inline no --stringparam webwork.server $(SERVER) --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(MBXSL)/mathbook-html.xsl $(MAINFILE)
+	xsltproc -xinclude --stringparam html.knowl.webwork.inline no --stringparam webwork.server $(SERVER) --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(MBXSL)/mathbook-html.xsl $(MAINFILE)
 
 # make all the image files in svg format
 images:
@@ -174,7 +174,7 @@ pdf:
 	cp -a $(IMAGESOUT) $(PDFOUT)
 	cp -a $(IMAGESSRC) $(PDFOUT)
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam exercise.text.solution no --stringparam exercise.text.hint no --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
+	xsltproc -xinclude --stringparam latex.preamble.late '\setlength{\parindent}{0pt}\setlength{\parskip}{0.5pc}' --stringparam exercise.text.solution no --stringparam exercise.text.hint no --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
