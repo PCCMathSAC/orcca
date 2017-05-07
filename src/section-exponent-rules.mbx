@@ -457,32 +457,32 @@
                         <static>\frac{p^6}{11^6}</static>
                     </var>
                     <pg-code>
-Context("Numeric");
-Context()->flags->set(formatStudentAnswer=>'parsed',reduceConstants=>0); 
-Context()->operators->undefine('*','* ', ' *','+','-');     
-Context()->operators->set(
-   '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
-   '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef});
-Context()->flags->set(limits=>[0,5]);
+                        Context("Numeric");
+                        Context()->flags->set(formatStudentAnswer=>'parsed',reduceConstants=>0); 
+                        Context()->operators->undefine('*','* ', ' *','+','-');     
+                        Context()->operators->set(
+                           '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+                           '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef});
+                        Context()->flags->set(limits=>[0,5]);
 
-$a=random(5,10,1);
-$m=random(5,10,1);
-$problem = Formula("(x/$a)^$m");
-$ans = Formula("x^$m/$a^$m");
+                        $a=random(5,10,1);
+                        $m=random(5,10,1);
+                        $problem = Formula("(x/$a)^$m");
+                        $ans = Formula("x^$m/$a^$m");
 
-$evaluator=$ans->cmp(checker=>sub{
-my ( $correct, $student, $ansHash ) = @_;
-return 0 if $ansHash->{isPreview} || $correct != $student;
-$student = $ansHash->{student_formula};
-$correct = $correct->{original_formula} if defined $correct->{original_formula};
-$student = Formula("$student"); $correct = Formula("$correct");
-return 0 unless ($correct == $student);
-Context()->flags->set(bizarroPow=>1);
-delete $correct->{test_values}, $student->{test_values};
-Value->Error("Keep numbers in exponent form to avoid big numbers.") unless (($correct == $student) or ($student == $correct));
-Context()->flags->set(bizarroPow=>0);
-return 1;
-});
+                        $evaluator=$ans->cmp(checker=>sub{
+                        my ( $correct, $student, $ansHash ) = @_;
+                        return 0 if $ansHash->{isPreview} || $correct != $student;
+                        $student = $ansHash->{student_formula};
+                        $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                        $student = Formula("$student"); $correct = Formula("$correct");
+                        return 0 unless ($correct == $student);
+                        Context()->flags->set(bizarroPow=>1);
+                        delete $correct->{test_values}, $student->{test_values};
+                        Value->Error("Keep numbers in exponent form to avoid big numbers.") unless (($correct == $student) or ($student == $correct));
+                        Context()->flags->set(bizarroPow=>0);
+                        return 1;
+                        });
                     </pg-code>
                 </setup>
                 <statement>
