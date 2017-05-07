@@ -27,6 +27,7 @@
             <li><xref ref="mth60-apply-volume-formulas" /></li>
             <li><xref ref="mth60-find-perimeter-polygon" /></li>
             <li><xref ref="mth60-evaluate-other-geometric-formulas" /></li>
+            <li><xref ref="mth60-determine-reasonableness-of-solutions" /></li>
         </ul>
     </objectives>
 
@@ -802,6 +803,29 @@
                 </md>The cylinder's volume is approximately <m>282.74</m> cubic meters.</p>
             </solution>
         </example>
+
+        <p>When we solve application problems, it's good practice to quickly check whether our solution is reasonable. If not, we must have made a mistake somewhere. Let's look at an example.</p>
+
+        <example>
+          <statement>
+            <p>Bill is measuring a cylindrical bucket to calculate how much water it can hold. The bucket's diameter is <m>18</m> inches, and its height is <m>2</m> feet. If <m>1</m> cubic feet is the same as <m>7.48</m> gallons, how many gallons of water can the bucket hold?</p>
+          </statement>
+          <solution>
+            <p>First, we will intentionally make a mistake. Since the diameter is <m>18</m> inches, the radius is <m>9</m> inches. We will use a cylinder's volume formula:<md>
+              <mrow>V\amp=\pi r^2h</mrow>
+              <mrow>\amp=(3.1415926\ldots)(9)^2(2)</mrow>
+              <mrow>\amp\approx508.94</mrow>
+            </md>Next, we will convert <m>508.94</m> cubic feet to gallons:<me>508.94\cdot7.48\approx3807</me>The bucket can hold approximately <m>3807</m> gallons of water.</p>
+
+            <p>If we check the answer with common sense, it's easy to see it's impossible for a normal-sized bucket to hold thousands of gallons of water. We must have made a mistake somewhere.</p>
+
+            <p>It turned out we forgot to use units in our calculation. If we did, we would have seen:<me>(3.1415926\ldots)(9\text{ in})^2(2\text{ ft})</me>Calculation cannot be done if units are not the same. We should have converted <m>9</m> inches to feet first:<me>9\text{ in}\cdot\frac{1\text{ ft}}{12\text{ in}}=0.75\text{ ft}</me>Let's redo the calculation with units:<md>
+              <mrow>V\amp=\pi r^2h</mrow>
+              <mrow>\amp=(3.1415926\ldots)(0.75\text{ ft})^2(2\text{ ft})</mrow>
+              <mrow>\amp\approx3.53\text{ ft}^3</mrow>
+            </md>Next, we will convert <m>3.53</m> cubic feet to gallons:<me>3.53\text{ ft}^3\cdot\frac{7.48\text{ gal}}{1\text{ ft}^3}\approx26.44\text{ gal}</me>The bucket can hold approximately <m>26.44</m> gallons of water. This result is more reasonable.</p>
+          </solution>
+        </example>
     </section>
 
     <exercises>
@@ -811,6 +835,83 @@
             </introduction>
              <exercise>
                 <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea10.pg" seed="1"/>
+            </exercise>
+            <exercise>
+              <webwork seed="1">
+                <setup>
+                    <var name="$baseI">
+                      <static>60</static>
+                    </var>
+                    <var name="$baseIU">
+                      <static>60\text{ in}</static>
+                    </var>
+                    <var name="$baseF">
+                      <static>5</static>
+                    </var>
+                    <var name="$baseFU">
+                      <static>5\text{ ft}</static>
+                    </var>
+                    <var name="$heightI">
+                      <static>30</static>
+                    </var>
+                    <var name="$heightIU">
+                      <static>30\text{ in}</static>
+                    </var>
+                    <var name="$ansP">
+                      <static>180\text{ in}</static>
+                    </var>
+                    <var name="$ansA">
+                      <static>1800\text{ in}^2</static>
+                    </var>
+                    <var name="$ansPE">
+                      <static>15\text{ ft}</static>
+                    </var>
+                    <var name="$ansAE">
+                      <static>12.5\text{ ft}^2</static>
+                    </var>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $baseF = random(4,6,0.1);
+                      $heightI = random(24,36,1);
+                      $baseI = $baseF*16;
+
+                      $baseFU = NumberWithUnits("$baseF ft");
+                      $baseIU = NumberWithUnits("$baseI in");
+                      $heightIU = NumberWithUnits("$heightI in");
+
+                      $perimeter = 2*($baseI+$heightI);
+                      $area = $baseI*$heightI;
+                      $ansP = NumberWithUnits("$perimeter in");
+                      $ansA = NumberWithUnits("$area in^2");
+
+                      $ansPE = NumberWithUnits("$perimeter/12 ft");
+                      $ansAE = NumberWithUnits("$area/144 ft^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>Find the perimeter and area of a rectanglar table top with a length of <m><var name="$baseFU" /></m> and a width of <m><var name="$heightIU" /></m>.</p>
+
+                  <p>Its perimeter is <var name="$ansP" width="8" /> and its area is <var name="$ansA" width="8" />.</p>
+
+                  <p>(Use <m>\text{in}</m> for inches and <m>\text{in}\wedge2</m> for square inches.)</p>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the rectangle's length and width are not the same. We must convert them to the same unit. For this solution, we will convert feet to inches to avoid inaccurate answers.</p>
+
+                  <p>The rectangle's length <m><var name="$baseFU" /></m> can be converted to:<me><var name="$baseFU" />\cdot\frac{12\text{ in}}{1\text{ ft}}=<var name="$baseIU" /></me></p>
+
+                  <p>Now we can calculate the rectangle's periemter by its perimeter formula:<md>
+                         <mrow>\text{rectangle perimeter}\amp=2(<var name="$baseIU" />+<var name="$heightIU" />)</mrow>
+                         <mrow>\amp= <var name="$ansP" /></mrow>
+                  </md>An equivalent answer is <m><var name="$ansPE" /></m>.</p>
+
+                  <p>We will calculate the rectangle's area by its area formula:<md>
+                         <mrow>\text{rectangle area}\amp= (<var name="$baseIU" />) \cdot (<var name="$heightIU" />)</mrow>
+                         <mrow>\amp = <var name="$ansA" /></mrow>
+                  </md>The rectangular table top's area is <m><var name="$ansA" /></m>. An equivalent answer is <m><var name="$ansAE" /></m>.</p>
+                </solution>
+              </webwork>
             </exercise>
             <exercise>
                 <webwork source="BasicMath/Miscellaneous/SquarePerimeterArea10.pg" seed="1"/>
@@ -918,7 +1019,7 @@
 
                   <p>Its perimeter is <var name="$ansP" width="8" /> and its area is <var name="$ansA" width="8" />.</p>
 
-                  <p>(Use <m>\text{ft}</m> for <var name="$unit" /> and <m>\text{ft}^2</m> for square <var name="$unit" />.)</p>
+                  <p>(Use <m>\text{ft}</m> for <var name="$unit" /> and <m>\text{ft}\wedge2</m> for square <var name="$unit" />.)</p>
                 </statement>
                 <solution>
                   <p>A parallelogram's opposite sides are always congruent, so we can calculate its perimeter by:<md>
@@ -942,6 +1043,69 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea30.pg" seed="1"/>
+            </exercise>
+            <exercise>
+              <webwork seed="1">
+                <setup>
+                    <var name="$baseM">
+                      <static>3</static>
+                    </var>
+                    <var name="$baseMU">
+                      <static>3\text{ m}</static>
+                    </var>
+                    <var name="$heightCM">
+                      <static>300</static>
+                    </var>
+                    <var name="$heightCMU">
+                      <static>300\text{ cm}</static>
+                    </var>
+                    <var name="$heightM">
+                      <static>0.8</static>
+                    </var>
+                    <var name="$heightMU">
+                      <static>0.8\text{ m}</static>
+                    </var>
+                    <var name="$ansA">
+                      <static>0.96\text{ m}^2</static>
+                    </var>
+                    <var name="$ansAE">
+                      <static>9600\text{ cm}^2</static>
+                    </var>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $baseM = random(2,4,0.1);
+                      $heightCM = random(50,150,10);
+                      $heightM = $heightCM/100;
+
+                      $baseMU = NumberWithUnits("$baseM m");
+                      $heightMU = NumberWithUnits("$heightM m");
+                      $heightCMU = NumberWithUnits("$heightCM cm");
+
+                      $area = $baseM*$heightM;
+                      $ansA = NumberWithUnits("$area m^2");
+                      $ansAE = NumberWithUnits("$area*10000 cm^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>Find the area of a trianglar flag with a base of <m><var name="$baseMU" /></m> and a height of <m><var name="$heightCMU" /></m>.</p>
+
+                  <p>Its area is <var name="$ansA" width="8" />.</p>
+
+                  <p>(Use <m>\text{m}</m> for meters and <m>\text{m}\wedge2</m> for square meters.)</p>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the triangle's base and height are not the same. We must convert them to the same unit. For this solution, we will convert centimeters to meters to avoid big numbers.</p>
+
+                  <p>The triangle's height <m><var name="$heightCMU" /></m> can be converted to:<me><var name="$heightCMU" />\cdot\frac{1\text{ m}}{100\text{ cm}}=<var name="$heightMU" /></me></p>
+
+                  <p>We will calculate the trianglar flag's area by its area formula:<md>
+                         <mrow>\text{triangle area}\amp= \frac{1}{2}bh</mrow>
+                         <mrow>\amp=\frac{1}{2}(<var name="$baseMU" />) \cdot (<var name="$heightMU" />)</mrow>
+                         <mrow>\amp = <var name="$ansA" /></mrow>
+                  </md>The flag's area is <m><var name="$ansA" /></m>. An equivalent answer is <m><var name="$ansAE" /></m></p>
+                </solution>
+              </webwork>
             </exercise>
             <exercise>
               <webwork seed="1">
@@ -1038,7 +1202,7 @@
 
                   <p>Its area is <var name="$ansA" width="8" />.</p>
 
-                  <p>(Use <m>\text{cm}</m> for <var name="$unit" /> and <m>\text{cm}^2</m> for square <var name="$unit" />.)</p>
+                  <p>(Use <m>\text{cm}</m> for <var name="$unit" /> and <m>\text{cm}\wedge2</m> for square <var name="$unit" />.)</p>
                 </statement>
                 <solution>
                   <p>A trapezoid's area can be calculated by this formula:<md>
@@ -1079,10 +1243,157 @@
                 <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume20.pg" seed="1"/>
             </exercise>
             <exercise>
+              <webwork seed="1">
+                <setup>
+                    <var name="$base1F">
+                      <static>1.5</static>
+                    </var>
+                    <var name="$base1FU">
+                      <static>1.5\text{ ft}</static>
+                    </var>
+                    <var name="$base1I">
+                      <static>18</static>
+                    </var>
+                    <var name="$base1IU">
+                      <static>18\text{ in}</static>
+                    </var>
+                    <var name="$base2I">
+                      <static>7</static>
+                    </var>
+                    <var name="$base2IU">
+                      <static>7\text{ in}</static>
+                    </var>
+                    <var name="$heightI">
+                      <static>5.5</static>
+                    </var>
+                    <var name="$heightIU">
+                      <static>5.5\text{ in}</static>
+                    </var>
+                    <var name="$volumeFU">
+                      <static>0.4\text{ ft}^3</static>
+                    </var>
+                    <var name="$volumeIU">
+                      <static>693\text{ in}^3</static>
+                    </var>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $base1F = random(1,2,0.1);
+                      $base1I = $base1F*12;
+                      $base2I = random(5,10.1);
+                      $heightI = random(4,8,0.1);
+
+                      $base1FU = NumberWithUnits("$base1F ft");
+                      $base1IU = NumberWithUnits("$base1I in");
+                      $base2IU = NumberWithUnits("$base2I in");
+                      $heightIU = NumberWithUnits("$heightI in");
+
+                      $volumeI = $base1I*$base2I*$heightI;
+                      $volumeIU = NumberWithUnits("$volumeI in^3");
+                      $volumeFU = NumberWithUnits("$volumeI/12**3 ft^3");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>A shoe box's base is <m><var name="$base1FU" /></m> by <m><var name="$base2IU" /></m>, and its height is <m><var name="$heightIU" /></m>. Find the shoe box's volume.</p>
+
+                  <p>Its volume is <var name="$volumeIU" width="8" />.</p>
+
+                  <p>(Use <m>\text{in}</m> for inches and <m>\text{in}\wedge3</m> for cubic inches.)</p>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the base's two sides are not the same. We must convert them to the same unit. For this solution, we will convert feet to inches to avoid inaccurate answers.</p>
+
+                  <p>The length <m><var name="$base1FU" /></m> can be converted to:<me><var name="$base1FU" />\cdot\frac{12\text{ in}}{1\text{ ft}}=<var name="$base1IU" /></me></p>
+
+                  <p>We will calculate the show box's volume by a rectangular prism's volume formula:<md>
+                         <mrow>\text{volume}\amp= \text{base area}\cdot\text{height}</mrow>
+                         <mrow>\amp=(<var name="$base1IU" />)\cdot(<var name="$base2IU" />) \cdot (<var name="$heightIU" />)</mrow>
+                         <mrow>\amp = <var name="$volumeIU" /></mrow>
+                  </md>The shoebox's volume is <m><var name="$volumeIU" /></m>. An equivalent number is <m><var name="$volumeFU" /></m>.</p>
+                </solution>
+              </webwork>
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/Geometry/CylinderVolume10.pg" seed="1"/>
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Geometry/CylinderVolume20.pg" seed="1"/>
+            </exercise>
+            <exercise>
+              <webwork seed="1">
+                <setup>
+                    <var name="$radiusCM">
+                      <static>8</static>
+                    </var>
+                    <var name="$radiusCMU">
+                      <static>8\text{ cm}</static>
+                    </var>
+                    <var name="$radiusM">
+                      <static>0.08</static>
+                    </var>
+                    <var name="$radiusMU">
+                      <static>0.08\text{ cm}</static>
+                    </var>
+                    <var name="$heightM">
+                      <static>1.2</static>
+                    </var>
+                    <var name="$heightMU">
+                      <static>1.2\text{ m}</static>
+                    </var>
+                    <var name="$heightCM">
+                      <static>120</static>
+                    </var>
+                    <var name="$heightCMU">
+                      <static>120\text{ m}</static>
+                    </var>
+                    <var name="$volumeCMU">
+                      <static>241.27\text{ cm}^3</static>
+                    </var>
+                    <var name="$volumeMU">
+                      <static>0.024\text{ m}^3</static>
+                    </var>
+                    <pg-code>
+                      Context("Numeric");
+                      Context()->flags->set(
+                        tolerance => 0.005,
+                        tolType => "absolute",
+                      );
+
+                      $radiusCM = random(5,10,1);
+                      $radiusM = $radiusCM/100;
+                      $heightM = random(0.5,1.5,0.1);
+                      $heightCM = $heightM*100;
+
+                      $radiusCMU = NumberWithUnits("$radiusCM cm");
+                      $heightMU = NumberWithUnits("$heightM m");
+                      $heightCMU = NumberWithUnits("$heightCM cm");
+                      $radiusMU = NumberWithUnits("$radiusM cm");
+
+                      $volumeCM = pi*$radiusCM**2*$heightCM;
+                      $volumeM = pi*$radiusM**2*$heightM;
+                      $volumeCMU = NumberWithUnits("$volumeCM cm^3");
+                      $volumeMU = NumberWithUnits("$volumeCM/10000 m^3");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>There is a cylindrical tube used to hold scrolls. Its radius is <m><var name="$radiusCMU" /></m>, and its height is <m><var name="$heightMU" /></m>. Find the tube's volume.</p>
+
+                  <p>Its volume is <var name="$volumeCMU" width="8" />.</p>
+
+                  <p>(Use <m>\text{cm}</m> for centimeters and <m>\text{cm}\wedge3</m> for cubic centimeters.)</p>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the radius and height are not the same. We must convert them to the same unit. For this solution, we will convert meters to centimeters to avoid very small decimals.</p>
+
+                  <p>The height <m><var name="$heightMU" /></m> can be converted to:<me><var name="$heightMU" />\cdot\frac{100\text{ cm}}{1\text{ m}}=<var name="$heightCMU" /></me></p>
+
+                  <p>We will calculate the tube's volume by a cylinder's volume formula:<md>
+                         <mrow>\text{volume}\amp= \text{base area}\cdot\text{height}</mrow>
+                         <mrow>\amp=\pi(<var name="$radiusCMU" />)^2\cdot(<var name="$heightCMU" />)</mrow>
+                         <mrow>\amp \approx <var name="$volumeCMU" /></mrow>
+                  </md>The tube's volume is approximately <m><var name="$volumeCMU" /></m>. An equivalent number is <m><var name="$volumeMU" /></m>.</p>
+                </solution>
+              </webwork>
             </exercise>
         </exercisegroup>
     </exercises>
