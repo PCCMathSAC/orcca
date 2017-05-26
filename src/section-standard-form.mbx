@@ -622,8 +622,253 @@
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/StandardToSlopeInterceptAndGraph120.pg" seed="1"/>
             </exercise>
+            <exercise>
+                <webwork seed="1">
+                    <setup>
+                        <var name="$b"><static>5</static></var>
+                        <var name="$c"><static>-2</static></var>
+                        <var name="$nC"><static>2</static></var>
+                        <var name="$left0"><static>y</static></var>
+                        <var name="$right0"><static>5x-2</static></var>
+                        <var name="$ansPS"><static>5x-y=2</static></var>
+                        <var name="$s1"><static>-5x+y</static></var>
+                        <var name="$s2"><static>5x-y</static></var>
+                        <pg-code>
+                            Context("ImplicitPlane");
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->flags->set(reduceConstantFormulas=>0);
+                            Context()->flags->set(showExtraParens=>0);
+                            Context()->variables->are(x=>'Real', y=>'Real');
+                            Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+
+                            $b = random(2,9,1);
+                            $c = non_zero_random(-9,9,1);
+                            $left0 = Compute("y");
+                            $right0 = Compute("$b*x+$c")->reduce;
+                            $ansPSstring = "$b*x-y=-$c"; 
+
+                            if ($b>0) {
+                               $left1 = Compute("$b*x-y")->reduce;
+                               $nC = -$c;
+                               $ansPSstringTeX = $left1->TeX."=$nC";
+                            } else {
+                               $left1 = Compute("-$b*x+y")->reduce;
+                               $ansPSstringTeX = $left1->TeX."=$c";
+                            }
+
+                            $s1 = Compute("-$b*x+y")->reduce;
+                            $s2 = Compute("$b*x-y")->reduce;
+
+                            $ansPS = ImplicitPlane($ansPSstring);
+                            $evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
+                               ) -> withPostFilter(sub {
+                                  my $ansHash = shift;
+                                    my $student = $ansHash->{original_student_ans};
+                                    my @sides = split('=',"$student");
+
+                                  #if it's an implicit plane object, reset how student's answer is displayed:
+                                  if (defined $ansHash->{student_formula}) {
+                                  if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+                                    $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+                                    my $leftTex = Formula("$sides[0]")->TeX;
+                                    my $rightTex = Formula("$sides[1]")->TeX;
+                                    $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+                                    $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                                  }
+                                  };
+
+                                  # if they have it correct, then check each side to see 
+                                  # whether x and y are on the same side of =
+                                  if ($ansHash->{score}) {
+                                     if ( (($sides[0] =~ /x/) &amp;&amp; ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) &amp;&amp; ($sides[0] =~ /y/)) ) {
+                                     $ansHash->{score} = 0;                 
+                                     $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form."; 
+                                     }  
+                                  }
+                                  return $ansHash;
+                                });
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>If we change <m><var name="$left0"/>=<var name="$right0"/></m> to standard form, the correct answer is:</p>
+                        <p><var name="$ansPS" evaluator="$evaluator" width="30" /></p>
+                    </statement>
+                    <solution>
+                        <p>A line's standard form is <m>Ax+By=C</m>. We need to move <m>x</m> and <m>y</m> terms to the same side of the equal sign.<md>
+                            <mrow><var name="$left0"/>\amp=<var name="$right0"/></mrow>
+                            <mrow><var name="$left0"/>\subtractright{<var name="$b"/>x}\amp=<var name="$right0"/>\subtractright{<var name="$b"/>x}</mrow>
+                            <mrow><var name="$s1"/>\amp=<var name="$c"/></mrow>
+                            <mrow>(-1)(<var name="$s1"/>)\amp=(-1)(<var name="$c"/>)</mrow>
+                            <mrow><var name="$s2"/>\amp=<var name="$nC"/></mrow>
+                        </md></p>
+
+                        <p>Note that <m><var name="$s1"/>=<var name="$c"/></m> is already in standard form, but it's better to get rid of the leading negative sign in an equation.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork seed="1">
+                    <setup>
+                        <var name="$a"><static>5</static></var>
+                        <var name="$b"><static>3</static></var>
+                        <var name="$c"><static>2</static></var>
+                        <var name="$bc"><static>6</static></var>
+                        <var name="$nbc"><static>-6</static></var>
+                        <var name="$left0"><static>y</static></var>
+                        <var name="$right0"><static>\frac{5}{3}x+2</static></var>
+                        <var name="$ansPS"><static>5x-3y=-6</static></var>
+                        <var name="$s1"><static>-5x+3y</static></var>
+                        <var name="$s2"><static>5x-3y</static></var>
+                        <pg-code>
+                            Context("ImplicitPlane");
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->flags->set(reduceConstantFormulas=>0);
+                            Context()->flags->set(showExtraParens=>0);
+                            Context()->variables->are(x=>'Real', y=>'Real');
+                            Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+
+                            $a = random(2,9,1);
+                            do {$b = random(2,9,1);} until (gcd($a,$b)==1);
+                            $c = non_zero_random(-9,9,1);
+                            $nC = -$c;
+                            $bc = $b*$c;
+                            $nbc = -$bc;
+                            $left0 = Compute("y");
+                            $right0 = Compute("$a/$b*x+$c");
+                            $ansPSstring = "$a*x-$b*y=-$bc";
+
+                            $left1 = Compute("$a*x-$b*y")->reduce;
+                            $ansPSstringTeX = $left1->TeX."=$nbc";
+
+                            $s1 = Compute("-$a*x+$b*y")->reduce;
+                            $s2 = Compute("$a*x-$b*y")->reduce;
+
+                            $ansPS = ImplicitPlane($ansPSstring);
+                            $evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
+                               ) -> withPostFilter(sub {
+                                  my $ansHash = shift;
+                                    my $student = $ansHash->{original_student_ans};
+                                    my @sides = split('=',"$student");
+
+                                  #if it's an implicit plane object, reset how student's answer is displayed:
+                                  if (defined $ansHash->{student_formula}) {
+                                  if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+                                    $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+                                    my $leftTex = Formula("$sides[0]")->TeX;
+                                    my $rightTex = Formula("$sides[1]")->TeX;
+                                    $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+                                    $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                                  }
+                                  };
+
+                                  # if they have it correct, then check each side to see 
+                                  # whether x and y are on the same side of =
+                                  if ($ansHash->{score}) {
+                                     if ( (($sides[0] =~ /x/) &amp;&amp; ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) &amp;&amp; ($sides[0] =~ /y/)) ) {
+                                     $ansHash->{score} = 0;                 
+                                     $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form."; 
+                                     }  
+                                  }
+                                  return $ansHash;
+                                });
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>If we change <m><var name="$left0"/>=<var name="$right0"/></m> to standard form, the line's equation is:</p>
+                        <p><var name="$ansPS" evaluator="$evaluator" width="30" /></p>
+                    </statement>
+                    <solution>
+                        <p>A line's standard form is <m>Ax+By=C</m>. We need to move <m>x</m> and <m>y</m> terms to the same side of the equal sign.<md>
+                            <mrow><var name="$left0"/>\amp=<var name="$right0"/></mrow>
+                            <mrow>\multiplyleft{<var name="$b"/>}<var name="$left0"/>\amp=\multiplyleft{<var name="$b"/>}\left(<var name="$right0"/>\right)</mrow>
+                            <mrow><var name="$b"/>y\amp=<var name="$b"/>\left( \frac{<var name="$a"/>}{<var name="$b"/>}x \right)+<var name="$b"/>(<var name="$c"/>)</mrow>
+                            <mrow><var name="$b"/>y\amp=<var name="$a"/>x+<var name="$bc"/></mrow>
+                            <mrow><var name="$b"/>y\subtractright{<var name="$a"/>x}\amp=<var name="$a"/>x+<var name="$bc"/>\subtractright{<var name="$a"/>x}</mrow>
+                            <mrow><var name="$s1"/>\amp=<var name="$bc"/></mrow>
+                            <mrow>\multiplyleft{-1}(<var name="$s1"/>)\amp=\multiplyleft{-1}(<var name="$bc"/>)</mrow>
+                            <mrow><var name="$s2"/>\amp=<var name="$nbc"/></mrow>
+                        </md></p>
+
+                        <p>Note that <m><var name="$s1"/>=<var name="$bc"/></m> is already in standard form, but it's better to get rid of the leading negative sign in an equation.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork seed="1">
+                    <setup>
+                        <var name="$a"><static>5</static></var>
+                        <var name="$b"><static>3</static></var>
+                        <var name="$c"><static>-2</static></var>
+                        <var name="$bc"><static>-6</static></var>
+                        <var name="$ansPS"><static>5x+3y=-6</static></var>
+                        <var name="$s1"><static>5x+3y</static></var>
+                        <pg-code>
+                            Context("ImplicitPlane");
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->flags->set(reduceConstantFormulas=>0);
+                            Context()->flags->set(showExtraParens=>0);
+                            Context()->variables->are(x=>'Real', y=>'Real');
+                            Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+
+                            $a = random(2,9,1);
+                            do {$b = random(2,9,1);} until (gcd($a,$b)==1);
+                            $c = non_zero_random(-9,9,1);
+                            $bc = $b*$c;
+                            $ansPSstring = "$a*x+$b*y=$bc";
+                            $left1 = Compute("$a*x+$b*y")->reduce;
+                            $ansPSstringTeX = $left1->TeX."=$bc";
+
+                            $s1 = Compute("$a*x+$b*y")->reduce;
+
+                            $ansPS = ImplicitPlane($ansPSstring);
+                            $evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
+                               ) -> withPostFilter(sub {
+                                  my $ansHash = shift;
+                                    my $student = $ansHash->{original_student_ans};
+                                    my @sides = split('=',"$student");
+
+                                  #if it's an implicit plane object, reset how student's answer is displayed:
+                                  if (defined $ansHash->{student_formula}) {
+                                  if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+                                    $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+                                    my $leftTex = Formula("$sides[0]")->TeX;
+                                    my $rightTex = Formula("$sides[1]")->TeX;
+                                    $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+                                    $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                                  }
+                                  };
+
+                                  # if they have it correct, then check each side to see 
+                                  # whether x and y are on the same side of =
+                                  if ($ansHash->{score}) {
+                                     if ( (($sides[0] =~ /x/) &amp;&amp; ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) &amp;&amp; ($sides[0] =~ /y/)) ) {
+                                     $ansHash->{score} = 0;                 
+                                     $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form."; 
+                                     }  
+                                  }
+                                  return $ansHash;
+                                });
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>If we change <m>y=-\frac{<var name="$a"/>}{<var name="$b"/>}x+<var name="$c"/></m> to standard form, the line's equation is:</p>
+                        <p><var name="$ansPS" evaluator="$evaluator" width="30" /></p>
+                    </statement>
+                    <solution>
+                        <p>A line's standard form is <m>Ax+By=C</m>. We need to move <m>x</m> and <m>y</m> terms to the same side of the equal sign.<md>
+                            <mrow>y\amp=-\frac{<var name="$a"/>}{<var name="$b"/>}x+<var name="$c"/></mrow>
+                            <mrow>\multiplyleft{<var name="$b"/>}y\amp=\multiplyleft{<var name="$b"/>}\left(-\frac{<var name="$a"/>}{<var name="$b"/>}x+<var name="$c"/>\right)</mrow>
+                            <mrow><var name="$b"/>y\amp=<var name="$b"/>\left( -\frac{<var name="$a"/>}{<var name="$b"/>}x \right)+<var name="$b"/>(<var name="$c"/>)</mrow>
+                            <mrow><var name="$b"/>y\amp=-<var name="$a"/>x+<var name="$bc"/></mrow>
+                            <mrow><var name="$b"/>y\addright{<var name="$a"/>x}\amp=-<var name="$a"/>x+<var name="$bc"/>\addright{<var name="$a"/>x}</mrow>
+                            <mrow><var name="$s1"/>\amp=<var name="$bc"/></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
         </exercisegroup>
-        <todo>add a few problems to change slope-intercept form to standard form</todo>
         <exercisegroup>
             <introduction>
                 <p>Exercises on Graphing Lines by Intercepts</p>
