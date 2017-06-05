@@ -18,9 +18,9 @@
 
     <title>Solving Radical Equations</title>
 
-    <p>In this section, we will learn how to solve equations involving radicals.</p>
-
     <introduction>
+        <p>In this section, we will learn how to solve equations involving radicals.</p>
+
         <figure>
             <caption>Alternative Video Lesson</caption>
             <video youtube="jhX2vY-zU2g" />
@@ -175,6 +175,69 @@
                 </md>Unlike squaring both sides of an equation, raising both sides of an equation to the 3rd power will not create extraneous solutions. It's still good practice to check solution, though. This part is left as exercise.</p>
             </solution>
         </example>
+
+        <p>In real life, we often use technology to solve equations. Let's look at the next example.</p>
+
+        <example>
+            <statement>
+                <p>Solve the equation <m>\sqrt{x-5}=5-\sqrt{x}</m> with technology.</p>
+            </statement>
+            <solution>
+                <p>We define <m>f(x)=\sqrt{x-5}</m> and <m>g(x)=5-\sqrt{x}</m>, and then look for these two functions' intersection:</p>
+
+                <figure>
+                    <caption>Graph of <m>f(x)=\sqrt{x-5}</m> and <m>g(x)=5-\sqrt{x}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-1,ymax=3,xmin=-1,xmax=15,
+                                        ytick={1,2},
+                                        minor ytick={1,2},
+                                        xtick={1,3,...,13},
+                                        minor xtick={1,3,...,13},
+                                        xlabel={x},ylabel={y}]
+                                \addplot [->, domain=5:14, red, sample=200] {sqrt(x-5)};
+                                \addplot [<->, domain=4:15, blue] {5-sqrt(x)};
+                                \addplot [soliddot, color=red, above] coordinates {(9, 2)} node{$(9,2)$};
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <p>Since those two functions intersect at <m>(9,2)</m>, the solution to <m>\sqrt{x-5}=5-\sqrt{x}</m> is <m>x=9</m>.</p>
+
+                <p>Sometimes it's difficult to see the intersection of two functions. We can convert the equation and make one side to be <m>0</m>:<md>
+                    <mrow>\sqrt{x-5}\amp=5-\sqrt{x}</mrow>
+                    <mrow>\sqrt{x-5}-5+\sqrt{x}\amp=0</mrow>
+                </md>and then look for the <m>x</m>-intercept of the new function <m>h(x)=\sqrt{x-5}-5+\sqrt{x}</m>:</p>
+
+                 <figure>
+                    <caption>Graph of <m>h(x)=\sqrt{x-5}-5+\sqrt{x}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-1,ymax=3,xmin=-1,xmax=15,
+                                        ytick={1,2},
+                                        minor ytick={1,2},
+                                        xtick={1,3,...,13},
+                                        minor xtick={1,3,...,13},
+                                        xlabel={x},ylabel={y}]
+                                \addplot [<->, domain=6.89:15, red] {sqrt(x-5)-5+sqrt(x)};
+                                \addplot [soliddot, color=red, above] coordinates {(9, 0)} node{$(9,0)$};
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>               
+
+                <p>After the conversion, it's easier to see the solution <m>x=9</m>.</p>
+            </solution>
+        </example>
     </subsection>
 
     <exercises>
@@ -211,6 +274,127 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/RadicalEquations/SolvingRadicalEquation100.pg" seed="1"/>
+            </exercise>
+        </exercisegroup>
+        <exercisegroup>
+            <introduction>
+                <p>Solving Radical Equations by Technology</p>
+            </introduction>
+            <exercise>
+              <webwork seed="2">
+                <pg-macros>
+                    <macro-file>PCCgraphMacros.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <var name="$left">
+                      <static>\sqrt{x-2}</static>
+                    </var>
+                    <var name="$right">
+                      <static>\sqrt{x}-1</static>
+                    </var>
+                    <var name="$funcNew">
+                      <static>\sqrt{x-2}-\sqrt{x}-1</static>
+                    </var>
+                    <var name="$x">
+                      <static>2.25</static>
+                    </var>
+                    <var name="$xShow">
+                      <static>2.25</static>
+                    </var>
+                    <var name="$alt">
+                      <static>\text{This picture shows the graph of the function }f(x)=\sqrt{x-2}-\sqrt{x}-1\text{. The points }(2.25,0)\text{ is labeled.}</static>
+                    </var>
+                    <pg-code>
+                        TEXT(beginproblem());
+                        $refreshCachedImages=1;
+                        Context("Numeric");
+                        Context()->flags->set(reduceConstants=>0, reduceConstantFunctions=>0, formatStudentAnswer=>parsed, showExtraParens=>0);                                                       
+                        Context()->strings->add("no real solutions"=>{},
+                          "no real solution"=>{alias=>'no real solutions'}, 
+                          "none"=>{alias=>'no real solutions'}, 
+                        );
+                        Context()->noreduce("(-x)-y","(-x)+y");
+                        Context()->flags->set(
+                          tolerance => 0.005,
+                          tolType => "absolute",
+                        );
+
+                        do{
+                            $a = non_zero_random(-5,5,0.1);
+                            $b = non_zero_random(-5,5,0.1);
+                            $root = ($a-($b)**2)/(2*$b);
+                            $x = $root**2;
+                        } until ( $root > 0 );
+
+                        $left = Formula("sqrt(x+$a)")->reduce;
+                        $right = Formula("sqrt(x)+$b")->reduce;
+                        $funcNew = Compute("$left-sqrt(x)-$b")->reduce;
+
+                        $alt="This picture shows the graph of the function $f(x)=$funcNew. The points ($x,0) is labeled.";
+
+                        ($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters([0,$x],[-2,2]);
+
+                        @xticks = @$xticks_ref;
+                        @yticks = @$yticks_ref;
+
+                        $gr = init_graph($min[0],$min[1],$max[0],$max[1],
+                           axes=>[0,0],
+                           grid=>[$ticknum[0],$ticknum[1]],
+                           size=>[xPixels(),yPixels()]
+                        );
+                        $gr->lb('reset');
+                        for my $j (@xticks) {
+                            if (abs($j) &lt; 10**(-10)) {next;}
+                            $gr->lb( new Label($j, -$marksep[1]/8, $j,'black','center','top'));
+                        }
+                        $gr->lb( new Label($max[0]-$marksep[0]/2, $marksep[1]/8, 'x','black','center','bottom'));
+                        $gr->lb( new Label($marksep[0]/8, $max[1]-$marksep[1]/2, 'y','black','left','middle'));
+
+                        for my $j (@yticks) {
+                            if (Real($j) == 0) {next;}
+                            $gr->lb( new Label(-$marksep[0]/8, $j, $j,'black','right','middle'));
+                        }
+
+                        add_functions($gr, "$funcNew for x in &lt; $min[0],$max[0] > using color:red and weight:1");
+
+                        $hx = ($x+$max[0])/2;
+                        $hy = $funcNew->eval(x=>$hx);
+                        $gr->lb( new Label($hx, $hy+$marksep[1]/4, "f(x)",'red','center','middle'));
+
+                        $xShow = int($x*100)/100;
+                        $gr->stamps( closed_circle($x, 0, 'red') );
+                        $gr->lb( new Label($x, $marksep[1]/8, "($xShow,0)",'red','right','bottom'));
+
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Use technology to solve the equation <m><var name="$left" />=<var name="$right" /></m>.</p>
+
+                    <p><ul>
+                        <li><p>Round your answers to two decimal places if needed.</p></li>
+                        <li><p>Use commas to separate multiple solutions.</p></li>
+                    </ul></p>
+
+                    <p>The solution is/are <m>x=</m><var name="$x" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>First, we move all terms to one side of the equal sign:<md>
+                        <mrow><var name="$left" />\amp=<var name="$right" /></mrow>
+                        <mrow><var name="$funcNew" />\amp=0</mrow>
+                    </md></p>
+
+                    <p>Next, we use technology to graph the function <m>f(x)=<var name="$funcNew" /></m>:</p>
+
+                    <figure>
+                      <image pg-name="$gr">
+                          <description><var name="$alt" /></description>
+                      </image>
+                    </figure>
+
+                    <p>The function's <m>x</m>-intercept gives us one solution of the equation: <m>x=<var name="$xShow"/></m>.</p>
+                </solution>
+              </webwork>
             </exercise>
         </exercisegroup>
         <exercisegroup>
