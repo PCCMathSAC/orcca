@@ -115,25 +115,33 @@
                     <var name="$f[2]"><static>\frac{3}{7}x-\frac{2}{3}</static></var>
                     <var name="$f[3]"><static>13-8x</static></var>
                     <var name="$f[4]"><static>1-\frac{2x}{3}</static></var>
+                    <var name="$f[5]"><static>2x</static></var>
+                    <var name="$f[6]"><static>3</static></var>
                     <var name="$m[0]"><static>3.1</static></var>
                     <var name="$m[1]"><static>-17</static></var>
                     <var name="$m[2]"><static>\frac{3}{7}</static></var>
                     <var name="$m[3]"><static>-8</static></var>
                     <var name="$m[4]"><static>-\frac{2}{3}</static></var>
+                    <var name="$m[5]"><static>2</static></var>
+                    <var name="$m[6]"><static>0</static></var>
                     <var name="$yi[0]"><static>(0,1.78)</static></var>
                     <var name="$yi[1]"><static>(0,112)</static></var>
                     <var name="$yi[2]"><static>\let(0,-\frac{2}{3}\right)</static></var>
                     <var name="$yi[3]"><static>(0,13)</static></var>
                     <var name="$yi[4]"><static>(0,1)</static></var>
+                    <var name="$yi[5]"><static>(0,0)</static></var>
+                    <var name="$yi[6]"><static>(0,3)</static></var>
                     <pg-code>
                         Context()->noreduce('(-x)+y','(-x)-y');
                         Context()->flags->set(reduceConstants=>0);
-                        @m=(3.1,-17,Formula("3/7"),-8,Formula("-2/3"));
-                        @b=(1.78,112,Formula("-(2/3)"),13,1);
+                        @m=(3.1,-17,Formula("3/7"),-8,Formula("-2/3"),2,0);
+                        @b=(1.78,112,Formula("-(2/3)"),13,1,0,3);
                         @f=map{Formula("$m[$_]*x+$b[$_]")}(0..4);
                         $f[2]=Formula("3/7 x - 2/3");
                         $f[3]=Formula("$b[3]+$m[3]*x")->reduce;
                         $f[4]=Formula("1-2x/3");
+                        $f[5]=Formula("2x");
+                        $f[6]=Formula("3");
                         Context("Point");
                         @yi=map{Compute("(0,$_)")}(@b);
                     </pg-code>
@@ -172,18 +180,30 @@
                                 <cell><var name="$m[4]" width="10"/></cell>
                                 <cell><var name="$yi[4]" width="10"/></cell>
                             </row>
+                            <row bottom="minor">
+                                <cell><m>y=<var name="$f[5]" /></m></cell>
+                                <cell><var name="$m[5]" width="10"/></cell>
+                                <cell><var name="$yi[5]" width="10"/></cell>
+                            </row>
+                            <row bottom="minor">
+                                <cell><m>y=<var name="$f[6]" /></m></cell>
+                                <cell><var name="$m[6]" width="10"/></cell>
+                                <cell><var name="$yi[6]" width="10"/></cell>
+                            </row>
                         </tabular>
                     </sidebyside>
                 </statement>
                 <solution>
                     <p>In the first three equations, simply read the slope <m>m</m> according to <xref ref="equation-slope-intercept-form">slope-intercept form</xref>. The slopes are <m><var name="$m[0]" /></m>, <m><var name="$m[1]" /></m>, and <m><var name="$m[2]" /></m>.</p>
                     <p>The fourth equation was written with the terms not in the slope-intercept form order. It could be written <m>y=-8x+13</m>, and then it is clear that its slope is <m>-8</m>. In any case, the slope is the coefficient of <m>x</m>.</p>
-                    <p>The fifth equation is also written with the terms not in the slope-intercept form order. Changing the order of the terms, it could be written <m>y=-\frac{2x}{3}+1</m>, but this still does not match the pattern of slope-intercept form. Considering how fraciton multiplication works, <m>\frac{2x}{3}=\frac{2}{3}\cdot\frac{x}{1}=\frac{2}{3}x</m>. So we can write this equation as <m>y=-\frac{2}{3}x+1</m>, and we see the slope is <m>-\frac{2}{3}</m>.</p> 
+                    <p>The fifth equation is also written with the terms not in the slope-intercept form order. Changing the order of the terms, it could be written <m>y=-\frac{2x}{3}+1</m>, but this still does not match the pattern of slope-intercept form. Considering how fraciton multiplication works, <m>\frac{2x}{3}=\frac{2}{3}\cdot\frac{x}{1}=\frac{2}{3}x</m>. So we can write this equation as <m>y=-\frac{2}{3}x+1</m>, and we see the slope is <m>-\frac{2}{3}</m>.</p>
+                    <p>The last two equations could be written <m>y=2x+0</m> and <m>y=0x+3</m>, allowing us to read their slopes as <m>2</m> and <m>0</m>.</p>
     
                     <p>For the <m>y</m>-intercepts, remember that we are expected to answer using an ordered pair <m>(0,b)</m>, not just a single number <m>b</m>. We can simply read that the first two <m>y</m>-intercepts are  <m><var name="$yi[0]" /></m> and <m><var name="$yi[1]" /></m>.</p>
                     <p>The third equation does not exctly match <xref ref="equation-slope-intercept-form">slope-intercept form</xref>, until you view it as <m>y=\frac{3}{7}x+\left(-\frac{2}{3}\right)</m>, and then you can see that its <m>y</m>-intercept is <m>-\frac{2}{3}</m>.</p> 
                     <p>With the fourth equation, after rewriting it as <m>y=-8x+13</m>, we can see that its <m>y</m>-intercept is <m>(0,13)</m>.</p>
-                    <p>We already explored rewriting the last equation as <m>y=-\frac{2}{3}x+1</m>, where we can see that its <m>y</m>-intercept is <m>(0,1)</m>.</p>
+                    <p>We already explored rewriting the fifth equation as <m>y=-\frac{2}{3}x+1</m>, where we can see that its <m>y</m>-intercept is <m>(0,1)</m>.</p>
+                    <p>The last two equations could be written <m>y=2x+0</m> and <m>y=0x+3</m>, allowing us to read their <m>y</m>-intercepts as <m>(0,0)</m> and <m>(0,3)</m>.</p>
                     <p>Alternatively, we know that <m>y</m>-intercepts happen where <m>x=0</m>, and substituting <m>x=0</m> into each equation gives you the <m>y</m>-value of the <m>y</m>-intercept.</p>
                 </solution>
             </webwork>
