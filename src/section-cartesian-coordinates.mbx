@@ -541,7 +541,7 @@
                         <var name="$year"><static>1980</static></var>
                         <var name="$point"><static>(1980,14.1)</static></var>
                         <var name="$later"><static>2000</static></var>
-                        <var name="$changepercent"><static>17\%</static></var>
+                        <var name="$change"><static>17</static></var>
                         <var name="$list"><static>(1960,9.7),(1980,14.1),(2000,31.1)</static></var>
                         <pg-code>
                             @x=(1960,1970,1980,1990,2000,2010);
@@ -577,10 +577,6 @@
                               return($score,@errors);
                             });
                             $change=Real($f{$later}-$f{$year});
-                            Context("Percent");
-                            Context()->flags->set(tolerance=>0.02);
-                            $changepercent=Percent("$change %");
-                            $cheval=$changepercent->cmp()->withPostFilter(AnswerHints($change=>'Do you mean to answer with a % sign?'));
                             $gr=init_graph(1950,-10,2020,50,axes=>[1960,0],grid=>[7,6],size=>[240,200]);
                             $gr->lb('reset');
                             for my$i(197..201){$gr->lb(new Label($i*10,-3,$i*10,'black','center','top'));
@@ -596,7 +592,7 @@
                         <p>Here is a graph of the foreign-born US population (in millions) during Census years 1960 to 2010. (Source: <url href="http://www.pewhispanic.org/2015/09/28/chapter-5-u-s-foreign-born-population-trends/" />.)</p>
                         <sidebyside><image pg-name="$gr" width="40%" /></sidebyside>
                         <p>What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" /></p>
-                        <p>Between <var name="$year"/> and <var name="$later"/>, the US population that is foreign-born increased by <var name="$changepercent" evaluator="$cheval" width="2" /> million people.</p>
+                        <p>Between <var name="$year"/> and <var name="$later"/>, the US population that is foreign-born increased by <var name="$change" width="2" /> million people.</p>
                         <p>List at least three ordered pairs in the graph.</p>
                         <instruction>(Use commas to separate the ordered pairs.)</instruction>
                         <p><var name="$list" evaluator="$listeval" width="30" /></p>
