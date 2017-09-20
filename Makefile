@@ -193,9 +193,9 @@ pdf:
 #   Automatically invokes the "less" pager, could configure as $(PAGER)
 check:
 	install -d $(OUTPUT)
-	-rm $(OUTPUT)/dtderrors.*
-	-xmllint --xinclude --postvalid --noout --dtdvalid $(DTD)/mathbook.dtd $(MAINFILE) 2> $(OUTPUT)/dtderrors.txt
-	less $(OUTPUT)/dtderrors.txt
+	-rm $(OUTPUT)/jingreport.txt
+	-java -classpath ~/jing-trang/build -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar ~/jing-trang/build/jing.jar $(MB)/schema/pretext.rng $(MAINFILE) > $(OUTPUT)/jingreport.txt
+	less $(OUTPUT)/jingreport.txt
 
 gource:
 	install -d $(OUTPUT)
