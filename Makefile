@@ -66,7 +66,7 @@ OUTPUT    = $(PRJ)/output
 STYLE     = $(PRJ)/style
 
 # The project's main hub file
-MAINFILE  = $(PRJSRC)/orcca.mbx
+MAINFILE  = $(PRJSRC)/orcca.ptx
 
 # The project's styling files
 CSS       = $(STYLE)/css/orcca.css
