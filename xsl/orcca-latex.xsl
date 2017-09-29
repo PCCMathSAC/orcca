@@ -27,4 +27,59 @@
 <xsl:param name="latex.preamble.early" select="concat(document('latex-preamble/latex.preamble.xml')//latex-preamble-early, document('latex-preamble/print.preamble.xml')//latex-preamble-early)" />
 <xsl:param name="latex.preamble.late" select="concat(document('latex-preamble/latex.preamble.xml')//latex-preamble-late, document('latex-preamble/print.preamble.xml')//latex-preamble-late)" />
 
+<xsl:template match="exercise" mode="backmatter">
+    <xsl:variable name="serial">
+        <xsl:apply-templates select="." mode="serial-number" />
+    </xsl:variable>
+    <xsl:if test="$serial mod 2 = 1">
+    <xsl:choose>
+        <xsl:when test="webwork-reps/static/stage and (webwork-reps/static/stage/hint or webwork-reps/static/stage/solution)">
+            <!-- Lead with the problem number and some space -->
+            <xsl:text>\noindent\textbf{</xsl:text>
+            <xsl:apply-templates select="." mode="serial-number" />
+            <xsl:text>.}\quad{}</xsl:text>
+            <!-- Within each stage enforce order -->
+            <xsl:apply-templates select="webwork-reps/static/stage" mode="backmatter"/>
+        </xsl:when>
+        <xsl:when test="webwork-reps/static and (webwork-reps/static/hint or webwork-reps/static/solution)">
+            <!-- Lead with the problem number and some space -->
+            <xsl:text>\noindent\textbf{</xsl:text>
+            <xsl:apply-templates select="." mode="serial-number" />
+            <xsl:text>.}\quad{}</xsl:text>
+            <xsl:if test="$exercise.backmatter.statement='yes'">
+                <xsl:apply-templates select="webwork-reps/static/statement" />
+                <xsl:text>\par\smallskip&#xa;</xsl:text>
+            </xsl:if>
+            <xsl:if test="webwork-reps/static/hint and $exercise.backmatter.hint='yes'">
+                <xsl:apply-templates select="webwork-reps/static/hint" mode="backmatter"/>
+            </xsl:if>
+            <xsl:if test="webwork-reps/static/solution and $exercise.backmatter.solution='yes'">
+                <xsl:apply-templates select="webwork-reps/static/solution" mode="backmatter"/>
+            </xsl:if>
+        </xsl:when>
+        <xsl:when test="hint or answer or solution">
+            <!-- Lead with the problem number and some space -->
+            <xsl:text>\noindent\textbf{</xsl:text>
+            <xsl:apply-templates select="." mode="serial-number" />
+            <xsl:text>.}\quad{}</xsl:text>
+            <xsl:if test="$exercise.backmatter.statement='yes'">
+                <!-- TODO: not a "backmatter" template - make one possibly? Or not necessary -->
+                <xsl:apply-templates select="statement" />
+                <xsl:text>\par\smallskip&#xa;</xsl:text>
+            </xsl:if>
+            <xsl:if test="//hint and $exercise.backmatter.hint='yes'">
+                <xsl:apply-templates select="hint" mode="backmatter" />
+            </xsl:if>
+            <xsl:if test="answer and $exercise.backmatter.answer='yes'">
+                <xsl:apply-templates select="answer" mode="backmatter" />
+            </xsl:if>
+            <xsl:if test="solution and $exercise.backmatter.solution='yes'">
+                <xsl:apply-templates select="solution" mode="backmatter" />
+            </xsl:if>
+        </xsl:when>
+    </xsl:choose>
+    </xsl:if>
+</xsl:template>
+
+
 </xsl:stylesheet>
