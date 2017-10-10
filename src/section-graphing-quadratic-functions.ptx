@@ -393,9 +393,11 @@
     
         <p>A quadratic function given by <m>y=-x^2+2x+8</m> is graphed in <href ref="figure-quadratic-function-graph-properties">Figure</href>, which shows key features of quadratic functions. Notice that this parabola points <emph>down</emph>. Whether a parabola points up or down is determined by the sign of the coefficient on the <m>x^2</m> term.</p>
 
-        <p>The maximum (or minimum) point on the graph of a parabola is referred to as the <term>vertex</term>. The vertical line that passes through this point is referred to as its <term>axis</term> of symmetry.</p>
+        <p>The maximum (or minimum) point on the graph of a parabola is referred to as the <term>vertex</term>. The vertical line that passes through this point is referred to as its <term>axis of symmetry</term>.</p>
 
         <p>Other key points on a graph are where <m>x=0</m> and where <m>y=0</m>. Just like with linear functions, the place(s) where the function hits the <m>x</m>-axis (i.e. where <m>y=0</m>) are referred to as <m>x</m>-intercepts. Similarly, the place where the function hits the <m>y</m>-axis is referred to as a <m>y</m>-intercept.</p>
+
+        <p>In <href ref="figure-quadratic-function-graph-properties">Figure</href>, the vertex is the point <m>(1,9)</m> and the axis of symmetry is therefore the line <m>x=1</m>. The <m>x</m>-intercepts are <m>(-2,0)</m> and <m>(4,0)</m>, and the <m>y</m>-intercept is <m>(0,8)</m>.</p>
     
                 <figure xml:id="figure-quadratic-function-graph-properties">
                 <caption>Graph of a quadratic function showing key features</caption>
@@ -440,26 +442,33 @@
             </introduction>
             <webwork >
                 <setup>
-                    <var name="$bar">
-                        <static>(3,-3)</static>
+                    <var name="$vertex">
+                        <static>(-2,1)</static>
                     </var>
-                    <var name="$gas">
-                        <static>(-2,-4)</static>
+                    <var name="$axisofsymmetry">
+                        <static>x=-2</static>
                     </var>
-                    <var name="$carls">
-                        <static>(0,0)</static>
+                    <var name="$xintercept">
+                        <static>none</static>
+                    </var>
+                    <var name="$yintercept">
+                        <static>(0,5)</static>
                     </var>
                     <pg-code>
                         Context("Point");
                         $vertex=Point("(-2,1)");
                         $xintercept=none;
                         $yintercept=Point("(0,5)");
+                        Context("Numeric")->variables->add(y=>'Real');
+                        parser::Assignment->Allow;
+                        $axisofsymmetry=Formula("x=-2");
                     </pg-code>
                 </setup>
                 <statement>
-                    <p><ol>
+                    <p><ol label="a.">
                         <li><p>What are the coordinates of the vertex? <var name="$vertex" width="10" /></p></li>
-                        <li><p>What are the coordinates of the <m>x</m>-intercept(s))? <var name="$xintercept" width="10" /></p></li>
+                        <li><p>What is the equation of the axis of symmetry? <var name="$axisofsymmetry" width="10" /></p></li>           
+                        <li><p>What are the coordinates of the <m>x</m>-intercept(s)? <var name="$xintercept" width="10" /></p></li>
                         <li><p>What are the coordinates of the <m>y</m>-intercept? <var name="$yintercept" width="10" /></p></li>
                     </ol></p>
                 </statement>
@@ -567,12 +576,207 @@
 
     <exercises>
         <exercisegroup>
-                <introduction>
-                    <p>Graph each quadratic function by creating a table.</p>
-                </introduction>
-<!--Will convert these to static exercises-->
+            <introduction>
+                <p>Exercises on Graphing Quadratic Functions Using a Table</p>
+            </introduction>
+
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=x^2+2</m>.</p>
+            </statement>
+            <solution>
+            <sidebyside widths="47% 47%" margins="0%">
+                <table>
+                <caption></caption>
+                    <tabular valign="top" bottom="minor">
+                        <col halign="right" right="minor"/>
+                        <col halign="right" right="minor"/>
+                        <col halign="center"/>
+                        <row bottom="medium">
+                            <cell><m>x</m></cell>
+                            <cell halign="center"><m>y=x^2+2</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-3</m></cell>
+                            <cell><m>(-3)^2+2=11</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-2</m></cell>
+                            <cell><m>(-2)^2+2=6</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-1</m></cell>
+                            <cell><m>(-1)^2+2=3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0</m></cell>
+                            <cell><m>0^2+2=2</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1</m></cell>
+                            <cell><m>1^2+2=3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2</m></cell>
+                            <cell><m>2^2+2=6</m></cell>
+                        </row>
+                        <row bottom="none">
+                            <cell><m>3</m></cell>
+                            <cell><m>3^2+2=11</m></cell>
+                        </row>
+                    </tabular>
+                </table>
+                <image>
+                    <latex-image-code>
+                        <![CDATA[
+                            \begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[domain=-2:2] {x^2+2};
+                                    \addplot[soliddot] coordinates {(-2,6) (-1,3) (0,2) (1,3) (2,6)};
+                                \end{axis}
+                            \end{tikzpicture}
+                        ]]>
+                    </latex-image-code>
+                </image>
+            </sidebyside>
+            </solution>
+        </exercise> 
+
+
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=x^2+1</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=x^2-5</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=x^2-3</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+
+
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=(x-2)^2</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=(x-4)^2</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=(x+3)^2</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=(x+2)^2</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+
+
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=x^2-5x+3</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=x^2+7x-1</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=-x^2+2x+5</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=-x^2-3x+6</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=3x^2-4x-1</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=2x^2+6x-8</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=-2x^2-5x+8</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+        <exercise>
+            <statement>
+                <p>Create a table of ordered pairs and then graph the function <m>y=-4x^2-2x+1</m>.</p>
+            </statement>
+            <solution>
+                
+            </solution>
+        </exercise>
+
+        </exercisegroup>
+
+        <exercisegroup>
+            <introduction>
+                <p>Exercises on Identifying Key Features of a Quadratic Function from Its Graph</p>
+            </introduction>
+            <!--Similar to WeBWorK exercise in text-->
             <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant20.pg" />
             </exercise>
         </exercisegroup>
 
