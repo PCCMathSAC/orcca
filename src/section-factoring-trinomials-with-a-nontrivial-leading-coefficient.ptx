@@ -26,7 +26,7 @@
     </objectives>
 
     <introduction>
-        <p>In the last section, we learned how to factor <m>ax^2+bx+c</m> when <m>a=1</m>. In this section, we will factor trinomials when <m>a\ne1</m>. The Listing Factor Pairs Method no longer works. We have to resort to Factoring by Grouping Methid and Generic Rectangles Method.</p>
+        <p>In <xref ref="section-factoring-trinomials-with-leading-coefficient-one">Section</xref>, we learned how to factor <m>ax^2+bx+c</m> when <m>a=1</m>. In this section, we will examine the situation when <m>a\neq1</m>. Listing factor pairs that multiply to <m>c</m> no longer helps. However, there is a similar technique that will.</p>
 
         <figure>
             <caption>Alternative Video Lesson</caption>
@@ -37,505 +37,531 @@
 
 
     <subsection>
-        <title>Factoring Trinomials by the AC Method</title>
+        <title>The AC Method</title>
 
-        <p>The Listing Factor Pairs Method is the most efficient method to factor trinomials <m>ax^2+bx+c</m> when <m>a=1</m>. In later sections, we will learn how to factor trinomials when <m>a\ne1</m>, and the List Factor Pairs Method will not work any more. We will learn the <term>AC Method</term> and <term>Generic Rectangle Method</term>, which will be useful when <m>a\ne1</m>. Those two methods also work when <m>a=1</m>, although they are not as efficient as the Listing Factor Pairs Method.</p>
+        <p><q>The AC Method</q> is a technique for factoring triomials like <m>2x^2+11x+12</m>, where there is no greatest common factor, and the leading coefficient is not <m>1</m>. If you are only interested in the steps for using the technique, skip ahead to <xref ref="algorithm-the-ac-method">Algorithm</xref>. Between here and there is a dscussion that explains <em>why</em> the AC Method works.</p>
 
-        <p>One method to multiply the binomials <m>(x+5)(x+8)</m> is to first distribute <m>(x+5)</m> into <m>(x+8)</m>, and then distribute again:<md>
-            <mrow>(x+5)(x+8)\amp=x(x+5)+8(x+5)</mrow>
-            <mrow>\amp=x^2+5x+8x+40</mrow>
-            <mrow>\amp=x^2+13x+40</mrow>
-        </md></p>
+        <p>Factoring is the opposite process from multiplying polynomials together. We can gain some insight into how to factor complicated polynomials by taking a closer look at what happens when two generic polynomials are multiplied together:<mdn>
+            <mrow number="no">(px+q)(rx+s)\amp=(px+q)(rx)+(px+q)s</mrow>
+            <mrow number="no">\amp=(px)(rx)+q(rx)+(px)s+qs</mrow>
+            <mrow number="no">\amp=(pr)x^2+qrx+psx+qs</mrow>
+            <mrow xml:id="equation-ac-method">\amp=(pr)x^2+(qr+ps)x+qs</mrow>
+        </mdn>When you encounter a trinomial like <m>2x^2+11x+12</m> and you wish to factor it, the leading coefficient <m>2</m> is the <m>(pr)</m> from <xref ref="equation-ac-method">Equation</xref>. Similarly, the <m>12</m> is the <m>qs</m>, and the <m>11</m> is the <m>(qr+ps)</m>.</p>
 
-        <p>The AC Method follows the exact steps backward, going from <m>x^2+13x+40</m> back to <m>(x+5)(x+8)</m>.</p>
+        <p>Now, if you multiply the leading coefficient and constant term from <xref ref="equation-ac-method">Equation</xref>, you have <m>(pr)(qs)</m>, which equals <m>pqrs</m>. Notice that if we factor this number in just the right way, <m>(qr)(ps)</m>, then we have two factors that add to the middle coefficient from <xref ref="equation-ac-method">Equation</xref>, <m>(qr+ps)</m>.</p>
 
-        <example>
-            <statement>
-                <p>Factor <m>x^2+13x+40</m> with the AC Method.</p>
+        <p>Can we do all this with the example <m>2x^2+11x+12</m>? Multiplying <m>2</m> and <m>12</m> makes <m>24</m>. Is there some way to factor <m>24</m> into two factors which add to <m>11</m>? We make a table of factor pairs for <m>24</m> to see:</p>
 
-                <p>
-                    <ul>
-                        <li><p>Step 1: We treat <m>x^2+13x+40</m> as <m>ax^2+bx+c</m>, and we have <m>a=1, b=13</m> and <m>c=40</m>.</p></li>
-                        <li><p>Step 2: We find the product of <m>a</m> and <m>c</m> (thus the name AC Method), and we have <m>ac=(1)(40)=40</m>.</p></li>
-                        <li><p>Step 3: List all factor pairs of the product <m>40</m> until we find a pair whose sum is <m>b</m>'s value, <m>13</m>. By <xref ref="table-factor-pair-of-forty">Table</xref>, that pair is <m>5</m> and <m>8</m>.</p></li>
-                        <li><p>Step 4: In <m>x^2+13x+40</m>, break the second term <m>13x</m> into <m>5x</m> and <m>8x</m>, and then factor by grouping:
-                            <md>
-                                <mrow>x^2+13x+40\amp=x^2+5x+8x+40</mrow>
-                                <mrow>\amp=x(x+5)+8(x+5)</mrow>
-                                <mrow>\amp=(x+5)(x+8)</mrow>
-                            </md>
-                        </p></li>
-                    </ul>
-                </p>
-            </statement>
-        </example>
+        <sidebyside widths="47% 47%">
+            <tabular>
+                <col right="minor" />
+                <col />
+                <row bottom="minor">
+                    <cell>Factor Pair</cell>
+                    <cell>Sum of the Pair</cell>
+                </row>
+                <row>
+                    <cell><m>1\cdot24</m></cell>
+                    <cell><m>25</m></cell>
+                </row>
+                <row>
+                    <cell><m>2\cdot12</m></cell>
+                    <cell><m>14</m></cell>
+                </row>
+                <row>
+                    <cell><m>3\cdot8</m></cell>
+                    <cell><m>11</m> (what we wanted)</cell>
+                </row>
+                <row>
+                    <cell><m>4\cdot6</m></cell>
+                    <cell>(no need to go this far)</cell>
+                </row>
+            </tabular>
+            <tabular>
+                <col right="minor" />
+                <col />
+                <row bottom="minor">
+                    <cell>Factor Pair</cell>
+                    <cell>Sum of the Pair</cell>
+                </row>
+                <row>
+                    <cell><m>-1\cdot(-24)</m></cell>
+                    <cell>(no need to go this far)</cell>
+                </row>
+                <row>
+                    <cell><m>-2\cdot(-12)</m></cell>
+                    <cell>(no need to go this far)</cell>
+                </row>
+                <row>
+                    <cell><m>-3\cdot(-8)</m></cell>
+                    <cell>(no need to go this far)</cell>
+                </row>
+                <row>
+                    <cell><m>-4\cdot(-6)</m></cell>
+                    <cell>(no need to go this far)</cell>
+                </row>
+            </tabular>
+        </sidebyside>
 
-        <example>
-            <statement>
-                <p>Factor <m>y^2-3yz-40z^2</m> with the AC Method.</p>
-            </statement>
-            <solution>
-                <p>
-                    <ul>
-                        <li><p>Step 1: We treat <m>y^2-3yz-40z^2</m> as <m>ay^2+byz+cz^2</m>, and we have <m>a=1, b=-3</m> and <m>c=-40</m>.</p></li>
-                        <li><p>Step 2: We find the product of <m>a</m> and <m>c</m> (thus the name AC Method), and we have <m>ac=(1)(-40)=-40</m>.</p></li>
-                        <li><p>Step 3: List all factor pairs of the product <m>-40</m> until we find a pair whose sum is <m>b</m>'s value, <m>-3</m>. By <xref ref="table-factor-pair-of-negative-forty">Table</xref>, that pair is <m>5</m> and <m>-8</m>.</p></li>
-                        <li><p>Step 4: In <m>y^2-3yz-40z^2</m>, break the second term <m>-3yz</m> into <m>5yz</m> and <m>-8yz</m>, and then factor by grouping:
-                            <md>
-                                <mrow>y^2-3yz-40z^2\amp=y^2+5yz-8yz-40z^2</mrow>
-                                <mrow>\amp=y(y+5z)-8z(y+5z)</mrow>
-                                <mrow>\amp=(y+5z)(y-8z)</mrow>
-                            </md>
-                        </p></li>
-                    </ul>
-                </p>
-            </solution>
-        </example>
+        <p>So that <m>11</m> in <m>2x^2+11x+12</m>, which is equal to the abstract <m>(qr+ps)</m> from <xref ref="equation-ac-method">Equation</xref>, breaks down as <m>3+8</m>. We can take <m>3</m> to be the <m>qr</m> and <m>8</m> to be the <m>ps</m>. Once we intentionally break up the <m>11</m> this way, factoring by grouping (see <xref ref="section-factoring-by-grouping">Section</xref>) can take over and is guaranteed to give us a factorization.<md>
+            <mrow>2x^2+11x+12\amp=2x^2+\overbrace{3x+8x}+12</mrow>
+            <intertext>Now that there are four terms, group them and factor out each group's greatest common factor.</intertext>
+            <mrow>\amp=\left(2x^2+3x\right)+\left(8x+12\right)</mrow>
+            <mrow>\amp=x(2x+3)+4(2x+3)</mrow>
+            <mrow>\amp=x\attention{\overbrace{(2x+3)}}+4\attention{\overbrace{(2x+3)}}</mrow>
+            <mrow>\amp=(2x+3)(x+4)</mrow>
+        </md>And this is the factorization of <m>2x^2+11x+12</m>. This whole process is known as the <q>AC method</q>, since it begins by multiplying <m>a</m> and <m>c</m> from the generic <m>ax^2+bx+c</m>. Here is a summary of the algorithm:</p>
 
-    </subsection>
-
-
-    <subsection>
-        <title>Factoring by Grouping</title>
-
-        <p>We learned the AC Method in the last section. We will simply go through some examples.</p>
+        <algorithm xml:id="algorithm-the-ac-method">
+            <title>The AC Method</title>
+            <sidebyside widths="47% 47%">
+                <paragraphs>
+                    <title>Steps</title>
+                    <p>To factor <m>ax^2+bx+c</m>:<ol>
+                        <li>
+                            <p>Multiply <m>a\cdot c</m>.</p>
+                        </li>
+                        <li>
+                            <p>Make a table of factor pairs for <m>ac</m>. Look for a pair that adds to <m>b</m>. If you cannot find one, the polynomial is irreducible.</p>
+                        </li>
+                        <li>
+                            <p>If you did find a factor pair summing to <m>b</m>, replace <m>b</m>with an explicit sum, and distribute <m>x</m>. With the four terms you have at this point, use factoring by grouping to continue. You are guaranteed to find a factorization.</p>
+                        </li>
+                    </ol></p>
+                </paragraphs>
+                <paragraphs>
+                    <title>Example</title>
+                    <p>Factor <m>10x^2+23x+6</m>.<ol>
+                        <li>
+                            <p><m>10\cdot6=60</m></p>
+                        </li>
+                        <li>
+                            <p>Use a list of factor pairs for <m>60</m> to find that <m>3</m> and <m>20</m> are a pair that sum to <m>23</m>.</p>
+                        </li>
+                        <li>
+                            <p>Intentionally break up the <m>23</m> as <m>3+20</m>:<md>
+                                <mrow>\amp10x^2+23x+6</mrow>
+                                <mrow>\amp=10x^2+\overbrace{3x+20x}+6</mrow>
+                                <mrow>\amp=\left(10x^2+3x\right)+(20x+6)</mrow>
+                                <mrow>\amp=x(10x+3)+2\left(10x+3\right)</mrow>
+                                <mrow>\amp=(10x+3)(x+2)</mrow>
+                            </md></p>
+                        </li>
+                    </ol></p>
+                </paragraphs>
+            </sidebyside>
+        </algorithm>
 
         <example xml:id="example-factor-ac-2-5-3">
             <statement>
-                <p>Factor <m>2x^2-5x-3</m> with the AC Method.</p>
-
-                <p>
-                    <ul>
-                        <li><p>Step 1: We treat <m>2x^2-5x-3</m> as <m>ax^2+bx+c</m>, and we have <m>a=2, b=-5</m> and <m>c=-3</m>.</p></li>
-                        <li><p>Step 2: The product of <m>a</m> and <m>c</m> is <m>ac=(2)(-3)=-6</m>.</p></li>
-                        <li><p>Step 3: List all factor pairs of the product <m>-6</m> until we find a pair whose sum is <m>b</m>'s value, <m>-5</m>. The number <m>-6</m> has four factor pairs: <m>1\text{ and }-6, -1\text{ and }6, 2\text{ and }-3, -3\text{ and }3</m>. Among them, the sum of <m>1</m> and <m>-6</m> is <m>-5</m>.</p></li>
-                        <li><p>Step 4: In <m>2x^2-5x-3</m>, break the second term <m>-5x</m> into <m>x</m> and <m>-6x</m>, and then factor by grouping:
-                            <md>
-                                <mrow>2x^2-5x-3\amp=2x^2+x-6x-3</mrow>
-                                <mrow>\amp=x(2x+1)-3(2x+1)</mrow>
-                                <mrow>\amp=(2x+1)(x-3)</mrow>
-                            </md>
-                        </p></li>
-                    </ul>
-                </p>
+                <p>Factor <m>2x^2-5x-3</m>.</p>
             </statement>
+
+            <solution>
+                <p>Always start the factoring process by examining if there is a greatest common factor. Here there is not one. Next, note that this is a trinomial with a leading coefficient that is not <m>1</m>. So the AC Method may be of help.<ol>
+                    <li>
+                        <p>Mutliply <m>2\cdot(-3)=-6</m>.</p>
+                    </li>
+                    <li>
+                        <p>Examine factor pairs that multiply to <m>-6</m>, looking for a pair that sums to <m>-5</m>:</p>
+                        <sidebyside widths="47% 47%">
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>1\cdot-6</m></cell>
+                                    <cell><m>-5</m> (what we wanted)</cell>
+                                </row>
+                                <row>
+                                    <cell><m>2\cdot-3</m></cell>
+                                    <cell>(no need to go this far)</cell>
+                                </row>
+                            </tabular>
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>-1\cdot6</m></cell>
+                                    <cell>(no need to go this far)</cell>
+                                </row>
+                                <row>
+                                    <cell><m>-2\cdot3</m></cell>
+                                    <cell>(no need to go this far)</cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </li>
+                    <li>
+                        <p>Intentionally break up the <m>-5</m> as <m>1+(-6)</m>:<md>
+                            <mrow>2x^2-5x-3\amp=2x^2+\overbrace{x-6x}-3</mrow>
+                            <mrow>\amp=\left(2x^2+x\right)+(-6x-3)</mrow>
+                            <mrow>\amp=x(2x+1)-3(2x+1)</mrow>
+                            <mrow>\amp=(2x+1)(x-3)</mrow>
+                        </md></p>
+                    </li>
+                </ol></p>
+                <p>So we believe that <m>2x^2-5x-3</m> factors as <m>(2x+1)(x-3)</m>, and we should check by multiplying out the factored form:</p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <p><md>
+                        <mrow>(2x+1)(x-3)\amp=(2x+1)\cdot x+(2x+1)\cdot(-3)</mrow>
+                        <mrow>\amp=2x^2+x-6x-3</mrow>
+                        <mrow>\amp\stackrel{\checkmark}{=}2x^2-5x-3</mrow>
+                    </md></p>
+                    <tabular bottom="minor" halign="center">
+                        <row>
+                            <cell bottom="none"></cell>
+                            <cell><m>2x</m></cell>
+                            <cell><m>1</m></cell>
+                        </row>
+                        <row>
+                            <cell right="minor" bottom="none"><m>x</m></cell>
+                            <cell right="minor"><m>2x^2</m></cell>
+                            <cell right="minor"><m>x</m></cell>
+                        </row>
+                        <row>
+                            <cell right="minor" bottom="none"><m>-3</m></cell>
+                            <cell right="minor"><m>-6x</m></cell>
+                            <cell right="minor"><m>-3</m></cell>
+                        </row>
+                    </tabular>
+                </sidebyside>
+                <p>Our factorization passes the tests.</p>
+            </solution>
         </example>
 
         <example xml:id="example-factor-ac-6-5-6">
             <statement>
-                <p>Factor <m>6p^2+5pq-6q^2</m> with the AC Method.</p>
+                <p>Factor <m>6p^2+5pq-6q^2</m>. Note that this example has two variables, but that does not really change our approach.</p>
             </statement>
             <solution>
-                <p>
-                    <ul>
-                        <li><p>Step 1: We treat <m>6p^2+5pq-6q^2</m> as <m>ap^2+bpq+cq^2</m>, and we have <m>a=6, b=5</m> and <m>c=-6</m>.</p></li>
-                        <li><p>Step 2: The product of <m>a</m> and <m>c</m> is <m>ac=(6)(-6)=-36</m>.</p></li>
-                        <li><p>Step 3: List all factor pairs of the product <m>-36</m> until we find a pair whose sum is <m>b</m>'s value, <m>5</m>.</p>
-                            <table xml:id="table-factor-pair-of-negative-thirty-six">
-                            <caption>Factor Pairs of <m>-36</m></caption>
+                <p>There is no greatest common factor. Since this is a trinomial, we try the AC Method.<ol>
+                    <li>
+                        <p>Mutliply <m>6\cdot(-6)=-36</m>.</p>
+                    </li>
+                    <li>
+                        <p>Examine factor pairs that multiply to <m>-36</m>, looking for a pair that sums to <m>5</m>:</p>
+                        <sidebyside widths="47% 47%">
                             <tabular>
-                                <col halign="center"/>
-                                <col halign="center"/>
-                                <col halign="center"/>
-                                <col halign="center"/>
-                                <row bottom="medium">
-                                    <cell>Factor Pairs</cell>
-                                    <cell>Sum</cell>
-                                    <cell>Factor Pairs</cell>
-                                    <cell>Sum</cell>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
                                 </row>
                                 <row>
-                                    <cell><m>1\cdot(-36)</m></cell>
+                                    <cell><m>1\cdot-36</m></cell>
                                     <cell><m>-35</m></cell>
-                                    <cell><m>(-1)\cdot36</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>2\cdot-18</m></cell>
+                                    <cell><m>-16</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>3\cdot-12</m></cell>
+                                    <cell><m>-9</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>4\cdot-9</m></cell>
+                                    <cell><m>-5</m> (close; wrong sign)</cell>
+                                </row>
+                                <row>
+                                    <cell><m>6\cdot-6</m></cell>
+                                    <cell><m>0</m></cell>
+                                </row>
+                            </tabular>
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>-1\cdot36</m></cell>
                                     <cell><m>35</m></cell>
                                 </row>
                                 <row>
-                                    <cell><m>2\cdot(-18)</m></cell>
-                                    <cell><m>-16</m></cell>
-                                    <cell><m>(-2)\cdot18</m></cell>
+                                    <cell><m>-2\cdot18</m></cell>
                                     <cell><m>16</m></cell>
                                 </row>
                                 <row>
-                                    <cell><m>3\cdot(-12)</m></cell>
-                                    <cell><m>-9</m></cell>
-                                    <cell><m>(-3)\cdot12</m></cell>
+                                    <cell><m>-3\cdot12</m></cell>
                                     <cell><m>9</m></cell>
                                 </row>
                                 <row>
-                                    <cell><m>4\cdot(-9)</m></cell>
-                                    <cell><m>-5</m></cell>
-                                    <cell><m>(-4)\cdot9</m></cell>
-                                    <cell><m>5</m></cell>
+                                    <cell><m>-4\cdot9</m></cell>
+                                    <cell><m>5</m> (what we wanted)</cell>
                                 </row>
                             </tabular>
-                        </table>
-                        <p>We found the pair to be <m>-4</m> and <m>9</m>, whose sum is <m>5</m>.</p></li>
-                        <li><p>Step 4: In <m>6p^2+5pq-6q^2</m>, break the second term <m>5pq</m> into <m>-4pq</m> and <m>9pq</m>, and then factor by grouping:
-                            <md>
-                                <mrow>6p^2+5pq-6q^2\amp=6p^2-4pq+9pq-6q^2</mrow>
-                                <mrow>\amp=2p(3p-2q)+3q(3p-2q)</mrow>
-                                <mrow>\amp=(3p-2q)(2p+3q)</mrow>
-                            </md>
-                        </p></li>
-                    </ul>
-                </p>
-            </solution>
-        </example>
-
-        <example>
-            <statement>
-                <p>Factor <m>6p^2+pq-6q^2</m> with the AC Method.</p>
-            </statement>
-            <solution>
-                <p>
-                    <ul>
-                        <li><p>Step 1: We treat <m>6p^2+pq-6q^2</m> as <m>ap^2+bpq+cq^2</m>, and we have <m>a=6, b=1</m> and <m>c=-6</m>.</p></li>
-                        <li><p>Step 2: The product of <m>a</m> and <m>c</m> is <m>ac=(6)(-6)=-36</m>.</p></li>
-                        <li><p>Step 3: List all factor pairs of the product <m>-36</m> until we find a pair whose sum is <m>b</m>'s value, <m>1</m>.</p>
-                <table>
-                            <caption>Factor Pairs of <m>-36</m></caption>
-                            <tabular>
-                                <col halign="center"/>
-                                <col halign="center"/>
-                                <col halign="center"/>
-                                <col halign="center"/>
-                                <row bottom="medium">
-                                    <cell>Factor Pairs</cell>
-                                    <cell>Sum</cell>
-                                    <cell>Factor Pairs</cell>
-                                    <cell>Sum</cell>
-                                </row>
-                                <row>
-                                    <cell><m>1\cdot(-36)</m></cell>
-                                    <cell><m>-35</m></cell>
-                                    <cell><m>(-1)\cdot36</m></cell>
-                                    <cell><m>35</m></cell>
-                                </row>
-                                <row>
-                                    <cell><m>2\cdot(-18)</m></cell>
-                                    <cell><m>-16</m></cell>
-                                    <cell><m>(-2)\cdot18</m></cell>
-                                    <cell><m>16</m></cell>
-                                </row>
-                                <row>
-                                    <cell><m>3\cdot(-12)</m></cell>
-                                    <cell><m>-9</m></cell>
-                                    <cell><m>(-3)\cdot12</m></cell>
-                                    <cell><m>9</m></cell>
-                                </row>
-                                <row>
-                                    <cell><m>4\cdot(-9)</m></cell>
-                                    <cell><m>-5</m></cell>
-                                    <cell><m>(-4)\cdot9</m></cell>
-                                    <cell><m>5</m></cell>
-                                </row>
-                                <row>
-                                    <cell><m>5</m></cell>
-                                    <cell>n/a</cell>
-                                    <cell>n/a</cell>
-                                    <cell>n/a</cell>
-                                </row>
-                                <row>
-                                    <cell><m>6\cdot(-6)</m></cell>
-                                    <cell><m>0</m></cell>
-                                    <cell><m>(-6)\cdot6</m></cell>
-                                    <cell><m>0</m></cell>
-                                </row>
-                                <row>
-                                    <cell><m>7</m></cell>
-                                    <cell>n/a</cell>
-                                    <cell>n/a</cell>
-                                    <cell>n/a</cell>
-                                </row>
-                                <row>
-                                    <cell><m>8</m></cell>
-                                    <cell>n/a</cell>
-                                    <cell>n/a</cell>
-                                    <cell>n/a</cell>
-                                </row>
-                                <row>
-                                    <cell><m>9\cdot(-4)</m></cell>
-                                    <cell>...</cell>
-                                    <cell>...</cell>
-                                    <cell>...</cell>
-                                </row>
-                            </tabular>
-                            </table>
-                <p>We have exhausted all factor pairs of <m>-36</m>, but failed to find a pair whose sum is <m>1</m>.</p></li>
-                        <li><p>Step 4: We conclude that <m>6p^2+pq-6q^2</m> is prime.</p></li>
-                    </ul>
-                </p>
-            </solution>
-        </example>
-
-        <p>Once we can factor a basic trinomial like <m>6x^2+5x-6=(3x-2)(2x+3)</m>, we can factor some variations:<md>
-            <mrow>6x^2+5x-6\amp=(3x-2)(2x+3)</mrow>
-            <mrow>6x^2+5xy-6y^2\amp=(3x-2y)(2x+3y)</mrow>
-            <mrow>6x^2y^2+5xy-6\amp=(3xy-2)(2xy+3)</mrow>
-        </md></p>
-
-    </subsection>
-
-    <exercises>
-        <exercisegroup>
-            <introduction>
-                <p>Factoring Trinomials when <m>a\ne1</m> by Grouping</p>
-            </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring185.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring190.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring195.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring200.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring205.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring210.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring215.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring186.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring191.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring196.pg" />
-            </exercise>
-        </exercisegroup>
-    </exercises>
-
-    <subsection>
-        <title>Generic Rectangle Method</title>
-
-        <p>We will factor the same problems with generic rectangles.</p>
-
-        <example>
-            <statement>
-                <p>Factor <m>2x^2y^2-5xy-3</m> with the Generic Rectangle Method.</p>
-
-                <p>To factor <m>2x^2y^2-5xy-3</m> with generic rectangles, we put the first term <m>2x^2y^2</m> and the third term <m>-3</m> into the top left and bottom right boxes, and we have:</p>
-
-                <figure>
-                    <caption>Setting up Generic Rectangles to Factor <m>2x^2y^2-5xy-3</m></caption>
-                    <image width="50%">
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \draw (1,0) rectangle (5,4);
-                                \draw (1,2) -- (5,2);
-                                \draw (3,0) -- (3,4);
-                                \draw (2,3) node {$2x^2y^2$};
-                                \draw (4,1) node {$-3$};
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>Next, we mark the base and height of the top left rectangle. To make its area <m>2x^2y^2</m>, the only choice we have for its base and height is <m>2xy\cdot xy=2x^2y^2</m>. Now the rectangles look like:</p>
-
-                <figure>
-                    <caption>Marking the Top Left Rectangle's Base and Height</caption>
-                    <image width="50%">
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \draw (1,0) rectangle (5,4);
-                                \draw (1,2) -- (5,2);
-                                \draw (3,0) -- (3,4);
-                                \draw (2,4.5) node {$2xy$};
-                                \draw (0.5,3) node {$xy$};
-                                \draw (2,3) node {$2x^2y^2$};
-                                \draw (4,1) node {$-3$};
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>Next, our task is to come up with the base and height of the bottom right rectangle. Since the area of the rectangle is <m>-3</m>, the product of its base and height must be <m>-3</m>. There are only two options: <m>1</m> and <m>-3</m>, <m>-1</m> and <m>3</m>. We will try <m>1</m> and <m>-3</m> first:</p>
-
-                <figure>
-                    <caption>Trying <m>2xy-3</m> and <m>xy+1</m> as Factors of <m>2x^2y^2-5xy-3</m></caption>
-                    <image width="50%">
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \draw (1,0) rectangle (5,4);
-                                \draw (1,2) -- (5,2);
-                                \draw (3,0) -- (3,4);
-                                \draw (2,4.5) node {$2xy$};
-                                \draw (4,4.5) node {$-3$};
-                                \draw (0.5,3) node {$xy$};
-                                \draw (0.5,1) node {$1$};
-                                \draw (2,3) node {$2x^2y^2$};
-                                \draw (4,3) node {$-3xy$};
-                                \draw (2,1) node {$2xy$};
-                                \draw (4,1) node {$-3$};
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>The sum of those rectangles' area is <m>2x^2y^2-3xy+2xy-3=2x^2y^2-xy-3</m>, which is different from <m>2x^2y^2-5xy-3</m>. When the leading coefficient is not <m>1</m>, we cannot give up trying <m>1</m> and <m>-3</m> yet; we must switch their positions in the figure and try again:</p>
-
-                <figure>
-                    <caption>Trying <m>2xy+1</m> and <m>xy-3</m> as Factors of <m>2x^2y^2-5xy-3</m></caption>
-                    <image width="50%">
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \draw (1,0) rectangle (5,4);
-                                \draw (1,2) -- (5,2);
-                                \draw (3,0) -- (3,4);
-                                \draw (2,4.5) node {$2xy$};
-                                \draw (4,4.5) node {$1$};
-                                \draw (0.5,3) node {$xy$};
-                                \draw (0.5,1) node {$-3$};
-                                \draw (2,3) node {$2x^2y^2$};
-                                \draw (4,3) node {$xy$};
-                                \draw (2,1) node {$-6xy$};
-                                \draw (4,1) node {$-3$};
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>Now, the sum of those generic rectangles is <m>2x^2y^2-5xy-3</m>, matching the given trinomial. Dimensions of those generic rectangles show the solution<me>2x^2y^2-5xy-3=(2xy+1)(xy-3)</me></p>
-            </statement>
-        </example>
-
-        <p>Comparing to Factoring by Grouping, the Generic Rectangle Method could be faster, and it makes more sense with an area model. For complicated problems like the next exercise, Factoring by Grouping would most likely be faster. We recommend students master both methods, and try the Generic Rectangle Method first; if it takes too long, use Factoring by Grouping.</p>
-
-        <example>
-            <statement>
-                <p>Factor <m>6p^2+5pq-6q^2</m> with the Generic Rectangle Method.</p>
-            </statement>
-            <solution>
-                <p>To factor <m>6p^2+5pq-6q^2</m> with generic rectangles, we put the first term <m>6p^2</m> and the third term <m>-3</m> into the top left and bottom right boxes, and we have:</p>
-
-                <figure>
-                    <caption>Setting up Generic Rectangles to Factor <m>6p^2+5pq-6q^2</m></caption>
-                    <image width="50%">
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \draw (1,0) rectangle (5,4);
-                                \draw (1,2) -- (5,2);
-                                \draw (3,0) -- (3,4);
-                                \draw (2,3) node {$6p^2$};
-                                \draw (4,1) node {$-6q^2$};
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>For the top left rectangle, we have the following choices for its dimensions:<me>p\text{ and }6p, 6p\text{ and }p, 2p\text{ and }3p, 3p\text{ and }2p</me>For the bottom right rectangle, we have the following choices for its dimensions:<me>q\text{ and }6q, -q\text{ and }-6q, 6q\text{ and }q, -6q\text{ and }-q,</me><me>2q\text{ and }3q, -2q\text{ and }-3q, 3q\text{ and }2q, -3q\text{ and }-2q</me>With so many choices, it would take a long time to try each one. If we are lucky, we will find the solution:</p>
-
-                <figure>
-                    <caption>Trying <m>3p-2q</m> and <m>2p+3q</m> as Factors of <m>6p^2+5pq-6q^2</m></caption>
-                    <image width="50%">
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \draw (1,0) rectangle (5,4);
-                                \draw (1,2) -- (5,2);
-                                \draw (3,0) -- (3,4);
-                                \draw (2,4.5) node {$3p$};
-                                \draw (4,4.5) node {$-2q$};
-                                \draw (0.5,3) node {$2p$};
-                                \draw (0.5,1) node {$-3q$};
-                                \draw (2,3) node {$6p^2$};
-                                \draw (4,3) node {$-4pq$};
-                                \draw (2,1) node {$9pq$};
-                                \draw (4,1) node {$6q^2$};
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>Dimensions of those generic rectangles show the solution<me>6p^2+5pq-6q^2=(3p-2q)(2p+3q)</me>For problems with too many choices for rectangles' dimensions, we should factor by grouping instead.</p>
+                        </sidebyside>
+                    </li>
+                    <li>
+                        <p>Intentionally break up the <m>5</m> as <m>-4+9</m>:<md>
+                            <mrow>6p^2+5pq-6q^2\amp=6p^2\overbrace{{}-4pq+9pq}-6q^2</mrow>
+                            <mrow>\amp=\left(6p^2-4pq\right)+\left(9pq-6q^2\right)</mrow>
+                            <mrow>\amp=2p(3p-2q)+3q(3p-2q)</mrow>
+                            <mrow>\amp=(3p-2q)(2p+3q)</mrow>
+                        </md></p>
+                    </li>
+                </ol></p>
+                <p>So we believe that <m>6p^2+5pq-6q^2</m> factors as <m>(3p-2q)(2p+3q)</m>, and we should check by multiplying out the factored form:</p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <p><md>
+                        <mrow>(3p-2q)(2p+3q)\amp=(3p-2q)\cdot 2p+(3p-2q)\cdot3q</mrow>
+                        <mrow>\amp=6p^2-4pq+9pq-6q^2</mrow>
+                        <mrow>\amp\stackrel{\checkmark}{=}6p^2+5pq-6q^2</mrow>
+                    </md></p>
+                    <tabular bottom="minor" halign="center">
+                        <row>
+                            <cell bottom="none"></cell>
+                            <cell><m>3p</m></cell>
+                            <cell><m>-2q</m></cell>
+                        </row>
+                        <row>
+                            <cell right="minor" bottom="none"><m>2p</m></cell>
+                            <cell right="minor"><m>6p^2</m></cell>
+                            <cell right="minor"><m>-4pq</m></cell>
+                        </row>
+                        <row>
+                            <cell right="minor" bottom="none"><m>3q</m></cell>
+                            <cell right="minor"><m>9pq</m></cell>
+                            <cell right="minor"><m>-6q^2</m></cell>
+                        </row>
+                    </tabular>
+                </sidebyside>
+                <p>Our factorization passes the tests.</p>
             </solution>
         </example>
     </subsection>
 
-    <exercises>
-        <exercisegroup>
-            <introduction>
-                <p>Factoring Trinomials when <m>a\ne1</m> by Generic Rectangles</p>
-            </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring185.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring190.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring195.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring200.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring205.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring210.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring215.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring186.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring191.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring196.pg" />
-            </exercise>
-        </exercisegroup>
-    </exercises>
-
     <subsection>
-        <title>Factoring Trinomials with Common Factor</title>
+        <title>Factoring in Stages</title>
 
-        <p>When we factor a polynomial, we should always try to factor out the common factor if possible. Let's look at a few examples.</p>
+        <p>Sometimes factoring a polynomial will take two or more <q>stages</q>. For instance you may need to begin factoring a polynomial by factoring out its greatest common factor, and <em>then</em> apply a second stage where you use a technique from this section. The process of factoring a polynomial is not complete until each of the factors cannot be factored further.</p>
 
         <example>
             <statement>
                 <p>Factor <m>6x^2y^2-15xy-9</m>.</p>
-
-                <p>Notice that <m>3</m> is a common factor in this trinomial, we will factor it out first:<me>6x^2y^2-15xy-9=3(2x^2y^2-5xy-3)</me>Next, we will factor the trinomial inside the parenthesis. According to the result of <xref ref="example-factor-ac-2-5-3">Example</xref>, we have:<md>
-                    <mrow>6x^2y^2-15xy-9\amp=3(2x^2y^2-5xy-3)</mrow>
-                    <mrow>\amp=3(2xy+1)(xy-3)</mrow>
-                </md></p>
             </statement>
+
+            <solution>
+                <p>Notice that <m>3</m> is a common factor in this trinomial.  We should factor it out first:<me>6x^2y^2-15xy-9=3\left(2x^2y^2-5xy-3\right)</me>Now we are left with two factors, one of which is <m>2x^2y^2-5xy-3</m>, which might factor further. Using the AC Method:<ol>
+                    <li>
+                        <p><m>2\cdot-3=-6</m></p>
+                    </li>
+                    <li>
+                        <p>Examine factor pairs that multiply to <m>-6</m>, looking for a pair that sums to <m>-5</m>:</p>
+                        <sidebyside widths="47% 47%">
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>1\cdot-6</m></cell>
+                                    <cell><m>-5</m> (what we wanted)</cell>
+                                </row>
+                                <row>
+                                    <cell><m>2\cdot-3</m></cell>
+                                    <cell>(no need to go this far)</cell>
+                                </row>
+                            </tabular>
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>-1\cdot6</m></cell>
+                                    <cell>(no need to go this far)</cell>
+                                </row>
+                                <row>
+                                    <cell><m>-2\cdot3</m></cell>
+                                    <cell>(no need to go this far)</cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </li>
+                    <li>
+                        <p>Intentionally break up the <m>-5</m> as <m>1+(-6)</m>:<md>
+                            <mrow>2x^2y^2-5xy-3\amp=2x^2y^2+\overbrace{xy-6xy}-3</mrow>
+                            <mrow>\amp=\left(2x^2y^2+xy\right)+(-6xy-3)</mrow>
+                            <mrow>\amp=xy(2xy+1)-3(2xy+1)</mrow>
+                            <mrow>\amp=(2xy+1)(xy-3)</mrow>
+                        </md></p>
+                    </li>
+                </ol></p>
+                <p>So we believe that <m>6x^2y^2-15xy-9</m> factors as <m>3(2xy+1)(xy-3)</m>, and we should check by multiplying out the factored form.</p>
+            </solution>
         </example>
 
         <example>
             <statement>
                 <p>Factor <m>-6p^6q-5p^5q^2+6p^4q^3</m>.</p>
             </statement>
+
             <solution>
-                <p>Notice that <m>-p^4q</m> is a common factor in this trinomial, we will factor it out first:<me>-6p^6q-5p^5q^2+6p^4q^3=-p^4q(6p^2+5pq-6q^2)</me>Next, we will factor the trinomial inside the parenthesis. According to the result of <xref ref="example-factor-ac-6-5-6">Example</xref>, we have:<md>
-                    <mrow>-6p^6q-5p^5q^2+6p^4q^3\amp=-p^4q(6p^2+5pq-6q^2)</mrow>
-                    <mrow>\amp=-p^4q(3p-2q)(2p+3q)</mrow>
-                </md></p>
+                <p>Notice that <m>p^4q</m> is a common factor in this trinomial.  Also the leading coefficient is negative, and as discussed in <xref ref="section-factoring-out-the-common-factor">Section</xref>, it is wise to factor that out as well. So we find:<me>-6p^6q-5p^5q^2+6p^4q^3=-p^4q\left(6p^2+5pq-6q^2\right)</me>Now we are left with one factor being <m>6p^2+5pq-6q^2</m>, which might factor further. Using the AC Method:<ol>
+                    <li>
+                        <p><m>6\cdot-6=-36</m></p>
+                    </li>
+                    <li>
+                        <p>Examine factor pairs that multiply to <m>-36</m>, looking for a pair that sums to <m>5</m>:</p>
+                        <sidebyside widths="47% 47%">
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>1\cdot-36</m></cell>
+                                    <cell><m>-35</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>2\cdot-18</m></cell>
+                                    <cell><m>-16</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>3\cdot-12</m></cell>
+                                    <cell><m>-9</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>4\cdot-9</m></cell>
+                                    <cell><m>-5</m> (close; wrong sign)</cell>
+                                </row>
+                                <row>
+                                    <cell><m>6\cdot-6</m></cell>
+                                    <cell><m>0</m></cell>
+                                </row>
+                            </tabular>
+                            <tabular>
+                                <col right="minor" />
+                                <col />
+                                <row bottom="minor">
+                                    <cell>Factor Pair</cell>
+                                    <cell>Sum of the Pair</cell>
+                                </row>
+                                <row>
+                                    <cell><m>-1\cdot36</m></cell>
+                                    <cell><m>35</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>-2\cdot18</m></cell>
+                                    <cell><m>16</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>-3\cdot12</m></cell>
+                                    <cell><m>9</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m>-4\cdot9</m></cell>
+                                    <cell><m>5</m> (what we wanted)</cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </li>
+                    <li>
+                        <p>Intentionally break up the <m>5</m> as <m>-4+9</m>:<md>
+                            <mrow>6p^2+5pq-6q^2\amp=6p^2\overbrace{{}-4pq+9pq}-6q^2</mrow>
+                            <mrow>\amp=\left(6p^2-4pq\right)+(9pq-6q^2)</mrow>
+                            <mrow>\amp=2p(3p-2q)+3q(3p-2q)</mrow>
+                            <mrow>\amp=(3p-2q)(2p+3q)</mrow>
+                        </md></p>
+                    </li>
+                </ol></p>
+                <p>So we believe that <m>-6p^6q-5p^5q^2+6p^4q^3</m> factors as <m>-p^4q(3p-2q)(2p+3q)</m>, and we should check by multiplying out the factored form.</p>
             </solution>
         </example>
     </subsection>
 
     <exercises>
-        <exercisegroup>
-            <introduction>
-                <p>Factoring Trinomials with Common Factors</p>
-            </introduction>
+        <!-- one variable, no GCF -->
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring185.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring185.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring190.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring190.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring195.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring195.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring200.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring200.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring205.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring205.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring210.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring210.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring215.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring215.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring220.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring220.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring225.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring225.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring230.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring230.pg" />
+            </exercise>
+
+
+        <!-- one variable, GCF -->
+
             <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring280.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring280.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring285.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring285.pg" />
@@ -544,7 +570,16 @@
                 <webwork source="BasicAlgebra/Factoring/factoring290.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring290.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring295.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring295.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring300.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring300.pg" />
@@ -553,16 +588,91 @@
                 <webwork source="BasicAlgebra/Factoring/factoring305.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring310.pg" />
+                <webwork source="BasicAlgebra/Factoring/factoring305.pg" />
+            </exercise>
+
+        <!-- two variable, no GCF -->
+
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring186.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring315.pg" />
+                <webwork source="BasicAlgebra/Factoring/factoring186.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring320.pg" />
+                <webwork source="BasicAlgebra/Factoring/factoring191.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/Factoring/factoring325.pg" />
+                <webwork source="BasicAlgebra/Factoring/factoring191.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring196.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring196.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring235.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring235.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring240.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring240.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring245.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring245.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring250.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring250.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring255.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring255.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring260.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring260.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring265.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring265.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring270.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring270.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring275.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring275.pg" />
+            </exercise>
+
+
+        <!-- two variable, GCF -->
+
+
+
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring281.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring281.pg" />
@@ -571,9 +681,57 @@
                 <webwork source="BasicAlgebra/Factoring/factoring286.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring286.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring306.pg" />
             </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring306.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring310.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring310.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring315.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring315.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring320.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring320.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring325.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring325.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring330.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring330.pg" />
+            </exercise>
 
-        </exercisegroup>
+        <!-- something more -->
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring330.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring330.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
+            </exercise>
     </exercises>
 </section>
