@@ -29,13 +29,35 @@
 	<subsection>
 		<title>Intoduction</title>
 			<p>The key graphical properties of quadratic functions and parabolas were covered in <xref ref="list-properties-of-quadratic-functions-visual">List</xref>. If we don't have the graph of a quadratic function though, how do we know where these key features occur? In this section we'll explore how to algebraically determine where these features occur. We'll then use these processes to graph quadratic functions.</p>
-<!--needs reference to an application-->
+
+            <p>Let's start by looking at a somewhat complicated quadratic function that models the path of a baseball. The height of the baseball, <m>H</m> (measured in feet), after <m>t</m> seconds is given by <m>H=-16t^2+75t+4.25</m>. The graph of this function is shown in <xref ref="figure-quadratic-function-model-without-nice-intercepts-or-vertex">Figure</xref>.</p>
+                <figure xml:id="figure-quadratic-function-model-without-nice-intercepts-or-vertex">
+                <caption>Graph of <m>H=-16t^2+75t+4.25</m></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-1,xmax=6,ymin=-10,ymax=120,
+                                            xtick={0,1,...,5},
+                                            minor xtick={-1,-0.5,...,6},
+                                            ytick={0,10,...,110},
+                                            minor ytick={-10,-5,...,120},
+                                            xlabel={$t$},
+                                            ylabel={$H$}]
+                                    \addplot+[domain=-2:5,samples=200] {-16*x^2+75*x+4.25};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            <p>Notice that in this case, we cannot easily read where either the vertex or the intercepts occur. To do so, we'll need algebraic methods for determining where these key features occur.</p>
 	</subsection>
 
 	<subsection>
 		<title>Direction of Parabolas</title>
 
-		<p>As we've seen, parabolas can point either up or down. A simple example of an upward-pointing parabola is <m>y=x^2</m>, and a simple example of a downward pointing-parabola is <m>y=-x^2</m>:</p>
+		<p>As we've seen, parabolas can point either up or down. A simple example of an upward-pointing parabola is <m>y=x^2</m>, and a simple example of a downward-pointing parabola is <m>y=-x^2</m>:</p>
 
             <sidebyside widths="47% 47%" margins="0%">
 				<figure xml:id="figure-basic-quadratic-function-up">
@@ -91,7 +113,7 @@
                 </figure>
             </sidebyside>
 
-	<fact><p>The leading coefficient on a quadratic function determines whether the graph of this function points up or down.</p></fact>
+	<fact><p>The sign of the leading coefficient on a quadratic function determines whether the graph of this function points up or down. If the leading coefficient is a positive number, the parabola points upward. If the leading coefficient is a negative number, the parabola points downward.</p></fact>
 
 	<p>To see why the leading coefficient of a parabola makes it point up or down, let's look numerically at values of the quadratic functions <m>y=-x^2+2x+3</m> and <m>y=x^2+2x+3</m>:</p>
 
@@ -289,20 +311,18 @@
                     <mrow>y\amp=\substitute{0}^2-4(\substitute{0})-12</mrow>
                     <mrow>y\amp=-12</mrow>
                 </md>
-                So the <m>y</m>-intercept occurs where <m>y=-12</m>. On a graph, this associates with the points <m>(0,-12)</m>.
+                So the <m>y</m>-intercept occurs where <m>y=-12</m>. On a graph, this associates with the point <m>(0,-12)</m>.
             </p>
         </example>
-
-
-	</subsection>
+ 	</subsection>
 	<subsection>
 		<title>Algebraically Determining the Vertex</title>
 
 		<p>The vertex of a quadratic function is either the minimum point or the maximum point on its graph, depending on whether this function points up or down. When there are two horizontal intercepts for a quadratic function, we can see that the vertex occurs half-way between those two points. Similarly, when there is exactly one horizontal intercept, we know that this point is where the vertex occurs.</p>
-
-            <sidebyside widths="47% 47%" margins="0%">
-				<figure xml:id="figure-quadratic-function-two-horizontal-intercepts">
-                <caption>Graph of <m>y=x^2+x-6</m></caption>
+<!--TODO: add visual demonstration of being halfway between-->
+            <sidebyside widths="30% 30% 30%" margins="0%">
+                <figure xml:id="figure-quadratic-function-two-horizontal-intercepts">
+                <caption>Parabola with two horizontal intercepts</caption>
                     <image>
                         <description></description>
                         <latex-image-code>
@@ -318,8 +338,8 @@
                     </image>
                 </figure>
 
-				<figure xml:id="figure-quadratic-one-horizontal-intercept">
-                <caption>Graph of <m>y=-(x-1)^2</m></caption>
+                <figure xml:id="figure-quadratic-one-horizontal-intercept">
+                <caption>Parabola with one horizontal intercept</caption>
                     <image>
                         <description></description>
                         <latex-image-code>
@@ -333,9 +353,24 @@
                         </latex-image-code>
                     </image>
                 </figure>
-            </sidebyside>
 
-		<p>This visual method is quick, but it can only be used in limited cases.</p>
+                <figure xml:id="figure-quadratic-function-no-horizontal-intercept">
+                <caption>Parabola with no horizontal intercepts</caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[domain=-0.449:4.449] {(x-2)^2+1};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+            </sidebyside>
+		<p>This visual method is quick, but it can only be used in limited cases. We <em>cannot</em> use this method if there are no horizontal intercepts, and it's challenging if there are one or more horizontal intercepts but their values are irrational numbers.</p>
 
 		<fact><p>The vertex of a quadratic function <m>f(x)=ax^2+bx+c</m> occurs where <m>x=-\frac{b}{2a}</m>, or at the point <m>\left(-\frac{b}{2a},f\left(-\frac{b}{2a}\right)\right)</m>.</p></fact>
 
@@ -359,7 +394,7 @@
                             ]]>
                         </latex-image-code>
                     </image>
-        <p>We could also determine the <m>x</m>-value where the vertex occurs using the formula <m>x=-\frac{b}{2a}</m>. Noting that for <m>y=x^2-4x-12</m> we have <m>a=1</m> and <m>b=-4</m>, we have:
+        <p>We could also determine the <m>x</m>-value where the vertex occurs using the formula <m>x=-\frac{b}{2a}</m>. Noting that for <m>y=x^2-4x-12</m> we have <m>a=1</m> and <m>b=-4</m>, so:
             <md>
                 <mrow>x\amp=-\frac{-4}{2(1)}</mrow>
                 <mrow>x\amp=2</mrow>
@@ -372,42 +407,281 @@
                 <mrow>y\amp=4-8-12</mrow>
                 <mrow>y\amp=-16</mrow>
             </md>
-        The vertex is therefore the point <m>(2,-16)</m>.
+        The vertex is the point <m>(2,-16)</m>.
         </p>
 
         </example>
 	</subsection>
 
+    <subsection>
+        <title>Graphing Quadratic Functions Using Their Key Features</title>
+            <p>To graph a quadratic function using its key featuers, we'll want to algebraically determine the following: whether the function points up or down, the horizontal intercepts, the vertical intercept, and the vertex. We'll then use this to connect the key points with a smooth curve.</p>
+
+        <example>
+            <p>Graph the function <m>y=2x^2+10x+8</m> by algebraically determining its key features.</p>
+
+            <p>To start, we'll note that this function will point upward, as the leading coefficient is the positive number <m>2</m>.</p>
+            <p>Next, we'll find the horizontal intercepts by setting <m>y=0</m> and solving for <m>x</m>:
+                <md>
+                    <mrow>2x^2+10x+8\amp=0</mrow>
+                    <mrow>2(x^2+5x+4)\amp=0</mrow>
+                    <mrow>2(x+4)(x+1)\amp=0</mrow>
+                    <mrow>x+4\amp=0,\ x+1=0</mrow>
+                    <mrow>x\amp=-4,\ x=-1</mrow>
+                </md>
+            The <m>x</m>-intercepts are then <m>(-4,0)</m> and <m>(-1,0)</m>.
+            </p>
+            <p>To find the <m>y</m>-intercept, we'll replace <m>x</m> with <m>0</m>:
+                <md>
+                    <mrow>y\amp=2(\substitute{0})^2+10(\substitute{0})+8</mrow>
+                    <mrow>y\amp=8</mrow>
+                </md>
+            The <m>y</m>-intercept is then <m>(0,8)</m>.
+            </p>
+            <p>Lastly, we'll determine the vertex. Noting that <m>a=2</m> and <m>b=10</m>, we have:
+                <md>
+                    <mrow>x\amp=-\frac{10}{2(2)}</mrow>
+                    <mrow>x\amp=-2.5</mrow>
+                </md>
+            Using this <m>x</m>-value to find the <m>y</m>-coordinate, we have:
+                <md>
+                    <mrow>y\amp=2(\substitute{-2.5})^2+10(\substitute{-2.5})+8</mrow>
+                    <mrow>y\amp=12.5-25+8</mrow>
+                    <mrow>y\amp=-4.5</mrow>
+                </md>
+            The vertex is then the point <m>(-2.5,-4.5)</m>, and the axis of symmetry is the line <m>x=-2.5</m>.
+            </p>
+            <p>We're now ready to graph this function. We'll start by drawing and scaling axes so that all of our key features will be displayed as shown in <xref ref="figure-quadratic-function-key-features-grid">Figure</xref>. Next, we'll plot these key points as shown in <xref ref="figure-quadratic-function-key-features-initial-step-for-graphing">Figure</xref>. Finally, we'll note that this parabola points upward and connect these points with a smooth curve, as shown in <xref ref="figure-quadratic-function-key-features-full-graph">Figure</xref>.
+            </p>
+
+            <sidebyside widths="30% 30% 30%" margins="0%">
+                <figure xml:id="figure-quadratic-function-key-features-grid">
+                <caption></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-6,xmax=6,ymin=-12,ymax=12,
+                                            xtick={-5,-4,...,5},
+                                            minor xtick={-6,-5,...,6},
+                                            ytick={-10,-8,...,10},
+                                            minor ytick={-12,-11,...,12}]
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-quadratic-function-key-features-initial-step-for-graphing">
+                <caption></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-6,xmax=6,ymin=-12,ymax=12,
+                                            xtick={-5,-4,...,5},
+                                            minor xtick={-6,-5,...,6},
+                                            ytick={-10,-8,...,10},
+                                            minor ytick={-12,-11,...,12}]
+                                    \addplot[soliddot] coordinates {(-4,0) (-1,0) (-2.5,-4.5) (0,8)} ;
+                                    \addplot[guideline]coordinates {(-2.5,-12) (-2.5,12)} node[pin=320:{axis of symmetry}]{};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-quadratic-function-key-features-full-graph">
+                <caption></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-6,xmax=6,ymin=-12,ymax=12,
+                                            xtick={-5,-4,...,5},
+                                            minor xtick={-6,-5,...,6},
+                                            ytick={-10,-8,...,10},
+                                            minor ytick={-12,-11,...,12}]
+                                    \addplot[primarycurve,soliddot] coordinates {(-4,0) (-1,0) (-2.5,-4.5) (0,8)} ;
+                                    \addplot+[primarycurve,domain=-5.372:0.372] {2*x^2+10*x+8};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+            </sidebyside>
+
+
+
+
+
+        </example>
+    </subsection>
+
+    <subsection>
+        <title>Looking at Horizontal and Vertical Intercepts and the Vertex in Context</title>
+
+        <example><!--irrational requiring QF-->
+            <statement>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>H=-16t^2+75t+4.25</m>, which was initially explored in <xref ref="example-introduction-to-algebraically-determining-intercepts">Example</xref>. Then interpret what these values mean in the context of this model.</p> 
+            </statement>
+            <solution>
+                <p>To determine the horizontal intercept, we'll solve <m>H=0</m>. Since factoring is not a possibility to solve this equation, we'll rely on the quadratic formula:
+                    <md>
+                        <mrow>H\amp=0</mrow>
+                        <mrow>-16t^2+75t+4.25\amp=0</mrow>
+                        <mrow>t\amp=\frac{-75\pm \sqrt{75^2-4(-16)(4.25)}}{2(-16)}</mrow>
+                        <mrow>t\amp=\frac{-75\pm \sqrt{5897}}{-32}</mrow>
+                        <intertext>Rounding these two values with a calculator, we obtain:</intertext>
+                        <mrow>t\amp\approx -0.056,\ t\approx  4.743</mrow>
+                    </md>
+                The horizontal intercepts therefore occur at <m>(-0.056,0)</m> and <m>(4.743,0)</m>.</p>
+                <p>To determine the vertical intercept, find <m>H</m> when <m>t=0</m>:
+                    <md>
+                        <mrow>H\amp=-16t^2+75t+4.25</mrow>
+                        <mrow>H\amp=-16(\substitute{0})^2+75(\substitute{0})+4.25</mrow>
+                        <mrow>H\amp=4.25</mrow>
+                    </md>
+                The vertical intercept therefore occurs at <m>(0,4.25)</m>.</p>
+                <p>The vertex occurs where <m>t=-\frac{b}{2a}</m>, and for this function <m>a=-16</m> and <m>b=75</m>. So we have:
+                    <md>
+                        <mrow>t\amp=-\frac{75}{2(-16)}</mrow>
+                        <mrow>t\amp=2.34375</mrow>
+                    </md>
+                    We can now find the output for this input:
+                    <md>
+                        <mrow>H\amp=-16(\substitute{2.34375})^2+75(\substitute{2.34375})+4.25</mrow>
+                        <mrow>\amp=92.140625</mrow>
+                    </md>
+                </p>
+                <p>In context, the second horizontal intercept tells us that the height of the baseball was <quantity><mag>0</mag><unit base="foot"/></quantity> after about <quantity><mag>5.2692</mag><unit base="second"/></quantity>. If we assume this model begins when <m>t=0</m>, then the first horizontal intercept found is irrelevant.</p>
+                <p>The vertical intercept tells us that the initial height of the baseball was <quantity><mag>4.25</mag><unit base="foot"/></quantity>. The vertex tells us that the maximum height was <quantity><mag>92.140625</mag><unit base="foot"/></quantity> and occurred after <quantity><mag>2.34375</mag><unit base="second"/></quantity>.</p>
+            </solution>
+        </example>
+<!--TODO: need one more example-->
+    </subsection>
+
 	<subsection>
 		<title>Further Examples of Algebraically Determining the Vertex and Horizontal and Vertical Intercepts</title>
-		<!--?easy intro like y=x^2+5x+4 showing all 3?-->
-		<example>
-			<p>Determine the vertex and horizontal and vertical intercepts of the quadratic function <m>y=-x^2+6x-8</m>.</p> 
+
+		<example><!--requiring QF but no solution-->
+			<statement>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>y=-x^2+5x-7</m>.</p>
+            </statement>
+            <solution>
+                <p>To determine the horizontal intercepts, we'll set <m>y=0</m> and solve for <m>x</m>:
+                    <md>
+                        <mrow>0\amp=-x^2+5x-7</mrow>
+                    <intertext>Noting that this equation cannot be solved using factoring, we'll use the quadratic formula:</intertext>
+                        <mrow>x\amp=\frac{-5\pm \sqrt{5^2-4(-1)(-7)}}{2(-1)}</mrow>
+                        <mrow>x\amp=\frac{-5\pm \sqrt{25-28}}{-2}</mrow>
+                        <mrow>x\amp=\frac{-5\pm \sqrt{-3}}{-2}</mrow>
+                    </md>
+                    Since these numbers are not real, no solution exists to the equation and so there are no horizontal intercepts.</p>
+                <p>To determine the vertical intercept, we'll replace <m>x</m> with <m>0</m>:
+                    <md>
+                        <mrow>y\amp=-(0)^2+5(0)+7</mrow>
+                        <mrow>y\amp=7</mrow>
+                    </md>
+                    Thus the <m>y</m>-intercept occurs at the point <m>(0,7)</m>.
+                </p>
+                <p>The vertex will occur at <m>x=-\frac{b}{2a}</m>:
+                    <md>
+                        <mrow>x\amp=-\frac{5}{2(-1)}</mrow>
+                        <mrow>\amp=\frac{5}{2}</mrow>
+                    </md>
+                    To find the <m>y</m>-coordinate, we'll replace <m>x</m> with <m>\frac{5}{2}</m>:
+                    <md>
+                        <mrow>y\amp=-\left(\substitute{\frac{5}{2}}\right)^2+5\left(\substitute{\frac{5}{2}}\right)+7</mrow>
+                        <mrow>\amp=-\frac{3}{4}</mrow>
+                    </md>
+                    The vertex occurs at the point <m>\left(\frac{5}{2},-\frac{3}{4}\right)</m>, or at <m>(2.5,-0.75)</m>.
+                </p>
+            </solution>
 		</example>
 
-		<example>
-			<p>Determine the vertex and horizontal and vertical intercepts of the quadratic function <m>y=4x^2-2x-\frac{3}{4}</m>.</p> 
-		</example>
+        <example><!--irational but using SRP-->
+            <statement>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>y=-2(x+5)^2+12</m>.</p>
+            </statement>
+            <solution>
+                <p>To determine the horizontal intercepts, we'll set <m>y=0</m> and solve for <m>x</m>:
+                    <md>
+                        <mrow>0\amp=-2(x+5)^2+12</mrow>
+                    <intertext>We cannot immediately factor this equation, but we can use the square root property to solve it. To do so, we'll first need to subtract <m>12</m> from each side of the equation and then divide each side by <m>-2</m>:</intertext>
+                        <mrow>-12\amp=-2(x+5)^2</mrow>
+                        <mrow>6\amp=(x+5)^2</mrow>
+                    <intertext>Now applying the square root property,</intertext>
+                        <mrow>\pm\sqrt{6}\amp=x+5</mrow>
+                        <mrow>x\amp=-\sqrt{6}-5,\ x=\sqrt{6}-5</mrow>
+                        <mrow>x\amp\approx -7.449,\ x\approx -2.551</mrow>
+                    </md>
+                    The <m>x</m>-intercepts occur at <m>(-\sqrt{6}-5,0)</m> and <m>(\sqrt{6}-5,0)</m>, or at approximately <m>(-7.449,0)</m> and <m>(-2.551,0)</m>.
+                </p>
+                <p>To determine the <m>y</m>-intercept, we'll replace <m>x</m> with <m>0</m>:
+                    <md>
+                        <mrow>y\amp=-2(\substitute{0}+5)^2+12</mrow>
+                        <mrow>\amp=-2(25)+12</mrow>
+                        <mrow>\amp=-38</mrow>
+                    </md>
+                The <m>y</m>-intercept occurs at <m>(0,-38)</m>.
+                </p>
+                <p>To determine the vertex using the formula <m>x=-\frac{b}{2a}</m>, we'll first need to expand this equation so that <m>a</m> and <m>b</m> can be identified:
+                    <md>
+                        <mrow>y\amp=-2(x+5)^2+12</mrow>
+                        <mrow>y\amp=-2(x^2+10x+25)+12</mrow>
+                        <mrow>y\amp=-2x^2-20x-50+12</mrow>
+                        <mrow>y\amp=-2x^2-20x-38</mrow>
+                    </md>
+                Now we can use <m>a=-2</m> and <m>b=-20</m> to determine the <m>x</m>-value of the vertex:
+                    <md>
+                        <mrow>x\amp=-\frac{-20}{2(-2)}</mrow>
+                        <mrow>\amp=-5</mrow>
+                    </md>
+                Lastly, we'll use this value to find the <m>y</m>-value. We can use either the original equation or the expanded one; we'll use the original one here:
+                    <md>
+                        <mrow>y\amp=-2(\substitute{-5}+5)^2+12</mrow>
+                        <mrow>\amp=-2(0)+12</mrow>
+                        <mrow>\amp=12</mrow>
+                    </md>
+                Therefore the vertex is the point <m>(-5,12)</m>.
+                </p>
+            </solution>
+        </example>
 
-		<example>
-			<p>Determine the vertex and horizontal and vertical intercepts of the quadratic function <m>y=x^2-3x+4</m>.</p> 
-		</example>
+<!--TODO: assess if this example should just be scrapped-->
+        <example><!--rational but requiring QF-->
+            <statement>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>y=5x^2-2x-\frac{1}{3}</m>.</p>
+            </statement>
+            <solution>
+                <p>To determine the horizontal intercepts, we'll solve <m>0=5x^2-2x-\frac{1}{3}</m> using the quadratic formula. One option is to directly use <m>a=5</m>, <m>b=-2</m>, and <m>c=-\frac{1}{3}</m>. Another option is to first multiply each side of that equation by <m>3</m>, which will yield the equivalent equation <m>0=15x^2-6x-1</m>. From there, we can use the quadratic formula with <m>a=10</m>, <m>b=-6</m> and <m>c=-1</m>:
+                    <md>
+                        <mrow>0=\amp=5x^2-2x-\frac{1}{3}</mrow>
+                        <mrow>\multiplyleft{3}(0)\amp=\multiplyleft{3}\left(5x^2-2x-\frac{1}{3}\right)</mrow>
+                        <mrow>0\amp=15x^2-6x-1</mrow>
+                        <mrow>x\amp=\frac{-(-6)\pm \sqrt{(-6)^2-4(15)(-1)}}{2(15)}</mrow>
+                        <mrow>x\amp=\frac{6\pm \sqrt{96}}{30}</mrow>
+                        <intertext>Simplifying, we get:</intertext>
+                        <mrow>x\amp=\frac{6\pm 4\sqrt{6}}{30}</mrow>
+                        <mrow>x\amp=\frac{3\pm 2\sqrt{6}}{15}</mrow>
+                        <intertext>Rouding, we have:</intertext>
+                        <mrow>x\amp\approx -0.1266,\ x\approx 0.5266</mrow>
+                    </md>
+                    The horizontal intercepts occur at the points <m>\left(\frac{3+ 2\sqrt{6}}{15},0\right)</m> or <m>\left(\frac{3-2\sqrt{6}}{15},0\right)</m> , or at the approximate points <m>(-0.1266,0)</m> and <m>(0.5266,0)</m>.
+                </p>
+            </solution>
 
-		<example>
-			<p>Determine the vertex and horizontal and vertical intercepts of the quadratic function <m>y=x^2+5x+7</m>.</p> 
-		</example>
+        </example>
+    </subsection>
 
-	</subsection>
 
-	<subsection>
-		<title>Graphing Quadratic Functions Using Their Key Features</title>
-			<p>To graph the quadratic function <m>y=x^2+5x+4</m>, we'll want to algebraically determine whether the function points up or down, the vertex, the horizontal intercepts, and the vertical intercepts.</p>
 
-		<example>
-			<p>Graph the function <m>y=x^2+5x+6</m> using its key features.</p>
-		</example>
 
-	</subsection>
 
 
 
