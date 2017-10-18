@@ -20,7 +20,7 @@
 
     <introduction>
 
-         <figure>
+        <figure>
             <caption>Alternative Video Lesson</caption>
             <video youtube="" />
         </figure>
@@ -28,758 +28,663 @@
 
 	<subsection>
 		<title>Intoduction</title>
-			<p>A <term>quadratic function</term> has the form <m>y=ax^2+bx+c</m> where <m>a, b</m>, and <m>c</m> are real numbers with <m>a \neq 0</m>. The graph of a quadratic function is often referred to as a <term>parabola</term>.</p>
+			<p>The key graphical properties of quadratic functions and parabolas were covered in <xref ref="list-properties-of-quadratic-functions-visual">List</xref>. If we don't have the graph of a quadratic function though, how do we know where these key features occur? In this section we'll explore how to algebraically determine where these features occur. We'll then use these processes to graph quadratic functions.</p>
 
-            <p>As far as formulas are concerned, the key distinction between a quadratic function and a linear function is that a quadratic function has <m>x^2</m> in the highest-degreed term, whereas a linear function has just <m>x</m> in the highest-degreed term. In this section, we'll explore the numerical and graphical aspects of quadratic functions.</p>
+            <p>Let's start by looking at a somewhat complicated quadratic function that models the path of a baseball. The height of the baseball, <m>H</m> (measured in feet), after <m>t</m> seconds is given by <m>H=-16t^2+75t+4.25</m>. The graph of this function is shown in <xref ref="figure-quadratic-function-model-without-nice-intercepts-or-vertex">Figure</xref>.</p>
+                <figure xml:id="figure-quadratic-function-model-without-nice-intercepts-or-vertex">
+                <caption>Graph of <m>H=-16t^2+75t+4.25</m></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-1,xmax=6,ymin=-10,ymax=120,
+                                            xtick={0,1,...,5},
+                                            minor xtick={-1,-0.5,...,6},
+                                            ytick={0,10,...,110},
+                                            minor ytick={-10,-5,...,120},
+                                            xlabel={$t$},
+                                            ylabel={$H$}]
+                                    \addplot+[domain=-2:5,samples=200] {-16*x^2+75*x+4.25};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            <p>Notice that in this case, we cannot easily read where either the vertex or the intercepts occur. To do so, we'll need algebraic methods for determining where these key features occur.</p>
 	</subsection>
 
 	<subsection>
-		<title>Graphing Quadratic Functions Using a Table</title>
-        <p>The simpliest quadratic function is given by <m>y=x^2</m>. We'll start by creating a table of values and graphing this function:</p>
+		<title>Direction of Parabolas</title>
+
+		<p>As we've seen, parabolas can point either up or down. A simple example of an upward-pointing parabola is <m>y=x^2</m>, and a simple example of a downward-pointing parabola is <m>y=-x^2</m>:</p>
+
             <sidebyside widths="47% 47%" margins="0%">
-				<table xml:id="table-basic-quadratic-function">
-                <caption>Function values and points for <m>y=x^2</m></caption>
-                    <tabular valign="top" bottom="minor">
-                        <col halign="right" right="minor"/>
-                        <col halign="right" right="minor"/>
-                        <col halign="center"/>
-                        <row bottom="medium">
-                            <cell><m>x</m></cell>
-                            <cell halign="center"><m>y=x^2</m></cell>
-                            <cell>Point</cell>
-                        </row>
-                        <row>
-                            <cell><m>-3</m></cell>
-                            <cell><m>(-3)^2=9</m></cell>
-                            <cell><m>(-3,9)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-2</m></cell>
-                            <cell><m>(-2)^2=4</m></cell>
-                            <cell><m>(-2,4)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-1</m></cell>
-                            <cell><m>(-1)^2=1</m></cell>
-                            <cell><m>(-1,1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0</m></cell>
-                            <cell><m>0^2=0</m></cell>
-                            <cell><m>(0,0)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>1</m></cell>
-                            <cell><m>1^2=1</m></cell>
-                            <cell><m>(0,1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>2</m></cell>
-                            <cell><m>2^2=4</m></cell>
-                            <cell><m>(2,4)</m></cell>
-                        </row>
-                        <row bottom="none">
-                            <cell><m>3</m></cell>
-                            <cell><m>3^2=9</m></cell>
-                            <cell><m>(3,9)</m></cell>
-                        </row>
-                    </tabular>
-				</table>
-				<figure xml:id="figure-basic-quadratic-function">
+				<figure xml:id="figure-basic-quadratic-function-up">
                 <caption>Graph of <m>y=x^2</m></caption>
                     <image>
                         <description>a Cartesian grid with points (-3,9), (-2,4),(-1,1),(0,0),(1,1),(2,4),(3,9)</description>
                         <latex-image-code>
                             <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[ymin=-2,ymax=10,
-                                            ytick=,
-                                            minor ytick={-2,-1,...,10},]
+                                \begin{axis}[ymin=-10,ymax=10,xmin=-10,xmax=10,
+                                            xtick={-8,-6,...,8},
+                                            minor xtick={-10,-9,...,10},
+                                            ytick={-8,-6,...,8},
+                                            minor ytick={-10,-9,...,10}]
                                     \addplot+[domain=-3.16:3.16] {x^2};
-                                    \addplot[soliddot] coordinates {(-3,9)} node[left]{$(-3,9)$};
-                                    \addplot[soliddot] coordinates {(-2,4)} node[left]{$(-2,4)$};
-                                    \addplot[soliddot] coordinates {(-1,1)} node[left]{$(-1,1)$};
-                                    \addplot[soliddot] coordinates {(0,0)} node[below]{$(0,0)$};
-                                    \addplot[soliddot] coordinates {(1,1)} node[right]{$(1,1)$};
-                                    \addplot[soliddot] coordinates {(2,4)} node[right]{$(2,4)$};
-                                    \addplot[soliddot] coordinates {(3,9)} node[right]{$(3,9)$};
+                                    \addplot[soliddot] coordinates {(-3,9)} ;
+                                    \addplot[soliddot] coordinates {(-2,4)} ;
+                                    \addplot[soliddot] coordinates {(-1,1)} ;
+                                    \addplot[soliddot] coordinates {(0,0)} ;
+                                    \addplot[soliddot] coordinates {(1,1)} ;
+                                    \addplot[soliddot] coordinates {(2,4)} ;
+                                    \addplot[soliddot] coordinates {(3,9)} ;
                                 \end{axis}
                             \end{tikzpicture}
                             ]]>
                         </latex-image-code>
                     </image>
                 </figure>
-            </sidebyside>
-        <p>There are a couple of key things to note in <xref ref="table-basic-quadratic-function">Table</xref> and <xref ref="figure-basic-quadratic-function">Figure</xref>. To start, the output of <m>x^2</m> makes all outputs positive, and results in a minimum value of <m>0</m>. In fact, <emph>all</emph> quadratic functions will have either a maximum or minimum value and have a similar shape as <m>y=x^2</m>. Also note that the function is symmetric about the place where its minimum value occurs. Lastly, the consecutive <m>y</m>-values do not increase by a constant amount in the way that linear functions do.</p>
 
-    <example>
-        <statement>
-        	<p>Create a table of values for the quadratic function <m>y=x^2-4x+1</m> and use this table to create its graph.</p>
-        </statement>
-        <solution>
-        	<p>We'll start by choosing <m>x</m>-values between <m>-3</m> and <m>3</m>:</p>
-            <sidebyside widths="47% 47%" margins="0%">
-				<table xml:id="table-quadratic-function-prime-with-two-intercepts">
-                <caption>Function values and points for <m>y=x^2-4x+1</m></caption>
-                    <tabular valign="top" bottom="minor">
-                        <col halign="right" right="minor"/>
-                        <col halign="right" right="minor"/>
-                        <col halign="center"/>
-                        <row bottom="medium">
-                            <cell><m>x</m></cell>
-                            <cell halign="center"><m>y=x^2-4x+1</m></cell>
-                            <cell>Point</cell>
-                        </row>
-                        <row>
-                            <cell><m>-3</m></cell>
-                            <cell><m>(-3)^2-4(-3)+1=22</m></cell>
-                            <cell><m>(-3,22)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-2</m></cell>
-                            <cell><m>(-2)^2-4(-2)+1=13</m></cell>
-                            <cell><m>(-2,4)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-1</m></cell>
-                            <cell><m>(-1)^2-4(-1)+1=6</m></cell>
-                            <cell><m>(-1,6)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0</m></cell>
-                            <cell><m>0^2-4(0)+1=1</m></cell>
-                            <cell><m>(0,1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>1</m></cell>
-                            <cell><m>1^2-4(1)+1=-2</m></cell>
-                            <cell><m>(0,1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>2</m></cell>
-                            <cell><m>2^2-4(2)+1=-3</m></cell>
-                            <cell><m>(2,-3)</m></cell>
-                        </row>
-                        <row bottom="none">
-                            <cell><m>3</m></cell>
-                            <cell><m>3^2-4(3)+1=-2</m></cell>
-                            <cell><m>(3,-2)</m></cell>
-                        </row>
-                    </tabular>
-				</table>
-				<figure>
-                    <caption>Graph of <m>y=x^2-4x+1</m></caption>
+				<figure xml:id="figure-basic-quadratic-function-down">
+                <caption>Graph of <m>y=-x^2</m></caption>
                     <image>
-                        <description>a Cartesian grid with points (-3,22),(-2,13),(-1,6),(0,1),(1,-2),(2,-3),(3,-2)</description>
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                 \begin{axis}[xmax=8,ymin=-6,ymax=24,
-                                            minor xtick={-7,-6,...,8},
-                                            ytick={-4,0,...,24},
-                                            minor ytick={-6,-4,...,24}]
-                                   \addplot[soliddot] coordinates {(-3,22)} node[left]{$(-3,22)$};
-                                    \addplot[soliddot] coordinates {(-2,13)} node[left]{$(-2,13)$};
-                                    \addplot[soliddot] coordinates {(-1,6)} node[left]{$(-1,6)$};
-                                    \addplot[soliddot] coordinates {(0,1)} node[left]{$(0,1)$};
-                                    \addplot[soliddot] coordinates {(1,-2)} node[left]{$(1,-2)$};
-                                    \addplot[soliddot] coordinates {(2,-3)} node[below]{$(2,-3)$};
-                                    \addplot[soliddot] coordinates {(3,-2)} node[right]{$(3,-2)$};
-                                \end{axis}
-                            \end{tikzpicture}
-                            ]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-            </sidebyside>
-            <p>This is a good start, but doesn't give us the whole picture. Based on the pattern we see in <xref ref="table-quadratic-function-prime-with-two-intercepts">Table</xref>, we can see that the <m>y</m>-values will continue to increase. It will be helpful to continue our table past values of <m>x=3</m>:</p>
-            <sidebyside widths="47% 47%" margins="0%">
-                    <tabular valign="top" bottom="minor">
-                        <col halign="right" right="minor"/>
-                        <col halign="right" right="minor"/>
-                        <col halign="center"/>
-                        <row bottom="medium">
-                            <cell><m>x</m></cell>
-                            <cell halign="center"><m>y=x^2-4x+1</m></cell>
-                            <cell>Point</cell>
-                        </row>
-                        <row>
-                            <cell><m>-3</m></cell>
-                            <cell><m>(-3)^2-4(-3)+1=22</m></cell>
-                            <cell><m>(-3,22)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-2</m></cell>
-                            <cell><m>(-2)^2-4(-2)+1=13</m></cell>
-                            <cell><m>(-2,4)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-1</m></cell>
-                            <cell><m>(-1)^2-4(-1)+1=6</m></cell>
-                            <cell><m>(-1,6)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0</m></cell>
-                            <cell><m>0^2-4(0)+1=1</m></cell>
-                            <cell><m>(0,1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>1</m></cell>
-                            <cell><m>1^2-4(1)+1=-2</m></cell>
-                            <cell><m>(1,-2)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>2</m></cell>
-                            <cell><m>2^2-4(2)+1=-3</m></cell>
-                            <cell><m>(2,-3)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>3</m></cell>
-                            <cell><m>3^2-4(3)+1=-2</m></cell>
-                            <cell><m>(3,-2)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>4</m></cell>
-                            <cell><m>4^2-4(4)+1=1</m></cell>
-                            <cell><m>(4,1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>5</m></cell>
-                            <cell><m>5^2-4(5)+1=6</m></cell>
-                            <cell><m>(5,6)</m></cell>
-                        </row>
-                    </tabular>
-                    <image>
-                        <description>a Cartesian grid with points (-3,22),(-2,13),(-1,6),(0,1),(1,-2),(2,-3),(3,-2),(4,1), and (5,6) and line connecting them</description>
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[xmax=8,ymin=-6,ymax=24,
-                                            minor xtick={-7,-6,...,8},
-                                            ytick={-4,0,...,24},
-                                            minor ytick={-6,-4,...,24}]
-                                    \addplot+[domain=-3.196:7.196] {x^2-4*x+1};
-                                    \addplot[soliddot] coordinates {(-3,22)};
-                                    \addplot[soliddot] coordinates {(-2,13)};
-                                    \addplot[soliddot] coordinates {(-1,6)};
-                                    \addplot[soliddot] coordinates {(0,1)};
-                                    \addplot[soliddot] coordinates {(1,-2)};
-                                    \addplot[soliddot] coordinates {(2,-3)};
-                                    \addplot[soliddot] coordinates {(3,-2)};
-                                    \addplot[soliddot] coordinates {(4,1)};
-                                    \addplot[soliddot] coordinates {(5,6)};
-                                \end{axis}
-                            \end{tikzpicture}
-                            ]]>
-                        </latex-image-code>
-                    </image>
-            </sidebyside>    	
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        	<p>Create a table of values for the quadratic function <m>y=-\frac{1}{2}\left(x+1\right)^2+4</m> and use this table to create its graph.</p>
-        </statement>
-        <solution>
-            <p>We'll start by choosing <m>x</m>-values between <m>-5</m> and <m>5</m>, and then we'll plot these and connect them with a curved line:</p>
-            <sidebyside widths="47% 47%" margins="0%">
-                <table xml:id="table-quadratic-function-negative-coefficient">
-                <caption>Function values and points for <m>y=-\frac{1}{2}\left(x+1\right)^2+4</m></caption>
-                    <tabular valign="top" bottom="minor">
-                        <col halign="right" right="minor"/>
-                        <col halign="right" right="minor"/>
-                        <col halign="center"/>
-                        <row bottom="medium">
-                            <cell><m>x</m></cell>
-                            <cell halign="center"><m>y=-\frac{1}{2}(x+1)^2+4</m></cell>
-                            <cell>Point</cell>
-                        </row>
-                        <row>
-                            <cell><m>-5</m></cell>
-                            <cell><m>-\frac{1}{2}(-5+1)^2+4=-4</m></cell>
-                            <cell><m>(-5,-4)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-4</m></cell>
-                            <cell><m>-\frac{1}{2}(-4+1)^2+4=-0.5</m></cell>
-                            <cell><m>(-4,-0.5)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-3</m></cell>
-                            <cell><m>-\frac{1}{2}(-3+1)^2+4=2</m></cell>
-                            <cell><m>(-3,2)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-2</m></cell>
-                            <cell><m>-\frac{1}{2}(-2+1)^2+4=3.5</m></cell>
-                            <cell><m>(-2,3.5)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-1</m></cell>
-                            <cell><m>-\frac{1}{2}(-1+1)^2+4=4</m></cell>
-                            <cell><m>(-1,4)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0</m></cell>
-                            <cell><m>-\frac{1}{2}(0+1)^2+4=3.5</m></cell>
-                            <cell><m>(0,3.5)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>1</m></cell>
-                            <cell><m>-\frac{1}{2}(1+1)^2+4=2</m></cell>
-                            <cell><m>(1,2)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>2</m></cell>
-                            <cell><m>-\frac{1}{2}(2+1)^2+4=-0.5</m></cell>
-                            <cell><m>(2,-0.5)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>3</m></cell>
-                            <cell><m>-\frac{1}{2}(3+1)^2+4=-4</m></cell>
-                            <cell><m>(3,-4)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>4</m></cell>
-                            <cell><m>-\frac{1}{2}(4+1)^2+4=-8.5</m></cell>
-                            <cell><m>(4,-8.5)</m></cell>
-                        </row>
-                        <row bottom="none">
-                            <cell><m>5</m></cell>
-                            <cell><m>-\frac{1}{2}(5+1)^2+4=-14</m></cell>
-                            <cell><m>(5,-14)</m></cell>
-                        </row>
-                    </tabular>
-                </table>
-                <figure>
-                    <caption>Graph of <m>y=-\frac{1}{2}\left(x+1\right)^2+4</m></caption>
-                    <image>
-                        <description>a Cartesian grid with points (-5,-4), (-4,-0.5), (-3,2), (-2,3.5), (-1,4),(0,3.5),(1,2),(2,-0.5),(3,-4)</description>
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                    \addplot+[domain=-5.69:3.69] {-1/2*(x+1)^2+4};
-                                    \addplot[soliddot] coordinates {(-5,-4)};
-                                    \addplot[soliddot] coordinates {(-4,-0.5)};
-                                    \addplot[soliddot] coordinates {(-3,2)};
-                                    \addplot[soliddot] coordinates {(-2,3.5)};
-                                    \addplot[soliddot] coordinates {(-1,4)};
-                                    \addplot[soliddot] coordinates {(0,3.5)};
-                                    \addplot[soliddot] coordinates {(1,2)};
-                                    \addplot[soliddot] coordinates {(2,-0.5)};
-                                    \addplot[soliddot] coordinates {(3,-4)};
-                                \end{axis}
-                            \end{tikzpicture}
-                            ]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-            </sidebyside>   
-            <p>Notice that in drawing the graph, a couple of points were excluded. We focused the middle of the graph, which was found to be <m>(-1,4)</m>, as well as plenty of points around this.</p>    
-        </solution>
-    </example>
-
-    <remark><p>
-        Notice that in <href ref="example-graph-quadratic-with-table-in-vertex-form">Example</href>, the function was not explicitly given in the form <m>y=ax^2+bx+c</m>. However, it <emph>could</emph> be written this way if we expanded the expression as follows:
-        <md>
-            <mrow>y&amp;=-\frac{1}{2}\left(x+1\right)^2+4</mrow>
-            <mrow>y&amp;=-\frac{1}{2}\left(x^2+2x+1\right)+4</mrow>
-            <mrow>y&amp;=-\frac{1}{2}x^2-x-\frac{1}{2}+4</mrow>
-            <mrow>y&amp;=-\frac{1}{2}x^2-x+\frac{7}{2}</mrow>
-        </md>
-        </p></remark>
-    </subsection>
-
-    <subsection>
-        <title>Properties of Quadratic Functions</title>
-    
-        <p>A quadratic function given by <m>y=-x^2+2x+8</m> is graphed in <href ref="figure-quadratic-function-graph-properties">Figure</href>, which shows key features of quadratic functions. Notice that this parabola points <emph>down</emph>. Whether a parabola points up or down is determined by the sign of the coefficient on the <m>x^2</m> term.</p>
-
-        <p>The maximum (or minimum) point on the graph of a parabola is referred to as the <term>vertex</term>. The vertical line that passes through this point is referred to as its <term>axis of symmetry</term>.</p>
-
-        <p>Other key points on a graph are where <m>x=0</m> and where <m>y=0</m>. Just like with linear functions, the place(s) where the function hits the <m>x</m>-axis (i.e. where <m>y=0</m>) are referred to as <m>x</m>-intercepts. Similarly, the place where the function hits the <m>y</m>-axis is referred to as a <m>y</m>-intercept.</p>
-
-        <p>In <href ref="figure-quadratic-function-graph-properties">Figure</href>, the vertex is the point <m>(1,9)</m> and the axis of symmetry is therefore the line <m>x=1</m>. The <m>x</m>-intercepts are <m>(-2,0)</m> and <m>(4,0)</m>, and the <m>y</m>-intercept is <m>(0,8)</m>.</p>
-    
-                <figure xml:id="figure-quadratic-function-graph-properties">
-                <caption>Graph of a quadratic function showing key features</caption>
-                    <image>
-                        <description></description>
+                        <description>a Cartesian grid with points (-3,-9), (-2,-4),(-1,-1),(0,0),(1,-1),(2,-4),(3,-9)</description>
                         <latex-image-code>
                             <![CDATA[\begin{tikzpicture}
                                 \begin{axis}[ymin=-10,ymax=10,xmin=-10,xmax=10,
-                                            ytick={-8,-6,...,8},
-                                            minor xtick={-10,-9,...,10},
                                             xtick={-8,-6,...,8},
+                                            minor xtick={-10,-9,...,10},
+                                            ytick={-8,-6,...,8},
                                             minor ytick={-10,-9,...,10}]
-                                    \addplot+[domain=-3.359:5.359] {-x^2+2*x+8};
-                                    \addplot[soliddot] coordinates {(1,9)} node[pin=340:{vertex}]{};
-                                    \addplot[soliddot] coordinates {(-2,0)} node[pin=100:{$x$-intercept}]{};
-                                    \addplot[soliddot] coordinates {(4,0)} node[pin=80:{$x$-intercept}]{};
-                                    \addplot[soliddot] coordinates {(0,8)} node[pin=200:{$y$-intercept}]{};
+                                    \addplot+[domain=-3.16:3.16] {-1*x^2};
+                                    \addplot[soliddot] coordinates {(-3,-9)} ;
+                                    \addplot[soliddot] coordinates {(-2,-4)} ;
+                                    \addplot[soliddot] coordinates {(-1,-1)} ;
+                                    \addplot[soliddot] coordinates {(0,0)} ;
+                                    \addplot[soliddot] coordinates {(1,-1)} ;
+                                    \addplot[soliddot] coordinates {(2,-4)} ;
+                                    \addplot[soliddot] coordinates {(3,-9)} ;
                                 \end{axis}
                             \end{tikzpicture}
                             ]]>
                         </latex-image-code>
                     </image>
                 </figure>
+            </sidebyside>
+
+	<fact><p>The sign of the leading coefficient on a quadratic function determines whether the graph of this function points up or down. If the leading coefficient is a positive number, the parabola points upward. If the leading coefficient is a negative number, the parabola points downward.</p></fact>
+
+	<p>To see why the leading coefficient of a parabola makes it point up or down, let's look numerically at values of the quadratic functions <m>y=-x^2+2x+3</m> and <m>y=x^2+2x+3</m>:</p>
+
+            <sidebyside widths="47% 47%" margins="0%">
+				<table xml:id="table-quadratic-function-pointing-up">
+                <caption>Function values for <m>y=x^2+2x+3</m></caption>
+                    <tabular valign="top" bottom="minor">
+                        <col halign="right" right="minor"/>
+                        <col halign="left"/>
+                        <row bottom="medium">
+                            <cell><m>x</m></cell>
+                            <cell halign="center"><m>y=x^2+2x+3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-100</m></cell>
+                            <cell><m>\highlight{{}(-100)^2{}}+2(-100)+3=\highlight{{}9803{}}</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-10</m></cell>
+                            <cell><m>\highlight{{}(-10)^2{}}+2(-10)+3=\highlight{{}83{}}</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-3</m></cell>
+                            <cell><m>(-3)^2+2(-3)+3=6</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-2</m></cell>
+                            <cell><m>(-2)^2+2(-2)+3=3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-1</m></cell>
+                            <cell><m>(-1)^2+2(-1)+3=2</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0</m></cell>
+                            <cell><m>(0)^2+2(0)+3=3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1</m></cell>
+                            <cell><m>(1)^2+2(1)+3=6</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2</m></cell>
+                            <cell><m>(2)^2+2(2)+3=11</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>3</m></cell>
+                            <cell><m>(3)^2+2(3)+3=18</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>10</m></cell>
+                            <cell><m>\highlight{{}(10)^2{}}+2(10)+3=\highlight{{}123{}}</m></cell>
+                        </row>
+                        <row bottom="none">
+                            <cell><m>100</m></cell>
+                            <cell><m>\highlight{{}(100)^2{}}+2(10)+3=\highlight{{}10203{}}</m></cell>
+                        </row>
+                    </tabular>
+				</table>
+				<table xml:id="table-quadratic-function-pointing-down">
+                <caption>Function values for <m>y=-x^2+2x+3</m></caption>
+                    <tabular valign="top" bottom="minor">
+                        <col halign="right" right="minor"/>
+                        <col halign="left"/>
+                        <row bottom="medium">
+                            <cell><m>x</m></cell>
+                            <cell halign="center"><m>y=-x^2+2x+3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-100</m></cell>
+                            <cell><m>\highlight{{}-(-100)^2{}}+2(-100)+3=\highlight{{}-10197{}}</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-10</m></cell>
+                            <cell><m>\highlight{{}-(-10)^2{}}+2(-10)+3=\highlight{{}-117{}}</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-3</m></cell>
+                            <cell><m>-(-3)^2+2(-3)+3=-12</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-2</m></cell>
+                            <cell><m>-(-2)^2+2(-2)+3=-5</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-1</m></cell>
+                            <cell><m>-(-1)^2+2(-1)+3=0</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0</m></cell>
+                            <cell><m>-(0)^2+2(0)+3=3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1</m></cell>
+                            <cell><m>-(1)^2+2(1)+3=4</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2</m></cell>
+                            <cell><m>-(2)^2+2(2)+3=3</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>3</m></cell>
+                            <cell><m>-(3)^2+2(3)+3=0</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>10</m></cell>
+                            <cell><m>\highlight{{}-(10)^2{}}+2(10)+3=\highlight{{}-77{}}</m></cell>
+                        </row>
+                        <row bottom="none">
+                            <cell><m>100</m></cell>
+                            <cell><m>\highlight{{}-(100)^2{}}+2(10)+3=\highlight{{}-9797{}}</m></cell>
+                        </row>
+                    </tabular>
+				</table>
+            </sidebyside>
+
+	<p>For large positive values of <m>x</m> and for large negative values of <m>x</m>, the <m>x^2</m> term dominates, which is why its coefficient will determine whether the parabola points up or down.</p>
+
 
         <exercise>
             <introduction>
-                <p>Use <xref ref="figure-quadratic-function-graph-identify-properties">Figure</xref> to answer the following questions.</p>
-                    <figure xml:id="figure-quadratic-function-graph-identify-properties">
-                    <caption></caption>
-                        <image>
-                            <description></description>
-                            <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-4.45:0.45] {(x+2)^2+1};
-                                    \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                            </latex-image-code>
-                        </image>
-                    </figure>
+                <p>Determine if the graph of each quadratic function points up or down.</p>
             </introduction>
             <webwork >
                 <setup>
-                    <var name="$vertex">
-                        <static>(-2,1)</static>
-                    </var>
-                    <var name="$axisofsymmetry">
-                        <static>x=-2</static>
-                    </var>
-                    <var name="$xintercept">
-                        <static>none</static>
-                    </var>
-                    <var name="$yintercept">
-                        <static>(0,5)</static>
-                    </var>
                     <pg-code>
-                        Context("Point");
-                        $vertex=Point("(-2,1)");
-                        $xintercept=none;
-                        $yintercept=Point("(0,5)");
-                        Context("Numeric")->variables->add(y=>'Real');
-                        parser::Assignment->Allow;
-                        $axisofsymmetry=Formula("x=-2");
-                    </pg-code>
+                        Context()->variables->are();
+                        for my $i (1..26) {
+                            Context()->variables->add($ALPHABET[$i-1]=>'Real');
+                            Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
+                            };
+                        Context()->strings->add('up'=>{});
+                        Context()->strings->add('down'=>{});
+                   </pg-code>
                 </setup>
                 <statement>
-                    <p><ol label="a.">
-                        <li><p>What are the coordinates of the vertex? <var name="$vertex" width="10" /></p></li>
-                        <li><p>What is the equation of the axis of symmetry? <var name="$axisofsymmetry" width="10" /></p></li>           
-                        <li><p>What are the coordinates of the <m>x</m>-intercept(s)? <var name="$xintercept" width="10" /></p></li>
-                        <li><p>What are the coordinates of the <m>y</m>-intercept? <var name="$yintercept" width="10" /></p></li>
+                    <p><ol label="a">
+                        <li>
+                            <p>The graph of the quadratic function <m>y=3x^2-4x-7</m> points <var name="up" width="6"/>.</p>
+                        </li>
+                        <li>
+                            <p>The graph of the quadratic function <m>y=-5x^2+x</m> points <var name="down" width="6"/>.</p>
+                        </li>
+                        <li>
+                            <p>The graph of the quadratic function <m>y=2+3x-x^2</m> points <var name="down" width="6"/>.</p>
+                        </li>
+                        <li>
+                            <p>The graph of the quadratic function <m>y=\frac{1}{3}x^2-\frac{2}{5}x+\frac{1}{4}</m> points <var name="up" width="6"/>.</p>
+                        </li>
                     </ol></p>
                 </statement>
+                <solution>
+                    <p><ol label="a">
+                        <li>
+                            <p>The graph of the quadratic function <m>y=3x^2-4x-7</m> points up as the leading coefficient is the positive number <m>3</m>.</p>
+                        </li>
+                        <li>
+                            <p>The graph of the quadratic function <m>y=-5x^2+x</m> points down as the leading coefficient is the negative number <m>-5</m>.</p>
+                        </li>
+                        <li>
+                            <p>The graph of the quadratic function <m>y=2+3x-x^2</m> points down as the leading coefficient is <m>-1</m>. (Note that the leading coefficient is the coefficient on <m>x^2</m>.)</p>
+                        </li>
+                        <li>
+                            <p>The graph of the quadratic function <m>y=\frac{1}{3}x^2-\frac{2}{5}x+\frac{1}{4}</m> points up as the leading coefficient is the positive number <m>\frac{1}{3}</m>.</p>
+                        </li>
+                    </ol></p>
+                </solution>
             </webwork>
         </exercise>
 
 
-    <remark><p>Although the outputs for <m>y=x^2</m> do not increase by a constant amount, the <emph>second differences</emph> do, as shown in <xref ref="table-quadratic-function-second-differences">Table</xref>.</p>
-    	<table xml:id="table-quadratic-function-second-differences">
-            <caption></caption>
-            <tabular valign="top" >
-                <col halign="right" right="minor"/>
-                <col halign="right" />
-                <col halign="left" />
-                <col halign="left" />
-                <row bottom="medium">
-                    <cell><m>x</m></cell>
-                    <cell halign="center"><m>x^2</m></cell>
-                    <cell></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell><m>-3</m></cell>
-                    <cell><m>9</m></cell>
-                    <cell></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}-5</m></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell><m>-2</m></cell>
-                    <cell><m>4</m></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}\highlight{2}</m></cell>
-                </row>
-                <row>
-                    <cell></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}-3</m></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell><m>-1</m></cell>
-                    <cell><m>1</m></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}\highlight{2}</m></cell>
-                </row>
-                <row>
-                    <cell></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}-1</m></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell><m>0</m></cell>
-                    <cell><m>0</m></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}\highlight{2}</m></cell>
-                </row>
-                <row>
-                    <cell></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}1</m></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell><m>1</m></cell>
-                    <cell><m>1</m></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}\highlight{2}</m></cell>
-                </row>
-                <row>
-                    <cell></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}3</m></cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell><m>2</m></cell>
-                    <cell><m>4</m></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}\highlight{2}</m></cell>
-                </row>
-                <row>
-                    <cell></cell>
-                    <cell></cell>
-                    <cell><m>\stackrel{\nwarrow}{\swarrow}5</m></cell>
-                    <cell></cell>
-                </row>
-                <row bottom="none">
-                    <cell><m>3</m></cell>
-                    <cell><m>9</m></cell>
-                    <cell></cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-    	</table> 
-    </remark> 
-	
 	</subsection>
 
-    <exercises>
-        <exercisegroup>
-            <introduction>
-                <p>Exercises on Graphing Quadratic Functions Using a Table</p>
-            </introduction>
+	<subsection>
+		<title>Algebraically Determining Horizontal and Vertical Intercepts</title>
 
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=x^2+2</m>.</p>
-            </statement>
-            <solution>
-            <sidebyside widths="47% 47%" margins="0%">
-                <table>
-                <caption></caption>
-                    <tabular valign="top" bottom="minor">
-                        <col halign="right" right="minor"/>
-                        <col halign="right" right="minor"/>
-                        <col halign="center"/>
-                        <row bottom="medium">
-                            <cell><m>x</m></cell>
-                            <cell halign="center"><m>y=x^2+2</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-3</m></cell>
-                            <cell><m>(-3)^2+2=11</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-2</m></cell>
-                            <cell><m>(-2)^2+2=6</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-1</m></cell>
-                            <cell><m>(-1)^2+2=3</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0</m></cell>
-                            <cell><m>0^2+2=2</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>1</m></cell>
-                            <cell><m>1^2+2=3</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>2</m></cell>
-                            <cell><m>2^2+2=6</m></cell>
-                        </row>
-                        <row bottom="none">
-                            <cell><m>3</m></cell>
-                            <cell><m>3^2+2=11</m></cell>
-                        </row>
-                    </tabular>
-                </table>
-                <image>
-                    <latex-image-code>
-                        <![CDATA[
-                            \begin{tikzpicture}
+        <p>In <xref ref="list-properties-of-quadratic-functions-visual">List</xref>, we identified that horizontal intercepts occur where the graph of a function intersects the horizontal axis and that the vertical intercept occurs where the graph of a function intersects the vertical axis. If we're using <m>x</m> and <m>y</m> as our variables, this means that the <m>x</m>-intercept(s) occur where <m>y=0</m>, and the <m>y</m>-intercept occurs where <m>x=0</m>. These might seem the reverse of what you'd expect, but it's important to remember that when finding the <m>\highlight{{}x{}}</m>-intercept, we want to determine the value(s) of <m>\highlight{{}x{}}</m> when <m>y</m> is set to zero. Similarly, when determining the <m>\highlight{{}y{}}</m>-intercept, we want to determine the value of <m>\highlight{{}y{}}</m> when <m>x</m> is zero. We'll now look at determining these algebraically when given the formula of a quadratic function.</p>
+
+        <example xml:id="example-introduction-to-algebraically-determining-intercepts">
+            <p>Algebraically determine the <m>x</m>-intercept(s) and <m>y</m>-intercept for the quadratic function <m>y=x^2-4x-12</m>.</p>
+
+            <p>To determine the <m>x</m>-intercept(s), we will set <m>y</m> to zero and solve for <m>x</m>:
+                <md>
+                    <mrow>y\amp=x^2-4x-12</mrow>
+                    <mrow>\substitute{0}\amp=x^2-4x-12</mrow>
+                    <mrow>0\amp=(x-6)(x+2)</mrow>
+                    <mrow>x\amp-6=0,\ x+2=0</mrow>
+                    <mrow>x\amp=6,\ x=-2</mrow>
+                </md>
+                So the <m>x</m>-intercepts occur where <m>x=6</m> and where <m>x=-2</m>. On a graph, these associate with the points <m>(6,0)</m> and <m>(-2,0)</m>.
+            </p>
+            <p>To determine the <m>y</m>-intercept, we will set <m>x</m> to zero and solve for <m>x</m>:
+                <md>
+                    <mrow>y\amp=x^2-4x-12</mrow>
+                    <mrow>y\amp=\substitute{0}^2-4(\substitute{0})-12</mrow>
+                    <mrow>y\amp=-12</mrow>
+                </md>
+                So the <m>y</m>-intercept occurs where <m>y=-12</m>. On a graph, this associates with the point <m>(0,-12)</m>.
+            </p>
+        </example>
+ 	</subsection>
+	<subsection>
+		<title>Algebraically Determining the Vertex</title>
+
+		<p>The vertex of a quadratic function is either the minimum point or the maximum point on its graph, depending on whether this function points up or down. When there are two horizontal intercepts for a quadratic function, we can see that the vertex occurs half-way between those two points. Similarly, when there is exactly one horizontal intercept, we know that this point is where the vertex occurs.</p>
+<!--TODO: add visual demonstration of being halfway between-->
+            <sidebyside widths="30% 30% 30%" margins="0%">
+                <figure xml:id="figure-quadratic-function-two-horizontal-intercepts">
+                <caption>Parabola with two horizontal intercepts</caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
                                 \begin{axis}[]
-                                    \addplot+[domain=-2:2] {x^2+2};
-                                    \addplot[soliddot] coordinates {(-2,6) (-1,3) (0,2) (1,3) (2,6)};
+                                    \addplot+[domain=-4.14:3.14] {(x-2)*(x+3)};
+                                    \addplot[soliddot] coordinates {(-3,0)} ;
+                                    \addplot[soliddot] coordinates {(2,0)} ;
                                 \end{axis}
                             \end{tikzpicture}
-                        ]]>
-                    </latex-image-code>
-                </image>
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-quadratic-one-horizontal-intercept">
+                <caption>Parabola with one horizontal intercept</caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[domain=-4.646:0.646] {-1*(x+2)^2};
+                                    \addplot[soliddot] coordinates {(-2,0)} ;
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-quadratic-function-no-horizontal-intercept">
+                <caption>Parabola with no horizontal intercepts</caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[domain=-0.449:4.449] {(x-2)^2+1};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
             </sidebyside>
-            </solution>
-        </exercise> 
+		<p>This visual method is quick, but it can only be used in limited cases. We <em>cannot</em> use this method if there are no horizontal intercepts, and it's challenging if there are one or more horizontal intercepts but their values are irrational numbers.</p>
+
+		<fact><p>The vertex of a quadratic function <m>f(x)=ax^2+bx+c</m> occurs where <m>x=-\frac{b}{2a}</m>, or at the point <m>\left(-\frac{b}{2a},f\left(-\frac{b}{2a}\right)\right)</m>.</p></fact>
+
+		<p>This formula at first seems a bit random, but is actually related to the quadratic formula. Still thinking about the vertex occuring in the middle of two horizontal intercepts, we can see that this value is in the middle of the two values obtained from the quadratic formula:
+			<me>x=\frac{{}\highlight{-b}{}\pm \lowlight{\sqrt{b^2-4ac}}}{{}\highlight{2a}{}}</me>
+		</p>
+
+		<example>
+            <p>Algebraically determine the vertex of the quadratic function <m>y=x^2-4x-12</m>.</p>
+
+            <p>To algebraically determine this vertex, we could rely on the horizontal intercepts determined in <xref ref="example-introduction-to-algebraically-determining-intercepts">Example</xref>. To do so, we'll note that the vertex and axis of symmetry will occur halfway between <m>x=6</m> and <m>x=-2</m>, which is at <m>x=2</m>. Visually, this looks like:</p>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot[soliddot] coordinates {(-2,0) (6,0)} ;
+                                \addplot[guideline]coordinates {(2,-7) (2,7)} node[pin=220:{axis of symmetry}]{};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+        <p>We could also determine the <m>x</m>-value where the vertex occurs using the formula <m>x=-\frac{b}{2a}</m>. Noting that for <m>y=x^2-4x-12</m> we have <m>a=1</m> and <m>b=-4</m>, so:
+            <md>
+                <mrow>x\amp=-\frac{-4}{2(1)}</mrow>
+                <mrow>x\amp=2</mrow>
+            </md>
+        </p>
+        <p>Now that we've determined that the <m>x</m>-value where the vertex occurs is <m>2</m>, we will replace <m>x</m> with <m>2</m> in the original equation to determine <m>y</m>:
+            <md>
+                <mrow>y\amp=x^2-4x-12</mrow>
+                <mrow>y\amp=(\substitute{2})^2-4(\substitute{2})-12</mrow>
+                <mrow>y\amp=4-8-12</mrow>
+                <mrow>y\amp=-16</mrow>
+            </md>
+        The vertex is the point <m>(2,-16)</m>.
+        </p>
+
+        </example>
+	</subsection>
+
+    <subsection>
+        <title>Graphing Quadratic Functions Using Their Key Features</title>
+            <p>To graph a quadratic function using its key featuers, we'll want to algebraically determine the following: whether the function points up or down, the horizontal intercepts, the vertical intercept, and the vertex. We'll then use this to connect the key points with a smooth curve.</p>
+
+        <example>
+            <p>Graph the function <m>y=2x^2+10x+8</m> by algebraically determining its key features.</p>
+
+            <p>To start, we'll note that this function will point upward, as the leading coefficient is the positive number <m>2</m>.</p>
+            <p>Next, we'll find the horizontal intercepts by setting <m>y=0</m> and solving for <m>x</m>:
+                <md>
+                    <mrow>2x^2+10x+8\amp=0</mrow>
+                    <mrow>2(x^2+5x+4)\amp=0</mrow>
+                    <mrow>2(x+4)(x+1)\amp=0</mrow>
+                    <mrow>x+4\amp=0,\ x+1=0</mrow>
+                    <mrow>x\amp=-4,\ x=-1</mrow>
+                </md>
+            The <m>x</m>-intercepts are then <m>(-4,0)</m> and <m>(-1,0)</m>.
+            </p>
+            <p>To find the <m>y</m>-intercept, we'll replace <m>x</m> with <m>0</m>:
+                <md>
+                    <mrow>y\amp=2(\substitute{0})^2+10(\substitute{0})+8</mrow>
+                    <mrow>y\amp=8</mrow>
+                </md>
+            The <m>y</m>-intercept is then <m>(0,8)</m>.
+            </p>
+            <p>Lastly, we'll determine the vertex. Noting that <m>a=2</m> and <m>b=10</m>, we have:
+                <md>
+                    <mrow>x\amp=-\frac{10}{2(2)}</mrow>
+                    <mrow>x\amp=-2.5</mrow>
+                </md>
+            Using this <m>x</m>-value to find the <m>y</m>-coordinate, we have:
+                <md>
+                    <mrow>y\amp=2(\substitute{-2.5})^2+10(\substitute{-2.5})+8</mrow>
+                    <mrow>y\amp=12.5-25+8</mrow>
+                    <mrow>y\amp=-4.5</mrow>
+                </md>
+            The vertex is then the point <m>(-2.5,-4.5)</m>, and the axis of symmetry is the line <m>x=-2.5</m>.
+            </p>
+            <p>We're now ready to graph this function. We'll start by drawing and scaling axes so that all of our key features will be displayed as shown in <xref ref="figure-quadratic-function-key-features-grid">Figure</xref>. Next, we'll plot these key points as shown in <xref ref="figure-quadratic-function-key-features-initial-step-for-graphing">Figure</xref>. Finally, we'll note that this parabola points upward and connect these points with a smooth curve, as shown in <xref ref="figure-quadratic-function-key-features-full-graph">Figure</xref>.
+            </p>
+
+            <sidebyside widths="30% 30% 30%" margins="0%">
+                <figure xml:id="figure-quadratic-function-key-features-grid">
+                <caption></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-6,xmax=6,ymin=-12,ymax=12,
+                                            xtick={-5,-4,...,5},
+                                            minor xtick={-6,-5,...,6},
+                                            ytick={-10,-8,...,10},
+                                            minor ytick={-12,-11,...,12}]
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-quadratic-function-key-features-initial-step-for-graphing">
+                <caption></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-6,xmax=6,ymin=-12,ymax=12,
+                                            xtick={-5,-4,...,5},
+                                            minor xtick={-6,-5,...,6},
+                                            ytick={-10,-8,...,10},
+                                            minor ytick={-12,-11,...,12}]
+                                    \addplot[soliddot] coordinates {(-4,0) (-1,0) (-2.5,-4.5) (0,8)} ;
+                                    \addplot[guideline]coordinates {(-2.5,-12) (-2.5,12)} node[pin=320:{axis of symmetry}]{};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-quadratic-function-key-features-full-graph">
+                <caption></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-6,xmax=6,ymin=-12,ymax=12,
+                                            xtick={-5,-4,...,5},
+                                            minor xtick={-6,-5,...,6},
+                                            ytick={-10,-8,...,10},
+                                            minor ytick={-12,-11,...,12}]
+                                    \addplot[primarycurve,soliddot] coordinates {(-4,0) (-1,0) (-2.5,-4.5) (0,8)} ;
+                                    \addplot+[primarycurve,domain=-5.372:0.372] {2*x^2+10*x+8};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+            </sidebyside>
 
 
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=x^2+1</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=x^2-5</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=x^2-3</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
 
 
-        <exercise>
+
+        </example>
+    </subsection>
+
+    <subsection>
+        <title>Looking at Horizontal and Vertical Intercepts and the Vertex in Context</title>
+
+        <example><!--irrational requiring QF-->
             <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=(x-2)^2</m>.</p>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>H=-16t^2+75t+4.25</m>, which was initially explored in <xref ref="example-introduction-to-algebraically-determining-intercepts">Example</xref>. Then interpret what these values mean in the context of this model.</p> 
             </statement>
             <solution>
-                
+                <p>To determine the horizontal intercept, we'll solve <m>H=0</m>. Since factoring is not a possibility to solve this equation, we'll rely on the quadratic formula:
+                    <md>
+                        <mrow>H\amp=0</mrow>
+                        <mrow>-16t^2+75t+4.25\amp=0</mrow>
+                        <mrow>t\amp=\frac{-75\pm \sqrt{75^2-4(-16)(4.25)}}{2(-16)}</mrow>
+                        <mrow>t\amp=\frac{-75\pm \sqrt{5897}}{-32}</mrow>
+                        <intertext>Rounding these two values with a calculator, we obtain:</intertext>
+                        <mrow>t\amp\approx -0.056,\ t\approx  4.743</mrow>
+                    </md>
+                The horizontal intercepts therefore occur at <m>(-0.056,0)</m> and <m>(4.743,0)</m>.</p>
+                <p>To determine the vertical intercept, find <m>H</m> when <m>t=0</m>:
+                    <md>
+                        <mrow>H\amp=-16t^2+75t+4.25</mrow>
+                        <mrow>H\amp=-16(\substitute{0})^2+75(\substitute{0})+4.25</mrow>
+                        <mrow>H\amp=4.25</mrow>
+                    </md>
+                The vertical intercept therefore occurs at <m>(0,4.25)</m>.</p>
+                <p>The vertex occurs where <m>t=-\frac{b}{2a}</m>, and for this function <m>a=-16</m> and <m>b=75</m>. So we have:
+                    <md>
+                        <mrow>t\amp=-\frac{75}{2(-16)}</mrow>
+                        <mrow>t\amp=2.34375</mrow>
+                    </md>
+                    We can now find the output for this input:
+                    <md>
+                        <mrow>H\amp=-16(\substitute{2.34375})^2+75(\substitute{2.34375})+4.25</mrow>
+                        <mrow>\amp=92.140625</mrow>
+                    </md>
+                </p>
+                <p>In context, the second horizontal intercept tells us that the height of the baseball was <quantity><mag>0</mag><unit base="foot"/></quantity> after about <quantity><mag>5.2692</mag><unit base="second"/></quantity>. If we assume this model begins when <m>t=0</m>, then the first horizontal intercept found is irrelevant.</p>
+                <p>The vertical intercept tells us that the initial height of the baseball was <quantity><mag>4.25</mag><unit base="foot"/></quantity>. The vertex tells us that the maximum height was <quantity><mag>92.140625</mag><unit base="foot"/></quantity> and occurred after <quantity><mag>2.34375</mag><unit base="second"/></quantity>.</p>
             </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=(x-4)^2</m>.</p>
+        </example>
+<!--TODO: need one more example-->
+    </subsection>
+
+	<subsection>
+		<title>Further Examples of Algebraically Determining the Vertex and Horizontal and Vertical Intercepts</title>
+
+		<example><!--requiring QF but no solution-->
+			<statement>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>y=-x^2+5x-7</m>.</p>
             </statement>
             <solution>
-                
+                <p>To determine the horizontal intercepts, we'll set <m>y=0</m> and solve for <m>x</m>:
+                    <md>
+                        <mrow>0\amp=-x^2+5x-7</mrow>
+                    <intertext>Noting that this equation cannot be solved using factoring, we'll use the quadratic formula:</intertext>
+                        <mrow>x\amp=\frac{-5\pm \sqrt{5^2-4(-1)(-7)}}{2(-1)}</mrow>
+                        <mrow>x\amp=\frac{-5\pm \sqrt{25-28}}{-2}</mrow>
+                        <mrow>x\amp=\frac{-5\pm \sqrt{-3}}{-2}</mrow>
+                    </md>
+                    Since these numbers are not real, no solution exists to the equation and so there are no horizontal intercepts.</p>
+                <p>To determine the vertical intercept, we'll replace <m>x</m> with <m>0</m>:
+                    <md>
+                        <mrow>y\amp=-(0)^2+5(0)+7</mrow>
+                        <mrow>y\amp=7</mrow>
+                    </md>
+                    Thus the <m>y</m>-intercept occurs at the point <m>(0,7)</m>.
+                </p>
+                <p>The vertex will occur at <m>x=-\frac{b}{2a}</m>:
+                    <md>
+                        <mrow>x\amp=-\frac{5}{2(-1)}</mrow>
+                        <mrow>\amp=\frac{5}{2}</mrow>
+                    </md>
+                    To find the <m>y</m>-coordinate, we'll replace <m>x</m> with <m>\frac{5}{2}</m>:
+                    <md>
+                        <mrow>y\amp=-\left(\substitute{\frac{5}{2}}\right)^2+5\left(\substitute{\frac{5}{2}}\right)+7</mrow>
+                        <mrow>\amp=-\frac{3}{4}</mrow>
+                    </md>
+                    The vertex occurs at the point <m>\left(\frac{5}{2},-\frac{3}{4}\right)</m>, or at <m>(2.5,-0.75)</m>.
+                </p>
             </solution>
-        </exercise>
-        <exercise>
+		</example>
+
+        <example><!--irational but using SRP-->
             <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=(x+3)^2</m>.</p>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>y=-2(x+5)^2+12</m>.</p>
             </statement>
             <solution>
-                
+                <p>To determine the horizontal intercepts, we'll set <m>y=0</m> and solve for <m>x</m>:
+                    <md>
+                        <mrow>0\amp=-2(x+5)^2+12</mrow>
+                    <intertext>We cannot immediately factor this equation, but we can use the square root property to solve it. To do so, we'll first need to subtract <m>12</m> from each side of the equation and then divide each side by <m>-2</m>:</intertext>
+                        <mrow>-12\amp=-2(x+5)^2</mrow>
+                        <mrow>6\amp=(x+5)^2</mrow>
+                    <intertext>Now applying the square root property,</intertext>
+                        <mrow>\pm\sqrt{6}\amp=x+5</mrow>
+                        <mrow>x\amp=-\sqrt{6}-5,\ x=\sqrt{6}-5</mrow>
+                        <mrow>x\amp\approx -7.449,\ x\approx -2.551</mrow>
+                    </md>
+                    The <m>x</m>-intercepts occur at <m>(-\sqrt{6}-5,0)</m> and <m>(\sqrt{6}-5,0)</m>, or at approximately <m>(-7.449,0)</m> and <m>(-2.551,0)</m>.
+                </p>
+                <p>To determine the <m>y</m>-intercept, we'll replace <m>x</m> with <m>0</m>:
+                    <md>
+                        <mrow>y\amp=-2(\substitute{0}+5)^2+12</mrow>
+                        <mrow>\amp=-2(25)+12</mrow>
+                        <mrow>\amp=-38</mrow>
+                    </md>
+                The <m>y</m>-intercept occurs at <m>(0,-38)</m>.
+                </p>
+                <p>To determine the vertex using the formula <m>x=-\frac{b}{2a}</m>, we'll first need to expand this equation so that <m>a</m> and <m>b</m> can be identified:
+                    <md>
+                        <mrow>y\amp=-2(x+5)^2+12</mrow>
+                        <mrow>y\amp=-2(x^2+10x+25)+12</mrow>
+                        <mrow>y\amp=-2x^2-20x-50+12</mrow>
+                        <mrow>y\amp=-2x^2-20x-38</mrow>
+                    </md>
+                Now we can use <m>a=-2</m> and <m>b=-20</m> to determine the <m>x</m>-value of the vertex:
+                    <md>
+                        <mrow>x\amp=-\frac{-20}{2(-2)}</mrow>
+                        <mrow>\amp=-5</mrow>
+                    </md>
+                Lastly, we'll use this value to find the <m>y</m>-value. We can use either the original equation or the expanded one; we'll use the original one here:
+                    <md>
+                        <mrow>y\amp=-2(\substitute{-5}+5)^2+12</mrow>
+                        <mrow>\amp=-2(0)+12</mrow>
+                        <mrow>\amp=12</mrow>
+                    </md>
+                Therefore the vertex is the point <m>(-5,12)</m>.
+                </p>
             </solution>
-        </exercise>
-        <exercise>
+        </example>
+
+<!--TODO: assess if this example should just be scrapped-->
+        <example><!--rational but requiring QF-->
             <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=(x+2)^2</m>.</p>
+                <p>Algebraically determine horizontal and vertical intercepts and the vertex of the quadratic function <m>y=5x^2-2x-\frac{1}{3}</m>.</p>
             </statement>
             <solution>
-                
+                <p>To determine the horizontal intercepts, we'll solve <m>0=5x^2-2x-\frac{1}{3}</m> using the quadratic formula. One option is to directly use <m>a=5</m>, <m>b=-2</m>, and <m>c=-\frac{1}{3}</m>. Another option is to first multiply each side of that equation by <m>3</m>, which will yield the equivalent equation <m>0=15x^2-6x-1</m>. From there, we can use the quadratic formula with <m>a=10</m>, <m>b=-6</m> and <m>c=-1</m>:
+                    <md>
+                        <mrow>0=\amp=5x^2-2x-\frac{1}{3}</mrow>
+                        <mrow>\multiplyleft{3}(0)\amp=\multiplyleft{3}\left(5x^2-2x-\frac{1}{3}\right)</mrow>
+                        <mrow>0\amp=15x^2-6x-1</mrow>
+                        <mrow>x\amp=\frac{-(-6)\pm \sqrt{(-6)^2-4(15)(-1)}}{2(15)}</mrow>
+                        <mrow>x\amp=\frac{6\pm \sqrt{96}}{30}</mrow>
+                        <intertext>Simplifying, we get:</intertext>
+                        <mrow>x\amp=\frac{6\pm 4\sqrt{6}}{30}</mrow>
+                        <mrow>x\amp=\frac{3\pm 2\sqrt{6}}{15}</mrow>
+                        <intertext>Rouding, we have:</intertext>
+                        <mrow>x\amp\approx -0.1266,\ x\approx 0.5266</mrow>
+                    </md>
+                    The horizontal intercepts occur at the points <m>\left(\frac{3+ 2\sqrt{6}}{15},0\right)</m> or <m>\left(\frac{3-2\sqrt{6}}{15},0\right)</m> , or at the approximate points <m>(-0.1266,0)</m> and <m>(0.5266,0)</m>.
+                </p>
             </solution>
-        </exercise>
+
+        </example>
+    </subsection>
 
 
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=x^2-5x+3</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=x^2+7x-1</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=-x^2+2x+5</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=-x^2-3x+6</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
 
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=3x^2-4x-1</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=2x^2+6x-8</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=-2x^2-5x+8</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
-        <exercise>
-            <statement>
-                <p>Create a table of ordered pairs and then graph the function <m>y=-4x^2-2x+1</m>.</p>
-            </statement>
-            <solution>
-                
-            </solution>
-        </exercise>
 
-        </exercisegroup>
 
-        <exercisegroup>
-            <introduction>
-                <p>Exercises on Identifying Key Features of a Quadratic Function from Its Graph</p>
-            </introduction>
-            <!--Similar to WeBWorK exercise in text-->
-            <exercise>
-            </exercise>
-        </exercisegroup>
 
-    </exercises>
+
+
 
 </section>
