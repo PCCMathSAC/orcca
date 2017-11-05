@@ -38,7 +38,7 @@
     </introduction>
 
     <subsection>
-        <title>Products and Exponents</title>
+        <title>Review of Exponent Rules for Products and Exponents</title>
         <p>In <xref ref="section-introduction-to-exponent-rules">Section</xref>, we introduced three basic rules involving products and exponents.  We'll begin with a brief recap and explanation of these three exponent rules for multiplication.</p>
 
         <list xml:id="list-exponent-rules-recap">
@@ -66,10 +66,17 @@
                 <!-- <p>At this point we have to note that in some expressions we have numbers raised to large enough powers that actually writing down the number in standard form is difficult or unnecessary. For example, if you have <m>7^6</m> in your answer, we will usually leave it in that form rather than calculating <m>117649</m>. We leave it up to your discretion as to exactly when a number is <q>too large</q> to calculate but a general rule might be that if the number is smaller than <m>200</m> then you should definitely evaluate it, and anything larger than <m>1000</m> should be left in exponent form. Values in between <m>200</m> and and <m>1000</m> are left to your judgment or other requirements.</p> -->
 
 
-<!--         <exercise>
-            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication25.pg" />
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication0.pg" />
         </exercise>
- -->
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication20.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication23.pg" />
+        </exercise>
+
+
          <exercise>
             <webwork seed="3">
                 <pg-macros>
@@ -79,19 +86,25 @@
                 </pg-macros>
                 <setup>
                     <var name="$problem">
-                        <static>(t^2)^3(t^4)^5</static>
+                        <static>(5t^2)^3(t^4)^5</static>
                     </var>
                     <var name="$step1">
-                        <static>t^(2\cdot 3)t^(4\cdot 5)</static>
+                        <static>5^3(t^2)^3(t^4)^5</static>
                     </var>
                     <var name="$step2">
-                        <static>t^6t^20</static>
+                        <static>5^3t^(2*3)t^(4*5)</static>
+                    </var>
+                    <var name="$step2">
+                        <static>125t^(6)t^(20)</static>
                     </var>
                     <var name="$step3">
-                        <static>t^(6+20)</static>
+                        <static>125t^(6+20)</static>
+                    </var>
+                    <var name="$step4">
+                        <static>125t^(6+20)</static>
                     </var>
                     <var name="$ans">
-                        <static>t^26</static>
+                        <static>125t^26</static>
                     </var>
                     <pg-code>
                         Context("Numeric");
@@ -106,13 +119,15 @@
                         $b = random(2,5,1);
                         $c = random(2,5,1);
                         $d = random(2,5,1);
+                        $e = random(2,5,1);
                         $ab = $a*$b;
                         $cd = $c*$d;
                         $sum = $ab+$cd;
-                        $problem = Compute("($var**$a)**$b*($var**$c)**$d");
-                        $step1 = "$var^{$a \cdot $b} \cdot $var^{$c \cdot $d}";
-                        $step2 = Compute("$var**$ab*$var**$cd");
-                        $step3 = "$var^{$ab+$cd}";
+                        $problem = Compute("($e*$var**$a)**$b*($var**$c)**$d");
+                        $step1 = "$e^$b \cdot ($var^{$a})^{$b} \cdot ($var^{$c})^{$d}";
+                        $step2 = "$e^$b \cdot $var^{$a \cdot $b} \cdot $var^{$c \cdot $d}";
+                        $step3 = Compute("$e**$b*$var**$ab*$var**$cd");
+                        $step4 = "$e^$b\cdot $var^{$ab+$cd}";
 
                         Context("LimitedPolynomial-Strict");
                         Context()->variables->are($var=>'Real');
@@ -124,21 +139,16 @@
                     <p><m><var name="$problem"/></m>=<var name="$ans" width="10"/></p>
                 </statement>
                 <solution>
-                    <p>We will use the following rules to simplify this expression:<ul>
-                        <li><p><m>(a^m)^n=a^{mn}</m></p></li>
-                        <li><p><m>a^ma^n=a^{m+n}</m></p></li>
-                    </ul></p>
-
-                    <p>For this problem, we have:<md>
+                    <p>Using all three rules for products and exponents, we have:<md>
                         <mrow><var name="$problem" />\amp=<var name="$step1" /></mrow>
                         <mrow>\amp=<var name="$step2" /></mrow>
                         <mrow>\amp=<var name="$step3" /></mrow>
+                        <mrow>\amp=<var name="$step4" /></mrow>
                         <mrow>\amp=<var name="$ans" /></mrow>
                     </md></p>
                 </solution>
             </webwork>
         </exercise>
-
     </subsection>
 
 
@@ -178,10 +188,8 @@
             </md>
         </p>
 
-<!--         <exercise>
-            <webwork source="BasicAlgebra/Exponents/exponentDivision95.pg" />
-        </exercise>
- -->    
+
+   
         <example>
             <statement>
                 <p>Simplify <m>\dfrac{3^7x^9}{3^2x^4}</m>.</p>
@@ -708,8 +716,8 @@
                     </p>
             </solution>
         </example>
-<!--TODO: condense this-->
-        <exercise>
+<!--TODO: consider moving one or more back in-->
+<!--         <exercise>
             <webwork source="BasicAlgebra/Exponents/negExp75.pg" seed="7652"/>
         </exercise>
         <exercise>
@@ -724,12 +732,11 @@
         <exercise>
             <webwork source="BasicAlgebra/Exponents/negExp35.pg" seed="6652"/>
         </exercise>
-
+ -->
 
 
     </subsection>
 
-<!--TODO: add negative exponent rule to this; consider moving it right after negative exponent property is introduced-->
     <subsection>
         <title>Summary of Exponent Rules</title>
 
