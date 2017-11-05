@@ -38,7 +38,7 @@
     </introduction>
 
     <subsection>
-        <title>Products and Exponents</title>
+        <title>Review of Exponent Rules for Products and Exponents</title>
         <p>In <xref ref="section-introduction-to-exponent-rules">Section</xref>, we introduced three basic rules involving products and exponents.  We'll begin with a brief recap and explanation of these three exponent rules for multiplication.</p>
 
         <list xml:id="list-exponent-rules-recap">
@@ -66,10 +66,17 @@
                 <!-- <p>At this point we have to note that in some expressions we have numbers raised to large enough powers that actually writing down the number in standard form is difficult or unnecessary. For example, if you have <m>7^6</m> in your answer, we will usually leave it in that form rather than calculating <m>117649</m>. We leave it up to your discretion as to exactly when a number is <q>too large</q> to calculate but a general rule might be that if the number is smaller than <m>200</m> then you should definitely evaluate it, and anything larger than <m>1000</m> should be left in exponent form. Values in between <m>200</m> and and <m>1000</m> are left to your judgment or other requirements.</p> -->
 
 
-<!--         <exercise>
-            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication25.pg" />
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication0.pg" />
         </exercise>
- -->
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication20.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/exponentsMultiplication23.pg" />
+        </exercise>
+
+
          <exercise>
             <webwork seed="3">
                 <pg-macros>
@@ -79,19 +86,25 @@
                 </pg-macros>
                 <setup>
                     <var name="$problem">
-                        <static>(t^2)^3(t^4)^5</static>
+                        <static>(5t^2)^3(t^4)^5</static>
                     </var>
                     <var name="$step1">
-                        <static>t^(2\cdot 3)t^(4\cdot 5)</static>
+                        <static>5^3(t^2)^3(t^4)^5</static>
                     </var>
                     <var name="$step2">
-                        <static>t^6t^20</static>
+                        <static>5^3t^(2*3)t^(4*5)</static>
+                    </var>
+                    <var name="$step2">
+                        <static>125t^(6)t^(20)</static>
                     </var>
                     <var name="$step3">
-                        <static>t^(6+20)</static>
+                        <static>125t^(6+20)</static>
+                    </var>
+                    <var name="$step4">
+                        <static>125t^(6+20)</static>
                     </var>
                     <var name="$ans">
-                        <static>t^26</static>
+                        <static>125t^26</static>
                     </var>
                     <pg-code>
                         Context("Numeric");
@@ -106,13 +119,15 @@
                         $b = random(2,5,1);
                         $c = random(2,5,1);
                         $d = random(2,5,1);
+                        $e = random(2,5,1);
                         $ab = $a*$b;
                         $cd = $c*$d;
                         $sum = $ab+$cd;
-                        $problem = Compute("($var**$a)**$b*($var**$c)**$d");
-                        $step1 = "$var^{$a \cdot $b} \cdot $var^{$c \cdot $d}";
-                        $step2 = Compute("$var**$ab*$var**$cd");
-                        $step3 = "$var^{$ab+$cd}";
+                        $problem = Compute("($e*$var**$a)**$b*($var**$c)**$d");
+                        $step1 = "$e^$b \cdot ($var^{$a})^{$b} \cdot ($var^{$c})^{$d}";
+                        $step2 = "$e^$b \cdot $var^{$a \cdot $b} \cdot $var^{$c \cdot $d}";
+                        $step3 = Compute("$e**$b*$var**$ab*$var**$cd");
+                        $step4 = "$e^$b\cdot $var^{$ab+$cd}";
 
                         Context("LimitedPolynomial-Strict");
                         Context()->variables->are($var=>'Real');
@@ -124,21 +139,16 @@
                     <p><m><var name="$problem"/></m>=<var name="$ans" width="10"/></p>
                 </statement>
                 <solution>
-                    <p>We will use the following rules to simplify this expression:<ul>
-                        <li><p><m>(a^m)^n=a^{mn}</m></p></li>
-                        <li><p><m>a^ma^n=a^{m+n}</m></p></li>
-                    </ul></p>
-
-                    <p>For this problem, we have:<md>
+                    <p>Using all three rules for products and exponents, we have:<md>
                         <mrow><var name="$problem" />\amp=<var name="$step1" /></mrow>
                         <mrow>\amp=<var name="$step2" /></mrow>
                         <mrow>\amp=<var name="$step3" /></mrow>
+                        <mrow>\amp=<var name="$step4" /></mrow>
                         <mrow>\amp=<var name="$ans" /></mrow>
                     </md></p>
                 </solution>
             </webwork>
         </exercise>
-
     </subsection>
 
 
@@ -178,11 +188,9 @@
             </md>
         </p>
 
-<!--         <exercise>
-            <webwork source="BasicAlgebra/Exponents/exponentDivision95.pg" />
-        </exercise>
- -->    
-        <example>
+
+   
+<!--         <example>
             <statement>
                 <p>Simplify <m>\dfrac{3^7x^9}{3^2x^4}</m>.</p>
             </statement>
@@ -194,7 +202,7 @@
                     <mrow>\amp= 243x^6</mrow>
                 </md></p>
             </solution>
-        </example>
+        </example> -->
         
         <paragraphs>
             <title>Quotient to a Power Rule</title>
@@ -276,10 +284,10 @@
  -->        
 
 
-<!--TODO: combine to one example; cut two WW problems after-->
+<!--TODO: make webwork?-->
         <example>
             <statement>
-                <p>Simplify the following expressions.
+                <p>Simplify the following expressions. Leave larger numbers (such as <m>5^{10}</m>) in exponent form.
                 <ol>
                     <li><p><m>\left(\dfrac{5^8w^7}{5^2w^4}\right)^9</m></p></li>   
                     <li><p><m>\dfrac{\left(2r^5\right)^7}{\left(2^2 r^8\right)^3}</m></p></li>   
@@ -460,7 +468,7 @@
             </tabular>
         </table> -->
 
-        <p>Now the numerical meaning of <q>no factors of 2</q> is more clear. <q>No factors of 2</q> have the same effect as multiplying by <m>1</m>. Mathematically, we can read the expression <m>2^0</m> as <q>zero factors of 2.</q> Multiplying by zero factors of any non-zero real number has the same effect as not having multiplied by anything at all.  That's the same effect as having multiplied by <m>1</m>.</p>
+        <p>Now the numerical meaning of <q>no factors of 2</q> is more clear. <q>No factors of 2</q> has the same effect as multiplying by <m>1</m>. Mathematically, we can read the expression <m>2^0</m> as <q>zero factors of 2.</q> Multiplying by zero factors of any non-zero real number has the same effect as not having multiplied by anything at all.  That's the same effect as having multiplied by <m>1</m>.</p>
 
         <p>This gives us our <term>zero exponent rule</term>: for any real number <m>a</m>, where <m>a \neq 0</m> <me>a^0 = 1</me></p>
 
@@ -479,9 +487,10 @@
             </solution>
         </example>
  -->
+<!--TODO: make webwork-->
         <example>
             <statement>
-                <p>Simplify the following expressions, assuming <m>x \neq 0</m> and <m>y \neq 0</m>.
+                <p>Simplify the following expressions. Assume all variables represent non-zero real numbers.
                 <ol>
                     <li><p><m>\left(173 x^4 y^{251}\right)^0</m></p></li>
                     <li><p><m>(-8)^0</m></p></li> 
@@ -498,7 +507,7 @@
                 <li><p> In the expression <m>(-8)^0</m> the exponent applies to everything inside the parentheses, <m>-8</m>.<md>
                     <mrow> (-8)^0  \amp=  1 </mrow>
                 </md></p></li>   
-                <li><p>In contrast to the previous example, the exponent only applies to the <m>8</m>.  We should consider that <m>-8^0 = -1 \cdot 8^0</m>:<md>
+                <li><p>In contrast to the previous example, the exponent only applies to the <m>8</m>.  We should consider that <m>-8^0 = -1 \cdot 8^0</m>, and so:<md>
                     <mrow> -8^0  \amp=  -1\cdot 8^0 </mrow>
                     <mrow>   \amp=  -1\cdot 1 </mrow>
                     <mrow>   \amp=  -1 </mrow>
@@ -512,111 +521,7 @@
             </solution>
         </example>
 
- 
-        <p>As we mentioned before, many situations we'll come across will require us to use more than one exponent rule.  In these situations, we'll have to decide which rule to use first.  There are often different correct approaches we could take, but if we keep the order of operations involved in our thought process, we will have a better chance of simplifying the expression correctly.</p>
-<!--Change to \dfrac{6x^{3}}{2x^{7}}-->
-        <example>
-            <statement>
-                <p>Simplify the following expressions, assuming <m>x \neq 0</m> and <m>y \neq 0</m>.
-                <ol>
-                    <li><p><m>\left(3v^{4}\right)^{2}</m></p></li>
-                    <li><p><m>\dfrac{2x^{7}}{6x^{3}}</m></p></li> 
-                    <li><p><m>\left(\dfrac{5^{0}y^{4}\cdot y^{5}}{y^2}\right)^{3}</m></p></li>   
-                </ol></p>
-            </statement>
-            <solution>
-                <p>Simplifying following the order of operations strictly is usually the most effective and efficient method.
 
-                <ol>
-                 <li><p>In the expression <m>\left(3v^{4}\right)^{2}</m>, the exponent <m>2</m> applies to each factor inside the parentheses. 
-                <md>
-                    <mrow>  \left(3v^{4}\right)^{2} \amp= 3^{2}v^{4\cdot2} </mrow>
-                    <mrow>                          \amp= 9v^{8}           </mrow>
-                </md></p></li>
-                <li><p> In the expression <m>\dfrac{2x^{7}}{6x^{3}}</m> the coefficients reduce as a fraction and the common factors of the variable cancel out. <md>
-                    <mrow> \dfrac{2x^{7}}{6x^{3}}   \amp=  \dfrac{2}{6} \cdot \dfrac{x^{7}}{x^{3}}</mrow>
-                    <mrow>                          \amp=  \dfrac{1}{3} \cdot x^{4}</mrow>
-                    <intertext> Note that while <m>\dfrac{x^{7}}{x^{3}}</m> reduces to <m>x^{4}</m>, one can always think of it as being <m>\dfrac{x^{4}}{1}</m> if it helps with simplification.</intertext>
-                    <mrow> \phantom{\dfrac{2x^{7}}{6x^{3}}}  \amp=  \dfrac{1}{3} \cdot \dfrac{x^{4}}{1}</mrow>
-                     <mrow>                           \amp=  \dfrac{x^{4}}{3} </mrow>
-                </md></p></li>
-                <li><p>In the expression <m>\left(\dfrac{5^{0}y^{4}\cdot y^{5}}{y^2}\right)^{3}</m>, to follow the order of operations, the numerator inside the parentheses should be dealt with first. <md>
-                    <mrow> \left(\dfrac{5^0 y^4 \cdot y^5}{y^2}\right)^3 \amp=  \left(\dfrac{1y^{4+5}}{y^2}\right)^3  </mrow>
-                    <mrow> \amp= \left(\dfrac{y^{9}}{y^2}\right)^{3} </mrow>
-                    <intertext>Now that the numerator has been sufficiently simplified, apply the division rule inside the parentheses.</intertext>
-                    <mrow> \phantom{\left(\dfrac{5^{0}y^{4}\cdot y^{5}}{y^2}\right)^{3}} \amp=  \left(y^{7}\right)^{3} </mrow>
-                    <mrow> \amp=  y^{21} </mrow>
-                </md></p></li>
-            </ol></p></solution>
-        </example>
-
-
-        <example>
-        <title>Sums and Powers? No Rules!</title>
-
-        <p>Have you noticed that all of the exponent rules focus on multiplication and division of the bases?  None of them involve addition or subtraction in the initial expression.
- Because whole number exponents mean repeated multiplication, not repeated addition or subtraction, trying to apply multiplication rules in situations that do not use multiplication simply doesn't work.</p>
-
-        <p>Trying to replace the <xref ref="exponent-rules-product" text="title">exponent rules</xref> with an equivalent <q>sum rule,</q> say <m>a^n + a^m = a^{n+m}</m>, will fail. <md>
-            <mrow>a^n + a^m \amp\stackrel{?}{=} a^{n+m}</mrow>
-            <mrow>2^3 + 2^4 \amp\stackrel{?}{=} 2^{3+4}</mrow>
-            <mrow>24 \amp\neq 128</mrow>
-        </md> Yikes, that's not even close. This attempt at a <q>sum rule</q> falls apart with our first attempt. In fact, without knowing values for <m>a</m>, <m>n</m>, and <m>m</m>, there's no way to simplify the expression <m>a^n + a^m</m>. </p>
-
-        <p>Similar issues arise whenever we consider other expressions involving sums, differences, and powers. The fundamental concept here is that the exponent rules set forth should really be considered a complete list, for all intents and purposes. If you find yourself wanting to perform an exponent operation that is not in the list, it is probably not correct to do so. </p>
-        </example>
-<!--TODO: turn this into true false WW-->
-        <example>
-            <statement>
-                <p>Decide whether the statements are true or false and provide mathematical reasoning for your decision.
-                <ol>
-                    <li><p><m>\left(7+8\right)^3=7^3+8^3</m></p></li>
-                    <li><p><m>2(x)^3=2^3 \cdot x^3</m></p></li> 
-                    <li><p><m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m></p></li>
-                    <li><p><m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m></p></li> 
-                    <li><p><m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m></p></li> 
-                    <li><p><m>x^2+x^3=x^5</m></p></li>
-                    <li><p><m>3^2 \cdot 2^3=6^5</m></p></li>
-                </ol></p>
-            </statement>
-            <solution>
-                <p>
-                <ol>
-                 <li><p>The equation <m>\left(7+8\right)^3=7^3+8^3</m> is false. Following the order of operations, on the left <m>\left(7+8\right)^3</m> would simplify as
-                <md>
-                    <mrow>\left(7+8\right)^3\amp=15^3</mrow>
-                    <mrow>\amp=3375</mrow>
-               <intertext>
-                    However, on the right side, we have
-                </intertext>
-                    <mrow>7^3+8^3\amp=343+512</mrow>
-                    <mrow>\amp=855</mrow>
-                </md>
-                Since <m>3375\neq 855</m>, the equation is false.
-                </p></li>
-                <li><p>The equation <m>2(x)^3=2^3 \cdot x^3</m> is false. In <m>2(x)^3</m>, the cube applies only to the <m>x</m>, not the <m>2</m>.</p></li>
-                <li><p>The equation <m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m> is true. The coefficients do get multiplied together and the exponents added when the expressions are multiplied.</p></li>
-                <li><p>The equation <m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m> is false. When you have a power-to-a-power, multiply the exponents rather than adding them. So, 
-                <me>\left(x^3y^5\right)^4=x^{3 \cdot 4}y^{5 \cdot 4}</me>
-                </p></li>
-                <li><p>The equation <m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m> is false. The order of operations says we should apply the exponent before multiplying by the <m>2</m>. So
-                <me>2\left(x^2y^5\right)^3=2x^6y^{15}</me>
-                </p></li>
-                <li><p>The equation <m>x^2+x^3=x^5</m> is false. The two terms on the left hand side are not like-terms and there is no way to combine them!</p></li>
-                <li><p>The equation <m>3^2 \cdot 2^3=6^5</m> is false. 
-                Following the order of operations, on the left <m>3^2 \cdot 2^3</m> would simplify as
-                <md>
-                    <mrow>3^2 \cdot 2^3\amp=9 \cdot 8</mrow>
-                    <mrow>\amp=72</mrow>
-               <intertext>
-                    However, on the right side, we have
-                </intertext>
-                    <mrow>6^5\amp=7776</mrow>
-                </md>
-                Since <m>72\neq 7776</m>, the equation is false.
-                </p></li>
-            </ol></p></solution>
-        </example>
     </subsection>
 
     <subsection>
@@ -624,7 +529,7 @@
 
         <p>In <xref ref="section-exponent-rules">Section</xref>, we developed rules for simplifying expressions with whole number (<m>0</m>, <m>1</m>, <m>2</m>, <m>3</m>, etc.) exponents. These same rules apply even if the exponent is not a whole number. (Spoiler alert: The exponent rules work for all real number exponents.) We'll now focus on the meaning of negative integer exponents and how we can combine negative integer exponents with exponents rules we've previously learned.</p>
 
-        <p>To consider the effects of negative integer exponents, let's extend the pattern we examined in the <xref ref="section-exponent-rules">Section</xref> section.  To remind us of the pattern we previously saw: each time we move down a row, we reduce the power by 1 and we divide the value by 2.  We can continue this pattern in the power and value columns, paying particula attention to the values for negative exponents:</p>
+        <p>To consider the effects of negative integer exponents, let's extend the pattern we examined in the <xref ref="section-exponent-rules">Section</xref> section.  To remind us of the pattern we previously saw: each time we move down a row, we reduce the power by 1 and we divide the value by 2.  We can continue this pattern in the power and value columns, paying particular attention to the values for negative exponents:</p>
 
         <table>
             <tabular>
@@ -734,37 +639,22 @@
 -->
         <p>Since the choice of base <m>2</m> was arbitrary, and this pattern works for all integers, so we have the <term>negative exponent rule</term>, for any nonzero real number <m>a</m> and any whole number <m>n</m>: <me>a^{-n} = \frac{1}{a^n}</me></p>
 
-        <p>What about <m>\frac{1}{a^{-n}}</m>?</p>
-        <p>To show how this simplifies, we use the <xref ref="item-negative-exponent-definition" text="title">definition of negative expoenents</xref>..
+        <remark>
+            <p>What about <m>\frac{1}{a^{-n}}</m>?</p>
+        <p>To show how this simplifies, we use the <xref ref="item-exponent-rules-negative-exponent-definition">negative exponent rule</xref>:
         <md>
             <mrow>\frac{1}{a^{-n}}\amp=\frac{1}{\frac{1}{a^n}}</mrow>
             <mrow>\amp=1 \cdot \frac{a^n}{1}</mrow>
             <mrow>\amp=\frac{a^n}{1}</mrow>
             <mrow>\amp=a^n</mrow>
         </md></p>
-
-        <p>We will summarize what we derived:</p>
-
-        <list xml:id="list-negative-exponent-rules">
-            <title>Negative Exponent Rules</title>
-            <introduction>
-                <p>If <m>a</m> is a real number, and <m>n</m> is an integer, then we have the following rules:</p>
-            </introduction>
-            <ol>
-                <li xml:id="item-negative-exponent-definition">
-                    <p><m>a^{-n} = \frac{1}{a^n}</m></p>
-                </li>
-                <li>
-                    <p><m>\frac{1}{a^{-n}} = a^n</m></p>
-                </li>
-            </ol>
-        </list>
+        </remark>
 
         <remark><p>Traditionally, when mathematicians simplify an expression they write the expression using only positive exponents. (Negative exponents aren't quite as <q>simple</q> as positive exponents.) This can always be accomplished using the negative exponent rule, and you will often be asked to state your final result using only positive exponents.</p></remark>
 
         <example>
             <statement>
-                <p>Rewrite the following expressions without negative exponents, assuming <m>x \neq 0</m> and <m>y \neq 0</m>.
+                <p>Rewrite the following expressions without negative exponents, assuming that all variables represent non-zero real numbers.
                 <ol label="a.">
                     <li><p><m>5^{-3}</m></p></li>
                     <li><p><m>4y^{-6}</m></p></li>
@@ -782,7 +672,7 @@
                         <mrow> 4y^{-6} \amp= 4\cdot \frac{1}{y^{6}} </mrow>
                         <mrow>  \amp= \frac{4}{y^6} </mrow>
                     </md></p></li>   
-                <li><p>We will first use the <xref ref="item-exponent-rules-quotient-to-a-power" text="title">quotient to a power rule</xref>, and then use the <xref ref="list-negative-exponent-rules" text="title">>negative exponent rule</xref>:<md>
+                <li><p>We will first use the <xref ref="item-exponent-rules-quotient-to-a-power" text="title">quotient to a power rule</xref>, and then use the <xref ref="item-exponent-rules-negative-exponent-definition" text="title">>negative exponent rule</xref>:<md>
                     <mrow> \left(\frac{3}{7}\right)^{-2} \amp= \left(\frac{3^{-2}}{7^{-2}}\right) </mrow>
                     <mrow>  \amp= \frac{7^2}{3^2} </mrow>
                     <mrow>  \amp= \frac{49}{9} </mrow>
@@ -793,7 +683,7 @@
 
         <example>
             <statement>
-                <p>Simplify <m>\dfrac{ 3 x^{-4} }{ yz^{-2} }</m>.  Do not leave negative exponents in your final answer.  You may assume all variables represent non-zero real numbers. </p>
+                <p>Simplify <m>\dfrac{ 3 x^{-4} }{ yz^{-2} }</m>. Do not leave negative exponents in the final answer, and assume all variables represent non-zero real numbers.</p>
             </statement>
             <solution>
                 <p><md>
@@ -802,9 +692,13 @@
             </solution>
         </example>
 
-        <example>
+        <exercise>
+            <webwork source="BasicAlgebra/Exponents/negExp50.pg"/>
+        </exercise>
+
+<!--         <example>
             <statement>
-                <p>Simplify <m>\dfrac{ 3^{5} x^{-7} }{ 3^{-6}x^{2} }</m>.  Do not leave negative exponents in your final answer.  You may assume all variables represent non-zero real numbers. </p>
+                <p>Simplify <m>\dfrac{ 3^{5} x^{-7} }{ 3^{-6}x^{2} }</m>. Do not leave negative exponents in the final answer, and assume all variables represent non-zero real numbers.</p>
             </statement>
             <solution>
                 <p>There are two main approaches we could use on this problem.</p>
@@ -824,9 +718,9 @@
                     <p>Both approaches are correct and obtain the same simplified expression. There will be times where you'll be more inclined to use one approach over the other.
                     </p>
             </solution>
-        </example>
+        </example> -->
 
-        <exercise>
+<!--         <exercise>
             <webwork source="BasicAlgebra/Exponents/negExp75.pg" seed="7652"/>
         </exercise>
         <exercise>
@@ -841,35 +735,15 @@
         <exercise>
             <webwork source="BasicAlgebra/Exponents/negExp35.pg" seed="6652"/>
         </exercise>
-
-
-
-        <p>With all exponent rules we have learned, we are able to simplify more involved expressions.  As we approach these, we must again remind ourselves of the importance of following the <xref ref="list-order-of-operations" text="title">order of operations</xref>.  While we have some flexibility in choosing which exponent rule to apply, we do have some constraints imposed by the order of operations.</p>
-
-        <example>
-            <statement>
-                <p>Simplify <m>\left( 7^{4} x^{-6} t^{2} \right)^{-5} \left( 7 x^{-2} t^{-7} \right)^{4}</m>.  Do not leave negative exponents in your final answer.  You may assume all variables represent non-zero real numbers. </p>
-            </statement>
-            <solution>
-                <p>There isn't always a clear process to decide which method is most efficient to simplify expressions with negative exponents. In this example, we will begin by applying the <xref ref="item-exponent-rules-product-to-a-power" text="title">product to a power rule</xref>, followed by the <xref ref="item-exponent-rules-power-to-a-power" text="title">power to a power rule</xref>.  Remember that the rules work the same, even if some of the exponents are negative numbers.<md>
-                        <mrow>\left( 7^{4} x^{-6} t^{2} \right)^{-5} \left( 7 x^{-2} t^{-7} \right)^{4}
-                         \amp=  \left( 7^{4} \right)^{-5} \left( x^{-6} \right)^{-5} \left( t^{2} \right)^{-5} \cdot \left( 7 \right)^{4} \left(x^{-2}\right)^{4}  \left(t^{-7} \right)^{4}  </mrow>
-                        <mrow> \amp=   7^{-20} x^{30} t^{-10} \cdot 7^{4} x^{-8} t^{-28}</mrow>
-                        <mrow>\amp= 7^{-20+4} x^{30-8} t^{-10-28}</mrow>
-                        <mrow>\amp= 7^{-16} x^{22} t^{-38}</mrow>
-                        <mrow>\amp= \frac{x^{22}}{7^{16}t^{38}} </mrow>
-                    </md></p>
-            </solution>
-        </example>
+ -->
 
 
     </subsection>
 
-<!--TODO: add negative exponent rule to this; consider moving it right after negative exponent property is introduced-->
     <subsection>
         <title>Summary of Exponent Rules</title>
 
-        <p>Now that we have exponent rules for products, quotients, and a rule for an exponent of zero, let's collect them together.</p>
+        <p>Now that we have exponent rules for products, quotients, a rule for an exponent of zero, and rules for negative exponents, let's collect them together.</p>
 
         <list xml:id="list-exponent-rules">
             <title>Summary of the Rules of Exponents for Multiplication and Division</title>
@@ -901,21 +775,150 @@
                     <title>Zero Exponent Rule</title>
                     <p><m>a^{0} = 1</m>, as long as <m>a \neq 0</m></p>
                 </li>
+                <li xml:id="item-exponent-rules-negative-exponent-definition">
+                    <title>Negative Exponent Rule</title>
+                    <p><m>a^{-n} = \frac{1}{a^n}</m></p>
+                </li>
+                <li xml:id="item-exponent-rules-negative-exponent-reciprocal">
+                    <title>Negative Exponent Reciprocal Rule</title>
+                    <p><m>\frac{1}{a^{-n}} = a^n</m></p>
+                </li>
             </dl>
-            <conclusion>
-
-                <p>Remember that you should understand why all of these rules make sense. When in doubt, carefully rewrite powers as products to see which rule makes sense.</p>
-            </conclusion>
         </list>
 
-        <paragraphs>
+        <remark>
             <title>Why we have <q><m>a \neq 0</m></q> and <q><m>b \neq 0</m></q> for some rules</title>
 
-            <p>Whenever we're working with division, we have to be careful to make sure the rules we state don't ever imply that we might be dividing by zero.  Dividing by zero leads us to expressions that either have no meaning or their value is unable to be determined. Both <m>\dfrac{9}{0}</m> and <m>\dfrac{0}{0}</m> are undefined.</p>
+            <p>Whenever we're working with division, we have to be careful to make sure the rules we state don't ever imply that we might be dividing by zero.  Dividing by zero leads us to expressions that either have no meaning or their value is unable to be determined. Both <m>\dfrac{9}{0}</m> and <m>\dfrac{0}{0}</m> are undefined.</p>           
+        </remark>
 
-            <p>This explains why we need to include such restrictions for the <xref ref="item-exponent-rules-quotient" text="title">quotient rule</xref> or the <xref ref="item-exponent-rules-quotient-to-a-power" text="title">quotient to a power rule</xref>: We must avoid possibly suggesting a denominator might be zero.  This doesn't address why we need this restriction on the <xref ref="item-exponent-rules-zero-exponent" text="title">zero exponent rule</xref>.</p>
-            
-        </paragraphs>
+        <p>As we mentioned before, many situations we'll come across will require us to use more than one exponent rule.  In these situations, we'll have to decide which rule to use first.  There are often different, correct approaches we could take. But if we rely on <xref ref="list-order-of-operations" text="title">order of operations</xref>, we will have a straightforward approach to simplify the expression correctly.</p>
+
+
+        <example>
+            <statement>
+                <p>Simplify the following expressions. Do not leave negative exponents in the final answer, and assume all variables represent non-zero real numbers.
+                <ol>
+                    <li><p><m>\dfrac{6x^{3}}{2x^{7}}</m></p></li> 
+                    <li><p><m>4\left(\frac{1}{5}tv^{-4}\right)^{2}</m></p></li>
+                    <li><p><m>\left(\dfrac{3^{0}y^{4}\cdot y^{5}}{6y^2}\right)^{3}</m></p></li>   
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+               <li><p> In the expression <m>\frac{6x^{3}}{2x^{7}}</m>, the coefficients reduce using the properties of fractions. One way to simplify the variables components is to cancel them:
+                <md>
+                    <mrow> \frac{6x^{3}}{2x^{7}} \amp= \frac{6}{2} \cdot \frac{x^{3}}{x^{7}}</mrow>
+                    <mrow>                       \amp= 3 \cdot \frac{1}{x^{4}}</mrow>
+                    <mrow>                       \amp= \frac{3}{x^4}   </mrow>
+                </md>
+                Alternately, we could have turned <m>\frac{x^3}{x^7}</m> into <m>x^{-4}</m> before turning it back into <m>\frac{1}{x^4}</m>.
+                </p></li>
+                <li><p>In the expression <m>4\left(\frac{1}{5}tv^{-4}\right)^{2}</m>, the exponent <m>2</m> applies to the expression inside the parentheses. 
+                <md>
+                    <mrow> 4\left(\frac{1}{5}tv^{-4}\right)^{2} \amp= 4\left(\frac{1}{5}\right)^{2}(t^2)\left(v^{-4}\right)^2</mrow>
+                    <mrow> \amp= 4\left(\frac{1}{25}\right)(t^2)\left(v^{-4\cdot 2}\right)</mrow>
+                    <mrow> \amp= 4\left(\frac{1}{25}\right)(t^2)\left(v^{-8}\right)</mrow>
+                    <mrow> \amp= 4\left(\frac{1}{25}\right)(t^2)\left(\frac{1}{v^{8}}\right)</mrow>
+                    <mrow> \amp= \frac{4t^2}{25v^{8}}</mrow>
+                </md></p></li>
+                <li><p>To follow the order of operations in the expression <m>\left(\frac{5^{0}y^{4}\cdot y^{5}}{5y^2}\right)^{3}</m>, the numerator inside the parentheses should be dealt with first. After that, we'll simplify the quotient inside the parentheses. As a final step, we'll apply the exponent to that simplified expression:
+                <md>
+                    <mrow> \left(\frac{3^0 y^4 \cdot y^5}{6y^2}\right)^3 \amp=  \left(\frac{1\cdot y^{4+5}}{6y^2}\right)^3</mrow>
+                    <mrow> \amp= \left(\frac{y^{9}}{6y^2}\right)^{3}</mrow>
+                    <mrow> \amp= \left(\frac{y^7}{6}\right)^3</mrow>
+                    <mrow> \amp= \frac{\left(y^7\right)^3}{6^3}</mrow>
+                    <mrow> \amp= \frac{y^{7\cdot 3}}{216}</mrow>
+                    <mrow> \amp= \frac{y^{21}}{216}</mrow>
+                </md>
+                </p></li>
+                </ol></p>
+            </solution>
+        </example>
+
+        <example>
+            <statement>
+                <p>Simplify <m>\left( 7^{4} x^{-6} t^{2} \right)^{-5} \left( 7 x^{-2} t^{-7} \right)^{4}</m>.  Do not leave negative exponents in the final answer, and assume all variables represent non-zero real numbers. Leave larger numbers (such as <m>7^{10}</m>) in exponent form.</p>
+            </statement>
+            <solution>
+                <p>We'll again rely on the order of operations, and look to simplify anything inside parentheses first and then apply exponents. In this example, we will begin by applying the <xref ref="item-exponent-rules-product-to-a-power" text="title">product to a power rule</xref>, followed by the <xref ref="item-exponent-rules-power-to-a-power" text="title">power to a power rule</xref>.
+                <md>
+                    <mrow>\left( 7^{4} x^{-6} t^{2} \right)^{-5} \left( 7 x^{-2} t^{-7} \right)^{4}
+                         \amp=  \left( 7^{4} \right)^{-5} \left( x^{-6} \right)^{-5} \left( t^{2} \right)^{-5} \cdot \left( 7 \right)^{4} \left(x^{-2}\right)^{4}  \left(t^{-7} \right)^{4}  </mrow>
+                    <mrow> \amp=   7^{-20} x^{30} t^{-10} \cdot 7^{4} x^{-8} t^{-28}</mrow>
+                    <mrow>\amp= 7^{-20+4} x^{30-8} t^{-10-28}</mrow>
+                    <mrow>\amp= 7^{-16} x^{22} t^{-38}</mrow>
+                    <mrow>\amp= \frac{x^{22}}{7^{16}t^{38}} </mrow>
+                </md></p>
+            </solution>
+        </example>
+
+
+        <warning>
+            <p>It is often tempting to want to apply the rules of exponents to expressions containing addition or subtraction. None of the <xref ref="list-exponent-rules">rules of exponents</xref> involve addition or subtraction in the initial expression though. Because whole number exponents mean repeated multiplication, not repeated addition or subtraction, trying to apply multiplication rules in situations that do not use multiplication simply doesn't work.</p>
+            <p>Trying to replace the <xref ref="exponent-rules-product" text="title">exponent rules</xref> with an equivalent <q>sum rule,</q> say <m>a^n + a^m = a^{n+m}</m>, will fail. 
+            <md>
+                <mrow>a^n + a^m \amp\stackrel{?}{=} a^{n+m}</mrow>
+                <mrow>2^3 + 2^4 \amp\stackrel{?}{=} 2^{3+4}</mrow>
+                <mrow>24 \amp\neq 128</mrow>
+            </md> 
+            As we can see, that's not even close. This attempt at a <q>sum rule</q> falls apart with our first attempt. In fact, without knowing values for <m>a</m>, <m>n</m>, and <m>m</m>, there's no way to simplify the expression <m>a^n + a^m</m>.</p>            
+        </warning>
+
+
+<!--TODO: turn this into true false WW-->
+        <example>
+            <statement>
+                <p>Decide whether the statements are true or false and provide mathematical reasoning for your decision.
+                <ol>
+                    <li><p><m>\left(7+8\right)^3=7^3+8^3</m></p></li>
+                    <li><p><m>2(x)^3=2^3 \cdot x^3</m></p></li> 
+                    <li><p><m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m></p></li>
+                    <li><p><m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m></p></li> 
+                    <li><p><m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m></p></li> 
+                    <li><p><m>x^2+x^3=x^5</m></p></li>
+                    <li><p><m>3^2 \cdot 2^3=6^5</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p>
+                <ol>
+                 <li><p>The equation <m>\left(7+8\right)^3=7^3+8^3</m> is false. Following the order of operations, on the left <m>\left(7+8\right)^3</m> would simplify as
+                <md>
+                    <mrow>\left(7+8\right)^3\amp=15^3</mrow>
+                    <mrow>\amp=3375</mrow>
+               <intertext>
+                    However, on the right side, we have
+                </intertext>
+                    <mrow>7^3+8^3\amp=343+512</mrow>
+                    <mrow>\amp=855</mrow>
+                </md>
+                Since <m>3375\neq 855</m>, the equation is false.
+                </p></li>
+                <li><p>The equation <m>2(x)^3=2^3 \cdot x^3</m> is false. In <m>2(x)^3</m>, the cube applies only to the <m>x</m>, not the <m>2</m>.</p></li>
+                <li><p>The equation <m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m> is true. The coefficients do get multiplied together and the exponents added when the expressions are multiplied.</p></li>
+                <li><p>The equation <m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m> is false. When you have a power-to-a-power, multiply the exponents rather than adding them. So, 
+                <me>\left(x^3y^5\right)^4=x^{3 \cdot 4}y^{5 \cdot 4}</me>
+                </p></li>
+                <li><p>The equation <m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m> is false. The order of operations says we should apply the exponent before multiplying by the <m>2</m>. So
+                <me>2\left(x^2y^5\right)^3=2x^6y^{15}</me>
+                </p></li>
+                <li><p>The equation <m>x^2+x^3=x^5</m> is false. The two terms on the left hand side are not like-terms and there is no way to combine them!</p></li>
+                <li><p>The equation <m>3^2 \cdot 2^3=6^5</m> is false. 
+                Following the order of operations, on the left <m>3^2 \cdot 2^3</m> would simplify as
+                <md>
+                    <mrow>3^2 \cdot 2^3\amp=9 \cdot 8</mrow>
+                    <mrow>\amp=72</mrow>
+               <intertext>
+                    However, on the right side, we have
+                </intertext>
+                    <mrow>6^5\amp=7776</mrow>
+                </md>
+                Since <m>72\neq 7776</m>, the equation is false.
+                </p></li>
+            </ol></p></solution>
+        </example>
+
     </subsection>
 
     <subsection>
@@ -930,7 +933,7 @@
 
         <p>We have descriptive language for all numbers, based on the place value of the different digits: ones, tens, thousands, ten thousands, etc. We tend to rely upon this language more when we start dealing with larger numbers.  Here's a chart for some of the most common numbers we see and use in the world around us:</p>
 
-        <table>
+        <table xml:id="table-positive-powers-of-ten">
             <tabular>
                 <row>
                     <cell>Number</cell>
@@ -993,9 +996,9 @@
                 <p>Perform the following operations: <ol>
                     <li><p>Multiply <m>5.7</m> by <m>10</m>.</p></li>
                     <li><p>Multiply <m>3.1</m> by <m>10{,}000</m>.</p></li>
-                    <li><p>Divide <m>6.4</m> by <m>1{,}000</m>.</p></li>
+<!--                     <li><p>Divide <m>6.4</m> by <m>1{,}000</m>.</p></li>
                     <li><p>Divide <m>9.3</m> by <m>100{,}000</m>.</p></li>
-                </ol></p>
+ -->                </ol></p>
             </statement>
             <solution>
                 <p><ol>
@@ -1003,21 +1006,21 @@
                         <p><m>10 = 10^1</m>and multiplying by <m>10^1</m> moved the decimal point one place to the right.</p></li>
                     <li><p><m>3.1 \times 10000=31{,}000</m></p>
                         <p><m>10,000 = 10^4</m> and multiplying by <m>10^4</m> moved the decimal point four places to the right.</p></li>
-                    <li><p><m>6.4 \div 1000 = 0.0064</m></p>
+<!--                     <li><p><m>6.4 \div 1000 = 0.0064</m></p>
                         <p><m>1,000 = 10^3</m> and dividing by <m>10^3</m> moved the decimal point three places to the left.</p></li>
                     <li><p><m>9.3 \div 100000 = 0.000093</m></p>
                         <p><m>100,000 = 10^5</m> and  dividing by <m>10^5</m> moved the decimal five places to the left.</p></li>
-                </ol></p>
+ -->                </ol></p>
             </solution>
         </example>
 
         <p>Multiplying a number by <m>10^n</m> where <m>n</m> is a positive integer had the effect of moving the decimal point <m>n</m> places to the right, while dividing by <m>10^n</m> where <m>n</m> is a positive integer had the effect of moving the decimal point <m>n</m> places to the left.</p>
 
-        <p>Every number can be written as a product of a number between 1 and 10 and a power of 10. For example, <m>650 = 6.5 \times 100</m>.  Since <m>100 = 10^2</m>, we can also write <m>650 = 6.5 \cdot 10^{2}</m>.  The power of 10 being used is called the number's <term>order of magnitude</term>. 650 has order of magnitude 2 and 650 written in scientific notation is <m>6.5 \times 10^{2}</m>.</p>
+        <p>Every number can be written as a product of a number between 1 and 10 and a power of 10. For example, <m>650 = 6.5 \times 100</m>.  Since <m>100 = 10^2</m>, we can also write <m>650 = 6.5 \cdot 10^{2}</m>.  The power of 10 being used is called the number's <term>order of magnitude</term>. The number <m>650</m> has order of magnitude 2 and <m>650</m> written in scientific notation is <m>6.5 \times 10^{2}</m>.</p>
 
         <definition xml:id="definition-scientific-notation">
             <statement>
-                <p>A positive number is in <term>scientific notation</term> when it has the form <m>a \times 10^n</m> where <m>1 \le a \lt 10 </m> and <m>n</m> is an integer. <m>n</m> is called the number's <term>order of magnitude</term>. </p>
+                <p>A positive number is written in <term>scientific notation</term> when it has the form <m>a \times 10^n</m> where <m>1 \le a \lt 10 </m> and <m>n</m> is an integer. The exponent <m>n</m> used here is called the number's <term>order of magnitude</term>. </p>
             </statement>
         </definition>
     
@@ -1025,13 +1028,15 @@
 
     <subsection>
         <title>Scientific Notation for Large Numbers</title>
- <!--       
-        <p>To write a numbers larger than <m>10</m> in scientific notation, we write a decimal point after the first non-zero digit of the number and then count the number of places between where the decimal point originally was and where it now is.  That number of place values is the order of magnitude of the number and becomes the exponent placed on the <m>10</m>.  Numbers larger than or equal to 10 will always have a positive exponent on ten and therefore a positive order of magnitude. </p>
+        
+        <p>To write a numbers larger than <m>10</m> in scientific notation, we write a decimal point after the first non-zero digit of the number and then count the number of places between where the decimal point originally was and where it now is. Scientific notation communicates the size of a number and the order of magnitude just as quickly, but with no need to write long strings of zeros or to try to decipher the language of quintillions, sextillions, etc.</p>
+
+<!--          That number of place values is the order of magnitude of the number and becomes the exponent placed on the <m>10</m>.  Numbers larger than or equal to 10 will always have a positive exponent on ten and therefore a positive order of magnitude. </p>
 
         <p>If we stop and this about this for a moment, we're taking a large number and reducing it to a number between one and ten.  To have this number keep the same value, we need to multipy by a positive power of 10.  </p>
    
         <p>To change Proxima Centauri's distance to the sun (about 40,208,000,000,000 km) to scientific notation, we first place the decimal point after the <m>4</m> to obtain <m>4.0208</m>, and then multiply this number by <m>10^{13}</m>, the magnitude of the original number.  Proxima Centauri's distance to our sun is about <m>4.0208 \times 10^{13}</m> km. We can see, compared to standard notation, scientific notation can quickly, yet more accurately, express the magnitude of a number.</p>
-        <p>Writing out in standard notation, 4 being followed by 13 other digits quickly communicates the size of the number.  Scientific notation communicates the size of a number and the order of magnitude just as quickly, but with no need to write long strings of zeros or to try to decipher the language of quintillions, sextillions, etc.  </p>
+        <p>Writing out in standard notation, 4 being followed by 13 other digits quickly communicates the size of the number. -->  
 
         <example>
             <statement>
@@ -1047,11 +1052,11 @@
                 <row>
                     <cell>one second</cell>
                     <cell>1 second</cell>
-                    <cell><m>1 \times 10^{0}</m> seconds</cell>
+                    <cell><m>1 \times 10^{0}</m> second</cell>
                 </row>
                 <row>
                     <cell>one minute</cell>
-                    <cell>60 second</cell>
+                    <cell>60 seconds</cell>
                     <cell><m>6 \times 10^{1}</m> seconds</cell>
                 </row>
                 <row>
@@ -1078,48 +1083,47 @@
         </table>
         </statement>
         </example>
--->
+
         <example>
             <statement>
                 <p>Write each of the following in scientific notation:<ol>
-                    <li><p>the federal debt at the close of business on Sept. 30, 2016: about 19,600,000,000,000  dollars</p></li>
-                    <li><p><url href="http://www.prb.org/pdf16/prb-wpds2016-web-2016.pdf">the world's population</url> in 2016: about 7,418,000,000 people</p></li>
-                    <li><p>the earth's diameter: about 12,700,000 meters</p></li>
-                    <li><p>Avogadro's number: about 602,200,000,000,000,000,000,000</p></li>
+                    <li><p>The federal debt at the close of business on Sept. 30, 2016: about <m>19{,}600{,}000{,}000{,}000</m> dollars</p></li>
+                    <li><p><url href="http://www.prb.org/pdf16/prb-wpds2016-web-2016.pdf">The world's population</url> in 2016: about 7,418,000,000 people</p></li>
                 </ol></p>
             </statement>
             <solution>
                 <p><ol>
-                    <li><p>To convert the federal debt to scientific notation, we must first move the decimal behind the first non-zero digit: 1.96.  We must also recognize that when we move the decimal point between the <m>1</m> and <m>9</m>, we moved the decimal 13 places: <me>
-                    1\overbrace{9{,}600{,}000{,}000{,}000}^{13\text{ places}} = 1.96\times 10^{13}
-                    </me> Since we moved the decimal point 13 places, the federal debt can be written as <m>1.96\times 10^{13}</m> dollars at the close of business on Sept. 30, 2016.</p></li>
-
-                    <li><p>The world's population in 2016 was about <me>7{,}\overbrace{418 000 000}^{12 \text{places}} = 7.418 \times 10^{12}\text{.}</me></p></li>
-
-                    <li><p>The earth diameter is:<me> 12,700,000 = 1.27\times 10^{7}\text{ meters.}</me></p></li>
-
-                    <li><p>Avogadro's number is about:<me>602,200,000,000,000,000,000,000 = 6.022\times 10^{23}</me></p></li>
-
-<!--                    
-                    <li><p>To convert the world's population into scientific notaiton, we start by placing the decimal behind the leading <m>7</m>: <m>7. 418</m>.  In doing this, we moved the decimal point 12 places:<me>
-                   7{,}\overbrace{418 000 000}^{12 \text{places}} = 7.418 \times 10^{12}
-                    </me> Having moved the decimal point 12 places, the order of magnitude of this number is 12 and the world's population in 2016 was about <m>7.418 \times 10^{12}</m>  people.</p></li>
-
-                    <li><p>We'll place the decimal in <m>12,700,000</m> between the <m>1</m> and <m>2</m> and our scientific notation will begin with <m>1.27</m>.  Now taking into account the original number was greater than 10 and the fact that we moved the decimal point <m>7</m> places, the diameter of the earth is about <m>1.27\times 10^{7}</m> meters.</p></li>
-
-                    <li><p>Anyone who's had a chemistry class is probably familar with Avogadro's number.  To convert this into scientific notation, we place the decimal point behind the 6 and count that we've moved the decimal point <m>23</m> places, giving us <m>6.022\times 10^{23}</m> for Avogadro's number written in scientific notation.</p></li>
--->
+                    <li><p>To convert the federal debt to scientific notation, we will count the number of digits after the first non-zero digit <m>1</m>. Since there are 13 places after the first non-zero digit, we write: 
+                        <me>1\overbrace{9{,}600{,}000{,}000{,}000}^{13\text{ places}} \text{ dollars} = 1.96\times 10^{13} \text{ dollars}</me> 
+                    </p></li>
+                    <li><p>Since there are nine places after the first non-zero digit of <m>7</m>, the world's population in 2016 was about <me>7{,}\overbrace{418{,}000{,}000}^{9\text{ places}} \text{ people} = 7.418 \times 10^{9} \text{ people}</me></p></li>
                 </ol></p>
             </solution>
         </example>
 
-        <exercise>
+        <example>
+            <statement>
+                <p>Convert each of the following from scientific notation to decimal notation (without any exponents):<ol>
+                    <li><p>The earth's diameter: about <m>1.27\times 10^{7}</m> meters</p></li>
+                    <li><p>Avogadro's number: about <m>6.022\times 10^{23}</m></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>To convert this number to decimal notation we will move the decimal point after the digit <m>1</m> nine places to the right, including zeros where necessary. The earth's diameter is: <me>1.27\times 10^{7}\text{ meters} = 1\overbrace{2{,}700{,}000}^{7\text{ places}}\text{ meters}</me></p></li>
+
+                    <li><p>Avogadro's number is about: <me>6.022\times 10^{23} = 6\overbrace{02{,}200{,}000{,}000{,}000{,}000{,}000{,}000}^{23\text{ places}}</me></p></li>
+                </ol></p>
+            </solution>
+        </example>
+
+<!--         <exercise>
             <webwork source="BasicAlgebra/NumberBasics/ScientificNotation60.pg" seed="3002"/>
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/NumberBasics/ScientificNotation20.pg" seed="1000"/>
         </exercise>
-
+ -->
     </subsection>
 
 
@@ -1127,58 +1131,112 @@
     <subsection>
         <title>Scientific Notation for Small Numbers</title>
 
-        <p>Scientific notation can also be extremely useful when working with numbers smaller than <m>1</m> as well.  To work with scientific notation and numbers smaller than <m>1</m>, consider our earlier example, Example <xref ref="example-mult-div-powers-ten" />.  These results of the last two parts were decimals small than 1.  </p>
+        <p>Scientific notation can also be extremely useful when working with numbers smaller than <m>1</m> as well. As we saw in <xref ref="table-positive-powers-of-ten">Table</xref>, we can denote thousands, millions, billions, trillions, etc., with positive integer exponents on <m>10</m>. We can similarly denote numbers smaller than 1 (which are written as tenths, hundreds, thousandths, millionths, billionths, trillionths, etc.), with <emph>negative</emph> integer exponents on <m>10</m>. This relationship is outlined in <xref ref="table-negative-powers-of-ten">Table</xref>.</p>
 
-        <p>When we convert a decimal smaller than 1 into scientific notation, we need to divide by a power of 10 instead of multiplying.</p>
+        <table xml:id="table-negative-powers-of-ten">
+            <tabular>
+                <row>
+                    <cell>Number</cell>
+                    <cell>US English Name</cell>
+                    <cell>Power of <m>10</m></cell>
+                </row>
+                <row>
+                    <cell><m>1</m></cell>
+                    <cell>one</cell>
+                    <cell><m>10^{0}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.1</m></cell>
+                    <cell>one tenth</cell>
+                    <cell><m>\frac{1}{10}=10^{-1}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.01</m></cell>
+                    <cell>one hundredth</cell>
+                    <cell><m>\frac{1}{100}=10^{-2}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.001</m></cell>
+                    <cell>one thousandth</cell>
+                    <cell><m>\frac{1}{1{,}000}=10^{-3}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.0001</m></cell>
+                    <cell>one ten thousandth</cell>
+                    <cell><m>\frac{1}{10{,}000}=10^{-4}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.00001</m></cell>
+                    <cell>one hundred thousandth</cell>
+                    <cell><m>\frac{1}{100{,}000}=10^{-5}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.000001</m></cell>
+                    <cell>one millionth</cell>
+                    <cell><m>\frac{1}{1{,}000{,}000}=10^{-6}</m></cell>
+                </row>
+                <row>
+                    <cell><m>0.000000001</m></cell>
+                    <cell>one billionth</cell>
+                    <cell><m>\frac{1}{1{,}000{,}000{,}000}=10^{-9}</m></cell>
+                </row>
+            </tabular>
+        </table>    
 
-        <p>For example, <m>0.05 = 5 \div 100</m> and now think of <m>100</m> as a power of ten, or <m>10^2</m>. Since <m>5 \div 10^2</m>, is very close to scientific notation, except for the fact that we're dividing by <m>10^2</m> rather than multiplying. Next, think of <m>5 \div 10^2</m> as a fraction <m>\dfrac{5}{10^2}</m>.  Using negative exponents, we can rewrite this as <m>5\times10^{-2}</m> and we now have 0.05 written in scientific notation: <m>0.05 = 5\times10^{-2}</m></p>
+        <p>To see how this works for with a digit other than <m>1</m>, let's look at <m>0.05</m>. When we state <m>0.05</m> as a number, we say <q>5 hundredths.</q> Thus <m>0.05=5\times \frac{1}{100}</m>. The fraction <m>\frac{1}{100}</m> can be written as <m>\frac{1}{10^2}</m>, which we know is equivalent to <m>10^{-2}</m>. Using negative exponents, we can then rewrite <m>0.05</m> as <m>5\times10^{-2}</m>. This is the scientific notation for <m>0.05</m>.</p>
     
+        <p>In practice, we won't generally do that much computation. To write a small number in scientific notation we start as we did before and place the decimal point behind the first non-zero digit.  We then count the number of decimal places between where the decimal had originally been and where it now is. Keep in mind that negative powers of ten are used to help represent very small numbers (smaller than <m>1</m>) and positive powers of ten are used to represent very large numbers (larger than <m>1</m>). So to convert <m>0.05</m> to scientific notation, we have:
+            <me>0\overbrace{.\highlight{05}}^{2\text{ places}}=5\times 10^{-2}</me>
+        </p>
         <example>
             <p>In quantum mechanics, there is an important value called the <url href="https://en.wikipedia.org/wiki/Planck_constant">Planck Constant</url>. Written as a decimal, the value of the Planck constant (rounded to 4 significant digits) is <m>0.0000000000000000000000000000000006626</m>.</p>
- <!--           
-            <p>It's a bit dizzying to look at that decimal and even to count out how many <m>0</m>s are in it.  Some folks use spaces every three digits after a decimal to help us to count the zeros. If we do this, then we'd have <m>0.000~000~000~000~000~000~000~000~000~000~000~662~6</m> joule-seconds. With the spaces included,  we can count the zeros more easily. Still, it's challenging to both put this number into words or use it in a calculation.  </p>
-
-            <p>Scientific notation, however, quickly communicates both the value and the order of magnitude of the Planck constant.--><p>To change the decimal to <m>6.626</m>, we need to move the decimal point <m>34</m> times. As a result, in scientific notation, the Planck Constant value is <m>6.626 \times 10^{-34}</m>.  It will be much easier to use <m>6.626 \times 10^{-34}</m> in a calculation.</p>
+            <p>In scientific notation, this number will be <m>6.626\times 10^{?}</m>. To determine the exponent, we need to count the number of places from where the decimal is when the number is written as <m>0.0000000000000000000000000000000006626</m> to where it will be when written in scientific notation:
+            <me>0\overbrace{.\highlight{0000000000000000000000000000000006}}^{34\text{ places}}626</me>
+            As a result, in scientific notation, the Planck Constant value is <m>6.626 \times 10^{-34}</m>.  It will be much easier to use <m>6.626 \times 10^{-34}</m> in a calculation, and an added benefit is that scientific notation quickly communicates both the value and the order of magnitude of the Planck constant.</p>
         </example>
         
-        <p>The fact that we now have negative powers of ten should stand out as being different from what occurred with the large numbers. <!--  If we try to use powers of ten to get from 6.626 to the Planck Constant, we clearly cannot multiply by positive powers of ten.  This would only give us a number larger than 6.626 and clearly the Plank Constant is very, very small.  A negative power of ten means that we're really dividing by that power of ten. -->To write a small number in scientific notation, we start as we did before and place the decimal point behind the first non-zero digit.  We then count the number of decimal places between where the decimal had originally been and where it now is. Keep in mind that negative powers of ten are used to help represent very small numbers (smaller than <m>1</m>) and positive powers of ten are used to represent very large numbers (larger than <m>1</m>). <!--  This becomes the number's order of magnitude and the power of ten.  The key difference is that these powers are negative numbers. --></p>
-
         <example>
            <statement>
                 <p>Write each of the following in scientific notation:<ol>
-                    <li><p>the weight of a single grain of long grain rice: about <m>0.029</m> grams <!-- (<url href="http://www.bluebulbprojects.com/measureofthings/results.php?comp=weight&unit=gms&amt=3.0E-7&sort=pr&p=1"/>) --></p></li> 
-                    <li><p>the weight of a poppy seed: about <m>0.0000003</m> kilograms <!-- (<url href="http://www.bluebulbprojects.com/measureofthings/results.php?comp=weight&unit=kgms&amt=3.0E-7&sort=pr&p=1"/>) --></p> </li> 
-                    <li><p>the gate pitch of a <url href="http://www.prb.org/pdf16/prb-wpds2016-web-2016.pdf">microprocessor</url>: <m>0.000000014</m> meters (<m>14</m>nm)</p></li>
+                    <li><p>The weight of a single grain of long grain rice: about <m>0.029</m> grams <!-- (<url href="http://www.bluebulbprojects.com/measureofthings/results.php?comp=weight&unit=gms&amt=3.0E-7&sort=pr&p=1"/>) --></p></li> 
+                    <li><p>The gate pitch of a <url href="http://www.prb.org/pdf16/prb-wpds2016-web-2016.pdf">microprocessor</url>: <m>0.000000014</m> meters</p></li>
                 </ol></p>
             </statement>
             <solution>
                 <p><ol>
-                    <li><p>To convert the weight of a single grain of long grain rice to scientific notation, we must first move the decimal behind the first non-zero digit to obtain 2.9.  We must also recognize that when we move the decimal point between the <m>2</m> and <m>9</m>, we moved the decimal 2 places. Since 0.029 is smaller than one, <m>0.029 = 2.9 \times 10^{-2}</m>.</p></li>
+                    <li><p>To convert the weight of a single grain of long grain rice to scientific notation, we must first move the decimal behind the first non-zero digit to obtain <m>2.9</m>, which requires that we move the decimal point 2 places. Thus we have: <me>0\overbrace{.02}^{2\text{ places}}9\text{ grams} = 2.9 \times 10^{-2}\text{ grams}</me></p></li>
+                    <li><p>The gate pitch of a microprocessor is: <me>0\overbrace{.00000001}^{8 \text{ places}}4\text{ meters} = 1.4 \times 10^{-8}\text{ meters}</me></p></li>
+                </ol></p>
+            </solution>
+        </example>
+        <example>
+           <statement>
+                <p>Convert each of the following from scientific notation to decimal notation (without any exponents):<ol>
+                    <li><p>A download speed of <m>7.53\times 10^{-3}</m> Gigabyte per second</p></li>
+                    <li><p>The weight of a poppy seed: about <m>3 \times 10^{-7}</m> kilograms <!-- (<url href="http://www.bluebulbprojects.com/measureofthings/results.php?comp=weight&unit=kgms&amt=3.0E-7&sort=pr&p=1"/>) --></p></li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol>
+                    <li><p>To convert a download speed of <m>7.53\times 10^{-3}</m> Gigabyte per second to decimal notation, we will move the decimal point <m>3</m> places to the left and include the appropriate number of zeros:
+                        <me>7.53\times 10^{-3}\text{ Gigabyte per second} = 0\overbrace{.007}^{3\text{ places}}53\text{ Gigabyte per second}</me>
+                    </p></li>
 
-                    <li><p>The weight of a poppy seed is<me>0.\overbrace{0000003}^{7 \text{ places}} = 3 \times 10^{-7}\text{ grams.}</me></p></li>
-
-                    <li><p>The gate pitch of a microprocessor is<me>0.\overbrace{00000001}^{8 \text{ places}}4 = 1.4 \times 10^{-8}\text{ meters.}</me></p></li>
-
-<!--                    
-                    <li><p>To convert the weight of a poppy seed into scientific notation, we start by placing the decimal behind the <m>3</m>.  In doing this, we moved the decimal point 7 places:<me>
-                   0.\overbrace{0000003}^{7 \text{ places}} = 3 \times 10^{-7}
-                    </me> Having moved the decimal point 7 places, the order of magnitude of this number is -7 and the weight of a poppy seed is about <m>3 \times 10^{-7}</m> grams.</p></li>
-
-                    <li><p> To convert 0.000000014 meters into scientific notation, we'll move the decimal point behind the <m>1</m> and count the number of places that the decimal point moved: <me>
-                        0.\overbrace{00000001}^{8 \text{ places}}4 = 1.4 \times 10^{-8}
-                    </me> The gate pitch of a microprocessor is <m>1.4 \times 10^{-8}</m> meters.</p></li>
--->
+                    <li><p>The weight of a poppy seed is:
+                        <me>3 \times 10^{-7}\text{ kilograms} = 0\overbrace{.0000003}^{7 \text{ places}}\text{ kilograms}</me>
+                    </p></li>
                 </ol></p>
             </solution>
         </example>
 
-        <exercise>
+<!--         <exercise>
             <webwork source="BasicAlgebra/NumberBasics/ScientificNotation70.pg" seed="4003"/>
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/NumberBasics/ScientificNotation50.pg" seed="2001"/>
         </exercise>
-
+ -->
+ <!--TODO: make WeBWorK-->
     <example>
            <statement>
                 <p>Decide if the numbers are written in scientific notation or not. Recall <xref ref="definition-scientific-notation">Definition</xref>.
@@ -1203,7 +1261,7 @@
             </solution>
         </example>
     </subsection>
-
+<!--TODO: Ann's editing stopped here-->
     <subsection>
         <title>Multiplying and Dividing Using Scientific Notation</title>
 
@@ -1290,7 +1348,7 @@
             <mrow> \amp= 7.626 \times 10^{{11}} </mrow>
         </md>
         </p>
-
+<!--TODO: condense-->
         <example>
             <statement>
             <p>Multiply or divide as indicated.  Write your answer using scientific notation. <ol>
@@ -1331,20 +1389,20 @@
             </solution>
         </example>
 
-        <exercise>
+<!--         <exercise>
             <webwork source="BasicAlgebra/NumberBasics/ScientificNotation80.pg" seed="3002"/>
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/NumberBasics/ScientificNotation100.pg" seed="1000"/>
         </exercise>
-
+ -->
         <p>There are times where we will have to raise numbers written in scientific notation to a power.  For example, suppose we have to find the area of a square whose radius is <m>3\times 10^7</m> feet.  To perform this calculation, we first remember the formula for the area of a square, <m>A=s^2</m> and then substitute  <m>3\times 10^7</m> for <m>s</m>: <m>A = \left( 3\times 10^7 \right)^2</m>.  To perform this calculation, we'll need to remember to use the <xref ref="item-exponent-rules-product-to-a-power" text="title">product to a power rule</xref> and the <xref ref="item-exponent-rules-power-to-a-power" text="title">power to a power rule</xref>: <md>
             <mrow> A \amp=  \left( 3\times 10^7 \right)^2</mrow>
             <mrow>  \amp= \left( 3\right)^2 \times \left(10^7 \right)^2</mrow>
             <mrow>  \amp=  9 \times 10^{14} </mrow>
         </md></p>
 
-        <example>
+<!--         <example>
             <statement>
                 <p> Perform the indicated operation.  Write your answer using scientific notation. <ol>
                     <li><p><m> \left( 5 \times 10^{-6} \right)^3 </m></p></li>
@@ -1368,7 +1426,7 @@
                     </md></p></li>
                 </ol> </p>
             </solution>
-        </example>
+        </example> -->
     </subsection>
 
   <exercises>
@@ -1524,7 +1582,6 @@
         (a/b)^{-n} = (b/a)^{n} = \frac{b^n}{a^n}    (or this?)
     </todo>
 
-    <todo>EXERCISE LIST</todo>
 
         <exercisegroup>
             <introduction>
@@ -1570,7 +1627,7 @@
 
         <exercisegroup>
             <introduction>
-                <p>Simplify.  Write your answer using only positive exponents.  All variables represent non-zero real numbers..</p>
+                <p>Simplify.  Write your answer using only positive exponents.  All variables represent non-zero real numbers.</p>
             </introduction>
             <exercise>
                 <webwork source="BasicAlgebra/Exponents/negExp30.pg" />
@@ -1650,7 +1707,7 @@
 
         </exercisegroup>
 
-
+<!--TODO: many more needed; pull from ones commented out in exposition and WW-->
         <exercisegroup>
             <introduction>
                 <p>Convert the numbers into scientific notation.</p>
@@ -1665,7 +1722,7 @@
 
         <exercisegroup>
             <introduction>
-                <p>Convert the numbers into decimals.</p>
+                <p>Convert the numbers into decimals without any exponents.</p>
             </introduction>
             <exercise>
                 <webwork source="BasicAlgebra/NumberBasics/ScientificNotation10.pg" />
