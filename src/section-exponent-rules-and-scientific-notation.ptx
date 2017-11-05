@@ -867,58 +867,70 @@
 
 
 <!--TODO: turn this into true false WW-->
-        <example>
-            <statement>
-                <p>Decide whether the statements are true or false and provide mathematical reasoning for your decision.
-                <ol>
-                    <li><p><m>\left(7+8\right)^3=7^3+8^3</m></p></li>
-                    <li><p><m>2(x)^3=2^3 \cdot x^3</m></p></li> 
-                    <li><p><m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m></p></li>
-                    <li><p><m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m></p></li> 
-                    <li><p><m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m></p></li> 
-                    <li><p><m>x^2+x^3=x^5</m></p></li>
-                    <li><p><m>3^2 \cdot 2^3=6^5</m></p></li>
+            <webwork >
+            <introduction>
+                <p>Decide whether each statements is true or false.</p>
+            </introduction>
+                <setup>
+                    <pg-code>
+                        Context()->variables->are();
+                        for my $i (1..26) {
+                            Context()->variables->add($ALPHABET[$i-1]=>'Real');
+                            Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
+                            };
+                        Context()->strings->add('true'=>{});
+                        Context()->strings->add('false'=>{});
+                   </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a">
+                        <li><p><m>\left(7+8\right)^3=7^3+8^3</m> is <var name="false" width="6"/>.</p></li>
+                        <li><p><m>2(x)^3=2^3 \cdot x^3</m> is <var name="false" width="6"/>.</p></li> 
+                        <li><p><m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m> is <var name="true" width="6"/>.</p></li>
+                        <li><p><m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m> is <var name="false" width="6"/>.</p></li> 
+                        <li><p><m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m> is <var name="false" width="6"/>.</p></li> 
+                        <li><p><m>x^2+x^3=x^5</m> is <var name="false" width="6"/>.</p></li>
+                        <li><p><m>3^2 \cdot 2^3=6^5</m> is <var name="false" width="6"/>.</p></li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p><ol label="a">
+                     <li><p>The equation <m>\left(7+8\right)^3=7^3+8^3</m> is false. Following the order of operations, on the left <m>\left(7+8\right)^3</m> would simplify as
+                    <md>
+                        <mrow>\left(7+8\right)^3\amp=15^3</mrow>
+                        <mrow>\amp=3375</mrow>
+                   <intertext>
+                        However, on the right side, we have
+                    </intertext>
+                        <mrow>7^3+8^3\amp=343+512</mrow>
+                        <mrow>\amp=855</mrow>
+                    </md>
+                    Since <m>3375\neq 855</m>, the equation is false.
+                    </p></li>
+                    <li><p>The equation <m>2(x)^3=2^3 \cdot x^3</m> is false. In <m>2(x)^3</m>, the cube applies only to the <m>x</m>, not the <m>2</m>.</p></li>
+                    <li><p>The equation <m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m> is true. The coefficients do get multiplied together and the exponents added when the expressions are multiplied.</p></li>
+                    <li><p>The equation <m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m> is false. When you have a power-to-a-power, multiply the exponents rather than adding them. So, 
+                    <me>\left(x^3y^5\right)^4=x^{3 \cdot 4}y^{5 \cdot 4}</me>
+                    </p></li>
+                    <li><p>The equation <m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m> is false. The order of operations says we should apply the exponent before multiplying by the <m>2</m>. So
+                    <me>2\left(x^2y^5\right)^3=2x^6y^{15}</me>
+                    </p></li>
+                    <li><p>The equation <m>x^2+x^3=x^5</m> is false. The two terms on the left hand side are not like-terms and there is no way to combine them!</p></li>
+                    <li><p>The equation <m>3^2 \cdot 2^3=6^5</m> is false. 
+                    Following the order of operations, on the left <m>3^2 \cdot 2^3</m> would simplify as
+                    <md>
+                        <mrow>3^2 \cdot 2^3\amp=9 \cdot 8</mrow>
+                        <mrow>\amp=72</mrow>
+                   <intertext>
+                        However, on the right side, we have
+                    </intertext>
+                        <mrow>6^5\amp=7776</mrow>
+                    </md>
+                    Since <m>72\neq 7776</m>, the equation is false.
+                    </p></li>
                 </ol></p>
-            </statement>
-            <solution>
-                <p>
-                <ol>
-                 <li><p>The equation <m>\left(7+8\right)^3=7^3+8^3</m> is false. Following the order of operations, on the left <m>\left(7+8\right)^3</m> would simplify as
-                <md>
-                    <mrow>\left(7+8\right)^3\amp=15^3</mrow>
-                    <mrow>\amp=3375</mrow>
-               <intertext>
-                    However, on the right side, we have
-                </intertext>
-                    <mrow>7^3+8^3\amp=343+512</mrow>
-                    <mrow>\amp=855</mrow>
-                </md>
-                Since <m>3375\neq 855</m>, the equation is false.
-                </p></li>
-                <li><p>The equation <m>2(x)^3=2^3 \cdot x^3</m> is false. In <m>2(x)^3</m>, the cube applies only to the <m>x</m>, not the <m>2</m>.</p></li>
-                <li><p>The equation <m>2x^3 \cdot 4x^2 \cdot 5x^6=(2 \cdot 4 \cdot 5)x^{3+2+6}</m> is true. The coefficients do get multiplied together and the exponents added when the expressions are multiplied.</p></li>
-                <li><p>The equation <m>\left(x^3y^5\right)^4=x^{3+4}y^{5+4}</m> is false. When you have a power-to-a-power, multiply the exponents rather than adding them. So, 
-                <me>\left(x^3y^5\right)^4=x^{3 \cdot 4}y^{5 \cdot 4}</me>
-                </p></li>
-                <li><p>The equation <m>2\left(x^2y^5\right)^3=\left(2x^2y^5\right)^3</m> is false. The order of operations says we should apply the exponent before multiplying by the <m>2</m>. So
-                <me>2\left(x^2y^5\right)^3=2x^6y^{15}</me>
-                </p></li>
-                <li><p>The equation <m>x^2+x^3=x^5</m> is false. The two terms on the left hand side are not like-terms and there is no way to combine them!</p></li>
-                <li><p>The equation <m>3^2 \cdot 2^3=6^5</m> is false. 
-                Following the order of operations, on the left <m>3^2 \cdot 2^3</m> would simplify as
-                <md>
-                    <mrow>3^2 \cdot 2^3\amp=9 \cdot 8</mrow>
-                    <mrow>\amp=72</mrow>
-               <intertext>
-                    However, on the right side, we have
-                </intertext>
-                    <mrow>6^5\amp=7776</mrow>
-                </md>
-                Since <m>72\neq 7776</m>, the equation is false.
-                </p></li>
-            </ol></p></solution>
-        </example>
-
+                </solution>
+            </webwork>
     </subsection>
 
     <subsection>
