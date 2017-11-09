@@ -613,7 +613,6 @@
 </subsection>
 
 <subsection>
-    <!-- I can't get the angles and sizes to work perfectly... Alex will you fix it so the perfect squares don't align. -->
     <title>Flow Chart for Factoring</title>
         <p>Deciding which method to use when factoring a random polynomial can seem like a daunting task. Understanding all of the techniques that we have learned and how they fit together is best done using a flow chart.</p>
                 <figure xml:id="figure-factoring-flow-chart">
@@ -621,42 +620,48 @@
                     <image>
                         <description>A decision tree to help factoring.</description>
                         <latex-image-code>
-                            <!-- todo: ross is still working on this stupid thing. -->
+                            <!-- todo: ross is still working on this stupid thing. Now it won't compile at all...-->
                             <![CDATA[
-                            \begin{tikzpicture}[mindmap]
-                              \path [
-                                mindmap,
-                                text = white,
-                                level 1 concept/.append style =
-                                  {font=\Large\bfseries, sibling angle=90},
-                                level 2 concept/.append style =
-                                  {font=\normalsize\bfseries, sibling angle=60},
-                                level 3 concept/.append style =
-                                  {font=\small\bfseries, sibling angle=90},
-                                begin/.style     = {concept, ball color=blue,
-                                  font=\Huge\bfseries},
-                                binomials/.style = {concept, ball color=green!80!black},
-                                fourterms/.style = {concept, ball color=blue!80!black},
-                                trinomials/.style = {concept, ball color=red!80!black},
-                              ]
-                              node [begin] {Begin by factoring out any GCF} [clockwise from=90]
-                                child[concept color=green!50!black, nodes={binomials}] {
-                                  node {If you have a Binomial...} [clockwise from=135]
-                                    child { node {Difference of Cubes $a^3-b^3=(a+b)\left(a^2-ab+b^2\right)$} }
-                                    child { node {Sum of Cubes $a^3+b^3=(a-b)\left(a^2+ab+b^2\right)$} }
-                                    child { node {Difference of Squares $a^2-b^2=(a-b)(a+b)$} }
-                                    }
-                                child [concept color=blue, nodes={fourterms}] {
-                                  node {If you have a Four-Term Polynomial...} [clockwise from=270]
-                                    child { node {Factoring by grouping} }
-                                    }
-                                child [concept color=red, nodes={trinomials}] {
-                                  node {If you have a Trinomial...} [clockwise from=330]
-                                    child { node {if $a=1$, what two factors of c add to be b?} }
-                                    child { node {if $a\neq1$, AC Method} }
-                                    child { node {Perfect Squares} [clockwise from=240]
-                                            child { node{Perfect Square Sum $a^2+2ab+b^2=(a+b)^2$}}
-                                    child { node{Perfect Square Difference $a^2-2ab+b^2=(a-b)^2$}}}};
+                            pgfplotsset{compat=1.13}
+                            \tikzset{treenode/.style = {shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!20},
+                            root/.style = {treenode, font=\Large, bottom color=red!30},
+                            env/.style      = {treenode, font=\normalsize},
+                            dummy/.style    = {circle,draw}
+                            }
+                            \begin{tikzpicture}
+                        [
+                          grow                         = right,
+                          sibling distance        = 10em,
+                          level distance          = 15em,
+                          edge from parent/.style = {draw, -latex},
+                          every node/.style       = {font=\footnotesize},
+                          sloped
+                        ]
+                              
+                        \node [root] {Begin by factoring \\out the GCF} 
+                            child { node [dummy] {}
+                                child { node [env] {Difference of Cubes \\$a^3-b^3=(a+b)\left(a^2-ab+b^2\right)$} }
+                                    child { node [env] {Sum of Cubes \\$a^3+b^3=(a-b)\left(a^2+ab+b^2\right)$} }
+                            child { node [env] {Difference of Squares \\$a^2-b^2=(a-b)(a+b)$} }
+                            edge from parent node [below] {If you have a Binomial\dots}
+                              }
+                                child { node [env] {Factor Using Grouping}
+                                edge from parent node [above] {If you have a} 
+                                edge from parent node [below] {Four-Term Polynomial\dots} 
+                              }
+                            child { node [dummy] {}
+                                  child { node [dummy] {}
+                                child { node [env] {Perfect Squares Sum\\$a^2+2ab+b^2=(a+b)^2$}}
+                                child { node [env] {Perfect Squares Difference\\$a^2-2ab+b^2=(a-b)^2$}}
+                                edge from parent node [above] {If both the first and last terms}
+                                edge from parent node [below] {look like perfect squares\dots}
+                                }
+                                child { node [env] {AC Method} 
+                                    edge from parent node [below] {If $a\neq1$\dots}}
+                            child { node [env] {Use factor pairs: \\what factors of $c$ add to $b$?} 
+                                edge from parent node [below] {If $a=1$\dots}}
+                            edge from parent node [below] {If you have a Trinomial\dots}
+                            };
                             \end{tikzpicture}]]>
                         </latex-image-code>
                     </image>
