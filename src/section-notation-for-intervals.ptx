@@ -170,6 +170,113 @@
  -->            </statement>
         </definition>
 
+<!--TODO: change this so it is not identical to exercise below-->
+        <exercise>
+            <title>Interval and Set-Builder Notation from Number Lines</title>
+            <webwork >
+                <setup>
+                    <var name="$sb[0]">
+                        <static>\{x\mid x\geq-4\text{ and }x\leq3\}</static>
+                    </var>
+                    <var name="$in[0]">
+                        <static>[-4,3]</static>
+                    </var>
+                    <var name="$sb[1]">
+                        <static>\{x\mid x\geq-3\text{ and }x&lt;4\}</static>
+                    </var>
+                    <var name="$in[1]">
+                        <static>[-3,4)</static>
+                    </var>
+                    <var name="$sb[2]">
+                        <static>\{x\mid x\gt-1\text{ and }x&lt;4\}</static>
+                    </var>
+                    <var name="$in[2]">
+                        <static>(-1,4)</static>
+                    </var>
+                    <pg-code>
+                        ($a[0],$b[0])=num_sort(map{$_-4}NchooseK(9,2));
+                        ($a[1],$b[1])=num_sort(map{$_-4}NchooseK(9,2));
+                        ($a[2],$b[2])=num_sort(map{$_-4}NchooseK(9,2));
+                        %left=(oi=>'(',ci=>'[',io=>'(',ic=>'(');
+                        %right=(oi=>')',ci=>')',io=>')',ic=>']');
+                        @type=('oi','ci','io','ic')[NchooseK(4,3)];
+                        @ticks = ();
+                        for my $j (-5..5) {push(@ticks,$j);};
+                        for my$i(0,1,2){
+                        $nl[$i]=init_graph(-6,-50,6,50,size=>[400,50]);
+                        $nl[$i]->moveTo(0,0);
+                        $nl[$i]->arrowTo(5.5,0,'black',1);
+                        $nl[$i]->moveTo(0,0);
+                        $nl[$i]->arrowTo(-5.5,0,'black',1);
+                        for my$j(@ticks){$nl[$i]->lb(new Label($j,-10,$j,'black','center','top'));};
+                        $nl[$i]->h_ticks(0,"black",@ticks);
+                        };
+
+                        for my$i(0..2){
+                        if($type[$i]eq'oi' or $type[$i]eq'ci'){
+                          $nl[$i]->moveTo($a[$i],0);
+                          $nl[$i]->lineTo(5.25,0,'blue',5);
+                          $nl[$i]->moveTo($a[$i],0);
+                          $nl[$i]->arrowTo(5.5,0,'blue',3);
+                        }else{
+                          $nl[$i]->moveTo($b[$i],0);
+                          $nl[$i]->lineTo(-5.25,0,'blue',5);
+                          $nl[$i]->moveTo($b[$i],0);
+                          $nl[$i]->arrowTo(-5.5,0,'blue',3);
+                        };
+                        if($type[$i]eq'oi'){$nl[$i]->stamps(open_circle($a[$i],0,'blue'));}
+                          elsif($type[$i]eq'ci'){$nl[$i]->stamps(closed_circle($a[$i],0,'blue'));}
+                          elsif($type[$i]eq'io'){$nl[$i]->stamps(open_circle($b[$i],0,'blue'));}
+                          else{$nl[$i]->stamps(closed_circle($b[$i],0,'blue'));}
+                        };
+
+                        InequalitySetBuilder::UseVerticalSuchThat();
+                        Context("InequalitySetBuilder-Only");
+                        for my$i(0..2){
+                        if($type[$i]eq'oi'){$sb[$i]=Compute("{ x | x>$a[$i]}");}
+                        elsif($type[$i]eq'ci'){$sb[$i]=Compute("{ x | x>=$a[$i]}");}
+                        elsif($type[$i]eq'io'){$sb[$i]=Compute("{ x | x&lt;$b[$i]}");}
+                        else{$sb[$i]=Compute("{ x | x&lt;=$b[$i]}");}
+                        };
+
+                        Context("Interval");
+                        Context()->flags->set("formatStudentAnswer"=>'parsed');
+                        for my$i(0..2){
+                        if($type[$i]eq'oi'){$in[$i]=Compute("($a[$i],inf)");}
+                        elsif($type[$i]eq'ci'){$in[$i]=Compute("[$a[$i],inf)");}
+                        elsif($type[$i]eq'io'){$in[$i]=Compute("(-inf,$b[$i])");}
+                        else{$in[$i]=Compute("(-inf,$b[$i]]");}
+                        };
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>For each interval expressed in the number lines, give the interval notation and set-builder notation.</p>
+
+                    <instruction>If needed, type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, <c>&lt;=</c> for <m>\leq</m>, <c>!=</c> for <m>\neq</m>, and capital letter <c>U</c> for <m>\cup</m>.</instruction>
+
+                    <p><ol label="a.">
+                        <li>
+                            <sidebyside margins="0%"><image pg-name="$nl[0]" height="50"/></sidebyside>
+                            <p>In set-builder notation: <var name="$sb[0]" width="20" /></p>
+                            <p>In interval notation: <var name="$in[0]" width="20" /></p>
+                        </li>
+                        <li>
+                            <sidebyside margins="0%"><image pg-name="$nl[1]" height="50"/></sidebyside>
+                            <p>In set-builder notation: <var name="$sb[1]" width="20" /></p>
+                            <p>In interval notation: <var name="$in[1]" width="20" /></p>
+                        </li>
+                        <li>
+                            <sidebyside margins="0%"><image pg-name="$nl[2]" height="50"/></sidebyside>
+                            <p>In set-builder notation: <var name="$sb[2]" width="20" /></p>
+                            <p>In interval notation: <var name="$in[2]" width="20" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+
+
 <!--         <example>
             <title>Lifespan</title>
             <p>The person with the oldest verified age at the time of her death was Jeanne Calment of France, who died in 1997 at the precise age of <m>122.45</m> years old.</p>
@@ -611,6 +718,7 @@
                 </statement>
             </webwork>
         </exercise> -->
+<!--TODO: duplicate this exercise-->
         <exercise>
             <title>Interval and Set-Builder Notation from Number Lines</title>
             <webwork >
