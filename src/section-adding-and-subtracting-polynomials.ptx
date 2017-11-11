@@ -75,43 +75,52 @@
 
     <remark><p>Because variables in polynomials must have non-negative integer exponents, a polynomial will never have a variable in the denominator of a fraction or under a square root (or any other radical).</p></remark>
 
+
+ 
     <exercise>
         <webwork>
                 <setup>
+                    <var name="$yes">
+                        <set>
+                            <member correct="yes">2\text{ is}</member>
+                            <member>2\text{ is not}</member>
+                        </set>
+                    </var>
+                    <var name="$no">
+                        <set>
+                            <member>2\text{ is}</member>
+                            <member correct="yes">2\text{ is not}</member>
+                        </set>
+                    </var>
                     <pg-code>
-                        Context()->variables->are();
-                        for my $i (1..26) {
-                            Context()->variables->add($ALPHABET[$i-1]=>'Real');
-                            Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
-                            };
-                        Context()->strings->add('is'=>{});
-                        Context()->strings->add('is not'=>{});
+                        $yes=PopUp(['?','is', 'is not'],1);
+                        $no=PopUp(['?','is', 'is not'],2);
                     </pg-code>
                 </setup>
             <statement><p>Identify which of the following are polynomials and which are not.
             <ol label="a">
-                <li>The expression <m>-2x^9-\frac{7}{13}x^3-1</m> (is/is not) <var name="is" width="4"/> a polynomial.</li>
-                <li>The expression <m>5x^{-2}-5x^2+3</m> (is/is not) <var name="is not" width="4"/> a polynomial.</li>
-                <li>The expression <m>\sqrt{2}x-\frac{3}{5}</m> (is/is not) <var name="is" width="4"/> a polynomial.</li>
-                <li>The expression <m>5x^3-5^{-5}x-x^4</m> (is/is not) <var name="is" width="4"/> a polynomial.</li>
-                <li>The expression <m>\frac{25}{x^2}+23-x</m> (is/is not) <var name="is not" width="4"/> a polynomial.</li>
-                <li>The expression <m>37x^6-x+8^{\frac{4}{3}}</m> (is/is not) <var name="is" width="4"/> a polynomial.</li>
-                <li>The expression <m>\sqrt{7x}-4x^3</m> (is/is not) <var name="is not" width="4"/> a polynomial.</li>
-                <li>The expression <m>6x^{\frac{3}{2}}+1</m> (is/is not) <var name="is not" width="4"/> a polynomial.</li>
-                <li>The expression <m>6^x-3x^6</m> (is/is not) <var name="is not" width="4"/> a polynomial.</li>
+                <li>The expression <m>-2x^9-\frac{7}{13}x^3-1</m> <var name="$yes" form="popup"/> a polynomial.</li>
+                <li>The expression <m>5x^{-2}-5x^2+3</m> <var name="$no" form="popup"/> a polynomial.</li>
+                <li>The expression <m>\sqrt{2}x-\frac{3}{5}</m> <var name="$yes" form="popup"/> a polynomial.</li>
+                <li>The expression <m>5x^3-5^{-5}x-x^4</m> <var name="$yes" form="popup"/> a polynomial.</li>
+                <li>The expression <m>\frac{25}{x^2}+23-x</m> <var name="$no" form="popup"/> a polynomial.</li>
+                <li>The expression <m>37x^6-x+8^{\frac{4}{3}}</m> <var name="$yes" form="popup"/> a polynomial.</li>
+                <li>The expression <m>\sqrt{7x}-4x^3</m> <var name="$no" form="popup"/> a polynomial.</li>
+                <li>The expression <m>6x^{\frac{3}{2}}+1</m> <var name="$no" form="popup"/> a polynomial.</li>
+                <li>The expression <m>6^x-3x^6</m> <var name="$no" form="popup"/> a polynomial.</li>
             </ol>
             </p></statement>
             <solution><p>
             <ol label="a">
-                <li>The expression <m>-2x^9-\frac{7}{13}x^3-1</m> is a polynomial.</li>
+                <li>The expression <m>-2x^9-\frac{7}{13}x^3-1</m> is a polynomial as all variables have positive integer exponents.</li>
                 <li>The expression <m>5x^{-2}-5x^2+3</m> is not a polynomial. Negative exponents on variables make the expression not a polynomial.</li>
-                <li>The expression <m>\sqrt{2}x-\frac{3}{5}</m> is a polynomial. Note that the square root is only applied to the 2.</li>
-                <li>The expression <m>5x^3-5^{-5}x-x^4</m> is a polynomial. Note that numbers <em>can</em> have negative exponents in polynomials.</li>
+                <li>The expression <m>\sqrt{2}x-\frac{3}{5}</m> is a polynomial. Note that the square root is <em>only</em> applied to the 2.</li>
+                <li>The expression <m>5x^3-5^{-5}x-x^4</m> is a polynomial. Note that <em>numbers</em> can have negative exponents in polynomials even though variables cannot.</li>
                 <li>The expression <m>\frac{25}{x^2}+23-x</m> is not a polynomial. Variables are not allowed to be in the denominator in polynomials.</li>
-                <li>The expression <m>37x^6-x+8^{\frac{4}{3}}</m> is a polynomial. Note that numbers <em>can</em> have fractional exponents in polynomials.</li>
-                <li>The expression <m>\sqrt{7x}-4x^3</m> is not a polynomial. Variables aren't allowed under any radical. </li>
+                <li>The expression <m>37x^6-x+8^{\frac{4}{3}}</m> is a polynomial. Note that <em>numbers</em> can have fractional exponents in polynomials even though variables cannot.</li>
+                <li>The expression <m>\sqrt{7x}-4x^3</m> is not a polynomial. The variable is <em>inside</em> the radical, which is not allowed for polynomials. </li>
                 <li>The expression <m>6x^{\frac{3}{2}}+1</m> is not a polynomial. Exponents must be positive integers, which <m>\frac{3}{2}</m> is not.</li>
-                 <li>The expression <m>6^x-3x^6</m> is not a polynomial. Only positive integer exponents are allowed in polynomials, and <m>x</m> is not an integer since it can change.</li>
+                <li>The expression <m>6^x-3x^6</m> is not a polynomial. Only positive integer exponents are allowed in polynomials, and the variable <m>x</m> is in an exponent.</li>
             </ol>
             </p></solution>
         </webwork>
