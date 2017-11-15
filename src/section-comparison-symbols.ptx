@@ -160,7 +160,7 @@
                 </statement>
                 <solution>
                     <p>We can order these numbers by placing these numbers on a number line.</p>
-                    <sidebyside margins="0%"><image pg-name="$numberline" width="67%"/></sidebyside>
+                    <sidebyside margins="0%" widths="67%"><image pg-name="$numberline"/></sidebyside>
                     <p>And so we see the answer is <m><var name="$comparison" /></m>.</p>
                 </solution>
             </webwork>
@@ -224,7 +224,7 @@
                 </statement>
                 <solution>
                     <p>We can order these numbers by placing these numbers on a number line. Knowing or computing their decimals helps with this.</p>
-                    <sidebyside margins="0%"><image pg-name="$numberline" width="67%"/></sidebyside>
+                    <sidebyside margins="0%" widths="67%"><image pg-name="$numberline"/></sidebyside>
                     <p>And so we see the answer is <m><var name="$comparison" /></m>.</p>
                 </solution>
             </webwork>
@@ -296,7 +296,6 @@
 
     <exercises>
         <exercise>
-            <title>Ordering Integers</title>
             <webwork >
                 <setup>
                     <var name="$as">
@@ -341,7 +340,50 @@
         </exercise>
 
         <exercise>
-            <title>Ordering Decimals</title>
+            <webwork >
+                <setup>
+                    <var name="$as">
+                        <static>3\quad7\quad-2\quad-3\quad4</static>
+                    </var>
+                    <var name="$comparison">
+                        <static>7\gt4\gt3\gt-2\gt-3</static>
+                    </var>
+                    <pg-code>
+                        @a=map{$_-10}NchooseK(21,5);
+                        if($envir{problemSeed}==1){@a=(3,7,-2,-3,4)};
+                        Context()->texStrings;
+                        $as='{'.join('}\quad{',@a).'}';
+                        Context()->normalStrings;
+                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                        $bs=join('>',@b);
+                        package context::Ordering::BOP::ordering;
+                        *isOrdering = sub {
+                            my $self = shift; my $obj = shift; my $class = $obj->class;
+                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                        };
+                        package main;
+                        Context("Ordering");
+                        Context()->operators->add(
+                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                class => 'Parser::BOP::subtract', rightparens => 'same'},
+                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                class => 'Parser::BOP::divide', space => ' /',
+                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                        );
+                        $comparison=Compute("$bs");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                    <p><me><var name="$as" /></me></p>
+                    <p><var name="$comparison" width="30" /></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <exercise>
             <webwork >
                 <setup>
                     <var name="$as">
@@ -386,7 +428,6 @@
         </exercise>
 
         <exercise>
-            <title>Ordering Decimals</title>
             <webwork >
                 <setup>
                     <var name="$as">
@@ -435,7 +476,6 @@
         </exercise>
 
         <exercise>
-            <title>Ordering Fractions</title>
             <webwork >
                 <setup>
                     <var name="$as">
@@ -485,7 +525,6 @@
         </exercise>
 
         <exercise>
-            <title>Ordering Fractions</title>
             <webwork >
                 <setup>
                     <var name="$as">
@@ -536,7 +575,6 @@
         </exercise>
 
         <exercise>
-            <title>Ordering</title>
             <webwork >
                 <setup>
                     <var name="$as">
@@ -592,7 +630,62 @@
         </exercise>
 
         <exercise>
-            <title>True/False with Integers</title>
+            <webwork >
+                <setup>
+                    <var name="$as">
+                        <static>-5.2\quad\pi\quad\frac{10}{3}\quad4.6\quad8</static>
+                    </var>
+                    <var name="$comparison">
+                        <static>8\gt4.6\gt\frac{10}{3}\gt\pi\gt-5.2</static>
+                    </var>
+                    <pg-code>
+                        @c=map{$_-10}NchooseK(21,4);
+                        Context("Fraction");
+                        @d=map{$_+2}NchooseK(7,2);
+                        $c[2]=Fraction($d[0]*$a[2]+random(1,$d[0]-1,1),$d[0]);
+                        $c[3]=Fraction($d[1]*$a[3]+random(1,$d[1]-1,1),$d[1]);
+                        Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+                        @irrationals=(Formula("pi"),Formula("pi/2"),Formula("sqrt(2)"),Formula("sqrt(3)"));
+                        ($c[4],$c[5])=(@irrationals)[NchooseK(4,2)];
+                        @a=(@c)[NchooseK(6,6)];
+                        if($envir{problemSeed}==1){@a=(6,Fraction(1,2),Formula("pi"),Fraction(3,4),-8,Formula("sqrt(2)"))};
+                        Context()->texStrings;
+                        $as='{'.join('}\quad{',@a).'}';
+                        Context()->normalStrings;
+                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                        $bs=join('>',@b);
+                        package context::Ordering::BOP::ordering;
+                        *isOrdering = sub {
+                            my $self = shift; my $obj = shift; my $class = $obj->class;
+                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                        };
+                        package main;
+                        Context("Ordering");
+                        Context()->operators->add(
+                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                class => 'Parser::BOP::subtract', rightparens => 'same'},
+                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                class => 'Parser::BOP::divide', space => ' /',
+                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                        );
+                        Context()->functions->add('sqrt' => {class => 'Parser::Function::numeric', braceTeX => 1, TeX => '\sqrt'});
+                        Context()->parens->add('(' => {close => ')', type => 'Point', formMatrix => 1, formInterval => ']', formList => 1, removable => 1, emptyOK => 1, function => 1});
+                        Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
+                        $comparison=Compute("$bs");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                    <p><me><var name="$as" /></me></p>
+                    <p><var name="$comparison" width="30" /></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+        <exercisegroup cols="2">
+        <exercise>
             <webwork >
                 <setup>
                     <var name="$statement[0]"><static>-5\geq-6</static></var>
@@ -666,7 +759,6 @@
             </webwork>
         </exercise>
         <exercise>
-            <title>True/False with Integers</title>
             <webwork >
                 <setup>
                     <var name="$statement[0]"><static>-5\neq2</static></var>
@@ -741,7 +833,6 @@
         </exercise>
 
         <exercise>
-            <title>True/False with Fractions</title>
             <webwork >
                 <setup>
                     <var name="$statement[0]"><static>\frac{5}{7}\gt\frac{5}{7}</static></var>
@@ -819,7 +910,6 @@
         </exercise>
 
         <exercise>
-            <title>True/False with Fractions</title>
             <webwork >
                 <setup>
                     <var name="$statement[0]"><static>\frac{6}{5}\gt\frac{5}{3}</static></var>
@@ -895,33 +985,51 @@
                 </statement>
             </webwork>
         </exercise>
+        </exercisegroup>
+
+        <exercisegroup cols="2">
         <exercise>
-            <title>Compare Fractions</title>
             <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations10.pg" />
         </exercise>
         <exercise>
-            <title>Compare Fractions</title>
+            <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations10.pg" />
+        </exercise>
+        <exercise>
             <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations20.pg" />
         </exercise>
         <exercise>
-            <title>Compare Fractions</title>
+            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations20.pg" />
+        </exercise>
+        <exercise>
             <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
         </exercise>
         <exercise>
-            <title>Compare Mixed Numbers</title>
+            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
+        </exercise>
+        <exercise>
             <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
         </exercise>
         <exercise>
-            <title>Compare Mixed Numbers</title>
+            <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
+        </exercise>
+        <exercise>
             <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
         </exercise>
         <exercise>
-            <title>Compare Absolute Value</title>
+            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
+        </exercise>
+        <exercise>
             <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
         </exercise>
         <exercise>
-            <title>Compare Negative Numbers</title>
+            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
+        </exercise>
+        <exercise>
             <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers40.pg" />
         </exercise>
+        <exercise>
+            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers40.pg" />
+        </exercise>
+        </exercisegroup>
     </exercises>
 </section>
