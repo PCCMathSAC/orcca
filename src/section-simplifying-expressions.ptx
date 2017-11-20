@@ -143,7 +143,7 @@
         <paragraphs>
             <title>Distributive Property</title>
 
-            <p>The final property we'll explore is called the <term>distributive property</term>, which involves both multiplication and addition. To conceptualize this property, let's consider what happens if we buy 3 sets that each contain one apple and one pear. This will have the same total cost as if we'd bought 3 apples and 3 pears. We write this algebraically as<me>3(a+p)=3a+3p</me>Visually, we can see that it's just a means of re-grouping:<me>3(\apple+ \pear) = 3(\apple)+ 3(\pear)</me></p>
+            <p>The final property we'll explore is called the <term>distributive property</term>, which involves both multiplication and addition. To conceptualize this property, let's consider what happens if we buy 3 boxes that each contain one apple and one pear. This will have the same total cost as if we'd bought 3 apples and 3 pears. We write this algebraically as<me>3(a+p)=3a+3p</me>Visually, we can see that it's just a means of re-grouping:<me>3(\apple+ \pear) = 3(\apple)+ 3(\pear)</me></p>
         </paragraphs>
 
     </subsection>
@@ -183,6 +183,134 @@
         <p>Let's practice these properties in the following exercises.</p>
 
         <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context("Numeric");
+                        Context()->variables->are(c=>'Real',m=>'Real',n=>'Real',q=>'Real',r=>'Real',x=>'Real');
+                        Context()->reduction->set('(-x)-y'=>0);
+                        Context()->reduction->set('(-x)+y'=>0);
+                        $giv1=Formula("53m");
+                        $ans1=Formula("m*53");
+                        $evaluator1=$ans1->cmp(checker => sub {
+                          my ($correct,$student,$ans) = @_;
+                          Value->Error("This is the original expression") if ($student eq $giv1);
+                          Value->Error("This expression is algebraically equivalent to the given expression, but it is not what an application of the commutative property of multiplication would give you") if (($student == $correct) and ($student ne $correct));
+                          return ($student eq $correct);
+                        });
+                        Context()->flags->set(reduceConstants=>0);
+                        Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+                        Context()->parens->set("(" => {removable=>0, type => "AbsoluteValue", close => ")"});
+                        $giv2 = Formula("3*(5 n)");
+                        $ans2=Formula("(3*5)*n");
+                        $alt2=Formula("15*n");
+                        $evaluator2=$ans2->cmp(checker => sub {
+                            my ($correct,$student,$ans) = @_;
+                            # Because of the absolute value hack for parens, make sure to test at both pos and neg input:
+                            $student->{test_at} = [[0,0,-1,0,0,0],[0,0,1,0,0,0]];
+                            $correct->{test_at} = [[0,0,-1,0,0,0],[0,0,1,0,0,0]];
+                            Value->Error("This expression is algebraically equivalent to the given expression, but it is not what an application of the associative property of multiplication would give you") if (($student == $giv2) or (($student == $correct) and ($student ne $correct) and ($student ne $alt2)));
+                            return (($student eq $correct) or ($student eq $alt2));
+                        });
+                        $giv3=Formula("q+84");
+                        $ans3=Formula("84+q");
+                        $evaluator3=$ans3->cmp(checker => sub {
+                            my ($correct,$student,$ans) = @_;
+                            Value->Error("This is the original expression") if ($student eq $giv3);
+                            Value->Error("This expression is algebraically equivalent to the given expression, but it is not what an application of the commutative property of addition would give you") if (($student == $correct) and ($student ne $correct));
+                            return ($student eq $correct);
+                        });
+                        $giv4=Compute("x+(20+c)");
+                        $amb4=Compute("x+20+c");
+                        $ans4=Compute("(x+20)+c");
+                        $evaluator4=$ans4->cmp(checker => sub {
+                            my ($correct,$student,$ans) = @_;
+                            # Because of the absolute value hack for parens, make sure to test at both pos and neg input:
+                            $giv4->{test_at} = [[-20-1,0,0,0,0,-20-1],[-20-1,0,0,0,0,-20+1],[-20+1,0,0,0,0,-20-1],[-20+1,0,0,0,0,-20+1]];
+                            $student ->{test_at} = [[-20-1,0,0,0,0,-20-1],[-20-1,0,0,0,0,-20+1],[-20+1,0,0,0,0,-20-1],[-20+1,0,0,0,0,-20+1]];
+                            $amb4->{test_at} = [[-20-1,0,0,0,0,-20-1],[-20-1,0,0,0,0,-20+1],[-20+1,0,0,0,0,-20-1],[-20+1,0,0,0,0,-20+1]];
+                            $correct->{test_at} = [[-20-1,0,0,0,0,-20-1],[-20-1,0,0,0,0,-20+1],[-20+1,0,0,0,0,-20-1],[-20+1,0,0,0,0,-20+1]];
+                            Value->Error("This expression is algebraically equivalent to the given expression, but it is not what an application of the associative property of addition would give you") if (($student == $giv4) or ($student == $amb4) or (($student == $correct) and ($student ne $correct)));
+                            return ($student eq $correct);
+                        });
+                        $giv5=Compute("3*(r+7)")->reduce;
+                        $ans5=Compute("3*r+3*7")->reduce;
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are(r=>'Real');
+                        $ans5=Compute($ans5);
+
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a.">
+                        <li>
+                            <p>Use the commutative property of multiplication to write an equivalent expression to <m><var name="$giv1" /></m>.</p>
+                            <p><var name="$ans1" evaluator="$evaluator1" width="10"/></p>
+                        </li>
+                        <li>
+                            <p>Use the associative property of multiplication to write an equivalent expression to <m><var name="$giv2" /></m>.</p>
+                            <p><var name="$ans2" evaluator="$evaluator2" width="10"/></p>
+                        </li>
+                        <li>
+                            <p>Use the commutative property of addition to write an equivalent expression to <m><var name="$giv3" /></m>.</p>
+                            <p><var name="$ans3" evaluator="$evaluator3" width="10"/></p>
+                        </li>
+                        <li>
+                            <p>Use the associative property of addition to write an equivalent expression to <m><var name="$giv4" /></m>.</p>
+                            <p><var name="$ans4" evaluator="$evaluator4" width="10"/></p>
+                        </li>
+                        <li>
+                            <p>Use the distributive property to write an equivalent expression to <m><var name="$giv5" /></m> that has no grouping symbols.</p>
+                            <p><var name="$ans5" width="10"/></p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p><ol label="a.">
+                        <li>
+                            <p>To use the commutative property of multiplication, we change the order in which two factors are multiplied:<md>
+                                <mrow>\amp\phantom{{}={}}53m</mrow>
+                                <mrow>\amp=m\cdot 53</mrow>
+                            </md>.</p>
+                        </li>
+                        <li>
+                            <p>To use the associative property of multiplication, we leave factors written in their original order, but change the grouping symbols so that a different multiplication has higher priority:<md>
+                                <mrow>\amp\phantom{{}={}}3(5n)</mrow>
+                                <mrow>\amp=(3\cdot5)n</mrow>
+                            </md>. You may further simplify by carrying out the multiplication between the two numbers:<md>
+                                <mrow>\amp\phantom{{}={}}3(5n)</mrow>
+                                <mrow>\amp=(3\cdot5)n</mrow>
+                                <mrow>\amp=15n</mrow>
+                            </md></p>
+                        </li>
+                        <li>
+                            <p>To use the commutative property of addition, we change the order in which two terms are added:<md>
+                                <mrow>\amp\phantom{{}={}}q+84</mrow>
+                                <mrow>\amp=84+q</mrow>
+                            </md>.</p>
+                        </li>
+                        <li>
+                            <p>To use the associative property of addition, we leave terms written in their original order, but change the grouping symbols so that a different addition has higher priority:<md>
+                                <mrow>\amp\phantom{{}={}}x+(20+c)</mrow>
+                                <mrow>\amp=(x+20)+c</mrow>
+                            </md>.</p>
+                        </li>
+                        <li>
+                            <p>To use the distributive property, we multiply the number outside the parentheses, <m>3</m>, with each term inside the parentheses:<md>
+                                <mrow>\amp\phantom{{}={}}3(r+7)\amp</mrow>
+                                <mrow>\amp=3\cdot r+3\cdot7</mrow>
+                                <mrow>\amp=3r+21</mrow>
+                            </md></p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+<!--         <exercise>
             <webwork source="BasicAlgebra/AlgebraicProperties/CommutativePropertyMultiplication10.pg" />
         </exercise>
         <exercise>
@@ -196,7 +324,7 @@
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty10.pg" />
-        </exercise>
+        </exercise> -->
 
     </subsection>
 
@@ -246,21 +374,21 @@
             <statement>
                 <p>Where possible, simplify the following expressions by combining like terms.<ol label="a." cols="2">
                     <li><p><m>6c+12c-5c</m></p></li>
-                    <li><p><m>-5q-3q</m></p></li>
+                    <li><p><m>-5q^2-3q^2</m></p></li>
                     <li><p><m>-3x-5y+4x</m></p></li>
                     <li><p><m>2x-3y+4z</m></p></li>
                 </ol></p>
             </statement>
             <solution>
                 <p><ol label="a.">
-                    <li><p>We will combine all three like terms: <m>6c</m>, <m>12c</m> and <m>-5c</m>:<md>
+                    <li><p>All three terms are like terms, so they may combined. We combine them two at a time:<md>
                         <mrow>6c+12c-5c \amp=18c-5c</mrow>
                         <mrow>\amp=13c</mrow>
                     </md></p></li>
-                    <li><p>We will combine like terms <m>-5q</m> and <m>-3q</m>:<md>
-                        <mrow>-5q-3q \amp=-8q</mrow>
+                    <li><p>The two terms <m>-5q^2</m> and <m>-3q^2</m> are like terms, so we may combine them:<md>
+                        <mrow>-5q^2-3q^2 \amp=-8q^2</mrow>
                     </md></p></li>
-                    <li><p>We will combine like terms <m>-5x</m> and <m>4x</m>:<md>
+                    <li><p>The two terms <m>-3x</m> and <m>4x</m> are like terms, while the other term is different. Using the associative and commutative properties of addition in the first step allows us to place the two like terms next to each other, and then combine them:<md>
                         <mrow>-3x-5y+4x \amp=-3x+4x+(-5y)</mrow>
                         <mrow>\amp=x-5y</mrow>
                     </md></p></li>
@@ -293,7 +421,7 @@
                 <p>Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.<ol label="a." cols="3">
                     <li><p><m>(2x+3)+(4x+5)</m></p></li>
                     <li><p><m>(-5x+3)+(4x-7)</m></p></li>
-                    <li><p><m>(-2x-1)+(-4x-9)</m></p></li>
+                    <!-- <li><p><m>(-2x-1)+(-4x-9)</m></p></li> -->
                 </ol></p>
             </statement>
             <solution>
@@ -308,12 +436,12 @@
                         <mrow>\amp=7x+(-4)</mrow>
                         <mrow>\amp=7x-4</mrow>
                     </md></p></li>
-                    <li><p>We will remove parentheses, and then combine like terms:<md>
+<!--                     <li><p>We will remove parentheses, and then combine like terms:<md>
                         <mrow>(-2x-1)+(-4x-9) \amp=-2x+(-1)+(-4x)+(-9)</mrow>
                         <mrow>\amp=-2x+(-4x)+(-1)+(-9)</mrow>
                         <mrow>\amp=-6x+(-10)</mrow>
                         <mrow>\amp=-6x-10</mrow>
-                    </md></p></li>
+                    </md></p></li> -->
                 </ol></p>
             </solution>
         </example>
@@ -336,28 +464,28 @@
                 <p>Apply the distributive property to each expression and simplify it as much as possible.<ol label="a." cols="2">
                     <li><p><m>-3(5x+7)</m></p></li>
                     <li><p><m>2(-4x-1)</m></p></li>
-                    <li><p><m>-4(2x-3)</m></p></li>
-                    <li><p><m>-7(-x-9)</m></p></li>
+<!--                     <li><p><m>-4(2x-3)</m></p></li>
+                    <li><p><m>-7(-x-9)</m></p></li> -->
                 </ol></p>
             </statement>
             <solution>
                 <p><ol label="a.">
-                    <li><p>We will distribute <m>-3</m> into the parentheses:<md>
+                    <li><p>We will distribute <m>-3</m> to the <m>5x</m> and <m>7</m>:<md>
                         <mrow>-3(5x+7)\amp=-3(5x)+(-3)(7)</mrow>
                         <mrow>\amp=-15x-21</mrow>
                     </md></p></li>
-                    <li><p>We will distribute <m>2</m> into the parentheses:<md>
+                    <li><p>We will distribute <m>2</m> to the <m>-4x</m> and <m>-1</m>:<md>
                         <mrow>2(-4x-1)\amp=2(-4x)-2(1)</mrow>
                         <mrow>\amp=-8x-2</mrow>
                     </md></p></li>
-                    <li><p>We will distribute <m>-4</m> into the parentheses:<md>
+<!--                     <li><p>We will distribute <m>-4</m> into the parentheses:<md>
                         <mrow>-4(2x-3)\amp=-4(2x)-(-4)(3)</mrow>
                         <mrow>\amp=-8x+12</mrow>
                     </md></p></li>
                     <li><p>We will distribute <m>-7</m> into the parentheses:<md>
                         <mrow>-7(-x-9)\amp=-7(-x)-(-7)(9)</mrow>
                         <mrow>\amp=7x+63</mrow>
-                    </md></p></li>
+                    </md></p></li> -->
                 </ol></p>
             </solution>
         </example>
@@ -365,9 +493,9 @@
         <exercise>
             <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty20.pg" />
         </exercise>
-        <exercise>
+<!--         <exercise>
             <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty30.pg" />
-        </exercise>
+        </exercise> -->
 
         <paragraphs>
             <title>Subtracting Expressions</title>
@@ -397,12 +525,12 @@
             </statement>
             <solution>
                 <p><ol label="a.">
-                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                    <li><p>We will remove parentheses using the distributive property, and then combine like terms:<md>
                         <mrow>(-6x+4)-(3x-7) \amp=-6x+4-3x-(-7)</mrow>
                         <mrow>\amp=-6x+4-3x+7</mrow>
                         <mrow>\amp=-9x+11</mrow>
                     </md></p></li>
-                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                    <li><p>We will remove parentheses using the distributive property, and then combine like terms:<md>
                         <mrow>(-2x-5)-(-4x-6)\amp=-2x-5-(-4x)-(-6)</mrow>
                         <mrow>\amp=-2x-5+4x+6</mrow>
                         <mrow>\amp=2x+1</mrow>
@@ -415,9 +543,9 @@
     <subsection>
         <title>The Role of the Order of Operations in Applying the Commutative, Associative, and Distributive Properties</title>
 
-        <p>When simplifying an expression such as <m>3+4(5x+7)</m>, we need to apply the order of operations and do multiplication <m>4(5x+7)</m> before doing addition. We cannot do <m>3+4(5x+7)=7(5x+7)</m>, which is not following the order of operations.</p>
+        <p>When simplifying an expression such as <m>3+4(5x+7)</m>, we need to respect the order of operations. Since the terms inside the parentheses are not like terms, there is nothing to simplify there. The next highest priority operation is multiplying the <m>4</m> by <m>(5x+7)</m>. This must be done <em>before</em> anything happens with the adding of that <m>3</m>. We cannot say <m>3+4(5x+7)=\highlight{7}(5x+7)</m>, because that would mean we treated the addition as having higher priority than the multiplication.</p>
 
-        <p>To simplify <m>3+4(5x+7)</m>, we will first apply the distributive property. After that, we will use the commutative and associative properties:<md>
+        <p>So to simplify <m>3+4(5x+7)</m>, we will first examine the multiplication of <m>4</m> with <m>(5x+7)</m>, and here we may apply the distributive property. After that, we will use the commutative and associative properties:<md>
             <mrow>3+4(5x+7)\amp=3+4(5x)+4(7)</mrow>
             <mrow>\amp=3+20x+28</mrow>
             <mrow>\amp=20x+3+28</mrow>
@@ -434,17 +562,17 @@
             </statement>
             <solution>
                 <p><ol label="a.">
-                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                    <li><p>We will remove parentheses using the distributive property, and then combine like terms:<md>
                         <mrow>4-(3x-9) \amp=4-3x-(-9)</mrow>
                         <mrow>\amp=4-3x+9</mrow>
                         <mrow>\amp=-3x+13</mrow>
                     </md></p></li>
-                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:<md>
+                    <li><p>We will remove parentheses using the distributive property, and then combine like terms:<md>
                         <mrow>5x+9(-2x+3)\amp=5x+9(-2x)+9(3)</mrow>
                         <mrow>\amp=5x-18x+27</mrow>
                         <mrow>\amp=-13x+27</mrow>
                     </md></p></li>
-                    <li><p>We will remove parentheses by the distributive property, and then combine like terms:
+                    <li><p>We will remove parentheses using the distributive property, and then combine like terms:
                         <md>
                             <mrow>5(x-9)+4(x+4)\amp=5x-45+4x+16</mrow>
                             <mrow>\amp=9x-29</mrow>
@@ -524,10 +652,10 @@
             <webwork source="BasicAlgebra/Exponents/exponentsMultiplication20.pg" />
         </exercise> -->
 
-    <p>In the section <xref ref="section-introduction-to-exponent-rules" text="title"/>, we introduced the three exponent rules for multiplication.  It is important to understand how these three rules fit within the larger picture of simplifying expressions.</p>
+        <p>In <xref ref="section-introduction-to-exponent-rules">Section</xref>, we introduced three exponent rules. We continue to use these rules when simplifying expressions. Sometimes though, students incorrectly apply <q>rules</q> of exponents where they have misremembered the actual rule. Let's summarize what we can and cannot do.</p>
 
-
-        <example>
+<!-- The following content belongs in the previous section and is already covered there. I'm not deleting this in case someone determines these are actually better examples to use in that section than what is currently there. -->
+<!--         <example>
             <statement>
                 <p>Simplify the following expressions using the rules of exponents.<ol label="a." cols="2">
                     <li><p><m>-2t^3\cdot 4t^5</m></p></li>
@@ -566,25 +694,25 @@
                     </li>
                 </ol></p>
             </solution>
-        </example>
+        </example> -->
 
-        <p>When we add/subtract two expressions, we can only combine like terms. For example:<ul>
+        <p>When we add/subtract two expressions, we can only combine <em>like</em> terms. For example:<ul>
             <li><p><m>3x-x=2x</m></p></li>
-            <li><p><m>x^2+x^2=2x^2</m></p></li>
-            <li><p><m>x^2+x</m> cannot be combined.</p></li>
+            <li><p><m>t^2+t^2=2t^2</m></p></li>
+            <li><p><m>q^2+q</m> cannot be combined.</p></li>
         </ul></p>
 
-        <p>However, we can multiply two expressions regardless of whether they are like terms or not. For example:<ul>
+        <p>However, we can multiply two expressions regardless of whether or not they are like terms. For example:<ul>
             <li><p><m>x\cdot x=x^2</m></p></li>
-            <li><p><m>x^2\cdot x^2=x^4</m></p></li>
-            <li><p><m>(x^2)(x)=x^3</m></p></li>
+            <li><p><m>t^2\cdot t^3=t^5</m></p></li>
+            <li><p><m>(q^2)(q)=q^3</m></p></li>
         </ul></p>
 
-        <p>Compare the following problems:<ul>
-            <li><p>When we combine like terms, the variable's exponent doesn't change, as in <m>x^2+x^2=2x^2</m>.</p></li>
-            <li><p>When we multiply expressions with the same variable, its exponent will change, as in <m>(x^2)(x^2)=x^4</m>.</p></li>
-            <li><p>We cannot combine "unlike terms," as <m>x^2+x</m> will stay like it is.</p></li>
-            <li><p>We can multiply expressions with "unlike terms," as in <m>(x^2)(x)=x^3</m>.</p></li>
+        <p>Consider:<ul>
+            <li><p>When we combine like terms that have a variable, the exponent doesn't change, as in <m>x^2+x^2=2x^2</m>.</p></li>
+            <li><p>When we multiply powers of a variable that use the same variable, the exponent <em>will</em> change, as in <m>(x^2)(x^2)=x^4</m>.</p></li>
+            <li><p>We <em>cannot</em> combine <q>unlike terms,</q> as something like <m>x^2+x</m> is as simplified as it can be.</p></li>
+            <li><p>We <em>can</em> multiply powers with different exponents, as in <m>(x^2)(x)=x^3</m>.</p></li>
         </ul>The next few examples test your understanding of these concepts.</p>
 
         <example>
@@ -593,7 +721,7 @@
                     <li><p><m>3x^2+2x+x^2</m></p></li>
                     <li><p><m>(3x^2)(2x)(x^2)</m></p></li>
                     <li><p><m>2x(3x+4)</m></p></li>
-                    <li><p><m>3x^2(5x-2)</m></p></li>
+                    <!-- <li><p><m>3x^2(5x-2)</m></p></li> -->
                     <li><p><m>x^3-3x^2(5x-2)</m></p></li>
                 </ol></p>
             </statement>
@@ -615,12 +743,12 @@
                             <mrow>\amp=6x^2+8x</mrow>
                         </md></p>
                     </li>
-                    <li>
+<!--                     <li>
                         <p>We will use the distributive property first, and then apply the <xref ref="item-product-to-sum-exponent-rule" text="title" />:<md>
                             <mrow>3x^2(5x-2)\amp=3x^2(5x)-3x^2(2)</mrow>
                             <mrow>\amp=15x^3-6x^2</mrow>
                         </md></p>
-                    </li>
+                    </li> -->
                     <li>
                         <p>We will use the distributive property first, apply the <xref ref="item-product-to-sum-exponent-rule" text="title" />, and combine like terms:<md>
                             <mrow>x^3-3x^2(5x-2)\amp=x^3-3x^2(5x)-(-3x^2)(2)</mrow>
@@ -904,6 +1032,162 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/AlgebraicProperties/DistributiveProperty52.pg" />
+            </exercise>
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            $left=Formula("$a[0]($a[1]x+$a[2])");
+                            $right=Formula("$b[0]($b[1]x+$b[2])");
+                            $unsimplified=$left+$right;
+                            $unsimplified=$unsimplified->reduce;
+                            $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                            $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                            $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                            $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                            Context("LimitedPolynomial-Strict");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            $simplified=Formula("$simplified");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Fully simplify <m><var name="$unsimplified" /></m>.</p>
+                        <p><var name="$simplified" width="15" /></p> 
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                            <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                            <mrow>\amp=<var name="$simplified" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            $left=Formula("$a[0]($a[1]x+$a[2])");
+                            $right=Formula("$b[0]($b[1]x+$b[2])");
+                            $unsimplified=$left+$right;
+                            $unsimplified=$unsimplified->reduce;
+                            $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                            $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                            $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                            $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                            Context("LimitedPolynomial-Strict");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            $simplified=Formula("$simplified");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Fully simplify <m><var name="$unsimplified" /></m>.</p>
+                        <p><var name="$simplified" width="15" /></p> 
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                            <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                            <mrow>\amp=<var name="$simplified" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            $left=Formula("$a[0]($a[1]x+$a[2])");
+                            $right=Formula("$b[0]($b[1]x+$b[2])");
+                            $unsimplified=$left+$right;
+                            $unsimplified=$unsimplified->reduce;
+                            $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                            $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                            $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                            $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                            Context("LimitedPolynomial-Strict");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            $simplified=Formula("$simplified");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Fully simplify <m><var name="$unsimplified" /></m>.</p>
+                        <p><var name="$simplified" width="15" /></p> 
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                            <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                            <mrow>\amp=<var name="$simplified" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                            $left=Formula("$a[0]($a[1]x+$a[2])");
+                            $right=Formula("$b[0]($b[1]x+$b[2])");
+                            $unsimplified=$left+$right;
+                            $unsimplified=$unsimplified->reduce;
+                            $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                            $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                            $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                            $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                            Context("LimitedPolynomial-Strict");
+                            Context()->reduction->set('(-x)-y'=>0);
+                            Context()->reduction->set('(-x)+y'=>0);
+                            $simplified=Formula("$simplified");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Fully simplify <m><var name="$unsimplified" /></m>.</p>
+                        <p><var name="$simplified" width="15" /></p> 
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                            <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                            <mrow>\amp=<var name="$simplified" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
             </exercise>
         </exercisegroup>
     </exercises>
