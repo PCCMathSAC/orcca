@@ -81,5 +81,36 @@
     </xsl:if>
 </xsl:template>
 
+<!--If all exercises are webwork, and if they all open with the same p, then print that p after the introduction. -->
+<!--Later, in each such exercise statement, ignore that p -->
+<xsl:template match="exercisegroup[not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+    <xsl:apply-templates select="." mode="label" />
+    <xsl:apply-templates select="introduction" />
+    <xsl:text>\par%&#xa;</xsl:text>
+    <xsl:text>For the following exercises: </xsl:text>
+    <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
+    <xsl:apply-templates select="exercise"/>
+    <xsl:apply-templates select="conclusion" />
+    <xsl:text>\par\smallskip\noindent&#xa;</xsl:text>
+</xsl:template>
+
+<xsl:template match="statement[ancestor::webwork-reps][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+    <xsl:apply-templates select="*[not(self::p and position()=1)]" />
+</xsl:template>
+
+<!-- When the first common p was moved in exercisegroup statements above, we need the second (new first) p to *not* be preceded by a \par -->
+<xsl:template match="p[position()=2][ancestor::webwork-reps][parent::statement][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+    <xsl:apply-templates select="." mode="label" />
+    <xsl:text>%&#xa;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>%&#xa;</xsl:text>
+</xsl:template>
+
+<!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
+<xsl:template match="p[position()>1][not(count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1)][ancestor::webwork-reps][count(*)=1][not(text())][count(m)=1][contains(m,'\displaystyle')]">
+    <xsl:text>\[</xsl:text>
+    <xsl:apply-templates select="m/text()" />
+    <xsl:text>\]</xsl:text>
+</xsl:template>
 
 </xsl:stylesheet>
