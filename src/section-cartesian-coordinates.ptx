@@ -160,7 +160,7 @@
             <p>Use <xref ref="figure-carls-neighborhood">Figure</xref> to answer the following questions.</p>
         </introduction>
 
-        <webwork >
+        <webwork>
             <setup>
                 <var name="$bar">
                     <static>(3,-3)</static>
@@ -289,21 +289,13 @@
                 <p>Identify coordinates.</p>
             </introduction>
             <exercise>
-                <webwork  >
-                    <pg-macros>
-                        <macro-file>PCCgraphMacros.pl</macro-file>
-                    </pg-macros>
+                <webwork>
                     <setup>
-                        <var name="$ans[0]"><static>(-8,5)</static></var>
-                        <var name="$ans[1]"><static>(7,3)</static></var>
-                        <var name="$ans[2]"><static>(0,-6)</static></var>
-                        <var name="$ans[3]"><static>(4,0)</static></var>
                         <pg-code>
-                            @px=map{($_==0)?9:$_-9}(NchooseK(18,4));
-                            @py=map{($_==0)?9:$_-9}(NchooseK(18,4));
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
                             $px[2]=0;
                             $py[3]=0;
-                            if($envir{problemSeed}==1){@px=(-8,7,0,4);@py=(5,3,-6,0);};
                             $xmin = -10;$xmax = 10;
                             $ymin = -10;$ymax = 10;
                             $xmark = 2;
@@ -316,7 +308,14 @@
                             $gr->lb('reset');
                             for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top'));}};
                             for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle'));};
-                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
                             Context("Point");
                             @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
                         </pg-code>
@@ -333,12 +332,12 @@
                         <sidebyside>
                             <tabular>
                                 <row>
-                                    <cell><m>A=</m><var name="$ans[0]" width="10" /></cell>
-                                    <cell><m>B=</m><var name="$ans[1]" width="10" /></cell>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
                                 </row>
                                 <row>
-                                    <cell><m>C=</m><var name="$ans[2]" width="10" /></cell>
-                                    <cell><m>D=</m><var name="$ans[3]" width="10" /></cell>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
                                 </row>
                             </tabular>
                         </sidebyside>
@@ -346,25 +345,17 @@
                 </webwork>
             </exercise>
             <exercise>
-                <webwork  >
-                    <pg-macros>
-                        <macro-file>PCCgraphMacros.pl</macro-file>
-                    </pg-macros>
+                <webwork>
                     <setup>
-                        <var name="$ans[0]"><static>(-4,4)</static></var>
-                        <var name="$ans[1]"><static>(2,-1)</static></var>
-                        <var name="$ans[2]"><static>(0,0)</static></var>
-                        <var name="$ans[3]"><static>(4,4)</static></var>
                         <pg-code>
-                            @px=map{($_==0)?4:$_-4}(NchooseK(8,4));
-                            @py=map{($_==0)?4:$_-4}(NchooseK(8,4));
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
                             $px[2]=0;
-                            $py[2]=0;
-                            if($envir{problemSeed}==1){@px=(-4,2,0,4);@py=(4,-1,0,4);};
-                            $xmin = -5;$xmax = 5;
-                            $ymin = -5;$ymax = 5;
-                            $xmark = 1;
-                            $ymark = 1;
+                            $py[3]=0;
+                            $xmin = -10;$xmax = 10;
+                            $ymin = -10;$ymax = 10;
+                            $xmark = 2;
+                            $ymark = 2;
                             $gr = init_graph($xmin,$ymin,$xmax,$ymax,
                                axes=>[0,0],
                                grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
@@ -373,7 +364,14 @@
                             $gr->lb('reset');
                             for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top'));}};
                             for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle'));};
-                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));$gr->lb(new Label($px[$i]-0.15,$py[$i]+0.15,$ALPHABET[$i],'blue','right','bottom'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
                             Context("Point");
                             @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
                         </pg-code>
@@ -390,12 +388,12 @@
                         <sidebyside>
                             <tabular>
                                 <row>
-                                    <cell><m>A=</m><var name="$ans[0]" width="10" /></cell>
-                                    <cell><m>B=</m><var name="$ans[1]" width="10" /></cell>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
                                 </row>
                                 <row>
-                                    <cell><m>C=</m><var name="$ans[2]" width="10" /></cell>
-                                    <cell><m>D=</m><var name="$ans[3]" width="10" /></cell>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
                                 </row>
                             </tabular>
                         </sidebyside>
@@ -410,13 +408,13 @@
                 <webwork source="Library/Mizzou/Algebra/graph_basics/match_points_01.pg" />
             </exercise> -->
         </exercisegroup>
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
-                <p>Sketch coordinates.</p>
+                <p>Make some sketches.</p>
             </introduction>
             <exercise>
                 <statement>
-                    <p>Sketch the points <m>(8,2)</m>, <m>(5,5)</m>, <m>(-3,0)</m>, <m>\left(0,-\frac{14}{3}\right)</m>, <m>(3,-2.5)</m>, and <m>(-5,7)</m> on a Cartesian plane.</p>
+                    <p>Sketch the points <m>(8,2)</m>, <m>(5,5)</m>, <m>(-3,0)</m>, and <m>(2,-6)</m> on a Cartesian plane.</p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -430,7 +428,31 @@
                                             ytick={-8,-6,...,8},
                                             minor xtick={-9,-8,...,9},
                                             minor ytick={-9,-8,...,9}]
-                                    \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (0,-4.66666) (3,-2.5) (-5,7)};
+                                    \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (-2,-6)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch the points <m>(1,-4)</m>, <m>(-3,5)</m>, <m>(0,4)</m>, and <m>(-2,-6)</m> on a Cartesian plane.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \addplot[soliddot] coordinates {(1, -4) (-3,5) (0,4) (-2,-6)};
                                 \end{axis}
                             \end{tikzpicture}]]>
                             </latex-image-code>
@@ -463,13 +485,184 @@
                     </sidebyside>
                 </solution>
             </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch the points <m>(110,38)</m>, <m>(-205,52)</m>, <m>(-52,125)</m>, and <m>(-172,-80)</m> on a Cartesian plane.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-250,xmax=250,
+                                            ymin=-250,ymax=250,
+                                            xtick={-200,-150,...,200},
+                                            ytick={-200,-150,...,200},
+                                            minor xtick={-240,-230,...,240},
+                                            minor ytick={-240,-230,...,240},
+                                            grid=major]
+                                    \addplot[soliddot] coordinates {(110,38) (-205,52) (-52,125) (-172,-80)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch the points <m>(5.5,2.7)</m>, <m>(-7.3,2.75)</m>, <m>\left(-\frac{10}{3},\frac{1}{2}\right)</m>, and <m>\left(-\frac{28}{5},-\frac{29}{4}\right)</m> on a Cartesian plane.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \addplot[soliddot] coordinates {(5.5, 2.7) (-7.3,2.75) (-3.333,0.5) (-5.8,-7.25)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch the points <m>(1.9,-3.3)</m>, <m>(-5.2,-8.11)</m>, <m>\left(\frac{7}{11},\frac{15}{2}\right)</m>, and <m>\left(-\frac{16}{3},\frac{19}{5}\right)</m> on a Cartesian plane.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \addplot[soliddot] coordinates {(1.9,-3.3) (-5.2,-8.11) (0.6363,7.5) (-5.333,3.8)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch a Cartesian plane and shade the quadrants where the <m>x</m>-coordinate is negative.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \fill [black!25] (axis cs:-10,-10) rectangle (rel axis cs:10,20);
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch a Cartesian plane and shade the quadrants where the <m>y</m>-coordinate is positive.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \fill [black!25] (axis cs:-10,0) rectangle (rel axis cs:20,10);
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch a Cartesian plane and shade the quadrants where the <m>x</m>-coordinate has the same sign as the <m>y</m>-coordinate.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \fill [black!25] (axis cs:-10,-10) rectangle (rel axis cs:10,10);
+                                    \fill [black!25] (axis cs:0,0) rectangle (rel axis cs:10,10);
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch a Cartesian plane and shade the quadrants where the <m>x</m>-coordinate and the <m>y</m>-coordinate have opposite signs.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \fill [black!25] (axis cs:-10,0) rectangle (rel axis cs:10,10);
+                                    \fill [black!25] (axis cs:0,-10) rectangle (rel axis cs:10,10);
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
         </exercisegroup>
         <exercisegroup>
             <introduction>
                 <p>These exercises have Cartesian plots with some context.</p>
             </introduction>
             <exercise>
-                <webwork >
+                <webwork>
                     <setup>
                         <var name="$year"><static>2008</static></var>
                         <var name="$point"><static>(2008,5)</static></var>
@@ -523,7 +716,7 @@
                     </setup>
                     <statement>
                         <p>This graph gives the minimum estimates of the wolf population in Washington from 2008 through 2015. (Source: <url href="http://wdfw.wa.gov/publications/01793/wdfw01793.pdf" />)</p>
-                        <sidebyside><image pg-name="$gr" width="40%" /></sidebyside>
+                        <sidebyside widths="40%"><image pg-name="$gr" /></sidebyside>
                         <p>What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" /></p>
                         <p>Between <var name="$year"/> and <var name="$next"/>, the wolf population grew by <var name="$change" width="2" /> wolves.</p>
                         <p>List at least three ordered pairs in the graph.</p>
@@ -533,7 +726,7 @@
                 </webwork>
             </exercise>
             <exercise>
-                <webwork >
+                <webwork>
                     <pg-macros>
                         <macro-file>contextPercent.pl</macro-file>
                     </pg-macros>
@@ -590,7 +783,7 @@
                     </setup>
                     <statement>
                         <p>Here is a graph of the foreign-born US population (in millions) during Census years 1960 to 2010. (Source: <url href="http://www.pewhispanic.org/2015/09/28/chapter-5-u-s-foreign-born-population-trends/" />.)</p>
-                        <sidebyside><image pg-name="$gr" width="40%" /></sidebyside>
+                        <sidebyside widths="40%"><image pg-name="$gr" /></sidebyside>
                         <p>What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" /></p>
                         <p>Between <var name="$year"/> and <var name="$later"/>, the US population that is foreign-born increased by <var name="$change" width="2" /> million people.</p>
                         <p>List at least three ordered pairs in the graph.</p>
@@ -605,16 +798,22 @@
                 <p>Regions in the Cartesian plane.</p>
             </introduction>
             <exercise>
-                <webwork source="Library/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant10.pg" />
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant20.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant30.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant30.pg" seed="2"/>
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant20.pg" />
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/Quadrant30.pg" />
             </exercise>
         </exercisegroup>
         <exercisegroup>
@@ -622,7 +821,7 @@
                 <p>Writing questions.</p>
             </introduction>
             <exercise>
-                <webwork >
+                <webwork>
                     <statement>
                         <p>What would be the difficulty with trying to plot <m>(12,4)</m>, <m>(13,5)</m>, and <m>(310,208)</m> all on the same graph?</p>
 
@@ -630,6 +829,18 @@
                     </statement>
                     <solution>
                         <p>Answers will vary, but the issue is that once you set the scale on both axes so that both <m>(12,4)</m> and <m>(310,208)</m> will appear, then <m>(13,5)</m> will appear to be so close to <m>(12,4)</m> that it will be challenging to draw them both and make it clear they are two different points.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <statement>
+                        <p>The points <m>(3,5)</m>, <m>(5,6)</m>, <m>(7,7)</m>, and <m>(9,8)</m> all lie on a straight line. What can go wrong if you make a plot of a Cartesion plane with these points marked, and you don't have tick marks that are evely spaced apart?</p>
+
+                        <p><var form="essay" /></p>
+                    </statement>
+                    <solution>
+                        <p>Answers will vary, but the issue is that having irregularly spaced tick marks can make it so that points that are actually in a staright line do not appear to be in a straight line.</p>
                     </solution>
                 </webwork>
             </exercise>
