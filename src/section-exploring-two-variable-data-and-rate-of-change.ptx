@@ -1050,7 +1050,7 @@
     </subsection>
 
     <exercises>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <introduction>
                 <p>Find a formula relating <m>y</m> to <m>x</m> using a table. The pattern should be relatively easy to spot. Later sections will address more specific ways to approach this task in general.</p>
             </introduction>
@@ -1072,8 +1072,72 @@
                         <var name="$f"><static>2x</static></var>
                         <pg-code>
                             @x=(-2..2);
-                            $m=random(2,4,1);
-                            if($envir{problemSeed}==1){$m=2;};
+                            $m=random(2,6,1);
+                            $f=Formula("$m x");
+                            @y=map{$f->eval(x=>$_)}@x;
+                            Context("Numeric")->variables->add(y=>'Real');
+                            parser::Assignment->Allow;
+                            $eq=Formula("y=$f");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+                        <sidebyside>
+                            <tabular >
+                                <col halign="right" />
+                                <col halign="left" />
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                        <p><var name="$eq" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>Each <m>y</m>-value is <m><var name="$m" /></m> times what the corresponding <m>x</m>-value is. So the equation is <m><var name="$eq" /></m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <var name="$x[0]"><static>-2</static></var>
+                        <var name="$x[1]"><static>-1</static></var>
+                        <var name="$x[2]"><static>0</static></var>
+                        <var name="$x[3]"><static>1</static></var>
+                        <var name="$x[4]"><static>2</static></var>
+                        <var name="$y[0]"><static>-4</static></var>
+                        <var name="$y[1]"><static>-2</static></var>
+                        <var name="$y[2]"><static>0</static></var>
+                        <var name="$y[3]"><static>2</static></var>
+                        <var name="$y[4]"><static>4</static></var>
+                        <var name="$eq"><static>y=2x</static></var>
+                        <var name="$m"><static>2</static></var>
+                        <var name="$f"><static>2x</static></var>
+                        <pg-code>
+                            @x=(3..7);
+                            $m=random(2,6,1);
                             $f=Formula("$m x");
                             @y=map{$f->eval(x=>$_)}@x;
                             Context("Numeric")->variables->add(y=>'Real');
@@ -1139,7 +1203,72 @@
                         <pg-code>
                             $x[0]=random(1,8,1);
                             $b=random(4,9,1);
-                            if($envir{problemSeed}==1){$x[0]=3;$b=4;};
+                            @x=map{$x[0]+$_}(0..4);
+                            $f=Formula("x+$b");
+                            @y=map{$f->eval(x=>$_)}@x;
+                            Context("Numeric")->variables->add(y=>'Real');
+                            parser::Assignment->Allow;
+                            $eq=Formula("y=$f");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+                        <sidebyside>
+                            <tabular >
+                                <col halign="right" />
+                                <col halign="left" />
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                        <p><var name="$eq" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>Each <m>y</m>-value is <m><var name="$b" /></m> more than the corresponding <m>x</m>-value. So the equation is <m><var name="$eq" /></m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <var name="$x[0]"><static>3</static></var>
+                        <var name="$x[1]"><static>4</static></var>
+                        <var name="$x[2]"><static>5</static></var>
+                        <var name="$x[3]"><static>6</static></var>
+                        <var name="$x[4]"><static>7</static></var>
+                        <var name="$y[0]"><static>7</static></var>
+                        <var name="$y[1]"><static>8</static></var>
+                        <var name="$y[2]"><static>9</static></var>
+                        <var name="$y[3]"><static>10</static></var>
+                        <var name="$y[4]"><static>11</static></var>
+                        <var name="$eq"><static>y=x+4</static></var>
+                        <var name="$b"><static>4</static></var>
+                        <var name="$f"><static>x+4</static></var>
+                        <pg-code>
+                            $x[0]=random(1,8,1);
+                            $b=random(4,9,1);
                             @x=map{$x[0]+$_}(0..4);
                             $f=Formula("x+$b");
                             @y=map{$f->eval(x=>$_)}@x;
@@ -1208,7 +1337,75 @@
                         <pg-code>
                             @x=NchooseK(20,5);
                             $b=non_zero_random(-9,9,1);
-                            if($envir{problemSeed}==1){@x=(7,15,9,19,0);$b=-3;};
+                            $f=Formula("x+$b")->reduce;
+                            @y=map{$f->eval(x=>$_)}@x;
+                            Context("Numeric")->variables->add(y=>'Real');
+                            parser::Assignment->Allow;
+                            $eq=Formula("y=$f");
+                            $absb=abs($b);
+                            $compstring=($b>0)?'more':'less';
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+                        <sidebyside>
+                            <tabular >
+                                <col halign="right" />
+                                <col halign="left" />
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                        <p><var name="$eq" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>Each <m>y</m>-value is <m><var name="$absb" /></m> <var name="$compstring" /> than the corresponding <m>x</m>-value. So the equation is <m><var name="$eq" /></m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <var name="$x[0]"><static>7</static></var>
+                        <var name="$x[1]"><static>15</static></var>
+                        <var name="$x[2]"><static>9</static></var>
+                        <var name="$x[3]"><static>19</static></var>
+                        <var name="$x[4]"><static>0</static></var>
+                        <var name="$y[0]"><static>4</static></var>
+                        <var name="$y[1]"><static>12</static></var>
+                        <var name="$y[2]"><static>6</static></var>
+                        <var name="$y[3]"><static>16</static></var>
+                        <var name="$y[4]"><static>-3</static></var>
+                        <var name="$eq"><static>y=x+4</static></var>
+                        <var name="$absb"><static>y=3</static></var>
+                        <var name="$compstring"><static>\text{less}</static></var>
+                        <var name="$b"><static>-3</static></var>
+                        <var name="$f"><static>x-3</static></var>
+                        <pg-code>
+                            @x=NchooseK(20,5);
+                            $b=non_zero_random(-9,9,1);
                             $f=Formula("x+$b")->reduce;
                             @y=map{$f->eval(x=>$_)}@x;
                             Context("Numeric")->variables->add(y=>'Real');
@@ -1274,8 +1471,70 @@
                         <var name="$f"><static>\sqrt{x}</static></var>
                         <pg-code>
                             @x=map{($_+1)**2}NchooseK(5,5);
-                            if($envir{problemSeed}==1){@x=(1,9,25,16,4);};
                             $f=Formula("sqrt(x)");
+                            @y=map{$f->eval(x=>$_)}@x;
+                            Context("Numeric")->variables->add(y=>'Real');
+                            parser::Assignment->Allow;
+                            $eq=Formula("y=$f");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+                        <sidebyside>
+                            <tabular >
+                                <col halign="right" />
+                                <col halign="left" />
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                        <p><var name="$eq" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>Each <m>y</m>-value is the square root of the corresponding <m>x</m>-value. So the equation is <m><var name="$eq" /></m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <var name="$x[0]"><static>1</static></var>
+                        <var name="$x[1]"><static>9</static></var>
+                        <var name="$x[2]"><static>25</static></var>
+                        <var name="$x[3]"><static>16</static></var>
+                        <var name="$x[4]"><static>4</static></var>
+                        <var name="$y[0]"><static>1</static></var>
+                        <var name="$y[1]"><static>3</static></var>
+                        <var name="$y[2]"><static>5</static></var>
+                        <var name="$y[3]"><static>4</static></var>
+                        <var name="$y[4]"><static>2</static></var>
+                        <var name="$eq"><static>y=\sqrt{x}</static></var>
+                        <var name="$f"><static>\sqrt{x}</static></var>
+                        <pg-code>
+                            @x=(map{$_-5}(NchooseK(5,3)),map{$_+1}(NchooseK(5,2)));
+                            $f=Formula("abs(x)");
                             @y=map{$f->eval(x=>$_)}@x;
                             Context("Numeric")->variables->add(y=>'Real');
                             parser::Assignment->Allow;
@@ -1337,9 +1596,75 @@
                         <var name="$eq"><static>y=\sqrt{x}</static></var>
                         <var name="$f"><static>x^2</static></var>
                         <pg-code>
-                            $x[0]=random(0,0.7,0.1);
-                            $h=random(0.1,0.3,0.1);
-                            if($envir{problemSeed}==1){$x[0]=0.5;$h=0.2};
+                            $t=random(0,2,1);
+                            $x[0]=random(0,7,1)/10**$t;
+                            $h=random(1,3,1)/10**$t;
+                            @x=map{$x[0]+$h*$_}(0..4);
+                            $f=Formula("x^2");
+                            @y=map{$f->eval(x=>$_)}@x;
+                            Context("Numeric")->variables->add(y=>'Real');
+                            parser::Assignment->Allow;
+                            $eq=Formula("y=$f");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+                        <sidebyside>
+                            <tabular >
+                                <col halign="right" />
+                                <col halign="left" />
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                        <p><var name="$eq" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>Each <m>y</m>-value is the square of the corresponding <m>x</m>-value. So the equation is <m><var name="$eq" /></m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <var name="$x[0]"><static>1</static></var>
+                        <var name="$x[1]"><static>9</static></var>
+                        <var name="$x[2]"><static>25</static></var>
+                        <var name="$x[3]"><static>16</static></var>
+                        <var name="$x[4]"><static>4</static></var>
+                        <var name="$y[0]"><static>1</static></var>
+                        <var name="$y[1]"><static>3</static></var>
+                        <var name="$y[2]"><static>5</static></var>
+                        <var name="$y[3]"><static>4</static></var>
+                        <var name="$y[4]"><static>2</static></var>
+                        <var name="$eq"><static>y=\sqrt{x}</static></var>
+                        <var name="$f"><static>x^2</static></var>
+                        <pg-code>
+                            $t=random(0,2,1);
+                            $x[0]=random(0,7,1)/10**$t;
+                            $h=random(1,3,1)/10**$t;
                             @x=map{$x[0]+$h*$_}(0..4);
                             $f=Formula("x^2");
                             @y=map{$f->eval(x=>$_)}@x;
@@ -1404,7 +1729,70 @@
                         <var name="$f"><static>\frac{1}{x}</static></var>
                         <pg-code>
                             @x=map{$_+1}NchooseK(99,5);
-                            if($envir{problemSeed}==1){@x=(42,91,70,65,61);};
+                            $f=Formula("1/x");
+                            Context("Fraction");
+                            @y=map{Fraction($f->eval(x=>$_))}@x;
+                            Context("Numeric")->variables->add(y=>'Real');
+                            parser::Assignment->Allow;
+                            $eq=Formula("y=$f");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+                        <sidebyside>
+                            <tabular >
+                                <col halign="right" />
+                                <col halign="left" />
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                        <p><var name="$eq" width="20" /></p>
+                    </statement>
+                    <solution>
+                        <p>Each <m>y</m>-value is the reciprocal of the corresponding <m>x</m>-value. So the equation is <m><var name="$eq" /></m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <var name="$x[0]"><static>1</static></var>
+                        <var name="$x[1]"><static>9</static></var>
+                        <var name="$x[2]"><static>25</static></var>
+                        <var name="$x[3]"><static>16</static></var>
+                        <var name="$x[4]"><static>4</static></var>
+                        <var name="$y[0]"><static>1</static></var>
+                        <var name="$y[1]"><static>3</static></var>
+                        <var name="$y[2]"><static>5</static></var>
+                        <var name="$y[3]"><static>4</static></var>
+                        <var name="$y[4]"><static>2</static></var>
+                        <var name="$eq"><static>y=\sqrt{x}</static></var>
+                        <var name="$f"><static>\frac{1}{x}</static></var>
+                        <pg-code>
+                            @x=map{$_+1}NchooseK(99,5);
                             $f=Formula("1/x");
                             Context("Fraction");
                             @y=map{Fraction($f->eval(x=>$_))}@x;
@@ -1453,7 +1841,7 @@
                 </webwork>
             </exercise>
         </exercisegroup>
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Calculate some rates of change.</p>
             </introduction>
@@ -1513,7 +1901,8 @@
                         <p><var name="$rate[0]" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m></p>
                         <p>And what was the rate of change between <var name="$year[2]" /> and <var name="$year[3]" />?</p>
                         <p><var name="$rate[1]" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m></p>
-                        <p>List all the years where there is a negative rate of change between that year and the next year. (Use commas to separate your answers.)</p>
+                        <p>List all the years where there is a negative rate of change between that year and the next year.</p>
+                        <instruction>(Use commas to separate your answers.)</instruction>
                         <p><var name="$declines" width="20" /></p>
                     </statement>
                     <solution>
@@ -1537,7 +1926,7 @@
                             $answer=List(1999,2001);
                             $rate=($f{2001}-$f{1999})/2;
                             for my$j(0,1){
-                              $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[400,400]);
+                              $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[240,240]);
                               $graph[$j]->lb('reset');
                               $graph[$j]->lb(new Label(2014,6000,'year','black','right','bottom'));
                               $graph[$j]->lb(new Label(1990.5,690000,'population','black','left','top'));
@@ -1585,8 +1974,9 @@
                                 <row><cell>2002</cell><cell>538803</cell></row>
                             </tabular>
                         </sidebyside>
-                        <sidebyside><image pg-name="$graph[0]" /></sidebyside>
-                        <p>Between what two years that are two years apart was the rate of change highest? (Use commas to separate your answers.)</p>
+                        <sidebyside widths="40%"><image pg-name="$graph[0]" /></sidebyside>
+                        <p>Between what two years that are two years apart was the rate of change highest?</p>
+                        <instruction>(Use commas to separate your answers.)</instruction>
                         <p><var name="$answer" width="20" /></p>
                         <p>What was that rate of change? Just give the numerical value; the units are provided.</p>
                         <p><var name="$rate" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m></p>

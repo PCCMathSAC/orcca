@@ -40,7 +40,12 @@
     <subsection>
         <title>What is slope?</title>
         <sidebyside widths="47% 47%" margins="0%">
-            <p>When the <term>rate of change</term> from point to point never changes, those points must fall on a straight line, as in <xref ref="figure-constant-rate-of-change">Figure</xref>, and there is a <term>linear relationship</term> between the variables <m>x</m> and <m>y</m>.</p>
+            <paragraphs>
+                <p>When the <term>rate of change</term> from point to point never changes, those points must fall on a straight line, as in <xref ref="figure-constant-rate-of-change">Figure</xref>, and there is a <term>linear relationship</term> between the variables <m>x</m> and <m>y</m>.</p>
+
+                <p>Rather than say <q>constant rate of change</q> in every such situation, mathematicians call that common rate of change <term>slope.</term></p>
+            </paragraphs>
+
             <figure xml:id="figure-constant-rate-of-change">
                 <caption>Between successive points, the rate of change is always <m>1/2</m>.</caption>
                 <image>
@@ -60,7 +65,6 @@
             </figure>
         </sidebyside>
 
-        <p>Rather than say <q>constant rate of change</q> in every such situation, mathematicians call that common rate of change <term>slope.</term></p>
         
         <definition xml:id="definition-slope">
             <title>Slope</title>
@@ -318,7 +322,7 @@
                         @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
                         $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
                         for my$j(0,1){
-                          $gr[$j] = init_graph(1998,-2000,2015,25000,axes=>[1999,0],grid=>[17,27],size=>[400,400]);
+                          $gr[$j] = init_graph(1998,-2000,2015,25000,axes=>[1999,0],grid=>[17,27],size=>[240,240]);
                           $gr[$j] -> lb('reset');
                           $gr[$j]->h_ticks(0,"black",2000,2005,2010);
                           $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
@@ -331,13 +335,13 @@
                         };
                         $gr[1]->stamps(closed_circle(2006,19000,'red'));
                         $gr[1]->stamps(closed_circle(2014,21000,'red'));
-                        $gr[1]->moveTo(2006,19000);$gr[1]->lineTo(2006,21000,'red',3);$gr[1]->arrowTo(2014,21000,'red',3);
+                        $gr[1]->moveTo(2006,19000);$gr[1]->lineTo(2014,19000,'red',2);$gr[1]->arrowTo(2014,21000,'red',2);
                     </pg-code>
                 </setup>
                 <statement>
                     <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
 
-                    <sidebyside>
+                    <sidebyside widths="47%">
                         <image pg-name="$gr[0]" />
                     </sidebyside>
 
@@ -346,7 +350,7 @@
                 </statement>
                 <solution>
                     <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
-                    <sidebyside>
+                    <sidebyside widths="47%">
                         <image pg-name="$gr[1]" />
                     </sidebyside>
                     <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
@@ -531,7 +535,7 @@
 
             <p>Here is a picture-free approach. We know that after <quantity><mag>3</mag><unit base="year" /></quantity>, the height is <quantity><mag>15</mag><unit base="foot" /></quantity>. As an ordered pair, that information gives us the point <m>(3,15)</m> which we can label as <m>(\overset{x_1}{3},\overset{y_1}{15})</m>. Similarly, the background information tells us to consider <m>(6,27)</m>, which we label as <m>(\overset{x_2}{6},\overset{y_2}{27})</m>. Here, <m>x_1</m> and <m>y_1</m> represent the first point's <m>x</m>-value and <m>y</m>-value, and <m>x_2</m> and <m>y_2</m> represent the second point's <m>x</m>-value and <m>y</m>-value.</p>
 
-            <p>It's important to use subscript instead of superscript here, because <m>y^2</m> means to take the number <m>y</m> and square it. Whereas <m>y_2</m> tells you that there are at lest two <m>y</m>-values in the conversation, and <m>y_2</m> is the second of them.</p>
+            <p>It's important to use subscript instead of superscript here, because <m>y^2</m> means to take the number <m>y</m> and square it. Whereas <m>y_2</m> tells you that there are at least two <m>y</m>-values in the conversation, and <m>y_2</m> is the second of them.</p>
 
             <p>Now we can write an alternative to <xref ref="equation-slope-definition">Equation</xref>:<men xml:id="equation-slope-formula">\text{slope}=m=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}</men>This is known as the <term>slope formula</term>.<idx><h>slope</h><h>formula</h></idx> The following graph will help you understand why this formula works. Basically, we are still using a slope triangle to calculate the slope.</p>
 
@@ -614,7 +618,7 @@
                     <var name="$s[2]"><static>-875 \frac{\text{ft}}{\text{hr}}</static></var>
                     <pg-code>
                         @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
-                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[400,400]);
+                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
                         $gr -&gt; lb('reset');
                         for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top'));}
                         for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle'));}
@@ -629,7 +633,7 @@
                 <statement>
                     <p>Tammy is training for a race up the slope of Mt.<nbsp/>Hood, from Sandy to Government Camp, and then back.  The graph below models her elevation from her starting point as time passes. Find the slopes of the three line segments, and interpret their meanings in this context.</p>
 
-                    <sidebyside>
+                    <sidebyside widths="47%">
                         <image pg-name="$gr">
                             <description></description>
                         </image>
@@ -671,7 +675,16 @@
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
@@ -680,41 +693,80 @@
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" />
             </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" />
+            </exercise>
         </exercisegroup>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula10.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula20.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula30.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula40.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula50.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula60.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
-        </exercise>
+        <exercisegroup cols="2">
+            <introduction>
+                <p>Calculate slope using two points.</p>
+            </introduction>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
+            </exercise>
+        </exercisegroup>
     </exercises>
-
-
 
 </section>
