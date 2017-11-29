@@ -39,7 +39,7 @@
 
 	<subsection>
 		<title>Graphing Quadratic Functions Using a Table</title>
-        <p>The simpliest quadratic function is given by <m>y=x^2</m>. We'll start by creating a table of values and graphing this function:</p>
+        <p>The simplest quadratic function is given by <m>y=x^2</m>. We'll start by creating a table of values and graphing this function:</p>
             <sidebyside widths="47% 47%" margins="0%">
 				<table xml:id="table-basic-quadratic-function">
                 <caption>Function values and points for <m>y=x^2</m></caption>
@@ -847,10 +847,10 @@
 
         <p>The vertex of a quadratic function is either the minimum point or the maximum point on its graph, depending on whether this function opens upward or downward. When there are two horizontal intercepts for a quadratic function, we can see that the vertex occurs halfway between those two points. Similarly, when there is exactly one horizontal intercept, we know that this point is where the vertex occurs.</p>
         <p>The <term>axis of symmetry</term> is the vertical line that passes through the vertex.</p> 
-<!--TODO: add visual demonstration of being halfway between-->
+
             <sidebyside widths="30% 30% 30%" margins="0%">
                 <figure xml:id="figure-quadratic-function-two-horizontal-intercepts">
-                <caption>Parabola with two horizontal intercepts</caption>
+                <caption>Parabola with two horizontal intercepts, showing axis of symmetry between them</caption>
                     <image>
                         <description></description>
                         <latex-image-code>
@@ -858,7 +858,9 @@
                                 \begin{axis}[]
                                     \addplot+[domain=-4.14:3.14] {(x-2)*(x+3)};
                                     \addplot[soliddot] coordinates {(-3,0)} ;
-                                    \addplot[soliddot] coordinates {(2,0)} ;
+                                    \addplot[soliddot] coordinates {(2,0)} ; \draw [color=blue,dotted,<->] (axis cs: -0.5,-7) -- (axis cs: -0.5, 7);
+                                    \draw [color=blue,dotted,<->] (axis cs: -3,0.5) -- (axis cs: -0.5, 0.5);
+                                    \draw [color=blue,dotted,<->] (axis cs: -0.5,0.5) -- (axis cs: 2, 0.5);
                                     \end{axis}
                             \end{tikzpicture}
                             ]]>
@@ -902,7 +904,7 @@
 
         <fact xml:id="fact-vertex"><p>The vertex of a quadratic function <m>f(x)=ax^2+bx+c</m> occurs where <m>x=-\frac{b}{2a}</m>, or at the point <m>\left(-\frac{b}{2a},f\left(-\frac{b}{2a}\right)\right)</m>.</p></fact>
 
-        <p>This formula may at first seem a bit random, but it is actually related to the quadratic formula. Still thinking about the vertex occuring in the middle of two horizontal intercepts, we can see that this value is in the middle of the two values obtained from the quadratic formula:
+        <p>This formula may at first seem a bit random, but it is actually related to the quadratic formula. Still thinking about the vertex occurring in the middle of two horizontal intercepts, we can see that this value is in the middle of the two values obtained from the quadratic formula:
             <me>x=\frac{{}\highlight{-b}{}\pm \lowlight{\sqrt{b^2-4ac}}}{{}\highlight{2a}{}}</me>
         </p>
 
@@ -918,7 +920,7 @@
                             <![CDATA[\begin{tikzpicture}
                                 \begin{axis}[]
                                     \addplot[soliddot] coordinates {(-2,0) (6,0)} ;
-                                \addplot[guideline]coordinates {(2,-7) (2,7)} node[pin=220:{axis of symmetry}]{};
+                                \addplot[guideline]coordinates {(2,-7) (2,7)} node[pin=220:{axis of symmetry},->]{};
                                 \end{axis}
                             \end{tikzpicture}
                             ]]>
@@ -1086,13 +1088,98 @@
                         </latex-image-code>
                     </image>
                 </figure>
-
             </sidebyside>
+        </solution>
+    </example>
 
+    </subsection>
+
+    <subsection>
+        <title>Pellet Trajectory</title>
+        <example>
+            <statement>
+                <p>Imagine that Yang got a new air rifle to shoot targets. The first thing he did with it was to sight the scope at a certain distance so that the pellets consistently hit where the cross hairs are pointed. In Olympic <m>10</m> meter air rifle shooting, the bulls-eye is a <m>0.5</m>mm dot, about the size of the head of a pin, so accuracy is key. (Visit <url href="https://en.wikipedia.org/wiki/ISSF_10_meter_air_rifle">Wikipedia</url> for more.)</p>
+                <p>Yang, would like to set up his air rifle scope to be accurate at a level distance of <m>35</m> yards (from the muzzle, which is the tip of the barrel), but he also needs to know how much to correct for gravity at different distances. Since the projectile will be affected by gravity, knowing the distance that the target will be set up is essential to be accurate. After zeroing his scope reticule (cross-hairs) at <m>35</m> yards so that he can consistently hit the bulls-eye with the reticule directly over it, he sets up targets at various distances to test his gun. He then shoots at the targets with the cross-hairs directly over the bulls-eye and measured the distance that the pellet hit above or below the bulls-eye when shot at those distances.</p>
+
+                <table xml:id="table-shooting-distance">
+                    <caption>Shooting Distance vs Pellet Rise/Fall</caption>
+                    <tabular top="major" halign="center">
+                        <row>
+                            <cell>Distance to Target in Yards</cell>
+                            <cell>Above/Below Bulls-eye</cell>
+                            <cell>Distance Above/Below in Inches</cell>
+                        </row>
+                        <row>
+                            <cell><m>5</m>yds</cell>
+                            <cell>Below</cell>
+                            <cell><m>0.1</m>in</cell>
+                        </row>
+                        <row>
+                            <cell><m>10</m>yds</cell>
+                            <cell>Above</cell>
+                            <cell><m>0.6</m>in</cell>
+                        </row>
+                        <row>
+                            <cell><m>20</m>yds</cell>
+                            <cell>Above</cell>
+                            <cell><m>1.1</m>in</cell>
+                        </row>
+                        <row>
+                            <cell><m>30</m>yds</cell>
+                            <cell>Above</cell>
+                            <cell><m>0.6</m>in</cell>
+                        </row>
+                        <row>
+                            <cell><m>35</m>yds</cell>
+                            <cell>On Bulls-eye</cell>
+                            <cell><m>0</m>in</cell>
+                        </row>
+                        <row>
+                            <cell><m>40</m>yds</cell>
+                            <cell>Below</cell>
+                            <cell><m>0.8</m>in</cell>
+                        </row>
+                        <row>
+                            <cell><m>50</m>yds</cell>
+                            <cell>Below</cell>
+                            <cell><m>-3.2</m>in</cell>
+                        </row>
+                    </tabular>
+                </table>
+                <p>Make a graph of the height above the bulls-eye that the air rifle shoots at the distances collected in the table. Values measured below the bulls-eye should be graphed as negative <m>y</m>-values. Graphs of ballistic objects are modeled by parabolas. Keep in mind that the units on the axes are different: along the <m>x</m>-axis, the units are yards, whereas on the <m>y</m>-axis, the units will be in inches.</p>
+            </statement>
+            <solution>
+                <p>Since the input values seem to be going up by <m>5</m>s or <m>10</m>s, we will scale the <m>x</m>-axis by <m>5</m>s. The <m>y</m>-axis needs to be scaled by <m>1</m>s.</p>
+                <figure xml:id="figure-shooting-distance">
+                <caption>Graph of Target Data</caption>
+                    <image>
+                        <description>a Cartesian grid with points (5,-0.1), (10,0.6),(20,1.1),(30,0.6),(35,0),(40,-0.8),(50,-3.2)</description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[ymin=-7,ymax=3,xmin=-10,xmax=60,
+                                            xtick={0,10,...,50},
+                                            minor xtick={-10,0,...,60},
+                                            ytick={-6,-5,...,2},
+                                            minor ytick={-7,-6,...,3}]
+                                    \addplot+[domain=5:50,-] {-0.00480013898929*x^2+0.19371915029*x-0.9} ;
+                                    \addplot[soliddot] coordinates {(5,-0.1)} ;
+                                    \addplot[soliddot] coordinates {(10,0.6)} ;
+                                    \addplot[soliddot] coordinates {(20,1.1)} ;
+                                    \addplot[soliddot] coordinates {(30,0.6)} ;
+                                    \addplot[soliddot] coordinates {(35,0)} ;
+                                    \addplot[soliddot] coordinates {(40,-0.8)} ;
+                                    \addplot[soliddot] coordinates {(50,-3.2)} ;
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
             </solution>
         </example>
 
-    </subsection>    
+    </subsection>
+
 
     <exercises>
         <exercisegroup>
