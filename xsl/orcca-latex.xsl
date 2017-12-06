@@ -83,7 +83,7 @@
 
 <!--If all exercises are webwork, and if they all open with the same p, then print that p after the introduction. -->
 <!--Later, in each such exercise statement, ignore that p -->
-<xsl:template match="exercisegroup[not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+<xsl:template match="exercisegroup[count(exercise)>1][not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:apply-templates select="." mode="label" />
     <xsl:apply-templates select="introduction" />
     <xsl:text>\par%&#xa;</xsl:text>
@@ -107,10 +107,12 @@
 </xsl:template>
 
 <!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
-<xsl:template match="p[position()>1][not(count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1)][ancestor::webwork-reps][count(*)=1][not(text())][count(m)=1][contains(m,'\displaystyle')]">
+<xsl:template match="p[position()>1][not(count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1)][ancestor::webwork-reps][count(*)=1][not(text())][count(m)=1][contains(m,'\displaystyle') or contains(m,'\begin{aligned')]">
     <xsl:text>\[</xsl:text>
     <xsl:apply-templates select="m/text()" />
     <xsl:text>\]</xsl:text>
 </xsl:template>
+
+<xsl:template match="p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][not(parent::li)]|p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][parent::li][preceding-sibling::*]" />
 
 </xsl:stylesheet>
