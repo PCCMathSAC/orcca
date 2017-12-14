@@ -32,7 +32,11 @@
 
             <p>In this section we will learn about quadratic functions and how to identify their key features on a graph. We will identify their direction, vertex, axis of symmetry and intercepts. We will also see how to graph a parabola by finding the vertex and making a table of function values. We will look at applications that involve the vertex of a quadratic function.</p>
 			
-            <definition><p>A <term>quadratic function</term> has the form <m>f(x)=ax^2+bx+c</m> where <m>a, b</m>, and <m>c</m> are real numbers, and <m>a \neq 0</m>. The graph of a quadratic function is called a <term>parabola</term>.</p></definition>
+            <definition>
+                <statement>
+                    <p>A <term>quadratic function</term> has the form <m>f(x)=ax^2+bx+c</m> where <m>a, b</m>, and <m>c</m> are real numbers, and <m>a \neq 0</m>. The graph of a quadratic function has the shape of a <term>parabola</term>.</p>
+                </statement>
+            </definition>
 
             <p>Notice that a quadratic function has a squared term that linear functions do not have. If <m>a=0,</m> the function is linear. To understand the shape and features of a quadratic function, let's look at an example.</p>
 
@@ -166,34 +170,23 @@
             <webwork >
                 <setup>
                     <pg-code>
-                        Context()->variables->are();
-                        for my $i (1..26) {
-                            Context()->variables->add($ALPHABET[$i-1]=>'Real');
-                            Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
-                            };
-                        Context()->strings->add('upward'=>{});
-                        Context()->strings->add('downward'=>{});
-                        Context()->strings->add(
-                        'up'=>{alias=>'upward'}, 
-                        'upwards'=>{alias=>'upward'}, 
-                        'down'=>{alias=>'downward'}, 
-                        'downwards'=>{alias=>'downward'},
-                        );
+                        $up = PopUp(['?','upward','downward'],1);
+                        $down = PopUp(['?','upward','downward'],2);
                    </pg-code>
                 </setup>
                 <statement>
                     <p><ol label="a">
                         <li>
-                            <p>The graph of the quadratic function <m>y=3x^2-4x-7</m> opens <var name="upward" width="6"/>.</p>
+                            <p>The graph of the quadratic function <m>y=3x^2-4x-7</m> opens <var name="$up" form="popup"/>.</p>
                         </li>
                         <li>
-                            <p>The graph of the quadratic function <m>y=-5x^2+x</m> opens <var name="downward" width="6"/>.</p>
+                            <p>The graph of the quadratic function <m>y=-5x^2+x</m> opens <var name="$down" form="popup"/>.</p>
                         </li>
                         <li>
-                            <p>The graph of the quadratic function <m>y=2+3x-x^2</m> opens <var name="downward" width="6"/>.</p>
+                            <p>The graph of the quadratic function <m>y=2+3x-x^2</m> opens <var name="$down" form="popup"/>.</p>
                         </li>
                         <li>
-                            <p>The graph of the quadratic function <m>y=\frac{1}{3}x^2-\frac{2}{5}x+\frac{1}{4}</m> opens <var name="upward" width="6"/>.</p>
+                            <p>The graph of the quadratic function <m>y=\frac{1}{3}x^2-\frac{2}{5}x+\frac{1}{4}</m> opens <var name="$up" form="popup"/>.</p>
                         </li>
                     </ol></p>
                 </statement>
@@ -349,41 +342,28 @@
 
         <exercise>
             <introduction>
-                <!-- TODO: Fix this exercise -->
                 <p>Use <xref ref="figure-quadratic-function-graph-identify-properties">Figure</xref> to answer the following questions.</p>
-                    <figure xml:id="figure-quadratic-function-graph-identify-properties">
+                <figure xml:id="figure-quadratic-function-graph-identify-properties">
                     <caption></caption>
-                        <image width="47%">
-                            <description></description>
-                            <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-4.45:0.45] {(x+2)^2+1};
-                                    \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                            </latex-image-code>
-                        </image>
-                    </figure>
+                    <image width="47%">
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[domain=-4.45:0.45] {(x+2)^2+1};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
             </introduction>
             <webwork >
                 <setup>
-                    <var name="$vertex">
-                        <static>(-2,1)</static>
-                    </var>
-                    <var name="$axisofsymmetry">
-                        <static>x=-2</static>
-                    </var>
-                    <var name="$xintercept">
-                        <static>none</static>
-                    </var>
-                    <var name="$yintercept">
-                        <static>(0,5)</static>
-                    </var>
                     <pg-code>
                         Context("Point");
                         $vertex=Point("(-2,1)");
-                        $xintercept=none;
+                        $xintercept=Compute("None");
                         $yintercept=Point("(0,5)");
                         Context("Numeric")->variables->add(y=>'Real');
                         parser::Assignment->Allow;
@@ -392,12 +372,36 @@
                 </setup>
                 <statement>
                     <p><ol label="a.">
-                        <li><p>What are the coordinates of the vertex? <var name="$vertex" width="10" /></p></li>
-                        <li><p>What is the equation of the axis of symmetry? <var name="$axisofsymmetry" width="10" /></p></li>           
-                        <li><p>What are the coordinates of the <m>x</m>-intercept(s)? <var name="$xintercept" width="10" /></p></li>
-                        <li><p>What are the coordinates of the <m>y</m>-intercept? <var name="$yintercept" width="10" /></p></li>
+                        <li>
+                            <p>What are the coordinates of the vertex? <var name="$vertex" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>What is the equation of the axis of symmetry? <var name="$axisofsymmetry" width="10" /></p>
+                        </li>           
+                        <li>
+                            <p>What are the coordinates of the <m>x</m>-intercept(s)? <var name="$xintercept" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>What are the coordinates of the <m>y</m>-intercept? <var name="$yintercept" width="10" /></p>
+                        </li>
                     </ol></p>
                 </statement>
+                <solution>
+                    <p><ol label="a.">
+                        <li>
+                            <p>The vertex is at <m>(-2,1)</m>.</p>
+                        </li>
+                        <li>
+                            <p>The equation of the axis of symmetry is <m>x=-2</m>.</p>
+                        </li>           
+                        <li>
+                            <p>There are no <m>x</m>-intercepts. (Answer <c>None</c>.)</p>
+                        </li>
+                        <li>
+                            <p>The <m>y</m>-intercept is at <m>(0,5)</m>.</p>
+                        </li>
+                    </ol></p>
+                </solution>
             </webwork>
         </exercise>
 	</subsection>
@@ -755,7 +759,7 @@
         <example xml:id="example-pellet-trajectory-application">
             <statement>
                 <!-- Pellet Trajectory -->
-                <p>Imagine that Yang got a new air rifle to shoot targets. The first thing he did with it was to sight the scope at a certain distance so the pellets consistently hit where the cross hairs are pointed. In Olympic <m>10</m>-meter air rifle shooting, the bulls-eye is a <m>0.5</m>mm dot, about the size of the head of a pin, so accuracy is key. (Visit <url href="https://en.wikipedia.org/wiki/ISSF_10_meter_air_rifle">Wikipedia</url> for more.)</p>
+                <p>Imagine that Yang got a new air rifle to shoot targets. The first thing he did with it was to sight the scope at a certain distance so the pellets consistently hit where the cross hairs are pointed. In Olympic <m>10</m>-meter air rifle shooting, the bulls-eye is a <m>0.5</m>mm dot, about the size of the head of a pin, so accuracy is key.<fn>Visit <url href="https://en.wikipedia.org/wiki/ISSF_10_meter_air_rifle">en.wikipedia.org/wiki/ISSF<underscore/>10<underscore/>meter<underscore/>air<underscore/>rifle</url> for more.)</fn></p>
                 
                 <p>Yang would like to set up his air rifle scope to be accurate at a level distance of <m>35</m> yards (from the muzzle, which is the tip of the barrel), but he also needs to know how much to correct for gravity at different distances. Since the projectile will be affected by gravity, knowing the distance that the target will be set up is essential to be accurate. After zeroing his scope reticule (cross-hairs) at <m>35</m> yards so that he can consistently hit the bulls-eye with the reticule directly over it, he sets up targets at various distances to test his gun. He then shoots at the targets with the cross-hairs directly over the bulls-eye and measured the distance that the pellet hit above or below the bulls-eye when shot at those distances.</p>
 
@@ -768,39 +772,39 @@
                             <cell>Distance Above/Below in Inches</cell>
                         </row>
                         <row>
-                            <cell><m>5</m>yds</cell>
+                            <cell><m>5</m> yds</cell>
                             <cell>Below</cell>
-                            <cell><m>0.1</m>in</cell>
+                            <cell><m>0.1</m> in</cell>
                         </row>
                         <row>
-                            <cell><m>10</m>yds</cell>
+                            <cell><m>10</m> yds</cell>
                             <cell>Above</cell>
-                            <cell><m>0.6</m>in</cell>
+                            <cell><m>0.6</m> in</cell>
                         </row>
                         <row>
-                            <cell><m>20</m>yds</cell>
+                            <cell><m>20</m> yds</cell>
                             <cell>Above</cell>
-                            <cell><m>1.1</m>in</cell>
+                            <cell><m>1.1</m> in</cell>
                         </row>
                         <row>
-                            <cell><m>30</m>yds</cell>
+                            <cell><m>30</m> yds</cell>
                             <cell>Above</cell>
-                            <cell><m>0.6</m>in</cell>
+                            <cell><m>0.6</m> in</cell>
                         </row>
                         <row>
-                            <cell><m>35</m>yds</cell>
+                            <cell><m>35</m> yds</cell>
                             <cell>On Bulls-eye</cell>
-                            <cell><m>0</m>in</cell>
+                            <cell><m>0</m> in</cell>
                         </row>
                         <row>
-                            <cell><m>40</m>yds</cell>
+                            <cell><m>40</m> yds</cell>
                             <cell>Below</cell>
-                            <cell><m>0.8</m>in</cell>
+                            <cell><m>0.8</m> in</cell>
                         </row>
                         <row>
-                            <cell><m>50</m>yds</cell>
+                            <cell><m>50</m> yds</cell>
                             <cell>Below</cell>
-                            <cell><m>-3.2</m>in</cell>
+                            <cell><m>-3.2</m> in</cell>
                         </row>
                     </tabular>
                 </table>
@@ -916,12 +920,18 @@
             </introduction>
         </exercisegroup>-->
 
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Algebraically Determining the Vertex and Axis of Symmetry of Quadratic Functions</p>
             </introduction>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex60.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex60.pg" />
@@ -930,7 +940,16 @@
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex70.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex70.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex90.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex90.pg" />
@@ -939,13 +958,28 @@
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex100.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex100.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex110.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex110.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex40.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex40.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex10.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingQuadratics/IdentifyAxisVertex10.pg" />
@@ -1962,7 +1996,7 @@
 
     <!-- TODO: Add exercises for domain and range of parabolas (no context) -->
 
-    <exercisegroup>
+    <exercisegroup cols="2">
         <introduction>
             <p>Finding Maximum and Minimum Values for Applications of Quadratic Functions</p>
             <!--TODO:re-write these to involve the vertex-->
