@@ -29,7 +29,7 @@
     </objectives>
 
     <introduction>
-        <p>In mathematics, we use functions to model real-life data. In this section, we will learn the definition of function and related concepts.</p>
+        <p>In mathematics, we use functions to model real-life data. In this section, we will learn the definition of a function and related concepts.</p>
         <figure>
             <caption>Alternative Video Lesson</caption>
             <video youtube="JZmIsxayvxY"/>
@@ -39,420 +39,385 @@
     <subsection>
         <title>Introduction to Functions</title>
 
-        <p>When working with two variables, we are interested in the relationship between those two variables. For example, if we know the value of one variable, are we able to determine the value of the second variable?</p>
+        <p>When working with two variables, we are interested in the relationship between those two variables. For example, consider the two variables of hare population and lynx population in a Canadian forest. If we know the value of one variable, are we able to determine the value of the second variable? If we know that one variable is increasing over time, do we know if the other is increasing or decreasing?</p>
 
         <figure>
-            <caption>A relation</caption>
-            <image width="70%">
+            <caption>In a relation, some knowledge of one variable implies some knowledge about the other</caption>
+            <image width="100%">
                 <latex-image-code>
-                    <![CDATA[\begin{tikzpicture}
-                        \draw[black, thick] (0,0) ellipse (1 and 2) node{domain};
-                        \draw[->] (1.1,0) -- (2.4,0) node at (1.75,0.3) {input};
-                        \draw (2,0.6) -- (2.5,0.4) -- (2.5,2) -- (4.5,2) -- (4.5,0.4) -- (5,0.6);
-                        \draw (2,-0.6) -- (2.5,-0.4) -- (2.5,-2) -- (4.5,-2) -- (4.5,-0.4) -- (5,-0.6);
-                        \draw node at (3.5,0) {relation};
-                        \draw[->] (4.6,0) -- (5.9,0) node at (5.25,0.3) {output};
-                        \draw[black, thick] (7,0) ellipse (1 and 2) node{range};
-                     \end{tikzpicture}]]>
+                    <![CDATA[\begin{tikzpicture}[
+                        variables/.style={draw, text width=5em, text centered, minimum height=2.5em,drop shadow, circle},
+                        info/.style={text width=12em, text centered},
+                        connex/.style={{Kite}-{Kite}, ultra thick,color=thirdcolor,line width=0.5em}]
+
+                        % Draw diagram elements
+                        \node (firstvar) [variables,fill=firstcolor!30]  {First Variable};
+                        \node (information) [info,right=of firstvar]  {In a relation, information passes back and forth, possibly imperfectly};
+                        \node (secondvar) [variables,fill=secondcolor!30,right=of information]  {Second Variable};
+
+                        % Draw arrows between elements
+                        \draw[connex] (firstvar) to[out=45,in=135] (secondvar);
+                        \draw[connex] (firstvar) to[out=-45,in=-135] (secondvar);
+
+                    \end{tikzpicture}]]>
                 </latex-image-code>
             </image>
         </figure>
 
-        <p>A <term>relation</term> is a <q>black box:</q> a device that takes inputs one by one, thinks about them, and gives respective outputs one by one. (Visit <url href="https://en.wikipedia.org/wiki/Black_box">Wikipedia</url> for more.)  The set of all inputs for this relation is called the relation's <term>domain</term>, and the set of all outputs is called the <term>range</term>.</p>
+        <p>A <term>relation</term> is a very general situation between two variables, where having a little bit of information about one variable could tell you something about the other variable. For example, if you know the hare population is high this year, you can say the lynx population is probably increasing. So <q>hare population</q> and <q>lynx population</q> make a relation. If one of the variables is identified as the <q>first</q> variable, the relation's <term>domain</term> is the set of all values that variable can take. Likewise, the relation's <term>range</term> is the set of all values that the second variable can take.</p>
+
+        <p>We are not so much concerned with relations in this book. But we are interested in a special type of relation called a function. Informally, a <term>function</term> is a device that takes input values for one variable one by one, thinks about them, and gives respective output values one by one for the other variable.</p>
 
         <example xml:id="example-function-chicken-to-egg-color">
-            <p>Imagine that Ann has <m>5</m> chickens: Hazel, Yvonne, Georgia, Isabella, and Emma. For the relation <q>Chicken to Egg Color,</q> the input is a chicken's name and the output is the color of that chicken's eggs. The relation's domain is the set of all of Ann's chicken's names, and its range is the set of colors of Ann's chicken's eggs. <xref ref="figure-two-pairs-inputs-outputs-relation-chicken-to-egg-color">Figure</xref> shows two inputs and their corresponding outputs in the <q>black box</q> model.</p>
+            <p>Ann has <m>5</m> chickens: Hazel, Yvonne, Georgia, Isabella, and Emma. For the relation <q>Chicken to Egg Color,</q> the first variable (the input) is a chicken's name and the second variable (the output) is the color of that chicken's eggs. The relation's domain is the set of all of Ann's chicken's names, and its range is the set of colors of Ann's chicken's eggs. <xref ref="figure-two-pairs-inputs-outputs-relation-chicken-to-egg-color">Figure</xref> shows two inputs and their corresponding outputs.</p>
 
-        <figure xml:id="figure-two-pairs-inputs-outputs-relation-chicken-to-egg-color">
-            <caption>Two Pairs of Inputs and Outputs of the Relation <q>Chicken to Egg Color</q></caption>
-            <image width="70%">
-                <latex-image-code>
-                    <![CDATA[\begin{tikzpicture}
-                        \draw[->] (1.1,0) -- (2.4,0) node at (1.75,0.3) {Hazel};
-                        \draw (2,0.6) -- (2.5,0.4) -- (2.5,2) -- (4.5,2) -- (4.5,0.4) -- (5,0.6);
-                        \draw (2,-0.6) -- (2.5,-0.4) -- (2.5,-2) -- (4.5,-2) -- (4.5,-0.4) -- (5,-0.6);
-                        \draw node at (3.5,0.25) {Chicken To};
-                        \draw node at (3.5,-0.25) {Egg Color};
-                        \draw[->] (4.6,0) -- (5.9,0) node at (5.25,0.3) {tan};
-
-                        \draw[->] (9.1,0) -- (10.4,0) node at (9.75,0.3) {Yvonne};
-                        \draw (10,0.6) -- (10.5,0.4) -- (10.5,2) -- (12.5,2) -- (12.5,0.4) -- (13,0.6);
-                        \draw (10,-0.6) -- (10.5,-0.4) -- (10.5,-2) -- (12.5,-2) -- (12.5,-0.4) -- (13,-0.6);
-                        \draw node at (11.5,0.25) {Chicken To};
-                        \draw node at (11.5,-0.25) {Egg Color};
-                        \draw[->] (12.6,0) -- (13.9,0) node at (13.25,0.3) {brown};
-                     \end{tikzpicture}]]>
-                </latex-image-code>
-            </image>
-        </figure>
-
-        <p>The <q>black box</q> is useful to introduce the concept of a relation, but it's not convenient to show too many pairs of inputs and outputs. <xref ref="figure-chicken-to-egg-color">Figure</xref> represents the relation graphically in a more concise way. The relation's input variable is <q>chicken name,</q> and its output variable is <q>egg color.</q> Note that we are using the word <q>variable,</q> because the chicken names and egg colors vary depending on which you choose.</p>
-
-        <figure xml:id="figure-chicken-to-egg-color">
-            <caption>The relation <q>Chicken to Egg Color</q></caption>
-            <image width="80%">
-                <latex-image-code>
-                    <![CDATA[\begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=2pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}]
-                        \node[scale=1] at (4,5) {Chicken to Egg Color};
-
-                        \node[scale=2] at (0,6.5) {Domain};
-                        \node[ele,label=left:Hazel] (a1) at (0,5) {};
-                        \node[ele,label=left:Yvonne] (a2) at (0,4) {};
-                        \node[ele,label=left:Georgia] (a3) at (0,3) {};
-                        \node[ele,label=left:Isabella] (a4) at (0,2) {};
-                        \node[ele,label=left:Emma] (a5) at (0,1) {};
-
-                        \node[scale=2] at (8,6.5) {Range};
-                        \node[ele,label=right:tan] (b1) at (8,4) {};
-                        \node[ele,label=right:brown] (b2) at (8,3) {};
-                        \node[ele,label=right:white] (b3) at (8,2) {};
-                        \node[ele,label=right:green] (b4) at (8,1) {};
-
-                        \node[draw,thick,fit= (a5) (a4) (a3) (a2) (a1),minimum width=5cm] {} ;
-                        \node[draw,thick,fit= (b1) (b2) (b3) (b4),minimum width=5cm] {} ;
-                        \draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b1);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (a2) -- (b2);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (a3) -- (b2);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (a4) -- (b3);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (a5) -- (b4);
-                     \end{tikzpicture}]]>
-                </latex-image-code>
-            </image>
-        </figure>
-
-        <p>We can also use a set of ordered pairs to represent this relation:<me>\{(\text{Hazel, tan}), (\text{Yvonne, brown}), (\text{Georgia, brown}), (\text{Isabella, white}), (\text{Emma, green})\}</me></p>
-    </example>
-
-        <definition>
-            <title>Function</title>
-            <idx><h>Function</h></idx>
-            <statement>
-                <p>In mathematics, a function is a relation between a set of inputs and a set of outputs with the property that each input is related to exactly one output. (Visit <url href="https://en.wikipedia.org/wiki/Function_(mathematics)">Wikipedia</url> for more.)</p>
-            </statement>
-        </definition>
-
-
-        <p>In <xref ref="figure-chicken-to-egg-color">Figure</xref>, we can see each chicken's name (input) is related to exactly one output, so the relation Chicken to Egg Color qualifies as a function. Note that a function allows multiple inputs to be related to one output, like in (Yvonne, brown) and (Georgia, brown).</p>
-
-
-    <example>
-        <p>Next, we will look at the <q>inverse</q> relation shown in <xref ref="example-function-chicken-to-egg-color">Example</xref>, named <q>Egg Color to Chicken.</q></p>
-
-        <figure xml:id="figure-egg-color-to-chicken">
-            <caption>The relation <q>Egg Color to Chicken</q></caption>
-            <image width="80%">
-                <latex-image-code>
-                    <![CDATA[\begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=2pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}]
-                        \node[scale=1] at (4,5) {Egg Color to Chicken};
-
-                        \node[scale=2] at (8,6.5) {Range};
-                        \node[ele,label=right:Hazel] (a1) at (8,5) {};
-                        \node[ele,label=right:Yvonne] (a2) at (8,4) {};
-                        \node[ele,label=right:Georgia] (a3) at (8,3) {};
-                        \node[ele,label=right:Isabella] (a4) at (8,2) {};
-                        \node[ele,label=right:Emma] (a5) at (8,1) {};
-
-                        \node[scale=2] at (0,6.5) {Domain};
-                        \node[ele,label=left:tan] (b1) at (0,4) {};
-                        \node[ele,label=left:brown] (b2) at (0,3) {};
-                        \node[ele,label=left:white] (b3) at (0,2) {};
-                        \node[ele,label=left:green] (b4) at (0,1) {};
-
-                        \node[draw,thick,fit= (a5) (a4) (a3) (a2) (a1),minimum width=5cm] {} ;
-                        \node[draw,thick,fit= (b1) (b2) (b3) (b4),minimum width=5cm] {} ;
-                        \draw[->,thick,shorten <=2pt,shorten >=2pt] (b1) -- (a1);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (b2) -- (a2);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (b2) -- (a3);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (b3) -- (a4);
-                        \draw[->,thick,shorten <=2pt,shorten >=2] (b4) -- (a5);
-                     \end{tikzpicture}]]>
-                </latex-image-code>
-            </image>
-        </figure>
-        <p>In <xref ref="figure-egg-color-to-chicken">Figure</xref>, we can see the color brown (input) is related to two outputs, Yvonne and Georgia. This disqualifies the relation Egg Color to Chicken as a function.</p>
-
-    </example>
-
-    </subsection>
-
-    <subsection>
-        <title>Functions as Predictors</title>
-        <p>Functions are all about our ability to accurately predict a result. If we can predict something precisely every time, then there is a function involved.</p>
-        <example>
-            <p>If you go to the store and buy five <m>\$3</m> loaves of bread, then you should predict that your total before tax will be <m>\$15</m>. If it isn't, then the register that rings up your items wasn't <em>functioning</em>.</p>
-        </example>
-        <example>
-            <p>A candy machine is a physical <q>black box.</q> You push a button and the candy bar you desired pops out. In this case, the inputs are all of the buttons that you can press to select a candy bar, and the outputs are all of the candy bars themselves. The mechanics and electronics that connect the buttons with the candies represent the function.</p>
-            <p>Going in a little further, if the button <m>A1</m> delivers a bag of M<ampersand />M's, then you would be surprised if you pressed <m>A1</m> and got anything other than M<ampersand />M's. In this case, the machine wouldn't be functioning and you would get upset at your prediction ability being taken away.</p>
-            <p>Last, you might wonder if this candy machine was a function even if it was operating perfectly: if <m>A1</m> and <m>B3</m> both delivered M<ampersand />M's, would that violate the definition a function?</p>
-            <p>No, the candy machine is still a function even if two buttons generate the same output candy. Remember that to be a function, each input must generate a single output; that output doesn't have to be unique for each input. So as long as each button generates a single candy each time you press it, there can be two buttons that deliver the same candy.</p>
-        </example>
-    </subsection>
-
-    <subsection>
-        <title>Examples of Algebraic Functions</title>
-        <example xml:id="example-electrician-real-life-function">
-            <p>An electrician is hired to install a new circuit. She charges <m>\$111</m> to come to your house and then, in addition, <m>\$89</m> per hour to do the work. If <m>x</m> represents the total number of hours that the job takes and <m>y</m> represents the total cost of her work, in dollars, then the equation <m>y=89x+111</m> relates the variables.</p>
-            <p>We know that at the end of the day, you are going to only get <em>one</em> bill. This must mean that <m>y=89x+111</m> is a function since for every possible number of hours that the electrician could work, you would only get one bill for that cost. In fact, every equation that can be written in slope-intercept form will be a function for similar reasons.</p>
-        </example>
-        <example>
-            <p>Some relations are not functions. For example, if you tell me a student's first name and ask me to find their student ID number, I probably won't be able to look it up. At a very large school, there are so many people with the same name who are attending or have attended that I will get multiple hits when I search for a first name. Multiple outputs for a single input make this relation between student name and student ID number <em>not</em> a function.</p>
-        </example>
-        <example>
-            <p>Another relation that is not a function is the formula <m>x^2+y^2=25</m>. Remember that to <em>not</em> be a function, all we have to do is find one input that has two outputs. Let's pick a nice easy input number to test: <m>x=4</m>. Substituting this value gives us 
-            <md>
-                <mrow>x^2+y^2\amp=25</mrow>
-                <mrow>4^2+y^2\amp=25</mrow>
-                <mrow>16+y^2\amp=25</mrow>
-                <mrow>y^2\amp=9</mrow>
-            </md>
-            What number(s) when squared give us <m>9</m>? Well, both <m>3</m> and <m>-3</m> do. In conclusion, there are two <m>y</m>-values for the single <m>x</m>-value so that must mean that <m>x^2+y^2=25</m> cannot be a function.</p>
-        </example>
-
-        <exercise>
-            <webwork>
-                <setup>
-                    <var name="$yes">
-                        <set>
-                            <member correct="yes">2\text{ is}</member>
-                            <member>2\text{ is not}</member>
-                        </set>
-                    </var>
-                    <var name="$no">
-                        <set>
-                            <member>2\text{ is}</member>
-                            <member correct="yes">2\text{ is not}</member>
-                        </set>
-                    </var>
-                    <pg-code>
-                        $yes=PopUp(['?','is', 'is not'],1);
-                        $no=PopUp(['?','is', 'is not'],2);
-                    </pg-code>
-                </setup>
-            <statement><p>Identify which of the following represent functions and which do not.
-            <ol label="a">
-                <li>The formula for the area of a circle, <m>A=\pi r^2</m>, <var name="$yes" form="popup"/> a function.</li>
-                <li>A quadratic equation that can be written as <m>y=ax^2+bx+c</m> <var name="$yes" form="popup"/> a function.</li>
-                <li>The equation <m>y^2=x</m> <var name="$no" form="popup"/> a function.</li>
-            </ol>
-            </p></statement>
-            <solution><p>
-            <ol label="a">
-                <li>Since each circle with a given radius has only one area, this must be a function.</li>
-                <li>If you plug in any one <m>x</m>-value into <m>y=ax^2+bx+c</m>, you will only get a single <m>y</m> as an output.</li>
-                <li>We can find an <m>x</m>-value associated with two <m>y</m>-values, so <m>y^2=x</m> cannot be a function. For example, if <m>x=9</m>, then <m>y=3</m> or <m>y=-3</m>. Since there are two <m>y</m>-values for the single <m>x</m>-value so that must mean that <m>y^2=x</m> cannot be a function.</li>
-            </ol>
-            </p></solution>
-            </webwork>
-        </exercise>
-    </subsection>
-
-    <subsection>
-        <title>Identifying Functions Graphically</title>
-
-        <p>To determine if a relation that is represented graphically is a function, we need to visually determine if each input corresponds to exactly one output. One way of doing this is referred to as the <term>vertical line test</term>. In short, if any vertical line passes through the graph more than once, then that graph does not represent a function. In the graph in <xref ref="figure-graph-not-function">Figure</xref>, we can see that a given vertical line passes through the graph more than once. This means that this graph is <em>not</em> a function. However, in <xref ref="figure-graph-function">Figure</xref>, we see that nowhere could we draw a vertical line that would pass through this graph more than once. Therefore, this graph is a function.</p>
-
-        <sidebyside widths="47% 47%" margins="0%">
-            <figure xml:id="figure-graph-not-function">
-                <caption>Not a Function: Fails the Vertical Line Test</caption>
-                <image>
-                    <description></description>
+            <figure xml:id="figure-two-pairs-inputs-outputs-relation-chicken-to-egg-color">
+                <caption>Two Pairs of Inputs and Outputs of the Relation <q>Chicken to Egg Color</q></caption>
+                <image width="100%">
                     <latex-image-code>
-                        <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[]
-                                \addplot+[variable=\t,domain=-2:4] ({(t-1)^2-2},{t});
-                                \addplot[guideline,<->]coordinates {(1.5,-7) (1.5,7)};
-                                \addplot[soliddot]coordinates {(1.5,2.87) (1.5,-0.87)};
-                            \end{axis}
+                        <![CDATA[\begin{tikzpicture}[
+                            input/.style={draw,font=\footnotesize, text centered, drop shadow, regular polygon,regular polygon sides=7, fill=firstcolor!30},
+                            output/.style={draw, font=\footnotesize, text centered,drop shadow, circle, fill=secondcolor!30},
+                            f/.style={draw, text width=3em, font=\footnotesize, text centered,fill=thirdcolor!60, minimum height=8em, drop shadow},
+                            connex/.style={-{Kite}, ultra thick,color=thirdcolor}]
+
+                            % Draw diagram elements
+                            \node (hazel) [input]  {Hazel};
+                            \node (f) [f,right=of hazel]  {Chicken to Egg Color};
+                            \node (tan) [output,right=of f]  {Tan};
+                            \node (yvonne) [input, right=of tan]  {Yvonne};
+                            \node (g) [f,right=of yvonne]  {Chicken to Egg Color};
+                            \node (brown) [output,right=of g]  {Brown};
+
+                            % Draw arrows between elements
+                            \draw[connex] (hazel) -- (f);
+                            \draw[connex] (f) -- (tan);
+                            \draw[connex] (yvonne) -- (g);
+                            \draw[connex] (g) -- (brown);
                         \end{tikzpicture}]]>
                     </latex-image-code>
                 </image>
             </figure>
 
-            <figure xml:id="figure-graph-function">
-                <caption>A Function: Passes the Vertical Line Test</caption>
-                <image>
-                    <description></description>
-                    <latex-image-code>
-                    <![CDATA[\begin{tikzpicture}
-                        \begin{axis}[]
-                             \addplot+[domain=-2.85:0.6] {2*(x+2)*(x+1)*x+2};
-                        \end{axis}
-                    \end{tikzpicture}]]>
-                    </latex-image-code>
-                </image>
-            </figure>
-        </sidebyside>
+            <sidebyside widths="47% 47%" margins="0%">
+
+                <p>It would not be convenient to make diagrams like the ones in <xref ref="figure-two-pairs-inputs-outputs-relation-chicken-to-egg-color">Figure</xref> for all five chickens. There are too many inputs. Instead, <xref ref="figure-chicken-to-egg-color">Figure</xref> represents the function graphically in a more concise way. The function's input variable is <q>chicken name,</q> and its output variable is <q>egg color.</q> Note that we are using the word <q>variable,</q> because the chicken names and egg colors vary depending on which individual chicken you choose.</p>
+
+                <figure xml:id="figure-chicken-to-egg-color">
+                    <caption>Diagram for the function <q>Chicken to Egg Color</q></caption>
+                    <image width="47%">
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}[
+                                input/.style={font=\footnotesize, text centered},
+                                dom/.style={draw, fill=firstcolor,  opacity=0.3},
+                                ran/.style={draw, fill=secondcolor, opacity=0.3},
+                                output/.style={font=\footnotesize, text centered},
+                                connex/.style={-{Kite}, ultra thick,color=thirdcolor}]
+
+                                % Draw diagram elements
+                                \node (hazel) [input]  {Hazel};
+                                \node (yvonne) [input, below=1em of hazel]  {Yvonne};
+                                \node (georgia) [input, below=1em of yvonne]  {Georgia};
+                                \node (isabella) [input, below=1em of georgia]  {Isabella};
+                                \node (emma) [input, below=1em of isabella]  {Emma};
+                                \node[dom,fit=(hazel) (emma)] {};
+
+                                \node (tan) [output, right=10em of yvonne]  {Tan};
+                                \node (brown) [output, below=1em of tan]  {Brown};
+                                \node (white) [output, below=1em of brown]  {White};
+                                \node (green) [output, below=1em of white]  {Green};
+                                \node[ran,fit=(tan) (green)] {};
+
+                                \draw[connex] (hazel) -- (tan);
+                                \draw[connex] (yvonne) -- (brown);
+                                \draw[connex] (georgia) -- (brown);
+                                \draw[connex] (isabella) -- (white);
+                                \draw[connex] (emma) -- (green);
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            </sidebyside>
+
+            <p>We can also use a set of ordered pairs to represent this function:<me>\{(\text{Hazel}, \text{Tan}), (\text{Yvonne}, \text{Brown}), (\text{Georgia}, \text{Brown}), (\text{Isabella}, \text{White}), (\text{Emma}, \text{Green})\}</me> where you read the ordered pair left to right, with the first value as an input and the second value as its output.</p>
+        </example>
+
+        <definition>
+            <title>Function</title>
+            <idx><h>Function</h></idx>
+            <statement>
+                <p>In mathematics, a function is a relation between a set of inputs and a set of outputs with the property that each input is related to exactly one output.</p>
+            </statement>
+        </definition>
+
+        <p>In <xref ref="figure-chicken-to-egg-color">Figure</xref>, we can see each chicken's name (input) is related to exactly one output, so the relation <q>Chicken to Egg Color</q> qualifies as a function. Note that it is irrelevant that multiple inputs might related to the same output, like in <m>(\text{Yvonne}, \text{brown})</m> and <m>(\text{Georgia}, \text{brown})</m>. The point is that whichever chicken you are thinking about, you know exactly which color egg it lays.</p>
+
+
+        <example>
+            <p>Next, we will look at the <q>inverse</q> relation named <q>Egg Color to Chicken.</q> Here we consider the color of an egg to be the input, and want the output to be the name of a chicken. If the egg is green, we know it is Emma's. But what if the egg is brown?</p>
+
+            <sidebyside widths="47% 47%" margins="0%">
+                <p>In <xref ref="figure-egg-color-to-chicken">Figure</xref>, we can see the color brown (an input) is related to <em>two</em> outputs, Yvonne and Georgia. This disqualifies the relation <q>Egg Color to Chicken</q> from being a function. (It is still a <em>relation</em>, because in general knowing the egg color does give you <em>some</em> information about which chicken it may have come from.)</p>
+
+                <figure xml:id="figure-egg-color-to-chicken">
+                    <caption>The relation <q>Egg Color to Chicken</q></caption>
+                    <image width="47%">
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}[
+                                input/.style={font=\footnotesize, text centered},
+                                dom/.style={draw, fill=firstcolor,  opacity=0.3},
+                                ran/.style={draw, fill=secondcolor, opacity=0.3},
+                                output/.style={font=\footnotesize, text centered},
+                                connex/.style={-{Kite}, ultra thick,color=thirdcolor}]
+
+                                % Draw diagram elements
+                                \node (tan) [output]  {Tan};
+                                \node (brown) [output, below=1em of tan]  {Brown};
+                                \node (white) [output, below=1em of brown]  {White};
+                                \node (green) [output, below=1em of white]  {Green};
+                                \node[ran,fit=(tan) (green)] {};
+
+                                \node (yvonne) [input, right=10em of tan]  {Yvonne};
+                                \node (hazel) [input, above=1em of yvonne]  {Hazel};
+                                \node (georgia) [input, below=1em of yvonne]  {Georgia};
+                                \node (isabella) [input, below=1em of georgia]  {Isabella};
+                                \node (emma) [input, below=1em of isabella]  {Emma};
+                                \node[dom,fit=(hazel) (emma)] {};
+
+
+                                \draw[connex] (tan) -- (hazel);
+                                \draw[connex] (brown) -- (yvonne);
+                                \draw[connex] (brown) -- (georgia);
+                                \draw[connex] (white) -- (isabella);
+                                \draw[connex] (green) -- (emma);
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            </sidebyside>
+        </example>
+    </subsection>
+
+    <subsection>
+        <title>Functions as Predictors</title>
+
+        <p>Functions are useful because they describe our ability to accurately predict a result. If we can predict something precisely every time, then there is a function involved.</p>
+
+        <example>
+            <p>If you go to the store and buy <m>5</m> two-dollar cans of soup, then you should predict that your total will be <m>\$10</m>. No matter if you buy the soup in the morning, afternoon, or evening. If it doesn't total <m>\$10</m>, then the cash register isn't <em>functioning</em>.</p>
+        </example>
+
+        <example>
+            <p>A vending machine is like a function. You push a button and the item you desired pops out. In this case, the inputs are all of the buttons that you can press, and the outputs are the kinds of candy bars, chip bags, etc.<nbsp/>that can come out. The mechanics and electronics that connect the buttons with the items represent the function.</p>
+
+            <p>Going in a little further, if the button <c>A1</c> delivers a bag of <booktitle>M<ampersand />M's</booktitle>, then you would be surprised if you pressed <c>A1</c> and got anything other than <booktitle>M<ampersand />M's</booktitle>. In this case, the machine wouldn't be functioning and you would get upset at your prediction ability being taken away.</p>
+
+            <p>What if buttons <c>A1</c> and <c>B3</c> both delivered <booktitle>M<ampersand />M's</booktitle>?  Would that violate the definition a function?</p>
+
+            <p>No, the vending machine is still a function even if two buttons generate the same output. Remember that to be a function, each <em>input</em> must generate a single output; that output doesn't have to be unique for each input. So as long as each button generates the same item each time you press it, there can be two buttons that deliver the same item.</p>
+        </example>
+
+        <example>
+            <p>Some relations are not functions, because they can't be used to make <m>100\%</m> accurate predictions. For example, if you have a student's first name and want to determine their student ID number, you probably won't be able to look it up. For a common first name like <q>Michael</q>, there will be many student ID number possibilities. Multiple outputs for a single input make <q>student ID number</q> not be a function of <q>first name</q>.</p>
+
+            <p>On the other hand, if we exchange the variables and think of the ID number as the first variable, then there is only one studnet that ID number applies to, and there is only one official first name for that person. So <q>first name</q> <em>is</em> a function of <q>student ID number.</q></p>
+        </example>
+    </subsection>
+
+    <subsection>
+        <title>Algebraic Functions</title>
+
+        <p>Many functions have specific algebraic formulas to turn an input number into an output number. We explore some examples here.</p>
+
+        <example xml:id="example-electrician-real-life-function">
+            <p>An electrician is hired to install a new circuit. She charges <m>\$111</m> to come to your house and then, in addition, <m>\$89</m> per hour to do the work. If <m>x</m> represents the total number of hours that the job takes and <m>y</m> represents the total cost of her work, in dollars, then the equation <m>y=89x+111</m> relates the variables.</p>
+
+            <p>We know that at the end of the day, if she worked <m>x</m> hours, you are going to have <em>one</em> bill that totals <m>89x+11</m>. This must mean that the bill is a function of the number of hours of labor. For every possible number of hours that the electrician could work, you would only get one bill for that cost.</p>
+
+            <p>Context aside, the expression <m>89x+11</m> represents a function of <m>x</m>, because it can be used to turn an input number <m>x</m> into a specific output. In fact, every algebraic expression in one variable represents a function for similar reasons.</p>
+        </example>
+
+        <example>
+            <p>A relation that is not a function is represented by the equation <m>x^2+y^2=25</m>, where we view <m>x</m> as the <q>first variable</q> as usual. Remember that to <em>not</em> be a function, all we have to do is find one input that has two outputs. Let's pick a nice easy input number to test: <m>x=4</m>. Substituting this value gives us
+            <md>
+                <mrow>x^2+y^2\amp=25</mrow>
+                <mrow>(\substitute{4})^2+y^2\amp=25</mrow>
+                <mrow>16+y^2\amp=25</mrow>
+                <mrow>y^2\amp=9</mrow>
+            </md>
+            At this point, we see that <m>y</m> could be <m>3</m> <em>or</em> <m>y</m> could be <m>-3</m>. There are two <m>y</m>-values for the single <m>x</m>-value, so that must mean that <m>x^2+y^2=25</m> cannot represent a function.</p>
+        </example>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $yes=PopUp(['?','is', 'is not'],1);
+                        $no=PopUp(['?','is', 'is not'],2);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Identify which of the following represent functions and which do not.<ol label="a">
+                        <li>
+                            <p>The formula for the area of a circle is <m>A=\pi r^2</m>. With this equation, <m>A</m> <var name="$yes" form="popup"/> a function of <m>r</m>.</p>
+                        </li>
+                        <li>
+                            <p>A quadratic equation can be written as <m>y=ax^2+bx+c</m>. With this equation, <m>y</m> <var name="$yes" form="popup"/> a function of <m>x</m>.</p>
+                        </li>
+                        <li>
+                            <p>With the equation <m>y^2=x</m>, the variable <m>y</m> <var name="$no" form="popup"/> a function of <m>x</m>.</p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p><ol label="a">
+                        <li>
+                            <p>Since each circle with a given radius has only one area, this must be a function. Another way to look at it is that for any one <m>r</m>, the formula tells you exactly what <m>A</m> must be.</p>
+                        </li>
+                        <li>
+                            <p>If you plug in any one <m>x</m>-value into <m>y=ax^2+bx+c</m>, you will know exactly what the value of <m>y</m> is. So <m>y</m> is a function of <m>x</m>.</p>
+                        </li>
+                        <li>
+                            <p>For example, if <m>x=9</m>, then <m>y</m> could be <m>3</m> or <m>-3</m>. Since there are two <m>y</m>-values for the single <m>x</m>-value so that must mean that the equation <m>y^2=x</m> cannot represent <m>y</m> as a function of <m>x</m>.</p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
+        </exercise>
     </subsection>
 
     <subsection>
         <title>Function Notation</title>
 
-        <p>We know that the equation <m>y=5x+3</m> represents a function, because for each <m>x</m>-value (input), there is only one <m>y</m>-value (output). We also know that it's a function because if we graph the line <m>y=5x+3</m>, we could see that it passes the vertical line test. If we want to determine the value of the output when the input is <m>2</m>, we'd replace <m>x</m> with <m>2</m> and find the value of <m>y</m>:<md>
-            <mrow>y\amp= 5(2)+3</mrow>
+        <p>We know that the equation <m>y=5x+3</m> represents <m>y</m> as a function of <m>x</m>, because for each <m>x</m>-value (input), there is only one <m>y</m>-value (output). If we want to determine the value of the output when the input is <m>2</m>, we'd replace <m>x</m> with <m>2</m> and find the value of <m>y</m>:<md>
+            <mrow>y\amp= 5(\substitute{2})+3</mrow>
             <mrow>\amp= 10+3</mrow>
             <mrow>\amp=13</mrow>
-        </md>Our end result is that <m>y=13</m>. Notice that the equation <m>y=13</m> does not communicate the value of the <m>x</m> that we used, and we'd have to look back at our work to see that. <term>Function notation</term> will allow us to communicate both the input and the output. It will also allow us to give each function a name, which is helpful when we have multiple functions.</p>
+        </md>Our end result is that <m>y=13</m>. Well, <m>y</m> <em>is</em> <m>13</m>, but only in the situation when <m>x</m> is <m>2</m>. In general, for other inputs, <m>y</m> is not going to be <m>13</m>.  So the equation <m>y=13</m> is lacking in the sense that it is not communicating everything we might want to say. It does not communicate the value of <m>x</m> that we used. <term>Function notation</term> will allow us to communicate <em>both</em> the input <em>and</em> the output at the same time. It will also allow us to give each function a name, which is helpful when we have multiple functions.</p>
 
-        <p>When we write <m>y=f(x)</m>, we are communicating three important things:<ol>
-            <li>the function's name is <m>f</m></li>
-            <li>the input variable is <m>x</m></li>
-            <li>the output variable is <m>y</m></li>
-        </ol>
+        <p>Functions can have names just like variables. The most common function name is <m>f</m>, since <q>f</q> stands for <q>function</q>. A letter like <m>f</m> doesn't stand for a single number though. Instead, it represents an input-output relation like we've been discussing in this section.</p>
+
+        <p>We will write equations like <m>y=f(x)</m>, and what we mean is:<ul>
+            <li>
+                <p><q>y equals f <em>of</em> x</q></p>
+            </li>
+            <li>
+                <p>the function's name is <m>f</m></p>
+            </li>
+            <li>
+                <p>the input variable is <m>x</m></p>
+            </li>
+            <li>
+                <p>the parentheses following the <m>f</m> surround the input; they do <em>not</em> indicate multiplication</p>
+            </li>
+            <li>
+                <p>the output variable is <m>y</m></p>
+            </li>
+        </ul></p>
 
         <remark>
-            <p>Parentheses have a lot of uses in mathematics. Their use with functions is very specific, and it's important to note that <m>f</m> is <em>not</em> being multiplied by anything when we write <m>f(x)</m>. In fact, we can only write <m>f</m> when calling the function by name. We won't ever use a function name on its own inside an expression or equation; there we will only use <m>f(x)</m> or something similar.</p>
+            <p>Parentheses have a lot of uses in mathematics. Their use with functions is very specific, and it's important to note that <m>f</m> is <em>not</em> being multiplied by anything when we write <m>f(x)</m>. With function notaiton, the parentheses specifically are just meant to indicate the input by surrounding the input.</p>
         </remark>
 
-        <remark>
-        	<p>The expression <m>f(x)</m> is read <q><m>f</m> of <m>x</m></q>, and the expression <m>f(2)</m> is read <q><m>f</m> of <m>2</m></q>. Be sure to practice using this correct verbiage when reading ahead.</p>
-        </remark>
+        <example>
+            <p>The expression <m>f(x)</m> is read as <q><m>f</m> of <m>x</m></q>, and the expression <m>f(2)</m> is read as <q><m>f</m> of <m>2</m></q>. Be sure to practice saying this correctly while reading.</p>
 
-        When using function notation, instead of writing <m>y=5x+3</m>, we write <m>f(x)=5x+3</m>, which is a quick replacement since <m>y=f(x)</m>. To find the value of this function when <m>x=2</m>, we'd evaluate <m>f</m> at <m>2</m>. This means, wherever you see <m>x</m> in the formula <m>f(x)=5x+3</m>, replace it with <m>2</m>:<md>
-            <mrow>f(\highlight{x})\amp=5\highlight{x}+3</mrow>
-            <mrow>f(\highlight{2})\amp=5(\highlight{2})+3</mrow>
-            <mrow>\amp=10+3</mrow>
-            <mrow>\amp=13</mrow>
-        </md>Our end result now is that <m>f(2)=13</m>, which tells us that the value of the function <m>f</m> is <m>13</m> when the input is <m>2</m>. We can also say: The function <m>f</m>'s value is <m>13</m> at <m>x=2</m>.</p>
+            <p>The expression <m>f(2)</m> means that <m>2</m> is being treated as an input, and the function <m>f</m> is turning it into an output. And then <m>f(2)</m> represents that actual output number.</p>
+        </example>
 
         <remark>
-            <p>The most common letters used to represent functions are <m>f,g,</m> and <m>h</m>. The most common variables we use are <m>x,y,</m> and <m>z</m>. But we can use any function name and any input and output variable. When dealing with functions in context, it often makes sense to use meaningful function names and variables. For example, if we are modeling temperature of a cup of coffee as a function of time with a function <m>C</m>, we could use <m>T=C(t)</m>, where <m>T</m> is the temperature (in degrees Fahrenheit) after <m>t</m> minutes.</p>
+            <p>The most common letters used to represent functions are <m>f,g,</m> and <m>h</m>. The most common variables we use are <m>x</m>, <m>y</m>, and <m>z</m>. But we can use any function name and any input and output variable. When dealing with functions in context, it often makes sense to use meaningful function names and variables. For example, if we are modeling temperature of a cup of coffee as a function of time with a function <m>C</m>, we could use <m>T=C(t)</m>, where <m>T</m> is the temperature (in degrees Fahrenheit) after <m>t</m> minutes.</p>
         </remark>
 
     </subsection>
 
 
     <subsection>
-        <title>Evaluating Functions and Solving Equations with Function Notation</title>
+        <title>Evaluating Functions</title>
 
         <p>When we determine a function's value for a specific input, this is known as <term>evaluating a function</term>. To do so, we replace the input with the numerical value given and determine the associated output.</p>
 
-        <example xml:id="example-introductory-function-evaluation">
-            <statement>
-                <p>Find the given function values for a function <m>g</m> where <m>g(\highlight{x})=5\highlight{x}^2-3\highlight{x}+4</m>
-                    <ol>
-                        <li><m>g(3)</m></li>
-                        <li><m>g(0)</m></li>
-                        <li><m>g(-2)</m></li>
-                    </ol>
-                </p>
-            </statement>
+        <p>When using function notation, instead of writing <m>5x+3</m> or <m>y=5x+3</m>, we often write something like <m>f(x)=5x+3</m>. We are saying that the rule for function <m>f</m> is to use the expression <m>5x+3</m>. To find <m>f(2)</m>, wherever you see <m>x</m> in the formula <m>f(x)=5x+3</m>, substitute in <m>2</m>:<md>
+            <mrow>f(\highlight{x})\amp=5\highlight{x}+3</mrow>
+            <mrow>f(\substitute{2})\amp=5(\substitute{2})+3</mrow>
+            <mrow>\amp=10+3</mrow>
+            <mrow>\amp=13</mrow>
+        </md>Our end result is that <m>f(2)=13</m>, which tells us that <m>f</m> turns <m>2</m> into <m>13</m>. In other words, when the input is <m>2</m>, the output will be <m>13</m>.</p>
 
-            <solution>
-                <p>
-                    <ol>
-                        <li><p>We will substitute <m>x=\highlight{3}</m> into <m>g(\highlight{x})</m>:<md>
-                            <mrow>g(\highlight{3}) \amp= 5(\highlight{3})^2-3(\highlight{3})+4</mrow>
-                            <mrow>\amp= 5(9)-9+4</mrow>
-                            <mrow>\amp= 40</mrow>
-                        </md></p></li>
-                        <li><p>We will substitute <m>x=\highlight{0}</m> into <m>g(\highlight{x})</m>:<md>
-                            <mrow>g(\highlight{0}) \amp= 5(\highlight{0})^2-3(\highlight{0})+4</mrow>
-                            <mrow>\amp= 5(0)+0+4</mrow>
-                            <mrow>\amp= 4</mrow>
-                        </md></p></li>
-                        <li><p>We will substitute <m>x=\highlight{-2}</m> into <m>g(\highlight{x})</m>. As a hint, especially when inputting negative numbers, be <em>certain</em> to put parentheses around the input values in the first step:<md>
-                            <mrow>g(\highlight{-2})\amp= 5(\highlight{-2})^2-3(\highlight{-2})+4</mrow>
-                            <mrow>\amp= 5(4)+6+4</mrow>
-                            <mrow>\amp= 30</mrow>
-                        </md></p></li>
-                    </ol>
-                </p>
-            </solution>
-        </example>
-
-
-        <p>In <xref ref="example-introductory-function-evaluation">Example</xref>, we found the function value when given the input, which we refer to as <term>evaluating</term> a function. To <term>solve</term> an equation involving function notation, we need to solve for the value of the variable that makes an equation true, just like in any other equation.</p>
-
-        <example>
-            <statement>
-                <p>Solve the equations below for a function <m>h</m> where <m>h(x)=-4x+7</m>. Check each answer and state the solution set.<ol>
-                        <li><p><m>h(x)=-1</m></p></li>
-                        <li><p><m>h(x)=0</m></p></li>
-                        <li><p><m>h(x)=11</m></p></li>
-                    </ol>
-                </p>
-            </statement>
-            <solution>
-                <p>
-                    <ol>
-                        <li><p>To solve for <m>x</m>, we will substitute <m>h(x)</m> with <m>-4x+7</m> in <m>h(x)=\highlight{-1}</m>:
-                        	<md>
-                                <mrow>h(x) \amp= \highlight{-1}</mrow>
-                                <mrow>-4x+7 \amp= \highlight{-1}</mrow>
-                                <mrow>-4x \amp= -8</mrow>
-                                <mrow>x \amp=2</mrow>
-                            </md>To check, we will verify that <m>h(2)=-1</m>:
-                            <md>
-                                <mrow>h(2) \amp= -4(2)+7</mrow>
-                                <mrow>\amp= -8+7</mrow>
-                                <mrow>\amp\stackrel{\checkmark}{=} -1</mrow>
-                            </md>
-                            The solution is <m>2</m>, and the solution set is <m>\{2\}</m>.</p>
+        <exercise xml:id="exercise-introductory-function-evaluation">
+            <title>Functions with Algebraic Formulas</title>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("LimitedNumeric");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Find the given function values for a function <m>g</m> where <m>g(x)=5x^2-3x+4</m>.<ol label="a." cols="3">
+                        <li>
+                            <p><m>g(3)=</m><var name="40" width="5" /></p>
                         </li>
-
-                        <li><p>To solve for <m>x</m>, we will substitute <m>h(x)</m> with <m>-4x+7</m> in <m>h(x)=\highlight{0}</m>:
-                        	<md>
-                                <mrow>h(x) \amp= \highlight{0}</mrow>
-                                <mrow>-4x+7 \amp= \highlight{0}</mrow>
-                                <mrow>-4x \amp= -7</mrow>
-                                <mrow>x \amp=\frac{7}{4}</mrow>
-                            </md>To check, we will verify that <m>h\left(\frac{7}{4}\right)=0</m>:
-                            <md>
-                                <mrow>h\left(\frac{7}{4}\right) \amp = -4\left(\frac{7}{4}\right)+7</mrow>
-                                <mrow>\amp= -7+7</mrow>
-                                <mrow>\amp\stackrel{\checkmark}{=} 0 </mrow>
-                            </md>The solution is <m>0</m>, and the solution set is <m>\left\{\frac{7}{4}\right\}</m>.</p>
+                        <li>
+                            <p><m>g(0)=</m><var name="4" width="5" /></p>
                         </li>
-
-                        <li><p>To solve for <m>x</m>, we will substitute <m>h(x)</m> with <m>-4x+7</m> in <m>h(x)=\highlight{11}</m>:
-                        	<md>
-                                <mrow>h(x) \amp= \highlight{11}</mrow>
-                                <mrow>-4x+7 \amp= \highlight{11}</mrow>
-                                <mrow>-4x \amp= 4</mrow>
-                                <mrow>x \amp=-1</mrow>
-                            </md>To check, we will verify that <m>h(-1)=11</m>:
-                            <md>
-                                <mrow>h(-1) \amp= -4(-1)+7</mrow>
-                                <mrow>\amp= 4+7</mrow>
-                                <mrow>\amp\stackrel{\checkmark}{=} 11</mrow>
-                            </md>The solution is <m>-1</m>, and the solution set is <m>\{-1\}</m>.</p>
+                        <li>
+                            <p><m>g(-2)=</m><var name="30" width="5" /></p>
                         </li>
-                    </ol>
-                </p>
-            </solution>
-        </example>
+                    </ol></p>
+                </statement>
 
-        <exercise>
-            <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction50.pg" seed="2"/>
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/FunctionBasics/FunctionEquation10.pg" seed="2"/>
+                <solution>
+                    <p><ol label="a.">
+                        <li>
+                            <p>We will substitute <m>x=3</m> into <m>g(x)</m>:<md>
+                                <mrow>g(\substitute{3}) \amp= 5(\substitute{3})^2-3(\substitute{3})+4</mrow>
+                                <mrow>\amp= 5(9)-9+4</mrow>
+                                <mrow>\amp= 40</mrow>
+                            </md></p>
+                        </li>
+                        <li>
+                            <p>We will substitute <m>x=0</m> into <m>g(x)</m>:<md>
+                                <mrow>g(\substitute{0}) \amp= 5(\substitute{0})^2-3(\substitute{0})+4</mrow>
+                                <mrow>\amp= 5(0)+0+4</mrow>
+                                <mrow>\amp= 4</mrow>
+                            </md></p>
+                        </li>
+                        <li>
+                            <p>We will substitute <m>x=-2</m> into <m>g(x)</m>. Especially when inputting negative numbers, be <em>certain</em> to put parentheses around the input values in the first step:<md>
+                                <mrow>g(\substitute{-2})\amp= 5(\substitute{-2})^2-3(\substitute{-2})+4</mrow>
+                                <mrow>\amp= 5(4)+6+4</mrow>
+                                <mrow>\amp= 30</mrow>
+                            </md></p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
         </exercise>
 
-        <example>
+        <p>A function may be described by explicity listing many inputs and their corresponding outputs in a table.</p>
+
+        <example xml:id="example-evaluate-table-function">
+            <title>Functions given in Table Form</title>
             <statement>
                 <p>Temperature readings for Portland, OR, on a given day are recorded in <xref ref="table-temperature">Table</xref> . Let <m>f(x)</m> be the temperature in degrees Fahrenheit <m>x</m> hours after midnight.</p>
 
                 <table xml:id="table-temperature">
-                    <caption>Recorded Temperatures</caption>
-                    <tabular valign="top" bottom="medium" top="medium" left="medium" right="medium">
-                        <col halign="center" right="minor" left="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="minor"/>
-                        <col halign="center" right="medium"/>
+                    <caption>Recorded Temperatures in Portland, OR, on a certain day</caption>
+                    <tabular valign="top" bottom="medium" top="medium" left="medium" right="minor" halign="center">
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col right="medium"/>
 
-                        <row bottom="medium" top="medium">
+                        <row>
                             <cell><m>x</m>, hours after midnight</cell>
                             <cell><m>0</m></cell>
                             <cell><m>1</m></cell>
@@ -465,10 +430,8 @@
                             <cell><m>8</m></cell>
                             <cell><m>9</m></cell>
                             <cell><m>10</m></cell>
-                            <cell><m>11</m></cell>
-                            <cell><m>12</m></cell>
                         </row>
-                        <row bottom="medium">
+                        <row>
                             <cell><m>f(x)</m>, temperature in <quantity><unit base="fahrenheit" /></quantity> </cell>
                             <cell><m>45</m></cell>
                             <cell><m>44</m></cell>
@@ -481,51 +444,98 @@
                             <cell><m>49</m></cell>
                             <cell><m>50</m></cell>
                             <cell><m>53</m></cell>
-                            <cell><m>52</m></cell>
-                            <cell><m>53</m></cell>
                         </row>
                     </tabular>
                 </table>
 
-                <p><ol>
-                    <li><p>What was the temperature at midnight?</p></li>
-                    <li><p>Find <m>f(9)</m>. Explain what this function value represents in the context of the problem.</p></li>
-                    <li><p>When was the temperature <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>?</p></li>
-                    <li><p>Solve <m>f(x)=52</m>. Explain what this solution set represents in the context of the problem.</p></li>
+                <p><ol label="a.">
+                    <li>
+                        <p>What was the temperature at midnight?</p>
+                    </li>
+                    <li>
+                        <p>Find <m>f(9)</m>. Explain what this function value represents in the context of the problem.</p>
+                    </li>
                 </ol></p>
             </statement>
-        
+
             <solution>
-                <ol>
+                <p><ol label="a.">
                     <li>
-                        <p>To determine the temperature at midnight, we look in the table where <m>x=0</m> and see that the output is <m>45</m>. Using function notation, we would write:<md>
-                            <mrow>f(0) \amp= 45</mrow>
-                            </md>Thus at midnight the temperature was <quantity><mag>45</mag><unit base="fahrenheit" /></quantity>.</p>
+                        <p>To determine the temperature at midnight, we look in the table where <m>x=0</m> and see that the output is <m>45</m>. Using function notation, we would write:<me>f(0) = 45</me>. Thus at midnight the temperature was <quantity><mag>45</mag><unit base="fahrenheit" /></quantity>.</p>
                     </li>
                     <li>
-                        <p>To determine the value of <m>f(9)</m>, we look in the table where <m>x=9</m> and read the output:<md>
-                            <mrow>f(9) \amp= 50</mrow>
-                        </md>In context, this means that at 9AM the temperature was <quantity><mag>50</mag><unit base="fahrenheit" /></quantity>.</p>
+                        <p>To determine the value of <m>f(9)</m>, we look in the table where <m>x=9</m> and read the output:<me>f(9) = 50</me>. In context, this means that at 9AM the temperature was <quantity><mag>50</mag><unit base="fahrenheit" /></quantity>.</p>
                     </li>
-                    <li>
-                        <p>To determine when the temperature was <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>, we look in the table to see where the output was <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>. This occurs when <m>x=1</m> and again when <m>x=5</m>. In summary, this means that the temperature was  <quantity><mag>44</mag><unit base="fahrenheit" /></quantity> at 1AM and again at 5AM.</p>
-                    </li>
-                    <li>
-                        <p>To solve <m>f(x)=52</m>, we need to find the value of <m>x</m> that makes the equation true. Looking at the table, we look at the outputs and see that the output is <m>52</m> when <m>x=11</m>. In context, this means that the temperature was <quantity><mag>52</mag><unit base="fahrenheit" /></quantity> at 11AM.</p>
-                    </li>
-                </ol>
+                </ol></p>
             </solution>
         </example>
 
 
-        <example>
-            <statement>
-                <p>A colony of bees was happily residing in Ann's backyard in 2012. Let <m>B(x)</m> be the number of bees in the colony (in thousands) <m>x</m> months after April 1, 2012. A graph of the function <m>y=B(x)</m> is shown in <xref ref="figure-bees">Figure</xref>.</p>
+        <p>A function may be described using a graph, where the horizontal axis corresponds to possible input values (the domain), and the vertical axis corresponds to possible output values (the range).</p>
 
-                <figure xml:id="figure-bees">
-                <caption>Bee Population</caption>
+        <example xml:id="example-bees">
+            <title>Functions in Graphical Form</title>
+            <statement>
+                <p>A colony of bees settled in Ann's backyard in 2012. Let <m>B(x)</m> be the number of bees in the colony (in thousands) <m>x</m> months after April 1, 2012. A graph of the function <m>y=B(x)</m> is shown in <xref ref="figure-bees">Figure</xref>.</p>
+
+                <sidebyside widths="47% 47%" margins="0%">
+
+                    <p><ol label="a.">
+                        <li>
+                            <p>Determine the number of bees in the colony on July 1, 2012.</p>
+                        </li>
+                        <li>
+                            <p>Find <m>B(0)</m>. Explain what this function value represents in the context of the problem.</p>
+                        </li>
+                    </ol></p>
+
+                    <figure xml:id="figure-bees">
+                        <caption>Bee Population</caption>
+                        <image width="47%">
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[
+                                        x axis line style = {->},
+                                        y axis line style = {->},
+                                        xmin=0,xmax=12,
+                                        ymin=0,ymax=16,
+                                        xlabel={$x$, months after April 1, 2012},
+                                        ylabel={$y$, thousands of bees},
+                                        x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+                                        y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+                                        xtick={0,2,...,10},
+                                             minor xtick={1,2,...,11},
+                                        ytick={0,2,...,14},
+                                             minor ytick={1,2,...,15}
+                                        ]
+                                        % use TeX as calculator:
+                                        \addplot[primarycurve,domain=0:6,-,samples=100]{-5/9*x^2+10/3*x+10};
+                                        \addplot[primarycurve,soliddot] coordinates {(0,10) (9,0)};
+                                        \addplot[primarycurve,domain=6:9,-]{-10/3*(x-6)+10};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                </sidebyside>
+
+            </statement>
+
+            <solution>
+                <p><ol label="a.">
+                    <li>
+                        <p>Since July 1 is <m>3</m> months after April 1, that means we need to use <m>x=3</m> as the input. On the horizontal axis, find <m>3</m>, as in <xref ref="figure-bees-solution">Figure</xref>. Looking straight up or down, we find the point <m>(3,15)</m> on the curve. That means that <m>B(3)=15</m>. A value of <m>y=15</m> when <m>x=3</m> tells us that there were <m>15{,}000</m> bees <m>3</m> months after April 1, 2012 (on July 1, 2012).</p>
+                    </li>
+                    <li>
+                        <p>To find <m>B(0)</m>, we recognize that this will be the output of the function when <m>x=0</m>. The point <m>(0,10)</m> on the graph of <m>y=B(x)</m> tells us that <m>B(0)=10</m>. In the context of this problem, this means on April 1, 2012 there were <m>10{,}000</m> bees in the colony.</p>
+                    </li>
+                </ol></p>
+
+                <figure xml:id="figure-bees-solution">
+                    <caption>Bee Population</caption>
                     <image width="47%">
-                    <description></description>
+                        <description></description>
                         <latex-image-code>
                             <![CDATA[\begin{tikzpicture}
                                 \begin{axis}[
@@ -540,125 +550,236 @@
                                     xtick={0,2,...,10},
                                          minor xtick={1,2,...,11},
                                     ytick={0,2,...,14},
-                                         minor ytick={1,2,...,15}
+                                         minor ytick={1,2,...,15},
+                                         clip=false
                                     ]
                                     % use TeX as calculator:
                                     \addplot[primarycurve,domain=0:6,-,samples=100]{-5/9*x^2+10/3*x+10};
-                                    \addplot[primarycurve,soliddot] coordinates {(0,10)};
                                     \addplot[primarycurve,domain=6:9,-]{-10/3*(x-6)+10};
-                                    \addplot[primarycurve,soliddot] coordinates {(9,0)};
+                                    \addplot[soliddot] coordinates {(9,0) (0,10) (3,15)};
+                                    \draw[guideline,->] (axis cs:3,0) -- (axis cs:3,14.9) node[above,color=black]{$(3,15)$};
+                                    \draw[guideline,->] (axis cs:0,0) -- (axis cs:0,9.9) node[below right,color=black]{$(0,10)$};
                                 \end{axis}
                             \end{tikzpicture}]]>
                         </latex-image-code>
                     </image>
                 </figure>
-
-                <p>
-                    <ol>
-                        <li><p>Determine the number of bees in the colony on July 1, 2012.</p></li>
-                        <li><p>Find <m>B(0)</m>. Explain what this function value represents in the context of the problem.</p></li>
-                        <li><p>When did the population reach <m>13{,}000</m> bees?</p></li>
-                        <li><p>Solve <m>B(x)=0</m>. Explain what the solution set represents in the context of the problem.</p></li>
-                    </ol>
-                </p>
-            </statement>
-
-            <solution>
-                <p><ol>
-                    <li>
-                        <p>Since July 1 is <m>3</m> months after April 1, that means that <m>x=3</m>. Since the the graph contains the point <m>(3,15)</m>, that must mean that <m>B(3)=15</m>. A value of <m>y=15</m> when <m>x=3</m> tells us that there were <m>15{,}000</m> bees <m>3</m> months after April 1, 2012 (on July 1, 2012).</p>
-                    </li>
-                    <li>
-                        <p>To find <m>B(0)</m>, we recognize that this will be the output of the function when <m>x=0</m>. The point <m>(0,10)</m> on the graph of <m>y=B(x)</m> tells us that <m>B(0)=10</m>. In the context of this problem, this means on April 1, 2012 there were <m>10{,}000</m> bees in the colony.</p>
-                    </li>
-                    <li>
-                        <p>To determine when the number of bees reached <m>13{,}000</m>, we need to find the input value of which <m>y=13</m>. The approximate points <m>(1,13)</m> and <m>(5,13)</m> on the graph of <m>y=B(x)</m> indicate that <m>B(x)=13</m> when <m>x\approx 1</m> and <m>x\approx 5</m>. Thus there will be <m>13,000</m> bees in the colony approximately 1 month after April 1, 2012 (on May 1, 2012) and again 5 months after April 1, 2012 (on September 1, 2012).</p>
-                    </li>
-                    <li>
-                        <p>To solve <m>B(x)=0</m>, we need to determine the value of <m>x</m> for which <m>y=0</m>. The point <m>(9,0)</m> on the graph of <m>y=B(x)</m> tells us that <m>B(x)=0</m> when <m>x=9</m>. In the context of this problem, this means there were <m>0</m> bees in the colony <m>9</m> months after April 1, 2012 (on January 1, 2013).</p>
-                    </li>
-                </ol></p>
             </solution>
         </example>
     </subsection>
 
     <subsection>
-        <title>Domain and Range</title>
+        <title>Solving Equations that have Function Notation</title>
 
-        <p>When working with relations and functions, one of the things we need to identify is all possible values for each variable. We define the <term>domain</term> to be the set of all possible inputs. We define the <term>range</term> to be the set of all possible outputs.</p>
+        <p><em>Evaluating</em> a function and <em>solving</em> an equation that has function notation in it are two separate things. Students understandably mix up these two tasks, because they are two sides of the same coin. Evaluating a function means that you know an input (typically, an <m>x</m>-value) and then you calculate an output (typically, a <m>y</m>-value). Solving an equation that has function notation in it is the opposite process. You know an output (typically, a <m>y</m>-value) and then you determine all the inputs that could have led to that output (typically, <m>x</m>-values).</p>
 
-        <example xml:id="example-function-yes-no-ordered-pairs">
+
+
+        <exercise>
+            <title>Functions with Algebraic Formulas</title>
+
+            <introduction>
+                <p>In <xref ref="exercise-introductory-function-evaluation">Exercise</xref>, we found the function value when given the input, which we refer to as <em>evaluating</em> a function. To <term>solve</term> an equation that has function notation in it, we need to solve for the value of the variable that makes an equation true, just like in any other equation.</p>
+            </introduction>
+
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("Interval");
+                        $a = Set(2);
+                        $b = Set(7/4);
+                        $c = Set(-1);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Solve the equations below for a function <m>h</m> where <m>h(x)=-4x+7</m>. Check each answer and state the solution set.<ol label="a." cols="3">
+                        <li>
+                            <p><m>h(x)=-1</m></p>
+                            <p>The solution set is <var name="$a" width="5" />.</p>
+                        </li>
+                        <li>
+                            <p><m>h(x)=0</m></p>
+                            <p>The solution set is <var name="$b" width="5" />.</p>
+                        </li>
+                        <li>
+                            <p><m>h(x)=11</m></p>
+                            <p>The solution set is <var name="$c" width="5" />.</p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p><ol label="a.">
+                        <li>
+                            <p>To solve for <m>x</m>, we will substitute <m>h(x)</m> with its formula, <m>-4x+7</m>:<md>
+                                <mrow>h(x) \amp= -1</mrow>
+                                <mrow>\substitute{-4x+7} \amp= -1</mrow>
+                                <mrow>-4x \amp= -8</mrow>
+                                <mrow>x \amp=2</mrow>
+                            </md><!-- To check, verify that <m>h(2)=-1</m>:<md>
+                                <mrow>h(2) \amp= -4(2)+7</mrow>
+                                <mrow>\amp= -8+7</mrow>
+                                <mrow>\amp\stackrel{\checkmark}{=} -1</mrow>
+                            </md> -->The solution is <m>2</m>, and the solution set is <m>\{2\}</m>.</p>
+                        </li>
+
+                        <li>
+                            <p>To solve for <m>x</m>, we will substitute <m>h(x)</m> with its formula:<md>
+                                <mrow>h(x) \amp= 0</mrow>
+                                <mrow>\substitute{-4x+7} \amp= 0</mrow>
+                                <mrow>-4x \amp= -7</mrow>
+                                <mrow>x \amp=\frac{7}{4}</mrow>
+                            </md><!-- To check, we will verify that <m>h\mathopen{}\left(\frac{7}{4}\right)\mathclose{}=0</m>:<md>
+                                <mrow>h\mathopen{}\left(\frac{7}{4}\right)\mathclose{} \amp = -4\left(\frac{7}{4}\right)+7</mrow>
+                                <mrow>\amp= -7+7</mrow>
+                                <mrow>\amp\stackrel{\checkmark}{=} 0 </mrow>
+                            </md> -->The solution is <m>\frac{7}{4}</m>, and the solution set is <m>\left\{\frac{7}{4}\right\}</m>.</p>
+                        </li>
+
+                        <li>
+                            <p>To solve for <m>x</m>, we will substitute <m>h(x)</m> with its formula:<md>
+                                <mrow>h(x) \amp= 11</mrow>
+                                <mrow>\substitute{-4x+7} \amp= 11</mrow>
+                                <mrow>-4x \amp= 4</mrow>
+                                <mrow>x \amp=-1</mrow>
+                            </md><!-- To check, we will verify that <m>h(-1)=11</m>:<md>
+                                <mrow>h(-1) \amp= -4(-1)+7</mrow>
+                                <mrow>\amp= 4+7</mrow>
+                                <mrow>\amp\stackrel{\checkmark}{=} 11</mrow>
+                            </md> -->The solution is <m>-1</m>, and the solution set is <m>\{-1\}</m>.</p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+
+        <example>
+            <title>Functions given in Table Form</title>
+
             <statement>
-                <p>The relations below are given in the form of ordered pairs. Determine if each is a function. Then state the domain and range of each.<ol>
-                    <li><p><m>\{(2,5), (3,6), (4,3), (4,-5), (8,0)\} </m></p></li>
-                    <li><p><m>\{(1,2), (3,-2), (5,5), (7,-4), (9,6)\} </m></p></li>
+                <p>In <xref ref="example-evaluate-table-function">Example</xref>, we evaluated a function given in table form, using <xref ref="table-temperature">Table</xref>. Now let's use that function to solve some equations.<ol label="a.">
+                    <li>
+                        <p>Solve <m>f(x)=48</m>. Explain what this solution set represents in the context of the problem.</p>
+                    </li>
+                    <li>
+                        <p>When was the temperature <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>?</p>
+                    </li>
                 </ol></p>
             </statement>
             <solution>
-                <p><ol>
-                    <li><p>The first relation <em>does not</em> represent a function as the input of <m>4</m> is associated with more than one output (<m>3</m> and <m>-5</m>). Domain: <m>\{2,3,4,8\} </m>. Range: <m>\{-5,0,3,5,6\} </m>.</p></li>
-                    <li><p>The second relation <em>does</em> represent a function as each input is associated with exactly one output. Domain: <m>\{1,3,5,7,9\}</m>. Range: <m>\{-4,-2,2,5,6\}</m>.</p></li>
+                <p><ol label="a.">
+                    <li>
+                        <p>To solve <m>f(x)=48</m>, we need to find the value of <m>x</m> that makes the equation true. Looking at the table, we look at the outputs and see that the output <m>48</m> occurs when <m>x=7</m>. In abstract terms, the solution set is <m>\{7\}</m>. In context, this means that the temperature was <quantity><mag>48</mag><unit base="fahrenheit" /></quantity> at 7AM.</p>
+                    </li>
+                    <li>
+                        <p>To determine when the temperature was <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>, we look in the table to see where the output was <quantity><mag>44</mag><unit base="fahrenheit" /></quantity>. This occurs when <m>x=1</m> and again when <m>x=5</m>. In abstract terms, the solution set is <m>\{1,5\}</m>. In context, this means that the temperature was  <quantity><mag>44</mag><unit base="fahrenheit" /></quantity> at 1AM and again at 5AM.</p>
+                    </li>
                 </ol></p>
-            </solution>    
+            </solution>
         </example>
 
-        <exercise>
-            <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition20.pg" seed="2"/>
-        </exercise>
 
-        <remark>
-            <p>Another means of determining if a set of ordered pairs represents a function is to look at them graphically and use the vertical line test. In <xref ref="example-function-yes-no-ordered-pairs">Example</xref>, we can see that the first set does not represent a function while the second does represent a function:</p>
-    
-            <sidebyside widths="47% 47%" margins="0%">
-                <figure xml:id="figure-graph-not-function-ordered-pairs">
-                    <caption>Not a Function: Fails the Vertical Line Test</caption>
-                    <image>
-                    <description></description>
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[xmin=-4,xmax=10,xtick={-2,0,2,...,8}, minor xtick={-4,-3,...,10}]
-                                    \addplot[primarycurve,soliddot]coordinates{    (2,5) (3,6) (4,3) (4,-5) (8,0)    };
-                                        \addplot[guideline,<->]coordinates {(4,-7) (4,7)};
-                                \end{axis}
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-                <figure xml:id="figure-graph-function-ordered-pairs">
-                    <caption>A Function: Passes the Vertical Line Test</caption>
-                    <image>
-                    <description></description>
-                        <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[xmin=-4,xmax=10,xtick={-2,0,2,...,8}, minor xtick={-4,-3,...,10}]
-                                    \addplot[primarycurve,soliddot]coordinates{    (1,2) (3,-2) (5,5) (7,-4) (9,6)    };
-                                \end{axis}
-                            \end{tikzpicture}]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-            </sidebyside>
-        </remark>
-
-<!--put this above in VLT section or just leave it out; left out as it's redundant to what's in VLT-->
-<!--         <exercise>
-            <webwork source="BasicAlgebra/FunctionBasics/FunctionOrNotByGraph20.pg" seed="2"/>
-        </exercise>
- -->
         <example>
+            <title>Functions given in Graphical Form</title>
+
             <statement>
-                <p>For each relation shown in <xref ref="table-function-yes-no-1">Table</xref> through <xref ref="table-function-yes-no-3">Table</xref>, determine if <m>y</m> is a function of <m>x</m>. Then state the domain and range of each.<ol>
+                <p>In <xref ref="example-bees">Example</xref>, we evaluated a function given in graphical form, using <xref ref="figure-bees">Figure</xref>. Now let's use that function to solve some equations.<ol label="a.">
                     <li>
-                        <table xml:id="table-function-yes-no-1">
-                            <caption></caption>
-                            <tabular valign="top" bottom="medium" top="medium" left="medium" right="medium">
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <row bottom="medium" top="medium">
+                        <p>Solve <m>B(x)=0</m>. Explain what the solution set represents in the context of the problem.</p>
+                    </li>
+                    <li>
+                        <p>When did the population reach <m>13{,}000</m> bees?</p>
+                    </li>
+                </ol></p>
+            </statement>
+            <solution>
+                <p><ol label="a.">
+                    <li>
+                        <p>To solve <m>B(x)=0</m>, we need to consider that number <m>0</m> as an output value, so it belongs on the vertical axis in <xref ref="figure-bees-solving-solution">Figure</xref>. Moving straight right or left, we find the point <m>(9,0)</m> is on the graph, and that tells us that <m>B(x)=0</m> when <m>x=9</m>. Abstractly, the solution set is <m>\{9\}</m>. In the context of this problem, this means there were <m>0</m> bees in the colony <m>9</m> months after April 1, 2012 (on January 1, 2013).</p>
+                    </li>
+                    <li>
+                        <p>To determine when the number of bees reached <m>13{,}000</m>, we need to recognize that <m>13</m> is an output value and locate it on the vertical axis.  Moving straight right or left, we find find (approximately) that the points <m>(1,13)</m> and <m>(5,13)</m> are on the graph. This means <m>x\approx 1</m> and <m>x\approx 5</m> are solutions. Abstractly, the solution set is approximately <m>\{1, 5\}</m>. In context, there will be <m>13,000</m> bees in the colony approximately 1 month after April 1, 2012 (on May 1, 2012) and again 5 months after April 1, 2012 (on September 1, 2012).</p>
+                    </li>
+                </ol></p>
+                <figure xml:id="figure-bees-solving-solution">
+                    <caption>Bee Population</caption>
+                    <image width="47%">
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[
+                                    x axis line style = {->},
+                                    y axis line style = {->},
+                                    xmin=0,xmax=12,
+                                    ymin=0,ymax=16,
+                                    xlabel={$x$, months after April 1, 2012},
+                                    ylabel={$y$, thousands of bees},
+                                    x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+                                    y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+                                    xtick={0,2,...,10},
+                                         minor xtick={1,2,...,11},
+                                    ytick={0,2,...,14},
+                                         minor ytick={1,2,...,15},
+                                         clip=false
+                                    ]
+                                    % use TeX as calculator:
+                                    \addplot[primarycurve,domain=0:6,-,samples=100]{-5/9*x^2+10/3*x+10};
+                                    \addplot[primarycurve,domain=6:9,-]{-10/3*(x-6)+10};
+                                    \addplot[soliddot] coordinates {(9,0) (0,10) (1,13) (5,13)};
+                                    \draw[guideline,->] (axis cs:0,0) -- (axis cs:8.9,0) node[above right,color=black]{$(9,0)$};
+                                    \draw[guideline,->] (axis cs:0,13) -- (axis cs:0.9,13) node[below right,color=black]{$(1,13)$};
+                                    \draw[guideline,->] (axis cs:0,13) -- (axis cs:4.9,13) node[above right,color=black]{$(5,13)$} ;
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+    </subsection>
+
+
+    <subsection>
+        <title>Domain and Range</title>
+
+        <p>Earlier we defined the domain and range of a relation. We repeat those definitions more formally here, specifically for functions.</p>
+
+        <definition>
+            <title>Domain and Range</title>
+            <statement>
+                <p>Given a function <m>f</m>, the <term>domain</term> of <m>f</m> is the collection all valid input values for <m>f</m>. The <term>range</term> of <m>f</m> is the collection all possible output values of <m>f</m>.</p>
+            </statement>
+        </definition>
+
+        <p>When working with functions, a common necessary task is to determine the function's domain and range. Also, the ability to identify domain and range is strong evidence that a person really understands the <em>concepts</em> of domain and range.</p>
+
+        <example xml:id="example-function-yes-no-ordered-pairs">
+            <title>Functions Defined by Ordered Pairs</title>
+            <statement>
+                <p>The function <m>f</m> is defined by the ordered pairs <me>\{(1,2), (3,-2), (5,2), (7,-4), (9,6)\}</me>. Determine the domain and range of <m>f</m>.</p>
+            </statement>
+            <solution>
+                <p>The ordered pairs tells us that <m>f(1)=2</m>, <m>f(3)=-2</m>, etc. So the valid input values are <m>1</m>, <m>3</m>, <m>5</m>, <m>7</m>, and <m>9</m>. This means the domain is the set <m>\{1,3,5,7,9\}</m>.</p>
+
+                <p>Similarly, the ordered pais tell us that <m>2</m>, <m>-2</m>, <m>-4</m>, and <m>6</m> are possible output values. Notice that the output <m>2</m> happened twice, but it only needs to be listed in this collection once. The range of <m>f</m> is <m>\{2,-2,-4,6\}</m>.</p>
+            </solution>
+        </example>
+
+        <example>
+            <title>Functions in Table Form</title>
+            <statement>
+                <p>For each function defined using a table, state the domain and range.<ol label="a." cols="2">
+                    <li>
+                        <p>The function <m>g</m> is defined by:</p>
+                        <sidebyside>
+                            <tabular halign="right" valign="top" bottom="medium" top="medium" left="medium" right="minor">
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col right="medium"/>
+                                <row>
                                     <cell><m>x</m></cell>
                                     <cell><m>-2</m></cell>
                                     <cell><m>-1</m></cell>
@@ -666,7 +787,7 @@
                                     <cell><m>1</m></cell>
                                     <cell><m>2</m></cell>
                                 </row>
-                                <row bottom="medium">
+                                <row>
                                     <cell><m>y</m></cell>
                                     <cell><m>5</m></cell>
                                     <cell><m>5</m></cell>
@@ -675,19 +796,19 @@
                                     <cell><m>5</m></cell>
                                 </row>
                             </tabular>
-                        </table>
+                        </sidebyside>
                     </li>
                     <li>
-                        <table xml:id="table-function-yes-no-2">
-                        <caption></caption>
-                            <tabular valign="top" bottom="medium" top="medium" left="medium" right="medium">
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <row bottom="medium" top="medium">
+                        <p>The function <m>h</m> is defined by:</p>
+                        <sidebyside>
+                            <tabular halign="right" valign="top" bottom="medium" top="medium" left="medium" right="minor">
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col right="medium"/>
+                                <row>
                                     <cell><m>x</m></cell>
                                     <cell><m>0</m></cell>
                                     <cell><m>1</m></cell>
@@ -695,7 +816,7 @@
                                     <cell><m>3</m></cell>
                                     <cell><m>4</m></cell>
                                 </row>
-                                <row bottom="medium">
+                                <row>
                                     <cell><m>y</m></cell>
                                     <cell><m>8</m></cell>
                                     <cell><m>6</m></cell>
@@ -704,328 +825,363 @@
                                     <cell><m>0</m></cell>
                                 </row>
                             </tabular>
-                        </table>
-                    </li>
-                    <li>
-                        <table xml:id="table-function-yes-no-3">
-                            <caption></caption>
-                            <tabular valign="top" bottom="medium" top="medium" left="medium" right="medium">
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <col halign="center" right="minor"/>
-                                <row bottom="medium" top="medium">
-                                    <cell><m>x</m></cell>
-                                    <cell><m>-2</m></cell>
-                                    <cell><m>-2</m></cell>
-                                    <cell><m>0</m></cell>
-                                    <cell><m>2</m></cell>
-                                    <cell><m>2</m></cell>
-                                </row>
-                                <row bottom="medium">
-                                    <cell><m>y</m></cell>
-                                    <cell><m>1</m></cell>
-                                    <cell><m>3</m></cell>
-                                    <cell><m>5</m></cell>
-                                    <cell><m>7</m></cell>
-                                    <cell><m>9</m></cell>
-                                </row>
-                            </tabular>
-                        </table>
+                        </sidebyside>
                     </li>
                 </ol></p>
-            </statement>    
+            </statement>
             <solution>
-                <p><ol>
-                    <li><p>This relation represents a function as each input corresponds to exactly one output. Domain: <m>\{-2,-1,0,1,2\}</m>. Range: <m>\{5\}</m>.</p></li>
-                    <li><p>This relation represents a function as each input corresponds to exactly one output. Domain: <m>\{0,1,2,3,4\}</m>. Range: <m>\{0,2,4,6,8\}</m>.</p></li>
-                    <li><p>This relation does not represent a function as some of the inputs correspond to more than one output. The input of <m>2</m>, for example, corresponds to both <m>7</m> and <m>9</m>. Domain: <m>\{-2,0,2\}</m>. Range: <m>\{1,3,5,7,9\}</m>.</p></li>
+                <p><ol label="a.">
+                    <li>
+                        <p>The table tells us that <m>g(-2)=5</m>, <m>g(-1)=5</m>, etc. So the valid input values are <m>-2</m>, <m>-1</m>, <m>0</m>, <m>1</m>, and <m>2</m>. This means the domain of <m>g</m> is the set <m>\{-2,-1,0,1,2\}</m>.</p>
+                        <p>The only output evident from this table is <m>5</m>, so the range of <m>g</m> is the set <m>\{5\}</m>.</p>
+                    </li>
+                    <li>
+                        <p>The table tells us that <m>h(0)=8</m>, <m>h(1)=6</m>, etc. So the valid input values are <m>0</m>, <m>1</m>, <m>2</m>, <m>3</m>, and <m>4</m>. This means the domain of <m>h</m> is the set <m>\{0,1,2,3,4\}</m>.</p>
+                        <p>Similarly, the table shows us that the possible outputs are <m>8</m>, <m>6</m>, <m>4</m>, <m>2</m>, and <m>0</m>. So the range of <m>h</m> is the set <m>\{8,6,4,2,0\}</m>.</p>
+                    </li>
                 </ol></p>
             </solution>
         </example>
 
         <example xml:id="example-identifying-domain-and-range-from-graphs">
+            <title>Functions in Graphical Form</title>
             <statement>
-                <p>For the relations graphed in <xref ref="figure-function-yes-no-1">Figure</xref> through <xref ref="figure-function-yes-no-4">Figure</xref>, determine if the graph represents a function. Then state the domain and range using interval and set-builder notation.<ol>
-                    <li><p>
-                        <figure xml:id="figure-function-yes-no-1">
-                            <caption></caption> 
-                            <image width="50%">
-                            <description></description>
-                                <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                        \addplot[primarycurve]expression[domain=-7:7]{-1/2*x+3};
-                                \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                                </latex-image-code>
-                            </image>
-                        </figure>
-                    </p></li>
-                    <li><p>
-                        <figure xml:id="figure-function-yes-no-2">
-                            <caption></caption> 
-                            <image width="50%">
-                            <description></description>
-                                <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                        \addplot[primarycurve,samples=50]expression[domain=-1.3166:5.3166]{4-(x-2)^2};
-                                \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                                </latex-image-code>
-                            </image>
-                        </figure>
-                    </p></li>    
-                    <!-- <li><p>
-                        <figure xml:id="figure-function-yes-no-3">
-                            <caption></caption> 
-                            <image width="50%">
-                            <description></description>
-                                <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                        \addplot[primarycurve,soliddot]coordinates{    (1,7)    };
-                                        \addplot[primarycurve,-,samples=75]expression[domain=1:6]{-2*(x+cos(3.14*deg(x))-3.5)};
-                                        \addplot[primarycurve,hollowdot]coordinates{    (6,-7)    };
-                                \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                                </latex-image-code>
-                            </image>
-                        </figure>
-                    </p></li> -->
-                    <li><p>
-                        <figure xml:id="figure-function-yes-no-4">
-                            <caption></caption> 
-                            <image width="50%">
-                            <description></description>
-                                <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                        \addplot[primarycurve,->,samples=50]expression[domain=2:7]{(x-2)^(1/2)+1};
-                                        \addplot[primarycurve,soliddot]coordinates{    (2,1)    };
-                                \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                                </latex-image-code>
-                            </image>
-                        </figure>
-                    </p></li>
-                    <li><p>
-                        <figure xml:id="figure-function-yes-no-5">
-                            <caption></caption> 
-                            <image width="50%">
-                            <description></description>
-                                <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                        \addplot[primarycurve,->]expression[domain=1:3.5]{2*(x-1)+2};
-                                        \addplot[primarycurve,hollowdot]coordinates{    (1,2)    };
-                                        \addplot[primarycurve,soliddot]coordinates{    (3,4)    };
-                                        \addplot[primarycurve,<-]expression[domain=-2.5:3]{2*(x-3)+4};
-                                \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                                </latex-image-code>
-                            </image>
-                        </figure>
-                    </p></li>
-                    <!--
-                    <li><p>
-                        <figure xml:id="figure-function-yes-no-6">
-                            <caption> </caption> 
-                            <image width="50%">
-                            <description></description>
-                                <latex-image-code>
-                                <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                        \addplot[primarycurve,<-]expression[domain=-7:-1]{1/2*(x+1)-3};
-                                        \addplot[primarycurve,soliddot]coordinates{    (-1,-3)    };
-                                        \addplot[primarycurve,hollowdot]coordinates{    (2,5)    };
-                                        \addplot[primarycurve,->]expression[domain=2:7]{5};
-                                \end{axis}
-                                \end{tikzpicture}
-                                ]]>
-                                </latex-image-code>
-                            </image>
-                        </figure>
-                    </p></li> -->
-                </ol></p>
-            </statement>
-            <solution>
-                <p><ol>
-                    <li><p>This graph passes the vertical line test and is therefore a function.
-                        <ul>
-                            <li><p>To find the domain, we look horizontally and see that this line extends to the left and to the right due to the arrows. This means all <m>x</m>-values can be inputs to the function.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{x\mid x\ \textrm{is a real number}\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>To find the range we look vertically and see that this line extends downward and upward due to the arrows. Therefore, all <m>y</m>-values can be outputs of the function.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{y\mid y\ \textrm{is a real number}\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li>
-                    <li><p>This graph passes the vertical line test and is therefore a function.
-                        <ul>
-                            <li><p>Horizonally, we see that this curve extends to the left and to the right due to the arrows. Therefore, all <m>x</m>-values can be inputs to the function.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{x\mid x\ \textrm{is a real number}\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>Vertically, we see that the curve has two arrows that point downward and a peak at the <m>y</m>-value of <m>4</m>. None of the values above <m>4</m> can be outputs of this function.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{y \mid y \le 4\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,4]</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li>
-                    <!-- <li><p>This graph passes the vertical line test and is therefore a function.
-                        <ul>
-                            <li><p>Domain:
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{x \mid 1 \le x \lt 7\}</m></p></li>
-                                    <li><p>Interval Notation: <m>[1,7)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>Range:
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{y \mid -7 \lt y \le 7\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-7,7]</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li> -->
-                    <li><p>This graph passes the vertical line test and is therefore a function.
-                        <ul>
-                            <li><p>Horizonally, we see that this curve starts when <m>x=2</m> and continues with an arrow to the right.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{x \mid  x \ge 2\}</m></p></li>
-                                    <li><p>Interval Notation: <m>[2,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>Vertically, we see that this curve starts when <m>y=1</m> and continues with an arrow upward.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{y \mid y \ge 1\}</m></p></li>
-                                    <li><p>Interval Notation: <m>[1,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li>
-                    <li><p>This graph does <em>not</em> pass the vertical line test and is therefore <em>not</em> a function.
-                        <ul>
-                            <li><p>Horizonally, we see that this relation covers all values for <m>x</m> due to the overlap of the two parts.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{x \mid x\ \textrm{is a real number}\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>Vertically, we see that this relation covers all values for <m>y</m> due to the overlap of the two parts.
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{y \mid y\ \textrm{is a real number}\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li>
-                    <!--
-                    <li><p>This graph passes the vertical line test and is therefore a function.
-                        <ul>
-                            <li><p>Domain:
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{x \mid x \le -1\ \textrm{or}\ x \gt 2\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,-1]\cup(2,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>Range:
-                                <ul>
-                                    <li><p>Set-Builder Notation: <m>\{y \mid y \le -3\ \textrm{or}\ y=5\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,-3]\cup\{5\}</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li> -->
-                </ol></p>
-            </solution>
-        </example>
-<!--
-        <exercise>
-            <statement>
-                <p>For the relation graphed in <xref ref="figure-function-yes-no-7">Figure</xref>, determine if the graph represents a function. Then state the domain and range using interval and set-builder notation.<ol>
-                    <li><p>
-                        <figure xml:id="figure-function-yes-no-7">
-                        <caption> </caption> 
+                <p>Functions are graphed in <xref ref="figure-function-yes-no-1">Figure</xref> through <xref ref="figure-function-yes-no-3">Figure</xref>. For each one, find its domain and range. In previous examples the domain and range were finite sets and we used set notation braces to communicate them. In these examples, the domain and range will be intervals, and so we use interval notation.</p>
+
+                <sidebyside widths="32% 32% 32%" margins="0%">
+                    <figure xml:id="figure-function-yes-no-1">
+                        <caption>Function <m>k</m></caption>
                         <image>
-                        <description></description>
+                            <description></description>
                             <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[]
-                                \addplot[primarycurve,<-]expression[domain=-0.5:1]{-2*(x-1)+4};
-                                \addplot[primarycurve,hollowdot]coordinates{    (1,4)    };
-                                \addplot[primarycurve,soliddot]coordinates{    (3,2)    };
-                                \addplot[primarycurve,->]expression[domain=3:7]{-2*(x-3)+2};
-                            \end{axis}
-                            \end{tikzpicture}
-                            ]]>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[primarycurve,domain=-7:7]{-1/2*x+3};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
                             </latex-image-code>
                         </image>
-                        </figure>
-                    </p></li>
-                </ol></p>
+                    </figure>
+                    <figure xml:id="figure-function-yes-no-2">
+                        <caption>Function <m>\ell</m></caption>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[primarycurve,samples=50,domain=-1.3166:5.3166]{4-(x-2)^2};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                    <figure xml:id="figure-function-yes-no-3">
+                        <caption>Function <m>m</m></caption>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[primarycurve,->,samples=50,domain=2:7]{(x-2)^(1/2)+1};
+                                        \addplot[primarycurve,soliddot]coordinates{    (2,1)    };
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                </sidebyside>
             </statement>
             <solution>
-                <p><ol>
-                    <li><p>This graph passes the vertical line test and is therefore a function.<ul>
-                            <li><p>Domain:<ul>
-                                    <li><p>Set-Builder Notation: <m>\{x \mid x \lt 1\ \textrm{or}\ x \ge 3\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,1)\cup[3,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                            <li><p>Range:<ul>
-                                    <li><p>Set-Builder Notation: <m>\{y \mid y \le 2\ \textrm{or}\ y \gt 4\}</m></p></li>
-                                    <li><p>Interval Notation: <m>(-\infty,2]\cup(4,\infty)</m></p></li>                        
-                                </ul>
-                            </p></li>
-                        </ul>
-                    </p></li>
-                </ol></p>
-            </solution>    
-        </exercise>    
--->
-<!--This is function yes/no, not a domain/range question-->
-<!--         <exercise>
-            <webwork source="BasicAlgebra/FunctionBasics/FunctionOrNotByGraph30.pg" seed="2"/>
-        </exercise>
- -->
+                <sidebyside widths="47% 47%" margins="0%">
+                    <p>To find the domain of <m>k</m>, we look left and right across the entire <m>x</m>-axis. No matter where we stop on the <m>x</m>-axis, we will be able to move straight up or down and find a point on the graph. So no matter what input we imagine, there is always an output to this function. Therefore the domain is all real numbers, which we write <m>(-\infty,\infty)</m>.</p>
+
+                    <figure>
+                        <caption>Function <m>k</m></caption>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[primarycurve]expression[domain=-7:7]{-1/2*x+3};
+                                        \addplot[infiniteinterval,color=secondcolor]coordinates {(-7,0) (7,0)} node[pos=0.25,above]{domain of $k$};
+                                        \addplot[infiniteinterval,color=secondcolor]coordinates {(0,-7) (0,7)} node[pos=0.25,above,rotate=-90]{range of $k$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                </sidebyside>
+
+                <p>Similarly, to find the range of <m>k</m>, we look up and down over the entire <m>y</m>-axis. No matter where we stop on the <m>y</m>-axis, we will be able to move straight left or right and find a point on the graph. So no matter what output we imagine, there is always an input that leads to that output. Therefore the range is also <m>(-\infty,\infty)</m>.</p>
+
+                <sidebyside widths="47% 47%" margins="0%">
+                    <p>To find the domain of <m>\ell</m>, we look left and right across the entire <m>x</m>-axis. No matter where we stop on the <m>x</m>-axis, we will be able to move straight up or down and find a point on the graph. (Although if we are far out left or right, we will have to look <em>very</em> far down to find that point.) So no matter what input we imagine, there is always an output to this function. Therefore the domain is <m>(-\infty,\infty)</m>.</p>
+
+                    <figure>
+                        <caption>Function <m>\ell</m></caption>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[primarycurve,samples=50,domain=-1.3166:5.3166]{4-(x-2)^2};
+                                        \addplot[infiniteinterval,color=secondcolor]coordinates {(-7,0) (7,0)} node[pos=0.25,above]{domain of $\ell$};
+                                        \addplot[infiniteclosedinterval,color=secondcolor]coordinates {(0,-7) (0,4)} node[pos=0.25,above,rotate=-90]{range of $\ell$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                </sidebyside>
+
+                <p>To find the range of <m>\ell</m>, we look up and down over the entire <m>y</m>-axis. For <m>y</m>-values larger than <m>4</m>, if we look straight left or right, there is no point on the curve. Only with <m>y</m>-values <m>4</m> and under can we find an input that leads to such an output. So the range is all real numbers less than or equal to <m>4</m>. In interval notaiton, that is <m>(-\infty,4]</m>.</p>
+
+                <sidebyside widths="47% 47%" margins="0%">
+                    <p>To find the domain of <m>m</m>, we look left and right across the entire <m>x</m>-axis. For an <m>x</m>-value less than <m>2</m>, there is no point on the curve directly above or below that <m>x</m>-value. So the graph is not telling you what <m>m(x)</m> would be. Only for <m>x</m>-values <m>2</m> and greater do we get an output value. So the domain is <m>[2,\infty)</m>.</p>
+
+                    <figure>
+                        <caption>Function <m>m</m></caption>
+                        <image>
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[primarycurve,->,samples=50,domain=2:7]{(x-2)^(1/2)+1};
+                                        \addplot[primarycurve,soliddot]coordinates{    (2,1)    };
+                                        \addplot[closedinfiniteinterval,color=secondcolor]coordinates {(2,0) (7,0)} node[pos=0.5,above]{domain of $m$};
+                                        \addplot[closedinfiniteinterval,color=secondcolor]coordinates {(0,1) (0,7)} node[pos=0.5,above,rotate=-90]{range of $m$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                </sidebyside>
+
+                <p>To find the range of <m>m</m>, we look up and down over the entire <m>y</m>-axis. For <m>y</m>-values less than <m>1</m>, if we look straight left or right, there is no point on the curve. Only with <m>y</m>-values <m>1</m> and greater can we find an input that leads to such an output. So the range is all real numbers greater than or equal to <m>1</m>. In interval notaiton, that is <m>[1,\infty)</m>.</p>
+            </solution>
+        </example>
     </subsection>
 
+
+    <subsection>
+        <title>Determining if a Relation is a Function</title>
+
+        <p>We have seen functions that are defined using a verbal description, using an equation, using a list of ordered pairs, using a table, and using a graph. With all of these things, you might have a relation that is <em>not</em> actually a function. (We have seen a few examples of these as well.) Determining whether or not a given relation actually defines a function is another task that demonstrates actual understanding of the concept of a function.</p>
+
+        <example>
+            <title>Verbally Described Relations</title>
+
+            <p>In the introduction, we discussed the relation between the variables of hare population and lynx population. These variables are related<mdash/>for one thing, if the hare population is high, you will have information about the lynx population: it will probably be increasing because there is plenty of food.</p>
+
+            <p>But is this relation a function? Suppose that one year you know the hare population is <m>100{,}000</m> and the lynx population is <m>2000</m>. Isn't it possible that some other year, the hare population is <m>100{,}000</m> again, but the lynx population is something different like <m>3000</m>? Knowing one value of the first variable does not guarantee exactly one value of the second variable. So this relation is not a function.</p>
+        </example>
+
+        <exercise>
+            <title>Sets of Ordered Pairs</title>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $yes = PopUp(['?','yes','no'],1);
+                        $no = PopUp(['?','yes','no'],2);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>The relations below are given in the form of ordered pairs. Determine if each is a function.<ol cols="2">
+                        <li>
+                            <p><m>\{(2,5), (3,6), (4,3), (4,-5), (8,0)\}</m></p>
+                            <p><var name="$no" form="popup" /></p>
+                        </li>
+                        <li>
+                            <p><m>\{(1,2), (3,-2), (5,2), (7,-4), (9,6)\}</m></p>
+                            <p><var name="$yes" form="popup" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p><ol>
+                        <li>
+                            <p>The first relation <em>does not</em> represent a function because the input of <m>4</m> is associated with more than one output (<m>3</m> and <m>-5</m>).</p>
+                        </li>
+                        <li>
+                            <p>The second relation <em>does</em> represent a function as each input is associated with exactly one output. Note that it does not matter that both the inputs <m>1</m> and <m>5</m> lead to the same output. All that matters is that the input <m>1</m> has only one output. And the input <m>5</m> has only one output. And the same for each of the other inputs.</p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <p>To determine if a relation that is represented graphically is a function, we need to visually determine if each input corresponds to exactly one output. How could that <em>not</em> happen? Somewhere on the horizontal axis, there would be a number, and looking straight up or straight down from there, you would find at least two points on the graph.</p>
+
+        <p>This thinking gives rise to the <q>vertical line test</q>. In short, if any vertical line passes through the graph more than once, then that graph does not represent a function.</p>
+
+        <example>
+            <p>Consider the relations given by <xref ref="figure-graph-not-function">Figure</xref> and <xref ref="figure-graph-function">Figure</xref>.</p>
+
+            <sidebyside widths="47% 47%" margins="0%">
+
+                <figure xml:id="figure-graph-not-function">
+                    <caption>Fails the Vertical Line Test</caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[variable=\t,domain=-4.28762585:2.5,-{Kite},smooth] ({sqrt(t^3+4*t^2-t+1)},{t});
+                                    \addplot[primarycurve,variable=\t,domain=-4.28762585:2.5,-{Kite},smooth] ({-sqrt(t^3+4*t^2-t+1)},{t});
+                                    \addplot[verticallinetest]coordinates {(-3.63,-7) (-3.63,7)};
+                                    \addplot[verticallinetest]coordinates {(-2,-7) (-2,7)};
+                                    \addplot[verticallinetest]coordinates {(3,-7) (3,7)};
+                                    \addplot[soliddot]coordinates {(-3.63,-2.79) (-3.63,1.57) (-2,0.89) (-2,-0.83) (-2,-4.06) (3,1.32) (3,-1.64) (3,-3.68)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <figure xml:id="figure-graph-function">
+                    <caption>Passes the Vertical Line Test</caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot+[domain=-2:6.5,samples=50,smooth,-{Kite}] {1.5*sqrt(x+2)*sin(deg(0.5*sqrt(x+2)*(x+2)))};
+                                    \addplot[verticallinetest]coordinates {(-4,-7) (-4,7)};
+                                    \addplot[verticallinetest]coordinates {(2,-7) (2,7)};
+                                    \addplot[verticallinetest]coordinates {(5,-7) (5,7)};
+                                    \addplot[soliddot]coordinates {(-2,0) (2,-2.27) (5,0.65)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+            </sidebyside>
+
+            <p>In <xref ref="figure-graph-not-function">Figure</xref>, we can see that there are vertical lines that pass through the graph more than once. This means that this graph does <em>not</em> represent a function. The issue is tht supposing it <em>were</em> a function <m>f</m>, then  what would <m>f(3)</m> be? The graph suggests it could be three different things: <m>\approx1.3</m>, <m>\approx-1.6</m>, and <m>\approx-3.7</m>. With no clear single output for the input <m>3</m>, we don't have a function.</p>
+
+            <p>However, in <xref ref="figure-graph-function">Figure</xref>, we see that all vertical lines pass through the graph one time (or not at all). Therefore, this graph does represent a function. If we name the funciton <m>g</m>, the domain of <m>g</m> is only numbers greater than or equal to <m>2</m>. And for such numbers, the graphs shows us exactly one output for each input. For example, the graph shows us that <m>g(2)\approx-2.27</m>.</p>
+        </example>
+
+        <p>For relations in table form, we can determine if it makes a function by again checking to see if multiple outputs are ever associated with a single input.</p>
+
+        <example>
+            <title>Functions in Table Form</title>
+
+            <p>For each relation shown in <xref ref="table-function-yes-no-1">Table</xref> through <xref ref="table-function-yes-no-3">Table</xref>, determine if <m>y</m> is a function of <m>x</m>.</p>
+
+            <sidebyside widths="47% 47%" margins="0%">
+                <p>This relation represents a function as each input corresponds to exactly one output. For instance, the input <m>-2</m> only corresponds to the output <m>5</m> and no ohter output. (Note that it does not matter that multiple inputs correspond to the same output <m>5</m>.)</p>
+                <table xml:id="table-function-yes-no-1">
+                    <caption>A function?</caption>
+                    <tabular halign="center" valign="top" bottom="medium" top="medium" left="medium" right="minor">
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col right="medium"/>
+                        <row>
+                            <cell><m>x</m></cell>
+                            <cell><m>-2</m></cell>
+                            <cell><m>-1</m></cell>
+                            <cell><m>0</m></cell>
+                            <cell><m>1</m></cell>
+                            <cell><m>2</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>y</m></cell>
+                            <cell><m>5</m></cell>
+                            <cell><m>5</m></cell>
+                            <cell><m>5</m></cell>
+                            <cell><m>5</m></cell>
+                            <cell><m>5</m></cell>
+                        </row>
+                    </tabular>
+                </table>
+            </sidebyside>
+
+            <sidebyside widths="47% 47%" margins="0%">
+                <p>This relation represents a function as each input corresponds to exactly one output. For instance, the input <m>0</m> only corresponds to the output <m>8</m> and no ohter output.</p>
+                <table xml:id="table-function-yes-no-2">
+                    <caption></caption>
+                    <tabular halign="center" valign="top" bottom="medium" top="medium" left="medium" right="minor">
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col right="medium"/>
+                        <row>
+                            <cell><m>x</m></cell>
+                            <cell><m>0</m></cell>
+                            <cell><m>1</m></cell>
+                            <cell><m>2</m></cell>
+                            <cell><m>3</m></cell>
+                            <cell><m>4</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>y</m></cell>
+                            <cell><m>8</m></cell>
+                            <cell><m>6</m></cell>
+                            <cell><m>4</m></cell>
+                            <cell><m>2</m></cell>
+                            <cell><m>0</m></cell>
+                        </row>
+                    </tabular>
+                </table>
+            </sidebyside>
+
+            <sidebyside widths="47% 47%" margins="0%">
+                <p>This relation does not represent a function as some of the inputs correspond to more than one output. In particular, the input of <m>2</m> corresponds to both <m>7</m> and <m>9</m> for outputs.</p>
+                <table xml:id="table-function-yes-no-3">
+                    <caption></caption>
+                    <tabular halign="center" valign="top" bottom="medium" top="medium" left="medium" right="minor">
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <col right="medium"/>
+                        <row>
+                            <cell><m>x</m></cell>
+                            <cell><m>-2</m></cell>
+                            <cell><m>-2</m></cell>
+                            <cell><m>0</m></cell>
+                            <cell><m>2</m></cell>
+                            <cell><m>2</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>y</m></cell>
+                            <cell><m>1</m></cell>
+                            <cell><m>3</m></cell>
+                            <cell><m>5</m></cell>
+                            <cell><m>7</m></cell>
+                            <cell><m>9</m></cell>
+                        </row>
+                    </tabular>
+                </table>
+            </sidebyside>
+        </example>
+    </subsection>
+
+
+
     <exercises>
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Determining Whether a Relation Is a Function of Not</p>
             </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition10.pg" />
-            </exercise>
-            <exercise>
+            <exercise width="wide">
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition20.pg" />
             </exercise>
-            <exercise>
+            <exercise width="wide">
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition20.pg" />
+            </exercise>
+            <exercise width="wide">
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition10.pg" />
+            </exercise>
+            <exercise width="wide">
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition10.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionOrNotByGraph10.pg" />
@@ -1039,20 +1195,167 @@
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionOrNotByGraph20.pg" />
             </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionOrNotByGraph30.pg" />
+            <exercise width="wide">
+                <statement>
+                    <p>Which of the following graphs show <m>y</m> as a function of <m>x</m>?</p>
+                    <sbsgroup>
+                        <sidebyside widths="32% 32% 32%" margins="0%">
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[] coordinates {(-6.5,4.5) (-4,2) (-3,3) (-2,2) (2.5,6.5)};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-6.5:6.5,smooth] {5*sin(deg(x))+1};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-2.45:2.3,smooth] ({x^3-3*x+1},{x});
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                        </sidebyside>
+                        <sidebyside widths="32% 32% 32%" margins="0%">
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=0:360,-,smooth] ({3*cos(x)-2},{4*sin(x)+1});
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-6.5:-1,{Kite}-] {x+4};
+                                            \addplot[primarycurve,domain=-1:6.5,-{Kite}] {4/(x+2)+1};
+                                            \addplot[soliddot] coordinates {(-1,3)};
+                                            \addplot[hollowdot] coordinates {(-1,5)};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-6.5:6.5,smooth] {x/2+1};
+                                            \addplot[soliddot] coordinates {(3,-3)};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                        </sidebyside>
+                    </sbsgroup>
+                </statement>
             </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionOrNotByGraph30.pg" />
+            <exercise width="wide">
+                <statement>
+                    <p>Which of the following graphs show <m>y</m> as a function of <m>x</m>?</p>
+                    <sbsgroup>
+                        <sidebyside widths="32% 32% 32%" margins="0%">
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-62:54,smooth] ({3*sec(x)-2},{4*tan(x)+1});
+                                            \addplot[primarycurve,domain=-50:50,smooth] ({-3*sec(x)-2},{4*tan(x)+1});
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[smooth] coordinates {(-6.5,-4.5) (-4,2) (-2,3) (2,2) (4,4.5) (6,1)};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-6.5:6.5,smooth] ({3*cos(1.7*deg(x))},{x});
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                        </sidebyside>
+                        <sidebyside widths="32% 32% 32%" margins="0%">
+
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-4:-1,-] {x+4};
+                                            \addplot[primarycurve,domain=-1:6.5,-{Kite}] {-(0.3*(x+2))^2+5};
+                                            \addplot[primarycurve,domain=-6.5:-4,{Kite}-] {((x+4))^2-4};
+                                            \addplot[soliddot] coordinates {(-1,3) (-4,-4)};
+                                            \addplot[hollowdot] coordinates {(-1,5) (-4,0)};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-2:2,smooth] {tan(x*40)};
+                                            \addplot[primarycurve,domain=2.5:6.5,smooth] {tan(x*40)};
+                                            \addplot[primarycurve,domain=-6.5:-2.5,smooth] {tan(x*40)};
+                                            \addplot[asymptote] coordinates {(2.25,-7) (2.25,7)};
+                                            \addplot[asymptote] coordinates {(-2.25,-7) (-2.25,7)};
+                                            \addplot[asymptote] coordinates {(6.75,-7) (6.75,7)};
+                                            \addplot[asymptote] coordinates {(-6.75,-7) (-6.75,7)};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                            <image>
+                                <latex-image-code>
+                                    <![CDATA[\begin{tikzpicture}
+                                        \begin{axis}
+                                            \addplot+[domain=-6.5:6.5,smooth] {x/2+1};
+                                            \addplot[primarycurve,domain=-6.5:6.5,smooth] {-x/2+3};
+                                        \end{axis}
+                                    \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                        </sidebyside>
+                    </sbsgroup>
+                </statement>
             </exercise>
         </exercisegroup>
 
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Evaluating Functions Algebraically</p>
             </introduction>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction20.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction20.pg" />
@@ -1061,10 +1364,22 @@
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction30.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction40.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction40.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction60.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction60.pg" />
@@ -1075,11 +1390,20 @@
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction70.pg" />
             </exercise>
-            <exercise>
+            <exercise >
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction80.pg" />
             </exercise>
-            <exercise>
+            <exercise >
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction80.pg" />
+            </exercise>
+            <exercise >
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction85.pg" />
+            </exercise>
+            <exercise >
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction85.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction100.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction100.pg" />
@@ -1088,14 +1412,23 @@
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction110.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction110.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction120.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction120.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction130.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction130.pg" />
             </exercise>
         </exercisegroup>
 
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Solving Equations with Function Notation</p>
             </introduction>
@@ -1119,7 +1452,7 @@
             </exercise>
         </exercisegroup>
 
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Determining Domain and Range</p>
             </introduction>
@@ -1127,11 +1460,17 @@
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph10.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph70.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph70.pg" />
             </exercise>
         </exercisegroup>
 
-        <exercisegroup>
+        <exercisegroup cols="2">
             <introduction>
                 <p>Functions Represented with Graphs and Tables</p>
             </introduction>
@@ -1169,63 +1508,57 @@
                 <webwork source="BasicAlgebra/FunctionBasics/Functions120.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/Functions120.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/Functions120.pg" />
             </exercise>
-        </exercisegroup>    
+        </exercisegroup>
         <exercisegroup>
             <introduction>
-                <p>Functions Notation in Context</p>
+                <p>Function Notation in Context</p>
             </introduction>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/Functions150.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/Functions150.pg" seed="2"/>
-            </exercise>
-            <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/Functions160.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/Functions160.pg" seed="2"/>
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext10.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext10.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext10.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext20.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext20.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext20.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext30.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext30.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext30.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext40.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext40.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionInContext40.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph45.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph45.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph45.pg" />
             </exercise>
            <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/DataFromTable10.pg" />
             </exercise>
            <exercise>
-                <webwork source="BasicAlgebra/FunctionBasics/DataFromTable10.pg" seed="2"/>
+                <webwork source="BasicAlgebra/FunctionBasics/DataFromTable10.pg" />
             </exercise>
         </exercisegroup>
-    </exercises>    
+    </exercises>
 </section>
 
 
