@@ -107,7 +107,7 @@
 </xsl:template>
 
 <!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
-<xsl:template match="p[position()>1][not(count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1)][ancestor::webwork-reps][count(*)=1][not(text())][count(m)=1][contains(m,'\displaystyle') or contains(m,'\begin{aligned')]">
+<xsl:template match="webwork-reps//p[position()>1][not(count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1)][count(*)=1][not(text())][count(m)=1][contains(m,'\displaystyle') or contains(m,'\begin{aligned')]">
     <xsl:text>\[</xsl:text>
     <xsl:apply-templates select="m/text()" />
     <xsl:text>\]</xsl:text>
