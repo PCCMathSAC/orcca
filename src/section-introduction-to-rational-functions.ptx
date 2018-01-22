@@ -83,88 +83,6 @@
 
         <p>A rational function's graph is not always smooth. It could have breaks. Let's look at another example.</p>
 
-        <example xml:id="example-boat-river-rational-function">
-            <statement>
-                <p>Two towns are connected by a <m>12</m>-mile-long river, which flows from Town A to Town B at the velocity of <m>2</m> miles per hour. A boat will travel at a constant velocity, <m>v</m> miles per hour, from Town A to Town B, and then back to Town A. Due to the river's flow, the boat's actual speed is <m>v+2</m> miles per hour from Town A to Town B, and <m>v-2</m> miles per hour from Town B back to Town A. If the boat driver plans to spend <m>8</m> hours for the whole trip, how fast should he/she drive the boat?</p>
-
-                <p>We need to review 3 formulas for constant-rate movement:<md>
-                    <mrow>d\amp=vt</mrow>
-                    <mrow>v\amp=\frac{d}{t}</mrow>
-                    <mrow>t\amp=\frac{d}{v}</mrow>
-                </md>where <m>d</m> stands for distance, <m>v</m> stands for velocity, and <m>t</m> stands for time. According to the third formula, the time it takes the boat to travel from Town A to Town B is <m>\frac{12}{v+2}</m>, and <m>\frac{12}{v-2}</m> from Town B to Town A. The function to model the whole trip's time is<me>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</me>where <m>t</m> stands for time in hours. Let's look at the graph of this function:</p>
-
-                <figure>
-                    <caption>Graph of <m>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</m></caption>
-                    <image width="50%">
-                        <description></description>
-                        <latex-image-code>
-                        <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-10,ymax=10,xmin=-10,xmax=10,
-                                        ytick={-8,-6,...,8},
-                                        minor ytick={-8,-6,...,8},
-                                        xtick={-8,-6,...,8},
-                                        minor xtick={-8,-6,...,8},
-                                        xlabel={velocity},ylabel={time}]
-                                \addplot [<->, domain=-10:-3.532, color=red] {12/(x-2)+12/(x+2)};
-                                \addplot [<->, domain=-1.132:1.132, color=red] {12/(x-2)+12/(x+2)};
-                                \addplot [<->, domain=3.532:10, color=red] {12/(x-2)+12/(x+2)};
-                                \draw [<->, dashed, blue, thick] (axis cs: -2,-10) -- (axis cs: -2,10);
-                                \draw [<->, dashed, blue, thick] (axis cs: 2,-10) -- (axis cs: 2,10);
-                                \addplot [soliddot, color=black, right] coordinates {(4, 8)} node{$(4,8)$};
-                            \end{axis}
-                        \end{tikzpicture}
-                        ]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>The function passes <m>(4,8)</m>. This implies if the boat drives at <m>4</m> miles per hour, it would take <m>8</m> hours to complete the trip. From Town A to Town B, it would take <m>\frac{12}{v+2}=\frac{12}{4+2}=2</m> hours; and from Town B to Town A, it would take <m>\frac{12}{v-2}=\frac{12}{4-2}=6</m> hours. In a later section, we will learn how to solve this equation algebraically.</p>
-            </statement>
-        </example>
-
-        <p>In the example, the curve is still smooth, but there are two breaks at <m>x=-2</m> and <m>x=2</m>. Those two vertical lines are called <term>asymptotes</term>. A function's graph approaches an asymptote infinitely close, but never touches it.</p>
-
-        <p>In math, we use <m>\infty</m> to represent infinity. In the graph, the function's value approaches <m>\infty</m> as its <m>x</m> value approaches <m>2</m> from the right side, and approaches <m>-\infty</m> as its <m>x</m> value approaches <m>2</m> from the left side. Let's investigate why this is happening.</p>
-
-        <p>We will build a table of values for <m>t(v)</m>:</p>
-
-        <table>
-            <caption>Values of <m>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</m></caption>
-            <tabular>
-                <col halign="center"/>
-                <col halign="center"/>
-                <col halign="center"/>
-                <row bottom="medium">
-                    <cell><m>v</m></cell>
-                    <cell><m>t(v)</m></cell>
-                    <cell>interpretation</cell>
-                </row>
-                <row>
-                    <cell><m>2.1</m></cell>
-                    <cell><m>122.92</m></cell>
-                    <cell><line>If the boat drives at <m>2.1</m> miles per hour,</line><line>the trip would take approximately <m>122.93</m> hours.</line></cell>
-                </row>
-                <row>
-                    <cell><m>2.01</m></cell>
-                    <cell><m>1202.99</m></cell>
-                    <cell><line>If the boat drives at <m>2.01</m> miles per hour,</line><line>the trip would take approximately <m>1202.99</m> hours.</line></cell>
-                </row>
-            </tabular>
-        </table>
-
-        <p>To understand the interpretations, we need to find a pattern of division:<md>
-            <mrow>\frac{1}{0.1}\amp=10</mrow>
-            <mrow>\frac{1}{0.01}\amp=100</mrow>
-            <mrow>\frac{1}{0.001}\amp=1000</mrow>
-            <mrow>\amp\ldots</mrow>
-            <mrow>\frac{1}{\text{infinitely small}}\amp=\infty</mrow>
-        </md>When the boat drives from Town B back to Town A at <m>2.1</m> miles per hour, the river's current would decrease the actual velocity to <m>0.1</m> mile per hour. It would take the boat <m>\frac{12}{0.1}=120</m> hours to complete the travel from Town B back to Town A.</p>
-
-        <p>Similarly, as the boat drives from Town B to Town A at a velocity closer and closer to <m>2</m>, the division <m>\frac{12}{v-2}</m> would produce a larger and larger value, approaching <m>\infty</m>. When we graph the function, we would plot <m>(2.1,122.93), (2.01,1202.99), (2.001,12003), \ldots</m>. This is why we see a vertical asymptote at <m>x=2</m>.</p>
-
-        <remark><p>The rational function <m>f(x)=\frac{1}{x-a}</m> has a vertical asymptote at <m>x=a</m>, as this value makes the denominator <m>0</m>.</p></remark>
-
-        <p>Now we understand why <m>t(v)=\frac{12}{v-2}+\frac{12}{v+2}</m> has two vertical asymptotes at <m>x=-2</m> and <m>x=2</m>. The domain of <m>t(v)</m> is <m>(-\infty,-2)\cup(-2,2)\cup(2,\infty)</m> in interval notation, and <lbrace /><m>x \mid x\ne-2, x\ne2</m><rbrace /> in set notation.</p>
 
         <todo>add a calculator activity to find the function's hoirzontal asymptote.</todo>
 
@@ -172,10 +90,11 @@
 
         <example>
             <statement>
-                <p>Build a table and sketch the graph of the function <m>f(x)=\frac{1}{x}</m>. Find the function's domain and range.</p>
+                <p>Build a table and sketch the graph of the function <m>f(x)=\frac{1}{x-2}</m>. Find the function's domain and range.</p>
 
-                <p>Since <m>x=0</m> makes the denominator <m>0</m>, the function has a vertical asymptote at <m>x=0</m>. This implies, as <m>x</m>-values approaches to <m>0</m>, the function's values approaches <m>\infty</m> or <m>-\infty</m>. We will choose <m>x</m> values properly and build a table:</p>
-
+                <p>Since <m>x=2</m> makes the denominator <m>0</m>, the function will be undefined and have a vertical asymptote where <m>x=2</m>. We'll start by choosing various <m>x</m>-values and plotting the associated points.</p>
+                
+                <sidebyside widths="47% 47%">
                 <table>
                     <caption>Values of <m>f(x)=\frac{1}{x}</m></caption>
                     <tabular>
@@ -185,91 +104,177 @@
                         <row bottom="medium">
                             <cell><m>x</m></cell>
                             <cell><m>f(x)</m></cell>
-                            <cell>Points on the Curve</cell>
+                            <cell>Point</cell>
                         </row>
                         <row>
-                            <cell><m>-10</m></cell>
-                            <cell><m>\frac{1}{-10}=-0.1</m></cell>
-                            <cell><m>(-10,-0.1)</m></cell>
+                            <cell><m>-6</m></cell>
+                            <cell><m>\frac{1}{-6-2}=-0.125</m></cell>
+                            <cell><m>(-6,-0.125)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-4</m></cell>
+                            <cell><m>\frac{1}{-4-2}\approx -0.167</m></cell>
+                            <cell><m>\left(-4,-\frac{1}{6}\right)</m></cell>
                         </row>
                         <row>
                             <cell><m>-2</m></cell>
-                            <cell><m>\frac{1}{-2}=-0.5</m></cell>
-                            <cell><m>(-2,-0.5)</m></cell>
+                            <cell><m>\frac{1}{-2-2}\approx-0.25</m></cell>
+                            <cell><m>(-2,-0.25)</m></cell>
                         </row>
                         <row>
-                            <cell><m>-1</m></cell>
-                            <cell><m>\frac{1}{-1}=-1</m></cell>
-                            <cell><m>(-1,-1)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-0.5</m></cell>
-                            <cell><m>\frac{1}{-0.5}=-2</m></cell>
-                            <cell><m>(-0.5,-2)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>-0.1</m></cell>
-                            <cell><m>\frac{1}{-0.1}=-10</m></cell>
-                            <cell><m>(-0.1,-10)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0.1</m></cell>
-                            <cell><m>\frac{1}{0.1}=10</m></cell>
-                            <cell><m>(0.1,10)</m></cell>
-                        </row>
-                        <row>
-                            <cell><m>0.5</m></cell>
-                            <cell><m>\frac{1}{0.5}=2</m></cell>
-                            <cell><m>(0.5,2)</m></cell>
+                            <cell><m>0</m></cell>
+                            <cell><m>\frac{1}{0-2}=-0.5</m></cell>
+                            <cell><m>(0,-0.5)</m></cell>
                         </row>
                         <row>
                             <cell><m>1</m></cell>
-                            <cell><m>\frac{1}{1}=1</m></cell>
-                            <cell><m>(1,1)</m></cell>
+                            <cell><m>\frac{1}{1-2}=-1</m></cell>
+                            <cell><m>(1,-1)</m></cell>
                         </row>
                         <row>
                             <cell><m>2</m></cell>
-                            <cell><m>\frac{1}{2}=0.5</m></cell>
-                            <cell><m>(2,0.5)</m></cell>
+                            <cell>undefined</cell>
+                            <cell></cell>
                         </row>
                         <row>
-                            <cell><m>10</m></cell>
-                            <cell><m>\frac{1}{10}=0.1</m></cell>
-                            <cell><m>(10,0.1)</m></cell>
+                            <cell><m>3</m></cell>
+                            <cell><m>\frac{1}{3-2}=1</m></cell>
+                            <cell><m>(3,1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>4</m></cell>
+                            <cell><m>\frac{1}{4-2}=0.5</m></cell>
+                            <cell><m>(4,0.5)</m></cell>
                         </row>
                     </tabular>
                 </table>
 
-                <p>Next, we will plot those points and then connect them:</p>
 
                 <figure>
-                    <caption>Graph of <m>f(x)=\frac{1}{x}</m></caption>
+                    <caption>Initial Points for <m>f(x)=\frac{1}{x}</m></caption>
                     <image width="50%">
                         <description></description>
                         <latex-image-code>
                         <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-11,ymax=11,xmin=-11,xmax=11,
-                                        ytick={-10,-8,...,10},
-                                        minor ytick={-10,-8,...,10},
-                                        xtick={-10,-8,...,10},
-                                        minor xtick={-10,-8,...,10},
-                                        xlabel={x},ylabel={f}]
-                                \addplot [red, <->, domain=-11:-1/11] {1/x};
-                                \addplot [red, <->, domain=1/11:11] {1/x};
-                                \addplot [soliddot, color=red] coordinates {(-10,-0.1) (-2,-1/2) (-1,-1) (-0.5,-2) (-0.1,-10) (0.1,10) (0.5,2) (1,1) (2,1/2) (10,0.1)};
-                                \draw [<->, dashed, blue, thick] (axis cs: 0,-11) -- (axis cs: 0,11);
+                            \begin{axis}[]
+                                \addplot [asymptote] coordinates {(2.05,-7) (2.05,7)};
+                                \addplot [soliddot,color=firstcolor] coordinates {(-6,-0.125) (-4,-0.167) (-2,-0.25) (0,-0.5) (1,-1) (3,1) (4,0.5) (6,0.25)};
                             \end{axis}
                         \end{tikzpicture}
                         ]]>
                         </latex-image-code>
                     </image>
                 </figure>
+                </sidebyside>
 
-                <p>The function <m>f(x)=\frac{1}{x}</m> has a vertical asymptote at <m>x=0</m>. As a result, its domain is <m>(-\infty,0)\cup(0,\infty)</m> in interval notation, or <lbrace /><m>x \mid x\ne0</m><rbrace /> in set notation.</p>
+                <sidebyside widths="47% 47%">
+                <table>
+                    <caption>Values of <m>f(x)=\frac{1}{x}</m></caption>
+                    <tabular>
+                        <col halign="center"/>
+                        <col halign="left"/>
+                        <col halign="left"/>
+                        <row bottom="medium">
+                            <cell><m>x</m></cell>
+                            <cell><m>f(x)</m></cell>
+                            <cell>Point</cell>
+                        </row>
+                        <row>
+                            <cell><m>-6</m></cell>
+                            <cell><m>\frac{1}{-6-2}=-0.125</m></cell>
+                            <cell><m>(-6,-0.125)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-4</m></cell>
+                            <cell><m>\frac{1}{-4-2}\approx -0.167</m></cell>
+                            <cell><m>\left(-4,-\frac{1}{6}\right)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>-2</m></cell>
+                            <cell><m>\frac{1}{-2-2}\approx-0.25</m></cell>
+                            <cell><m>(-2,-0.25)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>0</m></cell>
+                            <cell><m>\frac{1}{0-2}=-0.5</m></cell>
+                            <cell><m>(0,-0.5)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1</m></cell>
+                            <cell><m>\frac{1}{1-2}=-1</m></cell>
+                            <cell><m>(1,-1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1.5</m></cell>
+                            <cell><m>\frac{1}{1.5-2}=-2</m></cell>
+                            <cell><m>(1.5,-2)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>1.9</m></cell>
+                            <cell><m>\frac{1}{1.9-2}=-10</m></cell>
+                            <cell><m>(1,-10)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2</m></cell>
+                            <cell>undefined</cell>
+                            <cell></cell>
+                        </row>
+                        <row>
+                            <cell><m>2.1</m></cell>
+                            <cell><m>\frac{1}{2.1-2}=10</m></cell>
+                            <cell><m>(2.1,10)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>2.5</m></cell>
+                            <cell><m>\frac{1}{2.5-2}=2</m></cell>
+                            <cell><m>(2.5,2)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>3</m></cell>
+                            <cell><m>\frac{1}{3-2}=1</m></cell>
+                            <cell><m>(3,1)</m></cell>
+                        </row>
+                        <row>
+                            <cell><m>4</m></cell>
+                            <cell><m>\frac{1}{4-2}=0.5</m></cell>
+                            <cell><m>(4,0.5)</m></cell>
+                        </row>
+                    </tabular>
+                </table>
 
-                <p>By the graph, the function's value cannot be <m>0</m>, so its range is also <m>(-\infty,0)\cup(0,\infty)</m>. In other words, the function <m>f(x)</m> has a horizontal asymptote at <m>y=0</m>.</p>
+                <figure>
+                    <caption>Full Graph of <m>f(x)=\frac{1}{x}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[]
+                                \addplot [asymptote] coordinates {(2.05,-7) (2.05,7)};
+                                \addplot [asymptote] coordinates {(-7,0.05) (7,0.05)};
+                                \addplot [primarycurve, domain=-7:1.857] {1/(x-2)};
+                                \addplot [primarycurve, domain=2.143:7] {1/(x-2)};
+                                \addplot [soliddot,color=firstcolor] coordinates {(-6,-0.125) (-4,-0.167) (-2,-0.25) (0,-0.5) (1,-1) (1.5,-2) (2.5,2) (3,1) (4,0.5) (6,0.25)};
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+                </sidebyside>
+
+                <p>Note that extra points were chose near <m>x=2</m> in the table, but it's still not clear on the graph what happens really close to <m>x=2</m>. It will be essential that we include at least one <m>x-value</m> between both <m>1</m> and <m>2</m> and also between <m>2</m> and <m>3</m>. Further, we'll note that dividing one number by a number that is close to zero yields a large number. For example, <m>\frac{1}{2000}=0.0005</m>. In fact, the smaller the number is that we divide by, the larger our result becomes. When we plot our additional points below and connect the curve, this means that the arrows on the graph near <m>x=2</m> will either point upward or downward.</p>
+
+<!--Todo: add brief explanation of horizontal asymptote-->
+
+
+                <p>We know that the domain of this function is <m>(-\infty,2)\cup(2,\infty)</m> as the function is undefined at <m>2</m>. We can determine this algebraically, and it is also determined by the graph.</p>
+
+                <p>We can see from the graph that the range of the function is <m>(-\infty,0)\cup(0,\infty)</m>.</p>
             </statement>
         </example>
+
+        <remark><p>The line <m>x=2</m> in <xref ref="example-introduction-to-vertical-asymptotes">Example</xref> is referred to as a <term>vertical asymptote</term>. The line <m>y=-0</m> is referred to as a <term>horizontal asymptote</term>. We'll use this vocabulary, but the classification of vertical asymptotes is outside the scope of this book.</p></remark>
+
 
         <example>
             <statement>

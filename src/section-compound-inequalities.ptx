@@ -19,6 +19,24 @@
     <title>Compound Inequalities</title>
 
     <introduction>
+        <p>On the newest version of the SAT (an exam that often qualifies students for colleges) the minimum score that you can earn is <m>400</m> and the maximum score that you can earn is <m>1600</m>. This means that only numbers between <m>400</m> and <m>1600</m>, including these endpoints, are possible scores. To plot all of these values on a number line would look something like this<ellipsis/></p>
+        <figure xml:id="figure-possible-SAT-scores">
+            <caption>Possible SAT Scores</caption>
+            <image width="50%">
+                <description>a number line where the numbers 400 and 1600 are marked; the portion of the number line between 400 and 1600 has a thick line overlaying it; at 400, there is a left bracket character and at 1600, there is a right bracket character; text indicates the region highlighted represents all possible SAT scores.</description>
+                <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline, xmin=-100, xmax=1700, xtick={400,1600}, minor xtick={-100,0,...,1700}]
+                            \addplot+[closedinterval] coordinates {(400,0) (1600,0)} node[pos=0.5,above] {possibilities for SAT scores};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <p>Going back to the original statement, <q>the minimum score that you can earn is <m>400</m> and the maximum score that you can earn is <m>1600</m></q>, this really says two things. First, it says that <m>(\text{an SAT score})\geq400</m>, and, second, that <m>(\text{an SAT score})\leq1600</m>. When we combine two inequalities like this into a single problem, it becomes a <term>compound inequality</term>. Before you go on, if you would like a refresher on solving linear inequalities, reread <xref ref="section-solving-multistep-linear-equations-and-inequalities" text="title">this section</xref>.</p>
+
+        <p>Our lives are often constrained by the compound inequalities of reality: you need to buy enough materials to complete your project, but you can only fit so much into your vehicle; you would like to finish your degree early, but only have so much money and time to put toward your courses; you would like a vegetable garden big enough to supply you with veggies all summer long, but your yard or balcony only gets so much sun<ellipsis/> In the rest of the section we will hope to illuminate how to think mathematically about problems like these.</p>
 
         <figure>
             <caption>Alternative Video Lesson</caption>
@@ -26,6 +44,826 @@
         </figure>
     </introduction>
 
+    <subsection>
+        <title>Intersections and Unions of Intervals</title>
+        <p>If you need a review on how notation for intervals works, go back and reread <xref ref="section-notation-for-intervals"/>.</p>
 
+        <definition xml:id="definition-union">
+            <notation>
+                <usage>A\cup B</usage>
+                <description>Union of two sets.</description>
+            </notation>
+            <statement>
+                <p>The <term>union</term><idx><h>union</h></idx> of two sets, <m>A</m> and <m>B</m>, is the set of all elements contained in either <m>A</m> or <m>B</m>, or both. We write <m>A\cup B</m> to indicate the union of sets <m>A</m> and <m>B</m>.</p>
+                <p>In layman's terms, the union of two sets is what you get if you toss every number in both sets into a bigger set.</p>
+            </statement>
+        </definition>
+
+        <definition xml:id="definition-intersection">
+            <notation>
+                <usage><m>A\cap B</m></usage>
+                <description>Intersection of two sets.</description>
+            </notation>
+            <statement>
+                <p>The <term>intersection</term><idx><h>intersection</h></idx> of two sets, <m>A</m> and <m>B</m>, is the set of all elements that the two sets have in common. We write <m>A\cap B</m> to indicate the intersection of sets <m>A</m> and <m>B</m>.</p>
+                <p>In layman's terms, the intersection of two sets is where the two sets overlap.</p>
+            </statement>
+        </definition>
+
+        <example>
+            <p>The union of sets <m>\{1,2,3,4\}</m> and <m>\{3,4,5,6\}</m> is the set of all elements in either set (or both). So <m>\{\highlight{1,2,3,4}\}\cup\{3,4,\highlight{5,6}\}=\{\highlight{1,2,3,4,5,6}\}</m>. Note that we don't write duplicates.</p>
+        </example>
+        <example>
+            <p>The intersection of sets <m>\{1,2,3,4\}</m> and <m>\{3,4,5,6\}</m> is the set of all elements that are in common to both sets. So <m>\{1,2,\highlight{3,4}\}\cap\{\highlight{3,4},5,6\}=\{\highlight{3,4}\}</m>.</p>
+        </example>
+
+        <example>
+            <statement>
+                <p>Find the union of the sets <m>[-3,5)</m> and <m>[2,8)</m>.</p>
+            </statement>
+            <solution>
+                <p>To find the union of the sets <m>[-3,5)</m> and <m>[2,8)</m>, first we should draw a number line with both intervals drawn to clarify exactly what we are finding.</p>
+                <figure xml:id="figure-intro-union-example">
+                <caption>A Graph of <m>[-3,5)</m> and <m>[2,8)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers -3, 0, 2, 5 and 8 are marked; a thick red line is above the x-axis from -3 to 5 with a left bracket at -3 and a parenthesis at 5; a thick blue line is above the red line from 2 to 8 with a left bracket at 2 and a parenthesis at 8.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=10, xtick={-3,2,5,8}, minor xtick={-5,-4,...,10}]
+                                    \addplot+[closedopeninterval] coordinates {(-3,0.4) (5,0.4)};
+                                    \addplot+[closedopeninterval, color=blue, solid] coordinates {(2,1) (8,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Recall that the union of two sets is the set of the combination of numbers from both sets. Looking at the graph, we need to include all of the numbers from both colored lines. Imagine pressing these two colored lines together as if they were long strands of modeling clay. The new combined strand would go from <m>-3</m> all the way to <m>8</m>. Note that <m>-3</m> would be included on this new line because it was in <m>[-3,5)</m>, but <m>8</m> wouldn't be on this new line because it wasn't on either of the lines.</p>
+
+                <figure xml:id="figure-intro-union-example-solution">
+                <caption>A Graph of the Union of <m>[-3,5)</m> and <m>[2,8)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers -3, 0, 2, 5 and 8 are marked; a thick purple line is above the x-axis from -3 to 8 with a left bracket at -3 and a parenthesis at 8.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=10, xtick={-3,2,5,8}, minor xtick={-5,-4,...,10}]
+                                    \addplot+[closedopeninterval, color=purple] coordinates {(-3,0.4) (8,0.4)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+
+                <p>In conclusion, <me>[-3,5)\cup[2,8)=[-3,8)</me></p>
+            </solution>
+        </example>
+        
+        <example>
+            <statement>
+                <p>Find the intersection of the sets <m>[-3,5)</m> and <m>[2,8)</m>.</p>
+            </statement>
+            <solution>
+                <p>To find the intersection of the sets <m>[-3,5)</m> and <m>[2,8)</m>, first we should draw a number line with both intervals drawn to clarify exactly what we are finding.</p>
+                <figure xml:id="figure-intro-intersection-example">
+                <caption>A Graph of <m>[-3,5)</m> and <m>[2,8)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers -3, 0, 2, 5 and 8 are marked; a thick red line is above the x-axis from -3 to 5 with a left bracket at -3 and a parenthesis at 5; a thick blue line is above the red line from 2 to 8 with a left bracket at 2 and a parenthesis at 8.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=10, xtick={-3,2,5,8}, minor xtick={-5,-4,...,10}]
+                                    \addplot+[closedopeninterval] coordinates {(-3,0.4) (5,0.4)};
+                                    \addplot+[closedopeninterval, color=blue, solid] coordinates {(2,1) (8,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Recall that the intersection of two sets is the set of the numbers in common to both sets. The lines have numbers in common on a long stretch where they overlap. How would we describe all of the numbers where the two lines overlap? In English, we might say that the lines overlap at every number between <m>2</m> and <m>5</m>. Note that the number <m>2</m> is in both sets, but since <m>5</m> is not in the set <m>[-3,5)</m>, we should exclude <m>5</m> from the intersection. The description we have come up with the same as the interval <m>[2,5)</m>. </p>
+                <figure xml:id="figure-intro-intersection-example-solution">
+                <caption>A Graph of the intersection of <m>[-3,5)</m> and <m>[2,8)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers -3, 0, 2, 5 and 8 are marked; a thick purple line is above the x-axis from 2 to 5 with a left bracket at 2 and a parenthesis at 5.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=10, xtick={-3,2,5,8}, minor xtick={-5,-4,...,10}]
+                                    \addplot+[closedopeninterval, color=purple] coordinates {(2,0.4) (5,0.4)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>In conclusion, <me>[-3,5)\cap[2,8)=[2,5)</me></p>
+            </solution>
+        </example>
+
+        <example>
+            <statement>
+                <p>Find the union of the sets <m>[4,\infty)</m> and <m>(7,\infty)</m>.</p>
+            </statement>
+            <solution>
+                <p>To find the union of the sets <m>[4,\infty)</m> and <m>(7,\infty)</m>, first we should draw a number line with both intervals drawn to clarify exactly what we are finding.</p>
+                <figure xml:id="figure-infinite-union-example">
+                <caption>A Graph of <m>[4,\infty)</m> and <m>(7,\infty)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers 0, 4, and 7 are marked; a thick red line is above the x-axis starting at 4 with a left bracket and going to the right with an arrow; a thick blue line is above the red line starting at 7 with a left parenthesis and going to the right with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-1, xmax=12, xtick={4,7}, minor xtick={-1,0,...,12}]
+                                    \addplot+[closedinfiniteinterval] coordinates {(4,0.4) (12,0.4)};
+                                    \addplot+[openinfiniteinterval, color=blue, solid] coordinates {(7,1) (12,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Recall that the union of two sets is what we get when we combine both sets together. Again, imagine that the two colored line were made out of modeling clay and roll them together. The union will be the result of rolling the two strands together. That combination will have the number <m>4</m> in it because it was on <m>[4,\infty)</m>. A graph of that combination strand is shown.</p>
+                <figure xml:id="figure-infinite-union-example-solution">
+                <caption>A Graph of the Union of <m>[4,\infty)</m> and <m>(7,\infty)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers 0, 4, and 7 are marked; a thick purple line is above the x-axis starting at 4 with a left bracket and going to the right with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-1, xmax=12, xtick={4,7}, minor xtick={-1,0,...,12}]
+                                    \addplot+[closedinfiniteinterval, color=purple] coordinates {(4,0.4) (12,0.4)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>In conclusion, <me>[4,\infty)\cup(7,\infty)=[4,\infty)</me></p>
+              </solution>
+        </example>
+        <example>
+            <statement>
+                <p>Find the intersection of the sets <m>(-\infty,-1)</m> and <m>(-\infty,3)</m>.</p>
+            </statement>
+            <solution>
+                <p>To find the intersection of the sets <m>(-\infty,-1)</m> and <m>(-\infty,3)</m>, first we should draw a number line with both intervals drawn to clarify exactly what we are finding.</p>
+                <figure xml:id="figure-infinite-intersection-example">
+                <caption>A Graph of <m>(-\infty,-1)</m> and <m>(-\infty,3)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers -1, 0, and 3 are marked; a thick red line is above the x-axis starting at -1 with a right parenthesis and going to the left with an arrow; a thick blue line is above the red line starting at 3 with a right parenthesis and going to the left with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=5, xtick={-1,3}, minor xtick={-5,-4,...,5}]
+                                    \addplot+[infiniteopeninterval] coordinates {(-5,0.4) (-1,0.4)};
+                                    \addplot+[infiniteopeninterval, color=blue, solid] coordinates {(-5,1) (3,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Recall that the intersection of two sets is the set of the numbers in common to both sets. In English, we might say that the lines overlap at every number below <m>-1</m>. This description is the same as the interval <m>(-\infty,-1)</m>.</p>
+                <figure xml:id="figure-infinite-intersection-example-solution">
+                <caption>A Graph of <m>(-\infty,-1)</m> and <m>(-\infty,3)</m></caption>
+                    <image width="50%">
+                        <description>a number line where the numbers -1, 0, and 3 are marked; a thick purple line is above the x-axis starting at -1 with a right parenthesis and going to the left with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=5, xtick={-1,3}, minor xtick={-5,-4,...,5}]
+                                    \addplot+[infiniteopeninterval, color=purple] coordinates {(-5,0.4) (-1,0.4)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+
+                <p>In conclusion, <me>(-\infty,-1)\cap(-\infty,3)=(-\infty,-1)</me></p>
+            </solution>
+        </example>
+        <remark><p>Note that every intersection of two intervals can and should be simplified in some way. Even if the sets have nothing in common at all, as in <m>(-\infty,1]</m> and <m>[5,\infty)</m>, their intersection can be written as <m>(-\infty,1]\cap[5,\infty)=\emptyset</m>. On the other hand, there <em>are</em> some unions which cannot be algebraically simplified. For example, if the two sets have nothing in common, as in <m>(-\infty,1]</m> and <m>[5,\infty)</m> again, then the union is simply <m>(-\infty,1]\cup[5,\infty)</m> which is our final simplification.</p></remark>
+        <example>
+            <statement>
+                <p>Simplify the intersections and unions.</p>
+                <ol>
+                    <li><p><m>\{2,4,6,8\}\cup\{1,2,3,4\}</m>.</p></li>
+                    <li><p><m>\{2,4,6,8\}\cap\{1,2,3,4\}</m>.</p></li>
+                    <li><p><m>\{2,4,6,8\}\cup\{1,3,5,7\}</m>.</p></li>
+                    <li><p><m>\{2,4,6,8\}\cap\{1,3,5,7\}</m>.</p></li>
+                    <li><p><m>(-\infty,9]\cup[-\infty,-3]</m>.</p></li>
+                    <li><p><m>(-\infty,9]\cap[-\infty,-3]</m>.</p></li>
+                    <li><p><m>(-\infty,12)\cup[-3,\infty)</m>.</p></li>
+                    <li><p><m>(-\infty,12)\cap[-3,\infty)</m>.</p></li>
+                    <li><p><m>(-\infty,-2]\cup[4,\infty)</m>.</p></li>
+                    <li><p><m>(-\infty,-2]\cap[4,\infty)</m>.</p></li>
+                    <li><p><m>[-7,8)\cup(0,12]</m>.</p></li>
+                    <li><p><m>[-7,8)\cap(0,12]</m>.</p></li>
+                </ol>
+            </statement>
+            <solution>
+                <ol>
+                    <li><p><m>\{2,4,6,8\}\cup\{1,2,3,4\}=\{1,2,3,4,6,8\}</m>.</p></li>
+                    <li><p><m>\{2,4,6,8\}\cap\{1,2,3,4\}=\{2,4\}</m>.</p></li>
+                    <li><p><m>\{2,4,6,8\}\cup\{1,3,5,7\}=\{1,2,3,4,5,6,7,8\}</m>.</p></li>
+                    <li><p><m>\{2,4,6,8\}\cap\{1,3,5,7\}=\emptyset</m>.</p></li>
+                    <li><p><m>(-\infty,9]\cup(-\infty,-3]=(-\infty,9]</m>.</p></li>
+                    <li><p><m>(-\infty,9]\cap(-\infty,-3]=(-\infty,-3]</m>.</p></li>
+                    <li><p><m>(-\infty,12)\cup[-3,\infty)=\mathbb{R}</m>.</p></li>
+                    <li><p><m>(-\infty,12)\cap[-3,\infty)=[-3,12)</m>.</p></li>
+                    <li><p><m>(-\infty,-2]\cup[4,\infty)=(-\infty,-2]\cup[4,\infty)</m>. This union cannot be simplified because the two sets have nothing in common.</p></li>
+                    <li><p><m>(-\infty,-2]\cap[4,\infty)=\emptyset</m>.</p></li>
+                    <li><p><m>[-7,8)\cup(0,12]=[-7,12]</m>.</p></li>
+                    <li><p><m>[-7,8)\cap(0,12]=(0,8)</m>.</p></li>
+                </ol>
+            </solution>
+        </example>
+    </subsection>
+
+    <subsection>
+        <title><q>Or</q> Compound Inequalities</title>
+        <definition xml:id="definition-compound-inequality">
+            <notation>
+                <usage>compound inequality</usage>
+                <description>Viewing two separate inequalities as a single larger inequality with pieces.</description>
+            </notation>
+            <statement>
+                <p>A <term>compound inequality</term><idx><h>compound inequality</h></idx> is a grouping of two or more inequalities into a larger inequality with pieces. These usually come in two flavors: <q>or</q> and <q>and</q> inequalities.</p>
+            </statement>
+        </definition>
+        <p>In math, the technical term <term>or</term> means <q>either or both</q>. So, mathematically, if we asked if you would like <q>chocolate cake <em>or</em> apple pie</q> for dessert, your choices are either <q>chocolate cake</q>, <q>apple pie</q>, or <q>both chocolate cake and apple pie</q>. This is slightly different than the English <q>or</q> which usually means <q>one or the other but not both</q>.</p>
+        <p><q>Or</q> shows up in math between equations (as in when solving a quadratic equation, you might end up with <q><m>x=2</m> or <m>x=-3</m></q>) or between inequalities (which is what we're about to discuss).</p>
+        <remark><p>The definition of <q>or</q> is very close to the definition of a union where you combine elements from either or both sets together. In fact, when you have an <q>or</q> between inequalities in a compound inequality, to find the solution set of the compound inequality, you find the union of the the solutions sets of each of the pieces.</p></remark>
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>x\lt4\text{ or }x\leq1</me></p>
+            </statement>
+            <solution>
+                <sidebyside>
+                    <p>Writing the solution set to this compound inequality doesn't require any algebra beforehand because each of the inequality pieces is already in the form we like. The first thing we should do is understand what each of the pieces is saying using a graph.</p>
+                <figure xml:id="figure-intro-or-example">
+                <caption>A Graph of Solutions to <m>x\lt4</m> as well as <m>x\leq1</m></caption>
+                    <image width="50%">
+                    <description>a number line where the numbers 0, 1, and 4 are marked; a thick red line is above the x-axis starting at 4 with a right parenthesis and going to the left with an arrow; a thick blue line is above the red line starting at 1 with a right bracket and going to the left with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-2, xmax=6, xtick={1,4}, minor xtick={-2,-1,...,6}]
+                                    \addplot+[infiniteclosedinterval] coordinates {(-2,0.5) (1,0.5)} node[right] {$x\leq1$};
+                                    \addplot+[infiniteopeninterval, color=blue, solid] coordinates {(-2,1.2) (4,1.2)} node[right] {$x\lt4$};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                </sidebyside>
+                <p>Now we have definitely had many examples like this. Remember that an <q>or</q> statement becomes a union of solution sets. So we really need to find the union of <m>(-\infty,4)</m> and <m>(-\infty,1]</m>. Since union combines the two sets together, the solution set to the compound inequality must be <me>(-\infty,4)\cup(-\infty,1]=(-\infty,4)</me></p>
+            </solution>
+        </example>
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>3-5x\lt-7\text{ or }2-x\leq-3</me></p>
+            </statement>
+            <solution>
+                <p>First we need to do some algebra to isolate <m>x</m> in each piece. Note that we are going to do algebra on both pieces simultaneously. Also note that the mathematical symbol <q>or</q> should be written on each line.</p>
+                <md>
+                    <mrow>3-5x\amp\lt-7\amp\text{or}\amp\amp 2-x\amp\leq-3</mrow>
+                    <mrow>3-5x\subtractright{3}\amp\lt-7\subtractright{3}\amp\text{or}\amp\amp 2-x\subtractright{2}\amp\leq-3\subtractright{2}</mrow>
+                    <mrow>-5x\amp\lt-10\amp\text{or}\amp\amp -x\amp\leq-5</mrow>
+                    <mrow>\divideunder{-5x}{-5}\amp\mathbin{\highlight{\gt}}\divideunder{-10}{-5}\amp\text{or}\amp\amp \divideunder{-x}{-1}\amp\mathbin{\highlight{\geq}}\divideunder{-5}{-1}</mrow>
+                    <mrow>x\amp\gt2\amp\text{or}\amp\amp x\amp\geq5</mrow>
+                </md>
+                <p>The solution set to <m>x\gt2</m> is <m>(2,\infty)</m> and the solution set to <m>x\geq5</m> is <m>[5,\infty)</m>. To do the <q>or</q> portion of the problem, we need to take the union of these two sets. Let's first make a graph of the solution sets to visualize the problem.</p>
+                <figure xml:id="figure-or-example">
+                <caption>A Graph of <m>(2,\infty)</m> and also <m>[5,\infty)</m></caption>
+                    <image width="50%">
+                    <description>a number line where the numbers 0, 2, and 5 are marked; a thick red line is above the x-axis starting at 2 with a left parenthesis and going to the right with an arrow; a thick blue line is above the red line starting at 5 with a left bracket and going to the right with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-1, xmax=10, xtick={2,5}, minor xtick={-1,0,...,10}]
+                                    \addplot+[openinfiniteinterval] coordinates {(2,0.4) (10,0.4)};
+                                    \addplot+[closedinfiniteinterval, color=blue, solid] coordinates {(5,1) (10,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>The union combines both solution sets into one, and so <me>(2,\infty)\cup[5,\infty)=(2,\infty)</me></p>
+
+                <p>We have finished the problem, but for the sake of completeness, let's try to verify that our answer is reasonable.</p>
+                <ul>
+                    <li><p>First, let's choose a number that is <em>not</em> in our proposed solution set. We will arbitrarily choose <m>\highlight{1}</m>.</p>
+                    <md>
+                        <mrow>3-5x\amp\lt-7\amp\text{or}\amp\amp 2-x\amp\leq-3</mrow>
+                        <mrow>3-5(\highlight{1})\amp\stackrel{?}{\lt}-7\amp\text{or}\amp\amp 2-(\highlight{1})\amp\stackrel{?}{\leq}-3</mrow>
+                        <mrow>-2\amp\nless-7\amp\text{or}\amp\amp 1\amp\nleq-3</mrow>
+                    </md>
+                    <p>This value made <em>both</em> inequalities false which is why <m>1</m> isn't in our solution set.</p></li>
+                    <li><p>Next, let's choose a number that <em>is</em> in our solution region. We will arbitrarily choose <m>\highlight{3}</m>.</p>
+                    <md>
+                        <mrow>3-5x\amp\lt-7\amp\text{or}\amp\amp 2-x\amp\leq-3</mrow>
+                        <mrow>3-5(\highlight{3})\amp\stackrel{?}{\lt}-7\amp\text{or}\amp\amp 2-(\highlight{3})\amp\stackrel{?}{\leq}-3</mrow>
+                        <mrow>-12\amp\stackrel{\checkmark}{\lt}-7\amp\text{or}\amp\amp -1\amp\nleq-3</mrow>
+                    </md>
+                    <p>This value made <em>one</em> of the inequalities true. Since this is an <q>or</q> statement, only one <em>or</em> the other piece has to be true to make the compound inequality true.</p></li>
+                    <li><p>Last, note that the value <m>3</m> only made one of the inequalities true. What will happen if we choose a value that was in the region where the lines in <xref ref="figure-or-example"/> overlap, like the number <m>\highlight{6}</m>?</p>
+                    <md>
+                        <mrow>3-5x\amp\lt-7\amp\text{or}\amp\amp 2-x\amp\leq-3</mrow>
+                        <mrow>3-5(\highlight{6})\amp\stackrel{?}{\lt}-7\amp\text{or}\amp\amp 2-(\highlight{6})\amp\stackrel{?}{\leq}-3</mrow>
+                        <mrow>-27\amp\stackrel{\checkmark}{\lt}-7\amp\text{or}\amp\amp -4\amp\stackrel{\checkmark}{\leq}-3</mrow>
+                    </md>
+                    <p>When you select a value from the region that the lines overlap, it makes both inequalities true.</p></li>
+                    <p>This completes the check. Numbers from within the solution region make the compound inequality true and numbers outside the solution region make the compound inequality false.</p>
+                </ul>
+            </solution>
+        </example>
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>-3\leq 3-2t\text{ or }t-5\lt 15-t</me></p>
+            </statement>
+            <solution>
+                <md>
+                    <mrow>-3\amp\leq 3-2t\amp\text{or}\amp\amp t-5\amp\gt 15-t</mrow>
+                    <mrow>-3\subtractright{3}\amp\leq 3-2t\subtractright{3}\amp\text{or}\amp\amp t-5\addright{t+5}\amp\gt 15-t\addright{t+5}</mrow>
+                    <mrow>-6\amp\leq -2t\amp\text{or}\amp\amp 2t\amp\gt 20</mrow>
+                    <mrow>\divideunder{-6}{-2}\amp\mathbin{\highlight{\geq}} \divideunder{-2t}{-2}\amp\text{or}\amp\amp \divideunder{2t}{2}\amp\gt \divideunder{20}{2}</mrow>
+                    <mrow>3\amp\geq t\amp\text{or}\amp\amp t\amp\gt 10</mrow>
+                    <mrow>\highlight{t}\amp\mathbin{\highlight{\leq}}\highlight{3}\amp\text{or}\amp\amp t\amp\gt 10</mrow>
+                </md>
+                <p>The solution set to <m>t\leq 3</m> is <m>(-\infty,3]</m> and the solution set to <m>t\gt 10</m> is <m>(10,\infty)</m>. Shown is a graph of these two sets.</p>
+                <figure xml:id="figure-or-nonintersecting-example">
+                <caption>A Graph of <m>(-\infty,3]</m> and also <m>(10,\infty)</m></caption>
+                    <image width="50%">
+                    <description>a number line where the numbers 0, 3, and 10 are marked; a thick red line is above the x-axis starting at 3 with a right bracket and going to the left with an arrow; a thick blue line is above the axis starting at 10 with a left parenthesis and going to the right with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-2, xmax=15, xtick={3,10}, minor xtick={-2,-1,...,15}, xlabel={t}]
+                                    \addplot+[infiniteclosedinterval] coordinates {(-2,0.4) (3,0.4)};
+                                    \addplot+[openinfiniteinterval, color=blue, solid] coordinates {(10,0.4) (15,0.4)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Note that the two sets do not overlap so there will be no way to simplify the union. Thus the solution set to the compound inequality is <me>(-\infty,3]\cup(10,\infty)</me></p>
+            </solution>
+        </example>
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>3y-15\lt 6 \text{ or } 7-4y\leq y-3</me></p>
+            </statement>
+            <solution>
+                <md>
+                    <mrow>3y-15\amp\lt 6\amp\text{or}\amp\amp 7-4y\amp\leq y-3</mrow>
+                    <mrow>3y-15\addright{15}\amp\lt 6-15\addright{15} \amp\text{or}\amp\amp 7-4y\subtractright{7}\subtractright{y}\amp\leq y-3\subtractright{7}\subtractright{y}</mrow>
+                    <mrow>3y\amp\lt 21\amp\text{or}\amp\amp -5y\amp\leq -10</mrow>
+                    <mrow>\divideunder{3y}{3}\amp\lt \divideunder{21}{3}\amp\text{or}\amp\amp \divideunder{-5y}{-5}\amp\mathbin{\highlight{\geq}} \divideunder{-10}{-5}</mrow>
+                    <mrow>y\amp\lt 7\amp\text{or}\amp\amp y\amp\geq 2</mrow>
+                </md>
+                <p>The solution set to <m>y\lt 7</m> is <m>(-\infty,7)</m> and the solution set to <m>y\geq 2</m> is <m>[2,\infty)</m>. Shown is a graph of these two sets.</p>
+                <figure xml:id="figure-or-all-reals-example">
+                <caption>A Graph of <m>(-\infty,7)</m> and also <m>[2,\infty)</m></caption>
+                    <image width="50%">
+                    <description>a number line where the numbers 0, 2, and 7 are marked; a thick red line is above the x-axis starting at 7 with a right parenthesis and going to the left with an arrow; a thick blue line is above the red line starting at 2 with a left bracket and going to the right with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-3, xmax=12, xtick={2,7}, minor xtick={-3,-2,...,12}, xlabel={y}]
+                                    \addplot+[infiniteopeninterval] coordinates {(-3,0.4) (7,0.4)};
+                                    \addplot+[closedinfiniteinterval, color=blue, solid] coordinates {(2,1) (12,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Note that <em>every number</em> is covered by one or both of the two lines, so the solution set to the compound inequality is <me>(-\infty,7)\cup(2,\infty)=(-\infty,\infty)</me></p>
+            </solution>
+        </example>
+    </subsection>
+
+    <subsection>
+        <title><q>And</q> Compound Inequalities</title>
+        <p>The inequality <m>1\leq 2\lt 3</m> says a lot more than you might think. It actually says four different single inequalities which are highlighted for you to see.</p>
+        <ol label="a.">
+            <li><m>\highlight{1}\mathbin{\highlight{\leq}}\highlight{2}\mathbin{\lowlight{\lt}}\lowlight{3}</m></li>
+            <li><m>\highlight{1}\mathbin{\highlight{\leq}}\lowlight{2}\mathbin{\lowlight{\lt}}\highlight{3}</m></li>
+            <li><m>\highlight{1}\mathbin{\lowlight{\leq}}\lowlight{2}\mathbin{\highlight{\lt}}\highlight{3}</m></li>
+            <li><m>\lowlight{1}\mathbin{\lowlight{\leq}}\highlight{2}\mathbin{\highlight{\lt}}\highlight{3}</m></li>
+        </ol>
+        <p>This might seem trivial at first, but if you are presented with an inequality like <m>-1\lt3\geq2</m>, at first it might look sensible; however, in reality, you need to check that <em>all four</em> linear inequalities make sense. Those are highlighted here.</p>
+        <ol label="a.">
+            <li><m>\highlight{-1}\mathbin{\highlight{\lt}}\highlight{3}\mathbin{\lowlight{\geq}}\lowlight{2}</m></li>
+            <li><m>\highlight{-1}\mathbin{\highlight{\lt}}\lowlight{3}\mathbin{\lowlight{\geq}}\highlight{2}</m></li>
+            <li xml:id="item-false-inequality"><m>\highlight{-1}\mathbin{\lowlight{\lt}}\lowlight{3}\mathbin{\highlight{\geq}}\highlight{2}</m></li>
+            <li><m>\lowlight{-1}\mathbin{\lowlight{\lt}}\highlight{3}\mathbin{\highlight{\geq}}\highlight{2}</m></li>
+        </ol>
+        <p>One of these inequalities is false! <xref ref="item-false-inequality"/>: <m>-1\ngeq2</m>. This implies that the entire original inequality, <m>-1\lt3\geq2</m>, is nonsense.</p>
+        <example>
+            <statement>
+                <p>Decide whether or not the following inequalities are true or false.</p>
+                <ol label="a.">
+                    <li><p>True or False: <m>-5\lt7\leq12</m></p>?</li>
+                    <li><p>True or False: <m>-7\leq-10\lt4</m></p>?</li>
+                    <li><p>True or False: <m>-2\leq0\geq1</m></p>?</li>
+                    <li><p>True or False: <m>5\gt-3\geq-9</m></p>?</li>
+                    <li><p>True or False: <m>3\lt3\leq5</m></p>?</li>
+                    <li><p>True or False: <m>9\gt1\lt5</m></p>?</li>
+                    <li><p>True or False: <m>3\lt8\leq-2</m></p>?</li>
+                    <li><p>True or False: <m>-9\lt-4\leq-2</m></p>?</li>
+                </ol>
+            </statement>
+            <solution>
+                <p>We need to go through all four single inequalities for each. If the inequality is false, for simplicity's sake, we will only highlight the one single inequality that makes the inequality false.</p>
+                <ol label="a.">
+                    <li><p>True: <m>-5\lt7\leq12</m></p>.</li>
+                    <li><p>False: <m>\highlight{-7}\mathbin{\highlight{\nleq-10}}\mathbin{\lowlight{\lt}}\lowlight{4}</m></p>.</li>
+                    <li><p>False: <m>\highlight{-2}\mathbin{\lowlight{\leq}}\lowlight{0}\mathbin{\highlight{\ngeq}}\highlight{1}</m></p>.</li>
+                    <li><p>True: <m>5\gt-3\geq-9</m></p>.</li>
+                    <li><p>False: <m>\highlight{3}\mathbin{\highlight{\nless}}\highlight{3}\mathbin{\lowlight{\leq}}\lowlight{5}</m></p>.</li>
+                    <li><p>False: <m>\highlight{9}\mathbin{\lowlight{\gt}}\lowlight{1}\mathbin{\highlight{\nless}}\highlight{5}</m></p>.</li>
+                    <li><p>False: <m>\lowlight{3}\mathbin{\lowlight{\lt}}\highlight{8}\mathbin{\highlight{\nleq}}\highlight{-2}</m></p>.</li>
+                    <li><p>True: <m>-9\lt-4\leq-2</m></p>.</li>
+                </ol>
+            </solution>
+        </example>
+
+        <p>As a general hint, no (nontrivial) three part inequality can every be true if the inequality signs are not pointing in the same direction. So no matter what numbers <m>a</m>, <m>b</m>, and <m>c</m> are, both <m>a\lt b\geq c</m> and <m>a\geq b \lt c</m> cannot be true! Soon you will be writing inequalities like <m>2\lt x \leq 4</m> and you need to be sure to check that your answer is even feasible and using this rule is sometimes helpful. You will know that if you get <m>2\gt x \leq 4</m> or <m>2\lt x \geq 4</m> that something went wrong in the solving process. The only exception is that something like <m>1\leq1\geq1</m> is true because <m>1=1=1</m>, although this shouldn't come up very often!.</p>
+
+        <p>Next, there are two different looking kinds of <q>and</q> compound inequalities. The first will look a lot like <q>or</q> compound inequalities, like <me>A \lt B \text{ and } C\geq D</me> The second type is the sort of thing that we have been discussing in the past examples, like <me>A \lt B \leq C</me></p>
+
+        <remark xml:id="remark-triple-inequality"><p>The inequality <q><m>A \lt B \leq C</m></q> is equivalent to <q><m>A \lt B \text{ and } B\leq C</m></q>, although breaking the three-part inequality into an <q>and</q> statement doesn't necessarily make it easier to solve except when solving graphically or if the inequality is exceptionally complicated.</p></remark>
+
+        <remark><p>An <q>and</q> statement means that you need both inequalities to be true simultaneously. In English, if you say, <q>I need Khaleem <em>and</em> Freja to paint the fence,</q> then the only way you will be happy is if <em>both</em> people are working simultaneously on the fence. This demand that both things happen at the same time should be very reminiscent of our discussion of intersections earlier in this section. In fact, every <q>and</q> statement will result in the intersection of the solution sets of the pieces.</p></remark>
+
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>4-2t\gt-2\text{ and }3t+1\geq-2</me>.</p>
+            </statement>
+            <solution>
+                <md>
+                    <mrow>4-2t\amp\gt -2\amp\text{and}\amp\amp 3t+1\amp\geq -2</mrow>
+                    <mrow>4-2t\subtractright{4}\amp\gt -2\subtractright{4} \amp\text{and}\amp\amp 3t+1\subtractright{1}\amp\geq -2\subtractright{1}</mrow>
+                    <mrow>-2t\amp\gt -6\amp\text{and}\amp\amp 3t\amp\geq -3</mrow>
+                    <mrow>\divideunder{-2t}{-2}\amp \mathbin{\highlight{\lt}} \divideunder{-6}{-2} \amp\text{and}\amp\amp \divideunder{3t}{3}\amp\geq \divideunder{-3}{3}</mrow>
+                    <mrow>t\amp\lt 3\amp\text{and}\amp\amp t\amp\geq -1</mrow>
+                </md>
+                <p>The solution set to <m>t\lt3</m> is <m>(-\infty,3)</m> and the solution set to <m>t\geq-1</m> is <m>[-1,\infty)</m>. Shown is a graph of these solution sets.</p>
+
+                <figure xml:id="figure-and-intro-example">
+                <caption>A Graph of <m>(-\infty,3)</m> and also <m>[-1,\infty)</m></caption>
+                    <image width="50%">
+                    <description>a number line where the numbers 0, 3, and -1 are marked; a thick red line is above the x-axis starting at 3 with a right parenthesis and going to the left with an arrow; a thick blue line is above the red line starting at -1 with a left bracket and going to the right with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-5, xmax=7, xtick={-1,3}, minor xtick={-5,-4,...,7}, xlabel={t}]
+                                    \addplot+[infiniteopeninterval] coordinates {(-5,0.4) (3,0.4)};
+                                    \addplot+[closedinfiniteinterval, color=blue, solid] coordinates {(-1,1) (7,1)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+
+                <p>Recall that an <q>and</q> problem finds the intersection of the solution sets. Intersection finds the <m>t</m>-values where the two lines overlap, so the solution to the compound inequality must be <me>(-\infty,3)\cap[-1,\infty)=[-1,3)</me></p>
+                <p>We have finished the problem, but for the sake of completeness, let's try to <q>verify</q> that our answer is reasonable.</p>
+                <ul>
+                    <li><p>First, choose a number within our solution region and test that it makes both original inequalities true. We will arbitrarily choose <m>\highlight{1}</m>.</p>
+                    <md>
+                        <mrow>4-2t\amp\gt -2\amp\text{and}\amp\amp 3t+1\amp\geq -2</mrow>
+                        <mrow>4-2(\highlight{1})\amp\stackrel{?}{\gt} -2\amp\text{and}\amp\amp 3(\highlight{1})+1\amp\stackrel{?}{\geq} -2</mrow>
+                        <mrow>2\amp\stackrel{\checkmark}{\gt} -2\amp\text{and}\amp\amp 4\amp\stackrel{\checkmark}{\geq} -2</mrow>
+                    </md></li>
+                    <li><p>Next, choose a value outside the solution set and test that it makes <em>at least</em> one of the inequalities false. We will arbitrarily choose <m>\highlight{4}</m>.</p>
+                    <md>
+                        <mrow>4-2t\amp\gt -2\amp\text{and}\amp\amp 3t+1\amp\geq -2</mrow>
+                        <mrow>4-2(\highlight{4})\amp\stackrel{?}{\gt} -2\amp\text{and}\amp\amp 3(\highlight{4})+1\amp\stackrel{?}{\geq} -2</mrow>
+                        <mrow>-4\amp\ngtr -2\amp\text{and}\amp\amp 13\amp\stackrel{\checkmark}{\geq} -2</mrow>
+                    </md>
+                    <p>Since one of the inequalities is false and this is an <q>and</q> question, the compound inequality is false for this value which is what expected by picking a number outside the solution set.</p></li>
+                    <li><p>Last, we should choose a number that is not a solution that is on the <q>other side</q> of the solution set. We will arbitrarily choose <m>\highlight{-2}</m></p>.
+                    <md>
+                        <mrow>4-2t\amp\gt -2\amp\text{and}\amp\amp 3t+1\amp\geq -2</mrow>
+                        <mrow>4-2(\highlight{-2})\amp\stackrel{?}{\gt} -2\amp\text{and}\amp\amp 3(\highlight{-2})+1\amp\stackrel{?}{\geq} -2</mrow>
+                        <mrow>8\amp\stackrel{\checkmark}{\gt} -2\amp\text{and}\amp\amp -5\amp\ngeq -2</mrow>
+                    </md>
+                    <p>Again, since one of the inequalities is false and this is an <q>and</q> question, the compound inequality is false for <m>-2</m>.</p></li>
+                </ul>
+                <p>So, numbers outside the proposed solution region make the compound inequality false, and numbers inside the region make the compound inequality true. This was our verification.</p>
+            </solution>
+        </example>
+
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>-13\lt 7-4x\leq 15</me>.</p>
+            </statement>
+            <solution>
+                <p>This is a three-part inequality which we can actually algebraically treat just as a regular inequality with three <q>sides</q>. Whatever you do to one <q>side</q>, you have to do to the other two <q>sides.</q></p>
+<!--            this version has different alignment that we decided was bad.
+                <md alignment="alignat">
+                    <mrow>-13\amp\lt 7-4x\amp\amp\leq15</mrow>
+                    <mrow>-13\subtractright{7}\amp\lt 7-4x\subtractright{7}\amp\amp\leq 15\subtractright{7}</mrow>
+                    <mrow>-20\amp\lt-4x \amp\amp\leq8</mrow>
+                    <mrow>\frac{-20}{\highlight{-4}}\amp\mathbin{\highlight{\lt}}\frac{-4x}{\highlight{-4}} \amp\amp\mathbin{\highlight{\geq}} \frac{20}{\highlight{-4}}</mrow>
+                    <mrow>5\amp\gt x \amp\amp\geq-2</mrow>
+                    <mrow>-2\amp\lt x \amp\amp\leq5</mrow>
+                </md> -->
+                <md>
+                    <mrow>-13\amp\lt 7-4x\leq15</mrow>
+                    <mrow>-13\subtractright{7}\amp\lt 7-4x\subtractright{7}\leq 15\subtractright{7}</mrow>
+                    <mrow>-20\amp\lt-4x\leq8</mrow>
+                    <mrow>\divideunder{-20}{-4}\amp\mathbin{\highlight{\gt}}\divideunder{-4x}{-4} \mathbin{\highlight{\geq}} \divideunder{20}{-4}</mrow>
+                    <mrow>5\amp\gt x \geq-2</mrow>
+                    <mrow>-2\amp\lt x \leq5</mrow>
+                </md>
+                <p>The simplest version of the inequality tells us exactly what the solutions are: those numbers between <m>-2</m> and <m>5</m>. So the solution set is <m>(-2,5]</m>.</p>
+            </solution>
+        </example>
+
+
+        <example>
+            <statement>
+                <p>Solve the compound inequality <me>-6\leq 3x+3 \text{ and }3x+9\lt-6</me></p>
+            </statement>
+            <solution>
+                <md>
+                    <mrow>-6\amp\leq 3x+3\amp\text{and}\amp\amp 3x+9\amp\lt -6</mrow>
+                    <mrow>-6\subtractright{3}\amp\leq 3x+3\subtractright{3} \amp\text{and}\amp\amp 3x+9\subtractright{9}\amp\lt -6\subtractright{9}</mrow>
+                    <mrow>-9\amp\leq 3x\amp\text{and}\amp\amp 3x\amp\lt -15</mrow>
+                    <mrow>\divideunder{-9}{3}\amp\leq \divideunder{3x}{3}\amp\text{and}\amp\amp \divideunder{3x}{3}\amp\lt \divideunder{-15}{3}</mrow>
+                    <mrow>-3\amp\leq x\amp\text{and}\amp\amp x\amp\lt -5</mrow>
+                    <mrow>\highlight{x}\amp\mathbin{\highlight{\geq}}\highlight{-3}\amp\text{and}\amp\amp x\amp\lt -5</mrow>
+                </md>
+                <p>The solution set to <m>x\geq -3</m> is <m>[-3,\infty)</m> and the solution set to <m>x\lt-5</m> is <m>(-\infty,-5)</m>. Shown is a graph of these solution sets on a number line.</p>
+
+                <figure xml:id="figure-and-empty-example">
+                <caption>A Graph of <m>[-3,\infty)</m> and <m>(-\infty,-5)</m></caption>
+                    <image width="50%">
+                    <description>a number line where the numbers 0, -3, and -5 are marked; a thick red line is above the x-axis starting at -3 with a left bracket and going to the right with an arrow; a thick blue line is above the axis starting at -5 with a right parenthesis and going to the left with an arrow.</description>
+                           <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[numberline, xmin=-10, xmax=1, xtick={-3,-5}, minor xtick={-10,-9,...,1}]
+                                    \addplot+[closedinfiniteinterval] coordinates {(-3,0.4) (1,0.4)};
+                                    \addplot+[infiniteopeninterval, color=blue, solid] coordinates {(-10,0.4) (-5,0.4)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                        </latex-image-code>
+                       </image>
+                </figure>
+                <p>Recall that <q>and</q> statements of inequalities become intersections of the solution sets. Since intersections refer to where the sets overlap, and these sets never overlap, there must be no solution to the compound inequality. Mathematically, we would say <me>[-3,\infty)\cap(-\infty,-5)=\emptyset</me></p>
+            </solution>
+        </example>
+    </subsection>
+
+    <subsection>
+        <title>Solving Compound Inequalities Graphically</title>
+        <p>So far we have focused on solving inequalities algebraically. Next, we will describe how to solve compound inequalities graphically. As an initial hint, if you are solving where line <m>1</m> is less or equal to line <m>2</m>, the first step is always to identify where (as in <m>x</m>-values) those two lines cross. After that, you need to decide if the inequality is true on the left or on the right of that intersection.</p>
+        <example>
+            <statement>
+                <p>Shown is a graph of <m>y=f(x)</m>, <m>y=g(x)</m>, and <m>y=h(x)</m>. Use the graph to solve the inequalities.</p>
+                <figure xml:id="figure-compound-inequality-example">
+                <caption>Graphs of <m>y=f(x)</m>, <m>y=g(x)</m>, and <m>y=h(x)</m></caption>
+                    <image>
+                        <description></description>
+                        <latex-image-code>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$}, xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                \addplot[<->, thick, color=magenta!80!black, domain=-2:7] {4-x} node[below left, sloped, pos=1]{$y=f(x)$};
+                                \addplot[<->, thick, color=blue, domain=-4:7] {(1/2)*x-2} node[above left, sloped, pos=1]{$y=g(x)$};
+                                \addplot[<->, thick, color=green!50!black, domain=-3.5:2.5] {2*x+1} node[below, sloped, pos=0.9]{$y=h(x)$};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <ol>
+                    <li><p>Solve the inequality <m>g(x)\geq f(x)</m> graphically.</p></li>
+                    <li><p>Solve the inequality <m>h(x)\lt f(x)</m> or <m>g(x)\geq 0</m> graphically.</p></li>
+                    <li><p>Solve the inequality <m>h(x)\gt 5</m> and <m>f(x)\geq-1</m> graphically.</p></li>
+                    <li><p>Solve the inequality <m>f(x)\lt g(x) \leq h(x)</m> graphically.</p></li>
+                </ol>
+            </statement>
+            <solution>
+                <p>To solve the inequalities, we must look for the <m>x</m>-values where the inequalities are true.</p>
+                <ol>
+                    <li>
+                         <sidebyside widths="47% 47%" margins="1%">
+                            <p>The inequality <m>g(x)\geq f(x)</m> tells us that we need to look for <m>x</m>-values where the <m>y</m>-values of <m>g</m> are above (or equal) to the values of <m>f</m>: in short, where is <m>g</m> above <m>f</m>? First look for where those lines cross. Once we see that <m>g</m> crosses <m>f</m> at <m>x=4</m>, we need to decide if <m>g</m> is above <m>f</m> on the left or right of that crossing. It appears that <m>g</m> is above <m>f</m> on the right. We will highlight the regions along <m>f</m> and <m>g</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. In this case, they are <m>[4,\infty)</m>, which is our solution set.</p>
+
+                            <figure xml:id="figure-compound-inequality-example-solution-1">
+                            <caption>Graphs of <m>y=f(x)</m> and <m>y=g(x)</m> with where <m>g(x)\geq f(x)</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$}, xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=magenta!80!black, domain=-2:7] {4-x} node[above, sloped, pos=0.45]{$y=f(x)$};
+                                            \addplot[<->, thick, color=blue, domain=-4:7] {(1/2)*x-2} node[above, pos=0.15, sloped]{$y=g(x)$};
+                                            \addplot[->, very thick, color=red, domain=4:7] {4-x};
+                                            \addplot[->, very thick, color=red, domain=4:7] {(1/2)*x-2};
+                                            \addplot[only marks, color=red] (4,0);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                    </li>
+                    <li><p>To solve the compound inequality <m>h(x)\lt f(x)</m> or <m>g(x)\leq 0</m> we need to 
+                            <ul>
+                                <li>look for <m>x</m>-values where <m>h</m> is below <m>f</m></li>
+                                <li>look for <m>x</m>-values where <m>g</m> is above (or equal to) the <m>y</m>-value <m>0</m>.</li>
+                            </ul></p>
+                            <p>Since this is an <q>or</q> statement, if <em>either</em> of the items are satisfied, those values are solutions of the compound inequality.</p>
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>First, let's look for <m>x</m>-values where <m>h</m> is below <m>f</m>. To answer this, we will highlight the regions along <m>h</m> and <m>f</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. Note that we shouldn't include the point of intersection of the lines since <m>h(x)\nless f(x)</m> at <m>x=1</m>. In this case, the solution set is <m>(-\infty,1)</m>.</p>
+                            <figure xml:id="figure-compound-inequality-example-solution-2a">
+                            <caption>Graphs of <m>y=f(x)</m> and <m>y=h(x)</m> with where <m>h(x)\lt f(x)</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$},  xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=magenta!80!black, domain=-2:7] {4-x} node[below left, sloped, pos=1]{$y=f(x)$};
+                                            \addplot[<->, thick, color=green!50!black, domain=-3.5:2.5] {2*x+1} node[below right, sloped, pos=0.75]{$y=h(x)$};
+                                            \addplot[<-, very thick, color=red, domain=-2:1] {4-x};
+                                            \addplot[<-, very thick, color=red, domain=-3.5:1] {2*x+1};
+                                            \addplot[only marks, color=red, hollowdot] (1,3);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>Next, let's look for <m>x</m>-values where <m>g</m> is above (or equal to) the <m>y</m>-value <m>0</m>. To answer this, we will highlight the regions along <m>g</m> and <m>y=0</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. Note that we should include the point of intersection since the inequality has an <q>equal to</q> in it. In this case, the solution set is <m>[4,\infty)</m>.</p>
+                            <figure xml:id="figure-compound-inequality-example-solution-2b">
+                            <caption>Graphs of <m>y=g(x)</m> and <m>y=0</m> with where <m>g(x)\geq 0</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$},  xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=blue, domain=-4:7] {(1/2)*x-2} node[below, pos=0.12, sloped]{$y=g(x)$};
+                                            \addplot[<->, thick, color=green!50!black, domain=-4:7] {0} node[above, pos=0.12]{$y=0$};
+                                            \addplot[->, very thick, color=red, domain=4:7] {(1/2)*x-2};
+                                            \addplot[->, very thick, color=red, domain=4:7] {0};
+                                            \addplot[only marks, color=red] (4,0);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                        <p>Recall that the compound inequality that we are solving is <m>h(x)\lt f(x)</m> or <m>g(x)\leq 0</m>. Since this is an <q>or</q> statement we need to take the union of the separate solution sets. Thus, the full solution set is <m>(-\infty,1)\cup[4,\infty)</m>. Note that this cannot be simplified because the regions don't overlap.</p>
+                    </li>
+                    <li><p>As in the previous example, <m>h(x)\gt 5</m> and <m>f(x)\geq-1</m> asks us to do two things.</p>
+                    <ul>
+                        <li>Find <m>x</m>-values where <m>h</m> is above the <m>y</m>-value <m>5</m>, and</li>
+                        <li>Find <m>x</m>-values where <m>f</m> is above (or equal) the <m>y</m>-value <m>-1</m>.</li>
+                    </ul>
+                    <p>Since this is an <q>and</q> statement, in the end we need <m>x</m>-values where <em>both</em> of the items to be satisfied, and those values are solutions of the compound inequality.</p>
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>We will first highlight the regions along <m>h</m> and <m>y=5</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. Note that we shouldn't include the point of intersection due to the strict inequality. In this case, the solution set is <m>(2,\infty)</m>.</p>
+                            <figure xml:id="figure-compound-inequality-example-solution-3a">
+                            <caption>Graphs of <m>y=h(x)</m> and <m>y=5</m> with where <m>h(x)\gt 5</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$}, xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=cyan!70!black, domain=-4:7] {5} node[pos=0.1, below]{$y=5$};
+                                            \addplot[<->, thick, color=green!50!black, domain=-3.5:2.5] {2*x+1} node[pos=0.05, above right, sloped]{$y=h(x)$};
+                                            \addplot[->, very thick, color=red, domain=2:2.5] {2*x+1};
+                                            \addplot[->, very thick, color=red, domain=2:7] {5};
+                                            \addplot[only marks, color=red, hollowdot] (2,5);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>We will next highlight the regions along <m>f</m> and <m>y=-1</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. Note that we should include the point of intersection. In this case, the solution set is <m>(-\infty,5]</m>.</p>
+                            <figure xml:id="figure-compound-inequality-example-solution-3b">
+                            <caption>Graphs of <m>y=f(x)</m> and <m>y=-1</m> with where <m>f(x)\geq-1</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$},  xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=cyan!70!black, domain=-4:7] {-1} node[below, pos=0.15]{$y=-1$};
+                                            \addplot[<->, thick, color=magenta!80!black, domain=-2:7] {4-x} node[above, pos=0.45, sloped]{$y=f(x)$};
+                                            \addplot[<-, very thick, color=red, domain=-2:5] {4-x};
+                                            \addplot[<-, very thick, color=red, domain=-4:5] {-1};
+                                            \addplot[only marks, color=red] (5,-1);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                        <p>Recall that the compound inequality that we are solving is <m>h(x)\gt 5</m> and <m>f(x)\geq-1</m>. Since this is an <q>and</q> statement we need to take the intersection of the separate solution sets. Thus, the full solution set is <m>(-\infty,5]\cap(2,\infty)=(2,5]</m>.</p>
+                    </li>
+                    <li><p>The inequality <m>f(x)\lt g(x) \leq h(x)</m> is a triple inequality. The best way to solve these graphically is to recall <xref ref="remark-triple-inequality"/>. This remark would say that <m>f(x)\lt g(x) \leq h(x)</m> can be broken into the compound inequality <m>f(x)\lt g(x)</m> and <m>g(x) \leq h(x)</m>. Now the problem looks similar to one we have already done. Since this is an <q>and</q> statement, in the end we need <m>x</m>-values where <em>both</em> of the items to be satisfied, and those values are solutions of the compound inequality.</p>
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>We will first highlight the regions along <m>f</m> and <m>g</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. Note that we shouldn't include the point of intersection due to the strict inequality. In this case, the solution set is <m>(4,\infty)</m>.</p>
+                            <figure xml:id="figure-compound-inequality-example-solution-4a">
+                            <caption>Graphs of <m>y=f(x)</m> and <m>y=g(x)</m> with where <m>f(x)\lt g(x)</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$}, xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=magenta!80!black, domain=-2:7] {4-x} node[above, sloped, pos=0.45]{$y=f(x)$};
+                                            \addplot[<->, thick, color=blue, domain=-4:7] {(1/2)*x-2} node[above right, sloped, pos=0.05]{$y=g(x)$};
+                                            \addplot[->, very thick, color=red, domain=4:7] {4-x};
+                                            \addplot[->, very thick, color=red, domain=4:7] {(1/2)*x-2};
+                                            \addplot[only marks, color=red, hollowdot] (4,0);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>We will next highlight the regions along <m>g</m> and <m>h</m> that satisfy the inequality. Now we have to identify the <m>x</m>-values that describe the highlighted region. Note that we should include the point of intersection. In this case, the solution set is <m>[-2,\infty)</m>.</p>
+                            <figure xml:id="figure-compound-inequality-example-solution-4b">
+                            <caption>Graphs of <m>y=g(x)</m> and <m>y=h(x)</m> with where <m>g(x) \leq h(x)</m> is highlighted</caption>
+                                <image>
+                                    <description></description>
+                                    <latex-image-code>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[axis x line=middle,axis y line=middle, xlabel={$x$},ylabel={$y$},  xmin=-4,xmax=7,ymin=-6,ymax=6, xtick={-3,-2,...,6}, ytick={-5,-4,...,5}, grid=both, axis line style={<->,very thick}]
+                                            \addplot[<->, thick, color=blue, domain=-4:7] {(1/2)*x-2} node[above left, sloped, pos=1]{$y=g(x)$};
+                                            \addplot[<->, thick, color=green!50!black, domain=-3.5:2.5] {2*x+1} node[below, sloped, pos=0.9]{$y=h(x)$};
+                                            \addplot[->, very thick, color=red, domain=-2:7] {(1/2)*x-2};
+                                            \addplot[->, very thick, color=red, domain=-2:2.5] {2*x+1};
+                                            \addplot[only marks, color=red] (-2,-3);
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image-code>
+                                </image>
+                            </figure>
+                        </sidebyside>
+                        <p>Recall that the compound inequality that we are solving is <m>f(x)\lt g(x)</m> and <m>g(x) \leq h(x)</m>. Since this is an <q>and</q> statement we need to take the intersection of the separate solution sets. Thus, the full solution set is <m>[-2,\infty)\cap(4,\infty)=(4,\infty)</m>.</p>
+                    </li>
+                </ol>
+            </solution>
+        </example>
+
+    </subsection>
+
+    <subsection>
+        <title>Applications of Compound inequalities</title>
+        <example>
+            <statement>
+                <p>Raphael's friend is getting married and he's decided to give them some dishes from their registry. Raphael doesn't want to seem cheap but isn't a wealthy man though, so he wants to buy <q>enough</q> but not <q>too many</q>. He's decided that he definitely wants to spend at least <m>\$150</m> on his friend, but less than <m>\$250</m>. Each dish is <m>\$21.70</m> and shipping on an order of any size is going to be <m>\$19.99</m>. Given his budget, set up and algebraically solve a compound inequality to find out what his different options are for the number of dishes that he can buy.</p>
+            </statement>
+            <solution>
+                <p>First, we should define our variable. Let <m>x</m> represent the number of dishes that Raphael can buy. Next we should write a compound inequality that describes this situation. In this case, Raphael wants to spend between <m>\$150</m> and <m>$250</m> and, since he's buying <m>x</m> dishes, the price that he will pay is <m>21.70x+19.99</m>. All of this translates to a triple inequality <me>150 \lt 21.70x+19.99 \lt 250</me></p>
+                <p>Now we have to solve this inequality in the usual way.</p>
+                <md>
+                    <mrow>150 \amp\lt 21.70x+19.99 \lt 250</mrow>
+                    <mrow>150\subtractright{19.99} \amp\lt 21.70x+19.99\subtractright{19.99} \lt 250\subtractright{19.99}</mrow>
+                    <mrow>130.01 \amp\lt 21.70x \lt 230.01</mrow>
+                    <mrow>\divideunder{130.01}{21.70} \amp\lt \divideunder{21.70x}{21.70} \lt \divideunder{230.01}{21.70}</mrow>
+                    <mrow>5.991 \amp\lt x \lt 10.6</mrow>
+                    <mrow>\amp\text{\{note: these values are approximate\}}</mrow>
+                </md>
+                <p>The interpretation of this inequality is a little tricky. Remember that <m>x</m> represents the number of dishes Raphael can afford. Since you cannot buy <m>5.991</m> dishes (manufacturers will typically only ship whole number amounts of tableware) his minimum purchase must be <m>6</m> dishes. We have a similar problem with his maximum purchase: clearly he cannot buy <m>10.6</m> dishes. So, should we round up or down? If we rounded up, that would be <m>11</m> dishes and that would cost <m>\$21.70\cdot\highlight{11}+\$19.99=\$258.69</m>, which is outside his price range. Therefore, we should actually round <em>down</em> in this case.</p>
+                <p>In conclusion, Raphael should buy somewhere between 6 and 10 dishes for his friend to stay within his budget.</p>
+            </solution>
+        </example>
+        <example>
+            <statement>
+                <p>Oak Ridge National Laboratory, a renowned scientific research facility, compiled some data on fuel efficiency of a mid-size hybrid car versus the speed that the car was driven. A model for the fuel efficiency <m>e(x)</m> (in miles per gallon, mpg) at a speed <m>x</m> (in miles per hour, mph) is <m>y=88-0.7x</m>. See <url href="http://cta.ornl.gov/data/chapter4.shtml">Table 4.28</url> for more information.</p>
+                <ol>
+                    <li><p>Evaluate and interpret <m>e(60)</m> in the context of the problem.</p></li>
+                    <li><p>Note that this model only applies between certain speeds. The maximum fuel efficiency for which this formula applies is <m>55mpg</m> and the minimum fuel efficiency for which it applies is <m>33mpg</m>. Set up and algebraically solve a compound inequality to find the range of speeds for which this model applies.</p></li>
+                </ol>
+            </statement>
+            <solution>
+                <ol>
+                    <li><p>Let's evaluate <m>e(60)</m> first.</p>
+                        <md>
+                            <mrow>e(x)\amp=88-0.7x</mrow>
+                            <mrow>e(\highlight{60})\amp=88-0.7(\highlight{60})</mrow>
+                            <mrow>\amp=46</mrow>
+                        </md>
+                        <p>So, when the hybrid car travels at a speed of <m>60mph</m>, it has a fuel efficiency of <m>46mpg</m>.</p></li>
+                    <li><p>In this case, the minimum efficiency is <m>33mpg</m> and the maximum efficiency is <m>55mpg</m>. We need to trap our formula between these two values to solve for the respective speeds.</p>
+                        <md>
+                            <mrow>33 \amp\lt 88-0.7x \lt 55</mrow>
+                            <mrow>33\subtractright{88} \amp\lt 88-0.7x\subtractright{88} \lt 55\subtractright{88}</mrow>
+                            <mrow>-55 \amp\lt -0.7x \lt -33</mrow>
+                            <mrow>\divideunder{-55}{-0.7} \amp\mathbin{\highlight{\gt}} \divideunder{-0.7x}{-0.7} \mathbin{\highlight{\gt}} \divideunder{-33}{-0.7}</mrow>
+                            <mrow>78.57 \amp\gt x \gt 47.14</mrow>
+                            <mrow>\amp\text{\{note: these values are approximate\}}</mrow>
+                        </md>
+                    </li>
+                </ol>
+                <p>For all intents and purposes, this inequality says that our model is applicable when the car's speed is between about <m>47mph</m> and about <m>79mph</m>.</p>
+            </solution>
+        </example>
+        
+        <!-- todo: one more example... hopefully a f(x)># and g(x)<# type of example rather than a #<h(x)<# type. -->
+        <example><p>Here is an example that someone more clever than I came up with. Note how awesome it is and how it doesn't have terrible wording.</p>
+        </example>
+    </subsection>
 
 </section>
