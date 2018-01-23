@@ -19,7 +19,7 @@
     <title>Introduction to Rational Functions</title>
 
     <introduction>
-        <p>In this chapter, we will learn rational functions, which are essentially the ratio of two polynomial functions. Creating this ratio inherently requires division, and we'll explore the effect this has on the domain and range of rational functions and their graphs.</p>
+        <p>In this chapter we will learn about rational functions, which are essentially the ratio of two polynomial functions. Creating this ratio inherently requires division, and we'll explore the effect this has on the domain and range of rational functions and their graphs.</p>
 
         <figure>
             <caption>Alternative Video Lesson</caption>
@@ -31,17 +31,15 @@
     <subsection>
         <title>Graphs of Rational Functions</title>
 
-        <p>When a drug is injected into a patient, the drug's concentration in the patient's bloodstream can be modeled by the function <me>C(t)=\frac{3t}{t^2+8}</me>where <m>C</m> stands for the drug's concentration in milligrams per liter, and <m>t</m> stands for the number of hours since the injection. A new injection is needed when the concentration falls to <m>\frac{1}{3}</m> milligrams per liter. After how many hours since the first inject should the next injection be given?</p>
-
-        <p>The function <m>C(t)=\frac{3t}{t^2+8}</m> is a rational function. Let's look at its formal definition:</p>
-
-        <definition xml:id="definition-rational-function">
-            <statement>
-                <p>A <term>rational function</term> <m>f(x)</m> is in the form of <me>f(x)=\frac{P(x)}{Q(x)}</me>where <m>P(x)</m> and <m>Q(x)</m> are polynomials, but <m>Q(x)</m> is not the constant zero function.</p>
-            </statement>
-        </definition>
-
-        <p>Let's look at the graph of <m>C(t)=\frac{3t}{t^2+8}</m>:</p>
+        <p>When a drug is injected into a patient, the drug's concentration in the patient's bloodstream can be modeled by the function <me>C(t)=\frac{3t}{t^2+8}</me>where <m>C(t)</m> gives the drug's concentration in milligrams per liter <m>t</m> hours since the injection. A new injection is needed when the concentration falls to <m>0.35</m> milligrams per liter. Let's use graphing technology to explore the following:
+            <ol>
+                <li><p>What is the concentration after 12 hours?</p></li>
+                <li><p>After how many hours since the first injection is the drug concentration greatest?</p></li>
+                <li><p>After how many hours since the first injection should the next injection be given?</p></li>
+                <li><p>What happens to the drug concentration if no further injections are given?</p></li>
+            </ol>
+        </p>
+        <p>Using graphing technology, we will graph <m>y=\frac{3t}{t^2+8}</m> and <m>y=0.35</m></p>.
 
         <figure>
             <caption>Graph of <m>C(t)=\frac{3t}{t^2+8}</m></caption>
@@ -49,15 +47,16 @@
                 <description></description>
                 <latex-image-code>
                 <![CDATA[\begin{tikzpicture}
-                    \begin{axis}[ymin=-1/3,ymax=1,xmin=-1,xmax=10,
-                                minor ytick={-0.3333,0,...,1},
-                                xtick={0,1,...,9},
-                                minor xtick={0,1,...,9},
-                                xlabel={time in hours},ylabel={concentration (mg per liter)}]
-                        \addplot+[domain=-1:10] {3*x/(x^2+8)};
-                        \node at (axis cs: 0,1/3) [left] {$\frac{1}{3}$};
-                        \node at (axis cs: 0,2/3) [left] {$\frac{2}{3}$};
-                        \node at (axis cs: 5,2/3) [red] {$C(t)=\frac{3t}{t^2+8}$};
+                    \begin{axis}[
+                                ymin=-0.25,ymax=1,xmin=-1,xmax=12,
+                                ytick={0,0.25,0.5,0.75},
+                                xtick={0,1,...,11},
+                                xlabel={$t$, time in hours},ylabel={$y$, concentration (mg per liter)}]
+                        \addplot+[domain=-1:12,samples=100] {3*x/(x^2+8)} node[left] {$y=C(t)$};
+                        \addplot+[domain=-1:12] {0.35} node[above] {$y=0.35$};
+                        \addplot [soliddot] coordinates {(1.066,0.35)} node [below] {(1.066,0.35)};
+                        \addplot [soliddot] coordinates {(7.506,0.35)} node [below] {(7.506,0.35)};
+                        \addplot [soliddot] coordinates {(2.828,0.53)} node [below] {(2.828,0.53)};
                     \end{axis}
                 \end{tikzpicture}
                 ]]>
@@ -65,7 +64,74 @@
             </image>
         </figure>
 
-        <p>We can see this rational function's graph is a smooth curve. In this context, only positive values make sense, so we focus on the first quadrant. Since the drug is injected, its concentration in the bloodstream increases, and starts to decrease at about <m>3</m> hours. We need to find out when the concentration will become <m>\frac{1}{3}</m> milligrams per liter, so we substitute <m>C(t)</m> in the function with <m>\frac{1}{3}</m> and solve for <m>t</m>:<md>
+        <p>To determine the concentration after 12 hours, we will evaluate <m>C</m> at <m>t=12</m>:
+            <md>
+                <mrow>C(12)\amp=\frac{3(12)}{12^2+8}</mrow>
+                <mrow>\amp=\frac{36}{152}</mrow>
+                <mrow>\amp\approx 0.237</mrow>
+            </md>
+            After 12 hours, the concentration will be about 0.237 mg per liter.</p>
+        <p>Using the graph, we can see that the maximum concentration of the drug will be 0.53 mg per liter and will occur after about 2.828 hours.</p>
+
+        <p>The approximate points of intersection <m>(1.066,0.35)</m> and <m>(7.506,0.35)</m> tell us that concentration of the drug will reach 0.35 mg per liter after about 1.066 hours and again after about 7.506 hours. Using the shape of the graph, this means that another dose will need to be administered after about 7.506 hours.</p>
+
+        <p>From the initial graph, we can see that it appears that the concentration of the drug will diminish to zero. Exploring further, we can see both numerically and graphically that for larger and larger values of <m>t</m>, the function values get closer and closer to zero. This is shown in <xref ref="table-rational-function-intro-injection-large-t">Table</xref> and <xref ref="figure-rational-function-intro-injection-large-t">Figure</xref>.</p>
+
+        <sidebyside widths="47% 47%">
+
+        <table>
+            <tabular>
+                <col halign="center"/>
+                <col halign="left"/>
+                <row bottom="medium">
+                    <cell><m>t</m></cell>
+                    <cell><m>C(t)</m></cell>
+                </row>
+                <row>
+                    <cell><m>24</m></cell>
+                    <cell><m>0.123\ldots</m></cell>
+                </row>
+                <row>
+                    <cell><m>48</m></cell>
+                    <cell><m>0.062\ldots</m></cell>
+                </row>
+                <row>
+                    <cell><m>72</m></cell>
+                    <cell><m>0.041\ldots</m></cell>
+                </row>
+                <row>
+                    <cell><m>96</m></cell>
+                    <cell><m>0.031\ldots</m></cell>
+                </row>
+                <row>
+                    <cell><m>120</m></cell>
+                    <cell><m>0.020\ldots</m></cell>
+                </row>
+            </tabular>
+        </table>
+
+        <figure>
+            <caption>Graph of <m>C(t)=\frac{3t}{t^2+8}</m></caption>
+            <image width="50%">
+                <description></description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                                ymin=-0.25,ymax=1,xmin=-10,xmax=120,
+                                ytick={0,0.25,0.5,0.75},
+                                xtick={0,24,...,120},
+                                minor xtick={0,12,...,120}
+                                xlabel={time in hours},ylabel={concentration (mg per liter)}]
+                        \addplot+[domain=-10:120,samples=200] {3*x/(x^2+8)} node[center,above] {$y=C(t)$};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+                </latex-image-code>
+            </image>
+        </figure>
+        </sidebyside>
+
+<!--         <p>We can see this rational function's graph is a smooth curve. In this context, only positive values make sense, so we focus on the first quadrant. Since the drug is injected, its concentration in the bloodstream increases, and starts to decrease at about <m>3</m> hours. We need to find out when the concentration will become <m>\frac{1}{3}</m> milligrams per liter, so we substitute <m>C(t)</m> in the function with <m>\frac{1}{3}</m> and solve for <m>t</m>:<md>
             <mrow>C(t)\amp=\frac{3t}{t^2+8}</mrow>
             <mrow>\frac{1}{3}\amp=\frac{3t}{t^2+8}</mrow>
             <mrow>1(t^2+8)\amp=3(3t)\amp\text{cross multiply}</mrow>
@@ -75,17 +141,22 @@
             <mrow>t-1\amp=0\text{ or }t-8=0</mrow>
             <mrow>t\amp=1\text{ or }t=8</mrow>
         </md>The concentration will be <m>\frac{1}{3}</m> milligrams per liter at <m>1</m> hour since the injection, and then at <m>8</m> hours again. We can verify those two solutions by <m>(1,\frac{1}{3})</m> and <m>(8,\frac{1}{3})</m> on the curve.</p>
+        <p>The patient should receive a second injection <m>8</m> hours since the first injection.</p>-->
 
-        <p>The patient should receive a second injection <m>8</m> hours since the first injection.</p>
+        <p>In later sections, we'll explore how to algebraically solve <m>C(t)=0.25</m>.</p>
 
-        <p>Next, let's study the long-term behavior of <m>C(t)</m> with a calculator.</p>
 
-        <p>A rational function's graph is not always smooth. It could have breaks. Let's look at another example.</p>
+        <p>The function <m>C(t)=\frac{3t}{t^2+8}</m> is a rational function. Let's look at its formal definition:</p>
+
+        <definition xml:id="definition-rational-function">
+            <statement>
+                <p>A <term>rational function</term> <m>f(x)</m> is in the form of <me>f(x)=\frac{P(x)}{Q(x)}</me>where <m>P(x)</m> and <m>Q(x)</m> are polynomials, but <m>Q(x)</m> is not the constant zero function.</p>
+            </statement>
+        </definition>
 
 <!--TODO: add webwork popup active example for identifying rational functions-->
 
-
-        <p>Let's look at some examples of rational functions.</p>
+        <p>A rational function's graph is not always smooth like the one shown in <xref ref="example-rational-function-intro-drug-concentration">Example</xref>. It could have breaks, as we'll see in future examples.</p>
 
         <example xml:id="example-introduction-to-rational-functions">
             <statement>
