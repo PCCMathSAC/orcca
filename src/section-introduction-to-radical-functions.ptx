@@ -19,107 +19,221 @@
     <title>Introduction to Radical Functions</title>
 
     <introduction>
-        <p>We learned basics of square root in <xref ref="section-absolute-value-and-square-root section-square-root-properties.ptx ">Sections</xref>. In this chapter, we will learn roots of other powers and their applications.</p>
+        <p>We learned the basics of square roots in <xref ref="section-square-root-properties.ptx">Section</xref>. The study of radicals is much broader than our first attempt covered and we need to expand our investigation. To do so, we will first look at an example that makes use of a topic covered in <xref ref="section-solving-quadratic-equations-by-using-a-square-root">a previous section about solving quadratic equations</xref>.</p>
+
+        <p>A <m>\#10</m> washer has a <quantity><mag>5.6</mag><unit base="meter" prefix="milli"/></quantity> inner diameter and a <quantity><mag>1.2</mag><unit base="meter" prefix="milli"/></quantity> thickness. We will let <m>d</m> represent the outer diameter, measured in <quantity><unit base="meter" prefix="milli"/></quantity>.</p>
+
+            <figure>
+                <caption>A Diagram of a <m>\#10</m> Washer</caption>
+                <image width="65%">
+                    <description></description>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            %label extensions
+                            \draw[dashed] (-9.2,-3) -- ++(0,3);
+                            \draw[dashed] (-3.6,-3) -- ++(0,3);
+
+                            %bottom annulus
+                            \fill[fill=gray,opacity=1] (0,-1.2) arc [x radius=6.4, y radius = 1.15, start angle=0, delta angle=360] 
+                            -- (-3.6,-1.2) arc [x radius=2.8, y radius = 0.7, start angle=360, delta angle=-360] 
+                            -- cycle;
+                            \draw[thick] (0,-1.2) arc [x radius=6.4, y radius = 1.15, start angle=0, delta angle=360]; 
+                            \draw[thick] (-3.6,-1.2) arc [x radius=2.8, y radius = 0.7, start angle=0, delta angle=360]; 
+                                
+                            %inner ribbon
+                            \filldraw[fill=gray,opacity=1,thick] (-3.6,-1.2) arc [x radius=2.8, y radius = 0.7, start angle=0, delta angle=180] 
+                            -- ++(0,1.2) 
+                            -- ++(-0,0) arc [x radius=2.8, y radius = 0.7, start angle=180, delta angle=-180] 
+                            -- cycle;
+                            
+                            %outer ribbon
+                            \filldraw[fill=gray,opacity=1,thick] (0,-1.2) arc [x radius=6.4, y radius = 1.15, start angle=0, delta angle=-180] 
+                            --+ (0,1.2) node[left,pos=0.5] {$1.2\,\text{mm}$}
+                            -- (-12.8,0) arc [x radius=6.4, y radius = 1.15, start angle=180, delta angle=180] 
+                            -- cycle;
+
+                            %top annulus
+                            \fill[fill=gray,opacity=1] (0,0) arc [x radius=6.4, y radius = 1.15, start angle=0, delta angle=360] 
+                            -- (-3.6,0) arc [x radius=2.8, y radius = 0.7, start angle=360, delta angle=-360] 
+                            -- cycle;
+                            \draw[thick] (0,0) arc [x radius=6.4, y radius = 1.15, start angle=0, delta angle=360]; 
+                            \draw[thick] (-3.6,0) arc [x radius=2.8, y radius = 0.7, start angle=0, delta angle=360]; 
+    
+                            %labels
+                            \draw[dashed] (-12.8,-3) -- ++(0,6) -- node[pos=0.5,above] {outer diameter $d$} ++(12.8,0) -- ++(0,-6);
+                            \draw[dashed] (-9.2,0) -- ++(0,2) -- node[pos=0.5,above] {inner diameter $5.6\,\text{mm}$} ++(5.6,0) -- ++(0,-2);
+                        \end{tikzpicture}]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+
+        <p>The amount of steel, <m>M</m>, in <quantity><unit base="gram" prefix="milli"/></quantity> that it takes to make the washer with outer diameter <m>d</m> is approximated by the formula <me>M=7.59d^2-238</me> Note that this is a quadratic equation. We will now solve the equation for <m>d</m> using the square root method.
+        
+        <md>
+            <mrow>M\amp=7.59d^2-238</mrow>
+            <mrow>M\addright{238}\amp=7.59d^2</mrow>
+            <mrow>\divideunder{M+238}{7.59}\amp=d^2</mrow>
+            <mrow>\pm\sqrt{\frac{M+238}{7.59}}\amp=d</mrow>
+        </md></p>
+
+        <sidebyside widths="47% 47%" margins="1%">
+            <p>Since we know the reality of the situation dictates that <m>d</m> cannot be a negative number, our formula for <m>d</m> must be <me>d=\sqrt{\frac{M+238}{7.59}}</me> 
+<!-- todo: fix this me to not be bold for some reason... -->
+            This formula finds the diameter that the washer must be when you input the amount of steel used, <m>M</m>. Shown is a graph of this relationship.</p>
+
+            <figure>
+                <caption>A Graph of <m>d=\sqrt{\frac{M+238}{7.59}}</m></caption>
+                <image width="50%">
+                    <description></description>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                        \begin{axis} [xlabel={$M$}, ylabel={$d$}, xmin=-400, xmax=1200, ymin=-3, ymax=15, xtick={-200,0,...,1000}, ytick={3,6,...,12}, minor xtick=none, minor ytick=none]
+                            \addplot[primarycurve,-{Kite}, variable=\t, domain=0:13.76] ({7.59*t^2-238},{t}) node[below, pos=0.5, sloped] {$d=\sqrt{\frac{M+238}{7.59}}$};
+                            \addplot[soliddot, color=firstcolor] coordinates{(-238,0)};
+                        \end{axis}
+                    \end{tikzpicture}
+                    ]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+        </sidebyside>
+        
+        <sidebyside widths="47% 47%" margins="1%">
+            <p>We also know that <m>M</m> cannot be negative, so we will cut the graph to begin at <m>M=0</m>. This formula tells us that if we plan on using, for example, <quantity><mag>1000</mag><unit base="gram" prefix="milli"/></quantity> of steel (about as much as in a large paper clip) that we can find the the outer diameter for the washer that will be created<ellipsis/>
+            <md>
+                <mrow>d\amp=\sqrt{\frac{\substitute{1000}+238}{7.59}}</mrow>
+                <mrow>\amp\approx12.8</mrow>
+            </md>
+            So the washer's outer diameter must be about <quantity><mag>12.8</mag><unit base="meter" prefix="milli"/></quantity> for to have a mass of <quantity><mag>1000</mag><unit base="gram" prefix="milli"/></quantity>.</p>
+
+            <figure>
+                <caption>A Revised Graph of <m>d=\sqrt{\frac{M+238}{7.59}}</m></caption>
+                <image width="50%">
+                    <description></description>
+                    <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                        \begin{axis} [xlabel={$M$}, ylabel={$d$}, xmin=-200, xmax=1200, ymin=-3, ymax=15, xtick={200,400,...,1000}, ytick={3,6,...,12}, minor xtick=none, minor ytick=none]
+                            \addplot[primarycurve,-{Kite}, variable=\t, domain=5.6:13.76] ({7.59*t^2-238},{t}) node[below, pos=0.4, sloped] {$d=\sqrt{\frac{M+238}{7.59}}$};
+                            \addplot[soliddot, color=firstcolor] coordinates{(0,sqrt(238/7.59))};
+                            \addplot[soliddot, color=secondcolor] coordinates{(1000,sqrt(1238/7.59))};
+                        \end{axis}
+                    \end{tikzpicture}
+                    ]]>
+                    </latex-image-code>
+                </image>
+            </figure>
+        </sidebyside>
+
+        <p>Note that the vertical intercept of the graph is <m>(0,5.5)</m>, which says that a washer that uses no steel at all (is that really a washer?) would have an outer diameter of <quantity><mag>5.5</mag><unit base="meter" prefix="milli"/></quantity>. This is the <q>smallest</q> possible washer with an inner diameter of <quantity><mag>5.5</mag><unit base="meter" prefix="milli"/></quantity>, even though it would technically be massless. Perhaps the implied domain of this function should be <m>(0,\infty)</m> to exclude <m>0</m> mass.</p>
+
+        <p>Square roots often appear when we consider formulas from geometry like the washer problem, and they also show up in topics like in statistics (where <m>\sigma=\sqrt{\frac{1}{n}\sum\limits_{i=1}^n (x_i-\mu)^2}</m> finds the standard deviation), in chemistry (where <m>v_{rms}=\sqrt{\frac{3RT}{M_m}}</m> finds the velocity of a particle), in physics (where <m>m(v)=\frac{m_0}{\sqrt{1-\sfrac{v^2}{c^2}}}</m> finds the changing mass as velocity nears lightspeed). There are many more examples to give, but we need a firmer understanding to grasp any of this, so it's time to venture on to deeper waters.</p>
 
         <figure>
-            <caption>Alternative Video Lesson</caption>
+            <caption>Alternative Video Lessons</caption>
             <video youtube="lj_JB8sfyIM" />
+            <video youtube="TiAEH1qPTQU" />
         </figure>
     </introduction>
 
     <subsection>
         <title>The Square Root Function</title>
 
-        <p>We learned the definitions of radicals and radicands in <xref ref="definition-square-root">Definition</xref>. If a function's variable is in a radicand, the function is called a radical function, such as <m>f(x)=\sqrt{x}</m>.</p>
 
-        <p>An artist makes copper plates shaped in squares. Customers can choose the size. Build a function to calculate the length of a plate's side given its area. One customer ordered a plate with an area of <m>6.25</m> square feet. Calculate the length of this plate's side.</p>
+        <example>
+            <statement>
+                <p>An artist makes square copper plates with bold designs etched into them and customers can choose the size that they would like.</p>
+                <ol>
+                    <li xml:id="item-square-root-function-plate"><p>Build a function that calculates the length of a plate's side given its area.</p></li>
+                    <li><p>One customer ordered a plate with an area of <m>6.25</m> square feet. Calculate the length of this plate's side.</p></li>
+                    <li><p>Find the domain and range of the function from <xref ref="item-square-root-function-plate">Item</xref>.</p></li>
+                </ol>
+            </statement>
+            <solution>
+                <ol>
+                    <li><p>We know the formula to calculate a square's area is <m>A=l^2</m>, where <m>A</m> stands for a square's area, and <m>l</m> is the length of the square's side. To build a function to calculate <m>l</m>, we solve for <m>l</m> in the formula:
+                        <md>
+                            <mrow>A\amp=l^2</mrow>
+                            <mrow>\pm\sqrt{A}\amp=\sqrt{l^2}</mrow>
+                            <mrow>\pm\sqrt{A}\amp=l</mrow>
+                        </md>
+                    The formula is <m>l=\sqrt{A}</m>. We don't consider the negative solution in this context since negative length is meaningless in this case. For the sake of simplicity, we will replace <m>l</m> with <m>f(A)</m>. Let's build a table for the function <m>f(A)=\sqrt{A}</m>:</p>
 
-        <p>We know the formula to calculate a square's area is <m>A=l^2</m>, where <m>A</m> stands for a square's area, and <m>l</m> is the length of the square's side. To build a function to calculate <m>l</m>, we solve for <m>l</m> in the formula:<md>
-            <mrow>A\amp=l^2</mrow>
-            <mrow>\pm\sqrt{A}\amp=\sqrt{l^2}</mrow>
-            <mrow>\pm\sqrt{A}\amp=l</mrow>
-        </md>The function is <m>l(A)=\sqrt{A}</m>. We don't consider the negative solution in this context. For the sake of simplicity, we will replace <m>l</m> with <m>f</m>, and replace <m>A</m> with <m>x</m>. Let's build a table for the function <m>f(x)=\sqrt{x}</m>:</p>
+                    <table>
+                        <caption>Values of <m>f(A)=\sqrt{A}</m></caption>
+                        <tabular>
+                            <col halign="center"/>
+                            <col halign="center"/>
+                            <col halign="center"/>
+                            <row bottom="medium">
+                                <cell><m>A</m></cell>
+                                <cell><m>f(A)</m></cell>
+                                <cell>Points on the Curve</cell>
+                            </row>
+                            <row>
+                                <cell><m>0</m></cell>
+                                <cell><m>\sqrt{0}=0</m></cell>
+                                <cell><m>(0,0)</m></cell>
+                            </row>
+                            <row>
+                             <cell><m>1</m></cell>
+                             <cell><m>\sqrt{1}=1</m></cell>
+                             <cell><m>(1,1)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>4</m></cell>
+                                <cell><m>\sqrt{4}=2</m></cell>
+                                <cell><m>(4,2)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>6.25</m></cell>
+                                <cell><m>\sqrt{6.25}=2.5</m></cell>
+                                <cell><m>(6.25,2.5)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>9</m></cell>
+                                <cell><m>\sqrt{9}=3</m></cell>
+                                <cell><m>(9,3)</m></cell>
+                            </row>
+                        </tabular>
+                    </table>
 
-        <table>
-            <caption>Values of <m>f(x)=\sqrt{x}</m></caption>
-            <tabular>
-                <col halign="center"/>
-                <col halign="center"/>
-                <col halign="center"/>
-                <row bottom="medium">
-                    <cell><m>x</m></cell>
-                    <cell><m>f(x)</m></cell>
-                    <cell>Points on the Curve</cell>
-                </row>
-                <row>
-                    <cell><m>0</m></cell>
-                    <cell><m>\sqrt{0}=0</m></cell>
-                    <cell><m>(0,0)</m></cell>
-                </row>
-                <row>
-                    <cell><m>1</m></cell>
-                    <cell><m>\sqrt{1}=1</m></cell>
-                    <cell><m>(1,1)</m></cell>
-                </row>
-                <row>
-                    <cell><m>4</m></cell>
-                    <cell><m>\sqrt{4}=2</m></cell>
-                    <cell><m>(4,2)</m></cell>
-                </row>
-                <row>
-                    <cell><m>6.25</m></cell>
-                    <cell><m>\sqrt{6.25}=2.5</m></cell>
-                    <cell><m>(6.25,2.5)</m></cell>
-                </row>
-                <row>
-                    <cell><m>9</m></cell>
-                    <cell><m>\sqrt{9}=3</m></cell>
-                    <cell><m>(9,3)</m></cell>
-                </row>
-            </tabular>
-        </table>
-
-        <p>We will plot points and look at the graph of <m>f(x)=\sqrt{x}</m>.</p>
+        <p>We will plot points and look at the graph of <m>l=\sqrt{A}</m>.</p>
 
         <figure>
-            <caption>Graph of <m>f(x)=\sqrt{x}</m></caption>
+            <caption>Graph of <m>y=\sqrt{A}</m></caption>
             <image width="50%">
                 <description></description>
                 <latex-image-code>
                 <![CDATA[\begin{tikzpicture}
-                    \begin{axis}[ymin=-1,ymax=4,xmin=-1,xmax=10,
-                                ytick={0,1,...,3},
-                                minor ytick={0,1,...,3},
-                                xtick={0,1,...,9},
-                                minor xtick={0,1,...,9},
-                                xlabel={x},ylabel={y}]
-                        \addplot [->, red, domain=0:10, samples=200] {x/abs(x)*x^(1/2)};
-                        \node at (axis cs: 5,2.4) [left,red] {$(6.25,2.5)$};
+                    \begin{axis}[ymin=-1,ymax=4,xmin=-1,xmax=10, ytick={0,1,...,3}, minor ytick={0,1,...,3}, xtick={0,1,...,9}, minor xtick={0,1,...,9}, xlabel={$A$}, ylabel={$l$}]
+                        \addplot [primarycurve, variable=\t, -{Kite}, domain=0:sqrt(10)] ({t^2},{t});
+                        \addplot[soliddot, color=secondcolor] coordinates {(6.25,2.5)} node[above left] {$(6.25,2.5)$};
                         \addplot[soliddot] coordinates {(0,0) (1,1) (4,2) (9,3)};
                     \end{axis}
                 \end{tikzpicture}
                 ]]>
                 </latex-image-code>
             </image>
-        </figure>
+        </figure></li>
+                    <li><p>The point <m>(6.25,2.5)</m> implies that a square plate with an area of <m>6.25</m> square feet would have a length of <m>2.5</m> feet on each side.</p></li>
+                    <li><p>According to the graph, the function's domain is <m>[0,\infty)</m> because the graph goes forever to the right from <m>x=0</m>. This should make some sense because you cannot take the square root of a negative number. The function's range is <m>[0,\infty)</m> because the graph seems to go up forever starting at <m>y=0</m>. This should also make sense because a square root never gives you a negative number as an answer.</p></li>
+                </ol>
+            </solution>
+        </example>
 
-        <p>The point <m>(6.25,2.5)</m> implies that a square plate with an area of <m>6.25</m> square feet would have a length of <m>2.5</m> feet on each side.</p>
-
-        <p>According to the graph, both the function's domain and range are <m>[0,\infty)</m>. The function's graph is missing in the Quadrant II and III, implying it is undefined in <m>(-\infty,0)</m>. This makes sense because we cannot square root a negative number.</p>
-
-        <p>We will look at some examples on how to find the domain and range of square root functions.</p>
+        <fact xml:id="fact-domain-of-square-root"><p>To algebraically find the domain of a square root function, set the radicand greater or equal to <m>0</m> and solve for the variable. The solution set to that inequality is the domain of the function.</p></fact>
 
         <example>
             <statement>
-                <p>Find the domain and range of <m>g(x)=\sqrt{2x-4}+1</m>.</p>
+                <p>Algebraically find the domain of the function <m>g(x)=\sqrt{2x-4}+1</m> and then find the range by making a graph.</p>
             </statement>
             <solution>
-                <p>Recall that the square root of a negative number is undefined. This implies the radicand of a square root must be greater or equal to zero. To find the function's domain, we set the radicand to be greater than or equal to zero:<md>
+                <p>Using <xref ref="fact-domain-of-square-root">Fact</xref> find the function's domain, we set the radicand greater than or equal to zero:<md>
                     <mrow>2x-4\amp\ge0</mrow>
                     <mrow>2x\amp\ge4</mrow>
                     <mrow>x\amp\ge2</mrow>
-                </md>The function's domain is <m>x\ge2</m>, or <m>[2,\infty)</m> in interval notation.</p>
-                <p>To find the function's range, we use technology to look at the function's graph:</p>
+                </md>The function's domain is <m>[2,\infty)</m> in interval notation.</p>
+                <p>To find the function's range, we use technology to look at a graph of the function:</p>
 
                 <figure>
                     <caption>Graph of <m>g(x)=\sqrt{2x-4}+1</m></caption>
@@ -127,14 +241,11 @@
                         <description></description>
                         <latex-image-code>
                         <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-1,ymax=4,xmin=-1,xmax=10,
-                                        ytick={0,1,...,3},
-                                        minor ytick={0,1,...,3},
-                                        xtick={0,1,...,9},
-                                        minor xtick={0,1,...,9},
-                                        xlabel={x},ylabel={y}]
-                                \addplot [->, red, domain=2:6.5, samples=100] {sqrt(2*x-4)+1};
-                                \addplot[soliddot] coordinates {(2,1)} node [below,red] {$(2,1)$};
+                            \begin{axis}[ymin=-1,ymax=6,xmin=-1,xmax=10,
+                                        ytick={0,1,...,5}, xtick={0,1,...,9}]
+                                \addplot [primarycurve, -, domain=2:3.1] {sqrt(2*x-4)+1};
+                                \addplot [primarycurve, -{Kite}, domain=3:10] {sqrt(2*x-4)+1};
+                                \addplot[soliddot] coordinates {(2,1)} node [below, color=firstcolor] {$(2,1)$};
                             \end{axis}
                         \end{tikzpicture}
                         ]]>
@@ -142,135 +253,70 @@
                     </image>
                 </figure>
 
-                <p>According to the graph, the function's range is <m>[1,\infty)</m>. The graph also verifies the function's domain is indeed <m>[2,\infty)</m>.</p>
-
-                <p>We could also find the function's range without graphing. We learned that the range of <m>f(x)=\sqrt{x}</m> is <m>[0,\infty)</m>. This implies the range of <m>\sqrt{2x-4}</m> is <m>[0,\infty)</m>, and thus the range of <m>g(x)=\sqrt{2x-4}+1</m> is <m>[1,\infty)</m>.</p>
+                <p>The graph shows that the function's range is <m>[1,\infty)</m>. The graph also verifies the function's domain is indeed <m>[2,\infty)</m>.</p>
             </solution>
         </example>
 
         <example>
             <statement>
-                <p>Find the domain and range of <m>h(x)=\frac{1}{\sqrt{4-2x}}</m>.</p>
+                <p>Find the domain and range of <m>h(x)=2-3\sqrt{8-5x}</m>.</p>
             </statement>
             <solution>
-                <p>To find the function's domain, we set the radicand to be greater than or equal to zero:<md>
-                    <mrow>4-2x\amp\ge0</mrow>
-                    <mrow>-2x\amp\ge-4</mrow>
-                    <mrow>\frac{-2x}{-2}\amp\le\frac{-4}{-2}</mrow>
-                    <mrow>x\amp\le2</mrow>
-                </md>When a function has a fraction, we must remember that dividing zero is not allowed. For this function, the denominator cannot be zero, which implies <m>x\ne2</m>. The function's domain is <m>(-\infty,2)</m>.</p>
+                <p>To find the function's domain, we set the radicand to be greater than or equal to zero:</p>
+                
+                <sidebyside widths="47% 47%" margins="1%">
+                    <p><md>
+                    <mrow>8-5x\amp\ge0</mrow>
+                    <mrow>-5x\amp\ge-8</mrow>
+                    <mrow>\divideunder{-5x}{-5}\amp\mathbin{\highlight{\le}}\divideunder{-8}{-5}</mrow>
+                    <mrow>x\amp\le\frac{8}{5}</mrow>
+                </md></p>
+                <p>So, the function's domain is <m>(-\infty,\frac{8}{5}]</m>. The <m>2</m> and <m>3</m> in the function do not play a role in the domain, although they do alter the range which we will find now by making a graph.</p>
+                </sidebyside>
 
-                <p>To find the function's range, we use technology to look at the function's graph:</p>
+                <sidebyside widths="47% 47%" margins="1%">
+                <p>From the graph we can see that the range is all numbers below (or equal to) the <m>y</m>-value <m>2</m>. In interval notation, this would be written <m>(-\infty,2]</m>.</p>
 
                 <figure>
-                    <caption>Graph of <m>h(x)=\frac{1}{\sqrt{4-2x}}</m></caption>
+                    <caption>Graph of <m>h(x)=2-3\sqrt{8-5x}</m></caption>
                     <image width="50%">
                         <description></description>
                         <latex-image-code>
                         <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-1,ymax=4,xmin=-10,xmax=3,
-                                        ytick={0,1,...,3},
-                                        minor ytick={0,1,...,3},
-                                        xtick={-8,-6,...,2},
-                                        minor xtick={-8,-6,...,2},
-                                        xlabel={x},ylabel={y}]
-                                \addplot [<->, red, domain=-10:1.969, samples=100] {1/(sqrt(4-2*x))};
+                            \begin{axis}[ymin=-30,ymax=10,xmin=-20,xmax=10, ytick={-25,-20,-15,-10,-5,2,5}, xtick={-15,-10,...,5}, minor xtick=none, minor ytick=none]
+                                \addplot [primarycurve, variable=\t, {Kite}-, domain=-29.177:2] ({72-(2-t)^2)/45},{t});
+                                \addplot[soliddot] coordinates {(8/5,2)} node [above right, color=firstcolor] {$(8/5,2)$};
                             \end{axis}
                         \end{tikzpicture}
                         ]]>
                         </latex-image-code>
                     </image>
                 </figure>
-
-                <p>It looks like the function's value approaches <m>0</m> as <m>x</m>-value approaches <m>-\infty</m>, and the function's value approaches <m>\infty</m> as <m>x</m>-value approaches <m>2</m> from the left. We can verify this by looking at a table of <m>h(x)</m>:</p>
-
-                <sidebyside widths="47% 47%" margins="0%">
-                    <table>
-                        <tabular>
-                            <col halign="center"/>
-                            <col halign="left"/>
-                            <row bottom="medium">
-                                <cell><m>x</m></cell>
-                                <cell><m>g=h(x)</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>-10000</m></cell>
-                                <cell><m>0.007\ldots</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>-20000</m></cell>
-                                <cell><m>0.004\ldots</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>-30000</m></cell>
-                                <cell><m>0.004\ldots</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>-40000</m></cell>
-                                <cell><m>0.003\ldots</m></cell>
-                            </row>
-                        </tabular>
-                    </table>
-
-                    <table>
-                        <tabular>
-                            <col halign="center"/>
-                            <col halign="left"/>
-                            <row bottom="medium">
-                                <cell><m>x</m></cell>
-                                <cell><m>h(x)</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>1.99</m></cell>
-                                <cell><m>7.071\ldots</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>1.999</m></cell>
-                                <cell><m>22.36\ldots</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>1.9999</m></cell>
-                                <cell><m>70.71\ldots</m></cell>
-                            </row>
-                            <row>
-                                <cell><m>1.99999</m></cell>
-                                <cell><m>223.6\dots</m></cell>
-                            </row>
-                        </tabular>
-                    </table>
-                </sidebyside>
-
-                <p>According to data in the table, our guesses were correct. The function's range is <m>(0,\infty)</m>. Note that this function has a vertical asymptote at <m>x=2</m>, and a horizontal asymptote at <m>y=0</m>.</p>
+                </sidebyside>   
             </solution>
         </example>
 
-        <p>We will end this subsection with a real-life application of square root functions.</p>
-
         <example>
             <statement>
-                <p>When an object is dropped with no initial velocity toward the ground, the time it takes to hit the ground, in seconds, can be modeled by the function<me>t(d)=\sqrt{\frac{2d}{9.8}}</me>where <m>d</m> stands for the height of the object in meters. Answer the following questions with graphing technology.<ol label="a.">
-                    <li><p>If an object is dropped from the top of a <m>100</m>-foot tall building, how long will it take for the object to hit the ground?</p></li>
-                    <li><p><m>3</m> seconds since an object was released, assuming the object has not hit the ground yet, how far has the object traveled?</p></li>
-                </ol></p>
+                <p>When an object is dropped, the time it takes to hit the ground, <m>t</m>, in seconds, can be modeled by the function<me>t=\sqrt{\frac{d}{16}}</me> where <m>d</m> stands for the initial height of the object in feet. Use a graph on technology to answer the following questions.</p>
+                <ol label="a.">
+                    <li><p>If an object is dropped from the top of a <m>100</m>-foot-tall building, how long will it take for the object to hit the ground?</p></li>
+                    <li><p>If an object fell for <m>3</m> seconds before hitting the ground, from what height was it dropped?</p></li>
+                </ol>
             </statement>
             <solution>
-                <p>With graphing technology, and after adjusting the window settings, we can see the graph of the function <m>t(d)=\sqrt{\frac{2d}{9.8}}</m> and some critical points.</p>
+                <p>With graphing technology, and after adjusting the window settings, we can see the graph of the function <m>t=\sqrt{\frac{d}{16}}</m> and some important points.</p>
 
                 <figure>
-                    <caption>Graph of <m>t(d)=\sqrt{\frac{2d}{9.8}}</m></caption>
+                    <caption>Graph of <m>t=\sqrt{\frac{d}{16}}</m></caption>
                     <image width="60%">
                         <description></description>
                         <latex-image-code>
                         <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-1,ymax=5,xmin=-10,xmax=110,
-                                        xtick={empty},ytick={empty},
-                                        minor ytick={1,2,3,4},
-                                        minor xtick={20,40,...,100},
-                                        xlabel={height in meters},ylabel={time in seconds}]
-                                \addplot [<->, red, domain=0:110] {sqrt(2*x/9.8)} node[pos=0.20,right] {$t(d)$};
-                                \addplot [<->, blue, domain=0:110] {3} node[pos=0.20,above] {$y=3$};
-                                \addplot [soliddot, blue] coordinates {(100,4.52)} node[left, red] {$(100,4.52)$};
-                                \addplot [soliddot, blue] coordinates {(44.1,3)} node[below right, red] {$(44.1,3)$};
+                            \begin{axis}[ymin=-1, ymax=4, xmin=-25, xmax=200, xtick={25,50,...,175}, ytick={1,2,3}, xlabel={$d$}, ylabel={$t$}, minor xtick=none, minor ytick=none]
+                                \addplot[primarycurve, variable=\t, domain=0:3.5355, -{Kite}] ({16*t^2},{t}) node[below, sloped, pos=0.2] {$t=\sqrt{\frac{d}{16}}$};
+                                \addplot [soliddot, color=fifthcolor] coordinates {(100,2.5)} node[above left] {$(100,2.5)$};
+                                \addplot [soliddot, color=fourthcolor] coordinates {(144,3)} node[below right] {$(144,3)$};
                             \end{axis}
                         \end{tikzpicture}
                         ]]>
@@ -279,12 +325,511 @@
                 </figure>
 
                 <p><ol label="a.">
-                    <li><p>The function passes the point <m>(100,4.52)</m>, implying it will take the object approximately <m>4.52</m> seconds to hit the ground if it's released on top of a <m>100</m>-foot building.</p></li>
-                    <li><p>The function passes the point <m>(44.1,3)</m>, implying the object has traveled approximately <m>44.1</m> meters <m>3</m> seconds since it was released.</p></li>
+                    <li><p>The graph passes the point <m>(100,2.5)</m>, implying it will take the object <m>2.5</m> seconds to hit the ground if it's released on top of a <m>100</m>-foot-tall building.</p></li>
+                    <li><p>The graph passes the point <m>(144,3)</m>, implying the object has fallen approximately <m>144</m> feet <m>3</m> seconds since it was released.</p></li>
                 </ol></p>
             </solution>
         </example>
     </subsection>
+
+    <subsection>
+        <title>The Distance Formula</title>
+
+        <p>Square root is used in calculating the distance between two points on a coordinate plane. We learned the Pythagorean Theorem in <xref ref="section-introduction-to-square-root">Section</xref>. In a coordinate plane, we can use the Pythagorean Theorem to calculate the distance between two points.</p>
+
+        <example>
+            <statement>
+                <p>Calculate the distance between <m>(2,3)</m> and <m>(5,7)</m>.</p>
+            </statement>
+            <solution>
+                <p>First, we will sketch a graph for those two points.</p>
+
+                <figure>
+                    <caption>Calculating the Distance Between <m>(2,3)</m> and <m>(5,7)</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-1,ymax=9,xmin=-1,xmax=9, ytick={0,1,...,8}, xtick={0,1,...,8}]
+                                \draw [dashed, color=firstcolor] (axis cs: 2,3) -- (axis cs: 5,3) -- (axis cs: 5,7);
+                                \node[below, color=firstcolor] at (axis cs: 3.5,3) {$5-2=3$};
+                                \node[right, color=firstcolor] at (axis cs: 5,5) {$7-3=4$};
+                                \draw [color=fourthcolor, dashed] (axis cs: 2,3) -- (axis cs: 5,7) node[color=fourthcolor, above, pos=0.5, sloped] {$d$};
+                                \addplot [soliddot, color=secondcolor] coordinates {(2,3)} node[left] {$(2,3)$};
+                                \addplot [soliddot, color=secondcolor] coordinates {(5,3)} node[right] {$(5,3)$};
+                                \addplot [soliddot, color=secondcolor] coordinates {(5,7)} node[above right] {$(5,7)$};
+                                \draw [color=firstcolor, thin] (axis cs: 5,3.3) -- (axis cs: 4.7,3.3) -- (axis cs: 4.7,3);
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+                <p>To calculate the distance between <m>(2,3)</m> and <m>(5,7)</m>, we sketch a right triangle as in the figure and then use Pythagorean Theorem:<md>
+                    <mrow>d^2\amp=(5-2)^2+(7-3)^2</mrow>
+                    <mrow>d^2\amp=3^2+4^2</mrow>
+                    <mrow>d^2\amp=9+16</mrow>
+                    <mrow>d^2\amp=25</mrow>
+                    <mrow>d\amp=\sqrt{25}</mrow>
+                    <mrow>d\amp=5</mrow>
+                </md>
+                In conclusion, the distance between <m>(2,3)</m> and <m>(5,7)</m> is <m>5</m>. Note that in our calculations, we didn't need to show <m>d=\pm\sqrt{25}</m> because distance must have positive values.</p>
+            </solution>
+        </example>
+
+        <p>With the same method, we can derive a formula to calculate the distance between any two points.</p>
+
+        <example>
+            <statement>
+                <p>With a generic first and second point, we will use subscripts to identify the first pair <m>(x_1,y_1)</m> and the second pair <m>(x_2,y_2)</m>. Calculate the distance between the generic points <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>.</p>
+            </statement>
+            <solution>
+                <p>First, we will sketch a graph for those two points. We will put the image from last example side by side with the new image, so it's clear that we are using the same method.</p>
+
+                <sidebyside widths="47% 47%" margins="1%">
+                    <figure>
+                        <caption>Calculating the Distance Between <m>(2,3)</m> and <m>(5,7)</m></caption>
+                        <image width="70%">
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[ymin=-1,ymax=9,xmin=-1,xmax=9, ytick={0,1,...,8}, xtick={0,1,...,8}]
+                                        \draw [dashed, color=firstcolor] (axis cs: 2,3) -- (axis cs: 5,3) -- (axis cs: 5,7);
+                                        \node[below, color=firstcolor] at (axis cs: 3.5,3) {$5-2=3$};
+                                        \node[right, color=firstcolor] at (axis cs: 5,5) {$7-3=4$};
+                                        \draw [color=fourthcolor, dashed] (axis cs: 2,3) -- (axis cs: 5,7) node[color=fourthcolor, above, pos=0.5, sloped] {$d$};
+                                        \addplot [soliddot, color=secondcolor] coordinates {(2,3)} node[left] {$(2,3)$};
+                                        \addplot [soliddot, color=secondcolor] coordinates {(5,3)} node[right] {$(5,3)$};
+                                        \addplot [soliddot, color=secondcolor] coordinates {(5,7)} node[above right] {$(5,7)$};
+                                        \draw [color=firstcolor, thin] (axis cs: 5,3.3) -- (axis cs: 4.7,3.3) -- (axis cs: 4.7,3);
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+
+                    <figure>
+                        <caption>Calculating the Distance Between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m></caption>
+                        <image width="70%">
+                            <description></description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[ymin=-1,ymax=9,xmin=-1,xmax=9, ytick=none, xtick=none, minor xtick=none, minor ytick=none]
+                                        \draw [dashed, color=firstcolor] (axis cs: 2,3) -- (axis cs: 5,3) -- (axis cs: 5,7);
+                                        \node[below, color=firstcolor] at (axis cs: 3.5,3) {$x_2-x_1$};
+                                        \node[right, color=firstcolor] at (axis cs: 5,5) {$y_2-y_1$};
+                                        \draw [color=fourthcolor, dashed] (axis cs: 2,3) -- (axis cs: 5,7) node[color=fourthcolor, above, pos=0.5, sloped] {$d$};
+                                        \addplot [soliddot, color=secondcolor] coordinates {(2,3)} node[left, rotate=50] {$(x_1,y_1)$};
+                                        \addplot [soliddot, color=secondcolor] coordinates {(5,3)} node[right] {$(x_2,y_1)$};
+                                        \addplot [soliddot, color=secondcolor] coordinates {(5,7)} node[above right] {$(x_2,y_2)$};
+                                        \draw [color=firstcolor, thin] (axis cs: 5,3.3) -- (axis cs: 4.7,3.3) -- (axis cs: 4.7,3);
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </figure>
+                </sidebyside>
+
+                <p>To calculate the distance between <m>\highlight{(x_1,y_1)}</m> and <m>\highlight{(x_2,y_2)}</m>, we sketch a right triangle as in the figure and then use Pythagorean Theorem:<md>
+                    <mrow>d^2\amp=(x_2-x_1)^2+(y_2-y_1)^2</mrow>
+                    <mrow>d\amp=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</mrow>
+                </md></p>
+            </solution>
+        </example>
+
+        <p>With this formula, we can calculate the distance between two points without sketching a graph.</p>
+
+        <example>
+            <statement>
+                <p>Find the distance between <m>(-2,4)</m> and <m>(5,-20)</m>.</p>
+            </statement>
+            <solution>
+                <p>To calculate the distance between <m>(-2,4)</m> and <m>(5,-20)</m>, we use the distance formula. It's good practice to mark each value with the corresponding variables in the formula. Again, <m>(x_1,y_1)</m> stands for the first point's coordinates, and <m>(x_2,y_2)</m> stands for the second point's coordinates:<me>(\stackrel{x_1}{-2},\stackrel{y_1}{4}), (\stackrel{x_2}{5},\stackrel{y_2}{-20})</me> We have:
+                <md>
+                    <mrow>d\amp=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</mrow>
+                    <mrow>d\amp=\sqrt{\left(\substitute{5}-\substitute{(-2)}\right)^2+\left(\substitute{(-20)}-\substitute{4}\right)^2}</mrow>
+                    <mrow>d\amp=\sqrt{\left(7\right)^2+\left(-24\right)^2}</mrow>
+                    <mrow>d\amp=\sqrt{49+576}</mrow>
+                    <mrow>d\amp=\sqrt{625}</mrow>
+                    <mrow>d\amp=25</mrow>
+                </md>The distance between <m>(-2,4)</m> and <m>(5,-20)</m> is <m>25</m> units.</p>
+            </solution>
+        </example>
+
+        <remark><p>Note that it's good practice to add parentheses around negative values when we do substitutions. For example, when we substitute <m>x</m> with <m>-7</m> in <m>x^2</m>, we should do <me>x^2=\substitute{(-7)}^2=49\text{ correct }\checkmark</me>We should <em>not</em> do <me>x^2=\substitute{-7}^2=-49\text{ incorrect } &#9785;</me></p></remark>
+    </subsection>
+
+    <subsection>
+        <title>Cube Root Function</title>
+
+        <p>The square of <m>2</m> is <m>4</m>, so the square root of <m>4</m> is <m>2</m>.</p>
+
+        <p>Similarly, the cube of <m>2</m> is <m>8</m>, so the cube root of <m>8</m> is <m>2</m>. We write<me>\sqrt[3]{8}=2</me>It's helpful to memorize the first few perfect cube numbers and their cube roots:
+        <md>
+            <mrow>\amp0^3=0\amp\sqrt[3]{0}=0</mrow>
+            <mrow>\amp1^3=1\amp\sqrt[3]{1}=1</mrow>
+            <mrow>\amp2^3=8\amp\sqrt[3]{8}=2</mrow>
+            <mrow>\amp3^3=27\amp\sqrt[3]{27}=3</mrow>
+            <mrow>\amp4^3=64\amp\sqrt[3]{64}=4</mrow>
+            <mrow>\amp5^3=125\amp\sqrt[3]{125}=5</mrow>
+        </md>
+        One major difference between cube root and square root is that we can find the cube root of negative numbers. For example:<me>(-4)^3=-64\text{, so }\sqrt[3]{-64}=-4</me> However, we cannot square root negative numbers because <m>\sqrt{-64}</m> is non-real.</p>
+
+        <remark xml:id="remark-calculator-rational-exponent-rule"><p>Many calculators don't have a cube root button. If yours does, it will probably look like <m>\sqrt[n]{\phantom{x}}</m> and you will tell the calculator both to enter a number for the <q><m>n</m></q> as well as the radicand. Another way to calculate the cube root on a calculator is to use the exponent button (which is usually marked with the caret symbol, <c>^</c>). Radicals turn out to be fractional exponents. For example, to calculate <m>\sqrt[3]{8}</m>, we press the following buttons: <c>8^(1/3)</c>. We will explain why <m>\sqrt[3]{8}=8^{\frac{1}{3}}</m> in <xref ref="section-radical-expressions-and-rational-exponents">Section</xref>. For now, just learn how to use a calculator to calculate the cube root of a given number.</p></remark>
+
+        <p>We can also estimate the value of a cube root, like <m>\sqrt[3]{10}</m>, by knowing the perfect cubes nearby:<md>
+            <mrow>\sqrt[3]{8}\amp=2</mrow>
+            <mrow>\sqrt[3]{10}\amp=2...</mrow>
+            <mrow>\sqrt[3]{27}\amp=3</mrow>
+        </md>
+        Since <m>10</m> is between the perfect cubes <m>8</m> and <m>27</m>, <m>\sqrt[3]{10}</m> must be between <m>2</m> and <m>3</m>, and closer to <m>2</m>. We can use a calculator to verify <m>\sqrt[3]{10}\approx2.154</m></p>
+
+        <p>We will build a table and graph the cube root function:</p>
+
+        <table>
+            <caption>Values of <m>g(x)=\sqrt[3]{x}</m></caption>
+            <tabular>
+                <col halign="center"/>
+                <col halign="center"/>
+                <col halign="center"/>
+                <row bottom="medium">
+                    <cell><m>x</m></cell>
+                    <cell><m>g(x)=\sqrt[3]{x}</m></cell>
+                    <cell>Points on the Curve</cell>
+                </row>
+                <row>
+                    <cell><m>-8</m></cell>
+                    <cell><m>\sqrt[3]{-8}=-2</m></cell>
+                    <cell><m>(-8,-2)</m></cell>
+                </row>
+                <row>
+                    <cell><m>-1</m></cell>
+                    <cell><m>\sqrt[3]{-1}=-1</m></cell>
+                    <cell><m>(-1,-1)</m></cell>
+                </row>
+                <row>
+                    <cell><m>0</m></cell>
+                    <cell><m>\sqrt[3]{0}=0</m></cell>
+                    <cell><m>(0,0)</m></cell>
+                </row>
+                <row>
+                    <cell><m>1</m></cell>
+                    <cell><m>\sqrt[3]{1}=1</m></cell>
+                    <cell><m>(1,1)</m></cell>
+                </row>
+                <row>
+                    <cell><m>8</m></cell>
+                    <cell><m>\sqrt[3]{8}=2</m></cell>
+                    <cell><m>(8,2)</m></cell>
+                </row>
+            </tabular>
+        </table>
+
+        <p>We will plot points and look at the graph of <m>g(x)=\sqrt[3]{x}</m>.</p>
+
+        <figure>
+            <caption>Graph of <m>g(x)=\sqrt[3]{x}</m></caption>
+            <image width="50%">
+                <description></description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[ymin=-3,ymax=3,xmin=-10,xmax=10, ytick={-2,-1,...,2}, minor ytick=none, xtick={-8,-6,...,8}, minor xtick=none]
+                        \addplot [variable=\t, primarycurve, domain=-2.154:2.154] ({t^3},{t});
+                        \addplot[soliddot] coordinates {(-8,-2) (-1,-1) (0,0) (1,1) (8,2)};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <p>Both the domain and range of <m>g(x)=\sqrt[3]{x}</m> are each <m>(-\infty,\infty)</m>. Compare this with the domain and range of <m>f(x)=\sqrt{x}</m>, which are each <m>[0,\infty)</m>. The reason for the difference is that we cannot <em>square</em> root negative numbers, but we can <em>cube</em> root negative numbers.</p>
+
+        <remark><p>It is important to be able to quickly sketch the graphs of the following types of basic functions:<md>
+            <mrow>f(x)\amp=mx+b</mrow>
+            <mrow>g(x)\amp=a(x-h)^2+k</mrow>
+            <mrow>h(x)\amp=\abs{x}</mrow>
+            <mrow>p(x)\amp=\frac{1}{x}</mrow>
+            <mrow>q(x)\amp=\frac{1}{x^2}</mrow>
+            <mrow>r(x)\amp=\sqrt{x}</mrow>
+            <mrow>s(x)\amp=\sqrt[3]{x}</mrow>
+        </md></p></remark>
+
+        <example>
+            <statement>
+                <p>A factory makes customized plastic balls. A ball's radius can be calculated by the formula <m>r(V)=\sqrt[3]{\frac{3V}{4\pi}}</m>, where <m>r(V)</m> stands for the ball's radius for a given volume <m>V</m>. A customer asks for plastic balls with a volume of <m>3</m> cubic feet. Find the radius of those balls. Round your answer to two decimal places.</p>
+            </statement>
+            <solution>
+                <p><!-- We will solve for <m>r</m> in the formula <m>V(r)=\frac{4}{3}\pi r^3</m>:<md>
+                    <mrow>V\amp=\frac{4}{3}\pi r^3</mrow>
+                    <mrow>\multiplyleft{3}V\amp=\multiplyleft{3}\frac{4}{3}\pi r^3</mrow>
+                    <mrow>3V\amp=4\pi r^3</mrow>
+                    <mrow>\frac{3V}{4\pi}\amp=\frac{4\pi r^3}{4\pi}</mrow>
+                    <mrow>\frac{3V}{4\pi}\amp=r^3</mrow>
+                    <mrow>\sqrt[3]{\frac{3V}{4\pi}}\amp=\sqrt[3]{r^3}</mrow>
+                    <mrow>\sqrt[3]{\frac{3V}{4\pi}}\amp=r</mrow>
+                    <mrow>r(V)\amp=\sqrt[3]{\frac{3V}{4\pi}}</mrow>
+                </md>Next, --> 
+                    We will substitute <m>\substitute{3}</m> in for <m>V</m>, and we have:<md>
+                    <mrow>r(V)\amp=\sqrt[3]{\frac{3V}{4\pi}}</mrow>
+                    <mrow>r(3)\amp=\sqrt[3]{\frac{3(\substitute{3})}{4\pi}}</mrow>
+                    <mrow>\amp\approx0.89</mrow>
+                </md>The plastic balls should have a radius of approximately <quantity><mag>0.89</mag><unit base="foot"/></quantity>.</p>
+                <p>When we calculate <m>\sqrt[3]{\frac{3(3)}{4\pi}}</m> with a calculator, we enter <c>(3*3/(4π))^(1/3)</c>.</p>
+            </solution>
+        </example>
+
+        <!-- <remark><p>When we cube root both sides of an equation, like <m>x^3=8</m>, we do not need to add the <m>\pm</m> symbol like when we solve <m>x^2=4</m>. Compare the following equations:</p>
+
+        <sidebyside margins="0%">
+            <p><md>
+                <mrow>x^3\amp=8</mrow>
+                <mrow>\sqrt[3]{x^3}\amp=\sqrt[3]{8}</mrow>
+                <mrow>x\amp=2</mrow>
+            </md></p>
+
+            <p><md>
+                <mrow>x^2\amp=4</mrow>
+                <mrow>\sqrt{x^2}\amp=\pm\sqrt{4}</mrow>
+                <mrow>x\amp=\pm2</mrow>
+            </md></p>
+        </sidebyside>
+
+        <p>For <m>x^2=4</m>, there are two solutions because <m>2^2=4</m> and <m>(-2)^2=4</m>. However, for <m>x^3=8</m>, there is only one solution as <m>2^3=8</m>. The number <m>-2</m> is not a solution of <m>x^3=8</m>, because <m>(-2)^3=-8</m>.</p></remark> -->
+
+        <!-- <p>The following table summarized the difference of square root and cube root:</p>
+
+        <table xml:id="table-square-root-cube-root-comparison">
+            <caption>Differences of <m>f(x)=\sqrt{x}</m> and <m>g(x)=\sqrt[3]{x}</m></caption>
+            <tabular>
+                <col halign="center" right="minor"/>
+                <col halign="center" width="40%" right="minor"/>
+                <col halign="center" width="40%"/>
+                <row bottom="medium">
+                    <cell/>
+                    <cell><m>f(x)=\sqrt{x}</m></cell>
+                    <cell><m>g(x)=\sqrt[3]{x}</m></cell>
+                </row>
+                <row>
+                    <cell>Root of a negative number</cell>
+                    <cell><m>\sqrt{-1}\text{ is non-real}</m></cell>
+                    <cell><m>\sqrt[3]{-1}=-1</m></cell>
+                </row>
+                <row>
+                    <cell>Solve <m>x^n=1</m></cell>
+                    <cell><p><md><mrow>x^2\amp=1</mrow><mrow>x\amp=\pm1</mrow></md></p></cell>
+                    <cell><p><md><mrow>x^3\amp=1</mrow><mrow>x\amp=1</mrow></md></p></cell>
+                </row>
+                <row>
+                    <cell>Solve <m>x^n=-1</m></cell>
+                    <cell><p><md><mrow>x^2\amp=-1</mrow><mrow>{no real solutions}</mrow></md></p></cell>
+                    <cell><p><md><mrow>x^3\amp=-1</mrow><mrow>x\amp=-1</mrow></md></p></cell>
+                </row>
+                <row>
+                    <cell>Domain</cell>
+                    <cell><m>[0,\infty)</m></cell>
+                    <cell><m>(-\infty,\infty)</m></cell>
+                </row>
+                <row>
+                    <cell>Range</cell>
+                    <cell><m>[0,\infty)</m></cell>
+                    <cell><m>(-\infty,\infty)</m></cell>
+                </row>
+            </tabular>
+        </table> -->
+    </subsection>
+
+    <subsection>
+        <title>Functions of Other Roots</title>
+
+        <p>Similar to the cube root, there are the <m>4^{th}</m> root, <m>5^{th}</m> root, etc, as in the following examples:<md>
+            <mrow>\sqrt[4]{16}=2 \amp\text{ because }2^4=16</mrow>
+            <mrow>\sqrt[5]{-32}=-2 \amp\text{ because }(-2)^5=-32</mrow>
+            <mrow>\sqrt[6]{64}=2 \amp\text{ because }2^6=64,</mrow>
+        </md>To calculate the <m>5^{th}</m> root of <m>-32</m> with a calculator, we press the buttons <c>(-32)^(1/5)</c>.</p>
+
+        <definition xml:id="definition-index">
+            <notation>
+                <usage>\sqrt[\highlight{n}]{\phantom{x}}</usage>
+                <description>A radical symbol with an <q>n</q> in the crook of the radical.</description>
+            </notation>
+            <statement>
+                <p>The <term>index</term><idx><h>index</h></idx> of a radical is the number <q><m>\highlight{n}</m></q> in <m>\sqrt[\highlight{n}]{\phantom{x}}</m>. The symbol <m>\sqrt[n]{\phantom{x}}</m> is read <q>the <m>n^{th}</m> root</q>. The plural of index is <term>indices</term>, as in <q>we can evaluate radicals of multiple indices in a single expression</q>.</p>
+            </statement>
+        </definition>
+
+        <fact xml:id="fact-domain-of-even-index-radical"><p>To find the domain of any <em>even</em> indexed radical function, set the radicand greater than or equal to zero. The solution set is the domain of the function.</p></fact>
+        
+        <fact xml:id="fact-domain-of-odd-index-radical"><p>The domain of any <em>odd</em> indexed radical of a polynomial is always <m>(-\infty,\infty)</m> </p></fact>
+
+        <example>
+            <statement>
+                <ol>
+                    <li><p>Find the domain and range of <m>g(x)=7-3\sqrt[4]{10-5x}</m>.</p></li>
+                    <li><p>Find the domain and range of <m>h(x)=4\sqrt[5]{2x-5}+1</m>.</p></li>
+                </ol>
+            </statement>
+            <solution>
+                <ol>
+                    <li>
+                        <p>First note that the index of this function is <m>4</m>. By <xref ref="fact-domain-of-even-index-radical">Fact</xref>, to find the domain of this function we must set the radicand greater or equal to zero and solve.
+                        <md>
+                            <mrow>10-5x\amp\ge0</mrow>
+                            <mrow>-5x\amp\ge\subtractright{10}</mrow>
+                            <mrow>x\amp\mathbin{\highlight{\le}}\divideunder{10}{-5}</mrow>
+                            <mrow>x\amp\le-2</mrow>
+                        </md>
+                        So, the domain of <m>g</m> must be <m>(-\infty,2]</m>.</p>
+                        <sidebyside widths="47% 47%" margins="1%"><p>To find the function's range, we use technology to graph the function. By the graph, the function's range is <m>(-\infty,7]</m>.</p>
+                        <figure>
+                            <caption>Graph of <m>y=7-3\sqrt[4]{10-5x}</m></caption>
+                            <image width="50%">
+                                <description></description>
+                                <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[ymin=-3,ymax=9,xmin=-10,xmax=4, ytick={-2,-1,...,8}, xtick={-8,-6,...,2}, minor xtick=none, minor ytick=none]
+                                        \addplot[primarycurve, variable=\t, {Kite}-, domain=-1.349:7] ({(10-((7-t)/3)^4)/5},{t}) node[above left, pos=0.6] {$y=7-3\sqrt[4]{10-5x}$};
+                                        \addplot[soliddot, color=firstcolor] coordinates{(2,7)};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                        </figure>
+                    </sidebyside></li>
+                    <li>
+                        <p>First note that the index of the function <m>h(x)=4\sqrt[5]{2x-5}+1</m> is <m>5</m>. By <xref ref="fact-domain-of-odd-index-radical">Fact</xref>, the domain is <m>(-\infty,\infty)</m>.</p>
+                        
+                        <sidebyside widths="47% 47%" margins="1%">
+                            <p>To find the function's range, we use technology to graph the function. According to the graph, the function's range is also the set of all real numbers.</p>
+                        <figure>
+                            <caption>Graph of <m>y=4\sqrt[5]{2x-5}+1</m></caption>
+                            <image width="50%">
+                                <description></description>
+                                <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[ymin=-10,ymax=10,xmin=-15,xmax=15, ytick={-8,-6,...,8}, xtick={-12,-9,...,12}, minor xtick=none, minor ytick=none]
+                                        \addplot[primarycurve, variable=\t, domain=-7.145:8.615] ({(((t-1)/4)^5+5)/2},{t}) node[below right, pos=0.4] {$y=4\sqrt[5]{2x-5}+1$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                                </latex-image-code>
+                            </image>
+                        </figure>
+                        </sidebyside>
+                        
+                    </li>
+                </ol>
+            </solution>
+        </example>
+
+
+
+
+
+        <!-- <p>In the following table, we will summarize the differences between <m>f(x)=x^m</m> where <m>m</m> is even and <m>g(x)=x^n</m> where <m>n</m> is an odd number. The content of this table is very similar to content in <xref ref="table-square-root-cube-root-comparison">Table</xref>.</p>
+
+        <table>
+            <caption>Differences of <m>f(x)=\sqrt[m]{x}</m> where <m>m</m> is even and <m>g(x)=\sqrt[n]{x}</m> where <m>n</m> is odd</caption>
+            <tabular>
+                <col halign="center" right="minor"/>
+                <col halign="center" width="40%" right="minor"/>
+                <col halign="center" width="40%"/>
+                <row bottom="medium">
+                    <cell/>
+                    <cell><m>f(x)=\sqrt[m]{x}</m> where <m>m</m> is even</cell>
+                    <cell><m>g(x)=\sqrt[n]{x}</m> where <m>n</m> is odd</cell>
+                </row>
+                <row>
+                    <cell>Root of a negative number</cell>
+                    <cell><m>\sqrt[m]{-1}\text{ is non-real}</m></cell>
+                    <cell><m>\sqrt[n]{-1}=-1</m></cell>
+                </row>
+                <row>
+                    <cell>Solve <m>x^p=1</m></cell>
+                    <cell><p>
+                        <md><mrow>x^m\amp=1</mrow>
+                            <mrow>x\amp=\pm1</mrow>
+                        </md></p>
+                    </cell>
+                    <cell><p>
+                        <md>
+                            <mrow>x^n\amp=1</mrow>
+                            <mrow>x\amp=1</mrow>
+                        </md></p>
+                    </cell>
+                </row>
+                <row>
+                    <cell>Solve <m>x^p=-1</m></cell>
+                    <cell><p>
+                        <md>
+                            <mrow>x^m\amp=-1</mrow>
+                            <mrow>\text{no real solutions}</mrow>
+                        </md></p>
+                    </cell>
+                    <cell><p>
+                        <md>
+                            <mrow>x^n\amp=-1</mrow>
+                            <mrow>x\amp=-1</mrow>
+                        </md></p>
+                    </cell>
+                </row>
+                <row>
+                    <cell>Domain</cell>
+                    <cell><m>[0,\infty)</m></cell>
+                    <cell><m>(-\infty,\infty)</m></cell>
+                </row>
+                <row>
+                    <cell>Range</cell>
+                    <cell><m>[0,\infty)</m></cell>
+                    <cell><m>(-\infty,\infty)</m></cell>
+                </row>
+            </tabular>
+        </table>
+ -->
+        <!-- <p>The graph of any <em>even</em> indexed radical, <m>f(x)=\sqrt[m]{x}</m>, where <m>m</m> is a positive even number, is very similar to the square root function's graph. They all pass through the points <m>(0,0)</m> and <m>(1,1)</m>.</p>
+
+                <figure>
+                    <caption>Graph of <m>y=\sqrt{x}</m>, <m>y=\sqrt[4]{x}</m>,  and <m>y=\sqrt[6]{x}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-1,ymax=4,xmin=-2,xmax=10, ytick={1,2,,3},  xtick={2,4,6,8}, minor xtick={-2,0,...,10}, minor ytick={-1,0,...,4}]
+                                \addplot[primarycurve, solid, -{Kite}, variable=\t, domain=0:10^(1/2)] ({t^2},{t}) node[above, pos=0.7, sloped] {$y=\sqrt{x}$};
+                                \addplot[secondarycurve, solid, -{Kite}, variable=\t, domain=0:10^(1/4)] ({t^4},{t}) node[above, pos=0.7, sloped] {$y=\sqrt[4]{x}$};
+                                \addplot[tertiarycurve, solid, -{Kite}, variable=\t, domain=0:10^(1/6)] ({t^6},{t}) node[below, pos=0.7, sloped] {$y=\sqrt[6]{x}$};
+                                \addplot[soliddot, color=black] coordinates{(0,0)};
+                                \addplot[soliddot, color=black] coordinates{(1,1)};
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure>
+
+        <p>The graph of any <em>odd</em> indexed radical, <m>g(x)=\sqrt[n]{x}</m>, where <m>n</m> is a positive odd number larger than 1, is very similar to the cube root function's graph. They all pass through the points <m>(-1,-1)</m>, <m>(0,0)</m> and <m>(1,1)</m>.</p>
+
+                <figure>
+                    <caption>Graph of <m>y=\sqrt[3]{x}</m> and <m>y=\sqrt[5]{x}</m></caption>
+                    <image width="50%">
+                        <description></description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[ymin=-3,ymax=3,xmin=-10,xmax=10, ytick={-2,-1,1,2}, xtick={-8,-6,...,8}, minor xtick=none, minor ytick={-4,0,...,4}]
+                                \addplot[primarycurve, solid, variable=\t, domain=-10^(1/3):10^(1/3)] ({t^3},{t}) node[above, pos=0.8, sloped] {$y=\sqrt[3]{x}$};
+                                \addplot[secondarycurve, solid, variable=\t, domain=-10^(1/5):10^(1/5)] ({t^5},{t}) node[below, pos=0.8, sloped] {$y=\sqrt[5]{x}$};
+                                \addplot[soliddot, color=black] coordinates{(0,0)};
+                                \addplot[soliddot, color=black] coordinates{(1,1)};
+                                \addplot[soliddot, color=black] coordinates{(-1,-1)};
+                            \end{axis}
+                        \end{tikzpicture}
+                        ]]>
+                        </latex-image-code>
+                    </image>
+                </figure> -->
+    </subsection>
+
+
+
 
     <exercises>
         <exercisegroup>
@@ -717,156 +1262,6 @@
         </exercisegroup>
     </exercises>
 
-    <subsection>
-        <title>The Distance Formula</title>
-
-        <figure>
-            <caption>Alternative Video Lesson</caption>
-            <video youtube="TiAEH1qPTQU" />
-        </figure>
-
-        <p>Square root is used in calculating the distance between two points on a coordinate plane. We learned the Pythagorean Theorem in <!--The following xref is definitely not right anymore.--><xref ref="subsection-definition-of-square-root">Subsection</xref>. In a coordinate plane, we can use the Pythagorean Theorem to calculate the distance between two points.</p>
-
-        <example>
-            <statement>
-                <p>Calculate the distance between <m>(2,3)</m> and <m>(5,7)</m>.</p>
-
-                <p>First, we will sketch a graph for those two points.</p>
-
-                <figure>
-                    <caption>Calculating the Distance Between <m>(2,3)</m> and <m>(5,7)</m></caption>
-                    <image width="50%">
-                        <description></description>
-                        <latex-image-code>
-                        <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-1,ymax=9,xmin=-1,xmax=9,
-                                        ytick={0,1,...,8},
-                                        minor ytick={0,1,...,8},
-                                        xtick={0,1,...,8},
-                                        minor xtick={0,1,...,8},
-                                        xlabel={x},ylabel={y}]
-                                \draw [dashed, red] (axis cs: 2,3) -- (axis cs: 5,3) -- (axis cs: 5,7);
-                                \draw [red] (axis cs: 2,3) -- (axis cs: 5,7);
-                                \addplot [soliddot, red] coordinates {(2,3)} node[below left, red] {$(2,3)$};
-                                \addplot [soliddot, red] coordinates {(5,3)} node[below right, red] {$(5,3)$};
-                                \addplot [soliddot, red] coordinates {(5,7)} node[above right, red] {$(5,7)$};
-                                \node[below, blue] at (axis cs: 3.5,3) {$5-2=3$};
-                                \node[blue, right] at (axis cs: 5,5) {$7-3=4$};
-                                \node[blue] at (axis cs: 3.2,5.5) {$d$};
-                                \draw [red, thin] (axis cs: 5,3.3) -- (axis cs: 4.7,3.3) -- (axis cs: 4.7,3);
-                            \end{axis}
-                        \end{tikzpicture}
-                        ]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>To calculate the distance between <m>(2,3)</m> and <m>(5,7)</m>, we sketch a right triangle as in the figure and then use Pythagorean Theorem:<md>
-                    <mrow>d^2\amp=(5-2)^2+(7-3)^2</mrow>
-                    <mrow>d^2\amp=3^2+4^2</mrow>
-                    <mrow>d^2\amp=9+16</mrow>
-                    <mrow>d^2\amp=25</mrow>
-                    <mrow>d\amp=\sqrt{25}</mrow>
-                    <mrow>d\amp=5</mrow>
-                </md>Note that we didn't need to do <m>d=\pm\sqrt{25}</m> because distance must have positive values.</p>
-            </statement>
-        </example>
-
-        <p>With the same method, we can derive a formula to calculate the distance between any two points, like in the next example.</p>
-
-        <example>
-            <statement>
-                <p>Calculate the distance between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>. We use subscripts to identify the first pair <m>(x_1,y_1)</m> and the second pair <m>(x_2,y_2)</m>.</p>
-
-                <p>First, we will sketch a graph for those two points. We will put the image from last example side by side with the new image, so it's clear that we are using the same method.</p>
-
-                <sidebyside margins="0%">
-                    <figure>
-                        <caption>Calculating the Distance Between <m>(2,3)</m> and <m>(5,7)</m></caption>
-                        <image width="70%">
-                            <description></description>
-                            <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[ymin=-1,ymax=9,xmin=-1,xmax=9,
-                                            ytick={0,1,...,8},
-                                            minor ytick={0,1,...,8},
-                                            xtick={0,1,...,8},
-                                            minor xtick={0,1,...,8},
-                                            xlabel={x},ylabel={y}]
-                                    \draw [dashed, red] (axis cs: 2,3) -- (axis cs: 5,3) -- (axis cs: 5,7);
-                                    \draw [red] (axis cs: 2,3) -- (axis cs: 5,7);
-                                    \addplot [soliddot, red] coordinates {(2,3)} node[below left, red] {$(2,3)$};
-                                    \addplot [soliddot, red] coordinates {(5,3)} node[below right, red] {$(5,3)$};
-                                    \addplot [soliddot, red] coordinates {(5,7)} node[above right, red] {$(5,7)$};
-                                    \node[below, blue] at (axis cs: 3.5,3) {$5-2=3$};
-                                    \node[blue, right] at (axis cs: 5,5) {$7-3=4$};
-                                    \node[blue] at (axis cs: 3.2,5.5) {$d$};
-                                    \draw [red, thin] (axis cs: 5,3.3) -- (axis cs: 4.7,3.3) -- (axis cs: 4.7,3);
-                                \end{axis}
-                            \end{tikzpicture}
-                            ]]>
-                            </latex-image-code>
-                        </image>
-                    </figure>
-
-                    <figure>
-                        <caption>Calculating the Distance Between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m></caption>
-                        <image width="70%">
-                            <description></description>
-                            <latex-image-code>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[ymin=-1,ymax=9,xmin=-1,xmax=9,
-                                            ytick={none},
-                                            minor ytick={2,4,6,8},
-                                            xtick={none},
-                                            minor xtick={2,4,6,8},
-                                            xlabel={x},ylabel={y}]
-                                    \draw [dashed, red] (axis cs: 2,3) -- (axis cs: 5,3) -- (axis cs: 5,7);
-                                    \draw [red] (axis cs: 2,3) -- (axis cs: 5,7);
-                                    \addplot [soliddot, red] coordinates {(2,3)};
-                                    \node[below, red] at (axis cs: 1.3,3) {$(x_1,y_1)$};
-                                    \addplot [soliddot, red] coordinates {(5,3)} node[below right, red] {$(x_2,y_1)$};
-                                    \addplot [soliddot, red] coordinates {(5,7)} node[above right, red] {$(x_2,y_2)$};
-                                    \node[below, blue] at (axis cs: 3.5,3) {$x_2-x_1$};
-                                    \node[blue, right] at (axis cs: 5,5) {$y_2-y_1$};
-                                    \node[blue] at (axis cs: 3.2,5.5) {$d$};
-                                    \draw [red, thin] (axis cs: 5,3.3) -- (axis cs: 4.7,3.3) -- (axis cs: 4.7,3);
-                                \end{axis}
-                            \end{tikzpicture}
-                            ]]>
-                            </latex-image-code>
-                        </image>
-                    </figure>
-                </sidebyside>
-
-                <p>To calculate the distance between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>, we sketch a right triangle as in the figure and then use Pythagorean Theorem:<md>
-                    <mrow>d^2\amp=(x_2-x_1)^2+(y_2-y_1)^2</mrow>
-                    <mrow>d\amp=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</mrow>
-                </md></p>
-            </statement>
-        </example>
-
-        <p>With this formula, we can calculate the distance between two points without sketching a graph, like in the next example.</p>
-
-        <example>
-            <statement>
-                <p>Find the distance between <m>(-2,4)</m> and <m>(5,-20)</m>.</p>
-            </statement>
-            <solution>
-                <p>To calculate the distance between <m>(-2,4)</m> and <m>(5,-20)</m>, we use the distance formula. It's good practice to mark each value with the corresponding variables in the formula. Again, <m>(x_1,y_1)</m> stands for the first point's coordinates, and <m>(x_2,y_2)</m> stands for the second point's coordinates:<me>(\stackrel{x_1}{-2},\stackrel{y_1}{4}), (\stackrel{x_2}{5},\stackrel{y_2}{-20})</me>With each value marked, it would be difficult to make the mistake of substituting a variable with the wrong value. We have:<md>
-                    <mrow>d\amp=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</mrow>
-                    <mrow>d\amp=\sqrt{[5-(-2)]^2+[(-20)-4]^2}</mrow>
-                    <mrow>d\amp=\sqrt{[7]^2+[-24]^2}</mrow>
-                    <mrow>d\amp=\sqrt{49+576}</mrow>
-                    <mrow>d\amp=\sqrt{625}</mrow>
-                    <mrow>d\amp=25</mrow>
-                </md>The distance between <m>(-2,4)</m> and <m>(5,-20)</m> is <m>25</m> units.</p>
-            </solution>
-        </example>
-
-        <remark><p>Note that it's good practice to add parentheses around negative values when we do substitutions. For example, when we substitute <m>x</m> with <m>-7</m> in <m>x^2</m>, we should do<me>x^2=(-7)^2=49\text{ correct}</me>We should not do<me>x^2=-7^2=-49\text{ incorrect}</me></p></remark>
-    </subsection>
-
     <exercises>
         <exercisegroup>
             <introduction>
@@ -886,277 +1281,6 @@
             </exercise>
         </exercisegroup>
     </exercises>
-
-    <subsection>
-        <title>Cube Root Function</title>
-
-        <p>The square of <m>2</m> is <m>4</m>, so the square root of <m>4</m> is <m>2</m>.</p>
-
-        <p>Similarly, the cube of <m>2</m> is <m>8</m>, so the cube root of <m>8</m> is <m>2</m>. We write<me>\sqrt[3]{8}=2</me>It's helpful to memorize the first few perfect cube numbers and their cube root:<md>
-            <mrow>\amp0^3=0\amp\sqrt[3]{0}=0</mrow>
-            <mrow>\amp1^3=1\amp\sqrt[3]{1}=1</mrow>
-            <mrow>\amp2^3=8\amp\sqrt[3]{8}=2</mrow>
-            <mrow>\amp3^3=27\amp\sqrt[3]{27}=3</mrow>
-            <mrow>\amp4^3=64\amp\sqrt[3]{64}=4</mrow>
-            <mrow>\amp5^3=125\amp\sqrt[3]{125}=5</mrow>
-        </md>One major difference between cube root and square root is that it's ok to cube root negative numbers. For example:<me>(-1)^3=-1,\quad\sqrt[3]{-1}=-1</me>However, we may not square root negative numbers. For example:<me>\sqrt{-1}=\text{undefined}</me></p>
-
-        <p>Most calculators don't have the cube root button. When we calculate the cube root of a number, we can use the power button (which is usually marked with the wedge symbol, <m>\wedge</m>). For example, to calculate <m>\sqrt[3]{8}</m>, we press the following buttons:<me>8\wedge(1/3)</me>We will explain why <m>\sqrt[3]{8}=8^{\frac{1}{3}}</m> in <xref ref="section-radical-expressions-and-rational-exponents">Section</xref>. For now, just learn how to use a calculator to calculate the cube root of a given number.</p>
-
-        <p>We can also estimate the value of a cube root, like <m>\sqrt[3]{10}</m>:<md>
-            <mrow>\sqrt[3]{8}\amp=2</mrow>
-            <mrow>\sqrt[3]{10}\amp=2...</mrow>
-            <mrow>\sqrt[3]{27}\amp=3</mrow>
-        </md>By the values above, <m>\sqrt[3]{10}</m> must be between <m>2</m> and <m>3</m>, and closer to <m>2</m>. We can use a calculator to verify <m>\sqrt[3]{10}=2.154...</m></p>
-
-        <p>We will build a table and graph the cube root function:</p>
-
-        <table>
-            <caption>Values of <m>g(x)=\sqrt[3]{x}</m></caption>
-            <tabular>
-                <col halign="center"/>
-                <col halign="center"/>
-                <col halign="center"/>
-                <row bottom="medium">
-                    <cell><m>x</m></cell>
-                    <cell><m>g(x)=\sqrt[3]{x}</m></cell>
-                    <cell>Points on the Curve</cell>
-                </row>
-                <row>
-                    <cell><m>-8</m></cell>
-                    <cell><m>\sqrt[3]{-8}=-2</m></cell>
-                    <cell><m>(-8,-2)</m></cell>
-                </row>
-                <row>
-                    <cell><m>-1</m></cell>
-                    <cell><m>\sqrt[3]{-1}=-1</m></cell>
-                    <cell><m>(-1,-1)</m></cell>
-                </row>
-                <row>
-                    <cell><m>0</m></cell>
-                    <cell><m>\sqrt[3]{0}=0</m></cell>
-                    <cell><m>(0,0)</m></cell>
-                </row>
-                <row>
-                    <cell><m>1</m></cell>
-                    <cell><m>\sqrt[3]{1}=1</m></cell>
-                    <cell><m>(1,1)</m></cell>
-                </row>
-                <row>
-                    <cell><m>8</m></cell>
-                    <cell><m>\sqrt[3]{8}=2</m></cell>
-                    <cell><m>(8,2)</m></cell>
-                </row>
-            </tabular>
-        </table>
-
-        <p>We will plot points and look at the graph of <m>g(x)=\sqrt[3]{x}</m>.</p>
-
-        <figure>
-            <caption>Graph of <m>g(x)=\sqrt[3]{x}</m></caption>
-            <image width="50%">
-                <description></description>
-                <latex-image-code>
-                <![CDATA[\begin{tikzpicture}
-                    \begin{axis}[ymin=-3,ymax=3,xmin=-10,xmax=10,
-                                ytick={-2,-1,...,2},
-                                minor ytick={-2,-1,...,2},
-                                xtick={-8,-6,...,8},
-                                minor xtick={-8,-6,...,8},
-                                xlabel={x},ylabel={y}]
-                        \addplot [->, red, domain=0:10, samples=100] {x^(1/3)};
-                        \addplot [<-, red, domain=-10:0, samples=100] {-(-x)^(1/3)};
-                        \addplot[soliddot] coordinates {(-8,-2) (-1,-1) (0,0) (1,1) (8,2)};
-                    \end{axis}
-                \end{tikzpicture}
-                ]]>
-                </latex-image-code>
-            </image>
-        </figure>
-
-        <p>Both the domain and range of <m>g(x)=\sqrt[3]{x}</m> are <m>(-\infty,\infty)</m>, or simply "all real numbers." Compare this with the domain and range of <m>f(x)=\sqrt{x}</m>, which are both <m>[0,\infty)</m>. The reason for the difference is that we may not square root negative numbers, but we may cube root negative numbers.</p>
-
-        <remark><p>It is important to be able to quickly sketch the graphs of the following types of basic functions:<md>
-            <mrow>f(x)\amp=mx+b</mrow>
-            <mrow>g(x)\amp=a(x-h)^2+k</mrow>
-            <mrow>h(x)\amp=\abs{x}</mrow>
-            <mrow>p(x)\amp=\frac{1}{x}</mrow>
-            <mrow>q(x)\amp=\frac{1}{x^2}</mrow>
-            <mrow>r(x)\amp=\sqrt{x}</mrow>
-            <mrow>s(x)\amp=\sqrt[3]{x}</mrow>
-        </md></p></remark>
-
-        <p>The next example is an application of cube root function.</p>
-
-        <example>
-            <statement>
-                <p>A factory makes customized plastic balls. A ball's volume can be calculated by the formula <m>V(r)=\frac{4}{3}\pi r^3</m>, where <m>V</m> stands for volume and <m>r</m> stands for radius. A customer asks for plastic balls with a volume of <m>3</m> cubic feet. Build a function to calculate the ball's radius, and then find the radius of those balls. Round your answer to two decimal places.</p>
-            </statement>
-            <solution>
-                <p>We will solve for <m>r</m> in the formula <m>V(r)=\frac{4}{3}\pi r^3</m>:<md>
-                    <mrow>V\amp=\frac{4}{3}\pi r^3</mrow>
-                    <mrow>\multiplyleft{3}V\amp=\multiplyleft{3}\frac{4}{3}\pi r^3</mrow>
-                    <mrow>3V\amp=4\pi r^3</mrow>
-                    <mrow>\frac{3V}{4\pi}\amp=\frac{4\pi r^3}{4\pi}</mrow>
-                    <mrow>\frac{3V}{4\pi}\amp=r^3</mrow>
-                    <mrow>\sqrt[3]{\frac{3V}{4\pi}}\amp=\sqrt[3]{r^3}</mrow>
-                    <mrow>\sqrt[3]{\frac{3V}{4\pi}}\amp=r</mrow>
-                    <mrow>r(V)\amp=\sqrt[3]{\frac{3V}{4\pi}}</mrow>
-                </md>Next, we substitute <m>V</m> in <m>r(V)</m> with <m>3</m>, and we have:<md>
-                    <mrow>r(V)\amp=\sqrt[3]{\frac{3V}{4\pi}}</mrow>
-                    <mrow>r(3)\amp=\sqrt[3]{\frac{3(3)}{4\pi}}</mrow>
-                    <mrow>r(3)\amp\approx0.89</mrow>
-                </md>The plastic balls should have a radius of approximately <m>0.89</m> foot.</p>
-                <p>When we calculate <m>\sqrt[3]{\frac{3(3)}{4\pi}}</m> with a calculator, we press the following buttons:<me>(3*3/(4\pi))\wedge(1/3)</me></p>
-            </solution>
-        </example>
-
-        <remark><p>When we cube root both sides of an equation, like <m>x^3=8</m>, we do not need to add the <m>\pm</m> symbol like when we solve <m>x^2=4</m>. Compare the following equations:</p>
-
-        <sidebyside margins="0%">
-            <p><md>
-                <mrow>x^3\amp=8</mrow>
-                <mrow>\sqrt[3]{x^3}\amp=\sqrt[3]{8}</mrow>
-                <mrow>x\amp=2</mrow>
-            </md></p>
-
-            <p><md>
-                <mrow>x^2\amp=4</mrow>
-                <mrow>\sqrt{x^2}\amp=\pm\sqrt{4}</mrow>
-                <mrow>x\amp=\pm2</mrow>
-            </md></p>
-        </sidebyside>
-
-        <p>For <m>x^2=4</m>, there are two solutions because <m>2^2=4</m> and <m>(-2)^2=4</m>. However, for <m>x^3=8</m>, there is only one solution as <m>2^3=8</m>. The number <m>-2</m> is not a solution of <m>x^3=8</m>, because <m>(-2)^3=-8</m>.</p></remark>
-
-        <p>The following table summarized the difference of square root and cube root:</p>
-
-        <table xml:id="table-square-root-cube-root-comparison">
-            <caption>Differences of <m>f(x)=\sqrt{x}</m> and <m>g(x)=\sqrt[3]{x}</m></caption>
-            <tabular>
-                <col halign="center" right="minor"/>
-                <col halign="center" width="40%" right="minor"/>
-                <col halign="center" width="40%"/>
-                <row bottom="medium">
-                    <cell/>
-                    <cell><m>f(x)=\sqrt{x}</m></cell>
-                    <cell><m>g(x)=\sqrt[3]{x}</m></cell>
-                </row>
-                <row>
-                    <cell>Root of a negative number</cell>
-                    <cell><m>\sqrt{-1}=\text{undefined}</m></cell>
-                    <cell><m>\sqrt[3]{-1}=-1</m></cell>
-                </row>
-                <row>
-                    <cell>Solve <m>x^n=1</m></cell>
-                    <cell><p><md><mrow>x^2\amp=1</mrow><mrow>x\amp=\pm1</mrow></md></p></cell>
-                    <cell><p><md><mrow>x^3\amp=1</mrow><mrow>x\amp=1</mrow></md></p></cell>
-                </row>
-                <row>
-                    <cell>Solve <m>x^n=-1</m></cell>
-                    <cell><p><md><mrow>x^2\amp=-1</mrow><mrow>x\amp\text{ is undefined}</mrow></md></p></cell>
-                    <cell><p><md><mrow>x^3\amp=-1</mrow><mrow>x\amp=-1</mrow></md></p></cell>
-                </row>
-                <row>
-                    <cell>Domain</cell>
-                    <cell><m>[0,\infty)</m></cell>
-                    <cell><m>(-\infty,\infty)</m></cell>
-                </row>
-                <row>
-                    <cell>Range</cell>
-                    <cell><m>[0,\infty)</m></cell>
-                    <cell><m>(-\infty,\infty)</m></cell>
-                </row>
-            </tabular>
-        </table>
-    </subsection>
-
-    <subsection>
-        <title>Functions of Other Roots</title>
-
-        <p>Similar to the cube root, there are the <m>4^{th}</m> root, <m>5^{th}</m> root, etc, as in the following examples:<md>
-            <mrow>\amp2^4=16,\amp\sqrt[4]{16}=2</mrow>
-            <mrow>\amp(-2)^5=-32,\amp\sqrt[5]{-32}=-2</mrow>
-            <mrow>\amp2^6=64,\amp\sqrt[6]{64}=2</mrow>
-        </md>To calculate the <m>5^{th}</m> root of <m>-32</m> with a calculator, we press the following buttons:<me>(-32)\wedge(1/5)</me></p>
-
-        <p>In the following table, we will summarize the differences between <m>f(x)=x^m</m> where <m>m</m> is even and <m>g(x)=x^n</m> where <m>n</m> is an odd number. The content of this table is very similar to content in <xref ref="table-square-root-cube-root-comparison">Table</xref>.</p>
-
-        <table>
-            <caption>Differences of <m>f(x)=\sqrt[m]{x}</m> where <m>m</m> is even and <m>g(x)=\sqrt[n]{x}</m> where <m>n</m> is odd</caption>
-            <tabular>
-                <col halign="center" right="minor"/>
-                <col halign="center" width="40%" right="minor"/>
-                <col halign="center" width="40%"/>
-                <row bottom="medium">
-                    <cell/>
-                    <cell><m>f(x)=\sqrt[m]{x}</m> where <m>m</m> is even</cell>
-                    <cell><m>g(x)=\sqrt[n]{x}</m> where <m>n</m> is odd</cell>
-                </row>
-                <row>
-                    <cell>Root of a negative number</cell>
-                    <cell><m>\sqrt[m]{-1}=\text{undefined}</m></cell>
-                    <cell><m>\sqrt[n]{-1}=-1</m></cell>
-                </row>
-                <row>
-                    <cell>Solve <m>x^p=1</m></cell>
-                    <cell><p><md><mrow>x^m\amp=1</mrow><mrow>x\amp=\pm1</mrow></md></p></cell>
-                    <cell><p><md><mrow>x^n\amp=1</mrow><mrow>x\amp=1</mrow></md></p></cell>
-                </row>
-                <row>
-                    <cell>Solve <m>x^p=-1</m></cell>
-                    <cell><p><md><mrow>x^m\amp=-1</mrow><mrow>x\amp\text{ is undefined}</mrow></md></p></cell>
-                    <cell><p><md><mrow>x^n\amp=-1</mrow><mrow>x\amp=-1</mrow></md></p></cell>
-                </row>
-                <row>
-                    <cell>Domain</cell>
-                    <cell><m>[0,\infty)</m></cell>
-                    <cell><m>(-\infty,\infty)</m></cell>
-                </row>
-                <row>
-                    <cell>Range</cell>
-                    <cell><m>[0,\infty)</m></cell>
-                    <cell><m>(-\infty,\infty)</m></cell>
-                </row>
-            </tabular>
-        </table>
-
-        <p>The graph of <m>f(x)=\sqrt[m]{x}</m>, where <m>m</m> is an even number, is very similar to the square root function's graph. They all pass the points <m>(0,0)</m> and <m>(1,1)</m>.</p>
-
-        <p>The graph of <m>g(x)=\sqrt[n]{x}</m>, where <m>n</m> is an odd number, is very similar to the cube root function's graph. They all pass the points <m>(-1,-1)</m>, <m>(0,0)</m> and <m>(1,1)</m>.</p>
-
-        <example>
-            <statement>
-                <p>Find the domain and range of <m>g(x)=\sqrt[5]{2x-4}+1</m>.</p>
-            </statement>
-            <solution>
-                <p>There is no limitation on the domain of a fifth-root function, so the domain is simply <m>(-\infty,\infty)</m>, or "all real numbers."</p>
-                <p>To find the function's range, we use technology to graph the function:</p>
-
-                <figure>
-                    <caption>Graph of <m>g(x)=\sqrt[5]{2x-4}+1</m></caption>
-                    <image width="50%">
-                        <description></description>
-                        <latex-image-code>
-                        <![CDATA[\begin{tikzpicture}
-                            \begin{axis}[ymin=-4,ymax=4,xmin=-10,xmax=10,
-                                        ytick={-3,-2,...,3},
-                                        minor ytick={-3,-2,...,3},
-                                        xtick={-8,-6,...,8},
-                                        minor xtick={-8,-6,...,8},
-                                        xlabel={x},ylabel={y}]
-                                \addplot[<->,red] expression[domain=-10:10,samples=100]{(2*x-4)/abs(2*x-4)*abs(2*x-4)^(1/5)+1};
-                            \end{axis}
-                        \end{tikzpicture}
-                        ]]>
-                        </latex-image-code>
-                    </image>
-                </figure>
-
-                <p>According to the graph, the function's range is also "all real numbers."</p>
-            </solution>
-        </example>
-    </subsection>
 
     <exercises>
         <exercisegroup>
