@@ -18,13 +18,903 @@
 
     <title>Domain and Range</title>
 
+    <objectives>
+        <title>PCC Course Content and Outcome Guide</title>
+        <ul>
+            <li><!-- <xref ref="mth95-..." /> --></li>
+        </ul>
+    </objectives>
+
     <introduction>
+        <p>A function is a process for turning input values into output values. Occasionally a function <m>f</m> will have input values for which the process breaks down.</p>
 
         <figure>
             <caption>Alternative Video Lesson</caption>
             <video youtube=""/>
         </figure>
     </introduction>
+
+    <subsection>
+        <title>Domain</title>
+
+        <example xml:id="example-portland-population">
+            <p>Let <m>P</m> be the population of Portland as a function of the year. According to Google<fn><url href="https://www.google.com/publicdata/explore?ds=kf7tgg1uo9ude_&amp;met_y=population&amp;hl=en&amp;dl=en#!ctype=l&amp;strail=false&amp;bcs=d&amp;nselm=h&amp;met_y=population&amp;scale_y=lin&amp;ind_y=false&amp;rdim=country&amp;idim=place:4159000&amp;ifdim=country&amp;hl=en_US&amp;dl=en&amp;ind=false">https://www.google.com/publicdata/explore?ds=kf7tgg1uo9ude_<ampersand />met_y=population<ampersand />hl=en<ampersand />dl=en#!ctype=l<ampersand />strail=false<ampersand />bcs=d<ampersand />nselm=h<ampersand />met_y=population<ampersand />scale_y=lin<ampersand />ind_y=false<ampersand />rdim=country<ampersand />idim=place:4159000<ampersand />ifdim=country<ampersand />hl=en_US<ampersand />dl=en<ampersand />ind=false</url></fn> we can say that:<md>
+                <mrow>P(2016) \amp = 639863 \amp P(1990) \amp= 487849</mrow>
+            </md>But what if we asked to find <m>P(1600)</m>? The question doesn't really make sense anymore. The <url href="https://en.wikipedia.org/wiki/Multnomah_people">Multnomah tribe</url> lived in villages in the area, but the city of Portland was not incorporated until 1851. We say that <m>P(1600)</m> is <em>undefined</em>.</p>
+        </example>
+
+        <example xml:id="example-weight">
+            <p>If <m>m</m> is a person's mass in <quantity><unit prefix="kilo" base="gram" /></quantity>, let <m>w(m)</m> be their weight in <quantity><unit base="pound" /></quantity>. There is an approximate formula for <m>w</m>: <me>w(m)\approx 2.2m</me>From this formula we can find:<md>
+                <mrow>w(50) \amp \approx 110 \amp w(80) \amp \approx 176</mrow>
+            </md>which tells us that a <m>50</m>-<quantity><unit prefix="kilo" base="gram" /></quantity> person weighs <quantity><mag>110</mag><unit base="pound" /></quantity>, and an <m>80</m>-<quantity><unit prefix="kilo" base="gram" /></quantity> person weighs <quantity><mag>176</mag><unit base="pound" /></quantity>.</p>
+
+            <p>What if we asked for <m>w(-100)</m>? In the context of this example, we would be asking for the weight of a person whose mass is  <quantity><mag>-100</mag><unit prefix="kilo" base="gram" /></quantity>. This is clearly nonsense. That means that <m>w(-100)</m> is <em>undefined</em>. Note that the <em>context</em> of the example is telling us that <m>w(-100)</m> is undefined even though the formula alone might suggest that <m>w(-100)=-220</m>.</p>
+        </example>
+
+        <example xml:id="example-context-free-domain">
+            <p>Let <m>g</m> have the formula <me>g(x)=\frac{x}{x-7}</me>. For most <m>x</m>-values, <m>g(x)</m> is perfectly computable:<md>
+                <mrow>g(2) \amp = -\frac{2}{5} \amp g(14) \amp = 2</mrow>
+            </md>. But if we try to compute <m>g(7)</m>, we run into an issue of arithmetic.<md>
+                <mrow>g(7) \amp = \frac{7}{7-7}</mrow>
+                <mrow>\amp = \frac{7}{0}</mrow>
+            </md>. The expression <m>\frac{7}{0}</m> is <em>undefined</em>. There is no number that this could equal.</p>
+        </example>
+
+        <exercise>
+            <webwork>
+                <statement>
+                    <p>Find an input for the function <m>f</m> that would cause an undefined output, where <m>f(x)=\dfrac{x+2}{x+8}</m>.</p>
+                    <p>The number <var name="'-8'" width="5" /> would cause undefined output.</p>
+                </statement>
+                <solution>
+                    <p>Trying <m>-8</m> as an input value would not work out; it would lead to division by <m>0</m>.</p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <p>These examples should motivate the following definition.</p>
+
+        <definition xml:id="definition-domain">
+            <title>Domain</title>
+            <statement>
+                <p>The <term>domain</term> of a function <m>f</m> is the collection of all of its valid input values.</p>
+            </statement>
+        </definition>
+
+        <example>
+            <p>Referring to the functions from <xref first="example-portland-population" last="example-context-free-domain" /><ul>
+                <li>
+                    <p>The domain of <m>P</m> is all years starting from 1851 and later. It would be reasonable to say the the domain is actually all years from 1851 up to the current year, since we cannot guarantee that Portland will still exist into the future.</p>
+                </li>
+                <li>
+                    <p>The domain of <m>w</m> is all positive real numbers. It is nonsensical to have a person with negative mass or even one with zero mass. While there is some lower bound for the smallest mass a person could have, and also an upper bound for the largest mass a person could have, these boundaries are gray. We can say for sure that nonpositive numbers should never be used as input for <m>w</m>.</p>
+                </li>
+                <li>
+                    <p>The domain of <m>g</m> is all real numbers except <m>7</m>. This is the only number that causes a breakdown in <m>g</m>'s formula.</p>
+                </li>
+            </ul></p>
+        </example>
+    </subsection>
+
+    <subsection>
+        <title>Interval, Set, and Set-Builder Notation</title>
+        <p>Communicating the domain of a function can be wordy. In mathematics, we can communicate the same information using concise notation that is accepted for use almost everywhere. <xref ref="table-interval-notation">Table</xref> contains example functions from this section and their domains, and demonstrates <em>interval notation</em> for these domains. Basic interval notation is covered in <xref ref="section-notation-form-intervals">Section</xref>, but some of our examples here go beyond what that section covers.</p>
+
+
+        <table xml:id="table-interval-notation">
+            <caption>Domains from Earlier Examples</caption>
+            <tabular>
+                <col width="27%"/>
+                <col width="27%"/>
+                <col width="27%"/>
+                <col />
+                <row bottom="major">
+                    <cell>function</cell>
+                    <cell>verbal domain</cell>
+                    <cell>number line illustration</cell>
+                    <cell>interval notation</cell>
+                </row>
+                <row bottom="minor">
+                    <cell><p><m>P</m> from <xref ref="example-portland-population" /></p></cell>
+                    <cell><p>all years 1851 and greater</p></cell>
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with a mark at 1851; a thick line overlays the number line everywhere to the right of 1851, with an arrow pointing right; there is a left bracket at 1851</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                xmin=0,xmax=3000,
+                                                xtick={0,1000,...,3000},
+                                                minor xtick={0,500,...,3000},
+                                                /pgf/number format/1000 sep={},
+                                                ]
+                                        \addplot[closedinfiniteinterval] coordinates {(1851,0) (3000,0)} node[pos=0,above] {1851};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>[1851,\infty)</m></cell>
+                </row>
+                <row bottom="minor">
+                    <cell><p><m>w</m> from <xref ref="example-weight" /></p></cell>
+                    <cell><p>all real numbers greater than <m>0</m></p></cell>
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with a mark at 0; a thick line overlays the number line everywhere to the right of 0, with an arrow pointing right; there is a left parenthesis at 0</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[openinfiniteinterval] coordinates {(0,0) (10,0)} node[pos=0,above] {0};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>(0,\infty)</m></cell>
+                </row>
+                <row bottom="minor">
+                    <cell><p><m>g</m> from <xref ref="example-context-free-domain" /></p></cell>
+                    <cell><p>all real numbers except <m>7</m></p></cell>
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with a mark at 7; a thick line overlays the number line everywhere to the left of 7 and everywhere to the right of 7, with an arrow pointing left and an arrow pointing right; there is a right parenthesis at 7 immediately followed by a left parenthesis</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[openinfiniteinterval] coordinates {(7.1,0) (10,0)} node[pos=0,above] {7};
+                                        \addplot[openinfiniteinterval] coordinates {(6.9,0) (-10,0)};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>(-\infty,7)\cup(7,\infty)</m></cell>
+                </row>
+            </tabular>
+        </table>
+
+        <p>Again, basic interval notation is covered in <xref ref="section-notation-form-intervals">Section</xref>, but one thing appears in <xref ref="table-interval-notation">Table</xref> that is not explained in that earlier section: the <m>\cup</m> symbol, which we see in the domain of <m>g</m>.</p>
+
+        <p>Occasionally there is a need to consider number line pictures such as <xref ref="figure-interval-union">Figure</xref>, where two or more intervals appear.</p>
+
+        <figure xml:id="figure-interval-union">
+            <caption>A number line with a union of two intervals</caption>
+            <image width="50%">
+                <description>a number line with marks at -5, 1, 4, and 7; the portions of the number line between -5 and 1, and between 4 and 7, each have a thick line overlaying them; there is a left bracket at -5 and a right bracket at 1; there is a left parenthesis at 4 and a right bracket at 7</description>
+                <latex-image-code>
+                    <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[numberline,
+                                    ]
+                            \addplot[closedinterval] coordinates {(-5,0) (1,0)};
+                            \addplot[openclosedinterval] coordinates {(4,0) (7,0)};
+                        \end{axis}
+                    \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+        <p>This picture is trying to tell you to consider numbers that are between <m>-5</m> and <m>1</m>, together with numbers that are between <m>4</m> and <m>7</m>. That word <q>together</q> is related to the word <q>union,</q> and in math the <term>union symbol</term>, <m>\cup</m>, captures this idea. So we can write the numbers in this picture as <me>[-5,1]\cup(4,7]</me>(which uses interval notation).</p>
+
+        <p>With the domain of <m>g</m> in <xref ref="table-interval-notation">Table</xref>, the number line picture shows us another <q>union</q> of two intervals. They are very close together, but there are still two separated intervals in that picture: <m>(-\infty,7)</m> and <m>(7,\infty)</m>. Their union is represented by <m>(-\infty,7)\cup(7,\infty)</m>.</p>
+
+        <exercise>
+          <webwork>
+            <setup>
+              <pg-code>
+                Context("Interval");
+                $domain=Interval("[0,inf)");
+              </pg-code>
+            </setup>
+            <statement>
+              <p>What is the domain of the function <m>\operatorname{sqrt}</m> introduced in <xref ref="subsection-informal-definition-of-a-function">Subsection</xref>, using interval notation?</p>
+              <instruction>If needed, use <c>inf</c> for <m>\infty</m> and <c>U</c> for <m>\cup</m>.</instruction>
+              <p><var name="$domain" width="20" /></p>
+            </statement>
+            <solution>
+              <p>The function <m>\operatorname{sqrt}</m> cannot take a negative number as an input. It can however take any positive number as input, or the number <m>0</m> as input. Representing this on a number line, we find the domain is <m>[0,\infty)</m> in interval notation.</p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise>
+          <webwork>
+            <setup>
+              <pg-code>
+                Context("Interval");
+                $domain=Interval("(-inf,3)U(3,inf)");
+              </pg-code>
+            </setup>
+            <statement>
+              <p>What is the domain of the function <m>\ell</m> where <m>\ell(x)=\frac{2}{x-3}</m>, using interval notation?</p>
+              <instruction>If needed, use <c>inf</c> for <m>\infty</m> and <c>U</c> for <m>\cup</m>.</instruction>
+              <p><var name="$domain" width="20" /></p>
+            </statement>
+            <solution>
+              <p>The function <m>\ell</m> cannot take a <m>3</m> as an input. It can however take any other number as input. Representing this on a number line, we have an interval <m>(-\infty,3)</m> to the left of <m>3</m>, and <m>(3,\infty)</m> to the right of <m>3</m>. So we find the domain is <m>(-\infty,3)\cup(3,\infty)</m>.</p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <p>Sometimes we will consider collections of only a short list of numbers. In those cases, we use <term>set notation</term> (first introduced in <xref ref="section-set-notation-and-types-of-numbers">Section</xref>). With set notation, we have a list of numbers in mind, and we simply list all of those numbers. Curly braces are standard for surrounding the list. <xref ref="table-set-notation">Table</xref> illustrates set notation in use.</p>
+
+        <table xml:id="table-set-notation">
+          <caption>Set Notation</caption>
+            <tabular halign="center">
+                <col width="40%"/>
+                <col width="40%"/>
+                <row bottom="major">
+                    <cell>picture of set</cell>
+                    <cell>set notation</cell>
+                </row>
+                <row bottom="minor">
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with marks at -2 and 3</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[soliddot] coordinates {(-2,0)} node[above] {$-2$};
+                                        \addplot[soliddot] coordinates {(3,0)} node[above] {$3$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>\{-2,3\}</m></cell>
+                </row>
+                <row bottom="minor">
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with marks at -5, 1, 3 and 5</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[soliddot] coordinates {(-5,0)} node[above] {$-5$};
+                                        \addplot[soliddot] coordinates {(1,0)} node[above] {$1$};
+                                        \addplot[soliddot] coordinates {(3,0)} node[above] {$3$};
+                                        \addplot[soliddot] coordinates {(5,0)} node[above] {$5$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>\{-5,1,3,5\}</m></cell>
+                </row>
+                <row bottom="minor">
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with a mark at -2; there is also a mark at 5; a thick line overlays the number line everywhere to the right of 5, with an arrow pointing right; there is a left parenthesis at 5</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[soliddot] coordinates {(-2,0)} node[above] {$-2$};
+                                        \addplot[openinfiniteinterval] coordinates {(5,0) (10,0)} node[pos=0,above] {$5$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>\{-2\}\cup(5,\infty)</m></cell>
+                </row>
+            </tabular>
+        </table>
+
+        <exercise>
+          <webwork>
+            <setup>
+              <pg-code>
+                Context("Interval");
+                $domain=Set("{1,2,5,10,20,50,100}");
+              </pg-code>
+            </setup>
+            <statement>
+              <p>A change machine lets you put in an <m>x</m>-dollar bill, and gives you <m>f(x)</m> nickels in return equal in value to <m>x</m> dollars. Any current, legal denomination of US paper money can be fed to the change machine. What is the domain of <m>f</m>?</p>
+              <p><var name="$domain" width="20" /></p>
+            </statement>
+            <solution>
+              <p>The current, legal denominations of US paper money are <m>\$1</m>, <m>\$2</m>, <m>\$5</m>, <m>\$10</m>, <m>\$20</m>, <m>\$50</m>, and <m>\$100</m>. So the domain of <m>f</m> is the set <m>\{1,2,5,10,20,50,100\}</m>.</p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <p>While most collections of numbers that we will encounter can be described using a combination of interval notation and set notation, there is another commonly used notation that all students of college algebra should be exposed to: <term>set-builder notation</term>, which was introduced in <xref ref="section-notation-for-intervals">Section</xref>. Set-builder notation also uses curly braces. Set-builder notation provides a template for what a number that is under consideration might look like, and then it gives you restrictions on how to use that template. A very basic example of set-builder notation is <me>\{x\mid x\geq3\}</me>. Verbally, this is <q>the set of all <m>x</m> such that <m>x</m> is greater than or equal to <m>3</m></q>. <xref ref="table-setbuilder">Table</xref> gives more examples of set-builder notation in use.</p>
+
+        <table xml:id="table-setbuilder">
+          <caption>Set-Builder Notation</caption>
+            <tabular halign="center">
+                <col width="40%"/>
+                <col width="40%"/>
+                <row bottom="major">
+                    <cell>picture of set</cell>
+                    <cell>set notation</cell>
+                </row>
+                <row bottom="minor">
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with marks at -2 and 3; a thick line overlays the interval in between; at -2 there is a left parenthesis, and at 3 there is a right bracket</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[openclosedinterval] coordinates {(-2,0) (3,0)} node[pos=0,above] {$-2$} node[pos=1,above] {$3$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>\{x\mid x>-2\text{ and }x\leq3\}</m></cell>
+                </row>
+                <row bottom="minor">
+                    <cell>
+                        <image width="100%">
+                            <description>a number line with marks at 1 and 3; a thick line overlays the number line to the left of 1, and another thick line overlays the number line to the right of 3; at 1 there is a right parenthesis, and at 3 there is a left parenthesis</description>
+                            <latex-image-code>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[numberline,
+                                                ]
+                                        \addplot[openinfiniteinterval] coordinates {(1,0) (-10,0)} node[pos=0,above] {$1$};
+                                        \addplot[openinfiniteinterval] coordinates {(3,0) (10,0)} node[pos=0,above] {$3$};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image-code>
+                        </image>
+                    </cell>
+                    <cell><m>\{x\mid x\lt1\text{ or }x>3\}</m></cell>
+                </row>
+            </tabular>
+        </table>
+
+        <exercise>
+          <webwork>
+            <setup>
+              <pg-code>
+                InequalitySetBuilder::UseVerticalSuchThat();
+                Context("InequalitySetBuilder-Only");
+                $domain = SetBuilder("{ x | x >= 0 }");
+              </pg-code>
+            </setup>
+            <statement>
+              <p>What is the domain of the function <m>\operatorname{sqrt}</m> introduced in <xref ref="subsection-informal-definition-of-a-function">Subsection</xref>, using set-builder notation?</p>
+              <instruction>If needed, use <c>&lt;=</c> for <m>\leq</m>, <c>>=</c> for <m>\geq</m>, and <c>|</c> (which is usually above the <c>enter</c> key) for the <q>such that</q> symbol.</instruction>
+              <p><var name="$domain" width="20" /></p>
+            </statement>
+            <solution>
+              <p>The function <m>\operatorname{sqrt}</m> cannot take a negative number as an input. It can however take any positive number as input, or the number <m>0</m> as input. Representing this on a number line, we find the domain is <m>\{x\mid x\geq0\}</m> in set-builder notation.</p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <example>
+          <p>What is the domain of the function <m>A</m>, where <m>A(x)=\frac{2x+1}{x^2-2x-8}</m>?</p>
+
+          <p>Note that if you plugged in some value for <m>x</m>, the only thing that might go wrong is if the denominator equals <m>0</m>. So a <em>bad</em> value for <m>x</m> would be when <md>
+            <mrow>x^2 - 2x - 8\amp=0</mrow>
+            <mrow>(x + 2)(x - 4)\amp=0</mrow>
+          </md>
+          Here, we used a basic factoring technique from <xref ref="section-factoring-trinomials-with-leading-coefficient-one">Section</xref>. To continue, either <md>
+            <mrow>x + 2\amp=0\amp\text{or}\amp\amp x-4\amp=0</mrow>
+            <mrow>x\amp=-2\amp\text{or}\amp\amp x\amp=4</mrow>
+          </md>. These are the <em>bad</em> <m>x</m>-values because they lead to division by <m>0</m> in the formula for <m>A</m>. So on a number line, if we wanted to picture the domain of <m>A</m>, we would make a sketch like:</p>
+          <sidebyside widths="47%">
+            <image>
+              <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                  \begin{axis}[numberline]
+                    \addplot[openinfiniteinterval] coordinates {(-2.1,0) (-10,0)} node[above,pos=0] {$-2$};
+                    \addplot[openinfiniteinterval] coordinates {(4.1,0) (10,0)} node[above,pos=0] {$4$};
+                    \addplot[openinterval] coordinates {(-1.9,0) (3.9,0)};
+                  \end{axis}
+                \end{tikzpicture}]]>
+              </latex-image-code>
+            </image>
+          </sidebyside>
+          <p>So the domain is the union of three intervals: <m>(-\infty,-2)\cup(-2,-1)\cup(-1,\infty)</m>.</p>
+        </example>
+
+        <example>
+          <p>What is the domain of the function <m>B</m>, where <m>B(x)=\sqrt{7-x}</m>?</p>
+
+          <p>Note that if you plugged in some value for <m>x</m>, the only thing that might go wrong is if the value in the radical is negative. So the <em>good</em> values for <m>x</m> would be when <md>
+            <mrow>7 - x\amp\geq0</mrow>
+            <mrow>7\geq x</mrow>
+            <mrow>x\leq 7</mrow>
+          </md>
+          So on a number line, if we wanted to picture the domain of <m>B</m>, we would make a sketch like:</p>
+          <sidebyside widths="47%">
+            <image>
+              <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                  \begin{axis}[numberline]
+                    \addplot[closedinfiniteinterval] coordinates {(7,0) (-10,0)} node[above,pos=0] {$7$};
+                  \end{axis}
+                \end{tikzpicture}]]>
+              </latex-image-code>
+            </image>
+          </sidebyside>
+          <p>So the domain is the intervals <m>(-\infty,7]</m>.</p>
+        </example>        
+    </subsection>
+
+    <subsection>
+      <title>Range</title>
+      <p>The domain of a function is the collection of its valid inputs; there is a similar notion for <em>output</em>.</p>
+
+      <definition>
+        <title>Range</title>
+        <p>The <term>range</term> of a function <m>f</m> is the collection of all of its possible output values.<idx><h>range</h></idx></p>
+      </definition>
+
+      <example>
+        <statement>
+          <p>Let <m>f</m> be the function defined by the formula <m>f(x)=x^2</m>. Finding <m>f</m>'s <em>domain</em> is straightforward. Any number anywhere can be squared to produce an output, so <m>f</m> has domain <m>(-\infty,\infty)</m>. What is the <em>range</em> of <m>f</m>?</p>
+        </statement>
+        <solution>
+          <p>We would like to describe the collection of possible numbers that <m>f</m> can give as output. We will use a graphical approach. <xref ref="figure-range">Figure</xref> displays a graph of <m>f</m>, and the visualization that reveals <m>f</m>'s range.</p>
+          <figure xml:id="figure-range">
+            <caption><m>y=f(x)</m> where <m>f(x)=x^2</m>. The second graph illustrates how to visualize the range. In the third graph, the range is marked as an interval on the <m>y</m>-axis.</caption>
+            <sidebyside widths="32% 32% 32%">
+              <image width="47%">
+                <latex-image-code>
+                  <![CDATA[\begin{tikzpicture}
+                    \begin{axis}
+                      \addplot+[domain=-2.64:2.64] {x^2};
+                    \end{axis}
+                  \end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+              <image width="47%">
+                <latex-image-code>
+                  <![CDATA[\begin{tikzpicture}
+                    \begin{axis}
+                      \addplot+[domain=-2.64:2.64] {x^2};
+                      \addplot[guideline,->] coordinates {(1,1) (0,1)};
+                      \addplot[guideline,->] coordinates {(1.732,3) (0,3)};
+                      \addplot[guideline,->] coordinates {(2.236,5) (0,5)};
+                      \addplot[guideline,->] coordinates {(-1.414,2) (0,2)};
+                      \addplot[guideline,->] coordinates {(-2,4) (0,4)};
+                      \addplot[guideline,->] coordinates {(-2.449,6) (0,6)};
+                    \end{axis}
+                  \end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+              <image width="47%">
+                <latex-image-code>
+                  <![CDATA[\begin{tikzpicture}
+                    \begin{axis}
+                      \addplot+[domain=-2.64:2.64] {x^2};
+                      \addplot[closedinfiniteinterval] coordinates {(0,0) (0,7)};
+                    \end{axis}
+                  \end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </sidebyside>
+          </figure>
+
+          <p>Output values are the <m>y</m>-coordinates in a graph. If we <q>slide the ink</q> left and right over to the <m>y</m>-axis to emphasize what the <m>y</m>-values in the graph are, we have <m>y</m>-values that start from <m>0</m> and continue upward forever. Therefore the range is <m>[0,\infty)</m>.</p>
+        </solution>
+      </example>
+
+      <warning>
+        <title>Finding range from a formula</title>
+        <p>Sometimes possible to compute a range without the aid of a graph. However until students learn some topics that are typically covered in a calculus class, it will often be difficult to do so. Therefore when you are asked to find the range of a function based on its formula, your first approach should be a graphical one.</p>
+      </warning>
+
+      <example>
+        <statement>
+          <p>Given the function <m>g</m> graphed in <xref ref="figure-range-bell">Figure</xref>, find the domain and range of <m>g</m>.</p>
+          <figure xml:id="figure-range-bell">
+            <caption><m>y=g(x)</m></caption>
+            <image width="47%">
+              <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                  \begin{axis}[
+                    xmin=-2,xmax=2,
+                    ymin=-0.5,ymax=3.5,
+                    xtick={-1,0,...,1},
+                    ytick={0,1,...,3},
+                  ]
+                    \addplot+[domain=-2:2, samples=50] {3*3^(-x^2)};
+                  \end{axis}
+                \end{tikzpicture}]]>
+              </latex-image-code>
+            </image>
+          </figure>
+        </statement>
+        <solution>
+          <p>To find the domain, we can visualize all of the <m>x</m>-values that are valid inputs for this function by <q>sliding the ink</q> down onto the <m>x</m>-axis. The arrows at the far left and far right of the curve indicate that whatever pattern we see in the graph continues off to the left and right. Here, we see that the arms of the graph appear to be tapering down to the <m>x</m>-axis and extending left and right forever. Every <m>x</m>-value can be used to get an output for the function, so the domain is <m>(\infty,\infty)</m>.</p>
+
+          <p>If we visualize the possible \emph{outputs} by <q>sliding the ink</q> sideways onto the <m>y</m>-axis, we find that outputs as high as <m>3</m> are possible (including <m>3</m> itself). The outputs appear to get very close to <m>0</m> when <m>x</m> is large, but they aren't quite equal to <m>0</m>. So the range is <m>(0,3]</m>.</p>
+
+          <sidebyside widths="47% 47%">
+            <figure xml:id="figure-range-bell-domain">
+              <caption>Domain of <m>g</m></caption>
+              <image width="47%">
+                <latex-image-code>
+                  <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-2,xmax=2,
+                      ymin=-0.5,ymax=3.5,
+                      xtick={-1,0,...,1},
+                      ytick={0,1,...,3},
+                    ]
+                      \addplot+[domain=-2:2, samples=50] {3*3^(-x^2)};
+                      \addplot[guideline,<-] coordinates {(-1.5,0.253) (-1.5,0)};
+                      \addplot[guideline,<-] coordinates {(-1,1) (-1,0)};
+                      \addplot[guideline,<-] coordinates {(-0.5,2.279) (-0.5,0)};
+                      \addplot[guideline,<-] coordinates {(0,3) (0,0)};
+                      \addplot[guideline,<-] coordinates {(0.5,2.279) (0.5,0)};
+                      \addplot[guideline,<-] coordinates {(1,1) (1,0)};
+                      \addplot[guideline,<-] coordinates {(1.5,0.253) (1.5,0)};
+                      \addplot[infiniteinterval] coordinates {(-1.8,0) (1.8,0)};
+                    \end{axis}
+                  \end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+            <figure xml:id="figure-range-bell-range">
+              <caption>Range of <m>g</m></caption>
+              <image width="47%">
+                <latex-image-code>
+                  <![CDATA[\begin{tikzpicture}
+                    \begin{axis}[
+                      xmin=-2,xmax=2,
+                      ymin=-0.5,ymax=3.5,
+                      xtick={-1,0,...,1},
+                      ytick={0,1,...,3},
+                    ]
+                      \addplot+[domain=-2:2, samples=50] {3*3^(-x^2)};
+                      \addplot[guideline,<-] coordinates {(0,0.2) (1.645,0.2)};
+                      \addplot[guideline,<-] coordinates {(0,0.6) (1.268,0.6)};
+                      \addplot[guideline,<-] coordinates {(0,1.0) (1.048,1.0)};
+                      \addplot[guideline,<-] coordinates {(0,1.4) (0.873,1.4)};
+                      \addplot[guideline,<-] coordinates {(0,1.8) (0.714,1.8)};
+                      \addplot[guideline,<-] coordinates {(0,2.2) (0.556,2.2)};
+                      \addplot[guideline,<-] coordinates {(0,2.6) (0.378,2.6)};
+                      \addplot[guideline,<-] coordinates {(0,0.4) (-1.419,0.4)};
+                      \addplot[guideline,<-] coordinates {(0,0.8) (-1.149,0.8)};
+                      \addplot[guideline,<-] coordinates {(0,1.2) (-0.957,1.2)};
+                      \addplot[guideline,<-] coordinates {(0,1.6) (-0.792,1.6)};
+                      \addplot[guideline,<-] coordinates {(0,2.0) (-0.636,2.0)};
+                      \addplot[guideline,<-] coordinates {(0,2.4) (-0.472,2.4)};
+                      \addplot[guideline,<-] coordinates {(0,2.8) (-0.262,2.8)};
+                      \addplot[openclosedinterval] coordinates {(0,0) (0,3)};
+                    \end{axis}
+                  \end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </sidebyside>
+        </solution>
+      </example>
+
+      <exercise>
+        <webwork>
+          <setup>
+            <pg-code>
+              for my $i (0,1,2) {
+                $graph[$i] = init_graph(-3,-3,7,3,
+                  axes=>[0,0],
+                  grid=>[10,6],
+                  size=>[240,240]
+                );
+                add_functions($graph[$i], "1/(x-2) for x in &lt;-3,1.666> using color:blue and weight:2");
+                add_functions($graph[$i], "1/(x-2) for x in &lt;2.333,7> using color:blue and weight:2");
+                $graph[$i]->moveTo(-2.5,-0.222222);
+                $graph[$i]->arrowTo(-3,-0.2,'blue',2);
+                $graph[$i]->moveTo(6.5,0.222222);
+                $graph[$i]->arrowTo(7,0.2,'blue',2);
+                $graph[$i]->moveTo(1.6,-2.5);
+                $graph[$i]->arrowTo(1.666,-3,'blue',2);
+                $graph[$i]->moveTo(2.4,2.5);
+                $graph[$i]->arrowTo(2.333,3,'blue',2);
+              };
+              for my $i (-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5) {
+                $graph[1]->moveTo($i,0);
+                $graph[1]->arrowTo($i,1/($i-2),'black',1);
+              };
+              $graph[1]->moveTo(2,0);$graph[1]->arrowTo(-3,0,'red',3);
+              $graph[1]->moveTo(2,0);$graph[1]->arrowTo(7,0,'red',3);
+              $graph[1]->stamps( open_circle(2, 0,'red') );
+              for my $i (-2.6, -2.2, -1.8, -1.4, -1, -0.6, -0.2, 0.2, 0.6, 1, 1.4, 1.8, 2.2, 2.6) {
+                $graph[2]->moveTo(1/$i + 2,$i);
+                $graph[2]->arrowTo(0,$i,'black',1);
+              };
+              $graph[2]->moveTo(0,0);$graph[2]->arrowTo(0,-3,'red',3);
+              $graph[2]->moveTo(0,0);$graph[2]->arrowTo(0,3,'red',3);
+              $graph[2]->stamps( open_circle(0, 0,'red') );
+              InequalitySetBuilder::UseVerticalSuchThat();
+              Context("InequalitySetBuilder");
+              $domain = Compute("(-inf,2)U(2,inf)");
+              $range = Compute("(-inf,0)U(0,inf)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given the function <m>h</m> graphed below, find the domain and range of <m>h</m>.</p>
+            <sidebyside widths="47%">
+              <image pg-name="$graph[0]" />
+            </sidebyside>
+            <p>The domain of <m>h</m> is <var name="$domain" width="20" /> and the range of <m>h</m> is <var name="$range" width="20" />.</p>
+          </statement>
+          <solution>
+            <p>To find the domain, we try to visualize all of the <m>x</m>-values that are valid inputs for this function. The arrows poiting left and right on the curve indicate that whatever pattern we see in the graph continues off to the left and right. So for <m>x</m>-values far to the right or left, we will be able to get an output for <m>h</m>.</p>
+
+            <p>The arrows pointing up and down are supposed to indicate that the curve will get closer and closer to the vertical line <m>x=2</m> after the curve leaves the viewing window we are using. So even when <m>x</m> is some number very close to <m>2</m>, we will be able to get an output for <m>h</m>.</p>
+
+            <sidebyside widths="47%">
+              <image pg-name="$graph[1]" />
+            </sidebyside>
+
+            <p>The one <m>x</m>-value that doesn't behave is <m>x=2</m>. If we tried to use that as an input, there is no point on the graph directly above or below that on the <m>x</m>-axis. So the domain is <m>(-\infty,2)\cup(2,\infty)</m>.</p>
+
+            <p>To find the range, we try to visualize all of the <m>y</m>-values that are possible outputs for this function. Sliding the ink of the curve left/right onto the <m>y</m>-axis reveals that <m>y=0</m> is the only <m>y</m>-value that we could never obtain as an output. So the range is <m>(-\infty,0)\cup(0,\infty)</m>.</p>
+
+            <sidebyside widths="47%">
+              <image pg-name="$graph[2]" />
+            </sidebyside>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <p>The examples of finding domain and range so far have all involved either a verbal description of a function, a formula for that function, or a graph of that function. Recall that there is a fourth persepctive on functions: the table. In the case of a table, we have very limited information about the function's inputs and outputs. If the table is all that we have, then there are a handful of input values listed in the table for which we know outputs. For any other input, the output is undefined.</p>
+
+      <example>
+        <statement>
+          <p>Consider the function <m>k</m> given in <xref ref="table-range">Table</xref>. What is the domain and range of <m>k</m>?</p>
+          <table xml:id="table-range">
+            <caption/>
+            <tabular>
+              <row bottom="major">
+                <cell><m>x</m></cell>
+                <cell><m>k(x)</m></cell>
+              </row>
+              <row>
+                <cell><m>3</m></cell>
+                <cell><m>4</m></cell>
+              </row>
+              <row>
+                <cell><m>8</m></cell>
+                <cell><m>5</m></cell>
+              </row>
+              <row>
+                <cell><m>10</m></cell>
+                <cell><m>5</m></cell>
+              </row>
+            </tabular>
+          </table>
+        </statement>
+        <solution>
+          <p>All that we know about <m>k</m> is that <m>k(3)=4</m>, <m>k(8)=5</m>, and <m>k(10)=5</m>. Without any other information such as a formula for <m>k</m> or a context for <m>k</m> that tells us its verbal description, we must assume that its domain is <m>\{3,8,10\}</m>; these are the only valid input for <m>k</m>. Similarly, <m>k</m>'s range is <m>\{4,5\}</m>.</p>
+
+          <p>Note that we have used set notation, not interval notation, since the answers here were <em>lists</em> of <m>x</m>-values (for the domain) and <m>y</m>-values (for the range). Also note that we could graph the information that we have about <m>k</m> in <xref ref="figure-table-range">Figure</xref>, and the visualization of <q>sliding ink</q> to determine domain and range still works.</p>
+
+          <figure xml:id="figure-table-range">
+            <caption />
+            <image width="47%">
+              <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                  \begin{axis}[
+                      xmin=0,xmax=12,
+                      ymin=0,ymax=6,
+                      axis line style=->,
+                      xtick={0,1,...,11},
+                      ytick={0,1,...,5},
+                    ]
+                    \addplot[guideline,->] coordinates {(3,0) (3,4) (0,4)};
+                    \addplot[guideline,->] coordinates {(8,0) (8,5) (0,5)};
+                    \addplot[guideline,->] coordinates {(10,0) (10,5) (0,5)};
+                    \addplot [soliddot] coordinates {(3,4)} node[above] {$(3,4)$};
+                    \addplot [soliddot] coordinates {(8,5)} node[above] {$(3,4)$};
+                    \addplot [soliddot] coordinates {(10,5)} node[above] {$(3,4)$};
+                    \addplot [soliddot,color=secondcolor] coordinates {(3,0) (8,0) (10,0)};
+                    \addplot [soliddot,color=secondcolor] coordinates {(0,4) (0,5)};
+                  \end{axis}
+                \end{tikzpicture}]]>
+              </latex-image-code>
+            </image>
+          </figure>
+        </solution>
+      </example>
+    </subsection>
+
+    <exercises>
+      <exercisegroup cols="2">
+        <introduction>
+          <p>Fing domain and range using context.</p>
+        </introduction>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext10.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext10.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext20.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext20.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext30.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext30.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext60.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext60.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext70.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext70.pg"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <introduction>
+          <p>Find domain and range using a graph.</p>
+        </introduction>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph10.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph10.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph20.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph20.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph30.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph30.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph60.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph60.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph70.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph70.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph50.pg"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <introduction>
+          <p>Find domain and range using a function's formula.</p>
+        </introduction>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions90.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions90.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions170.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions170.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions180.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions180.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions200.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions200.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions210.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions210.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions211.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions211.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions212.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions212.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions213.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions213.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions214.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions214.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions216.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions216.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions217.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions217.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions225.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions225.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions235.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/Functions235.pg"/>
+        </exercise>
+      </exercisegroup>
+    </exercises>
 
 
 
