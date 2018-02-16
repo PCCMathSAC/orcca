@@ -37,13 +37,13 @@
     </introduction>
 
     <subsection>
-        <title>Something Nontrivial as Input</title>
+        <title>Negative Signs In and Out of Function Notation</title>
 
         <p>Let's start by reminding ourselves about the meaning of function notation. When we write <m>f(x)</m>, we have a process <m>f</m> that is doing something to an input value <m>x</m>. Whatever is inside those parentheses is the input to the function. What if we use something for input that is not quite as simple as <q><m>x</m></q>?</p>
 
         <example xml:id="example-f-of-minus-x">
             <statement>
-                <p>If <m>f(x)=x^2+3x-4</m>, find and simplify a formula for <m>f(-x)</m>.</p>
+                <p>Find and simplify a formula for <m>f(-x)</m>, where <m>f(x)=x^2+3x-4</m>.</p>
             </statement>
             <solution>
                 <p>Those parentheses encase <q><m>-x</m></q>, so we are meant to treat <q><m>-x</m></q> as the input. The rule that we have been given for <m>f</m> is <me>f(x)=x^2+3x-4</me>. But the <m>x</m>'s that are in this formula are just place-holders. What <m>f</m> does to a number can just as easily be communicated with<me>f(\phantom{x})=(\phantom{x})^2+3(\phantom{x})-4</me>. So now that we are meant to treat <q><m>-x</m></q> as the input, we will insert <q><m>-x</m></q> into those slots, after which we can do more familiar algebraic simplification:<md>
@@ -58,7 +58,7 @@
 
         <example xml:id="example-minus-f-of-x">
             <statement>
-                <p>If <m>f(x)=x^2+3x-4</m>, find and simplify a formula for <m>-f(x)</m>.</p>
+                <p>Find and simplify a formula for <m>-f(x)</m>, where <m>f(x)=x^2+3x-4</m>.</p>
             </statement>
             <solution>
                 <p>Here, the parentheses only encase <q><m>x</m></q>. The negative sign is on the outside. So the way to see this expression is that first <m>f</m> will do what it does to <m>x</m>, and then that result will be negated:<md>
@@ -69,35 +69,1828 @@
             </solution>
         </example>
 
+        <p>In <xref ref="example-f-of-minus-x">Example</xref> and <xref ref="example-minus-f-of-x">Example</xref>, we are working with the expressions <m>f(-x)</m> and <m>-f(x)</m>, and trying to find <q>simplified</q> formulas. If it seems strange to be doing these things, perhaps this applied example will help.</p>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are(t=>'Real');
+                        Context()->flags->set(tolType=>'absolute', tolerance=>0.1);
+                        $N = Formula("3.34t^2+26.2t+6980");
+                        $answer = Formula("3.34t^2-26.2t+6980");
+                        $evaluator = $answer->cmp()->withPostFilter(AnswerHints( 
+                          Formula("3.34t^2+26.2t+6980") => "This is N(t), not N(-t).",
+                          Formula("-3.34t^2-26.2t-6980") => "This is -N(t), not N(-t).", 
+                        ));
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>The Nasdaq Composite Index measures how well a portion of the stock market is doing. Suppose <m>N(t)</m> is the value of the index <m>t</m> days after January<nbsp/>1, 2018. A formula for <m>N(t)</m> is <m>N(t)=<var name="$N" /></m>.</p>
+
+                    <p>What if you wanted a new function, <m>B</m>, that gves the value of the Nasdaq index <m>t</m> days <em>before</em> January<nbsp/>1, 2018? Technically, <m>t</m> days <em>before</em> is the same as <em>negative</em> <m>t</m> days after. So <m>B(t)</m> is the same as <m>N(-t)</m>, and now we the expression <m>N(-t)</m> has come into play. Find a simplified formula for <m>N(-t)</m>.</p>
+
+                    <p><m>N(-t)=</m><var name="$answer" evaluator="$evaluator" width="20" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow>N(\phantom{t})\amp=3.34(\phantom{t})^2+26.2(\phantom{t})+6980</mrow>
+                        <mrow>N(\substitute{-t})\amp=3.34(\substitute{-t})^2+26.2(\substitute{-t})+6980</mrow>
+                        <mrow>\amp=3.34t^2-26.2t+6980</mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+    </subsection>
+
+    <subsection>
+        <title>Other Nontrivial Simplifications</title>
+
         <example>
             <statement>
-                <p>If <m>f(x)=2x^2+8</m>, find and simplify a formula for <m>f(3x)</m>.</p>
+                <p>Find and simplify a formula for <m>g(3x)</m>, where <m>g(x)=2x^2+8</m>.</p>
             </statement>
             <solution>
                 <p>Those parentheses encase <q><m>3x</m></q>, so we are meant to treat <q><m>3x</m></q> as the input.<md>
-                    <mrow>f(\phantom{x})\amp=2(\phantom{x})^2++8</mrow>
-                    <mrow>f(\substitute{3x})\amp=2(\substitute{3x})^2+8</mrow>
+                    <mrow>g(\phantom{x})\amp=2(\phantom{x})^2+8</mrow>
+                    <mrow>g(\substitute{3x})\amp=2(\substitute{3x})^2+8</mrow>
                     <mrow>\amp=2\left(9x^2\right)+8</mrow>
                     <mrow>\amp=18x^2+8</mrow>
                 </md></p>
             </solution>
         </example>
 
-        <example xml:id="example-f-of-x-minus-four">
+        <example>
             <statement>
-                <p>If <m>f(x)=x^2-3x</m>, find and simplify a formula for <m>f(x-4)</m>.</p>
+                <p>Find and simplify a formula for <m>\frac{1}{5}h(5x)</m>, where <m>h(x)=\frac{x}{x-2}</m>.</p>
             </statement>
             <solution>
-                <p>This kind of example is often challenging for algebra students. But let's focus on those parentheses one more time. They encase <q><m>x-4</m></q>, so we are meant to treat <q><m>x-4</m></q> as the input.<md>
-                    <mrow>f(\phantom{x})\amp=(\phantom{x})^2-3(\phantom{x})</mrow>
-                    <mrow>f(\substitute{x-4})\amp=(\substitute{x-4})^2-3(\substitute{x-4})</mrow>
-                    <mrow>\amp=x^2-8x+16-3x+12</mrow>
-                    <mrow>\amp=x^2- 11x+28</mrow>
+                <p>Do the <m>\frac{1}{5}</m> and the <m>5</m> cancel each other? No. The <m>5</m> is part of the input, affecting <m>x</m> right away. Then <m>h</m> does whatever it does to <m>5x</m>, and <em>then</em> we multiply the result by <m>\frac{1}{5}</m>.  Since the function <m>h</m> acts <q>in between,</q> we don't have the chance to cancel the <m>5</m> with the <m>\frac{1}{5}</m>. Let's see what actually happens:</p>
+
+                <p>The parentheses encase <q><m>5x</m></q>, so we are meant to treat <q><m>5x</m></q> as the input.<md>
+                    <mrow>\frac{1}{5}h(\phantom{x})\amp=\frac{1}{5}\substitute{\frac{(\phantom{x})}{(\phantom{x})-2}}</mrow>
+                    <mrow>\frac{1}{5}h(\substitute{5x})\amp=\frac{1}{5}\frac{\substitute{5x}}{\substitute{5x}-2}</mrow>
+                    <mrow>\amp=\frac{x}{5x-2}</mrow>
                 </md></p>
             </solution>
         </example>
 
-        <p>The tasks that are shown in <xref first="example-f-of-minus-x" last="example-f-of-x-minus-four">Exercises</xref> are the kind of task that will make it easier to understand interesting and useful material in college algebra and calculus.</p>
+        <example xml:id="example-f-of-x-minus-four">
+            <statement>
+                <p>If <m>k(x)=x^2-3x</m>, find and simplify a formula for <m>k(x-4)</m>.</p>
+            </statement>
+            <solution>
+                <p>This kind of example is often challenging for algebra students. But let's focus on those parentheses one more time. They encase <q><m>x-4</m></q>, so we are meant to treat <q><m>x-4</m></q> as the input.<md>
+                    <mrow>k(\phantom{x})\amp=(\phantom{x})^2-3(\phantom{x})</mrow>
+                    <mrow>k(\substitute{x-4})\amp=(\substitute{x-4})^2-3(\substitute{x-4})</mrow>
+                    <mrow>\amp=x^2-8x+16-3x+12</mrow>
+                    <mrow>\amp=x^2-11x+28</mrow>
+                </md></p>
+            </solution>
+        </example>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $answer = Formula("x+5+sqrt(x+13)");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>If <m>q(x)=x+\sqrt{x+8}</m>, find and simplify a formula for <m>q(x+5)</m>.</p>
+                    <p><m>q(x+5)=</m><var name="$answer" width="25"/></p>
+                </statement>
+                <solution>
+                    <p>Starting with the generic formula for <m>q</m>:<md>
+                        <mrow>q(\phantom{x})\amp=(\phantom{x})+\sqrt{(\phantom{x})+8}</mrow>
+                        <mrow>q(\substitute{x+5})\amp=\substitute{x+5}+\sqrt{\substitute{x+5}+8}</mrow>
+                        <mrow>\amp=x+5+\sqrt{x+13}</mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <example>
+            <statement>
+                <p>If <m>f(x)=\frac{1}{x}</m>, find and simplify a formula for <m>f(x+3)+2</m>.</p>
+            </statement>
+            <solution>
+                <p>Do not be tempted to add the <m>3</m> and the <m>2</m>. The <m>3</m> is added to input <em>before</em> the function <m>f</m> does its work. The <m>2</m> is added to the result <em>after</em> <m>f</m> has done its work.<md>
+                    <mrow>f(\phantom{x})+2\amp=\substitute{\frac{1}{(\phantom{x})}}+2</mrow>
+                    <mrow>f(\substitute{x+3})+2\amp=\frac{1}{\substitute{x+3}}+2</mrow>
+                </md>This last expression is considered fully simplified. However you might combine the two terms using a technique from <xref ref="section-addition-and-subtraction-of-rational-expressions">Section</xref>.</p>
+            </solution>
+        </example>
+
+        <p>The tasks we have practiced in this section are the kind of tasks that will make it easier to understand interesting and useful material in college algebra and calculus.</p>
     </subsection>
 
+    <exercises>
+      <exercisegroup cols="2">
+        <introduction>
+            <p>Find simplified formulas for these expressions.</p>
+        </introduction>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+                        $inner = Formula("$x+$a");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$m $x + ($b + $m*$a)")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$b" /> + <var name="$mxpma" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+                        $inner = Formula("$x+$a");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$m $x + ($b + $m*$a)")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$b" /> + <var name="$mxpma" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $inner = Formula("-$x");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$b-$m $x")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $inner = Formula("-$x");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$b-$m $x")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+                        $inner = Formula("$x+$a");
+
+                        $m = non_zero_random(-8,8,0.1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$m $x + ($b + $m*$a)")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$b" /> + <var name="$mxpma" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+                        $inner = Formula("$x+$a");
+
+                        $m = non_zero_random(-8,8,0.1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$m $x + ($b + $m*$a)")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$b" /> + <var name="$mxpma" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context("Fraction");
+                        Context()->flags->set(reduceConstants=>0);
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        do {$a = Fraction(non_zero_random(-9,9,1), non_zero_random(2,9,1));} until (($a->value)[1] != 1);
+                        $inner = Formula("$x+$a");
+
+                        do {$m = Fraction(non_zero_random(-9,9,1), non_zero_random(2,9,1));} until (($m->value)[1] != 1);
+                        do {$b = Fraction(non_zero_random(-9,9,1), non_zero_random(2,9,1));} until (($b->value)[1] != 1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $newconst = $b + $m*$a;
+                        $answer = Formula("$m $x + $newconst")->reduce;
+
+                        $ma = $m*$a;
+                        $mxpma = Formula("$m $x + $ma");
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->flags->set(reduceConstants=>0);
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$b" /> + <var name="$mxpma" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context("Fraction");
+                        Context()->flags->set(reduceConstants=>0);
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        do {$a = Fraction(non_zero_random(-9,9,1), non_zero_random(2,9,1));} until (($a->value)[1] != 1);
+                        $inner = Formula("$x+$a");
+
+                        do {$m = Fraction(non_zero_random(-9,9,1), non_zero_random(2,9,1));} until (($m->value)[1] != 1);
+                        do {$b = Fraction(non_zero_random(-9,9,1), non_zero_random(2,9,1));} until (($b->value)[1] != 1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $newconst = $b + $m*$a;
+                        $answer = Formula("$m $x + $newconst")->reduce;
+
+                        $ma = $m*$a;
+                        $mxpma = Formula("$m $x + $ma");
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->flags->set(reduceConstants=>0);
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$b" /> + <var name="$mxpma" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$m $x+$b")->reduce;
+                        $answer = Formula("$m $x + ($b + $a)")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$x" />)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$x" />)+<var name="$a" />\amp= <var name="$fofx" />+<var name="$a" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$m $x+$b")->reduce;
+                        $answer = Formula("$m $x + ($b + $a)")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$x" />)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$x" />)+<var name="$a" />\amp= <var name="$fofx" />+<var name="$a" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $m = non_zero_random(-8,8,0.1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $answer = Formula("$m $x + ($b + $a)")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$x" />)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$x" />)+<var name="$a" />\amp= <var name="$fofx" />+<var name="$a" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $m = non_zero_random(-8,8,0.1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$b+$m $x")->reduce;
+                        $answer = Formula("$m $x + ($b + $a)")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$x" />)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$x" />)+<var name="$a" />\amp= <var name="$fofx" />+<var name="$a" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1);
+                        $inner = Formula("$a $x")->reduce;
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula(" $a^2*$g $x^2 + $m*$a $x + $b")->reduce;
+
+                        $a2x2 = Formula("$a^2 $x^2")->reduce;
+                        $max = Formula("$m*$a $x")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$g" />(<var name="$a2x2"/>) + <var name="$max" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1);
+                        $inner = Formula("$a $x")->reduce;
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula(" $a^2*$g $x^2 + $m*$a $x + $b")->reduce;
+
+                        $a2x2 = Formula("$a^2 $x^2")->reduce;
+                        $max = Formula("$m*$a $x")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$g" />(<var name="$a2x2"/>) + <var name="$max" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $inner = Formula("-$x")->reduce;
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$g $x^2 - $m $x + $b")->reduce;
+
+                        $a2x2 = Formula("$x^2")->reduce;
+                        $max = Formula("-$m $x")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$g" />(<var name="$a2x2"/>) + <var name="$max" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $inner = Formula("-$x")->reduce;
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$g $x^2 - $m $x + $b")->reduce;
+
+                        $a2x2 = Formula("$x^2")->reduce;
+                        $max = Formula("-$m $x")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$g" />(<var name="$a2x2"/>) + <var name="$max" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1);
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+
+                        $answer = Formula(" $a*$g $x^2 + $m*$a $x + $a*$b")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$a" /><var name="$f" />(<var name="$x" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$a" /><var name="$f" />(<var name="$x" />)\amp= <var name="$a" />\left(<var name="$fofx" />\right)</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1);
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+
+                        $answer = Formula(" $a*$g $x^2 + $m*$a $x + $a*$b")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$a" /><var name="$f" />(<var name="$x" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$a" /><var name="$f" />(<var name="$x" />)\amp= <var name="$a" />\left(<var name="$fofx" />\right)</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(-9,9,1);
+                        $inner = Formula("$x + $a")->reduce;
+
+                        $g = non_zero_random(-8,8,0.1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$g $x^2 + (2*$a*$g+$m) $x + ($g*$a^2 + $m*$a + $b)")->reduce;
+
+                        $xpa2 = Formula("$x^2 + 2*$a $x + $a^2")->reduce;
+                        $mxpa = Formula("$m*$x + $m*$a")->reduce;
+                        $gxpa2 = Formula("$g $x^2 + $g*2*$a $x + $g*$a^2")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$g" />(<var name="$xpa2"/>) + <var name="$mxpa" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$gxpa2"/> + <var name="$mxpa" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(-9,9,1);
+                        $inner = Formula("$x + $a")->reduce;
+
+                        $g = non_zero_random(-8,8,0.1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$g $x^2 + (2*$a*$g+$m) $x + ($g*$a^2 + $m*$a + $b)")->reduce;
+
+                        $xpa2 = Formula("$x^2 + 2*$a $x + $a^2")->reduce;
+                        $mxpa = Formula("$m*$x + $m*$a")->reduce;
+                        $gxpa2 = Formula("$g $x^2 + $g*2*$a $x + $g*$a^2")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$g" />(<var name="$xpa2"/>) + <var name="$mxpa" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$gxpa2"/> + <var name="$mxpa" /> + <var name="$b" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1);
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+
+                        $answer = Formula(" $a*$g $x^2 + $m*$a $x + $a*$b")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$x" />)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$x" />)+<var name="$a" />\amp= <var name="$fofx" />+<var name="$a" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextLimitedPolynomial.pl</macro-file>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $x = RandomVariableName(type=>'variable');
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1);
+
+                        $g = non_zero_random(-8,8,1);
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("$g $x^2 + $m $x + $b")->reduce;
+
+                        $answer = Formula(" $a*$g $x^2 + $m*$a $x + $a*$b")->reduce;
+
+                        Context("LimitedPolynomial-Strict");
+                        Context()->variables->are($x=>'Real');
+                        $answer = Formula("$answer");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$x" />)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$x" />)+<var name="$a" />\amp= <var name="$fofx" />+<var name="$a" /></mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = 'x';
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+                        $inner = Formula("$x+$a");
+
+                        $m = list_random(1,2,3,5,6,7)*list_random(-1,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("sqrt($b+$m $x)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("sqrt($m $x + ($b + $m*$a))")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=\sqrt{<var name="$b" /> + <var name="$mxpma" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = 'x';
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+                        $inner = Formula("$x+$a");
+
+                        $m = list_random(1,2,3,5,6,7)*list_random(-1,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("sqrt($b+$m $x)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("sqrt($m $x + ($b + $m*$a))")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=\sqrt{<var name="$b" /> + <var name="$mxpma" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = 'x';
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $m = list_random(1,2,3,5,6,7)*list_random(-1,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("sqrt($b+$m $x)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $answer = Formula("sqrt($b+$m $x)+$a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(x)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$inner" />)+<var name="$a" />\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = 'x';
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $m = list_random(1,2,3,5,6,7)*list_random(-1,1);
+                        $b = non_zero_random(-8,8,1);
+                        $fofx = Formula("sqrt($b+$m $x)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $answer = Formula("sqrt($b+$m $x)+$a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(x)+<var name="$a" /></m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(<var name="$inner" />)+<var name="$a" />\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = 'x';
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $inner = Formula("$x+$a");
+
+                        $m = list_random(1,2,3,5,6,7)*list_random(-1,1);
+                        $b = non_zero_random(-8,8,1);
+                        $c = non_zero_random(-9,9,1);
+                        $fofx = Formula("$c $x + sqrt($b+$m $x)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$c $x + $c*$a + sqrt($m $x + ($b + $m*$a))")->reduce;
+
+                        $cxpca = Formula("$c $x+$c $a")->reduce;
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$mxpma" /> + \sqrt{<var name="$b" /> + <var name="$mxpma" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = 'x';
+                        $f = RandomVariableName(type=>'function');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $inner = Formula("$x+$a");
+
+                        $m = list_random(1,2,3,5,6,7)*list_random(-1,1);
+                        $b = non_zero_random(-8,8,1);
+                        $c = non_zero_random(-9,9,1);
+                        $fofx = Formula("$c $x + sqrt($b+$m $x)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$c $x + $c*$a + sqrt($m $x + ($b + $m*$a))")->reduce;
+
+                        $cxpca = Formula("$c $x+$c $a")->reduce;
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=<var name="$mxpma" /> + \sqrt{<var name="$b" /> + <var name="$mxpma" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = list_random('x','y','z','s','t');
+                        $f = list_random('g','h','F','G','H'.'K');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $inner = Formula("$x+$a");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $c = non_zero_random(-9,9,1);
+                        $fofx = Formula("$c/($m $x+$b)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$c/($m $x + ($m*$a+$b))")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=\frac{<var name="$c" />}{<var name="$mxpma" /> + <var name="$b" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = list_random('x','y','z','s','t');
+                        $f = list_random('g','h','F','G','H'.'K');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(1,9,1);
+
+                        $inner = Formula("$x+$a");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $c = non_zero_random(-9,9,1);
+                        $fofx = Formula("$c/($m $x+$b)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$c/($m $x + ($m*$a+$b))")->reduce;
+
+                        $mxpma = Formula("$m $x+$m $a")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=\frac{<var name="$c" />}{<var name="$mxpma" /> + <var name="$b" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = list_random('x','y','z','s','t');
+                        $f = list_random('g','h','F','G','H'.'K');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1)*list_random(-1,1);
+
+                        $inner = Formula("$a $x");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $c = non_zero_random(1,9,1);
+                        $fofx = Formula("$c $x/($m $x^2+$b)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$c*$a $x/($m*$a^2 $x^2+$b)")->reduce;
+
+                        $cax = Formula("$c*$a $x")->reduce;
+                        $a2x2 = Formula("$a^2 $x^2")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=\frac{<var name="$cax" />}{<var name="$m" />\left(<var name="$a2x2" />\right) + <var name="$b" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+        <exercise>
+            <webwork>
+                <pg-macros>
+                    <macro-file>PCCmacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+                        );
+                        $x = list_random('x','y','z','s','t');
+                        $f = list_random('g','h','F','G','H'.'K');
+                        Context()->variables->are($x=>'Real');
+                        Context()->noreduce('(-x)+y', '(-x)-y');
+
+                        $a = non_zero_random(2,9,1)*list_random(-1,1);
+
+                        $inner = Formula("$a $x");
+
+                        $m = non_zero_random(-8,8,1);
+                        $b = non_zero_random(-8,8,1);
+                        $c = non_zero_random(1,9,1);
+                        $fofx = Formula("$c $x/($m $x^2+$b)")->reduce;
+                        $emptyf = $fofx->TeX;
+                        $emptyf =~ s/$x/(\phantom{$x})/g;
+
+                        $subbed = $fofx->substitute($x=>$inner)->reduce;
+                        $answer = Formula("$c*$a $x/($m*$a^2 $x^2+$b)")->reduce;
+
+                        $cax = Formula("$c*$a $x")->reduce;
+                        $a2x2 = Formula("$a^2 $x^2")->reduce;
+
+                        $evaluator = $answer -> cmp(
+                           checker=>sub{
+                              my ( $correct, $student, $ansHash ) = @_;
+                              return 0 if $ansHash->{isPreview} || $correct != $student;
+                              $student = $ansHash->{student_formula};
+                              $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                              $student = Formula("$student"); $correct = Formula("$correct");
+                              return 0 unless ($correct == $student);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              delete $correct->{test_values};
+                              delete $student->{test_values};
+                              my $OK = (($correct == $student) or ($student == $correct));
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                              return $OK;
+                        });
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify <m><var name="$f" />(<var name="$inner" />)</m>, where <m><var name="$f" />(<var name="$x" />)=<var name="$fofx" /></m>.</p>
+                    <p><var name="$answer" evaluator="$evaluator" width="30" /></p>
+                </statement>
+                <solution>
+                    <p><md>
+                        <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
+                        <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
+                        <mrow>\amp=\frac{<var name="$cax" />}{<var name="$m" />\left(<var name="$a2x2" />\right) + <var name="$b" />}</mrow>
+                        <mrow>\amp=<var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+      </exercisegroup>
+
+      <exercise>
+        <webwork>
+          <setup>
+            <pg-code>
+              Context()->operators->set(
+              '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+              '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+              '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+              );
+              $base = random(40,60,2);
+              $amplitude = random(20,30,1);
+              Context()->variables->are(t=>'Real');
+              $T = Formula("$amplitude t/(t^2+1)+$base");
+              $shift = random(1,4,1);
+              $answer = Formula("($amplitude t + $amplitude * $shift)/(t^2 + 2*$shift t+ ($shift**2+1))+$base");
+              $evaluator = $answer -> cmp(
+                 checker=>sub{
+                    my ( $correct, $student, $ansHash ) = @_;
+                    return 0 if $ansHash->{isPreview} || $correct != $student;
+                    $student = $ansHash->{student_formula};
+                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                    $student = Formula("$student"); $correct = Formula("$correct");
+                    return 0 unless ($correct == $student);
+                    Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                    delete $correct->{test_values};
+                    delete $student->{test_values};
+                    my $OK = (($correct == $student) or ($student == $correct));
+                    Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                    Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                    return $OK;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Suppose <m>T(t)</m> represents the temperature outside, in Fahrenheit, at <m>t</m> hours past noon, and a formula for <m>T</m> is <m>T(t)=<var name="$T" /></m>.</p>
+            <p>If we introduce <m>F(t)</m> as the temperature outside, in Fahrenheit, at <m>t</m> hours past <var name="$shift" />:00pm, then <m>F(t)=T(t+<var name="$shift" />)</m>. Find a simplified formula for <m>T(t+<var name="$shift" />)</m>.</p>
+            <p><m>T(t+<var name="$shift" />) = </m><var name="$answer" evaluator="$evaluator" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <setup>
+            <pg-code>
+              Context()->operators->set(
+              '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+              '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+              '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+              );
+              $amplitude = random(20,80,10);
+              $shift = list_random(2,4,5);
+              $base = $amplitude/$shift;
+              Context()->variables->are(t=>'Real');
+              $T = Formula("$base - $amplitude /(t+$shift)");
+              $answer = Formula("1024*$base  - 1024*$amplitude /(t+$shift)");
+              $evaluator = $answer -> cmp(
+                 checker=>sub{
+                    my ( $correct, $student, $ansHash ) = @_;
+                    return 0 if $ansHash->{isPreview} || $correct != $student;
+                    $student = $ansHash->{student_formula};
+                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                    $student = Formula("$student"); $correct = Formula("$correct");
+                    return 0 unless ($correct == $student);
+                    Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                    delete $correct->{test_values};
+                    delete $student->{test_values};
+                    my $OK = (($correct == $student) or ($student == $correct));
+                    Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                    Value::Error("Your answer is correct, but please simplify it further") unless $OK;
+                    return $OK;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Suppose <m>G(t)</m> represents how many gigabytes of data has been downloaded <m>t</m> minutes after you started a download.</p>
+            <p>If we introduce <m>M(t)</m> as how many megabytes of data has been downloaded <m>t</m> minutes after you started a download, then <m>M(t)=1024G(t)</m>. Find a simplified formula for <m>1024G(t)</m>.</p>
+            <p><m>1024G(t) = </m><var name="$answer" evaluator="$evaluator" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercises>
 </section>
+
