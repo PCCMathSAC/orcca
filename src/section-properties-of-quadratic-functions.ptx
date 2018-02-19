@@ -344,23 +344,6 @@
         </example>
 
         <exercise>
-            <introduction>
-                <p>Use <xref ref="figure-quadratic-function-graph-identify-properties">Figure</xref> to answer the following questions.</p>
-                <figure xml:id="figure-quadratic-function-graph-identify-properties">
-                    <caption></caption>
-                    <image width="47%">
-                        <description></description>
-                        <latex-image>
-                            <![CDATA[\begin{tikzpicture}
-                                \begin{axis}[]
-                                    \addplot+[domain=-4.45:0.45] {(x+2)^2+1};
-                                \end{axis}
-                            \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                </figure>
-            </introduction>
             <webwork >
                 <setup>
                     <pg-code>
@@ -371,9 +354,15 @@
                         Context("Numeric")->variables->add(y=>'Real');
                         parser::Assignment->Allow;
                         $axisofsymmetry=Formula("x=-2");
+                        $gr = init_graph(-7,-7,7,7,axes=>[0,0],grid=>[14,14],size=>[282,282]);
+                        add_functions($gr, "(x+2)**2+1 for x in &lt;-4.45,0.45>  using color:blue and weight:1");
                     </pg-code>
                 </setup>
                 <statement>
+                    <p>Use the graph to answer the following questions.</p>
+                    <sidebyside widths="47%">
+                        <image pg-name="$gr" />
+                    </sidebyside>
                     <p><ol label="a.">
                         <li>
                             <p>What are the coordinates of the vertex? <var name="$vertex" width="10" /></p>
