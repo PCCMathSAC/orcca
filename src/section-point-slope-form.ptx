@@ -250,7 +250,7 @@
                         @ys=(62.89,52.89,49.64,60.59,33.25,44.80,41.73,41.92,49.06,51.20,29.44,59.32,39.41,57.12,51.21,57.22,62.54,58.09,45.16,34.79,33.52,47.60,44.95,58.32,56.88,56.52,60.33,45.53,47.25,42.03,40.05,36.84,49.90,62.95,52.06,65.33,39.49,48.84,39.46,54.90,61.53,61.06,52.43,46.80,32.64,44.68,38.17,68.65,47.87,67.40);
                         %x=map{$st[$_]=>$xs[$_]}(0..49);
                         %y=map{$st[$_]=>$ys[$_]}(0..49);
-                        $gr=init_graph(25,25,80,80,axes=>[25,25],grid=>[11,11],size=>[282,282]);
+                        $gr=init_graph(25,25,80,80,axes=>[25,25],grid=>[11,11],size=>[240,240]);
                         $gr->lb('reset');
                         $gr->lb(new Label(79,29,'2012 percentage','black','right','bottom'));
                         $gr->lb(new Label(26,79,'2016 percentage','black','left','top'));
@@ -265,7 +265,7 @@
                 </setup>
                 <statement>
                     <p>If we go state by state and compare the Republican candidate's 2012 vote share (<m>x</m>) to the Republican candidate's 2016 vote share (<m>y</m>), we get the following graph where a trendline has been superimposed.</p>
-                    <sidebyside widths="47%">
+                    <sidebyside widths="40%">
                         <image pg-name="$gr" /> 
                     </sidebyside>
                     <p>Find a point-slope equation for this line. (Note that a slope-intercept equation would use the <m>y</m>-intercept cooridnate <m>b</m>, and that would not be meaningful in context, since no state had anywhere near zero percent Republican vote.)</p>
@@ -298,7 +298,7 @@
                 </md></p>
 
                 <sidebyside widths="47% 47%" margins="0%">
-                    <p>Now the point-slope equation looks like <m>y=-\frac{2}{3}(x-x_0)+y_0\text{.}</m> Next, we will use <m>(9,-10)</m> and substitute <m>x_0</m> with <m>9</m> and <m>y_0</m> with <m>-10\text{,}</m> and we have:<md>
+                    <p>The point-slope equation is <m>y=-\frac{2}{3}(x-x_0)+y_0\text{.}</m> Next, we will use <m>(9,-10)</m> and substitute <m>x_0</m> with <m>9</m> and <m>y_0</m> with <m>-10\text{,}</m> and we have:<md>
                         <mrow>y\amp=-\frac{2}{3}(x-x_0)+y_0</mrow>
                         <mrow>y\amp=-\frac{2}{3}(x-9)+(-10)</mrow>
                         <mrow>y\amp=-\frac{2}{3}(x-9)-10</mrow>
@@ -366,8 +366,27 @@
                 <statement>
                     <p>A line passes through <m>(13,-108)</m> and <m>(-42,23)\text{.}</m> Find equations for this line using both point-slope and slope-intercept form.</p>
                     <p>A point-slope equation: <var name="$ps[0]" width="20" evaluator="$evps"/></p>
-                    <p>A point-slope equation: <var name="$si" width="20" evaluator="$evsi"/></p>
+                    <p>A slope-intercept equation: <var name="$si" width="20" evaluator="$evsi"/></p>
                 </statement>
+                <solution>
+                    <p>First, use the slope formula to find the slope of this line:<md>
+                        <mrow>m=\frac{y_2-y_1}{x_2-x_1}\amp=\frac{23-(-108)}{-42-13}</mrow>
+                        <mrow>\amp=\frac{131}{-55}</mrow>
+                        <mrow>\amp=-\frac{131}{55}</mrow>
+                    </md>.</p>
+                    <p>The generic point-slope equation is <m>y=m(x-x_0)+y_0</m>. We have found the slope, <m>m</m>, and we may use <m>(13,-108)</m> for <m>(x_0,y_0)</m>. So an equation in point-slope form is <m><var name="$ps[0]" /></m>.</p>
+                    <p>To find a slope-intercept form equation, we can take the generic <m>y=mx+b</m> and substitute in the value of <m>m</m> we found. Also, we know that <m>(x,y)=(13,-108)</m> should make the equation true. So we have <md>
+                        <mrow>y\amp=mx+b</mrow>
+                        <mrow>-108\amp=-\frac{131}{55}(13)+b\amp\text{Now we may solve for }b\text{.}</mrow>
+                        <mrow>-108\multiplyright{55}\amp=\left(-\frac{131}{55}(13)+b\right)\multiplyright{55}</mrow>
+                        <mrow>-5940\amp=-131(13)+55b</mrow>
+                        <mrow>-5940\amp=-1703+55b</mrow>
+                        <mrow>-5940\addright{1703}\amp=-1703+55b\addright{1703}</mrow>
+                        <mrow>-4237\amp=55b</mrow>
+                        <mrow>\divideunder{-4237}{55}\amp=\divideunder{55b}{55}</mrow>
+                        <mrow>b\amp=-\frac{4237}{55}</mrow>
+                    </md>. So the slope-intercept equation is <m><var name="$si" /></m>.</p>
+                </solution>
             </webwork>
         </exercise>
     </subsection>
@@ -405,7 +424,7 @@
                 <sidebyside widths="37% 57%" margins="1%">
                     <p>Consider the graph in <xref ref="figure-point-slope-multiple-equations">Figure</xref>. Find three equivalent equations that describe the line shown. Three integer valued points are shown for convenience.</p>
                     <figure xml:id="figure-point-slope-multiple-equations">
-                    <caption>Find <m>3</m> Equations that Describe this Line</caption>
+                    <caption>Find Three Equations that Describe this Line</caption>
                     <image>
                     <description></description>
                     <latex-image>
@@ -417,9 +436,9 @@
                                     minor xtick=,
                                     minor ytick=]
                             \addplot[primarycurve, domain=-8.333:25]{-12/5*(x-15)-6};
-                            \addplot[soliddot, color=fifthcolor] coordinates {(-5,42)} node[below left] {$(-5,42)$};
-                            \addplot[soliddot, color=fifthcolor] coordinates {(0,30)} node[above right] {$(0,30)$};
-                            \addplot[soliddot, color=fifthcolor] coordinates {(20,-18)} node[below left] {$(20,-18)$};
+                            \addplot[soliddot] coordinates {(-5,42)} node[below left] {$(-5,42)$};
+                            \addplot[soliddot] coordinates {(0,30)} node[above right] {$(0,30)$};
+                            \addplot[soliddot] coordinates {(20,-18)} node[below left] {$(20,-18)$};
                         \end{axis}
                     \end{tikzpicture}
                     ]]>
