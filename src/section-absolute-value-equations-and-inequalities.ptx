@@ -22,9 +22,9 @@
     <introduction>
         <p>Whether it's a washer, nut, bolt, or gear, when a machine part is made, it must be made to fit with all of the other parts of the system. Since no manufacturing process is perfect, there are small deviations from the norm when each piece is made. In fact, manufacturers have a <em>range</em> of acceptable values for each measurement of every screw, bolt, etc.</p>
 
-        <p>Let's say we were examining some new bolts just out of the factory. The manufacturer specifies that each bolt should be within a <q>tolerance</q> of <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> to <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity> in diameter. So the lowest diameter that the bolt could be to make it through quality assurance is <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> smaller than <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity>, which is <quantity><mag>9.96</mag><unit base="meter" prefix="milli" /></quantity>. Similarly, the largest diameter that the bolt could be is <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> larger than <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity>, which is <quantity><mag>10.04</mag><unit base="meter" prefix="milli" /></quantity>.</p>
+        <p>Let's say we were examining some new bolts just out of the factory. The manufacturer specifies that each bolt should be within a <em>tolerance</em> of <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> to <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity> in diameter. So the lowest diameter that the bolt could be to make it through quality assurance is <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> smaller than <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity>, which is <quantity><mag>9.96</mag><unit base="meter" prefix="milli" /></quantity>. Similarly, the largest diameter that the bolt could be is <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> larger than <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity>, which is <quantity><mag>10.04</mag><unit base="meter" prefix="milli" /></quantity>.</p>
 
-        <p>Summarizing, we wanted a range of values that was <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity> or less above and below <quantity><mag>10</mag><unit base="meter" prefix="milli" /></quantity>. Since absolute values are used to describe distances, we can summarize our thoughts mathematically as <m>\abs{x-10}\le 0.04</m>, where <m>x</m> represents the diameter of an acceptably sized bolt, in millimeters. Since the minimum value is <quantity><mag>9.96</mag><unit base="meter" prefix="milli" /></quantity> and the maximum value is <quantity><mag>10.04</mag><unit base="meter" prefix="milli" /></quantity>, our range of acceptable values should be <m>9.96 \le x \le 10.04</m>.</p>
+        <p>Summarizing, we want the difference between the actual diameter and the the specification to be less than or equal to <quantity><mag>0.04</mag><unit base="meter" prefix="milli" /></quantity>. Since absolute values are used to describe distances, we can summarize our thoughts mathematically as <m>\abs{x-10}\le 0.04</m>, where <m>x</m> represents the diameter of an acceptably sized bolt, in millimeters. Since the minimum value is <quantity><mag>9.96</mag><unit base="meter" prefix="milli" /></quantity> and the maximum value is <quantity><mag>10.04</mag><unit base="meter" prefix="milli" /></quantity>, our range of acceptable values should be <m>9.96 \le x \le 10.04</m>.</p>
 
         <p>In this section we will examine a variety of problems and applications that relate to this sort of math with absolute values.</p>
 
@@ -35,13 +35,14 @@
     </introduction>
 
     <subsection>
-        <title>Absolute Value Equations Part I</title>
+        <title>Solving Absolute Value Equations</title>
         <p>Recall in <xref ref="section-introduction-to-absolute-value-functions" text="title">the introductory section of absolute values</xref> we learned that graphs of absolute value function are in general shaped like <q>V</q>s. We can now solve some absolute value equations graphically.</p>
         <example>
             <statement>
                 <p>Solve the equations graphically using the graphs provided.</p>
                 <p><ol label="a" cols="2">
                     <!-- todo: make the graphs not touching... modify widths -->
+                    <!-- TODO: Should this be a sidebyside? -->
                     <li><p><m>\abs{x}=3</m></p>
                     <figure xml:id="figure-absolute-value-solving-intro-a">
                         <caption><m>y=\abs{x}</m></caption>
@@ -110,7 +111,7 @@
                                         \begin{axis}[xmin=-6, xmax=6, ymin=-2, ymax=6, xtick={-5,-4,...,5}, ytick={-1,-0,...,5}]
                                         \addplot[secondarycurve, domain=-4.5:1.5, samples=99] {abs(2*x+3)} node[pos=0.3, sloped, below]{$y=\abs{2x+3}$};
                                         \addplot[tertiarycurve, domain=-6:6] {5} node[pos=0.9, below]{$y=5$};
-                                        \addplot[soliddot, color=fourthcolor] coordinates {(-4, 5)}
+                                        \addplot[soliddot, color=fourthcolor] coordinates {(-4, 5)};
                                         \addplot[soliddot, color=fourthcolor] coordinates {(1, 5)};
                                         \end{axis}
                                     \end{tikzpicture}
@@ -127,12 +128,12 @@
         <remark>
             <p>At this point, please note that there is a big difference between the expression <m>\abs{3}</m> and the equation <m>\abs{x}=3</m>.</p>
             <p><ol>
-                <li><p>The expression <m>\abs{3}</m> is describing finding the distance from <m>0</m> to the number <m>3</m>. The distance is just <m>3</m>. So <m>\abs{3}=3</m>.</p></li>
+                <li><p>The expression <m>\abs{3}</m> is describing the distance from <m>0</m> to the number <m>3</m>. The distance is just <m>3</m>. So <m>\abs{3}=3</m>.</p></li>
                 <li><p>The equation <m>\abs{x}=3</m> is asking you to find the numbers that are a distance of <m>3</m> from <m>0</m>. We saw in <xref ref="figure-absolute-value-solving-intro-a-solution">Figure</xref> that these two numbers are <m>3</m> and <m>-3</m>.</p></li>
             </ol></p>
         </remark>
 
-        <p>Now we should learn to solve absolute value equations algebraically. To motivate this, we should think about what an absolute value equation means in terms of the <q>distance from zero</q> definition of absolute value. If <me>\abs{X}=n</me>, where <m>n\ge0</m>, then this means that we want all of the numbers, <m>X</m>, that are a distance <m>n</m> from <m>0</m>. Since we can only go left or right along the number line, this is describing both <m>X=n</m> as well as <m>X=-n</m>.</p>
+        <p>Now we will learn to solve absolute value equations algebraically. To motivate this, we will think about what an absolute value equation means in terms of the <q>distance from zero</q> definition of absolute value. If <me>\abs{X}=n</me>, where <m>n\ge0</m>, then this means that we want all of the numbers, <m>X</m>, that are a distance <m>n</m> from <m>0</m>. Since we can only go left or right along the number line, this is describing both <m>X=n</m> as well as <m>X=-n</m>.</p>
 
         <figure xml:id="figure-absolute-value-solving-algebraically-explanation">
                 <caption>A Numberline with Points a Distance <m>n</m> from <m>0</m></caption>
@@ -143,8 +144,8 @@
                                 \begin{axis}[numberline, xmin=-5, xmax=5, xtick=\empty, minor xtick={-5,-4,...,10}, xlabel={$X$}]
                                 \addplot[soliddot] coordinates{(4,0)} node[below]{$n$};
                                 \addplot[soliddot] coordinates{(-4,0)} node[below]{$-n$};
-                                \addplot[<->, dashed, color=secondarycolor] coordinates {(0,0.4) (4,0.4)} node[above, pos=0.5]{$n$ units};
-                                \addplot[<->, dashed, color=secondarycolor] coordinates {(0,0.4) (-4,0.4)} node[above, pos=0.5]{$n$ units};
+                                \addplot[<->, dashed, color=secondcolor] coordinates {(0,0.4) (4,0.4)} node[above, pos=0.5]{$n$ units};
+                                \addplot[<->, dashed, color=secondcolor] coordinates {(0,0.4) (-4,0.4)} node[above, pos=0.5]{$n$ units};
                                 \end{axis}
                             \end{tikzpicture}]]>
                         </latex-image>
@@ -154,9 +155,9 @@
         <p>Let's summarize this with a fact.</p>
 
         <fact xml:id="fact-absolute-value-equation-i">
-            <title>Absolute Value Equations Part I</title>
-            <idx><h>Absolute Value Equations Part I</h></idx>
-            <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression. Then, the equation <me>\abs{X}=n</me> has the same solutions as <me>X=n\text{ or } X=-n</me></p></statement>
+            <title>Equations with an Absolute Value Expression</title>
+            <idx><h>Equations with an Absolute Value Expression</h></idx>
+            <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression. Then, the equation <me>\abs{X}=n</me> has the same solutions as <me>X=n\quad\text{or}\quad X=-n</me>.</p></statement>
         </fact>       
 
         <example>
@@ -172,7 +173,7 @@
             </statement>
             <solution>
                 <p><ol label="a.">
-                    <li><p><xref ref="fact-absolute-value-equation-i">Fact</xref> says that the equation <m>\abs{x}=6</m> is the same as <me>x=6 \text { or } x=-6</me>. Thus the solution set is <m>\{6,-6\}</m>.</p></li>
+                    <li><p><xref ref="fact-absolute-value-equation-i">Fact</xref> says that the equation <m>\abs{x}=6</m> is the same as <me>x=6\quad\text{or}\quad x=-6</me>. Thus the solution set is <m>\{6,-6\}</m>.</p></li>
                     <li><p><xref ref="fact-absolute-value-equation-i">Fact</xref> doesn't actually apply to the equation <m>\abs{x}=-4</m> because the value on the right hand side is <em>negative</em>. How often is an absolute value of a number negative? Never! Thus, there are no solutions and the solution set is <m>\emptyset</m>.</p></li>
                     <li><p>The equation <m>\abs{5x-7}=23</m> breaks into two pieces, each of which needs to be solved independently.
                     <md alignment="alignat">
@@ -209,11 +210,8 @@
                 </ol></p>
             </solution>
         </example>
-    </subsection>
 
-    <subsection>
-        <title>Absolute Value Equations Part II</title>
-        <p>Just as the equation <m>\abs{x}=5</m> has two solutions, both <m>x=5</m> as well as <m>x=-5</m>, the equation <m>\abs{x}=\abs{2x+6}</m> will have two solutions. Let's first visualize this graphically.</p>
+        <p>Now we will look at an equation with an absolute value expression on each side, such as <m>\abs{x}=\abs{2x+6}</m>. Since <m>\abs{x}=5</m> has two solutions, you might be wondering how many solutions <m>\abs{x}=\abs{2x+6}</m> will have. Let's look at a graph to find out.</p>
 
                 <figure xml:id="figure-absolute-value-solving-part-ii-intro">
                     <caption><m>y=\abs{x}</m> and <m>y=\abs{2x+6}</m></caption>
@@ -233,12 +231,12 @@
                         </image>
                     </figure>
 
-                    <p><xref ref="figure-absolute-value-solving-part-ii-intro">Figure</xref> shows that there are two points of intersection between the graphs of <m>y=\abs{x}</m> and <m>y=\abs{2x+6}</m>. The solutions to the equation <m>\abs{x}=\abs{2x+6}</m> are the <m>x</m>-values where the graphs cross. So, the solution set is <m>\{-6,-2\}</m>.</p>
+                    <p><xref ref="figure-absolute-value-solving-part-ii-intro">Figure</xref> shows that there are also two points of intersection between the graphs of <m>y=\abs{x}</m> and <m>y=\abs{2x+6}</m>. The solutions to the equation <m>\abs{x}=\abs{2x+6}</m> are the <m>x</m>-values where the graphs cross. So, the solution set is <m>\{-6,-2\}</m>.</p>
 
         <fact xml:id="fact-absolute-value-equation-ii">
-            <title>Absolute Value Equations Part II</title>
-            <idx><h>Absolute Value Equations Part II</h></idx>
-            <statement><p>Let <m>X</m> and <m>Y</m> be linear algebraic expressions. Then, the equation <me>\abs{X}=\abs{Y}</me> has the same solutions as <me>X=Y\text{ or } X=-Y</me></p></statement>
+            <title>Equations with Two Absolute Value Expressions</title>
+            <idx><h>Equaitons with Two Absolute Value Expressions</h></idx>
+            <statement><p>Let <m>X</m> and <m>Y</m> be linear algebraic expressions. Then, the equation <me>\abs{X}=\abs{Y}</me> has the same solutions as <me>X=Y\quad\text{or}\quad X=-Y</me>.</p></statement>
         </fact>
 
         <remark><p>You might be confused as to why the negative sign <em>has</em> to go on the right side of the equation in <m>X=-Y</m>. Well, it doesn't: it can go on either side of the equation. The equations <m>X=-Y</m> and <m>-X=Y</m> are equivalent. Equally, <m>-X=-Y</m> is equivalent to <m>X=Y</m>. That's why we  only need to solve two of the four possible equations.</p></remark>
@@ -264,7 +262,7 @@
                         <mrow>\divideunder{-2}{2}\amp=\divideunder{2x}{2}\amp\text{ or }\amp\amp \divideunder{4x}{4}\amp=\divideunder{6}{4}</mrow>
                         <mrow>-1\amp=x\amp\text{ or }\amp\amp x\amp=\frac{3}{2}</mrow>
                     </md>
-                    So, the solution set is <m>\left\{-1,\frac{3}{2}\right\}</m></p>
+                    So, the solution set is <m>\left\{-1,\frac{3}{2}\right\}</m>.</p>
                     <!-- todo: add a verification here? -->
 
                     </li>
@@ -288,9 +286,9 @@
                         <mrow>0\amp=3\amp\text{ or }\amp\amp 2x\amp=1</mrow>
                         <mrow>0\amp\ne3\amp\text{ or }\amp\amp x\amp=\frac{1}{2}</mrow>
                     </md>
-                    Note that one of the two pieces gave us a nonsense equation. Since <m>0\ne3</m>, we can safely ignore this piece. Thus the only solution is <m>\frac{1}{2}</m>.</p>
+                    Note that one of the two pieces gives us an equation with no solutions. Since <m>0\ne3</m>, we can safely ignore this piece. Thus the only solution is <m>\frac{1}{2}</m>.</p>
                     <sidebyside widths="47% 47%" margins="1%">
-                        <p>We should visualize this equation graphically because our previous assumption was that the two <q>V</q> graphs would cross twice. The graph shows why there is only one crossing: the lines extending out to infinity and negative infinity are parallel.</p>
+                        <p>We should visualize this equation graphically because our previous assumption was that two absolute value graphs would cross twice. The graph shows why there is only one crossing: the left and right sides of each <q>V</q> are parallel.</p>
                         <figure xml:id="figure-absolute-value-solving-part-ii-c">
                         <caption><m>y=\abs{x-2}</m> and <m>y=\abs{x+1}</m></caption>
                             <image>
@@ -317,9 +315,9 @@
                             <mrow>2x\amp=2\amp\text{ or }\amp\amp 0\amp=0</mrow>
                             <mrow>x\amp=1\amp\text{ or }\amp\amp 0\amp=0</mrow>
                         </md>
-                        Note that our second equation is that <m>0=0</m>. We have seen something like this before in <xref ref="section-special-solution-sets">Section</xref>. The question is <q>what number could you input for <m>x</m> to make the equation <m>0=0</m> true?</q> While this may sound like a strange question since there is no <m>x</m> to input into, the answer is that since <m>x</m> doesn't affect the equation, any number for <m>x</m> makes <m>0=0</m> true. </p>
+                        Note that our second equation is an identity so recall from <xref ref="section-special-solution-sets">Section</xref> that the solution set is <q>all real numbers.</q></p>
                         <sidebyside widths="47% 47%" margins="1%">
-                        <p>So, our two pieces have solutions <m>1</m> and <q>all real numbers</q>. Since <m>1</m> <em>is</em> a real number and we have an <em>or</em> statement, our overall solution set is <m>(-\infty,\infty)</m>. The graph confirms our answer since the curves lie on top of each other.</p>
+                        <p>So, our two pieces have solutions <m>1</m> and <q>all real numbers</q>. Since <m>1</m> <em>is</em> a real number and we have an <em>or</em> statement, our overall solution set is <m>(-\infty,\infty)</m>. The graph confirms our answer since the the two <q>V</q> graphs are coinciding.</p>
                             <figure xml:id="figure-absolute-value-solving-part-ii-d">
                             <caption><m>y=\abs{x-1}</m> and <m>y=\abs{1-x}</m></caption>
                                 <image>
@@ -343,7 +341,7 @@
     </subsection>
 
     <subsection>
-        <title>Absolute Value Inequalities Part I</title>
+        <title>Solving Absolute Value Inequalities</title>
         <p>Now we turn our attention away from equations and onto absolute value inequalities! Don't dismiss this topic as it will actually be used in some capacity in almost every subsequent math course. So let's give these the full treatment. We start with a graphical interpretation of what <m>\abs{2x-1} \le 5</m> means.</p>
 
         <sidebyside widths="47% 47%" margins="1%">
@@ -400,10 +398,32 @@
 
         <p>For a more verbal approach to understanding the concept, lets try to describe <q>values that are less than <m>4</m> units from <m>0</m></q>. We would say that those are <q>numbers between <m>-4</m> and <m>4</m></q>. Let's translate each sentence into math. <q>Values that are less than <m>4</m> units from <m>0</m></q> translates to <q><m>\abs{x}\lt4</m></q>, and the piece <q>numbers between <m>-4</m> and <m>4</m></q> translates to be <q><m>-4 \lt x \lt 4</m></q>. The fact that these two inequalities are really describing the same numbers leads us to a new fact.</p>
 
+        <!-- This is a single column version -->
+        <!-- <fact xml:id="fact-absolute-value-inequalities-i">
+            <title>An Absolute Value Expression Less Than a Value</title>
+            <idx><h>An Absolute Value Expression Less Than a Value</h></idx>
+            <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression. Then, the inequality <me>\abs{X} \lt n</me> has the same solutions as the compound inequality 
+            <me>-n \lt X \lt n</me>. 
+            Likewise, the inequality 
+            <me>\abs{X} \le n</me> 
+            has the same solutions as the compound inequality 
+            <me>-n \le X \le n</me>.</p></statement>
+        </fact> -->
+
         <fact xml:id="fact-absolute-value-inequalities-i">
-            <title>Absolute Value Inequalities Part I</title>
-            <idx><h>Absolute Value Inequalities Part I</h></idx>
-            <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression. Then, the inequality <me>\abs{X} \lt n</me> has the same solutions as the compound inequality <me>-n \lt X \lt n</me>. Likewise, the inequality <me>\abs{X} \le n</me> has the same solutions as the compound inequality <me>-n \le X \le n</me>.</p></statement>
+            <title>An Absolute Value Expression Less Than a Value</title>
+            <idx><h>An Absolute Value Expression Less Than a Value</h></idx>
+            <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression.</p>
+            <sidebyside widths="47% 47%">
+                <p>Then, the inequality <me>\abs{X} \lt n</me> 
+                has the same solutions as the compound inequality 
+                <me>-n \lt X \lt n</me>.</p>
+
+                <p>Likewise, the inequality <me>\abs{X} \le n</me> 
+                has the same solutions as the compound inequality 
+                <me>-n \le X \le n</me>.</p>
+            </sidebyside>
+            </statement>
         </fact>
 
         <example>
@@ -429,17 +449,17 @@
                             <mrow>\divideunder{-12}{4} \lt \divideunder{4x}{4} \lt \divideunder{6}{4}</mrow>
                             <mrow>-3 \lt x \lt \frac{3}{2}</mrow>
                         </md>
-                        So, the solution set to the inequality is <m>\left(-3,\frac{3}{2}\right)</m></p>
+                        So, the solution set to the inequality is <m>\left(-3,\frac{3}{2}\right)</m>.</p>
                         <!-- todo: show a verification? -->
                     </li>
-                    <li><p>The inequality <m>3\cdot\abs{3-x}+1\le 13</m> <em>must</em> be simplified into the form that matches <xref ref="fact-absolute-value-inequalities-i">Fact</xref>: a lone absolute value on the left and a single number on the right.
+                    <li><p>The inequality <m>3\cdot\abs{3-x}+1\le 13</m> <em>must</em> be simplified into the form that matches <xref ref="fact-absolute-value-inequalities-i">Fact</xref>, so we will isolate the absolute value expression on the left side of the equation.
                         <md>
                             <mrow>3\cdot\abs{3-x}+1 \amp \le 13</mrow>
                             <mrow>3\cdot\abs{3-x}+1\subtractright{1} \amp \le 13\subtractright{1}</mrow>
                             <mrow>3\cdot\abs{3-x} \amp\le 12</mrow>
                             <mrow>\divideunder{3\cdot\abs{3-x}}{3} \amp \le \divideunder{12}{3}</mrow>
                             <mrow>\abs{3-x} \amp\le 4</mrow>
-                            <intertext>Now that we have the absolute value inequality in the simplest form, we can split it into a triple inequality.</intertext>
+                            <intertext>Now that we have the absolute value isolated, we can split it into a triple inequality.</intertext>
                             <mrow>-4 \amp \le 3-x \le 4</mrow>
                             <mrow>-4\subtractright{3} \amp \le 3-x \subtractright{3} \le 4 \subtractright{3}</mrow>
                             <mrow>-7 \amp\le -x \le 1</mrow>
@@ -457,7 +477,7 @@
                 <p>If a machined circular washer must have a circumference that is within <quantity><mag>0.2</mag><unit base="meter" prefix="milli" /></quantity> of <quantity><mag>36</mag><unit base="meter" prefix="milli" /></quantity>, then what is the acceptable range for the radius of the washer? Round your answers to the nearest hundredth of a millimeter.</p>
             </statement>
             <solution>
-                <p>We will first define the radius of the washer to be <m>r</m>, measured in millimeters. We know from the <xref ref="figure-circle" text="title">geometry appendix</xref> that the formula <m>C=2\pi r</m> gives us the circumference, <m>C</m>, of a circle with radius <m>r</m>. Now we know that <q>distance</q> between the circumference and our preferred circumference of <quantity><mag>36</mag><unit base="meter" prefix="milli" /></quantity> must be less than or equal to <quantity><mag>0.2</mag><unit base="meter" prefix="milli" /></quantity>. In math, this translates to <me>\abs{C-36} \le 0.2</me> Now we can substitute our formula for circumference and solve for <m>r</m>.
+                <p>We will first define the radius of the washer to be <m>r</m>, measured in millimeters. The formula <m>C=2\pi r</m> gives us the circumference, <m>C</m>, of a circle with radius <m>r</m>. Now we know that <q>distance</q> between the circumference and our preferred circumference of <quantity><mag>36</mag><unit base="meter" prefix="milli" /></quantity> must be less than or equal to <quantity><mag>0.2</mag><unit base="meter" prefix="milli" /></quantity>. In math, this translates to <me>\abs{C-36} \le 0.2</me> Now we can substitute our formula for circumference and solve for <m>r</m>.
                 <md>
                     <mrow>\abs{C-36} \amp\le 0.2</mrow>
                     <mrow>\abs{2\pi r-36} \amp\le 0.2</mrow>
@@ -472,10 +492,7 @@
                 Our math states that the radius must be somewhere between <quantity><mag>5.70</mag><unit base="meter" prefix="milli" /></quantity> and <quantity><mag>5.76</mag><unit base="meter" prefix="milli" /></quantity>, inclusive.</p>
             </solution>
         </example>
-    </subsection>
-
-    <subsection>
-        <title>Absolute Value Inequalities Part II</title>
+    
         <p>The last few examples have all revolved around absolute values being <em>less than</em> some value. We now need to investigate what happens when we have an absolute value that is <em>greater than</em> a value. We will again start with a graphical interpretation.</p>
     
         <p>If we were to graphically solve the inequality <m>\abs{x-1} \gt 3</m>, that would mean looking for the <m>x</m>-values where the graph of <m>y=\abs{x-1}</m> is <em>above</em> the line <m>y=3</m>.</p>
@@ -535,10 +552,27 @@
 
         <p>Again, for a more verbal approach to understanding the concept, lets try to describe <q>values that are more than <m>4</m> units from <m>0</m></q>. We would say that those are <q>numbers below <m>-4</m> as well as numbers above <m>4</m></q>. We will again translate each sentence into math. <q>Values that are more than <m>4</m> units from <m>0</m></q> translates to <q><m>\abs{x}\gt4</m></q>, and the piece <q>numbers below <m>-4</m> as well as numbers above <m>4</m></q> translates to be <q><m>x \lt -4 \text{ or } x \gt 4</m></q>. The fact that these two inequalities (<m>\abs{x} \gt 4</m> as well as <m>x \lt -4 \text{ or } x \gt 4</m>) are really describing the same numbers leads us to a new fact.</p>
 
-        <fact xml:id="fact-absolute-value-inequalities-ii">
-            <title>Absolute Value Inequalities Part II</title>
-            <idx><h>Absolute Value Inequalities Part II</h></idx>
+        <!-- This is a one-column version -->
+        <!-- <fact xml:id="fact-absolute-value-inequalities-ii">
+            <title>An Absolute Value Expression Greater Than a Value</title>
+            <idx><h>An Absolute Value Expression Greater Than a Value</h></idx>
             <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression. Then, the inequality <me>\abs{X} \gt n</me> has the same solutions as the compound inequality <me>X \gt n \text{ or } -X \gt n</me>. Likewise, the inequality <me>\abs{X} \ge n</me> has the same solutions as the compound inequality <me>X \ge n \text{ or } -X \ge n</me>.</p></statement>
+        </fact> -->
+
+        <fact xml:id="fact-absolute-value-inequalities-ii">
+            <title>An Absolute Value Expression Greater Than a Value</title>
+            <idx><h>An Absolute Value Expression Greater Than a Value</h></idx>
+            <statement><p>Let <m>n</m> be a non-negative number and <m>X</m> be a linear algebraic expression.</p>
+                <sidebyside widths="47% 47%">
+                <p>Then, the inequality <me>\abs{X} \gt n</me> 
+                has the same solutions as the compound inequality 
+                <me>X \gt n \text{ or } -X \gt n</me>.</p>
+
+                <p>Likewise, the inequality <me>\abs{X} \ge n</me>
+                has the same solutions as the compound inequality 
+                <me>X \ge n \text{ or } -X \ge n</me>.</p>
+                </sidebyside>
+            </statement>
         </fact>
         
         <remark><p>Since <xref ref="fact-absolute-value-inequalities-ii">Fact</xref> specifies that an <q>absolute value greater than a number</q>-type inequality breaks down into an <em>or</em> statement, we will therefore need to find the <em>union</em> of the solution sets of the pieces.</p></remark>
@@ -576,16 +610,16 @@
                         <mrow>x \amp \gt \frac{14}{5} \amp \text{or} \amp\amp x \amp \lt 0</mrow>
                         <mrow>\amp  \left(\frac{14}{5},\infty\right) \amp \cup \amp\amp (-\infty,0)</mrow>
                     </md>
-                    We will write the solution set as <m>(-\infty,0)\cup\left(\frac{14}{5},\infty\right)</m></p>
+                    We will write the solution set as <m>(-\infty,0)\cup\left(\frac{14}{5},\infty\right)</m>.</p>
                 </li>
-                    <li><p>Before we break up the inequality <m>2\cdot\abs{3-2x}-5\ge 13</m> into an <q>or</q> statement, we <em>must</em> simplify the inequality to simplest form.
+                    <li><p>Before we break up the inequality <m>2\cdot\abs{3-2x}-5\ge 13</m> into an <q>or</q> statement, we <em>must</em> isolate the absolute value expression.
                     <md>
                         <mrow>2\cdot\abs{3-2x}-5\amp\ge 13</mrow>
                         <mrow>2\cdot\abs{3-2x}-5\addright{5}\amp\ge 13\addright{5}</mrow>
                         <mrow>2\cdot\abs{3-2x}\amp\ge 18</mrow>
                         <mrow>\divideunder{2\cdot\abs{3-2x}}{2}\amp\ge \divideunder{18}{2}</mrow>
                         <mrow>\abs{3-2x}\amp\ge 9</mrow>
-                        <intertext>Now that the inequality has been simplified into <q>absolute value greater than (or equal to) a number</q>-form, we can use <xref ref="fact-absolute-value-inequalities-ii">Fact</xref> to break it into an <q>or</q> statement.</intertext>
+                        <intertext>Now that the absolute value expression has been isolated on the left side, we can use <xref ref="fact-absolute-value-inequalities-ii">Fact</xref> to break it into an <q>or</q> statement.</intertext>
                         <mrow>3-2x \amp\ge 9 \amp \text{or} \amp\amp -(3-2x) \amp\ge 9</mrow>
                         <mrow>3-2x \amp\ge 9 \amp \text{or} \amp\amp \highlight{-3+2x}\amp\ge 9</mrow>
                         <mrow>3-2x\subtractright{3} \amp\ge 9\subtractright{3} \amp \text{or} \amp\amp -3+2x\addright{3} \amp\ge 9\addright{3}</mrow>
@@ -602,7 +636,7 @@
 
         <example>
             <statement>
-                <p>The standard climbing route from Timberline Lodge up and back the hogs-back on Mount Hood can be very closely modeled by an absolute value function since the angle of ascent is nearly constant. Let <m>x</m> represent the number of miles walked from Timberline Lodge, and let <m>f(x)</m> represent the altitude, in miles, after walking for a distance <m>x</m>. The altitude can be modeled by <m>f\left(x\right)=2.1-0.3077\cdot\abs{x-3.25}</m>. Note that below Timberline Lodge this model fails to be accurate.</p>
+                <p>The standard climbing route on Mount Hood from Timberline Lodge up the Southside Hogsback and back down can be very closely modeled by an absolute value function since the angle of ascent is nearly constant. Let <m>x</m> represent the number of miles walked from Timberline Lodge, and let <m>f(x)</m> represent the altitude, in miles, after walking for a distance <m>x</m>. The altitude can be modeled by <m>f\left(x\right)=2.1-0.3077\cdot\abs{x-3.25}</m>. Note that below Timberline Lodge this model fails to be accurate.</p>
                 <p><ol>
                     <li><p>Solve the equation <m>f(x)=1.1</m> and interpret the results in the context of the problem.</p></li>
                     <li><p>Altitude sickness can occur at altitudes above <m>1.5</m> miles. Set up and solve an inequality to find out how far a hiker can walk the trail and still be under <m>1.5</m> miles of elevation?</p></li>
@@ -610,7 +644,7 @@
             </statement>
             <solution>
                 <p><ol>
-                    <li><p>First, we need to input the formula for <m>f(x)</m> and simplify the equation.
+                    <li><p>First, we substitute the formula for <m>f(x)</m> and simplify the equation.
                         <md>
                             <mrow>f(x)\amp=1.1</mrow>
                             <mrow>2.1-0.3077\cdot\abs{x-3.25} \amp=1.1</mrow>
@@ -623,7 +657,7 @@
                             <!-- <mrow>x-3.25\addright{3.25} \amp\approx 3.226\addright{3.25} \amp \text{or} \amp\amp x-3.25\addright{3.25} \amp= -17158.7\addright{3.25}</mrow> -->
                             <mrow>x \amp\approx 6.5 \amp \text{or} \amp\amp x \amp\approx 0</mrow>
                         </md>
-                        According to the model, a hiker will be at <m>1.1</m> miles of elevation after walking for both about <m>6.5</m> miles along the trail or after hiking about <m>0</m> miles. This seems to imply that Timberline Lodge very close to <m>1.1</m> miles of elevation. In addition, it implies that the entire hike is <m>6.5</m> miles round trip, ending at Timberline Lodge again.</p></li>
+                        According to the model, a hiker will be at <m>1.1</m> miles of elevation after walking for both about <m>6.5</m> miles along the trail or after hiking about <m>0</m> miles. This seems to imply that Timberline Lodge is very close to <m>1.1</m> miles of elevation. In addition, it implies that the entire hike is <m>6.5</m> miles round trip, ending at Timberline Lodge again.</p></li>
                         <li><p>The inequality we are looking for will describe when the altitude is below <m>1.5</m> miles. Since <m>f(x)</m> is the altitude, the inequality we need is <me>f(x)\lt 1.5</me> To solve this, we need to input the formula and simplify before using one of the absolute value inequality rules.
                         <md>
                             <mrow>f(x)\amp\lt 1.5</mrow>
@@ -810,7 +844,7 @@
             <exercise>
                 <webwork source="Math95/AbsValueEquations/zhu3.pg" />
             </exercise>
-            <exercise>
+            <!-- <exercise>
                 <webwork source="Math95/AbsValueEquations/zhu12.pg" />
             </exercise>
             <exercise>
@@ -821,7 +855,7 @@
             </exercise>
             <exercise>
                 <webwork source="Math95/AbsValueEquations/pn5.pg" />
-            </exercise>
+            </exercise> -->
             <!-- If more are needed, these could be cleaned up and used. -->
 <!--             <exercise>
                 <webwork source="Math95/AbsValueEquations/57IntAlg_32_AbsoluteValEq_Review.pg" />
@@ -832,7 +866,6 @@
             <exercise>
                 <webwork source="Math95/AbsValueEquations/54IntAlg_35_AbsoluteValEq_Review.pg" />
             </exercise> -->
-
         </exercisegroup>
 
 
