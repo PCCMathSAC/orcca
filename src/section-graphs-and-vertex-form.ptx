@@ -43,7 +43,7 @@
         <example>
             <statement>
                 <p>Use technology to graph and make a table of the quadratic function <m>f(x)=2x^2+4x-3</m> and find each of the key points or features.
-                <ol label="a.">
+                <ol label="a." cols="2">
                     <li><p>Find the vertex.</p></li>
                     <li><p>Find the vertical intercept or <m>y</m>-intercept.</p></li>
                     <li><p>Find the horizontal or <m>x</m>-intercept(s).</p></li>
@@ -55,8 +55,9 @@
                 </ol></p>
             </statement>
             <solution>
-                <p>The specifics of how to use any one particular technology tool vary. Whether you use an app, a physical calculator, or something else, a table and graph should look like:</p>
-                <sidebyside widths="47% 47%">
+                <sidebyside widths="32% 15% 47%">
+                    <p>The specifics of how to use any one particular technology tool vary. Whether you use an app, a physical calculator, or something else, a table and graph should look like:</p>
+
                     <tabular>
                         <row bottom="medium">
                             <cell><m>x</m></cell>
@@ -104,7 +105,7 @@
                         <latex-image>
                         <![CDATA[\begin{tikzpicture}
                             \begin{axis}[clip=false]
-                                \addplot [domain=-3.449:1.449, primarycurve] {2*x^2+4*x-3} node[pos=0.7, right] {$y=f(x)$};
+                                \addplot [domain=-3.449:1.449, primarycurve] {2*x^2+4*x-3} node[below right] {$y=f(x)$};
                                 \addplot [domain=-7:7, secondarycurve] {3} node[above left] {$y=3$};
                                 \addplot [soliddot, color=thirdcolor] coordinates {(-1,-5)} node[below left] {$(-1,-5)$};
                                 \addplot [soliddot, color=fourthcolor] coordinates {(1,3)} node[above right] {$(1,3)$};
@@ -253,7 +254,6 @@
                         We graph the line <m>y=30500</m> and find the points of intersection with the parabola. The astronauts experience weightlessness from <m>0</m> seconds to <m>25</m> seconds into the maneuver, or <m>[0,25]</m> seconds. They experience weightlessness for 25 seconds in each cycle.</p></li>
 
                         <li><p>To solve <m>H(t)=32100</m> using the table, we look for where the <m>H</m>-values are equal to <m>32100</m>. There are two solutions, <m>5</m> seconds and <m>20</m> seconds. The solution set is <m>\{5,20\}</m>.</p>
-                        <sidebyside>
                             <tabular halign="right">
                                 <col right="major"/>
                                 <col />
@@ -286,7 +286,6 @@
                                     <cell><m>30500</m></cell>
                                 </row>
                             </tabular>
-                        </sidebyside>
                     </li>
                         <li><p>When we use graphing technology we see the entire function but in this context the plane is only on a parabolic path from <m>[0,25]</m> seconds, which is the domain, and the range of <m>[30500,33000]</m> feet.</p></li>
                     </ol>
@@ -470,7 +469,7 @@
         <example>
             <statement>
                 <p>Find the vertex of each quadratic function.
-                <ol label="a.">
+                <ol label="a." cols="2">
                     <li><p><m>r(x)=-2(x+4)^2+10</m></p></li>
                     <li><p><m>s(x)=5(x-1)^2+10</m></p></li>
                     <li><p><m>t(x)=(x-10)^2-5</m></p></li>
@@ -493,7 +492,7 @@
         <example>
             <statement>
                 <p>Write a formula for the quadratic function <m>f</m> with the given vertex and value of <m>a</m>.
-                <ol label="a.">
+                <ol label="a." cols="2">
                     <li><p>Vertex <m>(-2,8)</m>, <m>a=1</m></p></li>
                     <li><p>Vertex <m>(4,-9)</m>, <m>a=-4</m></p></li>
                     <li><p>Vertex <m>(-3,-1)</m>, <m>a=2</m></p></li>
@@ -559,7 +558,7 @@
         <example>
             <statement>
                 <p>Identify the domain and range of each quadratic function.
-                <ol label="a.">
+                <ol label="a." cols="2">
                     <li><p><m>w(x)=-3(x+10)^2-11</m></p></li>
                     <li><p><m>x(x)=4(x-7)^2+20</m></p></li>
                     <li><p><m>y(x)=-(x-1)^2</m></p></li>
@@ -795,7 +794,7 @@
         <example>
             <statement>
                 <p>Identify the horizontal and vertical shifts compared with <m>f(x)=x^2</m>.
-                <ol label="a.">
+                <ol label="a." cols="2">
                     <li><p><m>m(x)=(x+7)^2+3</m></p></li>
                     <li><p><m>n(x)=(x-1)^2+6</m></p></li>
                     <li><p><m>o(x)=(x-5)^2-1</m></p></li>
@@ -866,7 +865,7 @@
         <example>
             <statement>
                 <p>Write the horizontal intercepts of each function.
-                <ol label="a.">
+                <ol label="a." cols="2">
                     <li><p><m>t(x)=-(x+2)(x-4)</m></p></li>
                     <li><p><m>u(x)=6(x-7)(x-5)</m></p></li>
                     <li><p><m>v(x)=-2(x+1)(x+4)</m></p></li>
@@ -3528,6 +3527,87 @@
                 </solution>
               </webwork>
             </exercise>
+            <exercise>
+              <webwork >
+                <pg-macros>
+                    <macro-file>PCCgraphMacros.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        $refreshCachedImages=1;
+                        Context("Numeric");
+                        Context()->variables->add(t => 'Real');
+                        Context()->flags->set(showExtraParens=>0, reduceConstants=>0);
+                        Context()->noreduce("(-x)-y","(-x)+y");
+                        Context()->flags->set(
+                          tolerance => 0.005,
+                          tolType => "absolute",
+                        );
+
+                        $acceleration = random(1,5,0.1);
+                        $v0 = random(3,10,1);
+                        $a = $acceleration/2;
+                        $b = $v0;
+
+                        $func = Compute("$a*t**2+$b*t")->reduce;
+                        $funcX = Compute("$a*x**2+$b*x")->reduce;
+
+                        $t1 = random(5,20,1);
+                        $d1 = $func->eval(t=>$t1);
+
+                        $alt="This picture shows the graph of a parabola for the function d(t)=$func. A horizontal line y=$d1 is graphed, and the intersections of d(t) and y=$d1, ($t1,$d1), are labeled.";
+
+                        ($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters([0,$t1],[$d1,0]);
+
+                        @xticks = @$xticks_ref;
+                        @yticks = @$yticks_ref;
+
+                        $gr = init_graph($min[0],$min[1],$max[0],$max[1],
+                           axes=>[0,0],
+                           grid=>[$ticknum[0],$ticknum[1]],
+                           size=>[xPixels(),yPixels()]
+                        );
+                        $gr->lb('reset');
+                        for my $j (@xticks) {
+                            if (abs($j) &lt; 10**(-10)) {next;}
+                            $gr->lb( new Label($j, -$marksep[1]/8, $j,'black','center','top'));
+                        }
+                        $gr->lb( new Label($max[0]-$marksep[0]/2, $marksep[1]/8, t,'black','center','bottom'));
+                        $gr->lb( new Label($marksep[0]/8, $max[1]-$marksep[1]/2, d,'black','left','middle'));
+
+                        for my $j (@yticks) {
+                            if (Real($j) == 0) {next;}
+                            $gr->lb( new Label(-$marksep[0]/8, $j, $j,'black','right','middle'));
+                        }
+
+                        add_functions($gr, "$funcX for x in &lt; 0,$max[0]> using color:red and weight:1");
+                        add_functions($gr, "$d1 for x in &lt; $min[0],$max[0]> using color:blue and weight:1");
+                        $gr->lb( new Label($t1/2, $d1-$marksep[1]/8, "y=$d1",'blue','center','top'));
+
+                        $hx = $t1/2;
+                        $hy = $func->eval(t=>$hx);
+                        $gr->lb( new Label($hx-$marksep[0]/8, $hy, "d(t)",'red','right','middle'));
+
+                        $gr->stamps( closed_circle($t1,$d1,'red') );
+                        $gr->lb( new Label($t1-$marksep[0]/8, $d1+$marksep[1]/8, "($t1,$d1)",'red','right','bottom'));
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>In a race, a car drove through the starting line at the speed of <m><var name="$v0"/></m> meters per second. It was accelerating at <m><var name="$acceleration"/></m> meters per second squared. Its distance from the starting position can be modeled by the function <m>d(t)=<var name="$func"/></m>. Find the answer using technology.</p>
+
+                    <p>After <var name="$t1" width="10" /> seconds, the car was <m><var name="$d1"/></m> meters away from the starting position.</p>
+                </statement>
+                <solution>
+                    <p>Use technology to graph the functions <m>d(t)=<var name="$func"/></m> and <m>y=<var name="$d1"/></m>, and find the point of intersection where <m>x</m> is positive, <m>(<var name="$t1"/>,<var name="$d1"/>)</m>.</p>
+                    <sidebyside widths="47%">
+                      <image pg-name="$gr">
+                          <description><var name="$alt" /></description>
+                      </image>
+                    </sidebyside>
+                    <p>According to the point of intersection, the car was <m><var name="$d1"/></m> meters away from the starting position after <m><var name="$t1"/></m> seconds.</p>
+                </solution>
+              </webwork>
+            </exercise>
 
             <!-- Find the Vertex -->
             <exercise>
@@ -3826,7 +3906,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -3870,7 +3950,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -3915,7 +3995,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -3959,7 +4039,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4004,7 +4084,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4048,7 +4128,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4094,7 +4174,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4139,7 +4219,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4185,7 +4265,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4231,7 +4311,7 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Let the function <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
                             <li>
                                 <p>What is the domain of <m><var name="$f"/></m>?</p>
                                 <p><var name="$domain" width="10"/></p>
@@ -4255,7 +4335,7 @@
                 </webwork>
             </exercise>
 
-            <exercise>
+            <exercise width="wide">
                 <webwork>
                     <pg-macros>
                         <macro-file>PCCmacros.pl</macro-file>
@@ -4303,7 +4383,7 @@
                     </solution>
                 </webwork>
             </exercise>
-            <exercise>
+            <exercise width="wide">
                 <webwork>
                     <pg-macros>
                         <macro-file>PCCmacros.pl</macro-file>
@@ -4352,7 +4432,7 @@
                 </webwork>
             </exercise>
 
-            <exercise>
+            <exercise width="wide">
                 <webwork>
                     <pg-macros>
                         <macro-file>PCCmacros.pl</macro-file>
@@ -4400,7 +4480,7 @@
                     </solution>
                 </webwork>
             </exercise>
-            <exercise>
+            <exercise width="wide">
                 <webwork>
                     <pg-macros>
                         <macro-file>PCCmacros.pl</macro-file>
@@ -4449,7 +4529,7 @@
                 </webwork>
             </exercise>
 
-            <exercise>
+            <exercise width="wide">
                 <webwork>
                     <pg-macros>
                         <macro-file>PCCmacros.pl</macro-file>
@@ -4507,7 +4587,7 @@
                     </solution>
                 </webwork>
             </exercise>
-            <exercise>
+            <exercise width="wide">
                 <webwork>
                     <pg-macros>
                         <macro-file>PCCmacros.pl</macro-file>
