@@ -1,0 +1,1477 @@
+    <exercisegroup>
+        <introduction>
+            <p>Challenge Problems</p>
+        </introduction>
+
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextRationalFunction.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("RationalFunction-Strict");
+                            Context()->variables->are(a=>'Real');
+                            $p = random(1,9,1);
+                            $q = random(1,9,1);
+                            $num = $p+$q;
+                            $answer = Formula("$num/a");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 1.1-->
+                        <p>Given that <m>a\neq0</m>, simplify the following <m>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{a}</m>.</p>
+                        <p><var name="$answer" width="10" /></p>
+                    </statement>
+                    <solution>
+                        <p>Since the fractions have the same denominator, we can just add numerators and keep that denominator the same.<md>
+                            <mrow>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{a}   \amp =  \frac{<var name="$p"/>+<var name="$q"/>}{a}</mrow>
+                            <mrow>                                                          \amp = <var name="$answer" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextRationalFunction.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("RationalFunction-Strict");
+                            Context()->variables->are(a=>'Real');
+                            $p = random(1,9,1);
+                            $q = random(1,9,2);
+                            $num = (2*$p+$q);
+                            $answer = Formula("$num/(2a)");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 1.1-->
+                        <p>Given that <m>a\neq0</m>, simplify the following <m>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{2a}</m>.</p>
+                        <p><var name="$answer" width="10" /></p>
+                    </statement>
+                    <solution>
+                        <p>Since the fractions don't have the same denominator, we have to make them have like denominators.  You should multiply the first fraction by <m>\frac{2}{2}</m>.
+                        <md>
+                            <mrow>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{2a}    \amp = \frac{2 \cdot<var name="$p"/>}{2a} + \frac{<var name="$q"/>}{2a} </mrow>
+                            <mrow>                                                            \amp =  \frac{2 \cdot <var name="$p"/>+<var name="$q"/>}{2a}</mrow>
+                            <mrow>                                                            \amp = <var name="$answer" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextRationalFunction.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("RationalFunction-Strict");
+                            Context()->variables->are(a=>'Real');
+                            $p = random(1,9,1);
+                            do {$q = random(1,9,1);} until ($q % 5 != 0);
+                            $num = (5*$p-$q);
+                            $answer = Formula("$num/(5a)");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 1.1-->
+                        <p>Given that <m>a\neq0</m>, simplify the following: <m>\frac{<var name="$p"/>}{a} - \frac{<var name="$q"/>}{5a}</m>.</p>
+                        <p><var name="$answer" width="10" /></p>
+                    </statement>
+                    <solution>
+                        <p>Since the fractions don't have the same denominator, we have to make them have like denominators.  You should multiply the first fraction by <m>\frac{5}{5}</m>.
+                        <md>
+                            <mrow>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{2a}    \amp = \frac{5 \cdot<var name="$p"/>}{5a} - \frac{<var name="$q"/>}{5a}</mrow>
+                            <mrow>                                                            \amp = \frac{5 \cdot<var name="$p"/> - <var name="$q"/>}{5a}</mrow>
+                            <mrow>                                                            \amp = <var name="$answer" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $sometimes = PopUp(['?','sometimes','always','never'], 1);
+                            $always = PopUp(['?','sometimes','always','never'], 2);
+                            $never = PopUp(['?','sometimes','always','never'], 3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 1.2-->
+                        <p>Select the correct word to make each statement true.<ol label="a.">
+                            <li>
+                                <p>A positive number minus a positive number is <var name="$sometimes" form="popup"/> negative.</p>
+                            </li>
+                            <li>
+                                <p>A negative number plus a negative number is <var name="$always" form="popup"/> negative.</p>
+                            </li>
+                            <li>
+                                <p>A positive number minus a negative number is <var name="$always" form="popup"/> positive.</p>
+                            </li>
+                            <li>
+                            <p>A negative number multiplied by a negative number is <var name="$never" form="popup"/> negative.</p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                            <li>
+                                <p>A positive number minus a positive number is <var name="$sometimes"/> negative.  For example, consider 6 - 3 = 3 and consider 6 - 8 = -2.</p>
+                            </li>
+                            <li>
+                                <p>A negative number plus a negative number is <var name="$always"/> negative.</p>
+                            </li>
+                            <li>
+                                <p>A positive number minus a negative number is <var name="$always"/> positive.</p>
+                            </li>
+                            <li>
+                                <p>A negative number multiplied by a negative number is <var name="$never"/> negative.  A negative number multiplied by a negative number is always positive.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                     <setup>
+                        <pg-code>
+                            $answer=Formula("36");
+                            $small=Formula("-23");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                    <!--Section 1.4-->
+                        <p>In this challenge, your job is to create expressions, using addition, subtraction, multiplication, and parentheses.  You may use the numbers, <m>1, 2, 3,</m> and <m>4</m> in your expression, using each number only once.</p>
+                        <p> For example, you could make the expression: <m>1+2 \cdot 3 - 4</m></p>
+                        <p><ol label="a.">
+                        <li>
+                        <p>The largest value that it is possible to create under these conditions is <var name="$answer" width="10" />.</p>
+                        </li>
+                        <li>
+                        <p>The smallest value that it is possible to create under these conditions is <var name="$small" width="10" />.</p>
+                        </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                        <li>
+                        <p> The largest value is <m><var name="$answer"/></m>, which comes from <m>(1+2) \cdot 3 \cdot 4</m>.</p>
+                        </li>
+                        <li>
+                        <p>The smallest value is <m><var name="$small"/></m>, which comes from <m>1 - (2 \cdot 3 \cdot 4)</m>.</p>
+                        </li>
+                        </ol>
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+           <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $integer = PopUp(['?','integer','rational','irrational'], 1);
+                            $rational = PopUp(['?','integer','rational','irrational'], 2);
+                            $irrational = PopUp(['?','integer','rational','irrational'], 3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 1.5-->
+                        <p>Section 1.5.  I am going to make up a number.  I am going to follow a pattern to create my number.  After the decimal point, I am going to write the natural numbers 1, 2, 3, 4, 5, etc.  The decimal digits will extend infinitely according to my pattern.
+                            <me>0.12345\ldots</me>
+                        Is my number an integer, a rational number, or an irrational number?</p>
+                        <p><var name="$irrational" form="popup"/></p>
+                    </statement>
+                    <solution>
+                        <p>The number is <var name="$irrational"/>. The decimal will never end and it will never repeat.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $question = PopUp(['?','&lt;','>','='],0);
+                            $less = PopUp(['?','&lt;','>','='],1);
+                            $more = PopUp(['?','&lt;','>','='],2);
+                            $equal = PopUp(['?','&lt;','>','='],3);
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.1.-->
+                        <p>Choose the correct inequality or equal sign to make the relation true.</p>
+                        <p><ol label="a.">
+                        <li>
+                        <p> Let  <m>x</m>  and  <m>y</m> be integers, such that <m> x \lt y</m>.</p>
+                        <p> Then <m> x-y </m> <var name="$less" form = "popup"/> <m>y-x</m>.</p>
+                        </li>
+                        <li>
+                        <p> Let <m>x</m>  and  <m>y</m> be integers, such that <m> 1 \lt x \lt y </m>.</p>
+                        <p> Then <m> xy </m> <var name="$more" form = "popup"/> <m>x + y</m>.</p>
+                        </li>
+                        <li>
+                        <p> Let <m>x</m>  and  <m>y</m> be rational numbers, such that <m> 0 \lt x \lt y \lt 1</m>.</p>
+                        <p> Then <m> xy </m> <var name="$less" form = "popup"/> <m>x + y</m>.</p>
+                        </li>
+                        <li>
+                        <p> Let <m>x</m>  and  <m>y</m> be integers, such that <m> x \lt y</m>.</p>
+                        <p> Then <m> x + 2y </m> <var name="$more" form = "popup"/> <m>2x + y</m>.</p>
+                        </li>
+                        </ol>
+                        </p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                        <li>
+                        <p> Since <m> x \lt y</m>, this means that <m>x-y</m> results in a negative number and <m>y-x</m> results in a positive number.  Thus, <m> x-y </m> <var name="$less"/> <m>y-x</m>.</p>
+                        </li>
+                        <li>
+                        <p> This problem comes down to looking at the impact of multiplying by <m> y </m> compared to the impact of adding <m> y </m>.  Since <m> y > 1 </m>, multiplying by <m> y </m> results in a bigger number than adding <m>y</m>. </p>
+                        </li>
+                        <li>
+                        <p> This problem comes down to looking at the impact of multiplying by <m> y </m> compared to the impact of adding <m> y </m>. Since <m> 0 \lt y \lt 1 </m>, this means that <m>y</m> is a fraction between <m>0</m> and <m>1</m>.  Thus, multiplying by <m> y </m> results in a smaller number, whereas adding <m> y </m> results in a bigger number.  </p>
+                        </li>
+                        <li>
+                        <p> Notice that <m> x + 2y </m> and <m>2x + y</m> both have an  <m> x </m>  and a  <m>y </m>.  Let's subtract an  <m> x </m>  and a  <m>y </m> from those expressions.
+                        <md>
+                            <mrow> x + 2y  \amp \stackrel{?}{>}   2x + y</mrow>
+                            <mrow> x + 2y - x - y  \amp \stackrel{?}{>}  2x + y - x - y </mrow>
+                            <mrow>     y   \amp \stackrel{?}{>}  x </mrow>
+                        </md>
+                        Since <m> y > x </m>, this means that <m> x + 2y > 2x + y</m>.</p>
+                        </li>
+                        </ol>
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        Context("ImplicitPlane");
+                        Context()->variables->are(x=>'Real');
+                        $solstring = "x+1=6";
+                        $solution = ImplicitPlane($solstring);
+
+                        $evaluator = $solution->cmp(
+                             cmp_class=>'a linear equation',
+                             correct_ans=>$solstring,
+                             correct_ans_latex_string=>$solstring,
+                             checker => sub {
+                               my ($correct,$student,$ansHash) = @_;
+                               ($left, $right) = split('=',$ansHash->{original_student_ans});
+                               $left = Formula($left);
+                               $right= Formula($right);
+                               $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+                               $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+                               $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                               Value::Error('Your left side is just x') if ($left == Formula('x'));
+                               Value::Error('Your right side is just x') if ($right == Formula('x'));
+                               return ($correct == $student);
+                             }
+                           );
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.3-->
+                        <p>Write a linear equation whose solution is <m>x = 5</m>.</p>
+                        <p> Note that you may not enter an equation whose left side is just <q><m>x</m></q> or whose right side is just <q><m>x</m>.</q></p>
+                        <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding an equation that works, see if you can come up with a different one that also works.</p>
+                        <p><var name="$solution" evaluator="$evaluator" width="20" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        $little = random(10,50,2);
+                        $big = random(53,99,2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.3.-->
+                        <p>Fill in the blanks with the numbers <var name="$little"/> and <var name="$big"/> (using each number only once) to create an equation where <m>x</m> has the greatest possible value.<ol label="a.">
+                            <li>
+                                <p><var name="$little" width="3"/> + <m>x</m> = <var name="$big" width="3"/></p>
+                            </li>
+                            <li>
+                                <p><var name="$big" width="3"/>= <var name="$little" width="3"/><m> \cdot x</m></p>
+                            </li></ol></p>
+                    </statement>
+                    <solution>
+                        <p>Consider which is bigger: <var name="$big"/> - <var name="$little"/> or <var name="$little"/> - <var name="$big"/>? To make the largest value for <m>x</m>, you must put <var name="$little"/> in the left blank and <var name="$big"/> in the right blank because you solve this equation by subtracting <var name="$little"/> from both sides.  This makes <m>x = <var name="$big"/> - <var name="$little"/></m>, which is the biggest possible value for <m>x </m>.
+                        </p>
+                        <p>Consider which is bigger: <m> \frac{<var name="$big"/>}{<var name="$little"/>} or \frac{<var name="$little"/>}{<var name="$big"/>}</m>? To make the largest value for <m>x</m>, you must put <var name="$big"/> in the left blank and <var name="$little"/> in the right blank because you solve this equation by dividing both sides by <var name="$little"/>.  This makes <m>x = \frac{<var name="$big"/>}{<var name="$little"/>}</m>, which is the biggest possible value for <m>x </m>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextPercent.pl</macro-file>
+                        <macro-file>contextCurrency.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Percent");
+                            $p = Percent(random(0.01,0.03,0.005));
+                            $q = Percent(random(0.02,0.04,0.005));
+                            Context("Currency");
+                            Context()->currency->addSymbol("dollars","dollar");
+                            Context()->flags->set(trimTrailingZeros=>1);
+                            $original = random(9,11,0.25);
+                            $current = Currency(sprintf("%.2f",$original*(1+$p->value)*(1+$q->value)));
+                            $original = Currency($current/(1+$p)/(1+$q));
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.6.-->
+                        <p> Last year, Joan received a <var name="$p"/> raise.  This year, she received a <var name="$q"/> raise.  Her current wage is <var name="$current"/> an hour.  What was her wage before the two raises?</p>
+                        <p><var name="$original" width="10" /></p>
+                    </statement>
+                    <solution>
+                        <p> We can represent this situation with the equation: <m> x \cdot (1 + <var name="$p->value"/>) \cdot (1 + <var name="$q->value"/>) = <var name="$current->value"/></m>.  Solve this equation for <m>x</m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = random(5,15,1);
+                            $n = $m + random(10,20,1);
+                            $p = random(50,100,5);
+                            $answerb = $p-1;
+                            $q = random(500,2000,50);
+                            $answerc = $q-1;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.7-->
+                        <p><ol label="a.">
+                            <li>
+                                <p>Let <m>x^{<var name="$m"/>}\cdot x^{a}=x^{<var name="$n"/>}</m>. Let's say that <m>a</m> is a natural number.  How many possibilities are there for <m>a</m>? <var name="'1'" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>Let <m>x^{b}\cdot x^{c}=x^{<var name="$p"/>}</m>. Let's say that <m>b</m> and <m>c</m> are natural numbers.  How many possibilities are there for <m>b</m>? <var name="$answerb" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>Let <m>x^{d}\cdot x^{e}=x^{<var name="$q"/>}</m>. Let's say that <m>d</m> and <m>e</m> are natural numbers.  How many possibilities are there for <m>d</m>? <var name="$answerc" width="10"/></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                            <li>
+                                <p>Let <m>x^{<var name="$m"/>}\cdot x^{a}=x^{<var name="$n"/>}</m>. Then <m>a</m> must be <m><var name="$n"/>-<var name="$m"/></m>.  Thus, there is only one possibility for <m>a</m>.</p>
+                            </li>
+                            <li>
+                                <p>Let <m>x^{b}\cdot x^{c}=x^{<var name="$p"/>}</m>.  Many possibilities exist for <m>b</m> and <m>c</m>.  Since <m>b</m> and <m>c</m> must be natural numbers, let's start with <m>b</m> equal to 1.  Then <m>c</m> must equal <var name="$p-1"/>, because <m>x^{1}\cdot x^{<var name="$p-1"/>}=x^{<var name="$p"/>}</m>.  Considering all of the possibilities for <m>b</m>, notice that <m>b</m> can equal <m>1,2,3,\ldots,<var name="$p-1"/></m>.  Therefore, there are <var name="$p-1"/> possibilities for <m>b</m>.  Note that <m>b</m> can't equal <var name="$p"/> because that would force <m>c</m> to be zero, which is not a natural number.</p>
+                            </li>
+                             <li>
+                                <p>Let <m>x^{d}\cdot x^{e}=x^{<var name="$q"/>}</m>.  Many possibilities exist for <m>d</m> and <m>e</m>.  Since <m>d</m> and <m>e</m> must be natural numbers, let's start with <m>d</m> equal to 1.  Then <m>e</m> must equal <var name="$q-1"/>, because <m>x^{1}\cdot x^{<var name="$q-1"/>}=x^{<var name="$q"/>}</m>.  Considering all of the possibilities for <m>d</m>, notice that <m>d</m> can equal <m>1,2,3,\ldots,<var name="$q-1"/></m>.  Therefore, there are <var name="$q-1"/> possibilities for <m>d</m>.  Note that <m>d</m> can't equal <var name="$q"/> because that would force <m>e</m> to be zero, which is not a natural number.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = random(2,3,1);
+                            $mraised = 100*$m;
+                            $p = random(4,5,1);
+                            $praised = 100*$p;
+                            $less = PopUp(['?','&lt;','>','='],1);
+                            $more = PopUp(['?','&lt;','>','='],2);
+                            $equal = PopUp(['?','&lt;','>','='],3);
+                            if ($m**$p == $p**$m) {$popup = $equal;}
+                            else {
+                              $popup = ($m**$p > $p**$m) ? $more : $less;
+                            };
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.7.-->
+                        <p>Choose the correct inequality or equal sign to make the relation true.</p>
+                        <p><m><var name="$m"/>^{<var name="$praised"/>}</m> <var name="$popup" form="popup"/> <m><var name="$p"/>^{<var name="$mraised"/>}</m></p>
+                    </statement>
+                    <solution>
+                        <p>Trying to calculate <m><var name="$m"/>^{<var name="$praised"/>}</m> or <m><var name="$p"/>^{<var name="$mraised"/>}</m> results in very large numbers.  Notice that <m><var name="$m"/>^{<var name="$praised"/>}</m> = <m><var name="$m"/>^{(<var name="$p"/> \cdot 100)}</m>.  Also, notice that <m><var name="$p"/>^{<var name="$mraised"/>}</m> = <m><var name="$p"/>^{(<var name="$m"/> \cdot 100)}</m>  Thus, to know if <m><var name="$m"/>^{<var name="$praised"/>}</m> or <m><var name="$p"/>^{<var name="$mraised"/>}</m>is bigger, we only have to compare <m><var name="$m"/>^{<var name="$p"/>}</m> with <m><var name="$p"/>^{<var name="$m"/>}</m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+           <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(-15,-1,2);
+                              $b = random(-10,-2,2);
+                              $coefficient = $a + $b;
+                            } until ($coefficient &lt; -7);
+                            $ax = Formula("$a x")->reduce;
+                            $bx = Formula("$b x")->reduce;
+                            $complete = Formula("$coefficient*x")->reduce;
+
+
+                            $multians = MultiAnswer($ax, $bx)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu ) = @{$student};
+                                my ( $acor, $bcor ) = @{$correct};
+
+                                if ( $astu == Formula("0")) {Value::Error('None of your values can be zero.')};
+                                if ( $bstu == Formula("0")) {Value::Error('None of your values can be zero.')};
+
+                                if ($astu+$bstu != $complete) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            do {
+                              $c = random(-15,-1,2);
+                              $d = random(-10,-2,2);
+                              $expx = random(15,30,5);
+                              $coefficient2 = $c + $d;
+                            } until ($coefficient2 &lt; -7);
+                            $cexp = Formula("$c*(x**$expx)")->reduce;
+                            $dexp = Formula("$d*(x**$expx)")->reduce;
+                            $complete2 = Formula("$coefficient2*(x**$expx)");
+
+                            $multians2 = MultiAnswer($cexp, $dexp)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $cstu, $dstu ) = @{$student};
+                                my ( $ccor, $dcor ) = @{$correct};
+
+                                if ( $cstu == 0) {Value::Error('None of your values can be zero.')};
+                                if ( $dstu == 0) {Value::Error('None of your values can be zero.')};
+
+                                if ($cstu+$dstu != $complete2) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            $p = list_random(2,3,5,7,11,13,17);
+                            $exp1 = random(20,50,5);
+                            $exp2 = random(10,30,10);
+                            $exp3 = $exp1 + $exp2;
+                            $expa = Formula("(x**$exp1)")->reduce;
+                            $expb = Formula("(x**$exp2)")->reduce;
+                            $num = Formula("$p");
+                            $complete3 = Formula("$num*(x**$exp3)");
+
+                            $multians3 = MultiAnswer($num, $expa, $expb)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $numstu, $expastu, $expbstu ) = @{$student};
+                                my ( $numcor, $expacor, $expbcor ) = @{$correct};
+
+                                if ( $numstu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $expastu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $expbstu == 1) {Value::Error('None of your values can be one.')};
+
+                                if ($numstu*$expastu*$expbstu != $complete3) {return 0;} else {return 1};
+
+                              }
+                            );
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 2.8.-->
+                        <p> Fill in the blanks with algebraic expressions that make the equation true.  You may not use <m>0</m> or <m>1</m> in any of the blank spaces.</p>
+                        <p> Here is an example:  <m> \mathord{?} + \mathord{?} = 8x </m>.</p>
+                        <p> One possible answer is: <m> 3x + 5x = 8x </m>.</p>
+                        <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding a correct answer, see if you can come up with a different answer that is also correct.</p>
+                        <ol label="a.">
+                            <li>
+                                <p><var name="$multians" width="10"/> <m> + </m> <var name="$multians" width="10"/> <m> = <var name="$complete"/></m> </p>
+                            </li>
+                            <li>
+                                <p><var name="$multians2" width="10"/> <m> + </m> <var name="$multians2" width="10"/> <m> = <var name="$complete2"/></m> </p>
+                           </li>
+                           <li>
+                                <p><var name="$multians3" width="5"/> <m> \cdot </m> <var name="$multians3" width="5"/> <m> \cdot </m> <var name="$multians3" width="5"/> <m> = <var name="$complete3"/></m> </p>
+                            </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <p>
+                         <ol label="a.">
+                            <li>
+                                <p>Think about adding like terms.  One possibility is: <m><var name="$ax"/> + <var name="$bx"/> = <var name="$complete"/>.</m> </p>
+                            </li>
+                            <li>
+                                <p>Think about adding like terms.  One possibility is: <m><var name="$cexp"/> + <var name="$dexp"/> = <var name="$complete2"/>.</m></p>
+                           </li>
+                           <li>
+                                <p>Think about multiplying exponents.  One possibility is: <m><var name="$num"/> \cdot <var name="$expa"/> \cdot <var name="$expb"/> = <var name="$complete3"/>.</m></p>
+                            </li>
+                        </ol>
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <statement>
+                        <!--Section 3.1.-->
+                        <p>  Think of a number.  Add four to your number.  Now double that.  Then add six.  Then halve it.  Finally, subtract 7.  What is the result?  Do you always get the same result, regardless of what number you start with?  How does this work?  Explain using algebra.</p>
+                        <p><var form="essay"/></p>
+                    </statement>
+                    <solution>
+                        <p> Let's start with the number <m>x</m> and follow the instructions: <m>x</m></p>
+                        <p> Add four to the number:  <m>x + 4</m></p>
+                        <p> Now double that:  <m> 2(x+4)</m></p>
+                        <p> Then add six: <m> 2(x+4)+6</m></p>
+                        <p> Then halve it: <m> \frac{2(x + 4)+ 6}{2} </m></p>
+                        <p> Finally, subtract 7: <m> \frac{2(x + 4)+ 6}{2}-7 </m></p>
+                        <p></p>
+                        <p> This expression can be simplified:
+                        <md><mrow>\frac{2(x + 4)+ 6}{2}-7                   \amp = \frac{2x+8+6}{2} - 7 </mrow>
+                            <mrow>                                          \amp = \frac{2x+14}{2}-7 </mrow>
+                            <mrow>                                          \amp = x + 7 - 7 </mrow>
+                            <mrow>                                          \amp = x </mrow>
+                        </md></p>
+                        <p> Thus, after following the instructions, you always end up with the original number.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        Context("ImplicitPlane");
+                        Context()->variables->are(x=>'Real');
+                        $solstring = "x-1=-10";
+                        $solution = ImplicitPlane($solstring);
+
+                        $evaluator = $solution->cmp(
+                             cmp_class=>'a linear equation',
+                             correct_ans=>$solstring,
+                             correct_ans_latex_string=>$solstring,
+                             checker => sub {
+                               my ($correct,$student,$ansHash) = @_;
+                               ($left, $right) = split('=',$ansHash->{original_student_ans});
+                               $left = Formula($left);
+                               $right= Formula($right);
+                               $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+                               $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+                               $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                               Value::Error('Your left side is just x') if ($left == Formula('x'));
+                               Value::Error('Your right side is just x') if ($right == Formula('x'));
+                               return ($correct == $student);
+                             }
+                           );
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 3.1-->
+                        <p>Write a linear equation whose solution is <m>x = -9</m>.  </p>
+                        <p> Note that you may not enter an equation whose left side is just <q><m>x</m></q> or whose right side is just <q><m>x</m>.</q></p>
+                        <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding an equation that works, see if you can come up with a different one that also works.</p>
+                        <p><var name="$solution" evaluator="$evaluator" width="20" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $girl = random(2,6,2);
+                        $boy = random(3,7,2);
+                        $factor = random(5,9,1);
+                        $totalgirls = Real($girl*$factor);
+                        $total = Real(($girl+$boy)*$factor);
+                    </pg-code>
+                </setup>
+                <statement>
+                        <!--Section 3.4.-->
+                    <p> The ratio of girls to boys in a preschool is <var name="$girl"/> to <var name="$boy"/>.  If there are <var name="$total"/> kids in the school, how many girls are there in the preschool?</p>
+                    <p><var name="$totalgirls" width="10"/></p>
+                </statement>
+                <solution>
+                    <p> Let x = number of girls in the preschool.  We can represent this situation with the following ratio:</p>
+                    <p><m>\frac{girls}{girls+boys} = \frac{x}{<var name="$total"/>}</m>.  Solve this equation for x.</p>
+                </solution>
+            </webwork>
+        </exercise>
+
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $a = random(2,20,2);
+                        $b = $a-1;
+                        $answer = Formula("$a*(x+4)");
+                        $answer2 = Formula("$b*x+($a*4+2)");
+                    </pg-code>
+                </setup>
+                <statement>
+                        <!--Section 3.5.-->
+                    <p>Fill in the right side of the equation to create a linear equation with the properties listed.</p>
+                    <ol label="a.">
+                        <li> <p> Create a linear equation with <em>infinitely many solutions</em>.</p>
+                            <p><m> <var name = "$a"/>(x + 4) = </m> <var name="$answer" width="20"/> </p>
+                        </li>
+                        <li> <p> Create a linear equation with the solution <m>x = 2</m>.</p>
+                            <p><m> <var name = "$a"/>(x + 4) = </m> <var name="$answer2" width="20"/> </p>
+                        </li>
+                    </ol>
+                </statement>
+            </webwork>
+        </exercise>
+
+
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $fraction1 = random(3,9,2);
+                            $fraction2 = random(4,10,2);
+                            $negative = random(-10,-2,1);
+                            $avnegative = abs($negative);
+                            $positive = random(2,12,1);
+                            $true = PopUp(['?','true','false'], 1);
+                            $false = PopUp(['?','true','false'], 2);
+                                if ($fraction1 &lt; $fraction2) {$popup1 = $true;}
+                                else {
+                                    $popup1 = $false
+                                };
+                                if ($avnegative > $positive) {$popup2 = $true;}
+                                else {
+                                    $popup2 = $false
+                                };
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 4.4.-->
+                        <p> Fill in the blank with true or false. </p>
+                        <ol label="a.">
+                            <li>
+                                <p>A slope of <m>\frac{1}{<var name="$fraction1"/>}</m> is steeper than a slope of <m>\frac{1}{<var name="$fraction2"/>}</m>.<var name="$popup1" form="popup"/></p>
+                            </li>
+                            <li>
+                                <p>A slope of <var name="$negative"/> is steeper than a slope of <var name="$positive"/>. <var name="$popup2" form="popup"/></p>
+                            </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <p>
+                        <ol label="a.">
+                            <li>
+                                <p>Which is greater: <m>\frac{1}{<var name="$fraction1"/>}</m> or <m>\frac{1}{<var name="$fraction2"/>}</m>?  That is the steeper slope.  </p>
+                            </li>
+                            <li>
+                                <p>Which is greater: <m><var name="$positive"/></m> or the absolute value of <m><var name="$negative"/></m>?  That is the steeper slope. </p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <statement>
+                        <!--Section 4.5.-->
+                        <p> Line S has the equation <m>y = ax + b</m> and Line T has the equation <m>y =cx + d</m>.</p>
+                        <p>Let  <m> a > b > c > d > 0 </m></p>
+                        <p><ol label="a.">
+                            <li>
+                                <p>What can you say about Line S and Line T, given that <m>a > c</m>?  Give as much information about Line S and Line T as possible.</p>
+                                <p><var form="essay"/></p>
+                            </li>
+                            <li>
+                                <p>What can you say about Line S and Line T, given that <m>b > d</m>?  Give as much information about Line S and Line T as possible.</p>
+                                <p><var form="essay"/></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p> <ol label="a.">
+                            <li>
+                                <p>Since Line S has the equation <m>y = ax + b</m> and Line T has the equation <m>y =cx + d</m>, the variables <m>a</m> and <m>c</m> represent slopes.  Since <m> a > c > 0</m>, we know that the slope of line S is steeper than the slope of line T.  We also know that both slopes are positive.</p>
+                            </li>
+                            <li>
+                                <p>Since Line S has the equation <m>y = ax + b</m> and Line T has the equation <m>y =cx + d</m>, the variables <m>b</m> and <m>b</m> represent y-intercepts.  Since <m>b > d > 0</m>, we know that line S and line T both intersect the y-axis at positive y-intercepts and that line S intersects the y-axis at a higher point than line T.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $little = random(2,10,2);
+                            $medium = $little+1;
+                            $medium2 = $medium+1;
+                            do {$big = random($medium2,15,1);} until ($big % $little != 0);
+                            $steepest = Formula("$big/$little");
+                            $shallowest = Formula("$little/$big");
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 4.7.-->
+                        <p>Fill in the variables <m>A, B,</m> and <m>C</m> in <m>Ax + By = C</m> with the numbers <m><var name="$little"/>, <var name="$medium"/></m> and <m><var name="$big"/></m>.  You may only use each number once.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>To make a line with the steepest slope possible, </p>
+                            <p><m>A</m> must equal <var name="$big" width="10" />,</p>
+                            <p><m>B</m> must equal <var name="$little" width="10" />,</p>
+                            <p> and <m>C</m> must equal <var name="$medium" width="10" />.</p>
+                          </li>
+                          <li>
+                            <p>To make a line with the shallowest slope possible, </p>
+                            <p><m>A</m> must equal <var name="$little" width="10" />,</p>
+                            <p><m>B</m> must equal <var name="$big" width="10" />,</p>
+                            <p> and <m>C</m> must equal <var name="$medium" width="10" />.</p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                      <ol label="a.">
+                        <li>
+                          <p> Let's put <m> Ax + By = C </m> into slope-intercept form.  Then, the equation becomes <m> y = \frac{-A}{B}x + \frac{C}{B} </m>.  To make the steepest slope possible, we must maximize the fraction <m>\frac{A}{B}</m>.  The possibilities are <m> \frac{<var name="$little"/>}{<var name="$medium"/>}, \frac{<var name="$little"/>}{<var name="$big"/>}, \frac{<var name="$medium"/>}{<var name="$little"/>}, \frac{<var name="$medium"/>}{<var name="$big"/>}, \frac{<var name="$big"/>}{<var name="$little"/>}, </m> and <m> \frac{<var name="$big"/>}{<var name="$medium"/>} </m>.  The biggest of these is <m> \frac{<var name="$big"/>}{<var name="$little"/>} </m>.  Thus, <m>A</m> must equal <var name="$big"/>, <m>B</m> must equal <var name="$little"/>, and <m>C</m> must equal <var name="$medium"/>.</p>
+                        </li>
+                        <li>
+                          <p> To make the shallowest slope possible, we must minimize the fraction <m>\frac{A}{B}</m>.  The smallest of the possible fractions is <m> \frac{<var name="$little"/>}{<var name="$big"/>} </m>.  Thus, <m>A</m> must equal <var name="$little"/>, <m>B</m> must equal <var name="$big"/>, and <m>C</m> must equal <var name="$medium"/>.</p>
+                        </li>
+                        </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <statement>
+                        <!--Section 4.8.-->
+                        <p>  Prove that a triangle with vertices at the points (1, 1), (-4, 4), and (-3, 0) is a right triangle.</p>
+                        <p><var form="essay"/></p>
+                    </statement>
+                    <solution>
+                        <p> The slope between (1,1) and (-3,0) is <m> \frac{0-1}{-3 - (-1)}</m> or <m> \frac{1}{4} </m>.</p>
+                        <p> The slope between (-3,0) and (-4,4) is <m> \frac{4-0}{-4 - (-3)}</m> or <m> \frac{-4}{1} </m>.</p>
+                        <P> Thus, since <m> \frac{1}{4} </m> and <m> \frac{-4}{1} </m> are negative reciprocals, those two sides are perpendicular.  Thus, the triangle is a right triangle. </P>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $p2 = random(2,6,2);
+                            $q2 = random(-7,-3,2);
+                            $r2 = non_zero_random(-5,5,1);
+                            $factor = non_zero_random(-5,-2,1);
+                            $p = $p2*$factor;
+                            $q = $q2*$factor;
+                            $r = $r2*$factor;
+                            Context()->variables->are(x=>'Real',y=>'Real',b=>'Real');
+                            Context()->noreduce('(-x)+y', '(-x)-y');
+                            $exp1 = Formula("$p x + $q y")->reduce;
+                            $exp2 = Formula("$p2 x - b y")->reduce;
+                            $answer = Formula("-$q2");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 5.3.-->
+                        <p>Find the value of <m>b</m> so that the system of equations has an infinite number of solutions.<me>
+                            \left\{\begin{aligned} <var name="$exp1" /> \amp = <var name="$r"/>\\
+                                                   <var name="$exp2" /> \amp = <var name="$r2"/> \end{aligned}\right.</me>
+                        </p>
+                        <p>The value of <m>b</m> is <var name="$answer" width="10"/>.</p>
+                    </statement>
+                    <solution>
+                        <p> To have an infinite numbers of solutions, the two equations must coincide as the same line.  Thus, the second equation comes from multiplying or dividing the first equation by a certain factor.  In this case, if you divide the first equation by <var name="$factor"/>, the result is the second equation.  Thus, <m>b</m> must equal <m> <var name="$answer"/></m>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(1,10,1);
+                              $b = random(-10,-1,1);
+                              $c = random(1,10,1);
+                              $exponent = $a + $b - $c;
+                            } until ($exponent > 5);
+
+                            $multians = MultiAnswer($a, $b, $c)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu, $cstu ) = @{$student};
+                                my ( $acor, $bcor, $ccor ) = @{$correct};
+
+                                if ( $astu &lt;= 0) {Value::Error('Your value for a should be positive.')};
+                                if ( $bstu &gt;= 0) {Value::Error('Your value for b should be negative.')};
+                                if ( $cstu &lt;= 0) {Value::Error('Your value for c should be positive.')};
+
+                                if ($astu+$bstu-$cstu != $exponent) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            do {
+                              $d = random(1,10,1);
+                              $e = random(-10,-1,1);
+                              $f = random(1,10,1);
+                              $negexponent = $d + $e - $f;
+                            } until ($negexponent &lt; -5);
+
+                            $multians2 = MultiAnswer($d, $e, $f)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $dstu, $estu, $fstu ) = @{$student};
+                                my ( $dcor, $ecor, $fcor ) = @{$correct};
+
+                                if ( $dstu &lt;= 0) {Value::Error('Your value for a should be positive.')};
+                                if ( $estu &gt;= 0) {Value::Error('Your value for b should be negative.')};
+                                if ( $fstu &lt;= 0) {Value::Error('Your value for c should be positive.')};
+
+                                if ($dstu+$estu-$fstu != $negexponent) {return 0;} else {return 1};
+
+                              }
+                            );
+                            $abs = abs($negexponent);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 6.1a-->
+                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>Let <m>a > 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                          </li>
+                          <li>
+                            <p>Let <m>a > 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?  If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians2" width="10"/>, <m>b</m> = <var name="$multians2" width="10"/>, and <m>c</m> = <var name="$multians2" width="10"/></p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <ol label="a.">
+                            <li>
+                                <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  For example, <m><var name="$a"/> + {<var name="$b"/>} - <var name="$c"/> = <var name="$exponent"/></m>.</p>
+                            </li>
+                            <li>
+                                <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$negexponent"/>.  For example, <m><var name="$d"/> + {<var name="$e"/>} - <var name="$f"/> = <var name="$negexponent"/></m>.</p>
+                            </li>
+                        </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(1,10,1);
+                              $b = random(-10,-1,1);
+                              $c = random(1,10,1);
+                              $exponent = $a + $b - $c;
+                            } until ($exponent > 5);
+                            $answer = Compute("none");
+
+
+                            do {
+                              $d = random(1,10,1);
+                              $e = random(-10,-1,1);
+                              $f = random(1,10,1);
+                              $negexponent = $d + $e - $f;
+                            } until ($negexponent &lt; -5);
+
+                            $multians = MultiAnswer($d, $e, $f)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $dstu, $estu, $fstu ) = @{$student};
+                                my ( $dcor, $ecor, $fcor ) = @{$correct};
+
+                                if ( $dstu &gt;= 0) {Value::Error('Your value for a should be negative.')};
+                                if ( $estu &gt;= 0) {Value::Error('Your value for b should be negative.')};
+                                if ( $fstu &lt;= 0) {Value::Error('Your value for c should be positive.')};
+
+                                if ($dstu+$estu-$fstu != $negexponent) {return 0;} else {return 1};
+
+                              }
+                            );
+                            $abs = abs($negexponent);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 6.1b-->
+                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>Let <m>a \lt 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
+                          </li>
+                          <li>
+                            <p>Let <m>a \lt 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                      <ol label="a.">
+                        <li>
+                          <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are negative, <m>a + b</m> is a negative number.  Then, we have to subract <m>c</m>, which is a positive number.  Thus, <m> a + b - c</m> will result in a negative number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a, b,</m> and <m>c</m> that work.</p>
+                        </li>
+                        <li>
+                          <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$negexponent"/>.  For example, <m><var name="$a"/> + {<var name="$b"/>} - <var name="$c"/> = <var name="$negexponent"/></m>.</p>
+                        </li>
+                      </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(1,10,1);
+                              $b = random(-10,-1,1);
+                              $c = random(1,10,1);
+                              $exponent = $a + $b - $c;
+                            } until ($exponent > 5);
+
+                            $multians = MultiAnswer($a, $b, $c)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu, $cstu ) = @{$student};
+                                my ( $acor, $bcor, $ccor ) = @{$correct};
+
+                                if ( $astu &lt;= 0) {Value::Error('Your value for a should be positive.')};
+                                if ( $bstu &lt;= 0) {Value::Error('Your value for b should be positive.')};
+                                if ( $cstu &gt;= 0) {Value::Error('Your value for c should be negative.')};
+
+                                if ($astu+$bstu-$cstu != $exponent) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                             do {
+                              $d = random(1,10,1);
+                              $e = random(-10,-1,1);
+                              $f = random(1,10,1);
+                              $negexponent = $d + $e - $f;
+                            } until ($negexponent &lt; -5);
+
+                            $abs = abs($negexponent);
+                            $answer = Compute("none");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 6.1c-->
+                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>Let <m>a > 0, b > 0,</m> and <m>c \lt 0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                          </li>
+                          <li>
+                            <p>Let <m>a > 0, b > 0,</m> and <m>c \lt 0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                      <ol label="a.">
+                        <li>
+                          <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  For example, <m><var name="$a"/> + <var name="$b"/> - {<var name="$c"/>} = <var name="$exponent"/></m>.</p>
+                        </li>
+                        <li>
+                          <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are positive, <m>a + b</m> is a positive number.  Then, we have to subract <m>c</m> (a negative number), which is the same as adding a positive number.  Thus, <m> a + b - c</m> will result in a positive number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a, b,</m> and <m>c</m> that work.</p>
+                        </li>
+                      </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        Context()->variables->are(x=>'Real',y=>'Real');
+
+                            do {
+                              $a = random(-15,-1,2);
+                              $b = random(-10,-2,2);
+                              $coefficient = $a + $b;
+                            } until ($coefficient &lt; -7);
+                            $axy = Formula("$a x y")->reduce;
+                            $bxy = Formula("$b x y")->reduce;
+                            $complete = Formula("$coefficient*x*y")->reduce;
+
+
+                            $multians = MultiAnswer($axy, $bxy)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu ) = @{$student};
+                                my ( $acor, $bcor ) = @{$correct};
+
+                                if ( $astu == Formula("0")) {Value::Error('None of your values can be zero.')};
+                                if ( $bstu == Formula("0")) {Value::Error('None of your values can be zero.')};
+                                if ( $astu == Formula("1")) {Value::Error('None of your values can be one.')};
+                                if ( $bstu == Formula("1")) {Value::Error('None of your values can be one.')};
+
+                                if ($astu+$bstu != $complete) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            do {
+                              $c = random(-15,-1,2);
+                              $d = random(-10,-2,2);
+                              $expx = random(15,30,5);
+                              $expy = random(2,10,1);
+                              $coefficient2 = $c + $d;
+                            } until ($coefficient2 &lt; -7);
+                            $cexp = Formula("$c*(x**$expx)*(y**$expy)")->reduce;
+                            $dexp = Formula("$d*(x**$expx)*(y**$expy)")->reduce;
+                            $complete2 = Formula("$coefficient2*(x**$expx)*(y**$expy)");
+
+                            $multians2 = MultiAnswer($cexp, $dexp)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $cstu, $dstu ) = @{$student};
+                                my ( $ccor, $dcor ) = @{$correct};
+
+                                if ( $cstu == 0) {Value::Error('None of your values can be zero.')};
+                                if ( $dstu == 0) {Value::Error('None of your values can be zero.')};
+                                if ( $cstu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $dstu == 1) {Value::Error('None of your values can be one.')};
+
+                                if ($cstu+$dstu != $complete2) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            $coeff3 = list_random(2,3,5,7,11,13,17,19);
+                            $exp1 = random(20,50,5);
+                            $exp2 = random(10,30,10);
+                            $exp3 = $exp1 + $exp2;
+                            $expa = random(20,50,5);
+                            $expb = random(10,30,10);
+                            $expc = $expa + $expb;
+                            $ans1 = Formula("(x**$exp1)");
+                            $ans2 = Formula("(x**$exp2)");
+                            $ans3 = Formula("(y**$expa)");
+                            $ans4 = Formula("(y**$expb)");
+                            $ans5 = Formula("$coeff3");
+                            $complete3 = Formula("$coeff3*(x**$exp3)*(y**$expc)");
+
+                            $multians3 = MultiAnswer($ans1, $ans2, $ans3, $ans4, $ans5)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $ans1stu, $ans2stu, $ans3stu, $ans4stu, $ans5stu) = @{$student};
+                                my ( $ans1cor, $ans2cor, $ans3cor, $ans4cor, $ans5cor ) = @{$correct};
+
+                                if ( $ans1stu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $ans2stu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $ans3stu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $ans4stu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $ans5stu == 1) {Value::Error('None of your values can be one.')};
+
+                                if ($ans1stu*$ans2stu*$ans3stu*$ans4stu*$ans5stu != $complete3) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 6.3.-->
+                        <p> Fill in the blanks with algebraic expressions that make the equation true.  You may not use <m>0</m> or <m>1</m> in any of the blank spaces.</p>
+                        <p> Here is an example:  <m> \mathord{?} + \mathord{?} = 8x </m>.</p>
+                        <p> One possible answer is: <m> 3x + 5x = 8x </m>.</p>
+                        <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding a correct answer, see if you can come up with a different answer that is also correct.</p>
+                        <ol label="a.">
+                            <li>
+                              <p><var name="$multians" width="10"/> <m> + </m> <var name="$multians" width="10"/> <m> = <var name="$complete"/></m> </p>
+                            </li>
+                            <li>
+                              <p><var name="$multians2" width="10"/> <m> + </m> <var name="$multians2" width="10"/> <m> = <var name="$complete2"/></m> </p>
+                           </li>
+                           <li>
+                              <p><var name="$multians3" width="3"/> <m> \cdot </m> <var name="$multians3" width="3"/> <m> \cdot </m> <var name="$multians3" width="3"/> <m> \cdot </m> <var name="$multians3" width="3"/> <m> \cdot </m> <var name="$multians3" width="3"/> <m> = <var name="$complete3"/></m> </p>
+                            </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <p>
+                         <ol label="a.">
+                            <li>
+                                <p>Think about adding like terms.  One possibility is: <m><var name="$axy"/> + <var name="$bxy"/> = <var name="$complete"/>.</m> </p>
+                            </li>
+                            <li>
+                                <p>Think about adding like terms.  One possibility is: <m><var name="$cexp"/> + <var name="$dexp"/> = <var name="$complete2"/>.</m></p>
+                           </li>
+                           <li>
+                                <p>Think about multiplying exponents.  One possibility is: <m><var name = "$coeff3"/> \cdot <var name="$ans1"/> \cdot <var name="$ans2"/> \cdot <var name="$ans3"/> \cdot <var name="$ans4"/> = <var name="$complete3"/>.</m></p>
+                            </li>
+                        </ol>
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                          $c = list_random(4,6,8,9,10,12,14,15,16,18,20)*random(-1,1,2);
+                          $absc = abs($c);
+                          @smalls = ();
+                          @bigs = ();
+                          for $i (1..floor(sqrt($absc))) {
+                            if ($absc % $i == 0) {
+                              push(@smalls,$i);
+                              push(@smalls,-$i);
+                              push(@bigs,$c/$i);
+                              push(@bigs,-$c/$i);
+                            }
+                          }
+                          @b = ();
+                          $n = scalar(@smalls);
+                          for $j (1..$n) {
+                            push(@b,$smalls[$j-1] + $bigs[$j-1]);
+                          }
+                          $answer = List(@b);
+
+                          Context()->variables->add(b=>'Real');
+                          $expression = Formula("x^2+bx+$c")->reduce;
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 7.3.-->
+                          <p>What integers can go in the place of <m>b</m> so that the quadratic expression is factorable?</p>
+                          <p> <m><var name="$expression" /></m></p>
+                          <instruction>Enter the solutions as a comma-separated list.</instruction>
+                          <p> <var name="$answer" width="30"/> </p>
+                    </statement>
+                    <hint> There are <var name="$n"/> answers.</hint>
+                    <solution>
+                        <p>Think about all of ways to factor <var name="$c"/>.  The list of possible <m>b</m> values is <var name="$answer"/>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                          $c = list_random(2,4,5,7,8,10);
+                          $threec = $c*3;
+                          @smalls = ();
+                          @bigs = ();
+                          for $i (1..floor(sqrt($threec))) {
+                            if ($threec % $i == 0) {
+                              push(@smalls,$i);
+                              push(@smalls,-$i);
+                              push(@bigs,$threec/$i);
+                              push(@bigs,-$threec/$i);
+                            }
+                          }
+                          @b = ();
+                          $n = scalar(@smalls);
+                          for $j (1..$n) {
+                            push(@b,$smalls[$j-1] + $bigs[$j-1]);
+                          }
+                          $answer = List(@b);
+
+                          Context()->variables->add(b=>'Real');
+                          $expression = Formula("3x^2+bx+$c")->reduce;
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 7.4.-->
+                          <p>What integers can go in the place of <m>b</m> so that the quadratic expression is factorable?</p>
+                          <p> <m><var name="$expression" /></m></p>
+                          <instruction>Enter the solutions as a comma-separated list.</instruction>
+                          <p> <var name="$answer" width="30"/> </p>
+                    </statement>
+                    <hint> There are <var name="$n"/> answers.</hint>
+                    <solution>
+                        <p>Recall the <q>ac</q> method.  When you multiply 3 by <var name="$c"/>, you get <var name="$threec"/>.  Think of all of the ways to factor <var name="$threec"/>.  The possible <m>b</m> values are <var name="$answer"/>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $first = random(111,999,222);
+                            $second = random(222,888,222);
+                            $plus = $first+$second;
+                            $minus = $first-$second;
+                            $answer = PopUp(['?',"$plus*$plus", "$plus*$minus","$minus*$minus",'none of the above'],2);
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 7.6 -->
+                        <p>Select the expression below which is equivalent to the following expression: <m><var name="$first"/>^{2} - <var name="$second"/>^{2}</m></p>
+                        <p> <var name="$answer" form="popup"/> </p>
+                    </statement>
+                    <solution>
+                        <p>Notice that <m><var name="$first"/>^{2} - <var name="$second"/>^{2}</m> is the difference of two squares.  Thus, we can factor it into <m>(<var name="$first" /> + <var name="$second" />)(<var name="$first" /> - <var name="$second" />)</m>, which equals <m> <var name="$plus" /> \cdot <var name="$minus" /> </m>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+
+              <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        Context("ImplicitEquation");
+                        Context()->variables->are(x=>'Real');
+                        $a = random(1,10,1);
+                        $b = random(-10,-1,1);
+                        $solstring = "(x-$a)*(x-$b)*(x-2/3)=0";
+                        $solution = ImplicitEquation($solstring);
+
+                        $evaluator = $solution->cmp(
+                             cmp_class=>'a cubic equation',
+                             correct_ans=>$solstring,
+                             correct_ans_latex_string=>$solstring,
+                             checker => sub {
+                               my ($correct,$student,$ansHash) = @_;
+                               ($left, $right) = split('=',$ansHash->{original_student_ans});
+                               $left = Formula($left);
+                               $right= Formula($right);
+                               $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+                               $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+                               $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                               return ($correct == $student);
+                             }
+                           );
+                        </pg-code>
+                      </setup>
+                      <statement>
+                        <!--Section 8.1a-->
+                        <p>Give an example of a cubic equation that has three solutions: one solution is <m>x = <var name="$a"/></m>, the second solution is <m>x= <var name="$b"/></m>, and the third solution is <m> x = \frac{2}{3} </m>.
+                        </p>
+                        <p> <var name="$solution" evaluator="$evaluator" width="30" /> </p>
+                      </statement>
+                      <solution>
+                        <p>I will first write a cubic equation in factored form: <m> (x-a)(x-b)(x-c) = 0 </m> where <m>a, b,</m> and  <m>c</m> are the solutions of the equation.  Thus, we can write the cubic equation as <m> (x-<var name="$a"/>)(x-(<var name="$b"/>))(x - \frac{2}{3}) = 0 </m> or <m> (x-<var name="$a"/>)(x-<var name="$b"/>)(x - \frac{2}{3}) = 0 </m>.
+                        </p>
+                    </solution>
+                  </webwork>
+                </exercise>
+
+
+             <exercise>
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextFiniteSolutionSets.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                        Context("FiniteSolutionSets");
+                        $a = list_random(2,3,5);
+                        $b = list_random(4,9,16,25);
+                        $c = $a * $b;
+                        $exp = random(12,50,2);
+                        $smallexp = $exp - 2;
+                        $sqrt = Formula("sqrt($b)")->reduce;
+                        $answer = Formula("{0, 1/$sqrt, -1/$sqrt}");
+                        </pg-code>
+                      </setup>
+                      <statement>
+                        <!--Section 8.1b.-->
+                        <p> Solve for x.  </p>
+                        <p><m><var name="$c"/>x^{<var name="$exp"/>}-<var name="$a"/>x^{<var name="$smallexp"/>} = 0 </m></p>
+                        <p> <var name="$answer" width="20"/> </p>
+                      </statement>
+                      <solution>
+                        <p>To solve <m><var name="$c"/>x^{<var name="$exp"/>}-<var name="$a"/>x^{<var name="$smallexp"/>} = 0 </m>, we can factor out the GCF, <m><var name="$a"/>x^{<var name="$smallexp"/>}</m>.  Thus, the equation becomes <m><var name="$a"/>x^{<var name="$smallexp"/>}(<var name="$b"/>x^{2}-1)=0</m>.  Keep solving this by setting each factor equal to zero.</p>
+                    </solution>
+                  </webwork>
+                </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $west = random(2,8,1);
+                            $north = random(3,7,1);
+                            $factor = random(2,6,1);
+                            $east = $west + $factor;
+                            $answer = Formula("sqrt($north**2+$factor**2)");
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 8.3-->
+                        <p>Imagine that you are in Math Land, where roads are perfectly straight, and Mathlanders can walk along a perfectly straight line between any 2 points.</p>
+                        <p>One day, you bike <var name="$west" /> miles west, <var name="$north" /> miles north, and <var name="$east" /> miles east.  Then, your bike gets a flat tire and you have to walk home.  How far do you have to walk?</p>
+                        <p>I have to walk <var name="$answer" width="10"/>miles home.</p>
+                    </statement>
+                    <solution>
+                        <p>You biked <var name="$west" /> miles west, <var name="$north" /> miles north, and <var name="$east" /> miles east.  You are <var name="$north" /> miles north and <var name="$factor" /> miles east of your home.  These are two sides of a right triangle.  Thus, you must use the Pythagorean Theorem to find out how far you walked home. </p>
+                        <p> Solve this equation for <m>c</m>: </p>
+                        <p><m> <var name="$north" />^{2} + <var name="$factor" />^{2} = c^{2}</m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context()->variables->are(m=>'Real',n=>'Real',p=>'Real');
+                            $answer = Compute("(-n-sqrt(n^2-4mp))/(2m),(-n+sqrt(n^2-4mp))/(2m)");
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 8.6-->
+                        <p>Solve for x.</p>
+                        <p> <m>mx^{2}+nx+p=0</m>.</p>
+                        <instruction>Enter the two solutions as a comma-separated list.  Be mindful of how you use parentheses in typing up the answers.</instruction>
+                        <p> <var name = "$answer" width="40"/></p>
+                    </statement>
+                    <solution>
+                        <p>To solve a quadratic equation of the form <m>ax^{2}+bx+c=0</m>, we can use the quadratic formula.  In this case, <m>a=m</m>, <m>b=n</m>, and <m>c=p.</m>  Thus, the solutions are<m>\frac{-n + \sqrt{n^{2}-4mp}}{2m}, \frac{-n - \sqrt{n^{2}-4mp}}{2m}</m>, or <m>\frac{-n \pm \sqrt{n^{2}-4mp}}{2m}</m>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+            <exercise>
+                <webwork>
+                    <setup>
+                      <pg-code>
+                        Context("Point");
+                        Context()->variables->are(n=>'Real',p=>'Real');
+                        $xintanswer = Compute("((-n-sqrt(n^2-4p))/2,0),((-n+sqrt(n^2-4p))/2,0)");
+                        $yintanswer = Point(0,p);
+                        $vertexanswer = Compute("(-n/2,(4p-n^2)/4)");
+                      </pg-code>
+                    </setup>
+                    <statement>
+                        <!--Section 9.3.-->
+                        <p> Consider the function <m>f(x) = x^{2}+nx+p</m>.  Let <m>n</m> and <m>p</m> be real numbers.  Give your answers as points, i.e. <m>(x, y)</m>. </p>
+                        <ol label="a.">
+                            <li>
+                                <p> Suppose the function has two real x-intercepts.  What are they?</p>
+                                <instruction>Enter the two intercepts as a comma-separated list.  Be mindful of how you use parentheses in typing up the answers.</instruction>
+                                <p><var name="$xintanswer" width="30"/></p>
+                            </li>
+                            <li>
+                                <p> What is its y-intercept? </p>
+                                <p><var name="$yintanswer" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>What is its vertex?  </p>
+                                <p> <var name="$vertexanswer" width="20"/></p>
+                            </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <ol label="a.">
+                            <li>
+                                <p> Set the function equal to zero and use the quadratic formula.</p>
+                            </li>
+                            <li>
+                                <p> Set <m>x</m> equal to zero and solve.</p>
+                            </li>
+                            <li>
+                                <p> The x-coordinate of the vertex is equal to <m> \frac{-b}{2a} </m>.</p>
+                            </li>
+                        </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+              <exercise>
+                <webwork>
+                    <statement>
+                        <!--Section 12.2. -->
+                        <p> Let <m>f(x) = x^{2}+bx+c</m>.  Let <m>b</m> and <m>c</m> be real numbers.
+                        Complete the square to find the vertex of <m>f(x) = x^{2}+bx+c</m>.  Write <m>f(x)</m> in vertex form and then state the vertex.  Show your work.</p>
+                        <p><var form="essay"/></p>
+                    </statement>
+                    <solution>
+                        <p>
+                        <md><mrow>f(x) = x^{2}+bx+c  \amp = \left(x + \frac{b}{2}\right)^{2} - \frac{b^{2}}{4} +c </mrow>
+                            <mrow>                   \amp = \left(x + \frac{b}{2}\right)^{2} - \frac{b^{2}}{4} +\frac{4c}{4} </mrow>
+                            <mrow>                   \amp = \left(x + \frac{b}{2}\right)^{2} + \frac{4c-b^{2}}{4}</mrow>
+                        </md>
+                        Thus, the vertex is <m>(\frac{-b}{2},\frac{4c-b^{2}}{4})</m>.
+                        </p>
+                    </solution>
+                </webwork>
+              </exercise>
+
+
+    </exercisegroup>
