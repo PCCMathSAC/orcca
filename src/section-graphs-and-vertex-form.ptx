@@ -4085,7 +4085,7 @@
                             $formula = Formula("$a(x - $h)^2 + $k")->reduce;
                             Context("Interval");
                             $domain = Compute("(-inf,inf)");
-                            $range = Compute("[$k,inf)");
+                            $range = ($a > 0) ? Compute("[$k,inf)") : Compute("(-inf,$k]");
                             Context("Point");
                             $vertex = Compute("($h,$k)");
                             $posneg = ($a > 0) ? "positive" : "negative";
@@ -4129,7 +4129,7 @@
                             $formula = Formula("$a(x - $h)^2 + $k")->reduce;
                             Context("Interval");
                             $domain = Compute("(-inf,inf)");
-                            $range = Compute("[$k,inf)");
+                            $range = ($a > 0) ? Compute("[$k,inf)") : Compute("(-inf,$k]");
                             Context("Point");
                             $vertex = Compute("($h,$k)");
                             $posneg = ($a > 0) ? "positive" : "negative";
@@ -4175,7 +4175,7 @@
                             $formula = Formula("$a(x - $h)^2 + $k");
                             Context("Interval");
                             $domain = Compute("(-inf,inf)");
-                            $range = Compute("[$k,inf)");
+                            $range = ($a > 0) ? Compute("[$k,inf)") : Compute("(-inf,$k]");
                             Context("Point");
                             $vertex = Compute("($h,$k)");
                             $posneg = ($a > 0) ? "positive" : "negative";
@@ -4220,53 +4220,7 @@
                             $formula = Formula("$a(x - $h)^2 + $k");
                             Context("Interval");
                             $domain = Compute("(-inf,inf)");
-                            $range = Compute("[$k,inf)");
-                            Context("Point");
-                            $vertex = Compute("($h,$k)");
-                            $posneg = ($a > 0) ? "positive" : "negative";
-                            $updown = ($a > 0) ? "upward" : "downward";
-                            $greatless = ($a > 0) ? "greater" : "less";
-                        </pg-code>
-                    </setup>
-                    <statement>
-                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
-                            <li>
-                                <p>What is the domain of <m><var name="$f"/></m>?</p>
-                                <p><var name="$domain" width="10"/></p>
-                            </li>
-                            <li>
-                                <p>What is the range of <m><var name="$f"/></m>?</p>
-                                <p><var name="$range" width="10"/></p>
-                            </li>
-                        </ol></p>
-                    </statement>
-                    <solution>
-                        <p><ol label="a.">
-                            <li>
-                                <p>The function is quadratic, so the domain is <m><var name="$domain"/></m>. There are no invalid inputs for this function.</p>
-                            </li>
-                            <li>
-                                <p>Since the formula is in vertex form, we can see that the graph of <m><var name="$f"/></m> has a vertex at <m><var name="$vertex"/></m>. Since the leading coefficient is <m><var name="$a"/></m> which is <var name="$posneg"/>, the parabola opens <var name="$updown"/>. So the range is all numbers <var name="$greatless"/> than or equal to <m><var name="$k"/></m>. So the range is <m><var name="$range"/></m>.</p>
-                            </li>
-                        </ol></p>
-                    </solution>
-                </webwork>
-            </exercise>
-
-            <exercise>
-                <webwork>
-                    <setup>
-                        <pg-code>
-                            $f = RandomVariableName(type=>'function');
-                            $a = non_zero_random(2,9,1)*random(-1,1,2);
-                            Context("Fraction");
-                            $h = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
-                            $k = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
-                            Context()->noreduce('(-x)+y','(-x)-y');
-                            $formula = Formula("$a(x - $h)^2 + $k");
-                            Context("Interval");
-                            $domain = Compute("(-inf,inf)");
-                            $range = Compute("[$k,inf)");
+                            $range = ($a > 0) ? Compute("[$k,inf)") : Compute("(-inf,$k]");
                             Context("Point");
                             $vertex = Compute("($h,$k)");
                             $posneg = ($a > 0) ? "positive" : "negative";
@@ -4312,7 +4266,53 @@
                             $formula = Formula("$a(x - $h)^2 + $k");
                             Context("Interval");
                             $domain = Compute("(-inf,inf)");
-                            $range = Compute("[$k,inf)");
+                            $range = ($a > 0) ? Compute("[$k,inf)") : Compute("(-inf,$k]");
+                            Context("Point");
+                            $vertex = Compute("($h,$k)");
+                            $posneg = ($a > 0) ? "positive" : "negative";
+                            $updown = ($a > 0) ? "upward" : "downward";
+                            $greatless = ($a > 0) ? "greater" : "less";
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Let <m><var name="$f"/></m> be defined by <m><var name="$f"/>(x)=<var name="$formula"/></m>.<ol label="a.">
+                            <li>
+                                <p>What is the domain of <m><var name="$f"/></m>?</p>
+                                <p><var name="$domain" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>What is the range of <m><var name="$f"/></m>?</p>
+                                <p><var name="$range" width="10"/></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                            <li>
+                                <p>The function is quadratic, so the domain is <m><var name="$domain"/></m>. There are no invalid inputs for this function.</p>
+                            </li>
+                            <li>
+                                <p>Since the formula is in vertex form, we can see that the graph of <m><var name="$f"/></m> has a vertex at <m><var name="$vertex"/></m>. Since the leading coefficient is <m><var name="$a"/></m> which is <var name="$posneg"/>, the parabola opens <var name="$updown"/>. So the range is all numbers <var name="$greatless"/> than or equal to <m><var name="$k"/></m>. So the range is <m><var name="$range"/></m>.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $f = RandomVariableName(type=>'function');
+                            $a = non_zero_random(2,9,1)*random(-1,1,2);
+                            Context("Fraction");
+                            $h = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
+                            $k = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            $formula = Formula("$a(x - $h)^2 + $k");
+                            Context("Interval");
+                            $domain = Compute("(-inf,inf)");
+                            $range = ($a > 0) ? Compute("[$k,inf)") : Compute("(-inf,$k]");
                             Context("Point");
                             $vertex = Compute("($h,$k)");
                             $posneg = ($a > 0) ? "positive" : "negative";
