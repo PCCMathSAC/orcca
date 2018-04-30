@@ -971,5 +971,42 @@
                 <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea40.pg" />
             </exercise>
         </exercisegroup>
+
+       <exercise><!-- Kara's challenge problem -->
+           <webwork>
+               <setup>
+                   <pg-code>
+                   Context("ImplicitPlane");
+                   Context()->variables->are(x=>'Real');
+                   $solstring = "x+1=6";
+                   $solution = ImplicitPlane($solstring);
+                   $evaluator = $solution->cmp(
+                        cmp_class=>'a linear equation',
+                        correct_ans=>$solstring,
+                        correct_ans_latex_string=>$solstring,
+                        checker => sub {
+                          my ($correct,$student,$ansHash) = @_;
+                          ($left, $right) = split('=',$ansHash->{original_student_ans});
+                          $left = Formula($left);
+                          $right= Formula($right);
+                          $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+                          $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+                          $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                          Value::Error('Your left side is just x') if ($left == Formula('x'));
+                          Value::Error('Your right side is just x') if ($right == Formula('x'));
+                          return ($correct == $student);
+                        }
+                      );
+                  </pg-code>
+               </setup>
+               <statement>
+                   <p>Write a linear equation whose solution is <m>x = 5</m>.</p>
+                   <p> Note that you may not enter an equation whose left side is just <q><m>x</m></q> or whose right side is just <q><m>x</m>.</q></p>
+                   <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding an equation that works, see if you can come up with a different one that also works.</p>
+                   <p><var name="$solution" evaluator="$evaluator" width="20" /></p>
+               </statement>
+           </webwork>
+       </exercise>
+
     </exercises>
 </section>
