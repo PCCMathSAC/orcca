@@ -33,7 +33,7 @@
             <video youtube="" />
         </figure>
 
-        <p>Throughout your algebra course and beyond, you will confront algebra simplification of the nature we are about to discuss. Algebra simplification is a skill<mdash/>like cooking noodles or painting a wall. It's not always exciting, but it does serve a purpose. Also like cooking noodles or painting a wall, it's not usually difficult. And yet there are common avoidable mistakes that people make. With practice from this section, you'll have experience to prevent yourself from overcooking the noodles or ruining your paintbrush.</p>
+        <p>In this section, we will discuss algebra simplification that will appear in many facets of education. Simplification is a skill, like cooking noodles or painting a wall. It may not always be exciting, but it does serve a purpose. Also like cooking noodles or painting a wall, it isn't usually difficult, and yet there are common avoidable mistakes that people make. With practice from this section, you'll have experience to prevent yourself from overcooking the noodles or ruining your paintbrush.</p>
 
     </introduction>
 
@@ -737,7 +737,7 @@
                         $emptyf =~ s/$x/(\phantom{$x})/g;
 
                         $subbed = $fofx->substitute($x=>$inner)->reduce;
-                        $answer = Formula(" $a^2*$g $x^2 + $m*$a $x + $b")->reduce;
+                        $answer = Formula("$g $x^2 + $m $x + ($b+$a)")->reduce;
 
                         $a2x2 = Formula("$a^2 $x^2")->reduce;
                         $max = Formula("$m*$a $x")->reduce;
@@ -1180,7 +1180,13 @@
 
                         $subbed = $fofx->substitute($x=>$inner)->reduce;
                         $answer = Formula("sqrt($m $x + ($b + $m*$a))")->reduce;
-
+                        $tippingpoint = -($b + $m*$a)/$m;
+                        if ($m > 0) {
+                          Context()->variables->set($x=>{limits=>[$tippingpoint,$tippingpoint+10]});
+                        }
+                        else {
+                          Context()->variables->set($x=>{limits=>[$tippingpoint-10,$tippingpoint]});
+                        };
                         $mxpma = Formula("$m $x+$m $a")->reduce;
 
                         $evaluator = $answer -> cmp(
@@ -1191,11 +1197,11 @@
                               $correct = $correct->{original_formula} if defined $correct->{original_formula};
                               $student = Formula("$student"); $correct = Formula("$correct");
                               return 0 unless ($correct == $student);
-                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1);
                               delete $correct->{test_values};
                               delete $student->{test_values};
                               my $OK = (($correct == $student) or ($student == $correct));
-                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0);
                               Value::Error("Your answer is correct, but please simplify it further") unless $OK;
                               return $OK;
                         });
@@ -1240,7 +1246,13 @@
 
                         $subbed = $fofx->substitute($x=>$inner)->reduce;
                         $answer = Formula("sqrt($m $x + ($b + $m*$a))")->reduce;
-
+                        $tippingpoint = -($b + $m*$a)/$m;
+                        if ($m > 0) {
+                          Context()->variables->set($x=>{limits=>[$tippingpoint,$tippingpoint+10]});
+                        }
+                        else {
+                          Context()->variables->set($x=>{limits=>[$tippingpoint-10,$tippingpoint]});
+                        };
                         $mxpma = Formula("$m $x+$m $a")->reduce;
 
                         $evaluator = $answer -> cmp(
@@ -1251,11 +1263,11 @@
                               $correct = $correct->{original_formula} if defined $correct->{original_formula};
                               $student = Formula("$student"); $correct = Formula("$correct");
                               return 0 unless ($correct == $student);
-                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                              Context()->flags->set(bizarroAdd=>1, bizarroSub=>1);
                               delete $correct->{test_values};
                               delete $student->{test_values};
                               my $OK = (($correct == $student) or ($student == $correct));
-                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
+                              Context()->flags->set(bizarroAdd=>0, bizarroSub=>0);
                               Value::Error("Your answer is correct, but please simplify it further") unless $OK;
                               return $OK;
                         });

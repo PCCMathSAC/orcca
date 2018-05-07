@@ -35,6 +35,11 @@
             src="{$source-url}" />
 </xsl:template>
 
+<!-- Temporary hack until mathbook can handle sidebyside within webwork -->
+<xsl:template match="image[ancestor::sidebyside][ancestor::webwork]" mode="get-width-percentage">
+    <xsl:value-of select="parent::sidebyside/@widths" />
+</xsl:template>
+
 <!-- Creates a YouTube URL for embedding, typically in an iframe -->
 <!-- autoplay for popout, otherwise not                          -->
 <xsl:template match="video[@youtubelist]" mode="youtube-embed-url">
