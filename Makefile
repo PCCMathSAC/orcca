@@ -64,6 +64,7 @@ PRJSRC    = $(PRJ)/src
 IMAGESSRC = $(PRJSRC)/images
 OUTPUT    = $(PRJ)/output
 STYLE     = $(PRJ)/style
+XSL       = $(PRJ)/xsl
 
 # The project's main hub file
 MAINFILE  = $(PRJSRC)/orcca.ptx
@@ -71,6 +72,7 @@ MAINFILE  = $(PRJSRC)/orcca.ptx
 # The project's styling files
 CSS       = $(STYLE)/css/orcca.css
 PRJXSL    = $(PRJ)/xsl
+LATEX     = $(XSL)/orcca-latex.xsl
 
 # These paths are subdirectories of
 # the Mathbook XML distribution
@@ -86,26 +88,53 @@ PGOUT      = $(OUTPUT)/pg
 HTMLOUT    = $(OUTPUT)/html
 PDFOUT     = $(OUTPUT)/pdf
 IMAGESOUT  = $(OUTPUT)/images
+WWOUT      = $(OUTPUT)/webwork-extraction
 
 # Some aspects of producing these examples require a WeBWorK server.
 # For all but trivial testing or examples, please look into setting
 # up your own WeBWorK server, or consult Alex Jordan about the use
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
 SERVER = https://webwork.pcc.edu
+#SERVER = http://localhost
 
-#  Write out each WW problem as a standalone problem in PGML ready
-#  for use on a WW server.  "def" files and "header" files are
-#  produced. Directories and filenames are derived from titles of
-#  chapters, sections, etc., in addition to the titles of then
-#  problems themselves.
-#
-#  Results land in the subdirectory:  $(PGOUT)/local
-#
+webwork-extraction:
+	install -d $(WWOUT)
+	-rm $(WWOUT) webwork-extraction.xml
+	$(MB)/script/mbx -vv -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
+
+merge:
+	cd $(OUTPUT); \
+	xsltproc --xinclude --stringparam webwork.extraction $(WWOUT)/webwork-extraction.xml $(MBXSL)/pretext-merge.xsl $(MAINFILE) > merge.xml
+
 pg:
-	install -d $(OUTPUT)
 	install -d $(PGOUT)
 	cd $(PGOUT); \
-	xsltproc -xinclude --stringparam chunk.level 2 $(MBXSL)/mathbook-webwork-archive.xsl $(MAINFILE)
+	rm -r ORCCA; \
+	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
+
+pdf:
+	install -d $(OUTPUT)
+	install -d $(PDFOUT)
+	install -d $(PDFOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
+	-rm $(PDFOUT)/images/*
+	-rm $(PDFOUT)/*.*
+	cp -a $(IMAGESOUT) $(PDFOUT)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images
+	cp -a $(IMAGESSRC) $(PDFOUT)
+	cd $(PDFOUT); \
+	xsltproc -xinclude --stringparam exercise.text.statement yes --stringparam exercise.text.hint no --stringparam exercise.text.answer no --stringparam exercise.text.solution no --stringparam exercise.backmatter.statement no --stringparam exercise.backmatter.hint yes --stringparam exercise.backmatter.answer yes --stringparam exercise.backmatter.solution yes $(LATEX) $(OUTPUT)/merge.xml; \
+	perl -pi -e 's/\\usepackage\{geometry\}//' orcca.tex; \
+	perl -pi -e 's/\\documentclass\[10pt,\]\{book\}/\\documentclass\[paper=letter,DIV=14,BCOR=0.25in,chapterprefix,numbers=noenddot,fontsize=10pt,toc=indentunnumbered\]\{scrbook\}/' orcca.tex; \
+	perl -pi -e 's/\\geometry\{letterpaper,total=\{340pt,9\.0in\}\}//' orcca.tex; \
+	perl -pi -e 's/\%\% fontspec package will make Latin Modern \(lmodern\) the default font/\%\% Customized to load Palatino fonts\n\\usepackage[T1]{fontenc}\n\\renewcommand\{\\rmdefault\}\{zpltlf\} \%Roman font for use in math mode\n\\usepackage\[scaled=.85\]\{beramono\}\% used only by \\mathtt\n\\usepackage\[type1\]\{cabin\}\%used only by \\mathsf\n\\usepackage\{amsmath,amssymb,amsthm\}\%load before newpxmath\n\\usepackage\[varg,cmintegrals,bigdelims,varbb\]\{newpxmath\}\n\\usepackage\[scr=rsfso\]\{mathalfa\}\n\\usepackage\{bm\} \%load after all math to give access to bold math\n\% Now load the otf text fonts using fontspec--wont affect math\n\\usepackage\[no-math\]\{fontspec\}\n\\setmainfont\{TeXGyrePagellaX\}\n\\defaultfontfeatures\{Ligatures=TeX,Scale=1,Mapping=tex-text\}\n\% This is a palatino-like font\n\%\\setmainfont\[BoldFont = texgyrepagella-bold.otf, ItalicFont = texgyrepagella-italic.otf, BoldItalicFont = texgyrepagella-bolditalic.otf]\{texgyrepagella-regular.otf\}\n\\linespread\{1.02\}/' orcca.tex; \
+	perl -pi -e 's/\\usepackage\{fontspec\}\n//' orcca.tex; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex
+
+
 
 #  HTML output
 #  Output lands in the subdirectory:  $(HTMLOUT)
@@ -140,44 +169,6 @@ youtube:
 	-rm $(IMAGESOUT)/*.jpg
 	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(MAINFILE)
 
-# for pdf output, a one-time prerequisite for LaTeX conversion of
-# problems living on a server, and image construction at server
-# our "webwork-tex" is a subdirectory of where the PDF is compiled
-# -s specifies an existing WW server to use (ignore security warnings)
-webwork-server-tex:
-	install -d $(OUTPUT)
-	install -d $(PDFOUT)/webwork-tex
-	$(MB)/script/mbx -v -c webwork-tex -s $(SERVER) -d $(PDFOUT)/webwork-tex $(MAINFILE)
-
-# LaTeX for print
-# see prerequisite just above
-# the "webwork-tex" directory must be given here
-# [note trailing slash (subject to change)]
-latex:
-	install -d $(OUTPUT)
-	install -d $(PDFOUT)
-	-rm $(PDFOUT)/*.tex
-	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE) \
-
-# PDF for print
-# see prerequisite just above
-# the "webwork-tex" directory must be given here
-# [note trailing slash (subject to change)]
-pdf:
-	install -d $(OUTPUT)
-	install -d $(PDFOUT)
-	install -d $(PDFOUT)/images
-	install -d $(IMAGESOUT)
-	install -d $(IMAGESSRC)
-	-rm $(PDFOUT)/images/*
-	-rm $(PDFOUT)/*.tex
-	cp -a $(IMAGESOUT) $(PDFOUT)
-	cp -a $(IMAGESSRC) $(PDFOUT)
-	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam latex.preamble.late '\DeclareSIUnit\kilometerpergallon{kpg}\setlength{\parindent}{0pt}\setlength{\parskip}{0.5pc}' --stringparam exercise.text.solution no --stringparam exercise.text.hint no --stringparam webwork.server.latex $(PDFOUT)/webwork-tex/ $(MBXSL)/mathbook-latex.xsl $(MAINFILE); \
-	xelatex orcca.tex; \
-	xelatex orcca.tex
 
 ###########
 # Utilities
