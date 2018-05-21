@@ -152,7 +152,7 @@ html:
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cp $(CSS) $(HTMLOUT)
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam html.knowl.webwork.inline no --stringparam webwork.server $(SERVER) --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(MAINFILE)
+	xsltproc -xinclude --stringparam exercise.text.solution no --stringparam exercise.text.answer no --stringparam exercise.text.hint no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
 images:
