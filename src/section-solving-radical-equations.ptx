@@ -737,6 +737,46 @@
                 <webwork source="Math95/SolvingRadicalEquations/SolvingRadicalEquationsApplication122.pg" />
             </exercise>
         </exercisegroup>
+
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextFiniteSolutionSets.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("FiniteSolutionSets");
+                            $sqrtx = list_random(2,3,5,6,7,8);
+                            $x = $sqrtx**2;
+                            $xans = Formula("1/$x");
+                            $answer = Formula("{1/$x}");
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Solve for <m>x</m>.  <m>\sqrt(1+\sqrt(<var name="$sqrtx"/>))=\sqrt(2+\sqrt(\frac{1}{\sqrt(x)})-1)</m>
+                        </p>
+                        <p><var name="$answer" width="10"/></p>
+                    </statement>
+                    <solution>
+                        <p>
+                        <md>
+                          <mrow>\sqrt(1+\sqrt(<var name="$sqrtx"/>)\amp=\sqrt(2+\sqrt(\frac{1}{\sqrt(x)})-1)</mrow>
+                          <mrow>(\sqrt(1+\sqrt(<var name="$sqrtx"/>))^{2}\amp=(\sqrt(2+\sqrt(\frac{1}{\sqrt(x)})-1)^{2}</mrow>
+                          <mrow>1+\sqrt(<var name="$sqrtx"/>)\amp=2+\sqrt(\frac{1}{\sqrt(x)})-1</mrow>
+                          <mrow>1+\sqrt(<var name="$sqrtx"/>)\amp=1+\sqrt(\frac{1}{\sqrt(x)})</mrow>
+                          <mrow>\sqrt(<var name="$sqrtx"/>)\amp=\sqrt(\frac{1}{\sqrt(x)})</mrow>
+                          <mrow>\sqrt(<var name="$sqrtx"/>)^{2}\amp=\sqrt(\frac{1}{\sqrt(x)})^{2}</mrow>
+                          <mrow><var name="$sqrtx"/>\amp=\frac{1}{\sqrt(x)}</mrow>
+                          <mrow><var name="$sqrtx"/>^{2}\amp=(\frac{1}{\sqrt(x)})^{2}</mrow>
+                          <mrow><var name="$x"/>\amp=\frac{1}{x}</mrow>
+                          <mrow><var name="$x"/>x\amp=1</mrow>
+                          <mrow>x \amp= <var name="$xans"/></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+        
         <!-- todo: add a few solving graphically examples -->
     </exercises>
 </section>
