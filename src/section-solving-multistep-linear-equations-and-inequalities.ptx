@@ -1134,6 +1134,67 @@
             </exercise>
         </exercisegroup>
 
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <statement>
+                        <p>  Think of a number.  Add four to your number.  Now double that.  Then add six.  Then halve it.  Finally, subtract 7.  What is the result?  Do you always get the same result, regardless of what number you start with?  How does this work?  Explain using algebra.</p>
+                        <p><var form="essay"/></p>
+                    </statement>
+                    <solution>
+                        <p> Let's start with the number <m>x</m> and follow the instructions: <m>x</m></p>
+                        <p> Add four to the number:  <m>x + 4</m></p>
+                        <p> Now double that:  <m> 2(x+4)</m></p>
+                        <p> Then add six: <m> 2(x+4)+6</m></p>
+                        <p> Then halve it: <m> \frac{2(x + 4)+ 6}{2} </m></p>
+                        <p> Finally, subtract 7: <m> \frac{2(x + 4)+ 6}{2}-7 </m></p>
+                        <p></p>
+                        <p> This expression can be simplified:
+                        <md><mrow>\frac{2(x + 4)+ 6}{2}-7                   \amp = \frac{2x+8+6}{2} - 7 </mrow>
+                            <mrow>                                          \amp = \frac{2x+14}{2}-7 </mrow>
+                            <mrow>                                          \amp = x + 7 - 7 </mrow>
+                            <mrow>                                          \amp = x </mrow>
+                        </md></p>
+                        <p> Thus, after following the instructions, you always end up with the original number.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        Context("ImplicitPlane");
+                        Context()->variables->are(x=>'Real');
+                        $solstring = "x-1=-10";
+                        $solution = ImplicitPlane($solstring);
+
+                        $evaluator = $solution->cmp(
+                             cmp_class=>'a linear equation',
+                             correct_ans=>$solstring,
+                             correct_ans_latex_string=>$solstring,
+                             checker => sub {
+                               my ($correct,$student,$ansHash) = @_;
+                               ($left, $right) = split('=',$ansHash->{original_student_ans});
+                               $left = Formula($left);
+                               $right= Formula($right);
+                               $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+                               $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+                               $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                               Value::Error('Your left side is just x') if ($left == Formula('x'));
+                               Value::Error('Your right side is just x') if ($right == Formula('x'));
+                               return ($correct == $student);
+                             }
+                           );
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Write a linear equation whose solution is <m>x = -9</m>.  </p>
+                        <p> Note that you may not enter an equation whose left side is just <q><m>x</m></q> or whose right side is just <q><m>x</m>.</q></p>
+                        <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding an equation that works, see if you can come up with a different one that also works.</p>
+                        <p><var name="$solution" evaluator="$evaluator" width="20" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
 
     </exercises>
 </section>
