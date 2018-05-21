@@ -716,6 +716,39 @@
             <exercise>
                 <webwork source="BasicAlgebra/SystemOfLinearEquationsApplications/systemsWord0.pg" />
             </exercise>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $p2 = random(2,6,2);
+                            $q2 = random(-7,-3,2);
+                            $r2 = non_zero_random(-5,5,1);
+                            $factor = non_zero_random(-5,-2,1);
+                            $p = $p2*$factor;
+                            $q = $q2*$factor;
+                            $r = $r2*$factor;
+                            Context()->variables->are(x=>'Real',y=>'Real',b=>'Real');
+                            Context()->noreduce('(-x)+y', '(-x)-y');
+                            $exp1 = Formula("$p x + $q y")->reduce;
+                            $exp2 = Formula("$p2 x - b y")->reduce;
+                            $answer = Formula("-$q2");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Find the value of <m>b</m> so that the system of equations has an infinite number of solutions.<me>
+                            \left\{\begin{aligned} <var name="$exp1" /> \amp = <var name="$r"/>\\
+                                                   <var name="$exp2" /> \amp = <var name="$r2"/> \end{aligned}\right.</me>
+                        </p>
+                        <p>The value of <m>b</m> is <var name="$answer" width="10"/>.</p>
+                    </statement>
+                    <solution>
+                        <p> To have an infinite numbers of solutions, the two equations must coincide as the same line.  Thus, the second equation comes from multiplying or dividing the first equation by a certain factor.  In this case, if you divide the first equation by <var name="$factor"/>, the result is the second equation.  Thus, <m>b</m> must equal <m> <var name="$answer"/></m>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
         </exercisegroup>
     </exercises>
 </section>
