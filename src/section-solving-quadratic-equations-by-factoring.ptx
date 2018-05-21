@@ -838,6 +838,77 @@ todo:include this example as an exercise that is interleaved somewhere in the fu
                 <webwork source="BasicAlgebra/QuadraticApplications/QuadraticEquationApplication60.pg" />
             </exercise>
         </exercisegroup>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                        Context("ImplicitEquation");
+                        Context()->variables->are(x=>'Real');
+                        $a = random(1,10,1);
+                        $b = random(-10,-1,1);
+                        $solstring = "(x-$a)*(x-$b)*(x-2/3)=0";
+                        $solution = ImplicitEquation($solstring);
+
+                        $evaluator = $solution->cmp(
+                             cmp_class=>'a cubic equation',
+                             correct_ans=>$solstring,
+                             correct_ans_latex_string=>$solstring,
+                             checker => sub {
+                               my ($correct,$student,$ansHash) = @_;
+                               ($left, $right) = split('=',$ansHash->{original_student_ans});
+                               $left = Formula($left);
+                               $right= Formula($right);
+                               $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+                               $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+                               $ansHash->{student_ans} = $ansHash->{original_student_ans};
+                               return ($correct == $student);
+                             }
+                           );
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Give an example of a cubic equation that has three solutions: one solution is <m>x = <var name="$a"/></m>, the second solution is <m>x= <var name="$b"/></m>, and the third solution is <m> x = \frac{2}{3} </m>.
+                        </p>
+                        <p> <var name="$solution" evaluator="$evaluator" width="30" /> </p>
+                    </statement>
+                    <solution>
+                        <p>I will first write a cubic equation in factored form: <m> (x-a)(x-b)(x-c) = 0 </m> where <m>a, b,</m> and  <m>c</m> are the solutions of the equation.  Thus, we can write the cubic equation as <m> (x-<var name="$a"/>)(x-(<var name="$b"/>))(x - \frac{2}{3}) = 0 </m> or <m> (x-<var name="$a"/>)(x-<var name="$b"/>)(x - \frac{2}{3}) = 0 </m>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
+             <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextFiniteSolutionSets.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                        Context("FiniteSolutionSets");
+                        $a = list_random(2,3,5);
+                        $b = list_random(4,9,16,25);
+                        $c = $a * $b;
+                        $exp = random(12,50,2);
+                        $smallexp = $exp - 2;
+                        $sqrt = Formula("sqrt($b)")->reduce;
+                        $answer = Formula("{0, 1/$sqrt, -1/$sqrt}");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Solve for x.  </p>
+                        <p><m><var name="$c"/>x^{<var name="$exp"/>}-<var name="$a"/>x^{<var name="$smallexp"/>} = 0 </m></p>
+                        <p> <var name="$answer" width="20"/> </p>
+                    </statement>
+                    <solution>
+                        <p>To solve <m><var name="$c"/>x^{<var name="$exp"/>}-<var name="$a"/>x^{<var name="$smallexp"/>} = 0 </m>, we can factor out the GCF, <m><var name="$a"/>x^{<var name="$smallexp"/>}</m>.  Thus, the equation becomes <m><var name="$a"/>x^{<var name="$smallexp"/>}(<var name="$b"/>x^{2}-1)=0</m>.  Keep solving this by setting each factor equal to zero.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
     </exercises>
 
 </section>
