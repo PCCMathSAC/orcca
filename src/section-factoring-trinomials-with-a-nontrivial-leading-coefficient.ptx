@@ -823,11 +823,55 @@
                 <webwork source="BasicAlgebra/Factoring/factoring330.pg" />
             </exercise>
         </exercisegroup>
-        <exercise>
-            <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
-        </exercise>
+
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
+            </exercise>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                          $c = list_random(2,4,5,7,8,10);
+                          $threec = $c*3;
+                          @smalls = ();
+                          @bigs = ();
+                          for $i (1..floor(sqrt($threec))) {
+                            if ($threec % $i == 0) {
+                              push(@smalls,$i);
+                              push(@smalls,-$i);
+                              push(@bigs,$threec/$i);
+                              push(@bigs,-$threec/$i);
+                            }
+                          }
+                          @b = ();
+                          $n = scalar(@smalls);
+                          for $j (1..$n) {
+                            push(@b,$smalls[$j-1] + $bigs[$j-1]);
+                          }
+                          $answer = List(@b);
+
+                          Context()->variables->add(b=>'Real');
+                          $expression = Formula("3x^2+bx+$c")->reduce;
+                       </pg-code>
+                    </setup>
+                    <statement>
+                          <p>What integers can go in the place of <m>b</m> so that the quadratic expression is factorable?</p>
+                          <p> <m><var name="$expression" /></m></p>
+                          <instruction>Enter the solutions as a comma-separated list.</instruction>
+                          <p> <var name="$answer" width="30"/> </p>
+                    </statement>
+                    <hint> There are <var name="$n"/> answers.</hint>
+                    <solution>
+                        <p>Recall the <q>ac</q> method.  When you multiply 3 by <var name="$c"/>, you get <var name="$threec"/>.  Think of all of the ways to factor <var name="$threec"/>.  The possible <m>b</m> values are <var name="$answer"/>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
     </exercises>
 </section>
