@@ -1924,7 +1924,9 @@
                             %f=map{$x[$_]=>$y[$_]}(0..24);
                             @year=num_sort(@x[NchooseK(25,4)]);
                             @rate=map{Real(($f{$year[2*$_+1]}-$f{$year[2*$_]})/($year[2*$_+1]-$year[2*$_]))}(0,1);
+                            Context()->flags->set(tolType=>'absolute',tolerance=>0.5);
                             $answer=List(1999,2001);
+                            Context("Numeric");
                             $rate=($f{2001}-$f{1999})/2;
                             for my$j(0,1){
                               $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[240,240]);
