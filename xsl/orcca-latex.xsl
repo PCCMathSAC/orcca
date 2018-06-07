@@ -84,14 +84,39 @@
 <!--If all exercises are webwork, and if they all open with the same p, then print that p after the introduction. -->
 <!--Later, in each such exercise statement, ignore that p -->
 <xsl:template match="exercisegroup[count(exercise)>1][not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+    <xsl:if test="title">
+        <xsl:text>\subparagraph</xsl:text>
+        <!-- keep optional title if LaTeX source is re-purposed -->
+        <xsl:text>[{</xsl:text>
+        <xsl:apply-templates select="." mode="title-simple" />
+        <xsl:text>}]</xsl:text>
+        <xsl:text>{</xsl:text>
+        <xsl:apply-templates select="." mode="title-full" />
+        <xsl:text>}</xsl:text>
+    </xsl:if>
     <xsl:apply-templates select="." mode="label" />
+    <xsl:text>&#xa;</xsl:text>
     <xsl:apply-templates select="introduction" />
     <xsl:text>\par%&#xa;</xsl:text>
     <xsl:text>For the following exercises: </xsl:text>
     <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
+    <xsl:text>\begin{exercisegroup}(</xsl:text>
+    <xsl:choose>
+        <xsl:when test="not(@cols)">
+            <xsl:text>1</xsl:text>
+        </xsl:when>
+        <xsl:when test="@cols = 1 or @cols = 2 or @cols = 3 or @cols = 4 or @cols = 5 or @cols = 6">
+            <xsl:value-of select="@cols"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:message terminate="yes">MBX:ERROR: invalid value <xsl:value-of select="@cols" /> for cols attribute of exercisegroup</xsl:message>
+        </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>)&#xa;</xsl:text>
     <xsl:apply-templates select="exercise"/>
+    <xsl:text>\end{exercisegroup}</xsl:text>
     <xsl:apply-templates select="conclusion" />
-    <xsl:text>\par\smallskip\noindent&#xa;</xsl:text>
+    <xsl:text>\par\medskip\noindent&#xa;</xsl:text>
 </xsl:template>
 
 <xsl:template match="statement[ancestor::webwork-reps][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
