@@ -1218,8 +1218,68 @@
                 <webwork source="Math95/AbsValueInequalities/AbsValueInequalities9.pg" />
             </exercise>
         </exercisegroup>
-    </exercises>
 
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                          Context("Interval");
+                          $a = random(2,10,1);
+                          $b = 2*$a; 
+                          $c = $a + $b;
+                          $d = $a + $a + $b;
+                          $I = Interval("[$a,$b]");
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <!--The answer is an interval.  I do not give any indication of this in the question, as that kind of ruins the question.-->
+                        <p> Algebraically, solve for x. </p>
+                        <p> <m><var name="$a"/> = \abs{x-<var name="$a"/>} + \abs{x-<var name="$b"/>}</m></p>
+                        <p> <var name="$I" width="10"/></p>
+                    </statement>
+                    <solution>
+                        <p> Because the expressions inside the absolute value brackets can be positive or negative, I will break this into four possibilities:
+                        <ol label="1.">
+                            <li><m>(x-<var name="$a"/>)</m> and <m>(x-<var name="$b"/>)</m></li>
+                            <li><m>(<var name="$a"/>-x)</m> and <m>(<var name="$b"/>-x)</m></li>
+                            <li><m>(<var name="$a"/>-x)</m> and <m>(x-<var name="$b"/>)</m></li>
+                            <li><m>(x-<var name="$a"/>)</m> and <m>(<var name="$b"/>-x)</m></li>
+                        </ol> </p>
+                        <p> Case 1:
+                        <md><mrow> <var name="$a"/> \amp= \abs{x-<var name="$a"/>} + \abs{x-<var name="$b"/>} </mrow>
+                            <mrow> <var name="$a"/> \amp= (x-<var name="$a"/>) + (x-<var name="$b"/>) </mrow>
+                            <mrow> <var name="$a"/> \amp= 2x - <var name="$c"/> </mrow>
+                            <mrow> <var name="$d"/> \amp= 2x </mrow>
+                            <mrow> <var name="$b"/> \amp= x </mrow>
+                        </md></p>
+                        <p> Case 2:
+                        <md><mrow> <var name="$a"/> \amp= \abs{x-<var name="$a"/>} + \abs{x-<var name="$b"/>} </mrow>
+                            <mrow> <var name="$a"/> \amp= (<var name="$a"/> - x) + (<var name="$b"/> - x) </mrow>
+                            <mrow> <var name="$a"/> \amp= <var name="$c"/> - 2x </mrow>
+                            <mrow> 2x \amp= <var name="$c"/> - <var name="$a"/> </mrow>
+                            <mrow> x \amp= <var name="$a"/> </mrow>
+                        </md></p>
+                        <p> Case 3:
+                        <md><mrow> <var name="$a"/> \amp= \abs{x-<var name="$a"/>} + \abs{x-<var name="$b"/>} </mrow>
+                            <mrow> <var name="$a"/> \amp= (<var name="$a"/> - x) + (x - <var name="$b"/>) </mrow>
+                            <mrow> <var name="$a"/> \amp= (<var name="$a"/> - <var name="$b"/>) </mrow>
+                            <mrow> <var name="$b"/> \amp= 0 </mrow>
+                        </md></p>
+                        <p> This is a false statement, but what is the implication of this false statement?  The implication is that under "Case 3" conditions, the equation is never true.</p>
+                        <p> Case 4:
+                        <md><mrow> <var name="$a"/> \amp= \abs{x-<var name="$a"/>} + \abs{x-<var name="$b"/>} </mrow>
+                            <mrow> <var name="$a"/> \amp= (x-<var name="$a"/>) + (<var name="$b"/> - x) </mrow>
+                            <mrow> <var name="$a"/> \amp=  - <var name="$a"/> + <var name="$b"/> </mrow>
+                            <mrow> <var name="$a"/> \amp=  <var name="$a"/> </mrow>
+                        </md></p>
+                        <p> This is a true statement, but what is the implication of this true statement?  This means that the equation is always true under "Case 4" conditions.  The function <m>y=\abs{x-<var name="$a"/>}</m> is based on <m>y=x-<var name="$a"/></m> when <m> x > <var name="$a"/> </m>.   The function <m>y=\abs{x-<var name="$b"/>}</m> is based on <m>y=<var name="$b"/>-x</m> when <m> x \lt <var name="$b"/></m>.  Thus, the equation is always true when <m><var name="$a"/> \lt x \lt <var name="$b"/></m>.</p>
+                         <p> In conclusion, the equation is true when <m>x = <var name="$b"/></m>, when <m> x = <var name="$a"/></m>, and when <m><var name="$a"/> \lt x \lt <var name="$b"/></m>.  Thus, the interval solution is <m>[<var name="$a"/>,<var name="$b"/>].</m></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+    </exercises>
 </section>
 
 

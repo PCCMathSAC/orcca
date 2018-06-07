@@ -1466,5 +1466,216 @@
                 <webwork source="BasicAlgebra/Exponents/negExp180.pg" />
             </exercise>
         </exercisegroup>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(1,10,1);
+                              $b = random(-10,-1,1);
+                              $c = random(1,10,1);
+                              $exponent = $a + $b - $c;
+                            } until ($exponent > 5);
+
+                            $multians = MultiAnswer($a, $b, $c)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu, $cstu ) = @{$student};
+                                my ( $acor, $bcor, $ccor ) = @{$correct};
+
+                                if ( $astu &lt;= 0) {Value::Error('Your value for a should be positive.')};
+                                if ( $bstu &gt;= 0) {Value::Error('Your value for b should be negative.')};
+                                if ( $cstu &lt;= 0) {Value::Error('Your value for c should be positive.')};
+
+                                if ($astu+$bstu-$cstu != $exponent) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            do {
+                              $d = random(1,10,1);
+                              $e = random(-10,-1,1);
+                              $f = random(1,10,1);
+                              $negexponent = $d + $e - $f;
+                            } until ($negexponent &lt; -5);
+
+                            $multians2 = MultiAnswer($d, $e, $f)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $dstu, $estu, $fstu ) = @{$student};
+                                my ( $dcor, $ecor, $fcor ) = @{$correct};
+
+                                if ( $dstu &lt;= 0) {Value::Error('Your value for a should be positive.')};
+                                if ( $estu &gt;= 0) {Value::Error('Your value for b should be negative.')};
+                                if ( $fstu &lt;= 0) {Value::Error('Your value for c should be positive.')};
+
+                                if ($dstu+$estu-$fstu != $negexponent) {return 0;} else {return 1};
+
+                              }
+                            );
+                            $abs = abs($negexponent);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>Let <m>a > 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                          </li>
+                          <li>
+                            <p>Let <m>a > 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?  If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians2" width="10"/>, <m>b</m> = <var name="$multians2" width="10"/>, and <m>c</m> = <var name="$multians2" width="10"/></p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <ol label="a.">
+                            <li>
+                                <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  For example, <m><var name="$a"/> + {<var name="$b"/>} - <var name="$c"/> = <var name="$exponent"/></m>.</p>
+                            </li>
+                            <li>
+                                <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$negexponent"/>.  For example, <m><var name="$d"/> + {<var name="$e"/>} - <var name="$f"/> = <var name="$negexponent"/></m>.</p>
+                            </li>
+                        </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(1,10,1);
+                              $b = random(-10,-1,1);
+                              $c = random(1,10,1);
+                              $exponent = $a + $b - $c;
+                            } until ($exponent > 5);
+                            $answer = Compute("none");
+
+
+                            do {
+                              $d = random(1,10,1);
+                              $e = random(-10,-1,1);
+                              $f = random(1,10,1);
+                              $negexponent = $d + $e - $f;
+                            } until ($negexponent &lt; -5);
+
+                            $multians = MultiAnswer($d, $e, $f)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $dstu, $estu, $fstu ) = @{$student};
+                                my ( $dcor, $ecor, $fcor ) = @{$correct};
+
+                                if ( $dstu &gt;= 0) {Value::Error('Your value for a should be negative.')};
+                                if ( $estu &gt;= 0) {Value::Error('Your value for b should be negative.')};
+                                if ( $fstu &lt;= 0) {Value::Error('Your value for c should be positive.')};
+
+                                if ($dstu+$estu-$fstu != $negexponent) {return 0;} else {return 1};
+
+                              }
+                            );
+                            $abs = abs($negexponent);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>Let <m>a \lt 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
+                          </li>
+                          <li>
+                            <p>Let <m>a \lt 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                      <ol label="a.">
+                        <li>
+                          <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are negative, <m>a + b</m> is a negative number.  Then, we have to subtract <m>c</m>, which is a positive number.  Thus, <m> a + b - c</m> will result in a negative number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a, b,</m> and <m>c</m> that work.</p>
+                        </li>
+                        <li>
+                          <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$negexponent"/>.  For example, <m><var name="$a"/> + {<var name="$b"/>} - <var name="$c"/> = <var name="$negexponent"/></m>.</p>
+                        </li>
+                      </ol>
+                    </solution>
+                </webwork>
+            </exercise>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(1,10,1);
+                              $b = random(-10,-1,1);
+                              $c = random(1,10,1);
+                              $exponent = $a + $b - $c;
+                            } until ($exponent > 5);
+
+                            $multians = MultiAnswer($a, $b, $c)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu, $cstu ) = @{$student};
+                                my ( $acor, $bcor, $ccor ) = @{$correct};
+
+                                if ( $astu &lt;= 0) {Value::Error('Your value for a should be positive.')};
+                                if ( $bstu &lt;= 0) {Value::Error('Your value for b should be positive.')};
+                                if ( $cstu &gt;= 0) {Value::Error('Your value for c should be negative.')};
+
+                                if ($astu+$bstu-$cstu != $exponent) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                             do {
+                              $d = random(1,10,1);
+                              $e = random(-10,-1,1);
+                              $f = random(1,10,1);
+                              $negexponent = $d + $e - $f;
+                            } until ($negexponent &lt; -5);
+
+                            $abs = abs($negexponent);
+                            $answer = Compute("none");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
+                        <ol label="a.">
+                          <li>
+                            <p>Let <m>a > 0, b > 0,</m> and <m>c \lt 0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                          </li>
+                          <li>
+                            <p>Let <m>a > 0, b > 0,</m> and <m>c \lt 0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?
+                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
+                            <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
+                          </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                      <ol label="a.">
+                        <li>
+                          <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  For example, <m><var name="$a"/> + <var name="$b"/> - {<var name="$c"/>} = <var name="$exponent"/></m>.</p>
+                        </li>
+                        <li>
+                          <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are positive, <m>a + b</m> is a positive number.  Then, we have to subtract <m>c</m> (a negative number), which is the same as adding a positive number.  Thus, <m> a + b - c</m> will result in a positive number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a, b,</m> and <m>c</m> that work.</p>
+                        </li>
+                      </ol>
+                    </solution>
+                </webwork>
+            </exercise>
     </exercises>
 </section>

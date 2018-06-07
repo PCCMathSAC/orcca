@@ -1190,5 +1190,121 @@
                 </webwork>
             </exercise>
         </exercisegroup>
+
+           <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            do {
+                              $a = random(-15,-1,2);
+                              $b = random(-10,-2,2);
+                              $coefficient = $a + $b;
+                            } until ($coefficient &lt; -7);
+                            $ax = Formula("$a x")->reduce;
+                            $bx = Formula("$b x")->reduce;
+                            $complete = Formula("$coefficient*x")->reduce;
+
+
+                            $multians = MultiAnswer($ax, $bx)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $astu, $bstu ) = @{$student};
+                                my ( $acor, $bcor ) = @{$correct};
+
+                                if ( $astu == Formula("0")) {Value::Error('None of your values can be zero.')};
+                                if ( $bstu == Formula("0")) {Value::Error('None of your values can be zero.')};
+
+                                if ($astu+$bstu != $complete) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            do {
+                              $c = random(-15,-1,2);
+                              $d = random(-10,-2,2);
+                              $expx = random(15,30,5);
+                              $coefficient2 = $c + $d;
+                            } until ($coefficient2 &lt; -7);
+                            $cexp = Formula("$c*(x**$expx)")->reduce;
+                            $dexp = Formula("$d*(x**$expx)")->reduce;
+                            $complete2 = Formula("$coefficient2*(x**$expx)");
+
+                            $multians2 = MultiAnswer($cexp, $dexp)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $cstu, $dstu ) = @{$student};
+                                my ( $ccor, $dcor ) = @{$correct};
+
+                                if ( $cstu == 0) {Value::Error('None of your values can be zero.')};
+                                if ( $dstu == 0) {Value::Error('None of your values can be zero.')};
+
+                                if ($cstu+$dstu != $complete2) {return 0;} else {return 1};
+
+                              }
+                            );
+
+                            $p = list_random(2,3,5,7,11,13,17);
+                            $exp1 = random(20,50,5);
+                            $exp2 = random(10,30,10);
+                            $exp3 = $exp1 + $exp2;
+                            $expa = Formula("(x**$exp1)")->reduce;
+                            $expb = Formula("(x**$exp2)")->reduce;
+                            $num = Formula("$p");
+                            $complete3 = Formula("$num*(x**$exp3)");
+
+                            $multians3 = MultiAnswer($num, $expa, $expb)->with(
+                            singleResult => 1,
+                                checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( $numstu, $expastu, $expbstu ) = @{$student};
+                                my ( $numcor, $expacor, $expbcor ) = @{$correct};
+
+                                if ( $numstu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $expastu == 1) {Value::Error('None of your values can be one.')};
+                                if ( $expbstu == 1) {Value::Error('None of your values can be one.')};
+
+                                if ($numstu*$expastu*$expbstu != $complete3) {return 0;} else {return 1};
+
+                              }
+                            );
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Fill in the blanks with algebraic expressions that make the equation true.  You may not use <m>0</m> or <m>1</m> in any of the blank spaces.</p>
+                        <p> Here is an example:  <m> \mathord{?} + \mathord{?} = 8x </m>.</p>
+                        <p> One possible answer is: <m> 3x + 5x = 8x </m>.</p>
+                        <p> There are infinitely many correct answers to this problem.  <em>*I encourage you to be creative.*</em>  After finding a correct answer, see if you can come up with a different answer that is also correct.</p>
+                        <ol label="a.">
+                            <li>
+                                <p><var name="$multians" width="10"/> <m> + </m> <var name="$multians" width="10"/> <m> = <var name="$complete"/></m> </p>
+                            </li>
+                            <li>
+                                <p><var name="$multians2" width="10"/> <m> + </m> <var name="$multians2" width="10"/> <m> = <var name="$complete2"/></m> </p>
+                           </li>
+                           <li>
+                                <p><var name="$multians3" width="5"/> <m> \cdot </m> <var name="$multians3" width="5"/> <m> \cdot </m> <var name="$multians3" width="5"/> <m> = <var name="$complete3"/></m> </p>
+                            </li>
+                        </ol>
+                    </statement>
+                    <solution>
+                        <p>
+                         <ol label="a.">
+                            <li>
+                                <p>Think about adding like terms.  One possibility is: <m><var name="$ax"/> + <var name="$bx"/> = <var name="$complete"/>.</m> </p>
+                            </li>
+                            <li>
+                                <p>Think about adding like terms.  One possibility is: <m><var name="$cexp"/> + <var name="$dexp"/> = <var name="$complete2"/>.</m></p>
+                           </li>
+                           <li>
+                                <p>Think about multiplying exponents.  One possibility is: <m><var name="$num"/> \cdot <var name="$expa"/> \cdot <var name="$expb"/> = <var name="$complete3"/>.</m></p>
+                            </li>
+                        </ol>
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
     </exercises>
 </section>
