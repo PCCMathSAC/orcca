@@ -23,6 +23,8 @@
             <li><xref ref="mth60-evaluate-other-geometric-formulas" /></li>
             <li><xref ref="mth60-distinguish-factors-and-terms" /></li>
             <li><xref ref="mth60-apply-appropriate-units" /></li>
+            <li><xref ref="mth60-find-perimeter-polygon" /></li>
+            <li><xref ref="mth60-evaluate-other-geometric-formulas" /></li>
         </ul>
     </objectives>
 
@@ -851,7 +853,7 @@
                                 \draw[fill=secondcolor!20!white] (3,1) --+ (1,0) --+ (1,1) --+ (0,1) -- cycle;
                                 \draw[|-|] (0.9,1) -- (0.9,2) node[pos=0.5,left] {$r$};
                                 \draw[|-|] (1,0.9) -- (4,0.9) node[pos=0.5,below] {$3r$};
-                                \node at (2.5,1.5) {area $3r\cdot r$, or $3r^2$};
+                                \node[above] at (2.5,2) {area $3r\cdot r$, or $3r^2$};
                                 %trefoil
                                 \draw[fill=firstcolor!20!white] (6,1) --+ (1,0) --+ (1,1) --+ (0,1) -- cycle;
                                 \draw[fill=secondcolor!20!white] (6,1) --+ ({cos(-30)},{sin(-30)}) --+ ({cos(-30)+cos(-120)},{sin(-30)+sin(-120)}) --+ ({cos(-120)},{sin(-120)}) -- cycle;
@@ -1016,6 +1018,60 @@
                         </li>
                     </ol></p>
                 </solution>
+            </webwork>
+        </exercise>
+
+        <p>You may be required to memorize the geometry formulas that have been cataloged in this section. Check that you have each of them memorized here.</p>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("Numeric")->variables->are(
+                            P=>'Real',
+                            l=>'Real',
+                            w=>'Real',
+                            A=>'Real',
+                            b=>'Real',
+                            h=>'Real',
+                            c=>'Real',
+                            d=>'Real',
+                            r=>'Real',);
+                        parser::Assignment->Allow;
+                        $rectangleperimeter = Formula("P=2(l+w)");
+                        $rectanglearea = Formula("A=lw");
+                        $trianglearea = Formula("A=1/2bh");
+                        $circleperimeter = OneOf(Formula("c=pi d"), Formula("c=2 pi r"));
+                        $circlearea = Formula("A=pi r^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Fill out the table with various perimeter and area formulas as they were given in this section.</p>
+                    <sidebyside>
+                        <tabular>
+                            <row bottom="medium">
+                                <cell></cell>
+                                <cell>Perimeter/Circumference</cell>
+                                <cell>Area</cell>
+                            </row>
+                            <row>
+                                <cell>Rectangle</cell>
+                                <cell><var name="$rectangleperimeter" width="10" /></cell>
+                                <cell><var name="$rectanglearea" width="10" /></cell>
+                            </row>
+                            <row>
+                                <cell>Triangle</cell>
+                                <cell></cell>
+                                <cell><var name="$trianglearea" width="10" /></cell>
+                            </row>
+                            <row>
+                                <cell>Circle</cell>
+                                <cell><var name="$circleperimeter" width="10" /></cell>
+                                <cell><var name="$circlearea" width="10" /></cell>
+                            </row>
+                        </tabular>
+                    </sidebyside>
+                </statement>
             </webwork>
         </exercise>
 
