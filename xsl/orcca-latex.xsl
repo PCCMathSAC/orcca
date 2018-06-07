@@ -14,7 +14,7 @@
 
 <!-- Omit alternative video lessons; important to increment counter -->
 <xsl:template match="figure[contains(child::caption,'Alternative Video Lesson')]">
-    <xsl:text>\stepcounter{theorem}&#xa;&#xa;</xsl:text>
+    <xsl:text>\stepcounter{cthm}&#xa;&#xa;</xsl:text>
 </xsl:template>
 
 <!-- Omit solutions to sectional exercises -->
