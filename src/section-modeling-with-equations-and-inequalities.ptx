@@ -592,6 +592,35 @@
                 <webwork source="BasicAlgebra/EnglishToMath/englishToMath180.pg" />
             </exercise>
         </exercisegroup>
-    </exercises>
 
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextPercent.pl</macro-file>
+                        <macro-file>contextCurrency.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Percent");
+                            $p = Percent(random(0.01,0.03,0.005));
+                            $q = Percent(random(0.02,0.04,0.005));
+                            Context("Currency");
+                            Context()->currency->addSymbol("dollars","dollar");
+                            Context()->flags->set(trimTrailingZeros=>1);
+                            $original = random(9,11,0.25);
+                            $current = Currency(sprintf("%.2f",$original*(1+$p->value)*(1+$q->value)));
+                            $original = Currency($current/(1+$p)/(1+$q));
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Last year, Joan received a <var name="$p"/> raise.  This year, she received a <var name="$q"/> raise.  Her current wage is <var name="$current"/> an hour.  What was her wage before the two raises?</p>
+                        <p><var name="$original" width="10" /></p>
+                    </statement>
+                    <solution>
+                        <p> We can represent this situation with the equation: <m> x \cdot (1 + <var name="$p->value"/>) \cdot (1 + <var name="$q->value"/>) = <var name="$current->value"/></m>.  Solve this equation for <m>x</m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+    </exercises>
 </section>
