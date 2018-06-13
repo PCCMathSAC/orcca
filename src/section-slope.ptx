@@ -308,20 +308,22 @@
                         @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
                         $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
                         for my$j(0,1){
-                          $gr[$j] = init_graph(1998,-2000,2015,25000,axes=>[1999,0],grid=>[17,27],size=>[240,240]);
+                          $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
+                          $xpixel = 19/240;
+                          $ypoxel = 27/240;
                           $gr[$j] -> lb('reset');
                           $gr[$j]->h_ticks(0,"black",2000,2005,2010);
                           $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
-                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom'));};
-                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle'));};
-                          $gr[$j]->lb(new Label(2015,-1000,'year','black','right','top'));
-                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top'));
-                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2015> using color:blue and weight:2");
+                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
+                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
+                          $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
+                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
+                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
                           for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
                         };
                         $gr[1]->stamps(closed_circle(2006,19000,'red'));
                         $gr[1]->stamps(closed_circle(2014,21000,'red'));
-                        $gr[1]->moveTo(2006,19000);$gr[1]->lineTo(2014,19000,'red',2);$gr[1]->arrowTo(2014,21000,'red',2);
+                        $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
                     </pg-code>
                 </setup>
                 <statement>
@@ -341,6 +343,99 @@
                     </sidebyside>
                     <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
                     <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("Fraction");
+                        $slope = Fraction(3,4);
+                        @x=(1999..2013);
+                        @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
+                        $gr = init_graph(-5,-5,7,7,axes=>[0,0],grid=>[12,12],size=>[240,240]);
+                        $pixel = 12/240;
+                        $gr -> lb('reset');
+                        $gr->h_ticks(0,"black",-4..6);
+                        $gr->v_ticks(0,"black",-4..6);
+                        for my $i (-4,-2,2,4,6) {
+                          $gr->lb(new Label($i,-0.5,$i,'black','center','middle','small'));
+                          $gr->lb(new Label(-0.5,$i,$i,'black','center','middle','small'));
+                        };
+                        $gr->lb(new Label(7,-0.5,'x','black','center','middle','small'));
+                        $gr->lb(new Label(-0.5,7,'y','black','center','middle','small'));
+                        add_functions($gr, "$slope*x+2 for x in &lt;-5,7> using color:blue and weight:1");
+                        for my$i(-2..5){$gr->stamps(closed_circle($i,$slope*$i+2,'blue'));};
+                        $gr->moveTo(0,2-$pixel);
+                        $gr->lineTo(4+$pixel,2-$pixel,'red',1);
+                        $gr->arrowTo(4+$pixel,5,'red',1);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Make a table and plot the equation <m>y=\frac{3}{4}x+2</m>, which makes a straight line. Use the plot to determine the slope of this line.</p>
+                    <p><var name="$slope" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>First, we choose some <m>x</m>-values to make a table, and compute the corresponding <m>y</m>-values.</p>
+                    <sidebyside>
+                        <tabular valign="top" bottom="minor">
+                            <col halign="right" right="minor"/>
+                            <col halign="right" right="minor"/>
+                            <col halign="center"/>
+                            <row bottom="medium">
+                                <cell><m>x</m></cell>
+                                <cell halign="center"><m>y=\frac{3}{4}x+2</m></cell>
+                                <cell>Point</cell>
+                            </row>
+                            <row>
+                                <cell><m>-2</m></cell>
+                                <cell><m>\frac{3}{4}(-2)+2=0.5</m></cell>
+                                <cell><m>(-2,0.5)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-1</m></cell>
+                                <cell><m>\frac{3}{4}(-1)+2=1.25</m></cell>
+                                <cell><m>(-1,1.25)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>0</m></cell>
+                                <cell><m>\frac{3}{4}(0)+2=2</m></cell>
+                                <cell><m>(0,2)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>1</m></cell>
+                                <cell><m>\frac{3}{4}(1)+2=2.75</m></cell>
+                                <cell><m>(1,2.75)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>2</m></cell>
+                                <cell><m>\frac{3}{4}(2)+2=3.5</m></cell>
+                                <cell><m>(1,3.5)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>3</m></cell>
+                                <cell><m>\frac{3}{4}(3)+2=4.25</m></cell>
+                                <cell><m>(1,4.25)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>4</m></cell>
+                                <cell><m>\frac{3}{4}(4)+2=5</m></cell>
+                                <cell><m>(1,5)</m></cell>
+                            </row>
+                            <row bottom="none">
+                                <cell><m>5</m></cell>
+                                <cell><m>\frac{3}{4}(5)+2=5.75</m></cell>
+                                <cell><m>(2,5.75)</m></cell>
+                            </row>
+                        </tabular>
+                    </sidebyside>
+                    <p>This table lets us plot the graph and identify a slope triangle that is easy to work with.</p>
+                    <sidebyside widths="40%">
+                        <image pg-name="$gr" />
+                    </sidebyside>
+                    <p>Since the slope tirangle runs <m>4</m> units and then rises <m>3</m> units, the slope is <m>\frac{3}{4}</m>.</p>
                 </solution>
             </webwork>
         </exercise>
@@ -598,10 +693,10 @@
                         @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
                         $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
                         $gr -&gt; lb('reset');
-                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top'));}
-                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle'));}
-                        $gr-&gt;lb(new Label(22,-300,'time (hr)','black','center','top'));
-                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle'));
+                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top','small'));}
+                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle','small'));}
+                        $gr-&gt;lb(new Label(24,-500,'time (hr)','black','right','bottom','small'));
+                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle','small'));
                         $gr-&gt;moveTo(0,0);
                         $gr-&gt;lineTo(7,3500,'blue',2);
                         $gr-&gt;lineTo(19,3500,'blue',2);

@@ -119,7 +119,7 @@ pdf:
 	cp -a $(WWOUT)/*.png $(PDFOUT)/images
 	cp -a $(IMAGESSRC) $(PDFOUT)
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(LATEX) $(OUTPUT)/merge.xml; \
+	xsltproc -xinclude --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(LATEX) $(OUTPUT)/merge.xml; \
 	perl -pi -e 's/\\usepackage\{geometry\}//' orcca.tex; \
 	perl -pi -e 's/\\documentclass\[10pt,\]\{book\}/\\documentclass\[paper=letter,DIV=14,BCOR=0.25in,chapterprefix,numbers=noenddot,fontsize=10pt,toc=indentunnumbered\]\{scrbook\}/' orcca.tex; \
 	perl -pi -e 's/\\geometry\{letterpaper,total=\{340pt,9\.0in\}\}//' orcca.tex; \
