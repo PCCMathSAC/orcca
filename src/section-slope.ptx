@@ -858,9 +858,8 @@
             </exercise>
         </exercisegroup>
 
-<!--TODO: double this one? Also, address fact that solution is not listed in a way that matches the rest of our exercises-->
             <exercise><!-- Kara's challenge problem -->
-                <webwork>
+                <webwork seed="3">
                     <setup>
                         <pg-code>
                             $fraction1 = random(3,9,2);
@@ -881,26 +880,39 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p> Fill in the blank with true or false. </p>
-                        <ol label="a.">
-                            <li>
-                                <p>A slope of <m>\frac{1}{<var name="$fraction1"/>}</m> is steeper than a slope of <m>\frac{1}{<var name="$fraction2"/>}</m>.<var name="$popup1" form="popup"/></p>
-                            </li>
-                            <li>
-                                <p>A slope of <m><var name="$negative"/></m> is steeper than a slope of <m><var name="$positive"/></m>. <var name="$popup2" form="popup"/></p>
-                            </li>
-                        </ol>
+                        <p> True or False: A slope of <m>\frac{2}{<var name="$fraction1"/>}</m> is steeper than a slope of <m>\frac{1}{<var name="$fraction2"/>}</m>.<var name="$popup1" form="popup"/></p>
                     </statement>
                     <solution>
-                        <p>
-                        <ol label="a.">
-                            <li>
-                                <p>Which is greater: <m>\frac{1}{<var name="$fraction1"/>}</m> or <m>\frac{1}{<var name="$fraction2"/>}</m>?  That is the steeper slope.  </p>
-                            </li>
-                            <li>
-                                <p>Which is greater: <m><var name="$positive"/></m> or the absolute value of <m><var name="$negative"/></m>?  That is the steeper slope. </p>
-                            </li>
-                        </ol></p>
+                        <p>As <m>\frac{2}{<var name="$fraction1"/>} \gt \frac{1}{<var name="$fraction2"/>}</m>, the slope of <m>\frac{1}{<var name="$fraction1"/>}</m> is steeper. True.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise><!-- Kara's challenge problem -->
+                <webwork seed="4">
+                    <setup>
+                        <pg-code>
+                            $fraction1 = random(3,9,2);
+                            $fraction2 = random(4,10,2);
+                            $negative = random(-10,-2,1);
+                            $avnegative = abs($negative);
+                            $positive = random(2,12,1);
+                            $true = PopUp(['?','true','false'], 1);
+                            $false = PopUp(['?','true','false'], 2);
+                                if ($fraction1 &lt; $fraction2) {$popup1 = $true;}
+                                else {
+                                    $popup1 = $false
+                                };
+                                if ($avnegative > $positive) {$popup2 = $true;}
+                                else {
+                                    $popup2 = $false
+                                };
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Fill in the blank with true or false. A slope of <m>\frac{1}{<var name="$fraction2"/>}</m> is steeper than a slope of <m>\frac{2}{<var name="$fraction1"/>}</m>.<var name="$popup1" form="popup"/></p>
+                    </statement>
+                    <solution>
+                        <p>As <m>\frac{1}{<var name="$fraction2"/>} \lt \frac{1}{<var name="$fraction1"/>}</m>, the slope of <m>\frac{1}{<var name="$fraction1"/>}</m> is steeper. False.</p>
                     </solution>
                 </webwork>
             </exercise>
