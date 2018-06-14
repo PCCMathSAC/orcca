@@ -939,6 +939,48 @@
                 <webwork source="BasicAlgebra/Factoring/factoring416.pg" />
             </exercise>
         </exercisegroup>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                          $c = list_random(4,6,8,9,10,12,14,15,16,18,20)*random(-1,1,2);
+                          $absc = abs($c);
+                          @smalls = ();
+                          @bigs = ();
+                          for $i (1..floor(sqrt($absc))) {
+                            if ($absc % $i == 0) {
+                              push(@smalls,$i);
+                              push(@smalls,-$i);
+                              push(@bigs,$c/$i);
+                              push(@bigs,-$c/$i);
+                            }
+                          }
+                          @b = ();
+                          $n = scalar(@smalls);
+                          for $j (1..$n) {
+                            push(@b,$smalls[$j-1] + $bigs[$j-1]);
+                          }
+                          $answer = List(@b);
+
+                          Context()->variables->add(b=>'Real');
+                          $expression = Formula("x^2+bx+$c")->reduce;
+                       </pg-code>
+                    </setup>
+                    <statement>
+                          <p>What integers can go in the place of <m>b</m> so that the quadratic expression is factorable?</p>
+                          <p> <m><var name="$expression" /></m></p>
+                          <instruction>Enter the solutions as a comma-separated list.</instruction>
+                          <p> <var name="$answer" width="30"/> </p>
+                    </statement>
+                    <hint> There are <var name="$n"/> answers.</hint>
+                    <solution>
+                        <p>Think about all of ways to factor <var name="$c"/>.  The list of possible <m>b</m> values is <var name="$answer"/>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
     </exercises>
 
 </section>
