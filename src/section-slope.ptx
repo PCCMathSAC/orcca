@@ -300,52 +300,7 @@
             </solution>
         </example>
 
-        <exercise>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        @x=(1999..2013);
-                        @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
-                        $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
-                        for my$j(0,1){
-                          $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
-                          $xpixel = 19/240;
-                          $ypoxel = 27/240;
-                          $gr[$j] -> lb('reset');
-                          $gr[$j]->h_ticks(0,"black",2000,2005,2010);
-                          $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
-                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
-                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
-                          $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
-                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
-                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
-                          for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
-                        };
-                        $gr[1]->stamps(closed_circle(2006,19000,'red'));
-                        $gr[1]->stamps(closed_circle(2014,21000,'red'));
-                        $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
 
-                    <sidebyside widths="47%">
-                        <image pg-name="$gr[0]" />
-                    </sidebyside>
-
-                    <p>Estimate the slope of the trend-line. Just give the numerical value; the units are provided.</p>
-                    <p><var name="$m" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
-                </statement>
-                <solution>
-                    <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
-                    <sidebyside widths="47%">
-                        <image pg-name="$gr[1]" />
-                    </sidebyside>
-                    <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
-                    <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
-                </solution>
-            </webwork>
-        </exercise>
 
         <exercise>
             <webwork>
@@ -858,6 +813,83 @@
             </exercise>
         </exercisegroup>
 
+        <exercisegroup>
+            <introduction>
+                <p>Calculating Slope in Context</p>
+            </introduction>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2005/n8-2005-6s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2008/n8-2008-8s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade11/gr11-2008/n11-2008-23.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2009/n8-2009-6s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade7/gr7-2009/n7-2009-7s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade7/gr7-2005/n7-2005-14s.pg" />
+            </exercise>
+
+            <!--Todo: re-purpose this group of problems: BasicAlgebra/LinearEquationApplications/FindLineEquationApplication to ask for two points and then the slope, or write similar problems-->
+        </exercisegroup>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        @x=(1999..2013);
+                        @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
+                        $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
+                        for my$j(0,1){
+                          $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
+                          $xpixel = 19/240;
+                          $ypoxel = 27/240;
+                          $gr[$j] -> lb('reset');
+                          $gr[$j]->h_ticks(0,"black",2000,2005,2010);
+                          $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
+                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
+                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
+                          $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
+                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
+                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
+                          for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
+                        };
+                        $gr[1]->stamps(closed_circle(2006,19000,'red'));
+                        $gr[1]->stamps(closed_circle(2014,21000,'red'));
+                        $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
+
+                    <sidebyside widths="47%">
+                        <image pg-name="$gr[0]" />
+                    </sidebyside>
+
+                    <p>Estimate the slope of the trend-line. Just give the numerical value; the units are provided.</p>
+                    <p><var name="$m" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
+                </statement>
+                <solution>
+                    <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
+                    <sidebyside widths="47%">
+                        <image pg-name="$gr[1]" />
+                    </sidebyside>
+                    <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
+                    <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
+                </solution>
+            </webwork>
+        </exercise>
+        <!--TODO: repurpose this problem to be similar to the one above-->
+<!--         <exercise>
+            <webwork source="Library/Michigan/Chap1Sec1/Q25.pg" />
+        </exercise>    
+ -->
             <exercise><!-- Kara's challenge problem -->
                 <webwork seed="3">
                     <setup>
