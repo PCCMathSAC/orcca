@@ -512,6 +512,55 @@
             <p>In a time-distance graph, the slope of a line represents speed. The slopes in these examples and the running speeds of these runners are both measured in <quantity><unit base="meter"/><per base="second"/></quantity>. Another important relationship we can see is that, the more sharply a line is slanted, the bigger the slope is. This should make sense because for each passing second, the faster person travels longer, making a slope triangle's height taller. This means that, numerically, we can tell that Cleo is the fastest runner (and Effie is the slowest) just by comparing the slopes <m>4>3.5>2.666</m>.</p>
         </example>
 
+        <exercise xml:id="exercise-jogging-on-mt-hood">
+            <title>Jogging on Mt.<nbsp/>Hood</title>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
+                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
+                        $gr -&gt; lb('reset');
+                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top','small'));}
+                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle','small'));}
+                        $gr-&gt;lb(new Label(24,-500,'time (hr)','black','right','bottom','small'));
+                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle','small'));
+                        $gr-&gt;moveTo(0,0);
+                        $gr-&gt;lineTo(7,3500,'blue',2);
+                        $gr-&gt;lineTo(19,3500,'blue',2);
+                        $gr-&gt;lineTo(23,0,'blue',2);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Tammy is training for a race up the slope of Mt.<nbsp/>Hood, from Sandy to Government Camp, and then back.  The graph below models her elevation from her starting point as time passes. Find the slopes of the three line segments, and interpret their meanings in this context.</p>
+
+                    <sidebyside widths="40%">
+                        <image pg-name="$gr">
+                            <description></description>
+                        </image>
+                    </sidebyside>
+
+                    <p>The first segment has slope <var name="$s[0]" width="10" />.</p>
+                    <p>The second segment has slope <var name="$s[1]" width="10" />.</p>
+                    <p>The third segment has slope <var name="$s[2]" width="10" />.</p>
+                </statement>
+
+                <solution>
+                    <p>The first segment started at <m>(0,0)</m> and stopped at <m>(7,3500)\text{.}</m> This implies, Tammy started at the starting point, traveled <m>7</m> hours and reached a point <m>3500</m> feet higher in elevation from the starting point. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{3500}{7}=500</me> and with units, that is <m>500</m> ft/hr. In context, Tammy was running, gaining <m>500</m> feet in elevation per hour.</p>
+
+                    <p>The third segment started from <m>(19,3500)</m> and stopped at <m>(23,0)\text{.}</m> This implies, Tammy started this part of her trip from a spot <m>3500</m> feet higher in elevation from the starting point, traveled for <m>4</m> hours and returned to the starting elevation. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{-3500}{4}=875</me> and with units, that is <m>-875</m> ft/hr.  In context, Tammy was running, dropping in elevation by <m>875</m> feet per hour.</p>
+
+                    <p>What happened in the second segment, which started at <m>(7,3500)</m> and ended at <m>(19,3500)\text{?}</m> This implies she started this portion <m>3500</m> feet higher in elevation from the starting point, and didn't change elevation for <m>19</m> hours. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{0}{19}=0</me> and with units, that is <m>0</m> ft/hr.  In context, Tammy was running but neither gaining nor losing elevation.</p>
+                </solution>
+            </webwork>
+        </exercise>
+            <p>Some important properties are demonstrated in <xref ref="exercise-jogging-on-mt-hood">Exercise</xref>.</p>
+            <fact><title>The Relationship Between Slope and Increase/Decrease</title>
+                <p>In a linear relationship, as the <m>x</m>-value increases (in other words as you read its graph from left to right):<ul>
+                <li>if the <m>y</m>-values increase (in other words, the line goes upward), its slope is positive.</li>
+                <li>if the <m>y</m>-values decrease (in other words, the line goes downward), its slope is negative.</li>
+                <li>if the <m>y</m>-values don't change (in other words, the line is flat, or horizontal), its slope is <m>0</m>.</li>
+                </ul></p>
+            </fact>
     </subsection>
 
 
@@ -643,61 +692,6 @@
         </exercise>
     </subsection>
 
-    <subsection>
-        <title>The Relationship Between Slope and Increase/Decrease</title>
-        <exercise xml:id="exercise-jogging-on-mt-hood">
-            <title>Jogging on Mt.<nbsp/>Hood</title>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
-                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
-                        $gr -&gt; lb('reset');
-                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top','small'));}
-                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle','small'));}
-                        $gr-&gt;lb(new Label(24,-500,'time (hr)','black','right','bottom','small'));
-                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle','small'));
-                        $gr-&gt;moveTo(0,0);
-                        $gr-&gt;lineTo(7,3500,'blue',2);
-                        $gr-&gt;lineTo(19,3500,'blue',2);
-                        $gr-&gt;lineTo(23,0,'blue',2);
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Tammy is training for a race up the slope of Mt.<nbsp/>Hood, from Sandy to Government Camp, and then back.  The graph below models her elevation from her starting point as time passes. Find the slopes of the three line segments, and interpret their meanings in this context.</p>
-
-                    <sidebyside widths="40%">
-                        <image pg-name="$gr">
-                            <description></description>
-                        </image>
-                    </sidebyside>
-
-                    <p>The first segment has slope <var name="$s[0]" width="10" />.</p>
-                    <p>The second segment has slope <var name="$s[1]" width="10" />.</p>
-                    <p>The third segment has slope <var name="$s[2]" width="10" />.</p>
-                </statement>
-
-                <solution>
-                    <p>The first segment started at <m>(0,0)</m> and stopped at <m>(7,3500)\text{.}</m> This implies, Tammy started at the starting point, traveled <m>7</m> hours and reached a point <m>3500</m> feet higher in elevation from the starting point. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{3500}{7}=500</me> and with units, that is <m>500</m> ft/hr. In context, Tammy was running, gaining <m>500</m> feet in elevation per hour.</p>
-
-                    <p>The third segment started from <m>(19,3500)</m> and stopped at <m>(23,0)\text{.}</m> This implies, Tammy started this part of her trip from a spot <m>3500</m> feet higher in elevation from the starting point, traveled for <m>4</m> hours and returned to the starting elevation. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{-3500}{4}=875</me> and with units, that is <m>-875</m> ft/hr.  In context, Tammy was running, dropping in elevation by <m>875</m> feet per hour.</p>
-
-                    <p>What happened in the second segment, which started at <m>(7,3500)</m> and ended at <m>(19,3500)\text{?}</m> This implies she started this portion <m>3500</m> feet higher in elevation from the starting point, and didn't change elevation for <m>19</m> hours. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{0}{19}=0</me> and with units, that is <m>0</m> ft/hr.  In context, Tammy was running but neither gaining nor losing elevation.</p>
-
-                </solution>
-            </webwork>
-            <conclusion>
-                <p>This exercise demonstrates some facts. In a linear relationship, as the <m>x</m>-value increases (in other words as you read its graph from left to right):<ul>
-                    <li>if the <m>y</m>-values increase (in other words, the line goes upward), its slope is positive.</li>
-                    <li>if the <m>y</m>-values decrease (in other words, the line goes downward), its slope is negative.</li>
-                    <li>if the <m>y</m>-values don't change (in other words, the line is flat, or horizontal), its slope is <m>0</m>.</li>
-                </ul></p>
-            </conclusion>
-        </exercise>
-
-
-
-    </subsection>
 
     <exercises>
         <exercisegroup cols="2">
