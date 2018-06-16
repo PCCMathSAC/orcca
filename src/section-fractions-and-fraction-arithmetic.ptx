@@ -26,7 +26,13 @@
 <!--
             <p>Many people find fractions frustrating to calculate with. Having an open-minded attitude is possibly the most important thing you can do to combat this. Fractions are for sharing, and sharing is good. So it's important that we work on learning to appreciate fractions. Appreciation is difficult without understanding, so let's work on understanding fractions better.</p>
 -->
-            <p>The word <q>fraction</q> comes from the Latin word <foreign>fractio</foreign>, which means <q>break into pieces.</q> Ancient cultures all over the world use fractions to understand parts of wholes, but it took humanity thousands of years to develop the symbols we use today.</p>
+        <p>The word <q>fraction</q> comes from the Latin word <foreign>fractio</foreign>, which means <q>break into pieces.</q> Ancient cultures all over the world use fractions to understand parts of wholes, but it took humanity thousands of years to develop the symbols we use today.</p>
+
+        <figure>
+            <caption>Alternative Video Lesson</caption>
+            <video youtubelist="PLmuZCPhWPt-fyu-aEFD1qoBEXtQTBTC4N" />
+        </figure>
+
         </introduction>
 
         <subsubsection>
@@ -1388,8 +1394,98 @@
             <exercise>
                 <webwork source="BasicMath/FractionApplication/MixedNumberMultiplicationWordProblems60.pg"  />
             </exercise> -->
+
         </exercisegroup>
+
+        <exercise><!-- Kara's challenge problem -->
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextRationalFunction.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context("RationalFunction-Strict");
+                        Context()->variables->are(a=>'Real');
+                        $p = random(1,9,1);
+                        $q = random(1,9,1);
+                        $num = $p+$q;
+                        $answer = Formula("$num/a");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Given that <m>a\neq0</m>, simplify the following <m>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{a}</m>.</p>
+                    <p><var name="$answer" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>Since the fractions have the same denominator, we can just add numerators and keep that denominator the same.<md>
+                        <mrow>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{a}   \amp =  \frac{<var name="$p"/>+<var name="$q"/>}{a}</mrow>
+                        <mrow>                                                          \amp = <var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise><!-- Kara's challenge problem -->
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextRationalFunction.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context("RationalFunction-Strict");
+                        Context()->variables->are(a=>'Real');
+                        $p = random(1,9,1);
+                        $q = random(1,9,2);
+                        $num = (2*$p+$q);
+                        $answer = Formula("$num/(2a)");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Given that <m>a\neq0</m>, simplify the following <m>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{2a}</m>.</p>
+                    <p><var name="$answer" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>Since the fractions don't have the same denominator, we have to make them have like denominators.  You should multiply the first fraction by <m>\frac{2}{2}</m>.
+                    <md>
+                        <mrow>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{2a}    \amp = \frac{2 \cdot<var name="$p"/>}{2a} + \frac{<var name="$q"/>}{2a} </mrow>
+                        <mrow>                                                            \amp =  \frac{2 \cdot <var name="$p"/>+<var name="$q"/>}{2a}</mrow>
+                        <mrow>                                                            \amp = <var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise><!-- Kara's challenge problem -->
+            <webwork>
+                <pg-macros>
+                    <macro-file>contextRationalFunction.pl</macro-file>
+                </pg-macros>
+                <setup>
+                    <pg-code>
+                        Context("RationalFunction-Strict");
+                        Context()->variables->are(a=>'Real');
+                        $p = random(1,9,1);
+                        do {$q = random(1,9,1);} until ($q % 5 != 0);
+                        $num = (5*$p-$q);
+                        $answer = Formula("$num/(5a)");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Given that <m>a\neq0</m>, simplify the following: <m>\frac{<var name="$p"/>}{a} - \frac{<var name="$q"/>}{5a}</m>.</p>
+                    <p><var name="$answer" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>Since the fractions don't have the same denominator, we have to make them have like denominators.  You should multiply the first fraction by <m>\frac{5}{5}</m>.
+                    <md>
+                        <mrow>\frac{<var name="$p"/>}{a} + \frac{<var name="$q"/>}{2a}    \amp = \frac{5 \cdot<var name="$p"/>}{5a} - \frac{<var name="$q"/>}{5a}</mrow>
+                        <mrow>                                                            \amp = \frac{5 \cdot<var name="$p"/> - <var name="$q"/>}{5a}</mrow>
+                        <mrow>                                                            \amp = <var name="$answer" /></mrow>
+                    </md></p>
+                </solution>
+            </webwork>
+        </exercise>
     </exercises>
+
         <!--
         <todo>pictures</todo>
         <todo>number line with 6 ticks per unit, marking 5/6, 7/6, 16/6, 25/6 as A, B, C, D</todo>

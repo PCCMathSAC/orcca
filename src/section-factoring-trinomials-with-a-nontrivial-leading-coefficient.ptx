@@ -33,7 +33,7 @@
         <title>The AC Method</title><idx><h>factoring</h><h>by the AC method</h></idx>
         <p><term>The AC Method</term> is a technique for factoring trinomials like <m>4x^2+5x-6</m>, where there is no greatest common factor, and the leading coefficient is not <m>1</m>.</p>
 
-        <p>Please note at this point that if we try the method in the previous section and ask ourselves the question <q>what two numbers multiply to be <m>-6</m> and add to be <m>5</m>?</q>, we might come to the <em>erroneous</em> conclusion that <m>4x^2+5x-6</m> factors as <m>(x+6)(x-1)</m>. If we expand <m>(x+6)(x-1)</m>, we get <me>(x+6)(x-1)=x^2+5x-6</me> This expression is <em>almost</em> correct, except for the missing leading coefficient, <m>4</m>. Dealing with this missing coefficient requires starting over with the AC method. If you are only interested in the steps for using the technique, skip ahead to <xref ref="algorithm-the-ac-method">Algorithm</xref>.</p>
+        <p>Please note at this point that if we try the method in the previous section and ask ourselves the question <q>what two numbers multiply to be <m>-6</m> and add to be <m>5</m>?,</q> we might come to the <em>erroneous</em> conclusion that <m>4x^2+5x-6</m> factors as <m>(x+6)(x-1)</m>. If we expand <m>(x+6)(x-1)</m>, we get <me>(x+6)(x-1)=x^2+5x-6</me> This expression is <em>almost</em> correct, except for the missing leading coefficient, <m>4</m>. Dealing with this missing coefficient requires starting over with the AC method. If you are only interested in the steps for using the technique, skip ahead to <xref ref="algorithm-the-ac-method">Algorithm</xref>.</p>
 
        <p>The example below explains <em>why</em> the AC Method works. Understanding all of the details might take a few rereads, and coming back to this example after mastering the algorithm may be the best course of action.</p>
 
@@ -816,11 +816,55 @@
                 <webwork source="BasicAlgebra/Factoring/factoring330.pg" />
             </exercise>
         </exercisegroup>
-        <exercise>
-            <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
-        </exercise>
-        <exercise>
-            <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
-        </exercise>
+
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Factoring/factoring335.pg" />
+            </exercise>
+
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                          $c = list_random(2,4,5,7,8,10);
+                          $threec = $c*3;
+                          @smalls = ();
+                          @bigs = ();
+                          for $i (1..floor(sqrt($threec))) {
+                            if ($threec % $i == 0) {
+                              push(@smalls,$i);
+                              push(@smalls,-$i);
+                              push(@bigs,$threec/$i);
+                              push(@bigs,-$threec/$i);
+                            }
+                          }
+                          @b = ();
+                          $n = scalar(@smalls);
+                          for $j (1..$n) {
+                            push(@b,$smalls[$j-1] + $bigs[$j-1]);
+                          }
+                          $answer = List(@b);
+
+                          Context()->variables->add(b=>'Real');
+                          $expression = Formula("3x^2+bx+$c")->reduce;
+                       </pg-code>
+                    </setup>
+                    <statement>
+                          <p>What integers can go in the place of <m>b</m> so that the quadratic expression is factorable?</p>
+                          <p> <m><var name="$expression" /></m></p>
+                          <instruction>Enter the solutions as a comma-separated list.</instruction>
+                          <p> <var name="$answer" width="30"/> </p>
+                    </statement>
+                    <hint> There are <var name="$n"/> answers.</hint>
+                    <solution>
+                        <p>Recall the <q>ac</q> method.  When you multiply 3 by <var name="$c"/>, you get <var name="$threec"/>.  Think of all of the ways to factor <var name="$threec"/>.  The possible <m>b</m> values are <var name="$answer"/>.
+                        </p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+
     </exercises>
 </section>

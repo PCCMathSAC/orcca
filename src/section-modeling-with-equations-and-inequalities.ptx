@@ -4,14 +4,8 @@
 <!-- Copyright 2016-2018                                                  -->
 <!-- Portland Community College                                           -->
 <!--                                                                      -->
-<!-- Authors                                                              -->
-<!-- Ann Cary, Alex Jordan, Scot Leavitt, Cara Lee, Carl Yao, Ralf Youtz  -->
-<!--                                                                      -->
 <!-- This file is part of Open Resources for Community College Algebra    -->
 <!-- (ORCCA).                                                             -->
-<!--                                                                      -->
-<!-- Creative Commons BY 4.0 license                                      -->
-<!-- https://creativecommons.org/licenses/by/4.0/                         -->
 <!-- *********************************************************************-->
 
 <section xml:id="section-modeling-with-equations-and-inequalities">
@@ -410,7 +404,16 @@
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation10.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation10.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation30.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation30.pg" />
@@ -419,7 +422,16 @@
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation40.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation40.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation60.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation60.pg" />
@@ -428,10 +440,18 @@
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation70.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation70.pg" />
+            </exercise>
+<!--These involve ratios and proportions, which are covered later-->
+<!--             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation80.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation90.pg" />
+            </exercise>
+ -->         
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation100.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation100.pg" />
@@ -440,10 +460,22 @@
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation110.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation110.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation120.pg" />
+            </exercise>
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation120.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation130.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation130.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation140.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/ModelingWithEquation140.pg" />
@@ -592,6 +624,35 @@
                 <webwork source="BasicAlgebra/EnglishToMath/englishToMath180.pg" />
             </exercise>
         </exercisegroup>
-    </exercises>
 
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <pg-macros>
+                        <macro-file>contextPercent.pl</macro-file>
+                        <macro-file>contextCurrency.pl</macro-file>
+                    </pg-macros>
+                    <setup>
+                        <pg-code>
+                            Context("Percent");
+                            $p = Percent(random(0.01,0.03,0.005));
+                            $q = Percent(random(0.02,0.04,0.005));
+                            Context("Currency");
+                            Context()->currency->addSymbol("dollars","dollar");
+                            Context()->flags->set(trimTrailingZeros=>1);
+                            $original = random(9,11,0.25);
+                            $current = Currency(sprintf("%.2f",$original*(1+$p->value)*(1+$q->value)));
+                            $original = Currency($current/(1+$p)/(1+$q));
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <p> Last year, Joan received a <var name="$p"/> raise.  This year, she received a <var name="$q"/> raise.  Her current wage is <var name="$current"/> an hour.  What was her wage before the two raises?</p>
+                        <p><var name="$original" width="10" /></p>
+                    </statement>
+                    <solution>
+                        <p> We can represent this situation with the equation: <m> x \cdot (1 + <var name="$p->value"/>) \cdot (1 + <var name="$q->value"/>) = <var name="$current->value"/></m>.  Solve this equation for <m>x</m>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+    </exercises>
 </section>
