@@ -301,50 +301,7 @@
         </example>
 
         <exercise>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        @x=(1999..2013);
-                        @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
-                        $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
-                        for my$j(0,1){
-                          $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
-                          $xpixel = 19/240;
-                          $ypoxel = 27/240;
-                          $gr[$j] -> lb('reset');
-                          $gr[$j]->h_ticks(0,"black",2000,2005,2010);
-                          $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
-                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
-                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
-                          $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
-                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
-                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
-                          for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
-                        };
-                        $gr[1]->stamps(closed_circle(2006,19000,'red'));
-                        $gr[1]->stamps(closed_circle(2014,21000,'red'));
-                        $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
-
-                    <sidebyside widths="47%">
-                        <image pg-name="$gr[0]" />
-                    </sidebyside>
-
-                    <p>Estimate the slope of the trend-line. Just give the numerical value; the units are provided.</p>
-                    <p><var name="$m" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
-                </statement>
-                <solution>
-                    <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
-                    <sidebyside widths="47%">
-                        <image pg-name="$gr[1]" />
-                    </sidebyside>
-                    <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
-                    <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
-                </solution>
-            </webwork>
+            <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" seed="3"/>
         </exercise>
 
         <exercise>
@@ -433,7 +390,7 @@
                     <sidebyside widths="40%">
                         <image pg-name="$gr" />
                     </sidebyside>
-                    <p>Since the slope tirangle runs <m>4</m> units and then rises <m>3</m> units, the slope is <m>\frac{3}{4}</m>.</p>
+                    <p>Since the slope triangle runs <m>4</m> units and then rises <m>3</m> units, the slope is <m>\frac{3}{4}</m>.</p>
                 </solution>
             </webwork>
         </exercise>
@@ -557,6 +514,105 @@
             <p>In a time-distance graph, the slope of a line represents speed. The slopes in these examples and the running speeds of these runners are both measured in <quantity><unit base="meter"/><per base="second"/></quantity>. Another important relationship we can see is that, the more sharply a line is slanted, the bigger the slope is. This should make sense because for each passing second, the faster person travels longer, making a slope triangle's height taller. This means that, numerically, we can tell that Cleo is the fastest runner (and Effie is the slowest) just by comparing the slopes <m>4>3.5>2.666</m>.</p>
         </example>
 
+        <exercise xml:id="exercise-jogging-on-mt-hood">
+            <title>Jogging on Mt.<nbsp/>Hood</title>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
+                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
+                        $gr -&gt; lb('reset');
+                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top','small'));}
+                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle','small'));}
+                        $gr-&gt;lb(new Label(24,-500,'time (hr)','black','right','bottom','small'));
+                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle','small'));
+                        $gr-&gt;moveTo(0,0);
+                        $gr-&gt;lineTo(7,3500,'blue',2);
+                        $gr-&gt;lineTo(19,3500,'blue',2);
+                        $gr-&gt;lineTo(23,0,'blue',2);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Tammy is training for a race up the slope of Mt.<nbsp/>Hood, from Sandy to Government Camp, and then back.  The graph below models her elevation from her starting point as time passes. Find the slopes of the three line segments, and interpret their meanings in this context.</p>
+
+                    <sidebyside widths="40%">
+                        <image pg-name="$gr">
+                            <description></description>
+                        </image>
+                    </sidebyside>
+
+                    <p>The first segment has slope <var name="$s[0]" width="10" />.</p>
+                    <p>The second segment has slope <var name="$s[1]" width="10" />.</p>
+                    <p>The third segment has slope <var name="$s[2]" width="10" />.</p>
+                </statement>
+
+                <solution>
+                    <p>The first segment started at <m>(0,0)</m> and stopped at <m>(7,3500)\text{.}</m> This implies, Tammy started at the starting point, traveled <m>7</m> hours and reached a point <m>3500</m> feet higher in elevation from the starting point. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{3500}{7}=500</me> and with units, that is <m>500</m> ft/hr. In context, Tammy was running, gaining <m>500</m> feet in elevation per hour.</p>
+
+                    <p>The third segment started from <m>(19,3500)</m> and stopped at <m>(23,0)\text{.}</m> This implies, Tammy started this part of her trip from a spot <m>3500</m> feet higher in elevation from the starting point, traveled for <m>4</m> hours and returned to the starting elevation. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{-3500}{4}=875</me> and with units, that is <m>-875</m> ft/hr.  In context, Tammy was running, dropping in elevation by <m>875</m> feet per hour.</p>
+
+                    <p>What happened in the second segment, which started at <m>(7,3500)</m> and ended at <m>(19,3500)\text{?}</m> This implies she started this portion <m>3500</m> feet higher in elevation from the starting point, and didn't change elevation for <m>19</m> hours. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{0}{19}=0</me> and with units, that is <m>0</m> ft/hr.  In context, Tammy was running but neither gaining nor losing elevation.</p>
+                </solution>
+            </webwork>
+        </exercise>
+            <p>Some important properties are demonstrated in <xref ref="exercise-jogging-on-mt-hood">Exercise</xref>.</p>
+            <fact><title>The Relationship Between Slope and Increase/Decrease</title>
+                <p>In a linear relationship, as the <m>x</m>-value increases (in other words as you read its graph from left to right):<ul>
+                <li>if the <m>y</m>-values increase (in other words, the line goes upward), its slope is positive.</li>
+                <li>if the <m>y</m>-values decrease (in other words, the line goes downward), its slope is negative.</li>
+                <li>if the <m>y</m>-values don't change (in other words, the line is flat, or horizontal), its slope is <m>0</m>.</li>
+                </ul></p>
+            </fact>
+
+            <p>These properties are summarized graphically in <xref ref="comparing-positive-negative-slope">Figure</xref>.</p>
+
+            <figure xml:id="comparing-positive-negative-slope">
+                <caption></caption>
+                <sidebyside widths="32% 32% 32%" margins="0%">
+                    <figure xml:id="figure-positive-slope">
+                        <caption>A line with positive slope</caption>
+                        <image>
+                            <description></description>
+                            <latex-image>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot[primarycurve,domain=-6.25:7]{4/5*x-2};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                    <figure xml:id="figure-negative-slope">
+                        <caption>A line with negative slope</caption>
+                        <image>
+                            <description></description>
+                            <latex-image>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot[primarycurve,domain=-4.2:5.6]{-10/7*x+1};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                    <figure xml:id="figure-zero-slope">
+                        <caption>A line with a slope of zero</caption>
+                        <image>
+                            <description></description>
+                            <latex-image>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[]
+                                    \addplot[primarycurve,domain=-7:7]{2.35};
+                                \end{axis}
+                            \end{tikzpicture}
+                            ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                </sidebyside>
+            </figure>            
     </subsection>
 
 
@@ -674,7 +730,7 @@
                 <p>If you are new to this formula, it's important to label each number before using the formula. The two given points are:<me>(\overset{x_1}{-5},\overset{y_1}{25}) \text{ and } (\overset{x_2}{4},\overset{y_2}{-2})</me>Now apply the <xref ref="equation-slope-formula" text="title">slope formula</xref>:
                     <md>
                         <mrow>\text{slope}\amp=\frac{y_2-y_1}{x_2-x_1}</mrow>
-                        <mrow>\amp=\frac{-2-(25)}{4-(-5)}</mrow>
+                        <mrow>\amp=\frac{-2-25}{4-(-5)}</mrow>
                         <mrow>\amp=\frac{-27}{9}</mrow>
                         <mrow>\amp=-3</mrow>
                     </md>
@@ -688,61 +744,6 @@
         </exercise>
     </subsection>
 
-    <subsection>
-        <title>The Relationship Between Slope and Increase/Decrease</title>
-        <exercise xml:id="exercise-jogging-on-mt-hood">
-            <title>Jogging on Mt.<nbsp/>Hood</title>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
-                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
-                        $gr -&gt; lb('reset');
-                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top','small'));}
-                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle','small'));}
-                        $gr-&gt;lb(new Label(24,-500,'time (hr)','black','right','bottom','small'));
-                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle','small'));
-                        $gr-&gt;moveTo(0,0);
-                        $gr-&gt;lineTo(7,3500,'blue',2);
-                        $gr-&gt;lineTo(19,3500,'blue',2);
-                        $gr-&gt;lineTo(23,0,'blue',2);
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Tammy is training for a race up the slope of Mt.<nbsp/>Hood, from Sandy to Government Camp, and then back.  The graph below models her elevation from her starting point as time passes. Find the slopes of the three line segments, and interpret their meanings in this context.</p>
-
-                    <sidebyside widths="40%">
-                        <image pg-name="$gr">
-                            <description></description>
-                        </image>
-                    </sidebyside>
-
-                    <p>The first segment has slope <var name="$s[0]" width="10" />.</p>
-                    <p>The second segment has slope <var name="$s[1]" width="10" />.</p>
-                    <p>The third segment has slope <var name="$s[2]" width="10" />.</p>
-                </statement>
-
-                <solution>
-                    <p>The first segment started at <m>(0,0)</m> and stopped at <m>(7,3500)\text{.}</m> This implies, Tammy started at the starting point, traveled <m>7</m> hours and reached a point <m>3500</m> feet higher in elevation from the starting point. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{3500}{7}=500</me> and with units, that is <m>500</m> ft/hr. In context, Tammy was running, gaining <m>500</m> feet in elevation per hour.</p>
-
-                    <p>The third segment started from <m>(19,3500)</m> and stopped at <m>(23,0)\text{.}</m> This implies, Tammy started this part of her trip from a spot <m>3500</m> feet higher in elevation from the starting point, traveled for <m>4</m> hours and returned to the starting elevation. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{-3500}{4}=875</me> and with units, that is <m>-875</m> ft/hr.  In context, Tammy was running, dropping in elevation by <m>875</m> feet per hour.</p>
-
-                    <p>What happened in the second segment, which started at <m>(7,3500)</m> and ended at <m>(19,3500)\text{?}</m> This implies she started this portion <m>3500</m> feet higher in elevation from the starting point, and didn't change elevation for <m>19</m> hours. The slope of the line is <me>\frac{\Delta y}{\Delta x}=\frac{0}{19}=0</me> and with units, that is <m>0</m> ft/hr.  In context, Tammy was running but neither gaining nor losing elevation.</p>
-
-                </solution>
-            </webwork>
-            <conclusion>
-                <p>This exercise demonstrates some facts. In a linear relationship, as the <m>x</m>-value increases (in other words as you read its graph from left to right):<ul>
-                    <li>if the <m>y</m>-values increase (in other words, the line goes upward), its slope is positive.</li>
-                    <li>if the <m>y</m>-values decrease (in other words, the line goes downward), its slope is negative.</li>
-                    <li>if the <m>y</m>-values don't change (in other words, the line is flat, or horizontal), its slope is <m>0</m>.</li>
-                </ul></p>
-            </conclusion>
-        </exercise>
-
-
-
-    </subsection>
 
     <exercises>
         <exercisegroup cols="2">
@@ -858,6 +859,83 @@
             </exercise>
         </exercisegroup>
 
+        <exercisegroup>
+            <introduction>
+                <p>Calculating Slope in Context</p>
+            </introduction>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2005/n8-2005-6s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2008/n8-2008-8s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade11/gr11-2008/n11-2008-23.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2009/n8-2009-6s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade7/gr7-2009/n7-2009-7s.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade7/gr7-2005/n7-2005-14s.pg" />
+            </exercise>
+
+            <!--Todo: re-purpose this group of problems: BasicAlgebra/LinearEquationApplications/FindLineEquationApplication to ask for two points and then the slope, or write similar problems-->
+        </exercisegroup>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        @x=(1999..2013);
+                        @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
+                        $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
+                        for my$j(0,1){
+                          $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
+                          $xpixel = 19/240;
+                          $ypoxel = 27/240;
+                          $gr[$j] -> lb('reset');
+                          $gr[$j]->h_ticks(0,"black",2000,2005,2010);
+                          $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
+                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
+                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
+                          $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
+                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
+                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
+                          for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
+                        };
+                        $gr[1]->stamps(closed_circle(2006,19000,'red'));
+                        $gr[1]->stamps(closed_circle(2014,21000,'red'));
+                        $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
+
+                    <sidebyside widths="47%">
+                        <image pg-name="$gr[0]" />
+                    </sidebyside>
+
+                    <p>Estimate the slope of the trend-line. Just give the numerical value; the units are provided.</p>
+                    <p><var name="$m" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
+                </statement>
+                <solution>
+                    <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
+                    <sidebyside widths="47%">
+                        <image pg-name="$gr[1]" />
+                    </sidebyside>
+                    <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
+                    <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
+                </solution>
+            </webwork>
+        </exercise>
+        <!--TODO: repurpose this problem to be similar to the one above-->
+<!--         <exercise>
+            <webwork source="Library/Michigan/Chap1Sec1/Q25.pg" />
+        </exercise>    
+ -->
             <exercise><!-- Kara's challenge problem -->
                 <webwork seed="3">
                     <setup>
