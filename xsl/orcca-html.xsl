@@ -30,6 +30,7 @@
             type="text/html"
             width="{$width}"
             height="{$height}"
+            style="border: 3px solid #EEE;"
             frameborder="0"
             allowfullscreen=""
             src="{$source-url}" />
