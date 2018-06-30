@@ -125,6 +125,9 @@ pdf:
 	perl -pi -e 's/\\geometry\{letterpaper,total=\{340pt,9\.0in\}\}//' orcca.tex; \
 	perl -pi -e 's/\%\% fontspec package will make Latin Modern \(lmodern\) the default font/\%\% Customized to load Palatino fonts\n\\usepackage[T1]{fontenc}\n\\renewcommand\{\\rmdefault\}\{zpltlf\} \%Roman font for use in math mode\n\\usepackage\[scaled=.85\]\{beramono\}\% used only by \\mathtt\n\\usepackage\[type1\]\{cabin\}\%used only by \\mathsf\n\\usepackage\{amsmath,amssymb,amsthm\}\%load before newpxmath\n\\usepackage\[varg,cmintegrals,bigdelims,varbb\]\{newpxmath\}\n\\usepackage\[scr=rsfso\]\{mathalfa\}\n\\usepackage\{bm\} \%load after all math to give access to bold math\n\% Now load the otf text fonts using fontspec--wont affect math\n\\usepackage\[no-math\]\{fontspec\}\n\\setmainfont\{TeXGyrePagellaX\}\n\\defaultfontfeatures\{Ligatures=TeX,Scale=1,Mapping=tex-text\}\n\% This is a palatino-like font\n\%\\setmainfont\[BoldFont = texgyrepagella-bold.otf, ItalicFont = texgyrepagella-italic.otf, BoldItalicFont = texgyrepagella-bolditalic.otf]\{texgyrepagella-regular.otf\}\n\\linespread\{1.02\}/' orcca.tex; \
 	perl -pi -e 's/\\usepackage\{fontspec\}\n//' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-85}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-890}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-901}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
