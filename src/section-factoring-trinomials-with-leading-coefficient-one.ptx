@@ -632,6 +632,210 @@
 
     <exercises>
         <exercisegroup cols="2">
+            <title>Review and Warmup</title>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication25.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication25.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication35.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication35.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication40.pg" />
+            </exercise>
+            <exercise>
+              <webwork seed="2">
+                <setup>
+                    <pg-code>
+                        Context("Numeric");
+                        Context()->noreduce('(-x)-y','(-x)+y');
+                        $var = RandomVariableName(type=>'variable');
+                        Context()->variables->are($var=>'Real');
+
+                        $a = random(2,5,1);
+                        $b = non_zero_random(-10,10,1);
+                        do {$c = non_zero_random(-10,10,1);} until ($b!=$c);
+                        $bPlusC = $b+$c;
+                        $bc = $b*$c;
+                        $d = $a*$bPlusC;
+                        $e = $a*$bc;
+
+                        $binomial1 = Compute("$var+$b")->reduce;
+                        $binomial2 = Compute("$var+$c")->reduce;
+                        $s1 = Compute("$a*$var+$a*$b")->reduce;
+                        $s2 = Compute("$var**2+$bPlusC*$var+$bc")->reduce;
+
+                        $problem = Compute("$a*($var+$b)*($var+$c)")->reduce;
+                        $ans = Compute("$a*$var**2+$d*$var+$e")->reduce;
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Expand the following polynomial in factored form.</p>
+
+                    <p><m><var name="$problem" />=</m><var name="$ans" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>We could first distribute <m><var name="$a" /></m> into <m><var name="$binomial1" /></m> to get <m><var name="$s1" /></m>, and then multiply <m><var name="$s1" /></m> and <m><var name="$binomial2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=(<var name="$s1" />)(<var name="$binomial2" />)</mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+
+                    <p>We could also first multiply <m><var name="$binomial1" /></m> and <m><var name="$binomial2" /></m> to get <m><var name="$s2" /></m>, and then distribute <m><var name="$a" /></m> into <m><var name="$s2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=<var name="$a" />(<var name="$s2" />)</mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+                </solution>
+              </webwork>
+            </exercise>
+
+
+            <exercise>
+              <webwork seed="4">
+                <setup>
+                    <pg-code>
+                        Context("Numeric");
+                        Context()->noreduce('(-x)-y','(-x)+y');
+                        $var = RandomVariableName(type=>'variable');
+                        Context()->variables->are($var=>'Real');
+
+                        $a = -random(1,5,1);
+                        $b = non_zero_random(-10,10,1);
+                        do {$c = non_zero_random(-10,10,1);} until ($b!=$c);
+                        $bPlusC = $b+$c;
+                        $bc = $b*$c;
+                        $d = $a*$bPlusC;
+                        $e = $a*$bc;
+
+                        $binomial1 = Compute("$var+$b")->reduce;
+                        $binomial2 = Compute("$var+$c")->reduce;
+                        $s1 = Compute("$a*$var+$a*$b")->reduce;
+                        $s2 = Compute("$var**2+$bPlusC*$var+$bc")->reduce;
+                        $s3 = Compute("$a*($var**2+$bPlusC*$var+$bc)")->reduce;
+
+                        $problem = Compute("$a*($var+$b)*($var+$c)")->reduce;
+                        $ans = Compute("$a*$var**2+$d*$var+$e")->reduce;
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Expand the following polynomial in factored form.</p>
+
+                    <p><m><var name="$problem" />=</m><var name="$ans" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>We could first distribute <m><var name="$a" /></m> into <m><var name="$binomial1" /></m> to get <m><var name="$s1" /></m>, and then multiply <m><var name="$s1" /></m> and <m><var name="$binomial2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=(<var name="$s1" />)(<var name="$binomial2" />)</mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+
+                    <p>We could also first multiply <m><var name="$binomial1" /></m> and <m><var name="$binomial2" /></m> to get <m><var name="$s2" /></m>, and then distribute <m><var name="$a" /></m> into <m><var name="$s2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=<var name="$s3" /></mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+                </solution>
+              </webwork>
+            </exercise>
+            <exercise>
+              <webwork seed="3">
+                <setup>
+                    <pg-code>
+                        Context("Numeric");
+                        Context()->noreduce('(-x)-y','(-x)+y');
+                        $var = RandomVariableName(type=>'variable');
+                        Context()->variables->are($var=>'Real');
+
+                        $a = random(2,5,1);
+                        $b = non_zero_random(-10,10,1);
+                        do {$c = non_zero_random(-10,10,1);} until ($b!=$c);
+                        $bPlusC = $b+$c;
+                        $bc = $b*$c;
+                        $d = $a*$bPlusC;
+                        $e = $a*$bc;
+
+                        $binomial1 = Compute("$var+$b")->reduce;
+                        $binomial2 = Compute("$var+$c")->reduce;
+                        $s1 = Compute("$a*$var+$a*$b")->reduce;
+                        $s2 = Compute("$var**2+$bPlusC*$var+$bc")->reduce;
+
+                        $problem = Compute("$a*($var+$b)*($var+$c)")->reduce;
+                        $ans = Compute("$a*$var**2+$d*$var+$e")->reduce;
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Expand the following polynomial in factored form.</p>
+
+                    <p><m><var name="$problem" />=</m><var name="$ans" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>We could first distribute <m><var name="$a" /></m> into <m><var name="$binomial1" /></m> to get <m><var name="$s1" /></m>, and then multiply <m><var name="$s1" /></m> and <m><var name="$binomial2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=(<var name="$s1" />)(<var name="$binomial2" />)</mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+
+                    <p>We could also first multiply <m><var name="$binomial1" /></m> and <m><var name="$binomial2" /></m> to get <m><var name="$s2" /></m>, and then distribute <m><var name="$a" /></m> into <m><var name="$s2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=<var name="$a" />(<var name="$s2" />)</mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+                </solution>
+              </webwork>
+            </exercise>
+
+
+            <exercise>
+              <webwork seed="5">
+                <setup>
+                    <pg-code>
+                        Context("Numeric");
+                        Context()->noreduce('(-x)-y','(-x)+y');
+                        $var = RandomVariableName(type=>'variable');
+                        Context()->variables->are($var=>'Real');
+
+                        $a = -random(1,5,1);
+                        $b = non_zero_random(-10,10,1);
+                        do {$c = non_zero_random(-10,10,1);} until ($b!=$c);
+                        $bPlusC = $b+$c;
+                        $bc = $b*$c;
+                        $d = $a*$bPlusC;
+                        $e = $a*$bc;
+
+                        $binomial1 = Compute("$var+$b")->reduce;
+                        $binomial2 = Compute("$var+$c")->reduce;
+                        $s1 = Compute("$a*$var+$a*$b")->reduce;
+                        $s2 = Compute("$var**2+$bPlusC*$var+$bc")->reduce;
+                        $s3 = Compute("$a*($var**2+$bPlusC*$var+$bc)")->reduce;
+
+                        $problem = Compute("$a*($var+$b)*($var+$c)")->reduce;
+                        $ans = Compute("$a*$var**2+$d*$var+$e")->reduce;
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Expand the following polynomial in factored form.</p>
+
+                    <p><m><var name="$problem" />=</m><var name="$ans" width="10" /></p>
+                </statement>
+                <solution>
+                    <p>We could first distribute <m><var name="$a" /></m> into <m><var name="$binomial1" /></m> to get <m><var name="$s1" /></m>, and then multiply <m><var name="$s1" /></m> and <m><var name="$binomial2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=(<var name="$s1" />)(<var name="$binomial2" />)</mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+
+                    <p>We could also first multiply <m><var name="$binomial1" /></m> and <m><var name="$binomial2" /></m> to get <m><var name="$s2" /></m>, and then distribute <m><var name="$a" /></m> into <m><var name="$s2" /></m>:<md>
+                        <mrow><var name="$problem" />\amp=<var name="$s3" /></mrow>
+                        <mrow>\amp=<var name="$ans" /></mrow>
+                    </md></p>
+                </solution>
+              </webwork>
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
+        <title>Factoring Trinomials with Leading Coefficient One</title>
         <!-- One variable trinomial with no GCF -->
             <exercise>
                 <webwork source="BasicAlgebra/Factoring/factoring170.pg" />
