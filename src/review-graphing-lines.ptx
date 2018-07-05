@@ -813,6 +813,65 @@
                 </sidebyside>
             </solution>
         </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            $px[2]=0;
+                            $py[3]=0;
+                            $xmin = -10;$xmax = 10;
+                            $ymin = -10;$ymax = 10;
+                            $xmark = 2;
+                            $ymark = 2;
+                            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+                               axes=>[0,0],
+                               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+                               size=>[240,240]
+                            );
+                            $gr->lb('reset');
+                            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top'));}};
+                            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
+                            Context("Point");
+                            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Locate each point in the graph:</p>
+
+                        <sidebyside widths="40%">
+                            <image pg-name="$gr"/>
+                        </sidebyside>
+
+                        <p>Write each point's position as an ordered pair, like <m>(1,2)</m>.</p>
+
+                        <sidebyside>
+                            <tabular>
+                                <row>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/PointOnLineOrNot150.pg" />
+        </exercise>
         <exercise>
             <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/PointOnLineOrNot150.pg" />
         </exercise>
@@ -995,7 +1054,16 @@
             <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
         </exercise>
         <exercise>
+            <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
+        </exercise>
+        <exercise>
             <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
@@ -1004,7 +1072,16 @@
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
         </exercise>
         <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
+        </exercise>
+        <exercise>
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph40.pg" />
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph40.pg" />
@@ -1013,7 +1090,16 @@
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept170.pg" />
         </exercise>
         <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept170.pg" />
+        </exercise>
+        <exercise>
             <webwork source="BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquation30.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquation30.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication80.pg" />
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication80.pg" />
@@ -1022,147 +1108,22 @@
             <webwork source="BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts70.pg" />
         </exercise>
         <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        Context("ImplicitPlane");
-                        Context()->flags->set(reduceConstants=>0);
-                        Context()->flags->set(reduceConstantFormulas=>0);
-                        Context()->flags->set(showExtraParens=>0);
-                        Context()->variables->are(x=>'Real', y=>'Real');
-                        Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
-
-                        $b = random(2,9,1);
-                        $c = non_zero_random(-9,9,1);
-                        $left0 = Compute("y");
-                        $right0 = Compute("$b*x+$c")->reduce;
-                        $ansPSstring = "$b*x-y=-$c";
-
-                        if ($b>0) {
-                           $left1 = Compute("$b*x-y")->reduce;
-                           $nC = -$c;
-                           $ansPSstringTeX = $left1->TeX."=$nC";
-                        } else {
-                           $left1 = Compute("-$b*x+y")->reduce;
-                           $ansPSstringTeX = $left1->TeX."=$c";
-                        }
-
-                        $s1 = Compute("-$b*x+y")->reduce;
-                        $s2 = Compute("$b*x-y")->reduce;
-
-                        $ansPS = ImplicitPlane($ansPSstring);
-                        $evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
-                           ) -> withPostFilter(sub {
-                              my $ansHash = shift;
-                                my $student = $ansHash->{original_student_ans};
-                                my @sides = split('=',"$student");
-
-                              #if it's an implicit plane object, reset how student's answer is displayed:
-                              if (defined $ansHash->{student_formula}) {
-                              if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
-                                $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
-                                my $leftTex = Formula("$sides[0]")->TeX;
-                                my $rightTex = Formula("$sides[1]")->TeX;
-                                $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
-                                $ansHash->{student_ans} = $ansHash->{original_student_ans};
-                              }
-                              };
-
-                              # if they have it correct, then check each side to see
-                              # whether x and y are on the same side of =
-                              if ($ansHash->{score}) {
-                                 if ( (($sides[0] =~ /x/) &amp;&amp; ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) &amp;&amp; ($sides[0] =~ /y/)) ) {
-                                 $ansHash->{score} = 0;
-                                 $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form.";
-                                 }
-                              }
-                              return $ansHash;
-                            });
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Rewrite <m><var name="$left0"/>=<var name="$right0"/></m> in standard form.</p>
-                    <p><var name="$ansPS" evaluator="$evaluator" width="30" /></p>
-                </statement>
-                <solution>
-                    <p>A line's standard form is <m>Ax+By=C</m>. We need to move <m>x</m> and <m>y</m> terms to the same side of the equals sign.<md>
-                        <mrow><var name="$left0"/>\amp=<var name="$right0"/></mrow>
-                        <mrow><var name="$left0"/>\subtractright{<var name="$b"/>x}\amp=<var name="$right0"/>\subtractright{<var name="$b"/>x}</mrow>
-                        <mrow><var name="$s1"/>\amp=<var name="$c"/></mrow>
-                        <mrow>(-1)(<var name="$s1"/>)\amp=(-1)(<var name="$c"/>)</mrow>
-                        <mrow><var name="$s2"/>\amp=<var name="$nC"/></mrow>
-                    </md></p>
-
-                    <p>Note that <m><var name="$s1"/>=<var name="$c"/></m> is already in standard form, but it's better to get rid of the leading negative sign in an equation.</p>
-                </solution>
-            </webwork>
+            <webwork source="BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts70.pg" />
         </exercise>
         <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        Context("ImplicitPlane");
-                        Context()->flags->set(reduceConstants=>0);
-                        Context()->flags->set(reduceConstantFormulas=>0);
-                        Context()->flags->set(showExtraParens=>0);
-                        Context()->variables->are(x=>'Real', y=>'Real');
-                        Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
-
-                        $a = random(2,9,1);
-                        do {$b = random(2,9,1);} until (gcd($a,$b)==1);
-                        $c = non_zero_random(-9,9,1);
-                        $bc = $b*$c;
-                        $ansPSstring = "$a*x+$b*y=$bc";
-                        $left1 = Compute("$a*x+$b*y")->reduce;
-                        $ansPSstringTeX = $left1->TeX."=$bc";
-
-                        $s1 = Compute("$a*x+$b*y")->reduce;
-
-                        $ansPS = ImplicitPlane($ansPSstring);
-                        $evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
-                           ) -> withPostFilter(sub {
-                              my $ansHash = shift;
-                                my $student = $ansHash->{original_student_ans};
-                                my @sides = split('=',"$student");
-
-                              #if it's an implicit plane object, reset how student's answer is displayed:
-                              if (defined $ansHash->{student_formula}) {
-                              if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
-                                $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
-                                my $leftTex = Formula("$sides[0]")->TeX;
-                                my $rightTex = Formula("$sides[1]")->TeX;
-                                $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
-                                $ansHash->{student_ans} = $ansHash->{original_student_ans};
-                              }
-                              };
-
-                              # if they have it correct, then check each side to see
-                              # whether x and y are on the same side of =
-                              if ($ansHash->{score}) {
-                                 if ( (($sides[0] =~ /x/) &amp;&amp; ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) &amp;&amp; ($sides[0] =~ /y/)) ) {
-                                 $ansHash->{score} = 0;
-                                 $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form.";
-                                 }
-                              }
-                              return $ansHash;
-                            });
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Rewrite <m>y=-\frac{<var name="$a"/>}{<var name="$b"/>}x+<var name="$c"/></m> in standard form.</p>
-                    <p><var name="$ansPS" evaluator="$evaluator" width="30" /></p>
-                </statement>
-                <solution>
-                    <p>A line's standard form is <m>Ax+By=C</m>. We need to move <m>x</m> and <m>y</m> terms to the same side of the equals sign.<md>
-                        <mrow>y\amp=-\frac{<var name="$a"/>}{<var name="$b"/>}x+<var name="$c"/></mrow>
-                        <mrow>\multiplyleft{<var name="$b"/>}y\amp=\multiplyleft{<var name="$b"/>}\left(-\frac{<var name="$a"/>}{<var name="$b"/>}x+<var name="$c"/>\right)</mrow>
-                        <mrow><var name="$b"/>y\amp=<var name="$b"/>\left( -\frac{<var name="$a"/>}{<var name="$b"/>}x \right)+<var name="$b"/>(<var name="$c"/>)</mrow>
-                        <mrow><var name="$b"/>y\amp=-<var name="$a"/>x+<var name="$bc"/></mrow>
-                        <mrow><var name="$b"/>y\addright{<var name="$a"/>x}\amp=-<var name="$a"/>x+<var name="$bc"/>\addright{<var name="$a"/>x}</mrow>
-                        <mrow><var name="$s1"/>\amp=<var name="$bc"/></mrow>
-                    </md></p>
-                </solution>
-            </webwork>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept110.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept120.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept200.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept200.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
@@ -1171,12 +1132,43 @@
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph50.pg" />
         </exercise>
         <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph50.pg" />
+        </exercise>
+        <exercise>
+            <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelPerpendicular140.pg" />
+        </exercise>
+        <exercise>
             <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelPerpendicular140.pg" />
         </exercise>
         <exercise>
             <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular200.pg" />
         </exercise>
         <exercise>
+            <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular200.pg" />
+        </exercise>
+            <exercise>
+                <statement>
+                    <p>Graph the linear inequality <m>y\gt \frac{4}{3}x+1</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[dashed,domain=-6:4.5] {4/3*x+1};
+                                        \addplot[white,fill=firstcolor,fill opacity=0.2]
+                                            coordinates{(-9,-11) (-9,13) (9,13)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
                 <statement>
                     <p>Graph the linear inequality <m>y\leq -\frac{1}{2}x-3</m>.</p>
                 </statement>
@@ -1190,6 +1182,28 @@
                                         \addplot+[domain=-7:7] {-1/2*x-3};
                                         \addplot[white,fill=firstcolor,fill opacity=0.2]
                                             coordinates{(-8,1) (-8,-8) (8,-8) (8,-7)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Graph the linear inequality <m>y\geq 3</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-7:7] {3};
+                                        \addplot[white,fill=firstcolor,fill opacity=0.2]
+                                            coordinates{(-8,3) (-8,8) (8,8) (8,3)};
                                     \end{axis}
                                 \end{tikzpicture}
                             ]]>
