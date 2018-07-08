@@ -1167,9 +1167,170 @@
 
     <exercises>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Determining Whether a Relation Is a Function of Not</p>
-            </introduction>
+                <title>Review and Warmup</title>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            $px[2]=0;
+                            $py[3]=0;
+                            $xmin = -10;$xmax = 10;
+                            $ymin = -10;$ymax = 10;
+                            $xmark = 2;
+                            $ymark = 2;
+                            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+                               axes=>[0,0],
+                               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+                               size=>[240,240]
+                            );
+                            $gr->lb('reset');
+                            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top'));}};
+                            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
+                            Context("Point");
+                            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Locate each point in the graph:</p>
+
+                        <sidebyside widths="40%">
+                            <image pg-name="$gr"/>
+                        </sidebyside>
+
+                        <p>Write each point's position as an ordered pair, like <m>(1,2)</m>.</p>
+
+                        <sidebyside>
+                            <tabular>
+                                <row>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            $px[2]=0;
+                            $py[3]=0;
+                            $xmin = -10;$xmax = 10;
+                            $ymin = -10;$ymax = 10;
+                            $xmark = 2;
+                            $ymark = 2;
+                            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+                               axes=>[0,0],
+                               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+                               size=>[240,240]
+                            );
+                            $gr->lb('reset');
+                            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top'));}};
+                            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
+                            Context("Point");
+                            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Locate each point in the graph:</p>
+
+                        <sidebyside widths="40%" >
+                            <image pg-name="$gr" />
+                        </sidebyside>
+
+                        <p>Write each point's position as an ordered pair, like <m>(1,2)</m>.</p>
+
+                        <sidebyside>
+                            <tabular>
+                                <row>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch the points <m>(8,2)</m>, <m>(5,5)</m>, <m>(-3,0)</m>, and <m>(2,-6)</m> on a Cartesian plane.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description>a Cartesian plot with the points labeled;(8,2) is right 8, up 2;(5,5) is right 5, up 5;(-3,0) is left 3, up 0;(2,-6) is right 2, down 6</description>
+                            <latex-image>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (-2,-6)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Sketch the points <m>(1,-4)</m>, <m>(-3,5)</m>, <m>(0,4)</m>, and <m>(-2,-6)</m> on a Cartesian plane.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                        <image>
+                            <description>a Cartesian plot with the points labeled;(1,-4) is right 1, down 4;(-3,5) is left 3, up 5;(0,4) up 4 on the y-axis;(-2,-6) is left 2, down 6</description>
+                            <latex-image>
+                            <![CDATA[\begin{tikzpicture}
+                                \begin{axis}[xmin=-10,xmax=10,
+                                            ymin=-10,ymax=10,
+                                            xtick={-8,-6,...,8},
+                                            ytick={-8,-6,...,8},
+                                            minor xtick={-9,-8,...,9},
+                                            minor ytick={-9,-8,...,9}]
+                                    \addplot[soliddot] coordinates {(1, -4) (-3,5) (0,4) (-2,-6)};
+                                \end{axis}
+                            \end{tikzpicture}]]>
+                            </latex-image>
+                        </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
+            <title>Determining Whether a Relation Is a Function of Not</title>
             <exercise width="wide">
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionDefinition20.pg" />
             </exercise>
@@ -1344,9 +1505,7 @@
         </exercisegroup>
 
         <exercisegroup cols="2">
-            <introduction>
-                <p>Evaluating Functions Algebraically</p>
-            </introduction>
+            <title>Evaluating Functions Algebraically</title>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/EvaluateFunction10.pg" />
             </exercise>
@@ -1428,9 +1587,7 @@
         </exercisegroup>
 
         <exercisegroup cols="2">
-            <introduction>
-                <p>Solving Equations with Function Notation</p>
-            </introduction>
+            <title>Solving Equations with Function Notation</title>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionEquation10.pg" />
             </exercise>
@@ -1452,9 +1609,7 @@
         </exercisegroup>
 
         <exercisegroup cols="2">
-            <introduction>
-                <p>Determining Domain and Range</p>
-            </introduction>
+            <title>Determining Domain and Range</title>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph10.pg" />
             </exercise>
@@ -1470,9 +1625,7 @@
         </exercisegroup>
 
         <exercisegroup cols="2">
-            <introduction>
-                <p>Functions Represented with Graphs and Tables</p>
-            </introduction>
+            <title>Functions Represented with Graphs and Tables</title>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph10.pg" />
             </exercise>
@@ -1511,9 +1664,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup>
-            <introduction>
-                <p>Function Notation in Context</p>
-            </introduction>
+            <title>Function Notation in Context</title>
             <exercise>
                 <webwork source="BasicAlgebra/FunctionBasics/Functions150.pg" />
             </exercise>
