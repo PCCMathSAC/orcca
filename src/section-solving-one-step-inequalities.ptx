@@ -209,7 +209,7 @@
                         $nl->arrowTo(5.5,0,'black',1);
                         $nl->moveTo(0,0);
                         $nl->arrowTo(-5.5,0,'black',1);
-                        for my$j(@ticks){$nl->lb(new Label($j,-0.2,$j,'black','center','top'));};
+                        for my$j(@ticks){$nl->lb(new Label($j,-0.2,$j,'black','center','top','large'));};
                         $nl->h_ticks(0,"black",@ticks);
                         $nl->moveTo(1,0.5);
                         $nl->arrowTo(5,0.5,'blue',1);
@@ -235,7 +235,7 @@
 
                     <p>Graphically, we represent this solution set as:</p>
 
-                    <sidebyside margins="0%" widths="47%">
+                    <sidebyside margins="0%" widths="40%">
                         <image pg-name="$nl" />
                     </sidebyside>
 
@@ -268,12 +268,12 @@
                         $nl->arrowTo(5.5,0,'black',1);
                         $nl->moveTo(0,0);
                         $nl->arrowTo(-5.5,0,'black',1);
-                        for my$j(@ticks){$nl->lb(new Label($j,-0.2,$j,'black','center','top'));};
+                        for my$j(@ticks){$nl->lb(new Label($j,-0.2,$j,'black','center','top','large'));};
                         $nl->h_ticks(0,"black",@ticks);
                         $nl->moveTo(3.48,0.5);
                         $nl->arrowTo(-5,0.5,'blue',1);
                         $nl->lb( new Label(3.48+4*$pixel,0.5,']','blue','right','middle','giant'));
-                        $nl->lb( new Label(3.48,1,'3.48','blue','center','bottom',));
+                        $nl->lb( new Label(3.48,1,'3.48','blue','center','bottom','large'));
                    </pg-code>
                 </setup>
                 <statement>
@@ -294,7 +294,7 @@
 
                     <p>Graphically, we represent this solution set as:</p>
 
-                    <sidebyside margins="0%" widths="47%">
+                    <sidebyside margins="0%" widths="40%">
                         <image pg-name="$nl"/>
                     </sidebyside>
 
@@ -310,7 +310,7 @@
         </exercise>
 
     <exercises>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
             <exercise>
                 <webwork source="BasicAlgebra/SignedNumbersArithemtic/AdditionWithNegativeNumbers10.pg" />
@@ -337,16 +337,16 @@
                 <webwork source="BasicAlgebra/SignedNumbersArithemtic/DivideWithNegativeIntegers10.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/SignedNumbersArithemtic/DivideWithNegativeIntegers20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/SignedNumbersArithemtic/DivideWithNegativeIntegers20.pg" />
-            </exercise>
-            <exercise>
                 <webwork source="BasicAlgebra/FractionArithmetic/MultiplyFractions80.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FractionArithmetic/MultiplyFractions80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SignedNumbersArithemtic/DivideWithNegativeIntegers20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SignedNumbersArithemtic/DivideWithNegativeIntegers20.pg" />
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
@@ -462,6 +462,63 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/LinearInequalities/SolveInequalityWithFraction50.pg" />
+            </exercise>
+        </exercisegroup>
+        <exercisegroup>
+            <title>Challenge</title>
+            <exercise><!-- Kara's challenge problem -->
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $question = PopUp(['?','&lt;','>','='],0);
+                            $less = PopUp(['?','&lt;','>','='],1);
+                            $more = PopUp(['?','&lt;','>','='],2);
+                            $equal = PopUp(['?','&lt;','>','='],3);
+                       </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Choose the correct inequality or equal sign to make the relation true.</p>
+                        <p><ol label="a.">
+                        <li>
+                        <p> Let  <m>x</m>  and  <m>y</m> be integers, such that <m> x \lt y</m>.</p>
+                        <p> Then <m> x-y </m> <var name="$less" form = "popup"/> <m>y-x</m>.</p>
+                        </li>
+                        <li>
+                        <p> Let <m>x</m>  and  <m>y</m> be integers, such that <m> 1 \lt x \lt y </m>.</p>
+                        <p> Then <m> xy </m> <var name="$more" form = "popup"/> <m>x + y</m>.</p>
+                        </li>
+                        <li>
+                        <p> Let <m>x</m>  and  <m>y</m> be rational numbers, such that <m> 0 \lt x \lt y \lt 1</m>.</p>
+                        <p> Then <m> xy </m> <var name="$less" form = "popup"/> <m>x + y</m>.</p>
+                        </li>
+                        <li>
+                        <p> Let <m>x</m>  and  <m>y</m> be integers, such that <m> x \lt y</m>.</p>
+                        <p> Then <m> x + 2y </m> <var name="$more" form = "popup"/> <m>2x + y</m>.</p>
+                        </li>
+                        </ol>
+                        </p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                            <li>
+                                <p> Since <m>x \lt y</m>, this means that <m>x-y</m> results in a negative number and <m>y-x</m> results in a positive number.  Thus, <m>x-y</m> <var name="$less"/> <m>y-x</m>.</p>
+                            </li>
+                            <li>
+                                <p> This problem comes down to looking at the impact of multiplying by <m>y</m> compared to the impact of adding <m>y</m>.  Since <m>y \gt 1</m>, multiplying by <m>y</m> results in a bigger number than adding <m>y</m>. </p>
+                            </li>
+                            <li>
+                                <p> This problem comes down to looking at the impact of multiplying by <m>y</m> compared to the impact of adding <m>y</m>. Since <m>0 \lt y \lt 1</m>, this means that <m>y</m> is a fraction between <m>0</m> and <m>1</m>.  Thus, multiplying by <m>y</m> results in a smaller number, whereas adding <m>y</m> results in a bigger number.  </p>
+                            </li>
+                            <li>
+                                <p> Notice that <m>x + 2y</m> and <m>2x + y</m> both have an  <m>x</m>  and a  <m>y</m>.  Let's subtract an  <m>x</m>  and a  <m>y</m> from those expressions.<md>
+                                    <mrow>x + 2y  \amp \stackrel{?}{>}   2x + y</mrow>
+                                    <mrow>x + 2y - x - y  \amp \stackrel{?}{>}  2x + y - x - y</mrow>
+                                    <mrow>     y   \amp \stackrel{?}{>}  x</mrow>
+                                </md>Since <m>y \gt x</m>, this means that <m> x + 2y \gt 2x + y</m>.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
             </exercise>
         </exercisegroup>
     </exercises>
