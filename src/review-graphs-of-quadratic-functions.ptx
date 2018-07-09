@@ -14,155 +14,824 @@
 
     <subsection>
         <title>Introduction to Functions</title>
-        <p>In <xref ref="section-introduction-to-functions" text="title">this section</xref> we covered</p>
+        <p>In <xref ref="section-introduction-to-functions">Section</xref> we covered the definitions of a <xref ref="definition-relation" text="title">relation</xref>, a <xref ref="definition-function-informal" text="title">function</xref>, and <xref ref="definition-domain-and-range" text="title">domain and range</xref>. We then discussed function notation and how to evaluate functions at a particular value as well as how to solve an equation with function notation. Last we introduced the <xref ref="fact-VLT" text="title">vertical line test</xref></p>
 
-        <example>
+        <example xml:id="example-pdx-rainfall">
             <title>Introduction to Functions</title>
             <statement>
-                <p></p>
+                <p>One week in Portland, it was rainy. Shocking, I know. Shown is a diagram for the day of the week and how much rain fell on those days. Convert this diagram to a set of ordered pairs where the first coordinate is the day of the week and the second coordinate is the amount of rain that fell in Portland that day, in inches.</p>
+
+                <figure>
+                    <caption>Diagram for the relation <q>Day of the week to rainfall in PDX</q></caption>
+                    <image width="47%">
+                        <description>a diagram with two rectangles, one for the inputs and one for the outputs; each day of the week is mapped to a rainfall amount in inches. There is an arrow from Monday to 0.2, Tuesday to 0.4, Wednesday to 0.0, Thursday to 0.6, and Friday to 0.0.</description>
+                        <latex-image>
+                            <![CDATA[\begin{tikzpicture}[
+                                input/.style={font=\footnotesize, text centered},
+                                dom/.style={draw, fill=firstcolor,  opacity=0.3},
+                                ran/.style={draw, fill=secondcolor, opacity=0.3},
+                                output/.style={font=\footnotesize, text centered},
+                                connex/.style={-{Kite}, ultra thick,color=thirdcolor}]
+
+                                % Draw diagram elements
+                                \node (Monday) [input]  {Monday};
+                                \node (Tuesday) [input, below=1em of Monday]  {Tuesday};
+                                \node (Wednesday) [input, below=1em of Tuesday]  {Wednesday};
+                                \node (Thursday) [input, below=1em of Wednesday]  {Thursday};
+                                \node (Friday) [input, below=1em of Thursday]  {Friday};
+                                \node[dom,fit=(Monday) (Friday)] {};
+
+                                \node (a) [output, right=10em of Tuesday]  {$0.0$};
+                                \node (b) [output, below=1em of a]  {$0.2$};
+                                \node (c) [output, below=1em of b]  {$0.4$};
+                                \node (d) [output, below=1em of c]  {$0.6$};
+                                \node[ran,fit=(a) (d)] {};
+
+                                \draw[connex] (Monday) -- (b);
+                                \draw[connex] (Tuesday) -- (c);
+                                \draw[connex] (Wednesday) -- (a);
+                                \draw[connex] (Thursday) -- (d);
+                                \draw[connex] (Friday) -- (a);
+                            \end{tikzpicture}]]>
+                        </latex-image>
+                    </image>
+                </figure>
             </statement>
             <solution>
-                <p></p>
+                <p>Since Monday has an arrow to <m>0.2</m>, that must mean that it rained <m>0.2</m> inches of rain on Monday. That gives us the ordered pair <m>(\text{Monday},0.2)</m>. Likewise, we also have <m>(\text{Tuesday},0.4)</m>. To write down all of the ordered pairs, we will use a set: <me>\left\{(\text{Monday},0.2), (\text{Tuesday},0.4), (\text{Wednesday},0.0), (\text{Thursday},0.6), (\text{Friday},0.0)\right\}</me></p>
             </solution>
         </example>
 
         <example>
             <title>Functions as Predictors</title>
             <statement>
-                <p></p>
+                <p>Recall that a a <xref ref="definition-function-informal" text="title">function</xref> should predict the output perfectly if you know the input. In <xref ref="example-pdx-rainfall">Example</xref>, we saw that the day of a particular week in Portland was related to the rainfall during that week. Was this relation a function?</p>
             </statement>
             <solution>
-                <p></p>
+                <p>Yes, that relation was a function. If I tell you the day of the week, you can with certainty <q>predict</q> how much rain there was on that day by looking at the data. There was a single answer to the question <q>How much rain fell on Wednesday during that week in Portland?</q></p>
+                <p>At this point, we should note that all historical weather data can be viewed as a function of some sort: On any particular day in the recent past, we can <q>predict</q> (by looking it up somewhere) how much rain fell in any city in the world.</p>
+                <p>However, the opposite question, <q>If it rained <m>0.0</m> inches, what day of the year was it?</q> is not going to represent a function because there will be more than one day of the year that it didn't rain at all. Even in Portland.</p>
             </solution>
         </example>
 
         <example>
             <title>Algebraic Functions</title>
             <statement>
-                <p></p>
+                <p>
+                    <ol>
+                        <li><p>For the equation <m>y=2x^2+x</m>, will <m>y</m> be a function of <m>x</m>?</p></li>
+                        <li><p>For the equation <m>y^2=x</m>, will <m>y</m> be a function of <m>x</m>?</p></li>
+                    </ol>
+                </p>
             </statement>
             <solution>
-                <p></p>
+                <p>
+                    <ol>
+                        <li>
+                            <p>This question is equivalent to the question <q>If you input any <m>x</m> value, will there be only one <m>y</m> value?</q> The answer is <q>yes</q>. If you input any number for <m>x</m> you first square that number and multiply it by two, then add the number. For example, if we substitute <m>\substitute{-3}</m>, we get:
+                                <md>
+                                    <mrow>y\amp=2(\substitute{x})^2+(\substitute{x})</mrow>
+                                    <mrow>y\amp=2(\substitute{-3})^2+(\substitute{-3})</mrow>
+                                    <mrow>\amp=2(9)-3</mrow>
+                                    <mrow>\amp=18-3</mrow>
+                                    <mrow>\amp=15</mrow>
+                                </md>
+                            There is no way we could substitute a number for <m>x</m> and get more than one value for <m>y</m>.</p>
+                        </li>
+                        <li>
+                            <p>This question is equivalent to the question <q>If you input any <m>x</m> value, will there be only one <m>y</m> value?</q> The answer is <q>no</q>. If you input any number for <m>x</m> and solve for <m>y</m>, you might actually get two solutions. For example, if we substitute <m>\substitute{1}</m>, we get:
+                                <md>
+                                    <mrow>y^2\amp=\substitute{x}</mrow>
+                                    <mrow>y^2\amp=\substitute{1}</mrow>
+                                    <intertext>Using the <xref ref="fact-square-root-property" text="title">square root property</xref></intertext>
+                                    <mrow>y\amp=\sqrt{1}\amp\text{ or }\amp\amp y\amp=-\sqrt{1}</mrow>
+                                    <mrow>y\amp=1\amp\text{ or }\amp\amp y\amp=-1</mrow>
+                                </md>
+                            Since there is more than one <m>y</m> value for the <m>x</m> value <m>1</m>, the relation <m>y^2=x</m> is <em>not</em> a function.</p>
+                        </li>
+                    </ol>
+                </p>
             </solution>
         </example>
 
         <example>
             <title>Function Notation</title>
             <statement>
-                <p></p>
+                <p>For the function <m>V=g(x)</m>, what is the name of the function, what is the input variable, and what is the output variable?</p>
             </statement>
             <solution>
-                <p></p>
+                <p>For the function <m>V=g(x)</m>, the name of the function is <m>g</m>, the input variable is <m>x</m>, and the output variable is <m>V</m>.</p>
             </solution>
         </example>
 
         <example>
-            <title>Evaluationg Functions</title>
+            <title>Evaluating Functions</title>
             <statement>
-                <p></p>
+                <p>Let <m>a(x)=x^2-2x</m>, let the function <m>b</m> be defined by the graph in <xref ref="figure-graph-of-function-b">Figure</xref>, and let the function <m>c</m> be defined by the table in <xref ref="table-values-of-function-c">Table</xref>.</p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <figure xml:id="figure-graph-of-function-b">
+                    <caption>A graph of the function <m>b</m></caption>
+                        <image>
+                            <description>A Cartesian graph with straight segments passing through the points (-7,5), (-3,1), (0,2), (2,-3), and (7,-3). There are arrows heading off the edge of the graph at the two end points.</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[] coordinates {(-7,5) (-3,1) (0,2) (2,-3) (7,-3)} node[pos=0.85, sloped, below] {$y=b(x)$};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                    <table xml:id="table-values-of-function-c">
+                        <caption>The values of the function <m>c</m></caption>
+                        <tabular halign="center">
+                            <col/>
+                            <col/>
+                            <row bottom="medium">
+                                <cell><m>x</m></cell>
+                                <cell><m>c(x)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-5</m></cell>
+                                <cell><m>7</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-3</m></cell>
+                                <cell><m>-2</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>2</m></cell>
+                                <cell><m>2</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>6</m></cell>
+                                <cell><m>4</m></cell>
+                            </row>
+                            <row >
+                                <cell><m>9</m></cell>
+                                <cell><m>7</m></cell>
+                            </row>
+                        </tabular>
+                    </table>
+                </sidebyside>
+                <p>
+                    <ol>
+                        <li><p>Evaluate <m>a(-3)</m>.</p></li>
+                        <li><p>Evaluate <m>b(-3)</m>.</p></li>
+                        <li><p>Evaluate <m>c(-3)</m>.</p></li>
+                    </ol>
+                </p>
             </statement>
             <solution>
-                <p></p>
+                <p>
+                    <ol>
+                        <li>
+                            <p>To evaluate <m>a(-3)</m> we will substitute the value <m>\substitute{-3}</m> in wherever we see <m>x</m> in the equation for <m>a(x)</m>.
+                                <md>
+                                    <mrow>a(\substitute{x})\amp=\substitute{x}^2-2\substitute{x}</mrow>
+                                    <mrow>a(\substitute{-3})\amp=(\substitute{-3})^2-2(\substitute{-3})</mrow>
+                                    <mrow>\amp=9+6</mrow>
+                                    <mrow>\amp=15</mrow>
+                                </md>
+                            </p>
+                        </li>
+                        <li>
+                            <p>To evaluate <m>b(-3)</m>, we need to look at the graph of <m>y=b(x)</m> and look for the one place on the graph where the <m>x</m>-value is <m>-3</m>.</p>
+                            <figure>
+                            <caption>A graph of the function <m>b</m></caption>
+                                <image width="47%">
+                                    <description>A Cartesian graph with straight segments passing through the points (-7,5), (-3,1), (0,2), (2,-3), and (7,-3). There are arrows heading off the edge of the graph at the two end points. There is a solid dot at the point (-3,1).</description>
+                                    <latex-image>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[]
+                                                \addplot+[] coordinates {(-7,5) (-3,1) (0,2) (2,-3) (7,-3)} node[pos=0.85, sloped, below] {$y=b(x)$};
+                                                \addplot[soliddot, color=secondcolor] coordinates {(-3,1)} node[below] {$(-3,1)$};
+                                            \end{axis}
+                                        \end{tikzpicture}
+                                        ]]>
+                                    </latex-image>
+                                </image>
+                            </figure>
+                            <p>The <m>y</m>-value at this point is <m>1</m>, so we would say that <me>b(-3)=1</me></p>
+                        </li>
+                        <li>
+                            <p>To evaluate <m>c(-3)</m> we examine the table and find the place where the <m>x</m>-value is <m>-3</m>.</p>
+                            <table>
+                                <caption>The values of the function <m>c</m></caption>
+                                <tabular halign="center">
+                                    <col/>
+                                    <col/>
+                                    <row bottom="medium">
+                                        <cell><m>x</m></cell>
+                                        <cell><m>c(x)</m></cell>
+                                    </row>
+                                    <row>
+                                        <cell><m>-5</m></cell>
+                                        <cell><m>7</m></cell>
+                                    </row>
+                                    <row>
+                                        <cell><m>\highlight{-3}</m></cell>
+                                        <cell><m>\highlight{-2}</m></cell>
+                                    </row>
+                                    <row>
+                                        <cell><m>2</m></cell>
+                                        <cell><m>2</m></cell>
+                                    </row>
+                                    <row>
+                                        <cell><m>6</m></cell>
+                                        <cell><m>4</m></cell>
+                                    </row>
+                                    <row >
+                                        <cell><m>9</m></cell>
+                                        <cell><m>7</m></cell>
+                                    </row>
+                                </tabular>
+                            </table>
+                            <p>So, we conclude that <m>c(-3)=-2</m>.</p>
+                        </li>
+                    </ol>
+                </p>
             </solution>
         </example>
 
         <example>
             <title>Solving Equations That Have Function Notation</title>
             <statement>
-                <p></p>
+                <p>Still let <m>a(x)=x^2-2x</m>, let the function <m>b</m> be defined by the graph in <xref ref="figure-graph-of-function-bii">Figure</xref>, and let the function <m>c</m> be defined by the table in <xref ref="table-values-of-function-cii">Table</xref>.</p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <figure xml:id="figure-graph-of-function-bii">
+                    <caption>A graph of the function <m>b</m></caption>
+                        <image>
+                            <description>A Cartesian graph with straight segments passing through the points (-7,5), (-3,1), (0,2), (2,-3), and (7,-3). There are arrows heading off the edge of the graph at the two end points.</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[] coordinates {(-7,5) (-3,1) (0,2) (2,-3) (7,-3)} node[pos=0.85, sloped, below] {$y=b(x)$};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                    <table xml:id="table-values-of-function-cii">
+                        <caption>The values of the function <m>c</m></caption>
+                        <tabular halign="center">
+                            <col/>
+                            <col/>
+                            <row bottom="medium">
+                                <cell><m>x</m></cell>
+                                <cell><m>c(x)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-5</m></cell>
+                                <cell><m>7</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-3</m></cell>
+                                <cell><m>-2</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>2</m></cell>
+                                <cell><m>2</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>6</m></cell>
+                                <cell><m>4</m></cell>
+                            </row>
+                            <row >
+                                <cell><m>9</m></cell>
+                                <cell><m>7</m></cell>
+                            </row>
+                        </tabular>
+                    </table>
+                </sidebyside>
+                <p>
+                    <ol>
+                        <li><p>Solve the equation <m>a(x)=0</m>.</p></li>
+                        <li><p>Solve the equation <m>b(x)=2</m>.</p></li>
+                        <li><p>Solve the equation <m>c(x)=7</m>.</p></li>
+                    </ol>
+                </p>
             </statement>
             <solution>
-                <p></p>
+                <p>
+                    <ol>
+                        <li>
+                            <p>To solve the equation <m>a(x)=0</m>, we should set the formula for <m>a(x)</m> equal to <m>0</m>. That turns into:
+                                <md>
+                                    <mrow>x^2-2x\amp=0</mrow>
+                                    <intertext>At this point, we have a quadratic equation that we should solve using factoring.</intertext>
+                                    <mrow>x(x-2)\amp=0</mrow>
+                                    <mrow>x\amp=0\amp\text{ or }\amp\amp x-2\amp=0</mrow>
+                                    <mrow>x\amp=0\amp\text{ or }\amp\amp x\amp=2</mrow>
+                                </md>
+                            So, the solution set is <m>\{0,2\}</m>.</p>
+                        </li>
+                        <li>
+                            <sidebyside widths="47% 47%" margins="0%">
+                            <p>To solve the equation <m>b(x)=2</m>, we should examine the graph and find all of the locations where the <m>y</m>-value is <m>2</m>. According to the graph, that happens twice, both when <m>x=-4</m> and when <m>x=0</m>. So the solution set is <m>\{-4,0\}.</m></p>
+                                <figure>
+                                <caption>A graph of the function <m>b</m></caption>
+                                    <image>
+                                        <description>A Cartesian graph with straight segments passing through the points (-7,5), (-3,1), (0,2), (2,-3), and (7,-3). There are arrows heading off the edge of the graph at the two end points.</description>
+                                        <latex-image>
+                                            <![CDATA[\begin{tikzpicture}
+                                                \begin{axis}[]
+                                                    \addplot+[] coordinates {(-7,5) (-3,1) (0,2) (2,-3) (7,-3)} node[pos=0.85, sloped, below] {$y=b(x)$};
+                                                    \addplot[soliddot, color=secondcolor] coordinates {(-4,2)} node[below left] {$(-4,2)$};
+                                                    \addplot[soliddot, color=secondcolor] coordinates {(0,2)} node[ right] {$(0,2)$};
+                                                \end{axis}
+                                            \end{tikzpicture}
+                                            ]]>
+                                        </latex-image>
+                                    </image>
+                                </figure>
+                            </sidebyside>
+                        </li>
+                        <li>
+                            <sidebyside widths="47% 47%" margins="0%">
+                                <p>To solve the equation <m>c(x)=7</m>, we examine the table and find all the places where the function value is <m>7</m>. According to the table, that happens twice: once when <m>x=-5</m> and again when <m>x=9</m>. So the solution set is <m>\{-5,9\}</m>.</p>
+                                <table>
+                                    <caption>The values of the function <m>c</m></caption>
+                                    <tabular halign="center">
+                                        <col/>
+                                        <col/>
+                                        <row bottom="medium">
+                                            <cell><m>x</m></cell>
+                                            <cell><m>c(x)</m></cell>
+                                        </row>
+                                        <row>
+                                            <cell><m>-5</m></cell>
+                                            <cell><m>\highlight{7}</m></cell>
+                                        </row>
+                                        <row>
+                                            <cell><m>-3</m></cell>
+                                            <cell><m>-2</m></cell>
+                                        </row>
+                                        <row>
+                                            <cell><m>2</m></cell>
+                                            <cell><m>2</m></cell>
+                                        </row>
+                                        <row>
+                                            <cell><m>6</m></cell>
+                                            <cell><m>4</m></cell>
+                                        </row>
+                                        <row >
+                                            <cell><m>9</m></cell>
+                                            <cell><m>\highlight{7}</m></cell>
+                                        </row>
+                                    </tabular>
+                                </table>
+                            </sidebyside>
+                        </li>
+                    </ol>
+                </p>
             </solution>
         </example>
 
         <example>
             <title>Domain and Range</title>
             <statement>
-                <p></p>
+                <p>Still let the function <m>b</m> be defined by the graph in <xref ref="figure-graph-of-function-biii">Figure</xref>, and let the function <m>c</m> be defined by the table in <xref ref="table-values-of-function-ciii">Table</xref>.</p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <figure xml:id="figure-graph-of-function-biii">
+                    <caption>A graph of the function <m>b</m></caption>
+                        <image>
+                            <description>A Cartesian graph with straight segments passing through the points (-7,5), (-3,1), (0,2), (2,-3), and (7,-3). There are arrows heading off the edge of the graph at the two end points.</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[] coordinates {(-7,5) (-3,1) (0,2) (2,-3) (7,-3)} node[pos=0.85, sloped, below] {$y=b(x)$};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                    <table xml:id="table-values-of-function-ciii">
+                        <caption>The values of the function <m>c</m></caption>
+                        <tabular halign="center">
+                            <col/>
+                            <col/>
+                            <row bottom="medium">
+                                <cell><m>x</m></cell>
+                                <cell><m>c(x)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-5</m></cell>
+                                <cell><m>7</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-3</m></cell>
+                                <cell><m>-2</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>2</m></cell>
+                                <cell><m>2</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>6</m></cell>
+                                <cell><m>4</m></cell>
+                            </row>
+                            <row >
+                                <cell><m>9</m></cell>
+                                <cell><m>7</m></cell>
+                            </row>
+                        </tabular>
+                    </table>
+                </sidebyside>
+                <p>
+                    <ol>
+                        <li><p>Write the domain of <m>b</m> in interval notation.</p></li>
+                        <li><p>Write the domain of <m>c</m> in interval notation.</p></li>
+                        <li><p>Write the range of <m>b</m> in interval notation.</p></li>
+                        <li><p>Write the range of <m>c</m> in interval notation.</p></li>
+                    </ol>
+                </p>
             </statement>
             <solution>
-                <p></p>
+                <p>Recall the definitions of <xref ref="definition-domain-and-range" text="title">domain and range</xref>.
+                    <ol>
+                        <li><p>To find the the domain of <m>b</m>, look at the graph of <m>b</m> and see what <m>x</m>-values are used for the graph. In other words, what <m>x</m>-values could you input and expect to get a <m>y</m>-value? It looks like the graph extends forever to the right as well as the left; therefore, the domain is <m>(-\infty,\infty)</m>.</p></li>
+                        <li><p>To find the the domain of <m>c</m>, we list the <m>x</m>-values in the table in a set. That would be <m>\{-5,-3,2,6,9\}</m>.</p></li>
+                        <li><p>To find the the range of <m>b</m>, look at the graph of <m>b</m> and see what <m>y</m>-values are on the graph. It looks like the graph extends forever up, but the lowest <m>y</m>-value on the graph is <m>-3</m>; therefore, the domain is <m>[-3,\infty)</m>.</p></li>
+                        <li><p>To find the the range of <m>c</m>, we list the <m>y</m>-values in the table in a set. That would be <m>\{7,-2,2,4\}</m>.</p></li>
+                    </ol>
+                </p>
             </solution>
         </example>
 
         <example>
             <title>Determining if a Relation is a Function</title>
             <statement>
-                <p></p>
+                <p>Is <m>y</m> a function of <m>x</m> in the following graphs?</p>
+                <p>
+                    <ol cols="2">
+                        <li>
+                            <figure>
+                                <caption>Is <m>y</m> a function of <m>x</m>?</caption>
+                                <image>
+                                    <description>the graph of a curve that starting from the left moves to the right through the points (-5,2), (-3.63,1.57), (-2,0.89) and (-1,0); then goes back to the left through (-2,-0.83) and (-3.63,-2.79); back to the right through (-2,-4.06), (0,-4.1), (3,-3.68) and (3.5,-3); back to the left through (3,-1.64) and (1,0); then finally to the right through the point (3,1.32)</description>
+                                    <latex-image>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[]
+                                                \addplot+[variable=\t,domain=-4.28762585:2.5,-{Kite},smooth] ({sqrt(t^3+4*t^2-t+1)},{t});
+                                                \addplot[primarycurve,variable=\t,domain=-4.28762585:2.5,-{Kite},smooth] ({-sqrt(t^3+4*t^2-t+1)},{t});
+                                            \end{axis}
+                                        \end{tikzpicture}]]>
+                                    </latex-image>
+                                </image>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure>
+                                <caption>Is <m>y</m> a function of <m>x</m>?</caption>
+                                <image>
+                                    <description>the graph of a curve that starts at the point (-2,0) and moves up and then down to pass through the point (2,-2.27); after it reaches a low point it goes back up and then down passing through the point (5,0.65); the graph continues down and after another low point goes up to the right</description>
+                                    <latex-image>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[]
+                                                \addplot+[domain=-2:6.5,samples=50,smooth,-{Kite}] {1.5*sqrt(x+2)*sin(deg(0.5*sqrt(x+2)*(x+2)))};
+                                            \end{axis}
+                                        \end{tikzpicture}]]>
+                                    </latex-image>
+                                </image>
+                            </figure>
+                        </li>
+                    </ol>
+                </p>
             </statement>
             <solution>
-                <p></p>
+                <p>
+                    <ol cols="2">
+                        <li>
+                            <figure>
+                                <caption>Fails the vertical line test and so <m>y</m> is not a function of <m>x</m>.</caption>
+                                <image>
+                                    <description>the graph of a curve that starting from the left moves to the right through the points (-5,2), (-3.63,1.57), (-2,0.89) and (-1,0); then goes back to the left through (-2,-0.83) and (-3.63,-2.79); back to the right through (-2,-4.06), (0,-4.1), (3,-3.68) and (3.5,-3); back to the left through (3,-1.64) and (1,0); then finally to the right through the point (3,1.32); there are vertical dotted lines at y=-3.63, y=-2 and y=3 to show that there is more than one y-value for the same x-value</description>
+                                    <latex-image>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[]
+                                                \addplot+[variable=\t,domain=-4.28762585:2.5,-{Kite},smooth] ({sqrt(t^3+4*t^2-t+1)},{t});
+                                                \addplot[primarycurve,variable=\t,domain=-4.28762585:2.5,-{Kite},smooth] ({-sqrt(t^3+4*t^2-t+1)},{t});
+                                                \addplot[verticallinetest]coordinates {(-3.63,-7) (-3.63,7)};
+                                                \addplot[verticallinetest]coordinates {(-2,-7) (-2,7)};
+                                                \addplot[verticallinetest]coordinates {(3,-7) (3,7)};
+                                                \addplot[soliddot]coordinates {(-3.63,-2.79) (-3.63,1.57) (-2,0.89) (-2,-0.83) (-2,-4.06) (3,1.32) (3,-1.64) (3,-3.68)};
+                                            \end{axis}
+                                        \end{tikzpicture}]]>
+                                    </latex-image>
+                                </image>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure>
+                                <caption>Passes the vertical line test and so <m>y</m> a function of <m>x</m>.</caption>
+                                <image>
+                                    <description>the graph of a curve that starts at the point (-2,0) and moves up and then down to pass through the point (2,-2.27); after it reaches a low point it goes back up and then down passing through the point (5,0.65); the graph continues down and after another low point goes up to the right; there are vertical dotted lines at y=-4, y=2 and y=5 to show that there is at most one y-value for each x-value</description>
+                                    <latex-image>
+                                        <![CDATA[\begin{tikzpicture}
+                                            \begin{axis}[]
+                                                \addplot+[domain=-2:6.5,samples=50,smooth,-{Kite}] {1.5*sqrt(x+2)*sin(deg(0.5*sqrt(x+2)*(x+2)))};
+                                                \addplot[verticallinetest]coordinates {(-4,-7) (-4,7)};
+                                                \addplot[verticallinetest]coordinates {(2,-7) (2,7)};
+                                                \addplot[verticallinetest]coordinates {(5,-7) (5,7)};
+                                                \addplot[soliddot]coordinates {(-2,0) (5,0.65)};
+                                                \addplot[soliddot]coordinates {(2,-2.27)} node[below left]{$(2,-2.27)$};
+                                            \end{axis}
+                                        \end{tikzpicture}]]>
+                                    </latex-image>
+                                </image>
+                            </figure>
+                        </li>
+                    </ol>
+                </p>
             </solution>
         </example>
     </subsection>
 
     <subsection>
         <title>Properties of Quadratic Functions</title>
-        <p>In <xref ref="section-properties-of-quadratic-functions" text="title">this section</xref> we covered</p>
+        <p>In <xref ref="section-properties-of-quadratic-functions">Section</xref> we covered the definition of a <xref ref="definition-quadratic-function" text="title">quadratic function</xref>, and the definitions of the direction, vertex, axis of symmetry, vertical and horizontal intercepts as <xref ref="list-properties-of-quadratic-functions-visual" text="title">properties</xref> of quadratic functions. We then learned how to algebraically find the <xref ref="fact-vertex" text="title">vertex</xref>, how to graph a parabola using a table, and how to find the domain and range of quadratic functions.</p>
 
         <example>
             <title>Properties of Quadratic Functions</title>
             <statement>
-                <p></p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <p>Identify the <xref ref="list-properties-of-quadratic-functions-visual" text="title">key features</xref> of the quadratic function <m>y=-2x^2-4x+6</m> shown in <xref ref="figure-quadratic-function-graph-properties-review">Figure</xref>.</p>
+
+                    <figure xml:id="figure-quadratic-function-graph-properties-review">
+                    <caption>Graph of <m>y=-2x^2-4x+6</m></caption>
+                        <image width="47%">
+                            <description>the graph of a parabola that opens downward, has a vertex at (-1,8), a y-intercept at (0,6) and x-intercepts at (-3,0) and (1,0)</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[ymin=-12,ymax=10,xmin=-10,xmax=10,
+                                            ytick={-10,-8,...,8},
+                                            minor xtick={-10,-9,...,10},
+                                            xtick={-8,-6,...,8},
+                                            minor ytick={-12,-11,...,10}]
+                                        \addplot+[domain=-4.162:2.162] {-2*x^2-4*x+6};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                </sidebyside>
             </statement>
             <solution>
-                <p></p>
+                <sidebyside widths="47% 47%" margins="0%">
+                    <stack>
+                        <p>First, we see that this parabola opens downward because the leading coefficient is negative.</p>
+
+                        <p>Then we locate the vertex which is the point <m>(-1,8)</m>. The axis of symmetry is the vertical line <m>x=-1</m>.</p>
+
+                        <p>The vertical intercept or <m>y</m>-intercept is the point <m>(0,6)</m>.</p>
+
+                        <p>The horizontal intercepts are the points <m>(-3,0)</m> and <m>(1,0)</m>.</p>
+                    </stack>
+
+                    <figure>
+                    <caption>Graph of <m>y=-2x^2-4x+6</m></caption>
+                        <image width="47%">
+                            <description>the graph of a parabola that opens downward, has a vertex at (-1,8), a y-intercept at (0,6) and x-intercepts at (-3,0) and (1,0)</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[ymin=-12,ymax=10,xmin=-10,xmax=10,
+                                            ytick={-10,-8,...,8},
+                                            minor xtick={-10,-9,...,10},
+                                            xtick={-8,-6,...,8},
+                                            minor ytick={-12,-11,...,10}]
+                                        \addplot+[domain=-4.162:2.162] {-2*x^2-4*x+6};
+                                        \addplot[symmetryaxis] coordinates {(-1,-12) (-1,10)};
+                                        \addplot[soliddot] coordinates {(-1,8)};
+                                        \addplot[soliddot] coordinates {(-3,0)};
+                                        \addplot[soliddot] coordinates {(1,0)};
+                                        \addplot[soliddot] coordinates {(0,6)};
+                                    \end{axis}
+                                \end{tikzpicture}]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                </sidebyside>
             </solution>
         </example>
 
         <example>
             <title>Finding the Vertex and Axis of Symmetry</title>
             <statement>
-                <p></p>
+                <p>Algebraically find the <xref ref="fact-vertex" text="title">vertex</xref> of the parabola described by the quadratic function <m>f(x)=3x^2+8x-7</m>.</p>
             </statement>
             <solution>
-                <p></p>
+                <p>To find the vertex of a parabola algebraically, we use the formula <m>x=-\frac{b}{2a}</m> to find the axis of symmetry first. For our equation, <m>\substitute{a=3}</m> and <m>\lighthigh{b=8}</m>, so:
+                    <md>
+                        <mrow>x\amp=-\frac{\lighthigh{b}}{2\substitute{a}}</mrow>
+                        <mrow>x\amp=-\frac{\lighthigh{8}}{2(\substitute{3})}</mrow>
+                        <mrow>\amp=-\frac{8}{6}</mrow>
+                        <mrow>\amp=-\frac{4}{3}</mrow>
+                    </md>
+                Next, we substitute the value of the axis of symmetry, <m>\substitute{-\frac{4}{3}}</m>, into the formula for the parabola.
+                    <md>
+                        <mrow>f(\substitute{x})\amp=3\substitute{x}^2+8\substitute{x}-7</mrow>
+                        <mrow>f\left(\substitute{-\frac{4}{3}}\right)\amp=3\left(\substitute{-\frac{4}{3}}\right)^2+8\left(\substitute{-\frac{4}{3}}\right)-7</mrow>
+                        <mrow>\amp=3\left(\frac{16}{9}\right)-\frac{32}{3}-7</mrow>
+                        <mrow>\amp=\frac{16}{3}-\frac{32}{3}-\frac{21}{3}</mrow>
+                        <mrow>\amp=\frac{37}{3}</mrow>
+                    </md>
+                So, the parabola has its axis of symmetry at <m>x=-\frac{4}{3}</m> and has its vertex at the point <m>\left(-\frac{4}{3},-\frac{37}{3}\right)</m>.</p>
             </solution>
         </example>
 
-        <example>
+        <example xml:id="example-graphing-parabola-with-table">
             <title>Graphing Quadratic Functions by Making a Table</title>
             <statement>
-                <p></p>
+                <p>Determine the vertex and axis of symmetry for the quadratic function <m>g(x)=2x^2+8x+2</m>. Then make a table of values and sketch the graph of the function.</p>
             </statement>
             <solution>
-                <p></p>
+                <p>To determine the vertex of <m>g(x)=2x^2+8x+2</m>, we want to find the <m>x</m>-value of the vertex first. We will use <m>x=-\frac{b}{2a}</m> for <m>\substitute{a=2}</m> and <m>\lighthigh{b=8}</m>:
+                    <md>
+                        <mrow>x\amp=-\frac{\lighthigh{b}}{2\substitute{a}}</mrow>
+                        <mrow>x\amp=-\frac{\lighthigh{8}}{2(\substitute{2})}</mrow>
+                        <mrow>x\amp=-\frac{8}{4}</mrow>
+                        <mrow>x\amp=-2</mrow>
+                    </md>
+                To find the vertex, we substitute <m>\substitute{-2}</m> into the formula for our parabola.
+                    <md>
+                        <mrow>g(\substitute{x})\amp=-\substitute{x}^2-2\substitute{x}+3</mrow>
+                        <mrow>g(\substitute{-2})\amp=2(\substitute{-2})^2+8(\substitute{-2})+2</mrow>
+                        <mrow>\amp=2(4)-16+2</mrow>
+                        <mrow>\amp=8-16+2</mrow>
+                        <mrow>\amp=-6</mrow>
+                    </md>
+                Now we know that our axis of symmetry is the line <m>x=-2</m> and the vertex is the point <m>(-2,-6)</m>. We will set up our table with two values on each side of <m>x=-2</m>. We choose <m>x= -4, -3, \highlight{-2}, -1,</m> and <m>0</m>. Then, we'll determine the <m>y</m>-coordinates by replacing <m>x</m> with each value and we have the complete table as shown in <xref ref="table-quadratic-function-complete-review">Table</xref>. Notice that each pair of <m>y</m>-values on either side of the vertex match. This helps us to check that our vertex and <m>y</m>-values are correct.</p>
+
+                    <table xml:id="table-quadratic-function-complete-review">
+                    <caption>Function values and points for <m>g(x)=2x^2+8x+2</m></caption>
+                        <tabular valign="top" bottom="minor">
+                            <col halign="right" right="minor"/>
+                            <col halign="left" right="minor"/>
+                            <col halign="center"/>
+                            <row bottom="medium">
+                                <cell><m>x</m></cell>
+                                <cell halign="center"><m>g(x)=2x^2+8x+2</m></cell>
+                                <cell>Point</cell>
+                            </row>
+                            <row>
+                                <cell><m>-4</m></cell>
+                                <cell><m>g(\substitute{-4})=2(\substitute{-4})^2+8(\substitute{-4})+2=2</m></cell>
+                                <cell><m>(-4,2)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-3</m></cell>
+                                <cell><m>g(\substitute{-3})=2(\substitute{-3})^2+8(\substitute{-3})+2=-4</m></cell>
+                                <cell><m>(-3,-4)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-2</m></cell>
+                                <cell><m>g(\substitute{-2})=2(\substitute{-2})^2+8(\substitute{-2})+2=-6</m></cell>
+                                <cell><m>(-2,-6)</m></cell>
+                            </row>
+                            <row>
+                                <cell><m>-1</m></cell>
+                                <cell><m>g(\substitute{-1})=2(\substitute{-1})^2+8(\substitute{-1})+2=-4</m></cell>
+                                <cell><m>(-1,-4)</m></cell>
+                            </row>
+                            <row bottom="none">
+                                <cell><m>0</m></cell>
+                                <cell><m>g(\substitute{0})=2(\substitute{0})^2+8(\substitute{0})+2=2</m></cell>
+                                <cell><m>(0,2)</m></cell>
+                            </row>
+                        </tabular>
+                    </table>
+
+                <p>Now that we have our table, we will plot the points and draw in the axis of symmetry as shown in <xref ref="figure-quadratic-function-points-review">Figure</xref>. We complete the graph by drawing a smooth curve through the points and drawing an arrow on each end as shown in <xref ref="figure-quadratic-function-graph-using-vertex-and-table-review">Figure</xref></p>
+
+                <sidebyside widths="47% 47%" margins="0%">
+                    <figure xml:id="figure-quadratic-function-points-review">
+                    <caption>Plot of the points and axis of symmetry</caption>
+                        <image>
+                            <description>a coordinate plane with the points from the table plotted; the axis of symmetry is drawn as a vertical dotted line through the vertex</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot[soliddot] coordinates {(-4,2) (-3,-4) (-2,-6) (-1,-4) (0,2)} ;
+                                        \addplot[symmetryaxis] coordinates {(-2,-7) (-2,7)};
+                                        \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+
+                    <figure xml:id="figure-quadratic-function-graph-using-vertex-and-table-review">
+                    <caption>Graph of <m>g(x)=2x^2+8x+2</m></caption>
+                        <image>
+                            <description>the points from the previous graph are connected to make a smooth u-shaped parabola opening downward</description>
+                            <latex-image>
+                                <![CDATA[\begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-4.55:0.55] {2*x^2+8*x+2};
+                                        \addplot[soliddot] coordinates {(-4,2) (-3,-4) (-2,-6) (-1,-4) (0,2)} ;
+                                        \addplot[symmetryaxis] coordinates {(-2,-7) (-2,7)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                </sidebyside>
             </solution>
         </example>
 
         <example>
             <title>The Domain and Range of Quadratic Functions</title>
             <statement>
-                <p></p>
+                <p>Use the graph of <m>g(x)=2x^2+8x+2</m> in from <xref ref="example-graphing-parabola-with-table">Example</xref> shown in <xref ref="figure-quadratic-function-graph-using-vertex-and-table-review">Figure</xref> to identify the domain and range of <m>g</m> in set-builder and interval notation.</p>
             </statement>
             <solution>
-                <p></p>
+                <p>For the domain, we look horizontally and see the graph is a continuous curve and one arrow points to the left and the other arrow points to the right. The domain is <m>\{x\mid x\ \textrm{is a real number}\}</m> which is equivalent to <m>(-\infty,\infty)</m>.</p>
+
+                <p>For the range we look up and down on the graph, which opens upward. Both arrows point upward and the lowest point on the graph is the vertex at the point <m>(-2,-6)</m>. The range is <m>\{y \mid y \ge -6\}</m> which is equivalent to <m>[-6,\infty)</m>.</p>
             </solution>
         </example>
 
         <example>
             <title>Applications of Quadratic Functions Involving the Vertex</title>
             <statement>
-                <p></p>
+                <p>The value of FedEx stock, in dollars, between December 28, 2017 and February 9, 2018 can be very closely approximated by a quadratic function, <m>F(x)=-0.07x^2+2.7x+248</m>. Find the vertex of this parabola and interpret it in the context of the situation.</p>
             </statement>
             <solution>
-                <p></p>
+                <p>To find the vertex of <m>F(x)=-0.07x^2+2.7x+248</m>, we first find the axis of symmetry using the formula <m>x=-\frac{b}{2a}</m> to find the axis of symmetry first. For our equation, <m>\substitute{a=-0.07}</m> and <m>\lighthigh{b=2.7}</m>, so:
+                    <md>
+                        <mrow>x\amp=-\frac{\lighthigh{b}}{2\substitute{a}}</mrow>
+                        <mrow>x\amp=-\frac{\lighthigh{2.7}}{2(\substitute{-0.07})}</mrow>
+                        <mrow>\amp=-\frac{2.7}{-0.14}</mrow>
+                        <mrow>\amp\approx19.3</mrow>
+                    </md>
+                Next, we substitute the value of the axis of symmetry, <m>\substitute{19.3}</m>, into the formula for the parabola.
+                    <md>
+                        <mrow>F(\substitute{x})\amp=-0.07\substitute{x}^2+2.7\substitute{x}+248</mrow>
+                        <mrow>F(\substitute{19.3})\amp=-0.07\left(\substitute{19.3}\right)^2+2.7\left(\substitute{19.3}\right)+248</mrow>
+                        <mrow>\amp\approx274</mrow>
+                    </md>
+                So, the parabola has its axis of symmetry at <m>x=19.3</m> and has its vertex at about the point <m>(19.3,274)</m>. In addition, since <m>a=-0.07</m>, the parabola will be opening downward. Given this information, the vertex of this parabola is its maximum.</p>
+                <p>In the reality of the situation, the <m>19.3</m> indicates the number of days after December 28, 2017 which would be sometime on January 16. The <m>274</m> indicates the stock price in dollars. In conclusion, FedEx's stock peaked (between December 28, 2017 and February 9, 2018) on January 16 at a value of <m>\$274</m>.</p>
             </solution>
         </example>
     </subsection>
 
     <subsection>
         <title>Graphing Quadratic Functions</title>
-        <p>In <xref ref="section-graphing-quadratic-functions" text="title">this section</xref> we covered</p>
+        <p>In <xref ref="section-graphing-quadratic-functions">Section</xref> we covered how to find the vertical and horizontal intercepts of a quadratic function algebraically, how to make a graph of a parabola using key features, applications of quadratic functions and what their real world domains and ranges mean, and how to tell a quadratic function from other types of functions.</p>
 
         <example>
             <title>Finding the Vertical and Horizontal Intercepts Algebraically</title>
             <statement>
-                <p></p>
+                <p>
+                    <ol>
+                        <li><p>Algebraically determine the vertical and horizontal intercepts of the quadratic function <m>h(x)=6x^2-13x+6</m>.</p></li>
+                        <li><p>Algebraically determine the vertical and horizontal intercepts of the quadratic function <m>k(x)=2x^2-2x-5</m>.</p></li>
+                    </ol>
+                </p>
             </statement>
             <solution>
-                <p></p>
+                <p>
+                    <ol>
+                        <li>
+                            <p>To find the vertical intercept of the quadratic function <m>h(x)=6x^2-13x+6</m>, we have to evaluate the function when <m>x=0</m>.
+                                <md>
+                                    <mrow>h(\substitute{x})\amp=6\substitute{x}^2-13\substitute{x}+6</mrow>
+                                    <mrow>h(\substitute{0})\amp=6(\substitute{0})^2-13(\substitute{0})+6</mrow>
+                                    <mrow>\amp=6</mrow>
+                                </md>
+                            So, the vertical intercept of <m>h</m> is <m>(0,6)</m>.</p>
+                            <p>Next, to find the horizontal intercepts, we set the function equal to zero. To solve that equation we will use <xref ref="list-methods-for-solving-quadratic-equations">Algorithm</xref>. For this particular example, we will practice factoring using the <xref ref="algorithm-the-ac-method" text="title">AC method</xref>. Here, <m>ac=36</m> and factor pairs that add up to <m>-13</m> are <m>-9</m> and <m>-4</m>, as you will see.
+                                <md>
+                                    <mrow>\substitute{h(x)}\amp=6x^2-13x+6</mrow>
+                                    <mrow>\substitute{0}\amp=6x^2\mathbin{\highlight{-}}\mathbin{\highlight{13x}}+6</mrow>
+                                    <mrow>0\amp=6x^2\mathbin{\highlight{-}}\mathbin{\highlight{9x}}\mathbin{\highlight{-}}\mathbin{\highlight{4x}}+6</mrow>
+                                </md>
+                            </p>
+                        </li>
+                        <li>
+                            <p>To find the vertical intercept of the quadratic function <m>k(x)=2x^2-2x-5</m>, we have to evaluate the function when <m>x=0</m>.
+                                <md>
+                                    <mrow>k(\substitute{x})\amp=2\substitute{x}^2-2\substitute{x}-5</mrow>
+                                    <mrow>k(\substitute{0})\amp=2(\substitute{0})^2-2(\substitute{0})-5</mrow>
+                                    <mrow>\amp=-5</mrow>
+                                </md>
+                            So, the vertical intercept of <m>k</m> is <m>(0,-5)</m>.</p>
+                            <p>Next, to find the horizontal intercepts, we set the function equal to zero.
+                                <md>
+                                    <mrow>\substitute{k(x)}\amp=2x^2-2x-5</mrow>
+                                    <mrow>\substitute{0}\amp=2x^2-2x-5</mrow>
+                                </md>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
             </solution>
         </example>
 
