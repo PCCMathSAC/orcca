@@ -126,6 +126,8 @@ pdf:
 	perl -pi -e 's/\%\% fontspec package will make Latin Modern \(lmodern\) the default font/\%\% Customized to load Palatino fonts\n\\usepackage[T1]{fontenc}\n\\renewcommand\{\\rmdefault\}\{zpltlf\} \%Roman font for use in math mode\n\\usepackage\[scaled=.85\]\{beramono\}\% used only by \\mathtt\n\\usepackage\[type1\]\{cabin\}\%used only by \\mathsf\n\\usepackage\{amsmath,amssymb,amsthm\}\%load before newpxmath\n\\usepackage\[varg,cmintegrals,bigdelims,varbb\]\{newpxmath\}\n\\usepackage\[scr=rsfso\]\{mathalfa\}\n\\usepackage\{bm\} \%load after all math to give access to bold math\n\% Now load the otf text fonts using fontspec--wont affect math\n\\usepackage\[no-math\]\{fontspec\}\n\\setmainfont\{TeXGyrePagellaX\}\n\\defaultfontfeatures\{Ligatures=TeX,Scale=1,Mapping=tex-text\}\n\% This is a palatino-like font\n\%\\setmainfont\[BoldFont = texgyrepagella-bold.otf, ItalicFont = texgyrepagella-italic.otf, BoldItalicFont = texgyrepagella-bolditalic.otf]\{texgyrepagella-regular.otf\}\n\\linespread\{1.02\}/' orcca.tex; \
 	perl -pi -e 's/\\usepackage\{fontspec\}\n//' orcca.tex; \
 	perl -pi -e 's/Checkpoint/\\includegraphics[height=1pc]{images\/webwork-logo.eps} Checkpoint/g' orcca.tex; \
+	echo 'In sidebyside with multiple paragraphs, need to set the parskip to match rest of the book'; \
+	perl -pi -e 's/(\\begin{sbspanel}.*)/\1\n\\setlength{\\parskip}{0.5pc}/g' orcca.tex; \
 	echo 'In exercisegroup, when the problem starts with an enumerate, pull it upward vertically'; \
 	perl -p0i -e 's/(\\exercise\[\d+\.\] \\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate}\[[^\]]*\]\n[^\n]*\n[^\n]*fillin)/\1\\vspace{-\\dimexpr2\\parskip+1\\baselineskip-0.4pt\\relax}%\n%\2/g' orcca.tex; \
 	perl -p0i -e 's/(\\exercise\[\d+\.\] \\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate})/\1\\vspace{-\\dimexpr\\parskip+1\\baselineskip\\relax}%\n%\2/g' orcca.tex; \
@@ -137,6 +139,7 @@ pdf:
 	perl -p0i -e 's/(\\begin{divisionexercise}{\d+}\\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate})/\1\\vspace{-\\dimexpr\\parskip+1\\baselineskip-0.4pt\\relax}%\n%\2/g' orcca.tex; \
 	echo 'Images in a multicolumn exercicegroup need their sizing adjusted to account for the narrower column'; \
 	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\.1\}\{0\.1\}\{0\}\n\4\{0\.8\}/g' orcca.tex; done; \
+	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.16+7\}\{0\.16+7\}\{0\}\n(\\begin{sbspanel})\{0\.6+7\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done; \
 	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(3\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done ;\
 	echo 'Images in a multicolumn list within a webwork exercise need their sizing adjusted to account for the narrower column'; \
 	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
@@ -222,6 +225,12 @@ pdf:
 	echo 'section-equations-and-inequalities-as-true-false-statements'; \
 	perl -pi -e 's/(\\begin{example}.*?\\label{example-44}\n)/\1\\leavevmode\n/' orcca.tex; \
 	perl -pi -e 's/(^.*\\hypertarget{exercisegroup-49}{})/\\pagebreak\n\1/' orcca.tex; \
+	echo 'section-percentages'; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-61})/\1\n\\leavevmode/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-high-school-classes})/\1\n\\leavevmode/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-64})/\1\n\\leavevmode/' orcca.tex; \
+	perl -pi -e 's/(\\begin{inlineexercise}\\label{exercise-832})/\\pagebreak\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\subparagraph\[{Basic Percentage Calculation.*?\n\\begin{exercisegroup})/\1\[after-item-skip=\\dimexpr\\smallskipamount-3pt\]/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
