@@ -125,14 +125,105 @@ pdf:
 	perl -pi -e 's/\\geometry\{letterpaper,total=\{340pt,9\.0in\}\}//' orcca.tex; \
 	perl -pi -e 's/\%\% fontspec package will make Latin Modern \(lmodern\) the default font/\%\% Customized to load Palatino fonts\n\\usepackage[T1]{fontenc}\n\\renewcommand\{\\rmdefault\}\{zpltlf\} \%Roman font for use in math mode\n\\usepackage\[scaled=.85\]\{beramono\}\% used only by \\mathtt\n\\usepackage\[type1\]\{cabin\}\%used only by \\mathsf\n\\usepackage\{amsmath,amssymb,amsthm\}\%load before newpxmath\n\\usepackage\[varg,cmintegrals,bigdelims,varbb\]\{newpxmath\}\n\\usepackage\[scr=rsfso\]\{mathalfa\}\n\\usepackage\{bm\} \%load after all math to give access to bold math\n\% Now load the otf text fonts using fontspec--wont affect math\n\\usepackage\[no-math\]\{fontspec\}\n\\setmainfont\{TeXGyrePagellaX\}\n\\defaultfontfeatures\{Ligatures=TeX,Scale=1,Mapping=tex-text\}\n\% This is a palatino-like font\n\%\\setmainfont\[BoldFont = texgyrepagella-bold.otf, ItalicFont = texgyrepagella-italic.otf, BoldItalicFont = texgyrepagella-bolditalic.otf]\{texgyrepagella-regular.otf\}\n\\linespread\{1.02\}/' orcca.tex; \
 	perl -pi -e 's/\\usepackage\{fontspec\}\n//' orcca.tex; \
+	perl -pi -e 's/Checkpoint/\\includegraphics[height=1pc]{images\/webwork-logo.eps} Checkpoint/g' orcca.tex; \
+	echo 'In exercisegroup, when the problem starts with an enumerate, pull it upward vertically'; \
+	perl -p0i -e 's/(\\exercise\[\d+\.\] \\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate}\[[^\]]*\]\n[^\n]*\n[^\n]*fillin)/\1\\vspace{-\\dimexpr2\\parskip+1\\baselineskip-0.4pt\\relax}%\n%\2/g' orcca.tex; \
+	perl -p0i -e 's/(\\exercise\[\d+\.\] \\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate})/\1\\vspace{-\\dimexpr\\parskip+1\\baselineskip\\relax}%\n%\2/g' orcca.tex; \
+	echo 'In an inline exercise, remove the vertical spacing prior to an enumerate'; \
+	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?)\\par\n(\\hypertarget{p-\d+}{}%\n)\\leavevmode%\n(\\begin{enumerate})/\1\4\5/g' orcca.tex; \
+	echo 'In an exercisegroup exercise, remove the vertical spacing prior to an enumerate'; \
+	perl -p0i -e 's/(\\exercise\[\d+\.\].*?\\hypertarget{exercise-\d+}{}\n(((?!exercise).)*\n)*?)\\par\n(\\hypertarget{p-\d+}{}%\n)\\leavevmode%\n(\\begin{enumerate})/\1\4\5/g' orcca.tex; \
+	echo 'In division exercise, when the problem starts with an enumerate, pull it upward vertically'; \
+	perl -p0i -e 's/(\\begin{divisionexercise}{\d+}\\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate})/\1\\vspace{-\\dimexpr\\parskip+1\\baselineskip-0.4pt\\relax}%\n%\2/g' orcca.tex; \
+	echo 'Images in a multicolumn exercicegroup need their sizing adjusted to account for the narrower column'; \
+	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\.1\}\{0\.1\}\{0\}\n\4\{0\.8\}/g' orcca.tex; done; \
+	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(3\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done ;\
+	echo 'Images in a multicolumn list within a webwork exercise need their sizing adjusted to account for the narrower column'; \
+	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
+	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
+	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
+	perl -p0i -e 's/(\\begin{divisionexercise}.*?\\hypertarget{exercise-\d+}{}\n(((?!divisionexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
+	perl -p0i -e 's/(\\begin{divisionexercise}.*?\\hypertarget{exercise-\d+}{}\n(((?!divisionexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
+	perl -p0i -e 's/(\\begin{divisionexercise}.*?\\hypertarget{exercise-\d+}{}\n(((?!divisionexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
 	perl -p0i -e 's/\\par\n(\\hypertarget{p-85}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
-	perl -p0i -e 's/\\par\n(\\hypertarget{p-890}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
-	perl -p0i -e 's/\\par\n(\\hypertarget{p-901}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
-	xelatex orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-929}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-940}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/(\\typeout{\*+}\n\\typeout{Subsection 1\.1\.6 )/\\pagebreak\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\hypertarget{exercisegroup-5}{})/\\pagebreak\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-9}{})/\\pagebreak\n\1/' orcca.tex; \
+	echo 'section-fractions-and-fraction-arithmetic'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-15}{})/\\pagebreak\n\1/' orcca.tex; \
+	echo 'section-absolute-value-and-square-root'; \
+	perl -p0i -e 's/\\par\\medskip\n(\\hypertarget{p-1955}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\\medskip\n(\\hypertarget{p-1977}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\\medskip\n(\\hypertarget{p-1981}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-20}{})/\\pagebreak\n\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2246}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2255}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2264}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2273}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2282}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2291}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	echo 'section-order-of-operations'; \
+	perl -pi -e 's/(^.*?\\label{exercise-227})/\\pagebreak\n\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2473}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2491}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2509}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2521}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	echo 'section-set-notation-and-types-of-numbers'; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-2962}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\\medskip\n(\\hypertarget{p-3002}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3097}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3105}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3113}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3121}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3257}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3264}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3285}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercise-358}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-comparison-symbols-and-notation-for-intervals'; \
+	perl -pi -e 's/(^.*?\\label{exercise-367})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3463}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -pi -e 's/(\\subsection\*{Exercises}\\label{exercises-6})/\\pagebreak\n\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3497}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3505}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3513}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3521}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	echo 'review-basic-math-review'; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-2[123456]}\n)/\1\\leavevmode\n/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-23})/\\pagebreak\n\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3940}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3945}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3972}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3980}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-3988}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4000}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4012}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4027}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4042}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4059}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4076}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4093}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4230}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4242}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4254}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4267}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4280}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4291}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4358}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-4365}{}%\n)\\leavevmode%\n/\1/' orcca.tex; \
+	echo 'section-variables-and-evaluating-expressions'; \
+	perl -p0i -e 's/\\par\\smallskip%\n(.*?\\hypertarget{solution-481})/\\pagebreak\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\exercise)(\[8\.\] \\hypertarget{exercise-498}{})/\1\*\2/' orcca.tex; \
+	perl -p0i -e 's/Evaluate%\n\\par\n\\hypertarget{p-481\d}{}%\n%\n\\begin{equation\*}\n(\\displaystyle\\frac{y_2 - y_1}{x_2 - x_1})\n\\end{equation\*}\n%\n\\par\n\\hypertarget{p-481\d}{}%\nfor/Evaluate \\\(\1\\\) for/g' orcca.tex; \
+	echo 'section-combining-like-terms'; \
+	perl -pi -e 's/(\\begin{inlineexercise}\\label{exercise-588})/\\pagebreak\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\begin{inlineexercise}\\label{exercise-589})/\\pagebreak\n\1/' orcca.tex; \
+	echo 'section-equations-and-inequalities-as-true-false-statements'; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-44}\n)/\1\\leavevmode\n/' orcca.tex; \
+	perl -pi -e 's/(^.*\\hypertarget{exercisegroup-49}{})/\\pagebreak\n\1/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
-
-
 
 #  HTML output
 #  Output lands in the subdirectory:  $(HTMLOUT)

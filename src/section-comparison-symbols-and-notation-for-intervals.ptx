@@ -138,13 +138,13 @@
                                 class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
                         );
                         $comparison=Compute("$bs");
-                        $numberline=init_graph(-12,-1,12,1,size=>[400,40]);
+                        $numberline=init_graph(-12,-1,12,1,size=>[240,60]);
                         $numberline->moveTo(-12,0);
                         $numberline->lineTo(12,0,'black');
                         for my$i(-12..12){$numberline->moveTo($i,-0.2);$numberline->lineTo($i,0.2,'black');};
-                        $numberline->lb(new Label(0,-0.2,"0",'black','center','top'));
-                        for my$i(0,2,4){$numberline->lb(new Label($b[$i],-0.2,"$b[$i]",'blue','center','top'));$numberline->stamps(closed_circle($b[$i],0,'blue'));};
-                        for my$i(1,3){$numberline->lb(new Label($b[$i],0.2,"$b[$i]",'blue','center','bottom'));$numberline->stamps(closed_circle($b[$i],0,'blue'));};
+                        $numberline->lb(new Label(0,-0.2,"0",'black','center','top','large'));
+                        for my$i(0,2,4){$numberline->lb(new Label($b[$i],-0.4,"$b[$i]",'blue','center','top','large'));$numberline->moveTo($b[$i],0);$numberline->lineTo($b[$i],-0.4);};
+                        for my$i(1,3){$numberline->lb(new Label($b[$i],0.4,"$b[$i]",'blue','center','bottom','large'));$numberline->moveTo($b[$i],0);$numberline->lineTo($b[$i],0.4);};
                     </pg-code>
                 </setup>
                 <statement>
@@ -154,7 +154,7 @@
                 </statement>
                 <solution>
                     <p>We can order these numbers by placing these numbers on a number line.</p>
-                    <sidebyside margins="0%" widths="67%"><image pg-name="$numberline"/></sidebyside>
+                    <sidebyside margins="0%" widths="40%"><image pg-name="$numberline"/></sidebyside>
                     <p>And so we see the answer is <m><var name="$comparison" /></m>.</p>
                 </solution>
             </webwork>
@@ -191,14 +191,14 @@
                         );
                         Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
                         $comparison=Compute("$bs");
-                        $numberline=init_graph(-12,-1,12,1,size=>[400,40]);
+                        $numberline=init_graph(-12,-1,12,1,size=>[240,60]);
                         $numberline->moveTo(-12,0);
                         $numberline->lineTo(12,0,'black');
                         for my$i(-12..12){$numberline->moveTo($i,-0.2);$numberline->lineTo($i,0.2,'black');};
-                        $numberline->lb(new Label(0,-0.2,"0",'black','center','top'));
-                        for my$i(0,2,4){$numberline->lb(new Label($c[$i],-0.2,"$b[$i]",'blue','center','top'));$numberline->stamps(closed_circle($c[$i],0,'blue'));};
-                        $numberline->lb(new Label($c[1],0.2,"$b[1]",'blue','center','bottom'));$numberline->stamps(closed_circle($c[1],0,'blue'));
-                        $numberline->lb(new Label($c[3],0.2,"$b[3]",'blue','right','bottom'));$numberline->stamps(closed_circle($c[3],0,'blue'));
+                        $numberline->lb(new Label(0,-0.2,"0",'black','center','top','large'));
+                        for my$i(0,2,4){$numberline->lb(new Label($c[$i],-0.4,"$b[$i]",'blue','center','top','large'));$numberline->moveTo($c[$i],0);$numberline->lineTo($c[$i],-0.4);};
+                        $numberline->lb(new Label($c[1],0.4,"$b[1]",'blue','center','bottom','large'));$numberline->moveTo($c[1],0);$numberline->lineTo($c[1],0.4);
+                        $numberline->lb(new Label($c[3],0.4,"$b[3]",'blue','right','bottom','large'));$numberline->moveTo($c[3],0);$numberline->lineTo($c[3],0.4);
                         $refreshCachedImages=1;
                     </pg-code>
                 </setup>
@@ -209,7 +209,7 @@
                 </statement>
                 <solution>
                     <p>We can order these numbers by placing these numbers on a number line. Knowing or computing their decimals helps with this.</p>
-                    <sidebyside margins="0%" widths="67%"><image pg-name="$numberline"/></sidebyside>
+                    <sidebyside margins="0%" widths="40%"><image pg-name="$numberline"/></sidebyside>
                     <p>And so we see the answer is <m><var name="$comparison" /></m>.</p>
                 </solution>
             </webwork>
@@ -435,14 +435,14 @@
 
             </statement>
         </definition>
-<!--TODO: Maybe remove this remark if WW number lines are changed to brackets-->
-        <remark>
+
+        <!-- <remark>
             <p>When graphing an interval, an alternative convention is to use open circles and filled-in circles. An open circle can be used in place of a round parenthesis, and a filled-in circle can be used in place of a square bracket, as in <xref ref="figure-alternate-interval">Figure</xref>.</p>
 
             <figure xml:id="figure-alternate-interval">
-                <caption>An alternate notation for graphing the interval <m>(-\infty,3)</m>.</caption>
-                <image width="50%">
-                    <description>a number line with a mark at a; the portion of the number line from a to the left has a thick line overlaying it; there is a hollow dot at a and an arrow on the left pointing left</description>
+                <caption>An alternate notation for graphing the interval <m>(a,b]</m>.</caption>
+                <image width="47%">
+                    <description>a number line with marks at a and b; the portion of the number line between a and b has a thick line overlaying it; there is a hollow dot at a and solid dot at b</description>
                     <latex-image>
                         <![CDATA[\begin{tikzpicture}
                             \begin{axis}[numberline,
@@ -450,14 +450,15 @@
                                         ticks=none,
                                         after end axis/.code={},
                                         ]
-                                \addplot[infiniteopeninterval,{Kite}-o] coordinates {(-0.5,0) (1,0)};
-                                \addplot[mark=none] coordinates {(1,0)} node[below] {$a$};
+                                \addplot[closedopeninterval,o-*] coordinates {(-0.5,0) (1,0)};
+                                \addplot[mark=none] coordinates {(1,0)} node[below] {$b$};
+                                \addplot[mark=none] coordinates {(-0.5,0)} node[below] {$a$};
                             \end{axis}
                         \end{tikzpicture}]]>
                     </latex-image>
                 </image>
             </figure>
-        </remark>
+        </remark> -->
 
         <exercise>
             <title>Interval and Set-Builder Notation from Number Lines</title>
@@ -478,8 +479,8 @@
                         $nl[$i]->arrowTo(5.5,0,'black',1);
                         $nl[$i]->moveTo(0,0);
                         $nl[$i]->arrowTo(-5.5,0,'black',1);
-                        $nl[$i]->lb(new Label(6,10,'x','black','right','middle'));
-                        for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top'));};
+                        $nl[$i]->lb(new Label(6,10,'x','black','right','middle','large'));
+                        for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top','large'));};
                         $nl[$i]->h_ticks(0,"black",@ticks);
                         };
                         $shadingoffset = 0.5;
@@ -525,7 +526,7 @@
 
                     <instruction>Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.</instruction>
 
-                    <p><ol label="a.">
+                    <p><ol label="a." cols="3">
                         <li>
                             <sidebyside margins="0%" widths="40%"><image pg-name="$nl[0]"/></sidebyside>
                             <p>In set-builder notation: <var name="$sb[0]" width="20" /></p>
@@ -549,10 +550,10 @@
                             <p>Since all numbers less than or equal to <m>2</m> are shaded, the set-builder notation is <var name="$sb[0]" />. The shaded interval <q>starts</q> at <m>-\infty</m> and ends at <m>2</m> (including <m>2</m>) so the interval notation is <var name="$in[0]"/>.</p>
                         </li>
                         <li>
-                            <p>Since all numbers less than to <m>2</m> are shaded, the set-builder notation is <var name="$sb[1]" />. The shaded interval <q>starts</q> at <m>-\infty</m> and ends at <m>2</m> (excluding <m>2</m>) so the interval notation is, <var name="$in[1]"/></p>
+                            <p>Since all numbers less than to <m>2</m> are shaded, the set-builder notation is <var name="$sb[1]" />. The shaded interval <q>starts</q> at <m>-\infty</m> and ends at <m>2</m> (excluding <m>2</m>) so the interval notation is <var name="$in[1]"/></p>
                         </li>
                         <li>
-                            <p>Since all numbers greater than or equal to <m>2</m> are shaded, the set-builder notation is <var name="$sb[2]" />. The shaded interval starts at <m>2</m> (including <m>2</m>) and <q>ends</q> at <m>\infty</m>, so the interval notation is<var name="$in[2]"/></p>
+                            <p>Since all numbers greater than or equal to <m>2</m> are shaded, the set-builder notation is <var name="$sb[2]" />. The shaded interval starts at <m>2</m> (including <m>2</m>) and <q>ends</q> at <m>\infty</m>, so the interval notation is <var name="$in[2]"/></p>
                         </li>
                     </ol></p>
                 </solution>
@@ -595,924 +596,895 @@
             <exercise>
                 <webwork source="BasicMath/FractionPercentDecimal/FractionToDecimal70.pg" />
             </exercise>
-        </exercisegroup>        
-    <exercisegroup>       
-        <introduction>
-            <p>Comparing Numbers with Inequality Symbols</p>
-        </introduction>
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @a=map{$_-10}NchooseK(21,5);
-                        if($envir{problemSeed}==1){@a=(3,7,-2,-3,4)};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @a=map{$_-10}NchooseK(21,5);
-                        if($envir{problemSeed}==1){@a=(3,7,-2,-3,4)};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @a=map{($_-1000)/100}NchooseK(2000,5);
-                        if($envir{problemSeed}==1){@a=(-7.1,-2.11,4.89,-3.1,-0.07)};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @a=map{($_-10)+random(0,0.8,0.2)+random(0,0.09,0.01)}NchooseK(19,4);
-                        if($a[1]&lt;0){$a[4]=$a[1]+0.1;}
-                        elsif($a[1]=-$a[0]){$a[4]=$a[0]+0.1;}
-                        elsif($a[1]=-$a[2]){$a[4]=$a[2]+0.1;}
-                        elsif($a[1]=-$a[3]){$a[4]=$a[3]+0.1;};
-                        if($envir{problemSeed}==1){@a=(2.4,-5.83,7.67,-2.01,-5.73)};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @a=map{$_-10}NchooseK(21,5);
-                        Context("Fraction");
-                        @i=NchooseK(5,2);
-                        @d=map{$_+2}NchooseK(7,2);
-                        $a[$i[0]]=Fraction($d[0]*$a[$i[0]]+random(1,$d[0]-1,1),$d[0]);
-                        $a[$i[1]]=Fraction($d[1]*$a[$i[1]]+random(1,$d[1]-1,1),$d[1]);
-                        if($envir{problemSeed}==1){@a=(-8,Fraction(53,8),Fraction(-17,3),9,8)};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @d=(random(2,9,1),random(2,9,1),random(2,9,1),random(2,9,1),random(2,9,1));
-                        Context("Fraction");
-                        $a[0]=Fraction(random(-1,1,2)*random(1,$d[0]*9,1),$d[0]);
-                        do{$a[1]=Fraction(random(-1,1,2)*random(1,$d[1]*9,1),$d[1]);}until($a[1]!=$a[0]);
-                        do{$a[2]=Fraction(random(-1,1,2)*random(1,$d[2]*9,1),$d[2]);}until($a[2]!=$a[0] and $a[2]!=$a[1]);
-                        do{$a[3]=Fraction(random(-1,1,2)*random(1,$d[3]*9,1),$d[3]);}until($a[3]!=$a[0] and $a[3]!=$a[1] and $a[3]!=$a[2]);
-                        do{$a[4]=Fraction(random(-1,1,2)*random(1,$d[4]*9,1),$d[4]);}until($a[4]!=$a[0] and $a[4]!=$a[1] and $a[4]!=$a[2] and $a[4]!=$a[3]);
-                        if($envir{problemSeed}==1){@a=(Fraction(-9,2),Fraction(7,4),Fraction(8,3),Fraction(-4,3),Fraction(-64,9))};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @c=map{$_-10}NchooseK(21,4);
-                        Context("Fraction");
-                        @d=map{$_+2}NchooseK(7,2);
-                        $c[2]=Fraction($d[0]*$a[2]+random(1,$d[0]-1,1),$d[0]);
-                        $c[3]=Fraction($d[1]*$a[3]+random(1,$d[1]-1,1),$d[1]);
-                        Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
-                        @irrationals=(Formula("pi"),Formula("pi/2"),Formula("sqrt(2)"),Formula("sqrt(3)"));
-                        ($c[4],$c[5])=(@irrationals)[NchooseK(4,2)];
-                        @a=(@c)[NchooseK(6,6)];
-                        if($envir{problemSeed}==1){@a=(6,Fraction(1,2),Formula("pi"),Fraction(3,4),-8,Formula("sqrt(2)"))};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        Context()->functions->add('sqrt' => {class => 'Parser::Function::numeric', braceTeX => 1, TeX => '\sqrt'});
-                        Context()->parens->add('(' => {close => ')', type => 'Point', formMatrix => 1, formInterval => ']', formList => 1, removable => 1, emptyOK => 1, function => 1});
-                        Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        @c=map{$_-10}NchooseK(21,4);
-                        Context("Fraction");
-                        @d=map{$_+2}NchooseK(7,2);
-                        $c[2]=Fraction($d[0]*$a[2]+random(1,$d[0]-1,1),$d[0]);
-                        $c[3]=Fraction($d[1]*$a[3]+random(1,$d[1]-1,1),$d[1]);
-                        Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
-                        @irrationals=(Formula("pi"),Formula("pi/2"),Formula("sqrt(2)"),Formula("sqrt(3)"));
-                        ($c[4],$c[5])=(@irrationals)[NchooseK(4,2)];
-                        @a=(@c)[NchooseK(6,6)];
-                        if($envir{problemSeed}==1){@a=(6,Fraction(1,2),Formula("pi"),Fraction(3,4),-8,Formula("sqrt(2)"))};
-                        Context()->texStrings;
-                        $as='{'.join('}\quad{',@a).'}';
-                        Context()->normalStrings;
-                        @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                        $bs=join('>',@b);
-                        package context::Ordering::BOP::ordering;
-                        *isOrdering = sub {
-                            my $self = shift; my $obj = shift; my $class = $obj->class;
-                            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                        };
-                        package main;
-                        Context("Ordering");
-                        Context()->operators->add(
-                        '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                                class => 'Parser::BOP::subtract', rightparens => 'same'},
-                        '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                                class => 'Parser::BOP::divide', space => ' /',
-                                rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                        'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                                class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                        );
-                        Context()->functions->add('sqrt' => {class => 'Parser::Function::numeric', braceTeX => 1, TeX => '\sqrt'});
-                        Context()->parens->add('(' => {close => ')', type => 'Point', formMatrix => 1, formInterval => ']', formList => 1, removable => 1, emptyOK => 1, function => 1});
-                        Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
-                        $comparison=Compute("$bs");
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
-                    <p><me><var name="$as" /></me></p>
-                    <p><var name="$comparison" width="30" /></p>
-                </statement>
-            </webwork>
-        </exercise>
-    </exercisegroup>
-
+        </exercisegroup>
         <exercisegroup cols="2">
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        #randomizes from 12, only presents 6
-                        ($left[1],$left[3],$left[5],$left[7],$left[9],$left[11])=map{$_-10}(NchooseK(20,6));
-                        ($right[1],$right[3],$right[5],$right[7],$right[9],$right[11])=($left[1],$left[3],$left[5],$left[7],$left[9],$left[11]);
-                        ($left[0],$right[0])=map{$_-10}(NchooseK(20,2));
-                        ($left[2],$right[2])=map{$_-10}(NchooseK(20,2));
-                        ($left[4],$right[4])=map{$_-10}(NchooseK(20,2));
-                        ($left[6],$right[6])=map{$_-10}(NchooseK(20,2));
-                        ($left[8],$right[8])=map{$_-10}(NchooseK(20,2));
-                        ($left[10],$right[10])=map{$_-10}(NchooseK(20,2));
-                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
-                        @j=NchooseK(12,12);
-                        @statement=map{$left[$j[$_]].$comp[$j[$_]].$right[$j[$_]]}(0..11);
-                        $True=PopUp(["?","True","False"],"True");
-                        $False=PopUp(["?","True","False"],"False");
-                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
-                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
-                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
-                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
-                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
-                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
-                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
-                        if($envir{problemSeed}==1){@statement=('-5\geq6','-3\neq-3','-6\geq-6','-1=-7','-7\gt3','-8=-8');@TF=($False,$False,$True,$False,$False,$True);};
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Decide if each comparison is true or false.</p>
-                    <sidebyside margins="0%">
-                        <tabular>
-                            <row>
-                                <cell><m><var name="$statement[0]" /></m></cell>
-                                <cell><var name="$TF[0]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[1]" /></m></cell>
-                                <cell><var name="$TF[1]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[2]" /></m></cell>
-                                <cell><var name="$TF[2]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[3]" /></m></cell>
-                                <cell><var name="$TF[3]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[4]" /></m></cell>
-                                <cell><var name="$TF[4]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[5]" /></m></cell>
-                                <cell><var name="$TF[5]" form="popup"/></cell>
-                            </row>
-                        </tabular>
-                    </sidebyside>
-                </statement>
-            </webwork>
-        </exercise>
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        #randomizes from 12, only presents 6
-                        ($left[1],$left[3],$left[5],$left[7],$left[9],$left[11])=map{$_-10}(NchooseK(20,6));
-                        ($right[1],$right[3],$right[5],$right[7],$right[9],$right[11])=($left[1],$left[3],$left[5],$left[7],$left[9],$left[11]);
-                        ($left[0],$right[0])=map{$_-10}(NchooseK(20,2));
-                        ($left[2],$right[2])=map{$_-10}(NchooseK(20,2));
-                        ($left[4],$right[4])=map{$_-10}(NchooseK(20,2));
-                        ($left[6],$right[6])=map{$_-10}(NchooseK(20,2));
-                        ($left[8],$right[8])=map{$_-10}(NchooseK(20,2));
-                        ($left[10],$right[10])=map{$_-10}(NchooseK(20,2));
-                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
-                        @j=NchooseK(12,12);
-                        @statement=map{$left[$j[$_]].$comp[$j[$_]].$right[$j[$_]]}(0..11);
-                        $True=PopUp(["?","True","False"],"True");
-                        $False=PopUp(["?","True","False"],"False");
-                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
-                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
-                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
-                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
-                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
-                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
-                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
-                        if($envir{problemSeed}==1){@statement=('-5\neq2','8\lt8','-8\lt-6','7\leq7','5\gt5','5\leq3');@TF=($True,$False,$True,$True,$False,$False);};
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Decide if each comparison is true or false.</p>
-                    <sidebyside margins="0%">
-                        <tabular>
-                            <row>
-                                <cell><m><var name="$statement[0]" /></m></cell>
-                                <cell><var name="$TF[0]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[1]" /></m></cell>
-                                <cell><var name="$TF[1]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[2]" /></m></cell>
-                                <cell><var name="$TF[2]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[3]" /></m></cell>
-                                <cell><var name="$TF[3]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[4]" /></m></cell>
-                                <cell><var name="$TF[4]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[5]" /></m></cell>
-                                <cell><var name="$TF[5]" form="popup"/></cell>
-                            </row>
-                        </tabular>
-                    </sidebyside>
-                </statement>
-            </webwork>
-        </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @a=map{$_-10}NchooseK(21,5);
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
 
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        #randomizes from 12, only presents 6
-                        ($ln[1],$ln[3],$ln[5],$ln[7],$ln[9],$ln[11])=map{$_-10}(NchooseK(20,6));
-                        Context("Fraction");
-                        Context()->flags->set(reduceFractions=>0);
-                        for my$i(1,3,5,7,9,11){$g[$i]=random(1,3,1);
-                            $ld[$i]=random(2,9,1);
-                            $left[$i]=Fraction($ln[$i],$ld[$i]);
-                            $right[$i]=Fraction($ln[$i]*$g[$i],$ld[$i]*$g[$i])};
-                        for my$i(0,2,4,6,8,10){$ld[$i]=random(2,9,1);
-                            $left[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$ld[$i]+random(1,$ld[$i]-1,1),$ld[$i]);
-                            $rd[$i]=random(2,9,1);
-                            $right[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$rd[$i]+random(1,$rd[$i]-1,1),$rd[$i]);};
-                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
-                        @j=NchooseK(12,12);
-                        @statement=map{$left[$j[$_]]->TeX.$comp[$j[$_]].$right[$j[$_]]->TeX}(0..11);
-                        $True=PopUp(["?","True","False"],"True");
-                        $False=PopUp(["?","True","False"],"False");
-                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
-                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
-                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
-                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
-                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
-                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
-                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
-                        if($envir{problemSeed}==1){@statement=('\frac{5}{7}\gt\frac{5}{7}','-\frac{35}{4}\geq-\frac{12}{9}','-\frac{13}{2}\neq\frac{33}{8}','-\frac{3}{6}\neq-\frac{3}{6}','\frac{7}{7}\leq\frac{21}{21}','\frac{11}{3}\lt\frac{42}{5}');@TF=($False,$False,$True,$False,$True,$True);};
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Decide if each comparison is true or false.</p>
-                    <sidebyside margins="0%">
-                        <tabular>
-                            <row>
-                                <cell><m><var name="$statement[0]" /></m></cell>
-                                <cell><var name="$TF[0]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[1]" /></m></cell>
-                                <cell><var name="$TF[1]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[2]" /></m></cell>
-                                <cell><var name="$TF[2]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[3]" /></m></cell>
-                                <cell><var name="$TF[3]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[4]" /></m></cell>
-                                <cell><var name="$TF[4]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[5]" /></m></cell>
-                                <cell><var name="$TF[5]" form="popup"/></cell>
-                            </row>
-                        </tabular>
-                    </sidebyside>
-                </statement>
-            </webwork>
-        </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @a=map{$_-10}NchooseK(21,5);
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
 
-        <exercise>
-            <webwork >
-                <setup>
-                    <pg-code>
-                        #randomizes from 12, only presents 6
-                        ($ln[1],$ln[3],$ln[5],$ln[7],$ln[9],$ln[11])=map{$_-10}(NchooseK(20,6));
-                        Context("Fraction");
-                        Context()->flags->set(reduceFractions=>0);
-                        for my$i(1,3,5,7,9,11){$g[$i]=random(1,3,1);
-                            $ld[$i]=random(2,9,1);
-                            $left[$i]=Fraction($ln[$i],$ld[$i]);
-                            $right[$i]=Fraction($ln[$i]*$g[$i],$ld[$i]*$g[$i])};
-                        for my$i(0,2,4,6,8,10){$ld[$i]=random(2,9,1);
-                            $left[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$ld[$i]+random(1,$ld[$i]-1,1),$ld[$i]);
-                            $rd[$i]=random(2,9,1);
-                            $right[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$rd[$i]+random(1,$rd[$i]-1,1),$rd[$i]);};
-                        @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
-                        @j=NchooseK(12,12);
-                        @statement=map{$left[$j[$_]]->TeX.$comp[$j[$_]].$right[$j[$_]]->TeX}(0..11);
-                        $True=PopUp(["?","True","False"],"True");
-                        $False=PopUp(["?","True","False"],"False");
-                        for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
-                        for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
-                        for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
-                        for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
-                        for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
-                        for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
-                        for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
-                        if($envir{problemSeed}==1){@statement=('\frac{6}{5}\gt\frac{5}{3}','\frac{80}{9}\leq-\frac{17}{4}','-\frac{8}{9}=-\frac{16}{18}','-\frac{6}{3}\geq-\frac{6}{3}','\frac{8}{3}\lt\frac{8}{3}','\frac{21}{5}=-\frac{29}{3}');@TF=($False,$False,$True,$True,$False,$False);};
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>Decide if each comparison is true or false.</p>
-                    <sidebyside margins="0%">
-                        <tabular>
-                            <row>
-                                <cell><m><var name="$statement[0]" /></m></cell>
-                                <cell><var name="$TF[0]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[1]" /></m></cell>
-                                <cell><var name="$TF[1]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[2]" /></m></cell>
-                                <cell><var name="$TF[2]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[3]" /></m></cell>
-                                <cell><var name="$TF[3]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[4]" /></m></cell>
-                                <cell><var name="$TF[4]" form="popup"/></cell>
-                            </row>
-                            <row>
-                                <cell><m><var name="$statement[5]" /></m></cell>
-                                <cell><var name="$TF[5]" form="popup"/></cell>
-                            </row>
-                        </tabular>
-                    </sidebyside>
-                </statement>
-            </webwork>
-        </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @a=map{($_-1000)/100}NchooseK(2000,5);
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @a=map{($_-10)+random(0,0.8,0.2)+random(0,0.09,0.01)}NchooseK(19,4);
+                            if($a[1]&lt;0){$a[4]=$a[1]+0.1;}
+                            elsif($a[1]=-$a[0]){$a[4]=$a[0]+0.1;}
+                            elsif($a[1]=-$a[2]){$a[4]=$a[2]+0.1;}
+                            elsif($a[1]=-$a[3]){$a[4]=$a[3]+0.1;};
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @a=map{$_-10}NchooseK(21,5);
+                            Context("Fraction");
+                            @i=NchooseK(5,2);
+                            @d=map{$_+2}NchooseK(7,2);
+                            $a[$i[0]]=Fraction($d[0]*$a[$i[0]]+random(1,$d[0]-1,1),$d[0]);
+                            $a[$i[1]]=Fraction($d[1]*$a[$i[1]]+random(1,$d[1]-1,1),$d[1]);
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @d=(random(2,9,1),random(2,9,1),random(2,9,1),random(2,9,1),random(2,9,1));
+                            Context("Fraction");
+                            $a[0]=Fraction(random(-1,1,2)*random(1,$d[0]*9,1),$d[0]);
+                            do{$a[1]=Fraction(random(-1,1,2)*random(1,$d[1]*9,1),$d[1]);}until($a[1]!=$a[0]);
+                            do{$a[2]=Fraction(random(-1,1,2)*random(1,$d[2]*9,1),$d[2]);}until($a[2]!=$a[0] and $a[2]!=$a[1]);
+                            do{$a[3]=Fraction(random(-1,1,2)*random(1,$d[3]*9,1),$d[3]);}until($a[3]!=$a[0] and $a[3]!=$a[1] and $a[3]!=$a[2]);
+                            do{$a[4]=Fraction(random(-1,1,2)*random(1,$d[4]*9,1),$d[4]);}until($a[4]!=$a[0] and $a[4]!=$a[1] and $a[4]!=$a[2] and $a[4]!=$a[3]);
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @c=map{$_-10}NchooseK(21,4);
+                            Context("Fraction");
+                            @d=map{$_+2}NchooseK(7,2);
+                            $c[2]=Fraction($d[0]*$a[2]+random(1,$d[0]-1,1),$d[0]);
+                            $c[3]=Fraction($d[1]*$a[3]+random(1,$d[1]-1,1),$d[1]);
+                            Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+                            @irrationals=(Formula("pi"),Formula("pi/2"),Formula("sqrt(2)"),Formula("sqrt(3)"));
+                            ($c[4],$c[5])=(@irrationals)[NchooseK(4,2)];
+                            @a=(@c)[NchooseK(6,6)];
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            Context()->functions->add('sqrt' => {class => 'Parser::Function::numeric', braceTeX => 1, TeX => '\sqrt'});
+                            Context()->parens->add('(' => {close => ')', type => 'Point', formMatrix => 1, formInterval => ']', formList => 1, removable => 1, emptyOK => 1, function => 1});
+                            Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            @c=map{$_-10}NchooseK(21,4);
+                            Context("Fraction");
+                            @d=map{$_+2}NchooseK(7,2);
+                            $c[2]=Fraction($d[0]*$a[2]+random(1,$d[0]-1,1),$d[0]);
+                            $c[3]=Fraction($d[1]*$a[3]+random(1,$d[1]-1,1),$d[1]);
+                            Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+                            @irrationals=(Formula("pi"),Formula("pi/2"),Formula("sqrt(2)"),Formula("sqrt(3)"));
+                            ($c[4],$c[5])=(@irrationals)[NchooseK(4,2)];
+                            @a=(@c)[NchooseK(6,6)];
+                            Context()->texStrings;
+                            $as='{'.join('}\quad{',@a).'}';
+                            Context()->normalStrings;
+                            @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+                            $bs=join('>',@b);
+                            package context::Ordering::BOP::ordering;
+                            *isOrdering = sub {
+                                my $self = shift; my $obj = shift; my $class = $obj->class;
+                                return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+                            };
+                            package main;
+                            Context("Ordering");
+                            Context()->operators->add(
+                            '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                                    class => 'Parser::BOP::subtract', rightparens => 'same'},
+                            '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                                    class => 'Parser::BOP::divide', space => ' /',
+                                    rightparens => 'all', leftparens => 'extra', fullparens => 1},
+                            'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                                    class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+                            );
+                            Context()->functions->add('sqrt' => {class => 'Parser::Function::numeric', braceTeX => 1, TeX => '\sqrt'});
+                            Context()->parens->add('(' => {close => ')', type => 'Point', formMatrix => 1, formInterval => ']', formList => 1, removable => 1, emptyOK => 1, function => 1});
+                            Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
+                            $comparison=Compute("$bs");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like <c>4&gt;3&gt;2&gt;1&gt;0</c>.</p>
+                        <p><me><var name="$as" /></me></p>
+                        <p><var name="$comparison" width="30" /></p>
+                    </statement>
+                </webwork>
+            </exercise>
         </exercisegroup>
 
         <exercisegroup cols="2">
-        <exercise>
-            <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
-        </exercise>
-<!--order intentional to reduce redundancy of odds-->
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers40.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers40.pg" />
-        </exercise>
-<!--TODO: Create WW problems that are similar to Library/PCC/BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers40.pg, but that compare 3<3 as a single T/F statement, as well as 4<=4-->
-    </exercisegroup>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            #randomizes from 12, only presents 6
+                            ($left[1],$left[3],$left[5],$left[7],$left[9],$left[11])=map{$_-10}(NchooseK(20,6));
+                            ($right[1],$right[3],$right[5],$right[7],$right[9],$right[11])=($left[1],$left[3],$left[5],$left[7],$left[9],$left[11]);
+                            ($left[0],$right[0])=map{$_-10}(NchooseK(20,2));
+                            ($left[2],$right[2])=map{$_-10}(NchooseK(20,2));
+                            ($left[4],$right[4])=map{$_-10}(NchooseK(20,2));
+                            ($left[6],$right[6])=map{$_-10}(NchooseK(20,2));
+                            ($left[8],$right[8])=map{$_-10}(NchooseK(20,2));
+                            ($left[10],$right[10])=map{$_-10}(NchooseK(20,2));
+                            @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                            @j=NchooseK(12,12);
+                            @statement=map{$left[$j[$_]].$comp[$j[$_]].$right[$j[$_]]}(0..11);
+                            $True=PopUp(["?","True","False"],"True");
+                            $False=PopUp(["?","True","False"],"False");
+                            for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                            for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                            for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                            for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                            for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                            for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                            for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Decide if each comparison is true or false.</p>
+                        <sidebyside margins="0%">
+                            <tabular>
+                                <row>
+                                    <cell><m><var name="$statement[0]" /></m></cell>
+                                    <cell><var name="$TF[0]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[1]" /></m></cell>
+                                    <cell><var name="$TF[1]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[2]" /></m></cell>
+                                    <cell><var name="$TF[2]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[3]" /></m></cell>
+                                    <cell><var name="$TF[3]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[4]" /></m></cell>
+                                    <cell><var name="$TF[4]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[5]" /></m></cell>
+                                    <cell><var name="$TF[5]" form="popup"/></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            #randomizes from 12, only presents 6
+                            ($left[1],$left[3],$left[5],$left[7],$left[9],$left[11])=map{$_-10}(NchooseK(20,6));
+                            ($right[1],$right[3],$right[5],$right[7],$right[9],$right[11])=($left[1],$left[3],$left[5],$left[7],$left[9],$left[11]);
+                            ($left[0],$right[0])=map{$_-10}(NchooseK(20,2));
+                            ($left[2],$right[2])=map{$_-10}(NchooseK(20,2));
+                            ($left[4],$right[4])=map{$_-10}(NchooseK(20,2));
+                            ($left[6],$right[6])=map{$_-10}(NchooseK(20,2));
+                            ($left[8],$right[8])=map{$_-10}(NchooseK(20,2));
+                            ($left[10],$right[10])=map{$_-10}(NchooseK(20,2));
+                            @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                            @j=NchooseK(12,12);
+                            @statement=map{$left[$j[$_]].$comp[$j[$_]].$right[$j[$_]]}(0..11);
+                            $True=PopUp(["?","True","False"],"True");
+                            $False=PopUp(["?","True","False"],"False");
+                            for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                            for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                            for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                            for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                            for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                            for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                            for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Decide if each comparison is true or false.</p>
+                        <sidebyside margins="0%">
+                            <tabular>
+                                <row>
+                                    <cell><m><var name="$statement[0]" /></m></cell>
+                                    <cell><var name="$TF[0]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[1]" /></m></cell>
+                                    <cell><var name="$TF[1]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[2]" /></m></cell>
+                                    <cell><var name="$TF[2]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[3]" /></m></cell>
+                                    <cell><var name="$TF[3]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[4]" /></m></cell>
+                                    <cell><var name="$TF[4]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[5]" /></m></cell>
+                                    <cell><var name="$TF[5]" form="popup"/></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            #randomizes from 12, only presents 6
+                            ($ln[1],$ln[3],$ln[5],$ln[7],$ln[9],$ln[11])=map{$_-10}(NchooseK(20,6));
+                            Context("Fraction");
+                            Context()->flags->set(reduceFractions=>0);
+                            for my$i(1,3,5,7,9,11){$g[$i]=random(1,3,1);
+                                $ld[$i]=random(2,9,1);
+                                $left[$i]=Fraction($ln[$i],$ld[$i]);
+                                $right[$i]=Fraction($ln[$i]*$g[$i],$ld[$i]*$g[$i])};
+                            for my$i(0,2,4,6,8,10){$ld[$i]=random(2,9,1);
+                                $left[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$ld[$i]+random(1,$ld[$i]-1,1),$ld[$i]);
+                                $rd[$i]=random(2,9,1);
+                                $right[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$rd[$i]+random(1,$rd[$i]-1,1),$rd[$i]);};
+                            @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                            @j=NchooseK(12,12);
+                            @statement=map{$left[$j[$_]]->TeX.$comp[$j[$_]].$right[$j[$_]]->TeX}(0..11);
+                            $True=PopUp(["?","True","False"],"True");
+                            $False=PopUp(["?","True","False"],"False");
+                            for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                            for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                            for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                            for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                            for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                            for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                            for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Decide if each comparison is true or false.</p>
+                        <sidebyside margins="0%">
+                            <tabular>
+                                <row>
+                                    <cell><m><var name="$statement[0]" /></m></cell>
+                                    <cell><var name="$TF[0]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[1]" /></m></cell>
+                                    <cell><var name="$TF[1]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[2]" /></m></cell>
+                                    <cell><var name="$TF[2]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[3]" /></m></cell>
+                                    <cell><var name="$TF[3]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[4]" /></m></cell>
+                                    <cell><var name="$TF[4]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[5]" /></m></cell>
+                                    <cell><var name="$TF[5]" form="popup"/></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <exercise>
+                <webwork >
+                    <setup>
+                        <pg-code>
+                            #randomizes from 12, only presents 6
+                            ($ln[1],$ln[3],$ln[5],$ln[7],$ln[9],$ln[11])=map{$_-10}(NchooseK(20,6));
+                            Context("Fraction");
+                            Context()->flags->set(reduceFractions=>0);
+                            for my$i(1,3,5,7,9,11){$g[$i]=random(1,3,1);
+                                $ld[$i]=random(2,9,1);
+                                $left[$i]=Fraction($ln[$i],$ld[$i]);
+                                $right[$i]=Fraction($ln[$i]*$g[$i],$ld[$i]*$g[$i])};
+                            for my$i(0,2,4,6,8,10){$ld[$i]=random(2,9,1);
+                                $left[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$ld[$i]+random(1,$ld[$i]-1,1),$ld[$i]);
+                                $rd[$i]=random(2,9,1);
+                                $right[$i]=random(-1,1,2)*Fraction(random(1,9,1)*$rd[$i]+random(1,$rd[$i]-1,1),$rd[$i]);};
+                            @comp=("=","=","\gt","\gt","\geq","\geq","\lt","\lt","\leq","\leq","\neq","\neq");
+                            @j=NchooseK(12,12);
+                            @statement=map{$left[$j[$_]]->TeX.$comp[$j[$_]].$right[$j[$_]]->TeX}(0..11);
+                            $True=PopUp(["?","True","False"],"True");
+                            $False=PopUp(["?","True","False"],"False");
+                            for my$i(0..1){$tf[$i]=($left[$i]==$right[$i])?$True:$False;};
+                            for my$i(2..3){$tf[$i]=($left[$i]>$right[$i])?$True:$False;};
+                            for my$i(4..5){$tf[$i]=($left[$i]>=$right[$i])?$True:$False;};
+                            for my$i(6..7){$tf[$i]=($left[$i]&lt;$right[$i])?$True:$False;};
+                            for my$i(8..9){$tf[$i]=($left[$i]&lt;=$right[$i])?$True:$False;};
+                            for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
+                            for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Decide if each comparison is true or false.</p>
+                        <sidebyside margins="0%">
+                            <tabular>
+                                <row>
+                                    <cell><m><var name="$statement[0]" /></m></cell>
+                                    <cell><var name="$TF[0]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[1]" /></m></cell>
+                                    <cell><var name="$TF[1]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[2]" /></m></cell>
+                                    <cell><var name="$TF[2]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[3]" /></m></cell>
+                                    <cell><var name="$TF[3]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[4]" /></m></cell>
+                                    <cell><var name="$TF[4]" form="popup"/></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$statement[5]" /></m></cell>
+                                    <cell><var name="$TF[5]" form="popup"/></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
+            </exercise>
+        </exercisegroup>
+
+        <exercisegroup cols="2">
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareFractionOperations30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/ComparisonsAndBasicInequalities/CompareNumbers30.pg" />
+            </exercise>
+        </exercisegroup>
     
-    <exercisegroup>
-        <introduction>
-            <p>Set-Builder and Interval Notation</p>
-        </introduction>
-        <exercise>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        ($a[0],$b[0])=num_sort(map{$_-4}NchooseK(9,2));
-                        ($a[1],$b[1])=num_sort(map{$_-4}NchooseK(9,2));
-                        ($a[2],$b[2])=num_sort(map{$_-4}NchooseK(9,2));
-                        %left=(oi=>'(',ci=>'[',io=>'(',ic=>'(');
-                        %right=(oi=>')',ci=>')',io=>')',ic=>']');
-                        @type=('oi','ci','io','ic')[NchooseK(4,3)];
-                        @ticks = ();
-                        for my $j (-5..5) {push(@ticks,$j);};
-                        for my$i(0,1,2){
-                        $nl[$i]=init_graph(-6,-1,6,1,size=>[240,32]);
-                        $nl[$i]->moveTo(0,0);
-                        $nl[$i]->arrowTo(5.5,0,'black',1);
-                        $nl[$i]->moveTo(0,0);
-                        $nl[$i]->arrowTo(-5.5,0,'black',1);
-                        $nl[$i]->lb(new Label(6,10,'x','black','right','middle'));
-                        for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top'));};
-                        $nl[$i]->h_ticks(0,"black",@ticks);
-                        };
-                        $shadingoffset = 0.5;
-                        for my$i(0..2){
-                        if($type[$i]eq'oi' or $type[$i]eq'ci'){
-                          $nl[$i]->moveTo($a[$i],$shadingoffset);
-                          $nl[$i]->lineTo(5.25,$shadingoffset,'blue',1);
-                          $nl[$i]->moveTo($a[$i],$shadingoffset);
-                          $nl[$i]->arrowTo(5.5,$shadingoffset,'blue',1);
-                        }else{
-                          $nl[$i]->moveTo($b[$i],$shadingoffset);
-                          $nl[$i]->lineTo(-5.25,$shadingoffset,'blue',1);
-                          $nl[$i]->moveTo($b[$i],$shadingoffset);
-                          $nl[$i]->arrowTo(-5.5,$shadingoffset,'blue',1);
-                        };
-                        if($type[$i]eq'oi'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));}
-                          elsif($type[$i]eq'ci'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));}
-                          elsif($type[$i]eq'io'){$nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));}
-                          else{$nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));}
-                        };
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            ($a[0],$b[0])=num_sort(map{$_-4}NchooseK(9,2));
+                            ($a[1],$b[1])=num_sort(map{$_-4}NchooseK(9,2));
+                            ($a[2],$b[2])=num_sort(map{$_-4}NchooseK(9,2));
+                            %left=(oi=>'(',ci=>'[',io=>'(',ic=>'(');
+                            %right=(oi=>')',ci=>')',io=>')',ic=>']');
+                            @type=('oi','ci','io','ic')[NchooseK(4,3)];
+                            @ticks = ();
+                            for my $j (-5..5) {push(@ticks,$j);};
+                            for my$i(0,1,2){
+                            $nl[$i]=init_graph(-6,-1,6,1,size=>[240,32]);
+                            $nl[$i]->moveTo(0,0);
+                            $nl[$i]->arrowTo(5.5,0,'black',1);
+                            $nl[$i]->moveTo(0,0);
+                            $nl[$i]->arrowTo(-5.5,0,'black',1);
+                            $nl[$i]->lb(new Label(6,-0.2,'x','black','right','top','large'));
+                            for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top','large'));};
+                            $nl[$i]->h_ticks(0,"black",@ticks);
+                            };
+                            $shadingoffset = 0.5;
+                            for my$i(0..2){
+                            if($type[$i]eq'oi' or $type[$i]eq'ci'){
+                              $nl[$i]->moveTo($a[$i],$shadingoffset);
+                              $nl[$i]->lineTo(5.25,$shadingoffset,'blue',1);
+                              $nl[$i]->moveTo($a[$i],$shadingoffset);
+                              $nl[$i]->arrowTo(5.5,$shadingoffset,'blue',1);
+                            }else{
+                              $nl[$i]->moveTo($b[$i],$shadingoffset);
+                              $nl[$i]->lineTo(-5.25,$shadingoffset,'blue',1);
+                              $nl[$i]->moveTo($b[$i],$shadingoffset);
+                              $nl[$i]->arrowTo(-5.5,$shadingoffset,'blue',1);
+                            };
+                            if($type[$i]eq'oi'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));}
+                              elsif($type[$i]eq'ci'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));}
+                              elsif($type[$i]eq'io'){$nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));}
+                              else{$nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));}
+                            };
 
-                        InequalitySetBuilder::UseVerticalSuchThat();
-                        Context("InequalitySetBuilder-Only");
-                        for my$i(0..2){
-                        if($type[$i]eq'oi'){$sb[$i]=Compute("{ x | x>$a[$i]}");}
-                        elsif($type[$i]eq'ci'){$sb[$i]=Compute("{ x | x>=$a[$i]}");}
-                        elsif($type[$i]eq'io'){$sb[$i]=Compute("{ x | x&lt;$b[$i]}");}
-                        else{$sb[$i]=Compute("{ x | x&lt;=$b[$i]}");}
-                        };
+                            InequalitySetBuilder::UseVerticalSuchThat();
+                            Context("InequalitySetBuilder-Only");
+                            for my$i(0..2){
+                            if($type[$i]eq'oi'){$sb[$i]=Compute("{ x | x>$a[$i]}");}
+                            elsif($type[$i]eq'ci'){$sb[$i]=Compute("{ x | x>=$a[$i]}");}
+                            elsif($type[$i]eq'io'){$sb[$i]=Compute("{ x | x&lt;$b[$i]}");}
+                            else{$sb[$i]=Compute("{ x | x&lt;=$b[$i]}");}
+                            };
 
-                        Context("Interval");
-                        Context()->flags->set("formatStudentAnswer"=>'parsed');
-                        for my$i(0..2){
-                        if($type[$i]eq'oi'){$in[$i]=Compute("($a[$i],inf)");}
-                        elsif($type[$i]eq'ci'){$in[$i]=Compute("[$a[$i],inf)");}
-                        elsif($type[$i]eq'io'){$in[$i]=Compute("(-inf,$b[$i])");}
-                        else{$in[$i]=Compute("(-inf,$b[$i]]");}
-                        };
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>For each interval expressed in the number lines, give the interval notation and set-builder notation.</p>
+                            Context("Interval");
+                            Context()->flags->set("formatStudentAnswer"=>'parsed');
+                            for my$i(0..2){
+                            if($type[$i]eq'oi'){$in[$i]=Compute("($a[$i],inf)");}
+                            elsif($type[$i]eq'ci'){$in[$i]=Compute("[$a[$i],inf)");}
+                            elsif($type[$i]eq'io'){$in[$i]=Compute("(-inf,$b[$i])");}
+                            else{$in[$i]=Compute("(-inf,$b[$i]]");}
+                            };
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>For each interval expressed in the number lines, give the interval notation and set-builder notation.</p>
 
-                    <instruction>Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.</instruction>
+                        <instruction>Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.</instruction>
 
-                    <p><ol label="a.">
-                        <li>
-                            <sidebyside margins="0%" widths="40%"><image pg-name="$nl[0]"/></sidebyside>
-                            <p>In set-builder notation: <var name="$sb[0]" width="20" /></p>
-                            <p>In interval notation: <var name="$in[0]" width="20" /></p>
-                        </li>
-                        <li>
-                            <sidebyside margins="0%" widths="40%"><image pg-name="$nl[1]"/></sidebyside>
-                            <p>In set-builder notation: <var name="$sb[1]" width="20" /></p>
-                            <p>In interval notation: <var name="$in[1]" width="20" /></p>
-                        </li>
-                        <li>
-                            <sidebyside margins="0%" widths="40%"><image pg-name="$nl[2]"/></sidebyside>
-                            <p>In set-builder notation: <var name="$sb[2]" width="20" /></p>
-                            <p>In interval notation: <var name="$in[2]" width="20" /></p>
-                        </li>
-                    </ol></p>
-                </statement>
-            </webwork>
-        </exercise>
-        <exercise>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        ($a[0],$b[0])=num_sort(map{$_-4}NchooseK(9,2));
-                        ($a[1],$b[1])=num_sort(map{$_-4}NchooseK(9,2));
-                        ($a[2],$b[2])=num_sort(map{$_-4}NchooseK(9,2));
-                        %left=(oi=>'(',ci=>'[',io=>'(',ic=>'(');
-                        %right=(oi=>')',ci=>')',io=>')',ic=>']');
-                        @type=('oi','ci','io','ic')[NchooseK(4,3)];
-                        @ticks = ();
-                        for my $j (-5..5) {push(@ticks,$j);};
-                        for my$i(0,1,2){
-                        $nl[$i]=init_graph(-6,-1,6,1,size=>[240,32]);
-                        $nl[$i]->moveTo(0,0);
-                        $nl[$i]->arrowTo(5.5,0,'black',1);
-                        $nl[$i]->moveTo(0,0);
-                        $nl[$i]->arrowTo(-5.5,0,'black',1);
-                        $nl[$i]->lb(new Label(6,10,'x','black','right','middle'));
-                        for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top'));};
-                        $nl[$i]->h_ticks(0,"black",@ticks);
-                        };
-                        $shadingoffset = 0.5;
-                        for my$i(0..2){
-                        if($type[$i]eq'oi' or $type[$i]eq'ci'){
-                          $nl[$i]->moveTo($a[$i],$shadingoffset);
-                          $nl[$i]->lineTo(5.25,$shadingoffset,'blue',1);
-                          $nl[$i]->moveTo($a[$i],$shadingoffset);
-                          $nl[$i]->arrowTo(5.5,$shadingoffset,'blue',1);
-                        }else{
-                          $nl[$i]->moveTo($b[$i],$shadingoffset);
-                          $nl[$i]->lineTo(-5.25,$shadingoffset,'blue',1);
-                          $nl[$i]->moveTo($b[$i],$shadingoffset);
-                          $nl[$i]->arrowTo(-5.5,$shadingoffset,'blue',1);
-                        };
-                        if($type[$i]eq'oi'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));}
-                          elsif($type[$i]eq'ci'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));}
-                          elsif($type[$i]eq'io'){$nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));}
-                          else{$nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));}
-                        };
+                        <p><ol label="a." cols="3">
+                            <li>
+                                <sidebyside margins="0%" widths="40%"><image pg-name="$nl[0]"/></sidebyside>
+                                <p>In set-builder notation: <var name="$sb[0]" width="20" /></p>
+                                <p>In interval notation: <var name="$in[0]" width="20" /></p>
+                            </li>
+                            <li>
+                                <sidebyside margins="0%" widths="40%"><image pg-name="$nl[1]"/></sidebyside>
+                                <p>In set-builder notation: <var name="$sb[1]" width="20" /></p>
+                                <p>In interval notation: <var name="$in[1]" width="20" /></p>
+                            </li>
+                            <li>
+                                <sidebyside margins="0%" widths="40%"><image pg-name="$nl[2]"/></sidebyside>
+                                <p>In set-builder notation: <var name="$sb[2]" width="20" /></p>
+                                <p>In interval notation: <var name="$in[2]" width="20" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            ($a[0],$b[0])=num_sort(map{$_-4}NchooseK(9,2));
+                            ($a[1],$b[1])=num_sort(map{$_-4}NchooseK(9,2));
+                            ($a[2],$b[2])=num_sort(map{$_-4}NchooseK(9,2));
+                            %left=(oi=>'(',ci=>'[',io=>'(',ic=>'(');
+                            %right=(oi=>')',ci=>')',io=>')',ic=>']');
+                            @type=('oi','ci','io','ic')[NchooseK(4,3)];
+                            @ticks = ();
+                            for my $j (-5..5) {push(@ticks,$j);};
+                            for my$i(0,1,2){
+                            $nl[$i]=init_graph(-6,-1,6,1,size=>[240,32]);
+                            $nl[$i]->moveTo(0,0);
+                            $nl[$i]->arrowTo(5.5,0,'black',1);
+                            $nl[$i]->moveTo(0,0);
+                            $nl[$i]->arrowTo(-5.5,0,'black',1);
+                            $nl[$i]->lb(new Label(6,-0.2,'x','black','right','top','large'));
+                            for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top','large'));};
+                            $nl[$i]->h_ticks(0,"black",@ticks);
+                            };
+                            $shadingoffset = 0.5;
+                            for my$i(0..2){
+                            if($type[$i]eq'oi' or $type[$i]eq'ci'){
+                              $nl[$i]->moveTo($a[$i],$shadingoffset);
+                              $nl[$i]->lineTo(5.25,$shadingoffset,'blue',1);
+                              $nl[$i]->moveTo($a[$i],$shadingoffset);
+                              $nl[$i]->arrowTo(5.5,$shadingoffset,'blue',1);
+                            }else{
+                              $nl[$i]->moveTo($b[$i],$shadingoffset);
+                              $nl[$i]->lineTo(-5.25,$shadingoffset,'blue',1);
+                              $nl[$i]->moveTo($b[$i],$shadingoffset);
+                              $nl[$i]->arrowTo(-5.5,$shadingoffset,'blue',1);
+                            };
+                            if($type[$i]eq'oi'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));}
+                              elsif($type[$i]eq'ci'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));}
+                              elsif($type[$i]eq'io'){$nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));}
+                              else{$nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));}
+                            };
 
-                        InequalitySetBuilder::UseVerticalSuchThat();
-                        Context("InequalitySetBuilder-Only");
-                        for my$i(0..2){
-                        if($type[$i]eq'oi'){$sb[$i]=Compute("{ x | x>$a[$i]}");}
-                        elsif($type[$i]eq'ci'){$sb[$i]=Compute("{ x | x>=$a[$i]}");}
-                        elsif($type[$i]eq'io'){$sb[$i]=Compute("{ x | x&lt;$b[$i]}");}
-                        else{$sb[$i]=Compute("{ x | x&lt;=$b[$i]}");}
-                        };
+                            InequalitySetBuilder::UseVerticalSuchThat();
+                            Context("InequalitySetBuilder-Only");
+                            for my$i(0..2){
+                            if($type[$i]eq'oi'){$sb[$i]=Compute("{ x | x>$a[$i]}");}
+                            elsif($type[$i]eq'ci'){$sb[$i]=Compute("{ x | x>=$a[$i]}");}
+                            elsif($type[$i]eq'io'){$sb[$i]=Compute("{ x | x&lt;$b[$i]}");}
+                            else{$sb[$i]=Compute("{ x | x&lt;=$b[$i]}");}
+                            };
 
-                        Context("Interval");
-                        Context()->flags->set("formatStudentAnswer"=>'parsed');
-                        for my$i(0..2){
-                        if($type[$i]eq'oi'){$in[$i]=Compute("($a[$i],inf)");}
-                        elsif($type[$i]eq'ci'){$in[$i]=Compute("[$a[$i],inf)");}
-                        elsif($type[$i]eq'io'){$in[$i]=Compute("(-inf,$b[$i])");}
-                        else{$in[$i]=Compute("(-inf,$b[$i]]");}
-                        };
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>For each interval expressed in the number lines, give the interval notation and set-builder notation.</p>
+                            Context("Interval");
+                            Context()->flags->set("formatStudentAnswer"=>'parsed');
+                            for my$i(0..2){
+                            if($type[$i]eq'oi'){$in[$i]=Compute("($a[$i],inf)");}
+                            elsif($type[$i]eq'ci'){$in[$i]=Compute("[$a[$i],inf)");}
+                            elsif($type[$i]eq'io'){$in[$i]=Compute("(-inf,$b[$i])");}
+                            else{$in[$i]=Compute("(-inf,$b[$i]]");}
+                            };
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>For each interval expressed in the number lines, give the interval notation and set-builder notation. </p>
 
-                    <instruction>Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.</instruction>
+                        <instruction>Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.</instruction>
 
-                    <p><ol label="a.">
-                        <li>
-                            <sidebyside margins="0%" widths="40%"><image pg-name="$nl[0]"/></sidebyside>
-                            <p>In set-builder notation: <var name="$sb[0]" width="20" /></p>
-                            <p>In interval notation: <var name="$in[0]" width="20" /></p>
-                        </li>
-                        <li>
-                            <sidebyside margins="0%" widths="40%"><image pg-name="$nl[1]"/></sidebyside>
-                            <p>In set-builder notation: <var name="$sb[1]" width="20" /></p>
-                            <p>In interval notation: <var name="$in[1]" width="20" /></p>
-                        </li>
-                        <li>
-                            <sidebyside margins="0%" widths="40%"><image pg-name="$nl[2]"/></sidebyside>
-                            <p>In set-builder notation: <var name="$sb[2]" width="20" /></p>
-                            <p>In interval notation: <var name="$in[2]" width="20" /></p>
-                        </li>
-                    </ol></p>
-                </statement>
-            </webwork>
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation40.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation40.pg" />
-        </exercise>
-    </exercisegroup>
-    <exercisegroup cols="2">
-        <introduction>
-            <p>Converting Set-Builder Notation to Interval Notation</p>
-        </introduction>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation10.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation20.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation30.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation40.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation40.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation50.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation50.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation60.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation60.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation70.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation70.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation80.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation80.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation90.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation90.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation100.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation100.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation110.pg" />
-        </exercise>
-        <exercise>
-            <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation120.pg" />
-        </exercise>
-    </exercisegroup>
+                        <p><ol label="a." cols="3">
+                            <li>
+                                <sidebyside margins="0%" widths="40%"><image pg-name="$nl[0]"/></sidebyside>
+                                <p>In set-builder notation: <var name="$sb[0]" width="20" /></p>
+                                <p>In interval notation: <var name="$in[0]" width="20" /></p>
+                            </li>
+                            <li>
+                                <sidebyside margins="0%" widths="40%"><image pg-name="$nl[1]"/></sidebyside>
+                                <p>In set-builder notation: <var name="$sb[1]" width="20" /></p>
+                                <p>In interval notation: <var name="$in[1]" width="20" /></p>
+                            </li>
+                            <li>
+                                <sidebyside margins="0%" widths="40%"><image pg-name="$nl[2]"/></sidebyside>
+                                <p>In set-builder notation: <var name="$sb[2]" width="20" /></p>
+                                <p>In interval notation: <var name="$in[2]" width="20" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                </webwork>
+            </exercise>
+        <exercisegroup cols="3">
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation40.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation40.pg" />
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="4">
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation10.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation20.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation30.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation40.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation40.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation50.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation50.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation60.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation60.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation70.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation70.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation80.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation80.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation90.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation90.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation100.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation100.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation110.pg" />
+            </exercise>
+            <exercise>
+                <webwork  source="BasicAlgebra/LinearInequalities/IntervalNotation120.pg" />
+            </exercise>
+        </exercisegroup>
     </exercises>
 </section>
