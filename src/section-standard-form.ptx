@@ -530,11 +530,263 @@
     </subsection>
 
     <exercises>
-<!--TODO: Alex: add 6 exercises from section-isolating-a-linear-variable.ptx that involve solving 2x+3y=6 for y-->
-<!--         <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,5,1)*list_random(-1,1);
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,5,1)*list_random(-1,1);
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = -1;
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = -1;
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,9,1)*list_random(-1,1);
+                            $A = non_zero_random(2,9,1)*list_random(-1,1);
+                            $C = non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,9,1)*list_random(-1,1);
+                            $A = non_zero_random(2,9,1)*list_random(-1,1);
+                            $C = non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
         </exercisegroup>
- -->        <exercisegroup cols="2">
+        <exercisegroup cols="2">
             <introduction>
                 <p>Find the slope and <m>y</m>-intercept.</p>
             </introduction>
