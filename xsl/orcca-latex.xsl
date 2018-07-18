@@ -94,7 +94,9 @@
     <xsl:apply-templates select="." mode="label" />
     <xsl:text>&#xa;</xsl:text>
     <xsl:apply-templates select="introduction" />
-    <xsl:text>\par%&#xa;</xsl:text>
+    <xsl:if test="title or introduction">
+        <xsl:text>\par%&#xa;</xsl:text>
+    </xsl:if>
     <!-- <xsl:text>For the following exercises: </xsl:text> -->
     <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
     <xsl:text>\begin{exercisegroup}(</xsl:text>
