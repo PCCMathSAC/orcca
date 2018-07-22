@@ -257,7 +257,7 @@ pdf:
 	perl -pi -e 's/(^.*?\\label{exercise-1791})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-154}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\label{exercise-1850})/\\leavevmode\n\n\1/' orcca.tex; \
-	perl -pi -e 's/(\\subparagraph\[{Challenge}\]{\\hspace{-1em}Challenge}\\hypertarget{exercisegroup-157}{})/\vspace{-2.5pc}\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\subparagraph\[{Challenge}\]{\\hspace{-1em}Challenge}\\hypertarget{exercisegroup-157}{})/\\vspace{-2.5pc}\n\n\1/' orcca.tex; \
 	echo 'section-slope-intercept-form'; \
 	perl -pi -e 's/(However, the rates of change are calculated as follows:)\\leavevmode%/\1/' orcca.tex; \
 	perl -p0i -e 's/(\\begin{equation\*}\n\\frac{\\Delta y}{\\Delta x}=\\frac{41000-27500})/\\vspace{-2\.5pc}\n\n\1/' orcca.tex; \
