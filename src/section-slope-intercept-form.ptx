@@ -251,7 +251,7 @@
 
         <example>
             <statement>
-                <p>Decide whether data in the table has a linear relationship. If so, write the linear equation in <xref ref="equation-slope-intercept-form">slope-intercept form</xref>.</p>
+                <p>Decide whether data in the table has a linear relationship. If so, write the linear equation in <xref ref="equation-slope-intercept-form" text="title">slope-intercept form</xref>.</p>
                 <sidebyside>
                     <tabular halign="center">
                         <row bottom="medium">
@@ -643,7 +643,10 @@
                     <pg-code>
                         for my $i(0,1){
                         $gr[$i]=init_graph(-2,-2,8,10,axes=>[0,0],grid=>[10,12],size=>[240,240]);
-                        add_functions($gr[$i], "-0.5*x+6 for x in &lt;-2,10> using color:blue and weight:1");
+                        $gr[$i]->moveTo(0,6);
+                        $gr[$i]->arrowTo(8,2,'blue',1);
+                        $gr[$i]->moveTo(0,6);
+                        $gr[$i]->arrowTo(-2,7,'blue',1);
                         $gr[$i]->lb('reset');
                         for my$j(-1..7){$gr[$i]->lb(new Label($j,-0.1,$j,'black','center','top','large'));};
                         for my$j(-1..9){$gr[$i]->lb(new Label(-0.1,$j,$j,'black','right','middle','large'));};
@@ -713,10 +716,14 @@
                         for my$j(0,1){
                           $gr[$j] = init_graph(-1000,-10000,12000,60000,axes=>[0,0],grid=>[13,14],size=>[240,240]);
                           $gr[$j] -> lb('reset');
-                          for my$i(4000,8000){$gr[$j]->moveTo($i,-200);$gr[$j]->lineTo($i,200,'black',3);$gr[$j]->lb(new Label($i,-200,$i,'black','center','top','small'));};
-                          for my$i(10000,20000,30000,40000,50000){$gr[$j]->moveTo(-100,$i);$gr[$j]->lineTo(100,$i,'black',3);$gr[$j]->lb(new Label(200,$i,$i,'black','left','middle','small'));};
-                          $gr[$j]->lb(new Label(11500,200,'tuition','black','right','bottom','small'));
-                          $gr[$j]->lb(new Label(200,58000,'median income','black','left','middle','small'));
+                          for my$i(4000,8000){$gr[$j]->lb(new Label($i,0,$i,'black','center','top','large'));};
+                          for my$i(10000,20000,30000,40000,50000){$gr[$j]->lb(new Label(200,$i,$i,'black','left','middle','large'));};
+                          $gr[$j]->lb(new Label(11500,200,'tuition','black','right','bottom','large'));
+                          $gr[$j]->lb(new Label(200,58000,'median income','black','left','middle','large'));
+                          $gr[$j]->moveTo(0,27370);
+                          $gr[$j]->arrowTo(-1000,1.645*-1000+27370,'blue',1);
+                          $gr[$j]->moveTo(0,27370);
+                          $gr[$j]->arrowTo(12000,1.645*12000+27370,'blue',1);
                           add_functions($gr[$j], "$f for x in &lt;-1000,12000> using color:blue and weight:1");
                           for my$sch(keys %x){$gr[$j]->stamps(closed_circle($x{$sch},$y{$sch},'blue'));};
                         };
@@ -988,7 +995,7 @@
 
         <example>
             <statement>
-                <p>Uber is a ride-sharing company. Its pricing in Portland factors in how much time and how many miles a trip takes. But if you assume that rides average out at a speed of <quantity><mag>30</mag><unit base="mileperhour" /></quantity>, then their pricing scheme boils down to a base of <m>\$7.35</m> for the trip, plus <m>\$3.85</m> per mile. Use a slope-intercept equation and algebra to answer these questions.<ol>
+                <p>Uber is a ride-sharing company. Its pricing in Portland factors in how much time and how many miles a trip takes. But if you assume that rides average out at a speed of <quantity><mag>30</mag><unit base="mileperhour" /></quantity>, then their pricing scheme boils down to a base of <m>\$7.35</m> for the trip, plus <m>\$3.85</m> per mile. Use a slope-intercept equation and algebra to answer these questions.<ol label="a.">
                     <li><p>How much is the fare if a trip is <m>5.3</m> miles long?</p></li>
                     <li><p>With <m>\$100</m> available to you, how long of a trip can you afford?</p></li>
                 </ol></p>
@@ -1255,6 +1262,8 @@
                     </sidebyside>
                 </solution>
             </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
             <exercise>
                 <statement>
                     <p>Graph the equation <m>y=-\frac{1}{3}x</m>.</p>
@@ -1549,6 +1558,8 @@
                     </sidebyside>
                 </solution>
             </exercise>
+        </exercisegroup>
+        <exercisegroup cols="3">
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph10.pg" />
             </exercise>
@@ -1608,9 +1619,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Applications</p>
-            </introduction>
+            <title>Applications</title>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/MXPlusBWordProblem10.pg" />
             </exercise>
@@ -1660,8 +1669,7 @@
             <exercise><!-- Kara's challenge problem -->
                 <webwork>
                     <statement>
-                        <p>Line <m>S</m> has the equation <m>y = ax + b</m> and Line <m>T</m> has the equation <m>y =cx + d</m>.</p>
-                        <p>Suppose  <m> a \gt b >\gt c >\gt d >\gt 0 </m>.</p>
+                        <p>Line <m>S</m> has the equation <m>y = ax + b</m> and Line <m>T</m> has the equation <m>y =cx + d</m>. Suppose <m> a \gt b \gt c \gt d \gt 0 </m>.</p>
                         <p><ol label="a.">
                             <li>
                                 <p>What can you say about Line <m>S</m> and Line <m>T</m>, given that <m>a \gt c</m>?  Give as much information about Line <m>S</m> and Line <m>T</m> as possible.</p>
