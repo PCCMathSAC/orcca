@@ -244,9 +244,9 @@ pdf:
 	perl -p0i -e 's/(\\subparagraph\[{Regions in the Cartesian Plane}\].*?\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=-1pc\]/' orcca.tex; \
 	perl -p0i -e 's/(\\subparagraph\[{Plotting Points and Choosing a Scale}\].*?\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=0pt\]/' orcca.tex; \
 	echo 'section-graphing-equations'; \
-	perl -p0i -e 's/(\\begin{exercisegroup})(\(2\)\n\\exercise\[9\.\] \\hypertarget{exercise-1723}{})/\1\[after-item-skip=\\dimexpr\\smallskipamount-7pt\]\2/' orcca.tex; \
+	perl -p0i -e 's/(\\begin{exercisegroup})(\(2\)\n\\exercise\[9\.\] \\hypertarget{exercise-1722}{})/\1\[after-item-skip=\\dimexpr\\smallskipamount-7pt\]\2/' orcca.tex; \
 	echo 'section-exploring-two-variable-data-and-rates-of-change'; \
-	perl -pi -e 's/(^.*?\\label{exercise-1790})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\label{exercise-1789})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(\\hypertarget{exercisegroup-149}{}%\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=0pt,after-skip=0pt\]/' orcca.tex; \
 	perl -p0i -e 's/(\\subparagraph[{Linear Relationships}].*?\\hypertarget{exercisegroup-150}{}\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=0pt,after-skip=0pt\]/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-151}{})/\\pagebreak\n\n\1/' orcca.tex; \
@@ -254,9 +254,9 @@ pdf:
 	perl -p0i -e 's/(\\subparagraph\[{Slope and Graphs}\]{\\hspace{-1em}Slope and Graphs}\\hypertarget{exercisegroup-154}{}\n\\begin{exercisegroup})/\1\[after-item-skip=\\dimexpr\\smallskipamount-8pt,after-skip=\\dimexpr\\smallskipamount-8pt\]/' orcca.tex; \
 	perl -p0i -e 's/(\\begin{multicols}\{3\}\n\\begin{enumerate}\[label=\\alph\*\.\]\n\\item\\hypertarget{li-\d+}{}\\hypertarget{p-\d+}{}%\nThe first segment has slope  \\fillin\{10\}\.%)/\\vspace{-4pc}%\n\n\1/' orcca.tex; \
 	perl -pi -e 's/^ \\fillin{\d+}%/%/g' orcca.tex; \
-	perl -pi -e 's/(^.*?\\label{exercise-1791})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\label{exercise-1790})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-154}{})/\\pagebreak\n\n\1/' orcca.tex; \
-	perl -pi -e 's/(^.*?\\label{exercise-1850})/\\leavevmode\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\label{exercise-1849})/\\leavevmode\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(\\subparagraph\[{Challenge}\]{\\hspace{-1em}Challenge}\\hypertarget{exercisegroup-157}{})/\\vspace{-2.5pc}\n\n\1/' orcca.tex; \
 	echo 'section-slope-intercept-form'; \
 	perl -pi -e 's/(However, the rates of change are calculated as follows:)\\leavevmode%/\1/' orcca.tex; \
@@ -267,17 +267,18 @@ pdf:
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-165}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-point-slope-form'; \
 	perl -pi -e 's/(^.*?\\label{exercise-point-slope})/\\pagebreak\n\n\1/' orcca.tex; \
-	perl -pi -e 's/(^.*?\\hypertarget{solution-2115}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-2114}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-167}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(^.*?\\hypertarget{exercisegroup-169}{}\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\\pagebreak\n\n\1\[after-item-skip=-2pc\]/' orcca.tex; \
 	echo 'section-standard-from'; \
 	perl -pi -e 's/(^.*?\\label{exercises-32})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-176}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc\]/' orcca.tex; \
 	echo 'section-horizontal-vertical-parallel-and-perpendicular-lines'; \
-	perl -pi -e 's/(.*?\\hypertarget{paragraphs-43}{}\n/\1\\leavevmode%\n/' orcca.tex; \
+	perl -pi -e 's/(.*?\\hypertarget{paragraphs-45}{}\n/\1\\leavevmode%\n/' orcca.tex; \
 	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-180}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=-1pc\]/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-184}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'review-graphing-lines'; \
-	perl -pi -e 's/(^.*?\\hypertarget{solution-2341}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-2340}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
