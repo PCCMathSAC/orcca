@@ -163,6 +163,7 @@ pdf:
 	echo 'After an aside, put line breaks in tex source.'; \
 	perl -pi -e 's/(\\end{aside}\n)/\1\\leavevmode%\n\n/' orcca.tex; \
 	perl -pi -e 's/(The slope of this line is +\\fillin{\d+}.%)/\\vspace{-1pc}\n\n\1/g' orcca.tex; \
+	perl -pi -e 's/(All rights reserved\.) /\1\n\n/' orcca.tex; \
 	echo 'section-arithmetic-with-negative-numbers'; \
 	perl -p0i -e 's/(\\typeout{\*+}\n\\typeout{Subsection 1\.1\.6 )/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-2}{})/\\pagebreak\n\n\1/' orcca.tex; \
@@ -274,7 +275,7 @@ pdf:
 	perl -pi -e 's/(^.*?\\label{exercises-32})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-176}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc\]/' orcca.tex; \
 	echo 'section-horizontal-vertical-parallel-and-perpendicular-lines'; \
-	perl -pi -e 's/(.*?\\hypertarget{paragraphs-45}{}\n/\1\\leavevmode%\n/' orcca.tex; \
+	perl -pi -e 's/(.*?\\hypertarget{paragraphs-45}{}\n)/\1\\leavevmode%\n/' orcca.tex; \
 	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-180}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=-1pc\]/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-184}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'review-graphing-lines'; \
