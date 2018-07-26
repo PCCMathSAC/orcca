@@ -60,14 +60,19 @@
             <idx><h>slope</h></idx>
             <statement>
                 <p>When <m>x</m> and <m>y</m> are two variables where the rate of change between any two points is always the same, we call this common rate of change the <term>slope</term>. Since having a constant rate of change means the graph will be a straight line, its also called the <term>slope of the line</term>.</p>
-
-                <p>Considering the definition for <xref ref="definition-rate-of-change">Definition</xref>, this means that when <m>x</m> and <m>y</m> are two variables where the rate of change between any two points is always the same, then you can calculate slope, <m>m</m>, by finding two distinct data points <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>, and calculating <men xml:id="equation-slope-definition">m=\frac{\text{change in $y$}}{\text{change in $x$}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}</men>.</p>
-
-                <p>A slope is a rate of change. So if there are units for the horizontal and vertical variables, then there will be units for the slope. The slope will be measured in <m>\frac{\text{vertical units}}{\text{horizontal units}}</m>.</p>
-
-                <p>If the slope is nonzero, we say that there is a <term>linear relationship</term> between <m>x</m> and <m>y</m>.<idx><h>linear relationship</h></idx><idx><h>relationship</h><h>linear</h></idx> When the slope is <m>0</m>, we say that <m>y</m> is <term>constant</term> with respect to <m>x</m>.<idx><h>constant</h></idx></p>
             </statement>
         </definition>
+
+        <p>Considering the definition for <xref ref="definition-rate-of-change">Definition</xref>, this means that when <m>x</m> and <m>y</m> are two variables where the rate of change between any two points is always the same, then you can calculate slope, <m>m</m>, by finding two distinct data points <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>, and calculating <men xml:id="equation-slope-definition">m=\frac{\text{change in $y$}}{\text{change in $x$}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}</men>.</p>
+
+        <p>A slope is a rate of change. So if there are units for the horizontal and vertical variables, then there will be units for the slope. The slope will be measured in <m>\frac{\text{vertical units}}{\text{horizontal units}}</m>.</p>
+
+        <aside>
+            <title>Slope <m>m</m></title>
+            <p>Why is the letter <m>m</m> commonly used as the symbol for <q>slope?</q> Some believe that it comes from the French word <q>monter</q> which means <q>to climb.</q></p>
+        </aside>
+
+        <p>If the slope is nonzero, we say that there is a <term>linear relationship</term> between <m>x</m> and <m>y</m>.<idx><h>linear relationship</h></idx><idx><h>relationship</h><h>linear</h></idx> When the slope is <m>0</m>, we say that <m>y</m> is <term>constant</term> with respect to <m>x</m>.<idx><h>constant</h></idx></p>
 
         <p>Here are some scenarios with different slopes. Note that a slope is more meaningful with units.<ul>
             <li>
@@ -84,11 +89,6 @@
         <remark>
             <p>A useful phrase for remembering the definition of <term>slope</term> is <q>rise over run.</q><idx><h>rise over run</h></idx> Here, <q>rise</q> refers to <q>change in <m>y</m>,</q> <m>\Delta y</m>, and <q>run</q> refers to <q>change in <m>x</m>,</q> <m>\Delta x</m>. Be careful though. As we have learned, the horizontal direction comes <em>first</em> in mathematics, followed by the vertical direction. The phrase <q>rise over run</q> reverses this. (It's a bit awkward to say, but the phrase <q>run under rise</q> puts the horizontal change first.)</p>
         </remark>
-
-        <aside>
-            <title>Slope <m>m</m></title>
-            <p>Why is the letter <m>m</m> commonly used as the symbol for <q>slope?</q> Some believe that it comes from the French word <q>monter</q>, which means <q>to climb.</q> And French has a special place in this topic because Descartes was French. Interestingly, there are reports of French algebra classrooms using <m>s</m> to stand for slope. When asked why, some say that it's because of the <em>English</em> word <q>slope.</q></p>
-        </aside>
 
 
         <example xml:id="example-yaras-savings">
@@ -319,7 +319,13 @@
                         };
                         $gr->lb(new Label(7,-0.5,'x','black','center','middle','small'));
                         $gr->lb(new Label(-0.5,7,'y','black','center','middle','small'));
-                        add_functions($gr, "$slope*x+2 for x in &lt;-5,7> using color:blue and weight:1");
+
+                        ($start,$stop) = (num_sort(-5,7,(-5-2)/(3/4),(7-2)/(3/4)))[1,2];
+                        $gr->moveTo(0,2);
+                        $gr->arrowTo($start,3/4*$start+2,'blue',1);
+                        $gr->moveTo(0,2);
+                        $gr->arrowTo($stop,3/4*$stop+2,'blue',1);
+
                         for my$i(-2..5){$gr->stamps(closed_circle($i,$slope*$i+2,'blue'));};
                         $gr->moveTo(0,2-$pixel);
                         $gr->lineTo(4+$pixel,2-$pixel,'red',1);
@@ -518,12 +524,14 @@
                 <setup>
                     <pg-code>
                         @s=(NumberWithUnits("500 ft/hr"),NumberWithUnits("0 ft/hr"),NumberWithUnits("-875 ft/hr"));
-                        $gr = init_graph(-1,-500,25,4000,axes=&gt;[0,0],grid=&gt;[26,9],size=&gt;[240,240]);
+                        $gr = init_graph(-3,-300,25,4000,axes=&gt;[0,0],size=&gt;[240,144]);
+                        $gr -&gt; v_grid("gray",map{2*$_}(1..12));
+                        $gr -&gt; h_grid("gray",map{500*$_}(1..7));
                         $gr -&gt; lb('reset');
-                        for my$i(map{$_*2}(1..12)){$gr-&gt;moveTo($i,-100);$gr-&gt;lineTo($i,100,'black',3);$gr-&gt;lb(new Label($i,-100,$i,'black','center','top','small'));}
-                        for my$i(map{$_*500}(1..7)){$gr-&gt;moveTo(-0.8,$i);$gr-&gt;lineTo(0,$i,'black',3);$gr-&gt;lb(new Label(0.5,$i,$i,'black','left','middle','small'));}
-                        $gr-&gt;lb(new Label(24,-500,'time (hr)','black','right','bottom','small'));
-                        $gr-&gt;lb(new Label(0.8,3800,'elevation (ft)','black','left','middle','small'));
+                        for my$i(map{$_*2}(1..12)){$gr-&gt;lb(new Label($i,0,$i,'black','center','top','small'));}
+                        for my$i(map{$_*500}(1..7)){$gr-&gt;lb(new Label(0,$i,$i,'black','right','middle','small'));}
+                        $gr-&gt;lb(new Label(25,0,'time (hr)','black','right','bottom','small'));
+                        $gr-&gt;lb(new Label(0.8,4000,'elevation (ft)','black','left','top','small'));
                         $gr-&gt;moveTo(0,0);
                         $gr-&gt;lineTo(7,3500,'blue',2);
                         $gr-&gt;lineTo(19,3500,'blue',2);
@@ -539,9 +547,17 @@
                         </image>
                     </sidebyside>
 
-                    <p>The first segment has slope <var name="$s[0]" width="10" />.</p>
-                    <p>The second segment has slope <var name="$s[1]" width="10" />.</p>
-                    <p>The third segment has slope <var name="$s[2]" width="10" />.</p>
+                    <p><ol label="a," cols="3">
+                        <li>
+                            <p>The first segment has slope <var name="$s[0]" width="10" />.</p>
+                        </li>
+                        <li>
+                            <p>The second segment has slope <var name="$s[1]" width="10" />.</p>
+                        </li>
+                        <li>
+                            <p>The third segment has slope <var name="$s[2]" width="10" />.</p>
+                        </li>
+                    </ol></p>
                 </statement>
 
                 <solution>
@@ -610,7 +626,7 @@
                         </image>
                     </figure>
                 </sidebyside>
-            </figure>            
+            </figure>
     </subsection>
 
 
@@ -622,9 +638,9 @@
         <example>
             <p>Your neighbor planted a sapling from <url href="http://portlandnursery.com/">Portland Nursery</url> in his front yard. Ever since, for several years now, it has been growing at a constant rate. By the end of the third year, the tree was <quantity><mag>15</mag><unit base="foot" /></quantity> tall; by the end of the sixth year, the tree was <quantity><mag>27</mag><unit base="foot" /></quantity> tall. What's the tree's rate of growth (<ie /> the slope)?</p>
 
-            <p>We <em>could</em> sketch a graph for this scenario, and include a slope triangle. If we did that, it would look like this:</p>
+            <p>We <em>could</em> sketch a graph for this scenario, and include a slope triangle. If we did that, it would look like:</p>
 
-            <sidebyside widths="47% 47%" margins="0%">
+            <sidebyside widths="44% 50%" margins="0%">
                 <figure>
                     <caption>Height of a Tree</caption>
                     <image>
@@ -663,7 +679,9 @@
 
             <p>Here is a picture-free approach. We know that after <quantity><mag>3</mag><unit base="year" /></quantity>, the height is <quantity><mag>15</mag><unit base="foot" /></quantity>. As an ordered pair, that information gives us the point <m>(3,15)</m>, which we can label as <m>(\overset{x_1}{3},\overset{y_1}{15})</m>. Similarly, the background information tells us to consider <m>(6,27)</m>, which we label as <m>(\overset{x_2}{6},\overset{y_2}{27})</m>. Here, <m>x_1</m> and <m>y_1</m> represent the first point's <m>x</m>-value and <m>y</m>-value, and <m>x_2</m> and <m>y_2</m> represent the second point's <m>x</m>-value and <m>y</m>-value.</p>
 
+
             <p>It's important to use a subscript instead of a superscript here, because <m>y^2</m> means to take the number <m>y</m> and square it. Whereas <m>y_2</m> tells you that there are at least two <m>y</m>-values in the conversation, and <m>y_2</m> is the second of them.</p>
+
 
             <p>Now we can write an alternative to <xref ref="equation-slope-definition">Equation</xref>:<men xml:id="equation-slope-formula">\text{slope}=m=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}</men>This is known as the <term>slope formula</term>.<idx><h>slope</h><h>formula</h></idx> The following graph will help you understand why this formula works. Basically, we are still using a slope triangle to calculate the slope.</p>
 
@@ -718,6 +736,9 @@
             </figure>
         </example>
 
+
+        <p>It's important to use subscript instead of superscript in the slope equation, because <m>y^2</m> means to take the number <m>y</m> and square it. Whereas <m>y_2</m> tells you that there are at least two <m>y</m>-values in the conversation, and <m>y_2</m> is the second of them.</p>
+
         <p>The beauty of the <xref ref="equation-slope-formula" text="title">slope formula</xref> is that to find a line's slope, we don't need to draw a slope triangle any more. Let's look at an example.</p>
 
         <example>
@@ -744,7 +765,7 @@
 
 
     <exercises>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
             <exercise>
                 <webwork source="BasicAlgebra/FractionMixedNumbersBasics/ReduceFraction05.pg" />
@@ -775,65 +796,10 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/FractionMixedNumbersBasics/ReduceFraction40.pg" />
-            </exercise>            
-        </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Find the slope using a graph.</p>
-            </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/LinearEquations/LinearEquations3.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/LinearEquations/LinearEquations3.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/LinearEquations/LinearEquations4.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/LinearEquations/LinearEquations4.pg" />
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Calculate the slope using two points.</p>
-            </introduction>
+            <title>Slope and Points</title>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula10.pg" />
             </exercise>
@@ -887,23 +853,71 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="3">
+            <title>Slope and Graphs</title>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/LinearEquations/LinearEquations3.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/LinearEquations/LinearEquations3.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/LinearEquations/LinearEquations4.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/LinearEquations/LinearEquations4.pg" />
             </exercise>
         </exercisegroup>
 
+
         <exercisegroup>
-            <introduction>
-                <p>Calculating Slope in Context</p>
-            </introduction>
-            <exercise>
+            <title>Slope in Context</title>
+            <!-- These non-PCC library problems have image sizing issues -->
+<!--             <exercise>
                 <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2005/n8-2005-6s.pg" />
             </exercise>
             <exercise>
                 <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2008/n8-2008-8s.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Library/NewHampshire/NECAP/grade11/gr11-2008/n11-2008-23.pg" />
-            </exercise>
-            <exercise>
+            </exercise> -->
+<!--             <exercise>
                 <webwork source="Library/NewHampshire/NECAP/grade8/gr8-2009/n8-2009-6s.pg" />
             </exercise>
             <exercise>
@@ -911,121 +925,128 @@
             </exercise>
             <exercise>
                 <webwork source="Library/NewHampshire/NECAP/grade7/gr7-2005/n7-2005-14s.pg" />
+            </exercise> -->
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication10.pg" />
             </exercise>
-
-            <!--Todo: re-purpose this group of problems: BasicAlgebra/LinearEquationApplications/FindLineEquationApplication to ask for two points and then the slope, or write similar problems-->
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeApplication40.pg" />
+            </exercise>
         </exercisegroup>
 
-        <exercise>
-            <webwork>
-                <setup>
-                    <pg-code>
-                        @x=(1999..2013);
-                        @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
-                        $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
-                        for my$j(0,1){
-                          $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
-                          $xpixel = 19/240;
-                          $ypoxel = 27/240;
-                          $gr[$j] -> lb('reset');
-                          $gr[$j]->h_ticks(0,"black",2000,2005,2010);
-                          $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
-                          for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
-                          for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
-                          $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
-                          $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
-                          add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
-                          for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
-                        };
-                        $gr[1]->stamps(closed_circle(2006,19000,'red'));
-                        $gr[1]->stamps(closed_circle(2014,21000,'red'));
-                        $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
-                    </pg-code>
-                </setup>
-                <statement>
-                    <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
+        <exercisegroup cols="2">
+            <exercise>
+                <webwork source="Library/NewHampshire/NECAP/grade11/gr11-2008/n11-2008-23.pg" />
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            @x=(1999..2013);
+                            @y=(17599,17446,17847,17887,17559,18499,18682,19112,19376,20370,19909,19727,20636,20035,20458);
+                            $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
+                            for my$j(0,1){
+                              $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
+                              $xpixel = 19/240;
+                              $ypoxel = 27/240;
+                              $gr[$j] -> lb('reset');
+                              $gr[$j]->h_ticks(0,"black",2000,2005,2010);
+                              $gr[$j]->v_ticks(1999,"black",5000,10000,15000,20000);
+                              for my$i(2002,2005,2008,2011,2014){$gr[$j]->moveTo($i,-500);$gr[$j]->lineTo($i,500,'black',3);$gr[$j]->lb(new Label($i,1000,$i,'black','center','bottom','small'));};
+                              for my$i(5000,10000,15000,20000){$gr[$j]->moveTo(1998.7,$i);$gr[$j]->lineTo(1999.3,$i,'black',3);$gr[$j]->lb(new Label(1999.5,$i,$i,'black','left','middle','small'));};
+                              $gr[$j]->lb(new Label(2016,-1000,'year','black','right','middle','small'));
+                              $gr[$j]->lb(new Label(1999.5,24000,'diagnoses','black','left','top','small'));
+                              add_functions($gr[$j], "$m*x-470583 for x in &lt;1998,2017> using color:blue and weight:1");
+                              for my$i(0..14){$gr[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));};
+                            };
+                            $gr[1]->stamps(closed_circle(2006,19000,'red'));
+                            $gr[1]->stamps(closed_circle(2014,21000,'red'));
+                            $gr[1]->moveTo(2006,19000-$ypixel);$gr[1]->lineTo(2014-$xpixel,19000-$ypixel,'red',1);$gr[1]->arrowTo(2014-$xpixel,21000,'red',1);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
 
-                    <sidebyside widths="47%">
-                        <image pg-name="$gr[0]" />
-                    </sidebyside>
+                        <sidebyside widths="40%">
+                            <image pg-name="$gr[0]" />
+                        </sidebyside>
 
-                    <p>Estimate the slope of the trend-line. Just give the numerical value; the units are provided.</p>
-                    <p><var name="$m" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
-                </statement>
-                <solution>
-                    <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
-                    <sidebyside widths="47%">
-                        <image pg-name="$gr[1]" />
-                    </sidebyside>
-                    <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
-                    <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
-                </solution>
-            </webwork>
-        </exercise>
+                        <p>Estimate the slope of the trend-line. Just give the numerical value; the units are provided.</p>
+                        <p><var name="$m" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m></p>
+                    </statement>
+                    <solution>
+                        <p>Do your best to identify two points on the line. With this line, it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.</p>
+                        <sidebyside widths="40%">
+                            <image pg-name="$gr[1]" />
+                        </sidebyside>
+                        <p><me>\frac{\Delta y}{\Delta x}=\frac{2000}{8}=250</me></p>
+                        <p>So the slope is about <m>250</m> diagnoses per year. This is only an estimate since we are not all certain the two points we chose are actually on the line.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+        </exercisegroup>
         <!--TODO: repurpose this problem to be similar to the one above-->
 <!--         <exercise>
             <webwork source="Library/Michigan/Chap1Sec1/Q25.pg" />
-        </exercise>    
+        </exercise>
  -->
+        <exercisegroup>
+            <title>Challenge</title>
             <exercise><!-- Kara's challenge problem -->
                 <webwork seed="3">
                     <setup>
                         <pg-code>
-                            $fraction1 = random(3,9,2);
-                            $fraction2 = random(4,10,2);
-                            $negative = random(-10,-2,1);
-                            $avnegative = abs($negative);
-                            $positive = random(2,12,1);
+                            Context("Fraction");
+                            $fraction1 = Fraction(2,random(3,9,2));
+                            $fraction2 = Fraction(1,random(4,10,2));
                             $true = PopUp(['?','true','false'], 1);
                             $false = PopUp(['?','true','false'], 2);
-                                if ($fraction1 &lt; $fraction2) {$popup1 = $true;}
-                                else {
-                                    $popup1 = $false
-                                };
-                                if ($avnegative > $positive) {$popup2 = $true;}
-                                else {
-                                    $popup2 = $false
-                                };
+                            if ($fraction1 &gt; $fraction2) {$popup1 = $true;}
+                            else {$popup1 = $false;};
                         </pg-code>
                     </setup>
                     <statement>
-                        <p> True or False: A slope of <m>\frac{2}{<var name="$fraction1"/>}</m> is steeper than a slope of <m>\frac{1}{<var name="$fraction2"/>}</m>.<var name="$popup1" form="popup"/></p>
+                        <p>True or False: A slope of <m><var name="$fraction1"/></m> is steeper than a slope of <m><var name="$fraction2"/></m>. <var name="$popup1" form="popup"/></p>
                     </statement>
-                    <solution>
-                        <p>As <m>\frac{2}{<var name="$fraction1"/>} \gt \frac{1}{<var name="$fraction2"/>}</m>, the slope of <m>\frac{1}{<var name="$fraction1"/>}</m> is steeper. True.</p>
-                    </solution>
                 </webwork>
             </exercise>
             <exercise><!-- Kara's challenge problem -->
                 <webwork seed="4">
                     <setup>
                         <pg-code>
-                            $fraction1 = random(3,9,2);
-                            $fraction2 = random(4,10,2);
-                            $negative = random(-10,-2,1);
-                            $avnegative = abs($negative);
-                            $positive = random(2,12,1);
+                            Context("Fraction");
+                            $fraction1 = Fraction(2,random(3,9,2));
+                            $fraction2 = Fraction(1,random(4,10,2));
                             $true = PopUp(['?','true','false'], 1);
                             $false = PopUp(['?','true','false'], 2);
-                                if ($fraction1 &lt; $fraction2) {$popup1 = $true;}
-                                else {
-                                    $popup1 = $false
-                                };
-                                if ($avnegative > $positive) {$popup2 = $true;}
-                                else {
-                                    $popup2 = $false
-                                };
+                            if ($fraction1 &lt; $fraction2) {$popup1 = $true;}
+                            else {$popup1 = $false;};
                         </pg-code>
                     </setup>
                     <statement>
-                        <p> Fill in the blank with true or false. A slope of <m>\frac{1}{<var name="$fraction2"/>}</m> is steeper than a slope of <m>\frac{2}{<var name="$fraction1"/>}</m>.<var name="$popup1" form="popup"/></p>
+                        <p>True or False: A slope of <m><var name="$fraction2"/></m> is steeper than a slope of <m><var name="$fraction1"/></m>. <var name="$popup1" form="popup"/></p>
                     </statement>
-                    <solution>
-                        <p>As <m>\frac{1}{<var name="$fraction2"/>} \lt \frac{1}{<var name="$fraction1"/>}</m>, the slope of <m>\frac{1}{<var name="$fraction1"/>}</m> is steeper. False.</p>
-                    </solution>
                 </webwork>
             </exercise>
-
+        </exercisegroup>
     </exercises>
 
 </section>

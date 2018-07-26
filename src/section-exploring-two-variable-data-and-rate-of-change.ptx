@@ -310,6 +310,7 @@
                     </pg-code>
                 </setup>
                 <statement>
+                    <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
                     <sidebyside>
                         <tabular >
                             <col halign="right" />
@@ -336,7 +337,6 @@
                             </row>
                         </tabular>
                     </sidebyside>
-                    <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
                     <p><var name="$eq" width="20" /></p>
                 </statement>
                 <solution>
@@ -358,6 +358,7 @@
                     </pg-code>
                 </setup>
                 <statement>
+                    <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
                     <sidebyside>
                         <tabular >
                             <col halign="right" />
@@ -384,7 +385,6 @@
                             </row>
                         </tabular>
                     </sidebyside>
-                    <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
                     <p><var name="$eq" width="20" /></p>
                 </statement>
                 <solution>
@@ -446,8 +446,9 @@
                     </pg-code>
                 </setup>
                 <statement>
+                    <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
                     <sidebyside>
-                        <tabular >
+                        <tabular>
                             <col halign="right" />
                             <col halign="left" />
                             <row bottom="medium">
@@ -472,7 +473,6 @@
                             </row>
                         </tabular>
                     </sidebyside>
-                    <p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
                     <p><var name="$eq" width="20" /></p>
                 </statement>
                 <solution>
@@ -480,7 +480,7 @@
 
                     <p>What if we had tried the approach we used in the previous exercise, comparing change from row to row in each column?</p>
                     <sidebyside>
-                        <tabular >
+                        <tabular>
                             <col halign="right" />
                             <col halign="right" />
                             <col halign="left" />
@@ -672,8 +672,8 @@
         <p>We are ready to give a formal definition for <term>rate of change</term>. Considering our work from <xref ref="example-cancer-data">Example</xref> and <xref ref="exercise-cancer-data">Checkpoint</xref>, we settle on:</p>
 
 
-        <definition xml:id="definition-rate-of-change"><idx><h>rate of change</h></idx>
-            <title>Rate of Change</title>
+        <definition xml:id="definition-rate-of-change">
+            <title>Rate of Change</title><idx><h>rate of change</h></idx>
             <statement>
                 <p>If <m>\left(x_1,y_1\right)</m> and <m>\left(x_2,y_2\right)</m> are two data points from a set of two-variable data, then the <term>rate of change</term> between them is <me>\frac{\text{change in $y$}}{\text{change in $x$}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}\text{.}</me>(The Greek letter delta, <m>\Delta</m>, is used to represent <q>change in</q> since it is the first letter of the Greek word for <q>difference.</q>)</p>
             </statement>
@@ -766,8 +766,6 @@
         </figure>
 
         <p>Whenever the rate of change is constant no matter which two <m>(x,y)</m>-pairs (or data pairs) are chosen from a data set, then you can conclude the graph will be a straight line <em>even without making the graph</em>. We call this kind of relationship a <term>linear</term><idx><h>linear</h></idx> relationship. We'll study linear relationships in more detail throughout this chapter. Right now in this section, we feel it is important to simply identify if data has a linear relationship or not.</p>
-
-        <p>Identify if each pattern below describes a linear relationship or not.</p>
 
         <exercise>
             <webwork>
@@ -966,14 +964,8 @@
     </subsection>
 
     <exercises>
-<!--TODO: add review and warmup, if appropriate ones exist-->
-<!--         <exercisegroup cols="2">
-            <title>Review and Warmup</title>
-        </exercisegroup>
- -->        <exercisegroup cols="3">
-            <introduction>
-                <p>Find a formula relating <m>y</m> to <m>x</m> using a table. The pattern should be relatively easy to spot. Later sections will address more specific ways to approach this task in general.</p>
-            </introduction>
+        <exercisegroup cols="6">
+            <title>Finding Patterns</title>
             <exercise>
                 <webwork >
                     <setup>
@@ -1607,6 +1599,676 @@
                 </webwork>
             </exercise>
         </exercisegroup>
+        <exercisegroup cols="6">
+            <title>Linear Relationships</title>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = random(2,9,1);
+                            $b = random(10,100,1);
+                            $f = Formula("$m x + $b");
+                            @x = (0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-value increases by <m><var name="$m" /></m>. So this table does show that <m>x</m> and <m>y</m> have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = random(2,9,1);
+                            $b = random(10,100,1);
+                            $f = Formula("$m x + $b");
+                            @x = (0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-value increases by <m><var name="$m" /></m>. So this table does show that <m>x</m> and <m>y</m> have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = random(-9,-2,1);
+                            $absm = abs($m);
+                            $b = random(50,100,1);
+                            $f = Formula("$m x + $b");
+                            $start = random(0,10,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-value decreases by <m><var name="$absm" /></m>. So this table does show that <m>x</m> and <m>y</m> have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = random(-9,-2,1);
+                            $absm = abs($m);
+                            $b = random(50,100,1);
+                            $f = Formula("$m x + $b");
+                            $start = random(0,10,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-value decreases by <m><var name="$absm" /></m>. So this table does show that <m>x</m> and <m>y</m> have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $a = random(2,5,1);
+                            $b = random(1,20,1);
+                            $f = Formula("$a^x + $b");
+                            $start = random(0,10,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            for my $i (0..4) {
+                                $diff[$i] = $y[$i+1]-$y[$i];
+                            };
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$no" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-values increases by <m><var name="$diff[0]" /></m>, then <m><var name="$diff[1]" /></m>, then <m><var name="$diff[2]" /></m>, then <m><var name="$diff[3]" /></m>, then <m><var name="$diff[4]" /></m>. So this table shows that <m>x</m> and <m>y</m> do not have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $a = random(2,5,1);
+                            $b = random(1,20,1);
+                            $f = Formula("$a^x + $b");
+                            $start = random(0,10,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            for my $i (0..4) {
+                                $diff[$i] = $y[$i+1]-$y[$i];
+                            };
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$no" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-values increases by <m><var name="$diff[0]" /></m>, then <m><var name="$diff[1]" /></m>, then <m><var name="$diff[2]" /></m>, then <m><var name="$diff[3]" /></m>, then <m><var name="$diff[4]" /></m>. So this table shows that <m>x</m> and <m>y</m> do not have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $a = random(2,5,1);
+                            $b = random(1,20,1);
+                            $f = Formula("x^$a + $b");
+                            $start = random(0,2,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            for my $i (0..4) {
+                                $diff[$i] = $y[$i+1]-$y[$i];
+                            };
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$no" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-values increases by <m><var name="$diff[0]" /></m>, then <m><var name="$diff[1]" /></m>, then <m><var name="$diff[2]" /></m>, then <m><var name="$diff[3]" /></m>, then <m><var name="$diff[4]" /></m>. So this table shows that <m>x</m> and <m>y</m> do not have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $a = random(2,5,1);
+                            $b = random(1,20,1);
+                            $f = Formula("x^$a + $b");
+                            $start = random(0,2,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            for my $i (0..4) {
+                                $diff[$i] = $y[$i+1]-$y[$i];
+                            };
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$no" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-values increases by <m><var name="$diff[0]" /></m>, then <m><var name="$diff[1]" /></m>, then <m><var name="$diff[2]" /></m>, then <m><var name="$diff[3]" /></m>, then <m><var name="$diff[4]" /></m>. So this table shows that <m>x</m> and <m>y</m> do not have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = non_zero_random(-5,5,0.01);
+                            $absm = abs($m);
+                            $incdec = ($m>0) ? 'increases' : 'decreases';
+                            $b = random(30,100,0.01);
+                            $f = Formula("$m*x + $b");
+                            $start = random(-10,10,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-value <var name="$incdec" /> by <m><var name="$absm" /></m>. So this table does show that <m>x</m> and <m>y</m> have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = non_zero_random(-5,5,0.01);
+                            $absm = abs($m);
+                            $incdec = ($m>0) ? 'increases' : 'decreases';
+                            $b = random(30,100,0.01);
+                            $f = Formula("$m*x + $b");
+                            $start = random(-10,10,1);
+                            @x = map{$_+$start}(0..5);
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>As each <m>x</m>-value increases by <m>1</m>, the <m>y</m>-value <var name="$incdec" /> by <m><var name="$absm" /></m>. So this table does show that <m>x</m> and <m>y</m> have a linear relationship.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = non_zero_random(2,9,1);
+                            $b = random(1,100,1);
+                            $f = Formula("$m*x + $b");
+                            @x = num_sort(NchooseK(20,6));
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                            $ydiff = $y[1]-$y[0];
+                            $xdiff = $x[1]-$x[0];
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>The <m>x</m>-values in this table jump erratically. However, if we compute the rate of change between consecutive rows in the table, the result is always <var name="$m" />. For example, the rate of change between the first and second rows is <me>\frac{<var name="$y[1]" />-<var name="$y[0]" />}{<var name="$x[1]" />-<var name="$x[0]" />}=\frac{<var name="$ydiff" />}{<var name="$xdiff" />}=<var name="$m" /></me>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $m = non_zero_random(2,9,1);
+                            $b = random(1,100,1);
+                            $f = Formula("$m*x + $b");
+                            @x = num_sort(NchooseK(20,6));
+                            @y = map{$f->eval(x=>$_)}(@x);
+                            $yes = PopUp(['?','yes','no'],1);
+                            $no = PopUp(['?','yes','no'],2);
+                            $ydiff = $y[1]-$y[0];
+                            $xdiff = $x[1]-$x[0];
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" /></p>
+                        <sidebyside>
+                            <tabular>
+                                <row bottom="medium">
+                                    <cell><m>x</m></cell>
+                                    <cell><m>y</m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[0]" /></m></cell>
+                                    <cell><m><var name="$y[0]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[1]" /></m></cell>
+                                    <cell><m><var name="$y[1]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[2]" /></m></cell>
+                                    <cell><m><var name="$y[2]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[3]" /></m></cell>
+                                    <cell><m><var name="$y[3]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[4]" /></m></cell>
+                                    <cell><m><var name="$y[4]" /></m></cell>
+                                </row>
+                                <row>
+                                    <cell><m><var name="$x[5]" /></m></cell>
+                                    <cell><m><var name="$y[5]" /></m></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                    <solution>
+                        <p>The <m>x</m>-values in this table jump erratically. However, if we compute the rate of change between consecutive rows in the table, the result is always <var name="$m" />. For example, the rate of change between the first and second rows is <me>\frac{<var name="$y[1]" />-<var name="$y[0]" />}{<var name="$x[1]" />-<var name="$x[0]" />}=\frac{<var name="$ydiff" />}{<var name="$xdiff" />}=<var name="$m" /></me>.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+        </exercisegroup>
+
         <exercisegroup cols="2">
             <title>Calculating Rate of Change</title>
             <exercise>
@@ -1681,16 +2343,16 @@
                             for my$j(0,1){
                               $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[240,240]);
                               $graph[$j]->lb('reset');
-                              $graph[$j]->lb(new Label(2014,6000,'year','black','right','bottom'));
-                              $graph[$j]->lb(new Label(1990.5,690000,'population','black','left','top'));
+                              $graph[$j]->lb(new Label(2014,6000,'year','black','right','bottom','large'));
+                              $graph[$j]->lb(new Label(1990.5,690000,'population','black','left','top','large'));
                               for my$i(0..24){$graph[$j]->moveTo($x[$i],-6000);$graph[$j]->lineTo($x[$i],6000);
                                 $graph[$j]->stamps(closed_circle($x[$i],$y[$i],'blue'));
                               };
                               for my$i(1995,2000,2005,2010){$graph[$j]->moveTo($x[$i],-12000);$graph[$j]->lineTo($x[$i],12000);
-                                $graph[$j]->lb(new Label($i,-12000,$i,'black','center','top'));
+                                $graph[$j]->lb(new Label($i,-12000,$i,'black','center','top','large'));
                               };
                               for my$i(1..6){$graph[$j]->moveTo(1989.8,$i*10**5);$graph[$j]->lineTo(1990.2,$i*10**5);};
-                              for my$i(2,4,6){$graph[$j]->lb(new Label(1990.3,$i*100000,$i*100000,'black','left','middle'));};
+                              for my$i(2,4,6){$graph[$j]->lb(new Label(1990.3,$i*100000,$i*100000,'black','left','middle','large'));};
                             };
                             for my$i(1998,1999,2008,2009){
                               $slope{$i}=($f{$i+2}-$f{$i})/2;
@@ -1746,15 +2408,6 @@
                 </webwork>
             </exercise>
         </exercisegroup>
-<!--         <todo>Need exercises below</todo>
-        <exercisegroup>
-            <introduction>
-                <p>Determine if a table relationship is linear.</p>
-            </introduction>
-            <exercise>
-
-            </exercise>
-        </exercisegroup>
- -->    </exercises>
+    </exercises>
 
 </section>

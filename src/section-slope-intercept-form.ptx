@@ -249,7 +249,7 @@
 
         <example>
             <statement>
-                <p>Decide whether data in the table has a linear relationship. If so, write the linear equation in <xref ref="equation-slope-intercept-form">slope-intercept form</xref>.</p>
+                <p>Decide whether data in the table has a linear relationship. If so, write the linear equation in <xref ref="equation-slope-intercept-form" text="title">slope-intercept form</xref>.</p>
                 <sidebyside>
                     <tabular halign="center">
                         <row bottom="medium">
@@ -641,13 +641,16 @@
                     <pg-code>
                         for my $i(0,1){
                         $gr[$i]=init_graph(-2,-2,8,10,axes=>[0,0],grid=>[10,12],size=>[240,240]);
-                        add_functions($gr[$i], "-0.5*x+6 for x in &lt;-2,10> using color:blue and weight:1");
+                        $gr[$i]->moveTo(0,6);
+                        $gr[$i]->arrowTo(8,2,'blue',1);
+                        $gr[$i]->moveTo(0,6);
+                        $gr[$i]->arrowTo(-2,7,'blue',1);
                         $gr[$i]->lb('reset');
-                        for my$j(-1..7){$gr[$i]->lb(new Label($j,-0.1,$j,'black','center','top'));};
-                        for my$j(-1..9){$gr[$i]->lb(new Label(-0.1,$j,$j,'black','right','middle'));};
+                        for my$j(-1..7){$gr[$i]->lb(new Label($j,-0.1,$j,'black','center','top','large'));};
+                        for my$j(-1..9){$gr[$i]->lb(new Label(-0.1,$j,$j,'black','right','middle','large'));};
                         };
-                        $gr[1]->lb(new Label(0.1,6.1,'(0,6)','black','left','bottom'));
-                        $gr[1]->lb(new Label(3.9,3.9,'(4,4)','black','right','top'));
+                        $gr[1]->lb(new Label(0.1,6.1,'(0,6)','black','left','bottom','large'));
+                        $gr[1]->lb(new Label(3.9,3.9,'(4,4)','black','right','top','large'));
                         $gr[1]->moveTo(0,6);
                         $gr[1]->lineTo(4,6,'black',1);
                         $gr[1]->arrowTo(4,4,'black',1);
@@ -711,10 +714,14 @@
                         for my$j(0,1){
                           $gr[$j] = init_graph(-1000,-10000,12000,60000,axes=>[0,0],grid=>[13,14],size=>[240,240]);
                           $gr[$j] -> lb('reset');
-                          for my$i(4000,8000){$gr[$j]->moveTo($i,-200);$gr[$j]->lineTo($i,200,'black',3);$gr[$j]->lb(new Label($i,-200,$i,'black','center','top','small'));};
-                          for my$i(10000,20000,30000,40000,50000){$gr[$j]->moveTo(-100,$i);$gr[$j]->lineTo(100,$i,'black',3);$gr[$j]->lb(new Label(200,$i,$i,'black','left','middle','small'));};
-                          $gr[$j]->lb(new Label(11500,200,'tuition','black','right','bottom','small'));
-                          $gr[$j]->lb(new Label(200,58000,'median income','black','left','middle','small'));
+                          for my$i(4000,8000){$gr[$j]->lb(new Label($i,0,$i,'black','center','top','large'));};
+                          for my$i(10000,20000,30000,40000,50000){$gr[$j]->lb(new Label(200,$i,$i,'black','left','middle','large'));};
+                          $gr[$j]->lb(new Label(11500,200,'tuition','black','right','bottom','large'));
+                          $gr[$j]->lb(new Label(200,58000,'median income','black','left','middle','large'));
+                          $gr[$j]->moveTo(0,27370);
+                          $gr[$j]->arrowTo(-1000,1.645*-1000+27370,'blue',1);
+                          $gr[$j]->moveTo(0,27370);
+                          $gr[$j]->arrowTo(12000,1.645*12000+27370,'blue',1);
                           add_functions($gr[$j], "$f for x in &lt;-1000,12000> using color:blue and weight:1");
                           for my$sch(keys %x){$gr[$j]->stamps(closed_circle($x{$sch},$y{$sch},'blue'));};
                         };
@@ -986,7 +993,7 @@
 
         <example>
             <statement>
-                <p>Uber is a ride-sharing company. Its pricing in Portland factors in how much time and how many miles a trip takes. But if you assume that rides average out at a speed of <quantity><mag>30</mag><unit base="mileperhour" /></quantity>, then their pricing scheme boils down to a base of <m>\$7.35</m> for the trip, plus <m>\$3.85</m> per mile. Use a slope-intercept equation and algebra to answer these questions.<ol>
+                <p>Uber is a ride-sharing company. Its pricing in Portland factors in how much time and how many miles a trip takes. But if you assume that rides average out at a speed of <quantity><mag>30</mag><unit base="mileperhour" /></quantity>, then their pricing scheme boils down to a base of <m>\$7.35</m> for the trip, plus <m>\$3.85</m> per mile. Use a slope-intercept equation and algebra to answer these questions.<ol label="a.">
                     <li><p>How much is the fare if a trip is <m>5.3</m> miles long?</p></li>
                     <li><p>With <m>\$100</m> available to you, how long of a trip can you afford?</p></li>
                 </ol></p>
@@ -1072,7 +1079,7 @@
             </exercise>
             <exercise>
                 <webwork source="Library/Mizzou/College_Algebra/Real_Numbers/Simplifying_Expressions/Algebraic_Expns_Slope.pg" />
-            </exercise>            
+            </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
             <title>Identifying Slope and <m>y</m>-Intercept</title>
@@ -1100,18 +1107,18 @@
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept40.pg" />
             </exercise>
-<!-- TODO: update WW source for 50 and 60 so that they have \frac{2}{3}x not \frac{2x}{3}-->
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept50.pg" />
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept55.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept50.pg" />
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept55.pg" />
+            </exercise>
+            <!-- seed set to guarantee distinct versions -->
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept65.pg" seed="65"/>
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept60.pg" />
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept65.pg" seed="66"/>
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept70.pg" />
@@ -1126,10 +1133,8 @@
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept80.pg" />
             </exercise>
         </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Graphing Lines in Slope-Intercept Form</p>
-            </introduction>
+        <exercisegroup cols="3">
+            <title>Graphs and Slope-Intercept Form</title>
             <exercise>
                 <statement>
                     <p>Graph the equation <m>y=4x</m>.</p>
@@ -1256,6 +1261,8 @@
                     </sidebyside>
                 </solution>
             </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
             <exercise>
                 <statement>
                     <p>Graph the equation <m>y=-\frac{1}{3}x</m>.</p>
@@ -1550,38 +1557,8 @@
                     </sidebyside>
                 </solution>
             </exercise>
-
-
-<!--                        <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope40.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope50.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/GraphingPointsAndLines/GraphLinearEquationByPointSlope80.pg" />
-            </exercise>
--->
         </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Writing a Slope-Intercept Form Equation from the Graph</p>
-            </introduction>
+        <exercisegroup cols="3">
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph10.pg" />
             </exercise>
@@ -1608,9 +1585,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Writing a Slope-Intercept Equation Given Two Points</p>
-            </introduction>
+            <title>Writing a Slope-Intercept Equation Given Two Points</title>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindSlopeInterceptEquation10.pg" />
             </exercise>
@@ -1643,9 +1618,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Applications</p>
-            </introduction>
+            <title>Applications</title>
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/MXPlusBWordProblem10.pg" />
             </exercise>
@@ -1664,44 +1637,46 @@
             <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/MXPlusBWordProblem60.pg" />
             </exercise>
-            <exercise width="wide">
-                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication10.pg" />
-            </exercise>
-            <exercise width="wide">
-                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication20.pg" />
-            </exercise>
-            <exercise width="wide">
-                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication30.pg" />
-            </exercise>
-            <exercise width="wide">
-                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication40.pg" />
-            </exercise>
-            <exercise width="wide">
+            <!-- ordering intentional -->
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication50.pg" />
             </exercise>
-            <exercise width="wide">
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication60.pg" />
             </exercise>
-            <exercise width="wide">
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication70.pg" />
             </exercise>
-            <exercise width="wide">
+            <exercise>
                 <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/LinearEquationApplications/FindLineEquationApplication30.pg" />
             </exercise>
         </exercisegroup>
 
+        <exercisegroup>
+            <title>Challenge</title>
             <exercise><!-- Kara's challenge problem -->
                 <webwork>
                     <statement>
-                        <p> Line S has the equation <m>y = ax + b</m> and Line T has the equation <m>y =cx + d</m>.</p>
-                        <p>Let  <m> a > b > c > d > 0 </m></p>
+                        <p>Line <m>S</m> has the equation <m>y = ax + b</m> and Line <m>T</m> has the equation <m>y =cx + d</m>. Suppose <m> a \gt b \gt c \gt d \gt 0 </m>.</p>
                         <p><ol label="a.">
                             <li>
-                                <p>What can you say about Line S and Line T, given that <m>a > c</m>?  Give as much information about Line S and Line T as possible.</p>
+                                <p>What can you say about Line <m>S</m> and Line <m>T</m>, given that <m>a \gt c</m>?  Give as much information about Line <m>S</m> and Line <m>T</m> as possible.</p>
                                 <p><var form="essay"/></p>
                             </li>
                             <li>
-                                <p>What can you say about Line S and Line T, given that <m>b > d</m>?  Give as much information about Line S and Line T as possible.</p>
+                                <p>What can you say about Line <m>S</m> and Line <m>T</m>, given that <m>b \gt d</m>?  Give as much information about Line <m>S</m> and Line <m>T</m> as possible.</p>
                                 <p><var form="essay"/></p>
                             </li>
                         </ol></p>
@@ -1709,16 +1684,16 @@
                     <solution>
                         <p> <ol label="a.">
                             <li>
-                                <p>Since Line S has the equation <m>y = ax + b</m> and Line T has the equation <m>y =cx + d</m>, the variables <m>a</m> and <m>c</m> represent slopes.  Since <m> a > c > 0</m>, we know that the slope of line S is steeper than the slope of line T.  We also know that both slopes are positive.</p>
+                                <p>Since Line <m>S</m> has the equation <m>y = ax + b</m> and Line <m>T</m> has the equation <m>y =cx + d</m>, the variables <m>a</m> and <m>c</m> represent slopes.  Since <m> a \gt c \gt 0</m>, we know that the slope of Line <m>S</m> is steeper than the slope of Line <m>T</m>.  We also know that both slopes are positive.</p>
                             </li>
                             <li>
-                                <p>Since Line S has the equation <m>y = ax + b</m> and Line T has the equation <m>y =cx + d</m>, the variables <m>b</m> and <m>b</m> represent y-intercepts.  Since <m>b > d > 0</m>, we know that line S and line T both intersect the y-axis at positive y-intercepts and that line S intersects the y-axis at a higher point than line T.</p>
+                                <p>Since Line <m>S</m> has the equation <m>y = ax + b</m> and Line <m>T</m> has the equation <m>y =cx + d</m>, the variables <m>b</m> and <m>b</m> represent <m>y</m>-intercepts.  Since <m>b \gt d \gt 0</m>, we know that Line <m>S</m> and Line <m>T</m> both intersect the <m>y</m>-axis at positive <m>y</m>-intercepts and that Line <m>S</m> intersects the <m>y</m>-axis at a higher point than Line <m>T</m>.</p>
                             </li>
                         </ol></p>
                     </solution>
                 </webwork>
             </exercise>
-
+        </exercisegroup>
     </exercises>
 
 </section>

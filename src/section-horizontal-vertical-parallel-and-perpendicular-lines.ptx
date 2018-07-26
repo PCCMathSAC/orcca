@@ -225,13 +225,16 @@
                         $gr = init_graph(-7,-7,7,7,axes=>[0,0],grid=>[14,14],size=>[240,240]);
                         $gr->lb('reset');
                         for $j (-6..-1,1..6) {
-                           $gr->lb( new Label($j,   0,  $j,'black','center','top'  ));
-                           $gr->lb( new Label( 0,  $j,  $j,'black','right','middle'));
+                           $gr->lb( new Label($j,   0,  $j,'black','center','top'  ,'large'));
+                           $gr->lb( new Label( 0,  $j,  $j,'black','right','middle','large'));
                         };
-                        $gr->lb( new Label(7, 0, "x ",'black','right','bottom'));
-                        $gr->lb( new Label(0, 7, " y",'black','left','top'));
+                        $gr->lb( new Label(7, 0, "x ",'black','right','bottom','large'));
+                        $gr->lb( new Label(0, 7, " y",'black','left','top','large'));
                         for my $i(-2..2){$gr->stamps( closed_circle($i,-4.25,'blue') );}
-                        add_functions($gr, "-4.25 for x in &lt;-7,7>  using color:blue and weight:2");
+                        $gr->moveTo(0,-4.25);
+                        $gr->arrowTo(-7,-4.25,'blue',1);
+                        $gr->moveTo(0,-4.25);
+                        $gr->arrowTo(7,-4.25,'blue',1);
                     </pg-code>
                 </setup>
                 <statement>
@@ -410,15 +413,16 @@
                         $gr = init_graph(-7,-7,7,7,axes=>[0,0],grid=>[14,14],size=>[240,240]);
                         $gr->lb('reset');
                         for $j (-6..-1,1..6) {
-                           $gr->lb( new Label($j,   0,  $j,'black','center','top'  ));
-                           $gr->lb( new Label( 0,  $j,  $j,'black','right','middle'));
+                           $gr->lb( new Label($j,   0,  $j,'black','center','top'  ,'large'));
+                           $gr->lb( new Label( 0,  $j,  $j,'black','right','middle','large'));
                         };
-                        $gr->lb( new Label(7, 0, "x ",'black','right','bottom'));
-                        $gr->lb( new Label(0, 7, " y",'black','left','top'));
+                        $gr->lb( new Label(7, 0, "x ",'black','right','bottom','large'));
+                        $gr->lb( new Label(0, 7, " y",'black','left','top','large'));
                         for my $i(-2..2){$gr->stamps( closed_circle(3.14,$i,'blue') );}
-                        $gr->moveTo(3.14,-7);
-                        $gr->lineTo(3.14,7,'blue',2);
-
+                        $gr->moveTo(3.14,0);
+                        $gr->arrowTo(3.14,7,'blue',1);
+                        $gr->moveTo(3.14,0);
+                        $gr->arrowTo(3.14,-7,'blue',1);
                     </pg-code>
                 </setup>
                 <statement>
@@ -525,7 +529,7 @@
             </sidebyside>
         </example>
 
-        <theorem>
+        <paragraphs>
             <title>Summary of Horizontal and Vertical Line Equations</title>
             <statement>
                 <sidebyside>
@@ -555,7 +559,7 @@
                     </tabular>
                 </sidebyside>
             </statement>
-        </theorem>
+        </paragraphs>
 
     </subsection>
 
@@ -604,7 +608,7 @@
 
         </example>
 
-        <fact><idx><h>parallel lines</h></idx>
+        <fact xml:id="fact-parallel-lines"><idx><h>parallel lines</h></idx>
             <statement>
                 <p>Any two vertical lines are parallel to each other. For two non-vertical lines, they are parallel if and only if they have the same slope.</p>
             </statement>
@@ -733,7 +737,7 @@
 
         <p>The second line in <xref ref="figure-perpendicular-lines">Figure</xref> has slope <me>\frac{\Delta y}{\Delta x}=\frac{-1}{m}=-\frac{1}{m}\text{.}</me></p>
 
-        <fact><idx><h>perpendicular lines</h></idx>
+        <fact xml:id="fact-perpendicular-lines"><idx><h>perpendicular lines</h></idx>
             <statement>
                 <p>A vertical line and a horizontal line are perpendicular. For lines that are neither vertical nor horizontal, they are perpendicular if and only if the slope of one is the negative reciprocal of the slope of the other. That is, if one has slope <m>m</m>, the other has slope <m>-\frac{1}{m}</m>.</p>
 
@@ -846,7 +850,7 @@
     </subsection>
 
     <exercises>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
             <exercise>
                 <webwork source="BasicMath/MultiplicationDivision/DivideByZero10.pg" />
@@ -866,28 +870,6 @@
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
             </exercise>
-        </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Create a table for horizontal and vertical lines.</p>
-            </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
-            </exercise>
-        </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Determine whether a point is on a horizontal or vertical line.</p>
-            </introduction>
             <exercise>
                 <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/PointOnLineOrNot90.pg" />
             </exercise>
@@ -902,26 +884,22 @@
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Given two points, find the equations of the line connecting them.</p>
-            </introduction>
+            <title>Tables for Horizontal and Vertical Lines</title>
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial10.pg" />
+                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine70.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial10.pg" />
+                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine70.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial20.pg" />
+                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial20.pg" />
+                <webwork source="BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Given linear graphs, find the equations of horizontal and vertical lines.</p>
-            </introduction>
+            <title>Line Equations</title>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph50.pg" />
             </exercise>
@@ -933,12 +911,22 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/TwoPointsFindEquationSpecial20.pg" />
             </exercise>
         </exercisegroup>
         <exercisegroup>
-            <introduction>
-                <p>Find the intercepts of horizontal and vertical lines.</p>
-            </introduction>
+            <title>Intercepts</title>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts130.pg" />
             </exercise>
@@ -953,9 +941,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Given their equation, graph horizontal and vertical lines.</p>
-            </introduction>
+            <title>Graphs of Horizontal and Vertical Lines</title>
             <exercise>
                 <statement>
                     <p>Graph the line <m>y=1</m>.</p>
@@ -1037,40 +1023,9 @@
                 </solution>
             </exercise>
         </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Finding equations of parallel lines.</p>
-            </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular150.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular150.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular160.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular160.pg" />
-            </exercise>
-        </exercisegroup>
 
         <exercisegroup cols="2">
-            <introduction>
-                <p>Determine whether two lines are parallel or perpendicular.</p>
-            </introduction>
+            <title>Parallel or Perpendicular?</title>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelPerpendicular10.pg" />
             </exercise>
@@ -1096,10 +1051,33 @@
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelPerpendicular140.pg" />
             </exercise>
         </exercisegroup>
+
         <exercisegroup cols="2">
-            <introduction>
-                <p>Find a line's equation perpendicular to a given equation.</p>
-            </introduction>
+            <title>Parallel and Perpendicular Line Equations</title>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelFindEquationSpecial20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular150.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular150.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular160.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicular160.pg" />
+            </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/PointSlopeForm/ParallelPerpendicularORCCA170.pg" />
             </exercise>
@@ -1114,21 +1092,23 @@
             </exercise>
         </exercisegroup>
 
+        <exercisegroup>
+            <title>Challenge</title>
+
             <exercise><!-- Kara's challenge problem -->
                 <webwork>
                     <statement>
-                        <p>  Prove that a triangle with vertices at the points (1, 1), (-4, 4), and (-3, 0) is a right triangle.</p>
+                        <p>Prove that a triangle with vertices at the points <m>(1, 1)</m>, <m>(-4, 4)</m>, and <m>(-3, 0)</m> is a right triangle.</p>
                         <p><var form="essay"/></p>
                     </statement>
                     <solution>
-                        <p> The slope between (1,1) and (-3,0) is <m> \frac{0-1}{-3 - (-1)}</m> or <m> \frac{1}{4} </m>.</p>
-                        <p> The slope between (-3,0) and (-4,4) is <m> \frac{4-0}{-4 - (-3)}</m> or <m> \frac{-4}{1} </m>.</p>
-                        <P> Thus, since <m> \frac{1}{4} </m> and <m> \frac{-4}{1} </m> are negative reciprocals, those two sides are perpendicular.  Thus, the triangle is a right triangle. </P>
+                        <p>The slope between <m>(1,1)</m> and <m>(-3,0)</m> is <m> \frac{0-1}{-3 - (-1)}</m> or <m> \frac{1}{4} </m>.</p>
+                        <p>The slope between <m>(-3,0)</m> and <m>(-4,4)</m> is <m> \frac{4-0}{-4 - (-3)}</m> or <m> \frac{-4}{1} </m>.</p>
+                        <p>Since <m> \frac{1}{4} </m> and <m> \frac{-4}{1} </m> are negative reciprocals, those two sides are perpendicular.  Thus, the triangle is a right triangle.</p>
                     </solution>
                 </webwork>
             </exercise>
-
-
+        </exercisegroup>
     </exercises>
 
 </section>

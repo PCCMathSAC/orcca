@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- *********************************************************************-->
+<!-- Copyright 2016-2018                                                  -->
+<!-- Portland Community College                                           -->
+<!--                                                                      -->
+<!-- This file is part of Open Resources for Community College Algebra    -->
+<!-- (ORCCA).                                                             -->
+<!-- *********************************************************************-->
+
+<section xml:id="section-geometry-formulas">
+
+    <title>Geometry Formulas</title>
+
+    <objectives>
+        <title>PCC Course Content and Outcome Guide</title>
+        <ul cols="3">
+            <li><xref ref="mth60-evaluate-formulas" /></li>
+            <li><xref ref="mth60-apply-perimeter-and-area-formulas" /></li>
+            <li><xref ref="mth60-apply-volume-formulas" /></li>
+            <li><xref ref="mth60-evaluate-other-geometric-formulas" /></li>
+            <li><xref ref="mth60-apply-appropriate-units" /></li>
+            <li><xref ref="mth60-find-perimeter-polygon" /></li>
+        </ul>
+    </objectives>
+
+    <introduction>
+        <p>Two- and three- dimensional shapes provide some formulas with variables that we can evaluate.</p>
+
+        <figure>
+            <caption>Alternative Video Lesson</caption>
+            <video youtubelist="PLmuZCPhWPt-eJdbyTErz2vXrizIRNdNjG" />
+        </figure>
+
+    </introduction>
+
+    <subsection xml:id="subsection-perimeter-and-area">
+        <title>Evaluating Perimeter and Area Formulas</title>
+
+        <paragraphs>
+            <title>Rectangles</title>
+
+            <p>The rectangle in <xref ref="figure-rectangle">Figure</xref> has a length (as measured by the edges on the top and bottom) and a width (as measured by the edges on the left and right). </p>
+
+            <figure xml:id="figure-rectangle">
+                <caption>A Rectangle</caption>
+                <image width="29%">
+                    <description></description>
+                    <latex-image>
+                        <![CDATA[
+                            \begin{tikzpicture}
+                                \fill[blue!20!white, draw=black, thick] (0,0) rectangle (3,2);
+                                \draw[step=1cm,gray,very thin] (-1,-1) grid (4,3);
+                                \node at (1.5,0) [below] {$\text{length}=3\,\text{cm}$};
+                                \node at (-.5,2) [rotate=90, left] {$\text{width}=2\,\text{cm}$};
+                            \end{tikzpicture}
+                        ]]>
+                    </latex-image>
+                </image>
+            </figure>
+
+            <p><term>Perimeter</term><idx><h>perimeter</h></idx> is the distance around the edge(s) of a two-dimensional shape. To calculate perimeter, start from a point on the shape (usually a corner), travel around the shape, and add up the total distance traveled. For the rectangle in the <xref ref="figure-rectangle">Figure</xref>, if we travel around it, the total distance would be:<md>
+                <mrow>\text{rectangle perimeter}\amp=3\,\text{cm}+2\,\text{cm}+3\,\text{cm}+2\,\text{cm}</mrow>
+                <mrow>\amp=10\,\text{cm}</mrow>
+            </md>.</p>
+
+            <p>Another way to compute a rectangle's perimeter would be to start at one corner, add up the edge length half-way around, and then double that. So we could have calculated the perimeter this way:<md>
+                <mrow>\text{rectangle perimeter}\amp=2(3\,\text{cm}+2\,\text{cm})</mrow>
+                <mrow>\amp=2(5\,\text{cm})</mrow>
+                <mrow>\amp=10\,\text{cm}</mrow>
+            </md>.</p>
+
+            <p>There is nothing special about this rectangle having length <quantity><mag>3</mag><unit prefix="centi" base="meter" /></quantity> and width <quantity><mag>2</mag><unit prefix="centi" base="meter" /></quantity>. With a generic rectangle, it has some length we can represent with the variable <m>\ell</m> and some width we can represent with the variable <m>w</m>. We can use <m>P</m> to represent its perimeter, and then the perimeter of the rectangle will be given by:<me>P=2(\ell+w)</me>.</p>
+
+            <p><term>Area</term><idx><h>area</h></idx> is the number of <m>1\times1</m> squares that fit inside a two-dimensional shape (possibly after morphing them into non-square shapes). If the edges of the squares are, say, <quantity><mag>1</mag><unit prefix="centi" base="meter" /></quantity> long, then the area is measured in <q>square <quantity><unit prefix="centi" base="meter" /></quantity>,</q> written <quantity><unit prefix="centi" base="meter" exp="2"/></quantity>. In <xref ref="figure-rectangle">Figure</xref>, the rectangle has six <quantity><mag>1</mag><unit prefix="centi" base="meter" /></quantity><nbsp /><times /><nbsp /><quantity><mag>1</mag><unit prefix="centi" base="meter" /></quantity> squares, so its area is <m>6</m> square centimeters.</p>
+
+            <p>Note that we can find that area by multiplying the length and the width: <md>
+                <mrow>\text{rectangle area}\amp=(3\,\text{cm})\cdot(2\,\text{cm})</mrow>
+                <mrow>\amp=6\,\text{cm}^2</mrow>
+            </md></p>
+
+            <p>Again, there is nothing special about this rectangle having length <quantity><mag>3</mag><unit prefix="centi" base="meter" /></quantity> and width <quantity><mag>2</mag><unit prefix="centi" base="meter" /></quantity>. With a generic rectangle, it has some length we can represent with the variable <m>\ell</m> and some width we can represent with the variable <m>w</m>. We can represent its area with the variable <m>A</m>, and then the area of the rectangle will be given by:<me>A=\ell\cdot w</me>.</p>
+        </paragraphs>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $base = 14;
+                        $height = 5;
+
+                        $xmin = 0;         #The viewing window
+                        $xmax = $base+2;
+                        $ymin = 0;
+                        $ymax = $xmax*$height/$base;
+
+                        @x = (($xmax-$base)/2,($xmax+$base)/2);
+                        @y = (($ymax-$height)/2,($ymax+$height)/2);
+
+                        $cornersize = $xmax*10/240;
+
+                        $picture = init_graph($xmin,$ymin,$xmax,$ymax, pixels=>[240,240*$height/$base]);
+
+                        $picture->lb( new Label(($x[0]+$x[1])/2, $y[0],"$base m",'black','center','bottom','large'));
+                        $picture->lb( new Label($x[1],($y[0]+$y[1])/2,"$height m",'black','right','middle','large'));
+
+                        $picture->moveTo($x[0],$y[0]);
+                        $picture->lineTo($x[1],$y[0], blue,3);
+                        $picture->lineTo($x[1],$y[1], blue,3);
+                        $picture->lineTo($x[0],$y[1], blue,3);
+                        $picture->lineTo($x[0],$y[0], blue,3);
+
+                        foreach $i (0,1) {
+                            foreach $j (0,1) {
+                                $picture->moveTo($x[$i]+(-1)**$i*$cornersize,$y[$j]);
+                                $picture->lineTo($x[$i]+(-1)**$i*$cornersize,$y[$j]+(-1)**$j*$cornersize, blue,1);
+                                $picture->lineTo($x[$i],$y[$j]+(-1)**$j*$cornersize, blue,1);
+                            }
+                        }
+
+                        $perimeter = 2*($base+$height);
+                        $area = $base*$height;
+                        $ansP = NumberWithUnits("$perimeter m");
+                        $ansA = NumberWithUnits("$area m^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Find the perimeter and area of the rectangle.</p>
+                    <sidebyside widths="40%"><image pg-name="$picture" /></sidebyside>
+                    <instruction>Use <c>m</c> for meters and <c>m^2</c> for square meters.</instruction>
+                    <p>Its perimeter is <var name="$ansP" width="10"/> and its area is <var name="$ansA" width="10"/>.</p>
+                </statement>
+                <solution>
+                    <p>Using the perimeter and area formulas for a rectangle, we have:<md>
+                        <mrow>P\amp=2(\ell+w)\amp A\amp=\ell\cdot w</mrow>
+                        <mrow> \amp=2(\substitute{14}+\substitute{10}) \amp  \amp=\substitute{14}\cdot\substitute{10}</mrow>
+                        <mrow> \amp=2(24)\amp\amp=140</mrow>
+                        <mrow> \amp=48</mrow>
+                    </md></p>
+                    <p>Since length and width were measured in meters, we find that the perimeter is <m>28</m> meters and the area is <m>140</m> square meters.</p>
+                </solution>
+            </webwork>
+        </exercise>
+
+
+        <paragraphs>
+            <title>Triangles</title>
+
+            <p>The perimeter of a general triangle has no special formula <mdash /> all that is needed is to add the lengths of its three sides. The <em>area</em> of a triangle is a bit more interesting. In <xref ref="figure-three-triangles">Figure</xref>, there are three triangles. From left to right, there is an acute triangle, a right triangle, and an obtuse triangle. Each triangle is drawn so that there is a <q>bottom</q> horizontal edge. This edge is referred to as the <q>base</q> of the triangle. With each triangle, a <q>height</q> that is perpendicular to the base is also illustrated.</p>
+
+            <figure xml:id="figure-three-triangles">
+                <caption>Triangles</caption>
+                <sidebyside widths="30% 30% 36%" margins="0%">
+                    <image>
+                        <description></description>
+                        <latex-image>
+                           <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[firstcolor!20!white, draw=black, thick] (0,0) -- (3,0) -- (2,2) -- (0,0);
+                                    \node at (1.5,0) [below] {base=$3$ cm};
+                                    \draw [altitude] (2,2) -- (2,0) node[pos=0.5, left, color=black] {height=$2\,$cm};
+                                    \draw [rightangle] (2,0.2) -- (1.8,0.2) -- (1.8,0);
+                                    \draw[step=1cm,very thin, opacity=0.5] (-1,-1) grid (4,3);
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image>
+                    </image>
+                    <image>
+                        <description></description>
+                        <latex-image>
+                           <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[firstcolor!20!white, draw=black, thick] (4,0) -- (7,0) -- (7,2) -- (4,0);
+                                    \node at (5.5,0) [below] {base=$3$ cm};
+                                    \draw [rightangle] (7,0.2) -- (6.8,0.2) -- (6.8,0);
+                                    \node at (7,1) [left] {height=$2$ cm};
+                                    \draw[step=1cm,very thin, opacity=0.5] (3,-1) grid (8,3);
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image>
+                    </image>
+                    <image>
+                        <description></description>
+                        <latex-image>
+                           <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[firstcolor!20!white, draw=black, thick] (8,0) -- (11,0) -- (12,2) -- (8,0);
+                                    \node at (9.5,0) [below] {base=$3$ cm};
+                                    \draw [altitude] (12,2) -- (12,0) node[pos=0.5, left, color=black]{height=$2$ cm} -- (11,0);
+                                    \draw [rightangle] (12,0.2) -- (11.8,0.2) -- (11.8,0);
+                                    \draw[step=1cm,very thin, opacity=0.5] (7,-1) grid (13,3);
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image>
+                    </image>
+                </sidebyside>
+            </figure>
+
+            <p>Each of these triangles has the same base width, <quantity><mag>3</mag><unit prefix="centi" base="meter" /></quantity>, and the same height, <quantity><mag>2</mag><unit prefix="centi" base="meter" /></quantity>. Note that they each have the same area as well. <xref ref="figure-triangles-broken-down">Figure</xref> illustrates how they each have an area of <quantity><mag>3</mag><unit prefix="centi" base="meter" exp="2"/></quantity>.</p>
+
+            <figure xml:id="figure-triangles-broken-down">
+                <caption>Triangles</caption>
+                <sidebyside widths="30% 30% 36%" margins="0%">
+                    <image>
+                        <description></description>
+                        <latex-image>
+                           <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[firstcolor!20!white] (0,0) -- (1,0) -- (1,1) -- (2,1) -- (2,2) -- (0,0);
+                                    \fill[secondcolor!20!white] (1,0) -- (2,0) -- (2,1) -- (1,1) -- (1,0);
+                                    \fill[thirdcolor!20!white] (2,0) -- (3,0) -- (2,2) -- (2,0);
+                                    \draw[->] (1.5,1.5) arc (45:225:0.707cm);
+                                    \draw[->] (2.333,1.333) arc (116.6:-63.435:0.333cm);
+                                    \draw[step=1cm,very thin, opacity=0.5] (-1,-1) grid (4,3);
+                                    \draw[thick] (0,0) -- (1,0) -- (1,1) -- (0,1) -- (0,0);
+                                    \draw[thick] (1,0) -- (2,0) -- (2,1) -- (1,1) -- (0,0);
+                                    \draw[thick] (2,0) -- (3,0) -- (3,1) -- (2,1) -- (2,0);
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image>
+                    </image>
+                    <image>
+                        <description></description>
+                        <latex-image>
+                           <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[firstcolor!20!white] (4,0) -- (5,0) -- (5,0.6666) -- (4,0);
+                                    \fill[firstcolor!20!white] (6,1) -- (7,1) -- (7,2) -- (6,1.3333);
+                                    \draw[->] (6.3333,1.5) arc (33.69:213.69:1cm);
+                                    \fill[secondcolor!20!white] (5,0) -- (6,0) -- (6,1.3333) -- (5,0.6666) -- (5,0);
+                                    \draw[->] (5.75,1.1666) arc (33.69:213.69:0.3333cm);
+                                    \fill[thirdcolor!20!white] (6,0) -- (7,0) -- (7,1) -- (6,1) -- (6,0);
+                                    \draw[step=1cm,very thin, opacity=0.5] (3,-1) grid (8,3);
+                                    \draw[thick] (4,0) -- (5,0) -- (5,1) -- (4,1) -- (4,0);
+                                    \draw[thick] (5,0) -- (6,0) -- (6,1) -- (5,1) -- (5,0);
+                                    \draw[thick] (6,0) -- (7,0) -- (7,1) -- (6,1) -- (6,0);
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image>
+                    </image>
+                    <image>
+                        <description></description>
+                        <latex-image>
+                           <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[firstcolor!20!white] (8,0) -- (10,0) -- (10,1) -- (8,0);
+                                    \draw[->] (8.6666,0.3333) arc (206.6:26.6:0.333cm);
+                                    \fill[secondcolor!20!white] (10,0) -- (11,0) -- (11,1) -- (10,1) -- (10,0);
+                                    \fill[thirdcolor!20!white] (10,1) -- (11,1) -- (11,0) -- (12,2) -- (10,1);
+                                    \draw[dashed,color=thirdcolor] (11,1.5) -- (11,1) -- (11.5,1);
+                                    \draw[dashed,color=thirdcolor] (11,0) -- (12,0.5);
+                                    \draw[->] (10.6666,1.1666) arc (200:240:2cm);
+                                    \draw[->] (11.6666,1.3333) arc (63.4:-116.4:0.333cm);
+                                    \draw[step=1cm,very thin, opacity=0.5] (7,-1) grid (13,3);
+                                    \draw[thick] (9,0) -- (10,0) -- (10,1) -- (9,1) -- (9,0);
+                                    \draw[thick] (10,0) -- (11,0) -- (11,1) -- (10,1) -- (10,0);
+                                    \draw[thick] (11,0) -- (12,0) -- (12,1) -- (11,1) -- (11,0);
+                                \end{tikzpicture}
+                           ]]>
+                           </latex-image>
+                    </image>
+                </sidebyside>
+            </figure>
+
+            <p>As with the triangles in <xref ref="figure-triangles-broken-down">Figure</xref>, you can always rearrange little pieces of a triangle so that the resulting shape is a rectangle with the same base width, but with a height that's one-half of the triangle's height. With a generic rectangle, it has some base width we can represent with the variable <m>b</m> and some height we can represent with the variable <m>h</m>. We can represent its area with the variable <m>A</m>, and then the area of the triangle will be given by <m>A=b\cdot\left(\frac{1}{2}h\right)</m>, or more conventionally:<me>A=\frac{1}{2}bh</me>.</p>
+        </paragraphs>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $height = 10;
+                        $rightSide = 13;
+                        $bigbase = 25;
+                        $base = $bigbase - round(sqrt($rightSide**2 - $height**2));
+                        $leftSide = round(sqrt($bigbase**2 + $height**2));
+                        $xmin = 0;         #The viewing window
+                        $xmax = $bigbase*240/210;
+                        $ymin = 0;
+                        $ymax=(210*$height/$bigbase+30)*$height/(210*$height/$bigbase);
+                        @x = ($xmax/2-$bigbase/2,$xmax/2-$bigbase/2+$base,$xmax/2+$bigbase/2);
+                        @y = (($ymax-$height)/2,($ymax+$height)/2);
+                        $cornersize = min(($x[1]-$x[0]),($y[1]-$y[0]))/10;
+                        $picture = init_graph($xmin,$ymin,$xmax,$ymax,
+                              pixels=>[240,240*$ymax/$xmax]);
+                        $picture->lb( new Label($x[0]+$base/2, $y[0],"$base m",'black','center','top','large'));
+                        $picture->lb( new Label($x[2],($y[0]+$y[1])/2,"$height m",'black','center','bottom','large','vertical'));
+                        $picture->lb( new Label($xmax/2+$base/2, ($y[0]+$y[1])/2,"$rightSide m",'black','right','middle','large'));
+                        $picture->lb( new Label(($x[0]+$x[2])/2,($y[0]+$y[1])/2,"$leftSide m",'black','right','bottom','large'));
+                        $picture->moveTo($x[2],$y[1]);
+                        $picture->lineTo($x[2],$y[0], red,1,"dashed");
+                        $picture->lineTo($x[0]+$base,$y[0], red,1,"dashed");
+                        $picture->lineTo($x[2],$y[1],blue,3);
+                        $picture->lineTo($x[0],$y[0],blue,3);
+                        $picture->lineTo($x[0]+$base,$y[0],blue,3);
+                        $picture->moveTo($x[0]+$bigbase,$y[0]+$cornersize);
+                        $picture->lineTo($x[0]+$bigbase-$cornersize,$y[0]+$cornersize,blue,1);
+                        $picture->lineTo($x[0]+$bigbase-$cornersize,$y[0],blue,1);
+                        $perimeter = $base + $leftSide + $rightSide;
+                        $area = $base*$height/2;
+                        $ansP = NumberWithUnits($perimeter,"m");
+                        $ansA = NumberWithUnits($area,"m^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Find the perimeter and area of the triangle.</p>
+                    <sidebyside widths="40%"><image pg-name="$picture" /></sidebyside>
+                    <instruction>Use <c>m</c> for meters and <c>m^2</c> for square meters.</instruction>
+                    <p>Its perimeter is <var name="$ansP" width="10"/> and its area is <var name="$ansA" width="10"/>.</p>
+                </statement>
+                <solution>
+                    <p>For perimeter, we just add the three side lengths:<md>
+                        <mrow>P\amp=13+25+33</mrow>
+                        <mrow> \amp=71</mrow>
+                    </md>For area, we use the triangle area formula:<md>
+                        <mrow>A\amp=\frac{1}{2}bh</mrow>
+                        <mrow> \amp=\frac{1}{2}(13)(22)</mrow>
+                        <mrow> \amp=13(11)</mrow>
+                        <mrow> \amp=143</mrow>
+                    </md></p>
+                    <p>Since length and width were measured in meters, we find that the perimeter is <m>71</m> meters and the area is <m>143</m> square meters.</p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <paragraphs>
+            <title>Circles</title>
+
+            <p>To find formulas for the perimeter and area of a circle, it helps to first know that there is a special number called <m>\pi</m> (spelled <q>pi</q> and pronounced like <q>pie</q>) that appears in many places in mathematics. The decimal value of <m>\pi</m> is about <m>3.14159265\ldots</m>, and it helps to memorize some of these digits. It also helps to understand that <m>\pi</m> is a little larger than <m>3</m>. There are many definitions for <m>\pi</m> that can explain where it comes from and how you can find all its decimal places, but here we are just going to accept that it is a special number, and it is roughly <m>3.14159265\ldots</m>.</p>
+
+            <p>The perimeter of a circle is the distance around its edge. For circles, the perimeter has a special name: the <term>circumference</term><idx><h>circumference</h></idx>. Imagine wrapping a string around the circle and cutting it so that it makes one complete loop. If we straighten out that piece of string, we have a length that is just as long as the circle's circumference.</p>
+
+            <figure xml:id="figure-circumference-by-diameter">
+                <caption>Circle Diameter and Circumference</caption>
+                    <image width="48%">
+                    <description></description>
+                    <latex-image>
+                       <![CDATA[
+                            \begin{tikzpicture}[x=1cm,y=1cm]
+                                \draw[thick,fill=firstcolor!20!white] (1,0) arc (-90:270:1);
+                                \draw[guideline] (0,1) -- (2,1) node[pos=0.5,above]{diameter};
+                                \draw[thin] (1,0) arc (-90:-132.97:1.3333);
+                                \draw[thin] (1,0) arc (-90:-118.65:2);
+                                \draw[thin] (1,0) arc (-90:-104.3:4);
+                                \draw[thick] (1,0) -- (0,0);
+                                \draw[thin] (1,0) arc (-90:174.86:1.1428);
+                                \draw[thin] (1,0) arc (-90:137.03:1.3333);
+                                \draw[thin] (1,0) arc (-90:99.19:1.6);
+                                \draw[thin] (1,0) arc (-90:61.35:2);
+                                \draw[thin] (1,0) arc (-90:23.51:2.6666);
+                                \draw[thin] (1,0) arc (-90:-14.32:4);
+                                \draw[thin] (1,0) arc (-90:-52.16:8);
+                                \draw[thick] (1,0) -- (6.28,0) node[pos=0.5,below]{$\text{circumference}=\pi\cdot \text{diameter}$};
+                                \draw[step=2,very thin, opacity=0.5] (0,0) grid (8,4);
+                            \end{tikzpicture}
+                       ]]>
+                    </latex-image>
+                </image>
+            </figure>
+
+
+            <p>As we can see in <xref ref="figure-circumference-by-diameter">Figure</xref>, the circumference of a circle is a little more than three times as long as its diameter. (The diameter of a circle is the length of a straight line running from a point on the edge through the center to the opposite edge.) In fact, the circumference is actually exactly <m>\pi</m> times the length of the diameter. With a generic circle, it has some diameter we can represent with the variable <m>d</m>. We can represent its circumference with the variable <m>c</m>, and then the circumference of the circle will be given by: <me>c=\pi d</me>.</p>
+
+            <p>Alternatively, we often prefer to work with a circle's <term>radius</term> instead of its diameter. The radius is the distance from any point on the circle's edge to its center. (Note that the radius is half the diameter.) From this perspective, we can see in <xref ref="figure-circumference-by-radius">Figure</xref> that the circumference is a little more than <m>6</m> times the radius.</p>
+
+            <figure xml:id="figure-circumference-by-radius">
+                <caption>Circle Diameter and Circumference</caption>
+                    <image width="48%">
+                    <description></description>
+                    <latex-image>
+                       <![CDATA[
+                            \begin{tikzpicture}[x=1cm,y=1cm]
+                                \draw[thick,fill=firstcolor!20!white] (1,0) arc (-90:270:1);
+                                \draw[guideline] (0,1) -- (1,1) node[pos=0.5,above]{radius};
+                                \draw[thin] (1,0) arc (-90:-132.97:1.3333);
+                                \draw[thin] (1,0) arc (-90:-118.65:2);
+                                \draw[thin] (1,0) arc (-90:-104.3:4);
+                                \draw[thick] (1,0) -- (0,0);
+                                \draw[thin] (1,0) arc (-90:174.86:1.1428);
+                                \draw[thin] (1,0) arc (-90:137.03:1.3333);
+                                \draw[thin] (1,0) arc (-90:99.19:1.6);
+                                \draw[thin] (1,0) arc (-90:61.35:2);
+                                \draw[thin] (1,0) arc (-90:23.51:2.6666);
+                                \draw[thin] (1,0) arc (-90:-14.32:4);
+                                \draw[thin] (1,0) arc (-90:-52.16:8);
+                                \draw[thick] (1,0) -- (6.28,0) node[pos=0.5,below]{$\text{circumference}=\pi\cdot 2\,\text{radius}$};
+                                \draw[step=1,very thin, opacity=0.5] (0,0) grid (8,4);
+                            \end{tikzpicture}
+                       ]]>
+                    </latex-image>
+                </image>
+            </figure>
+
+            <p>This gives us another formula for a circle's circumerence that uses the variable <m>r</m> for its radius: <m>c=\pi\cdot2r</m>. Or more conventionally, <me>c=2\pi r</me>.</p>
+
+            <p>There is also a formula for the <em>area</em> of a circle based on its radius. <xref ref="figure-circle-area-approx">Figure</xref> shows how three squares can be cut up and rearranged to fit inside a circle. This shows how the area of a circle of radius <m>r</m> is just a little larger than <m>3r^2</m>. Since <m>\pi</m> is just a little larger than <m>3</m>, could it be that the area of a circle is given by <m>\pi r^2</m>?</p>
+
+            <figure xml:id="figure-circle-area-approx">
+                <caption>Circle area is slightly larger than <m>3r^2</m>.</caption>
+                    <image width="100%">
+                    <description></description>
+                    <latex-image>
+                       <![CDATA[
+                            \begin{tikzpicture}[x=1.3cm,y=1.3cm]
+                                %grid
+                                \draw[step=1,very thin, opacity=0.5] (0,-1) grid (11,3);
+                                %rectangle
+                                \draw[fill=secondcolor!20!white] (1,1) --+ (1,0) --+ (1,1) --+ (0,1) -- cycle;
+                                \draw[fill=firstcolor!20!white] (2,1) --+ (1,0) --+ (1,1) --+ (0,1) -- cycle;
+                                \draw[fill=secondcolor!20!white] (3,1) --+ (1,0) --+ (1,1) --+ (0,1) -- cycle;
+                                \draw[|-|] (0.9,1) -- (0.9,2) node[pos=0.5,left] {$r$};
+                                \draw[|-|] (1,0.9) -- (4,0.9) node[pos=0.5,below] {$3r$};
+                                \node[above] at (2.5,2) {area $3r\cdot r$, or $3r^2$};
+                                %trefoil
+                                \draw[fill=firstcolor!20!white] (6,1) --+ (1,0) --+ (1,1) --+ (0,1) -- cycle;
+                                \draw[fill=secondcolor!20!white] (6,1) --+ ({cos(-30)},{sin(-30)}) --+ ({cos(-30)+cos(-120)},{sin(-30)+sin(-120)}) --+ ({cos(-120)},{sin(-120)}) -- cycle;
+                                \draw[fill=secondcolor!20!white] (6,1) --+ ({cos(210)},{sin(210)}) --+ ({cos(210)+cos(120)},{sin(210)+sin(120)}) --+ ({cos(120)},{sin(120)}) -- cycle;
+                                \draw (6,1) --+ ({cos(30)},{sin(30)}) --+ ({cos(60)},{sin(60)}) --cycle;
+                                \draw (6,2) --+ ({0.517638*cos(-15)},{0.517638*sin(-15)}) --+ (1,0) --+ ({cos(-30)},{sin(-30)}) --+ (1,-1);
+                                \node[above] at (6,2) {area still $3r^2$};
+                                %circle
+                                \draw[thin] (9,0) arc (270:-90:1);
+                                \fill[color=firstcolor!20!white] (9,1) --+ ({cos(0)},{sin(0)}) --+ ({cos(30)},{sin(30)}) --+ ({cos(60)},{sin(60)}) --+ ({cos(90)},{sin(90)}) --+ ({cos(120)},{sin(120)}) -- cycle;
+                                \fill[color=secondcolor!20!white] (9,1) --+ ({cos(120)},{sin(120)}) --+ ({cos(150)},{sin(150)}) --+ ({cos(180)},{sin(180)}) --+ ({cos(210)},{sin(210)}) --+ ({cos(240)},{sin(240)}) -- cycle;
+                                \fill[color=secondcolor!20!white] (9,1) --+ ({cos(240)},{sin(240)}) --+ ({cos(270)},{sin(270)}) --+ ({cos(300)},{sin(300)}) --+ ({cos(330)},{sin(330)}) --+ ({cos(0)},{sin(0)}) -- cycle;
+                                \foreach \i in {0,...,11} {
+                                    \draw ({9+cos(30*\i)},{1+sin(30*\i}) -- ({9+cos(30*(\i+1))},{1+sin(30*(\i+1)});
+                                }
+                                \foreach \i in {0,...,2} {
+                                    \draw (9,1) --+ ({cos(120*\i)},{sin(120*\i});
+                                    \draw (9,1) --+ ({cos(30*(\i+1))},{sin(30*(\i+1)});
+                                }
+                                \draw (9,1) --+ ({0.517638*cos(105)},{0.517638*sin(105)});
+                                \draw (9,2) --+ ({0.517638*cos(255)},{0.517638*sin(255)}) --+ ({0.517638*cos(195)},{0.517638*sin(195)});
+                                \node[below] at (9,0) {circle area slightly more than $3r^2$};
+                            \end{tikzpicture}
+                       ]]>
+                    </latex-image>
+                </image>
+            </figure>
+
+            <p>One way to establish this formula is to imagine slicing up the circle into many pie slices as in <xref ref="figure-circle-area">Figure</xref>. Then you can rearrange the slices into a strange shape that is <em>almost</em> a rectangle with height equal to the radius of the original circle, and width equal to half the circumference of the original circle.</p>
+
+            <figure xml:id="figure-circle-area">
+                <caption>Reasoning the circle area formula.</caption>
+                    <image width="100%">
+                    <description></description>
+                    <latex-image>
+                       <![CDATA[
+                            \begin{tikzpicture}[x=1.8cm,y=1.8cm]
+                                %grid
+                                \draw[step=1,very thin, opacity=0.5] (-1,-1) grid (7,3);
+                                %circle
+                                \foreach \i in {0,...,19} {
+                                    \draw[fill=firstcolor!20!white] (1,1) --+ ({cos(360/(2*20)*2*\i)}, {sin(360/(2*20)*2*\i)}) arc ({360/(2*20)*2*\i}:{360/(2*20)*(2*\i+1)}:1) -- cycle;
+                                    \draw[fill=secondcolor!20!white] (1,1) --+ ({cos(360/(2*20)*(2*\i+1))}, {sin(360/(2*20)*(2*\i+1))}) arc ({360/(2*20)*(2*\i+1)}:{360/(2*20)*(2*\i+2)}:1) -- cycle;
+                                }
+                                \draw[thick, postaction={decorate,decoration={text along path,text align=center, transform={yshift=1ex},text={circumference $2{\pi}{r}${}}}}] (1,0) arc (270:-90:1);
+                                %pseudo-rectangle
+                                \foreach \i in {0,...,19} {
+                                    \draw[fill=firstcolor!20!white] ({3+2*\i*sin(4.5)},1) --+ ({-sin(4.5)},{cos(4.5)}) arc (94.5:85.5:1) -- cycle;
+                                    \draw[fill=secondcolor!20!white] ({3+(2*\i+1)*sin(4.5)},{cos(4.5)+1}) --+ ({-sin(4.5)},{-cos(4.5)}) arc (-94.5:-85.5:1) -- cycle;
+                                }
+                                \draw[|-|,dashed] ({3-sin(4.5)},2.2) -- ({3+3.1415926-sin(4.5)},2.2) node[pos=0.5,above] {half of circumference, $\pi r$};
+                                \draw[|-|,dashed] (3,1-0.2) -- (3+3.1415926,1-0.2) node[pos=0.5,below] {other half of circumference, $\pi r$};
+                                \draw[|-|] (3-0.2,1) -- (3-0.2,2) node[pos=0.5,left] {radius $r$};
+                                \draw[|-|] ({3+3.1415926-sin(4.5)+0.2},1) -- ({3+3.1415926-sin(4.5)+0.2},2) node[pos=0.5,right] {radius $r$};
+                                \end{tikzpicture}
+                       ]]>
+                    </latex-image>
+                </image>
+            </figure>
+
+            <p>Since the area of the circle is equal to the area of the almost-rectangular shape in <xref ref="figure-circle-area">Figure</xref>, we have the circle area formula: <me>A=\pi r^2</me>.</p>
+        </paragraphs>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        $radius = 3;
+                        $diameter = $radius*2;
+                        $radiusSquared = $radius**2;
+                        $radiusMO = NumberWithUnits("$radius m");
+                        $diameterMO = NumberWithUnits("$diameter m");
+                        $pi = Compute("pi");
+                        $circumferceRounded = sprintf("%.2f", $diameter*$pi);
+                        $circumferenceMO = NumberWithUnits("$circumferceRounded m");
+                        $areaRounded = sprintf("%.2f", $pi*$radiusSquared );
+                        $areaMO = NumberWithUnits("$areaRounded m^2");
+                        Context()->constants->remove('pi');
+                        Context()->variables->are(pi=>'Real');
+                        Context()->variables->set(pi => {TeX=>'\pi'});
+                        $circumferenceWithPiMO = FormulaWithUnits("$diameter pi" , 'm');
+                        $areaWithPiMO = FormulaWithUnits("$radiusSquared pi", 'm^2');
+                        $eval[0] = $circumferenceWithPiMO->cmp(
+                            correct_ans_latex_string=>$circumferenceWithPiMO->TeX
+                        )->withPostFilter(
+                            AnswerHints(
+                                sub {
+                                    my ($correct,$student,$ans) = @_;
+                                    return (Formula($student)->isConstant);
+                                } => "Your answer should be in terms of pi",
+                            )
+                        );
+                        $eval[1] = $circumferenceMO->cmp(
+                            tolType=>absolute,tolerance=>0.005
+                        );
+                        $eval[2] = $areaWithPiMO->cmp(
+                            correct_ans_latex_string=>$areaWithPiMO->TeX
+                        )->withPostFilter(
+                            AnswerHints(
+                                sub {
+                                    my ($correct,$student,$ans) = @_;
+                                    return (Formula($student)->isConstant);
+                                } => "Your answer should be in terms of pi",
+                            )
+                        );
+                        $eval[3] = $areaMO->cmp(
+                            tolType=>absolute,tolerance=>0.005
+                        );
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>A circle's diameter is <m><var name="$diameterMO" /></m>.</p>
+                    <instruction>For the answers below, type <c>pi</c> for <m>\pi</m>, <c>m</c> for meters, and <c>m^2</c> for square meters.</instruction>
+                    <p><ol>
+                        <li>
+                            <p>This circle's circumference, in terms of <m>\pi</m>, is <var name="$circumferenceWithPiMO" evaluator="$eval[0]" width="15" />.</p>
+                        </li>
+                        <li>
+                            <p>This circle's circumference, rounded to the hundredth place, is <var name="$circumferenceMO" evaluator="$eval[1]" width="15" />.</p>
+                        </li>
+                        <li>
+                            <p>This circle's area, in terms of [`\pi`], is <var name="$areaWithPiMO" evaluator="$eval[2]" width="15" />.</p>
+                        </li>
+                        <li>
+                            <p>This circle's area, rounded to the hundredth place, is <var name="$areaMO" evaluator="$eval[3]" width="15" />.</p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p>We use <m>r</m> to represent radius and <m>d</m> to represent diameter. In this problem, it's given that the diameter is <m><var name="$diameterMO" /></m>. A circle's radius is half as long as its diameter, so the radius is <m><var name="$radiusMO" /></m>.</p>
+
+                    <p>Throughout these computations, all quantities have units attached, but we only show them in the final step.<ol cols="2">
+                        <li>
+                            <p><m>\begin{aligned}[t]
+                                c\amp = \pi d\\
+                                \amp = \pi \cdot <var name="$diameter" />\\
+                                \amp = <var name="$circumferenceWithPiMO" />
+                                \end{aligned}
+                            </m></p>
+                        </li>
+                        <li>
+                            <p><m>\begin{aligned}[t]
+                                c\amp = \pi d\\
+                                \amp \approx 3.1415926 \cdot <var name="$diameter" />\\
+                                \amp \approx <var name="$circumferenceMO" />
+                                \end{aligned}
+                            </m></p>
+                        </li>
+                        <li>
+                            <p><m>\begin{aligned}[t]
+                                A\amp = \pi r^2\\
+                                \amp = \pi \cdot <var name="$radius" />^2\\
+                                \amp = \pi \cdot <var name="$radiusSquared" />\\
+                                \amp = <var name="$areaWithPiMO" />
+                                \end{aligned}
+                            </m></p>
+                        </li>
+                        <li>
+                            <p><m>\begin{aligned}[t]
+                                A\amp = \pi r^2\\
+                                \amp \approx 3.1415926 \cdot <var name="$radius" />^2\\
+                                \amp \approx 3.1415926 \cdot <var name="$radiusSquared" />\\
+                                \amp \approx <var name="$areaMO" />
+                                \end{aligned}
+                            </m></p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
+        </exercise>
+    </subsection>
+
+
+    <subsection>
+        <title>Volume</title>
+
+        <p>The <term>volume</term><idx><h>volume</h></idx> of a three-dimensional object is the number of <m>1\times1\times1</m> cubes that fit inside the object (possibly after morphing them into non-cube shapes). If the edges of the cubes are, say, <quantity><mag>1</mag><unit prefix="centi" base="meter" /></quantity> long, then the volume is measured in <q>cubic <quantity><unit prefix="centi" base="meter" /></quantity>,</q> written <quantity><unit prefix="centi" base="meter" exp="3"/></quantity>.</p>
+
+        <paragraphs>
+            <title>Rectangular Prisms</title>
+
+            <p>The 3D shape in <xref ref="figure-prism">Figure</xref> is called a rectangular prism.</p>
+
+            <figure xml:id="figure-prism">
+                <caption>Volume of a Rectangular Prism</caption>
+                <image width="100%">
+                    <description>a rectangular box made of 1 inch cubes; it is 5 inches wide, 4 inches deep and 3 inches high</description>
+                    <latex-image>
+                        \begin{tikzpicture}
+                        <![CDATA[
+                            \coordinate (v) at (14,12);
+                            \foreach \i in {0,...,5}{
+                            \draw (\i,0) -- (\i,3) -- ( $ (\i,3)!.142!(v) $ );
+                            }
+                            \foreach \j in {0,...,3}{
+                            \draw (0,\j) -- (5,\j) -- ( $ (5,\j)!.142!(v) $ );
+                            }
+                            \foreach \k in {0.04,0.076,0.110,0.142}{
+                            \draw ( $ (5,0)!{\k}!(v) $) -- ( $ (5,3)!{\k}!(v) $) -- ( $ (0,3)!{\k}!(v) $);
+                            }
+                            \node at (2.5,0) [below] {$5\,$in};
+                            \node at (0,1.5) [left] {$3\,$in};
+                            \path (5,0) -- ( $ (5,0)!.142!(v) $ ) node[sloped,below,pos=0.5] {$4\,$in};
+                        ]]>
+                        \end{tikzpicture}
+                        \begin{tikzpicture}
+                            \coordinate (v) at (14,12);
+                            \foreach \i in {0,...,5}{
+                            \draw[dashed] (\i,0) -- ( $ (\i,0)!.142!(v) $ );
+                            }
+                            \foreach \k in {0,0.04,0.076,0.110,0.142}{
+                            \draw[dashed] ( $ (5,0)!{\k}!(v) $) -- ( $ (0,0)!{\k}!(v) $);
+                            }
+                            %\node at (2.5,0) [below] {$5\,$in};
+                            %\node at (0,1.5) [left] {$3\,$in};
+                            %\path (0,3) -- ( $ (0,3)!.142!(v) $ ) node[sloped,above,pos=0.5] {$4\,$in};
+                            \fill[white,draw=black] ( $ (3,0)!.04!(v) $ ) -- ( $ (4,0)!.04!(v) $ ) -- ( $ (4,0)!.076!(v) $ ) -- ( $ (4,3)!.076!(v) $ ) -- ( $ (3,3)!.076!(v) $ ) -- ( $ (3,3)!.04!(v) $ )-- cycle;
+                            \foreach \j in {0,...,3}{
+                            \draw ( $ (3,\j)!.04!(v) $ ) -- ( $ (4,\j)!.04!(v) $ ) -- ( $ (4,\j)!.076!(v) $ );
+                            }
+                            \draw ( $ (4,0)!.04!(v) $ ) -- ( $ (4,3)!.04!(v) $ );
+                            \node at (2.5,0) [below] {\phantom{$5\,$in}};
+                        \end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+
+            <p>The rectangular prism in <xref ref="figure-prism">Figure</xref> is composed of <m>1\,\text{in}\times1\,\text{in}\times1\,\text{in}</m> unit cubes, with each cube's volume being <m>1</m> cubic inch (or <m>\text{in}^3</m>). The shape's volume is the number of such unit cubes. The bottom face has <m>5\cdot4=20</m> unit squares. Since there are <m>3</m> layers of cubes, the shape has a total of <m>3\cdot20=60</m> unit cubes. In other words, the shape's volume is <quantity><mag>60</mag><unit base="inch" exp="3" /></quantity> because it has sixty <quantity><mag>1</mag><unit base="inch" /></quantity><nbsp /><times /><nbsp /><quantity><mag>1</mag><unit base="inch" /></quantity><nbsp /><times /><nbsp /><quantity><mag>1</mag><unit base="inch" /></quantity> cubes inside it.</p>
+
+            <p>We found the number of unit squares in the bottom face by multiplying <m>5\cdot4=20</m>. Then to find the volume, we multiplied by <m>3</m> because there are three layers of cubes. So one formula for a prism's volume is<me>V=w d h</me><idx><h>volume</h><h>prism</h></idx>where <m>V</m> stands for volume, <m>w</m> for width, <m>d</m> for depth, and <m>h</m> for height.</p>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $volume=NumberWithUnits("63 in^3");
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>A masonry brick is in the shape of a rectangular prism and is <m>8</m> inches wide, <m>3.5</m> inches deep, and <m>2.25</m> inches high. What is its volume?</p>
+                        <instruction>Use <c>in^3</c> for cubic inches.</instruction>
+                        <p><var name="$volume" width="15" /></p>
+                    </statement>
+                    <solution>
+                        <p>Using the formula for the volume of a rectangular prism:<md>
+                            <mrow>V\amp=wdh</mrow>
+                            <mrow>\amp=\substitute{8}(\substitute{3.5})(\substitute{2.25})</mrow>
+                            <mrow>\amp=63</mrow>
+                        </md>So the brick's volume is <m>63</m> cubic inches.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+        </paragraphs>
+
+        <paragraphs>
+            <title>Cylinders</title>
+
+            <p>A cylinder is not a prism, but it has some similarities. Instead of a square base, the base is a circle. Its volume can also be calculated in a similar way to how prism volume is calculated. Let's look at an example.</p>
+
+            <example xml:id="example-cylinder-volume">
+                <statement>
+                    <p>Find the volume of a cylinder with a radius of <m>3</m> meters and a height of <m>2</m> meters.</p>
+
+                    <figure>
+                        <caption>A Cylinder</caption>
+                        <image width="47%">
+                            <description>the shape of a can or cylinder is shown; the radius of the top and bottom is 3 meters; the height is 2 meters</description>
+                            <latex-image>
+                               <![CDATA[
+                                \begin{tikzpicture}
+                                    \fill[color=firstcolor!20,draw=black] (0,0) ellipse (3 and 0.45);
+                                    \fill[color=firstcolor!10,draw=black] (3,0) arc (0:180:3 and -0.45) -- (-3,-2) arc (180:360:3 and 0.5) -- cycle;
+                                    \draw [dashed] (-3,-2) arc (180:360:3 and -0.5);
+                                    \draw [dashed] (0,0) -- (3,0) node[pos=0.5,above] {$3\,\text{m}$};
+                                    \node at (-3,-1) [left] {$2\,\text{m}$};
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+                </statement>
+
+                <solution>
+                    <p>The base of the cylinder is a circle. We know the area of a circle is given by the formula <m>A=\pi r^2</m>, so the base area is <quantity><mag>9\pi</mag><unit base="meter" exp="2" /></quantity>, or about <quantity><mag>28.27</mag><unit base="meter" exp="2" /></quantity>. That means about <m>28.27</m> unit squares can fit into the base. One of them is drawn in <xref ref="figure-cylinder-solution">Figure</xref> along with two unit cubes above it.</p>
+
+                    <figure xml:id="figure-cylinder-solution">
+                        <caption>Finding Cylinder Volume</caption>
+                        <image width="47%">
+                            <description>the same cylinder with two unit cubes inside highlighted</description>
+                            <latex-image>
+                                <![CDATA[
+                                \begin{tikzpicture}
+                                    \coordinate (v) at (14,12);
+                                    \fill[color=firstcolor!20,draw=black] (0,-2) ellipse (3 and 0.5);
+                                    \fill[color=white,draw=black] (0,0) -- (0,-2) -- (1,-2) -- ( $ (1,-2)!{0.011}!(v) $) -- ( $ (1,0)!{0.011}!(v) $) -- ( $ (0,0)!{0.011}!(v) $) -- cycle;
+                                    \draw (1,0) -- (1,-2);
+                                    \draw (0,0) -- (1,0) --  ( $ (1,0)!{0.011}!(v) $) ;
+                                    \draw (0,-1) -- (1,-1) --  ( $ (1,-1)!{0.011}!(v) $) ;
+                                    \draw (0,0) ellipse (3 and 0.45);
+                                    \draw (3,0) -- (3,-2);
+                                    \draw (-3,0) -- (-3,-2);
+                                    \node at (-3,-1) [left] {$\phantom{2\,\text{m}}$};
+                                \end{tikzpicture}
+                                ]]>
+                            </latex-image>
+                        </image>
+                    </figure>
+
+                    <p>For each unit square in the base circle, there are two unit cubes of volume. So the volume is the base area times the height: <m>9\pi\,\text{m}^2\cdot2\,\text{m}</m>, which equals <m>18\pi\,\text{m}^3</m>. Approximating <m>\pi</m> with a decimal value, this is about <quantity><mag>56.55</mag><unit base="meter" exp="3" /></quantity>.</p>
+                </solution>
+            </example>
+
+            <p><xref ref="example-cylinder-volume">Example</xref> demonstrates that the volume of a cylinder can be calculated with the formula <me>V=\pi r^2h</me> where <m>r</m> is the radius and <m>h</m> is the height.<idx><h>volume</h><h>cylinder</h></idx></p>
+
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context()->flags->set(reduceConstants=>0);
+                            $pi = Compute("pi");
+                            $piConstant = 8.112;
+                            Context()->constants->remove('pi');
+                            Context()->variables->are(pi=>'Real');
+                            Context()->variables->set(pi => {TeX=>'\pi'});
+                            $volumePI = FormulaWithUnits("$piConstant pi in^3");
+                            $volume = $pi*$piConstant;
+                            $volume = NumberWithUnits("$volume in^3");
+                            $evaluatorPI = $volumePI->cmp(correct_ans_latex_string=>"8.112\pi\,\text{in}^3")->
+                                withPostFilter(AnswerHints(
+                                sub {
+                                    my ($correct,$student,$ans) = @_;
+                                    return (Formula($student)->isConstant);
+                                } => "Your answer should be in terms of pi",
+                            ));
+                            $evaluator = $volume->cmp(tolType=>absolute,tolerance=>0.005);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>A soda can is basically in the shape of a cylinder with radius <m>1.3</m> inches and height <m>4.8</m> inches. What is its volume?</p>
+                        <instruction>Use <c>in^3</c> for cubic inches. Use <c>pi</c> for <m>\pi</m>.</instruction>
+                        <p>Its exact volume in terms of <m>\pi</m> is: <var name="$volumePI" width="15" />.</p>
+                        <p>As a decimal approximation rounded to four significant digits, its volume is: <var name="$volume" width="15" />.</p>
+                    </statement>
+                    <solution>
+                        <p>Using the formula for the volume of a cylinder:<md>
+                            <mrow>V\amp=\pi r^2h</mrow>
+                            <mrow>\amp=\pi(\substitute{1.3})^2(\substitute{4.8})</mrow>
+                            <mrow>\amp=8.112\pi</mrow>
+                            <mrow>\amp\approx25.48</mrow>
+                        </md>So the can's volume is <m>8.112\pi</m> cubic inches, which is about <m>25.48</m> cubic inches.</p>
+                    </solution>
+                </webwork>
+            </exercise>
+
+        </paragraphs>
+
+        <p>Note that the volume formulas for a rectangular prism and a cylinder have something in common: both formulas first find the area of the base (which is a rectangle for a prism and a circle for a cylinder) and then multiply by the height. So there is another formula <me>V=Bh</me> that works for both shapes. Here, <m>B</m> stands for the base area (which is <m>wd</m> for a prism and <m>\pi r^2</m> for a cylinder.)</p>
+    </subsection>
+
+    <subsection>
+        <title>Summary</title>
+        <p>You may be required to memorize the geometry formulas that have been cataloged in this section. Check that you have each of them memorized here.</p>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context("Numeric")->variables->are(
+                            P=>'Real',
+                            l=>'Real',
+                            w=>'Real',
+                            A=>'Real',
+                            b=>'Real',
+                            h=>'Real',
+                            c=>'Real',
+                            d=>'Real',
+                            r=>'Real',
+                            V=>'Real',
+                            B=>'Real');
+                        parser::Assignment->Allow;
+                        $rectangleperimeter = Formula("P=2(l+w)");
+                        $rectanglearea = Formula("A=lw");
+                        $trianglearea = Formula("A=1/2bh");
+                        $circleperimeter = OneOf(Formula("c=pi d"), Formula("c=2 pi r"));
+                        $circlearea = Formula("A=pi r^2");
+                        $prismvolume = Formula("V=wdh");
+                        $cylindervolume = Formula("V=pi r^2h");
+                        $bothvolume = Formula("V=Bh");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Fill out the table with various formulas as they were given in this section.</p>
+                    <sidebyside>
+                        <tabular>
+                            <row>
+                                <cell>Rectangle Perimeter</cell>
+                                <cell><var name="$rectangleperimeter" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Rectangle Area</cell>
+                                <cell><var name="$rectanglearea" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Triangle Area</cell>
+                                <cell><var name="$trianglearea" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Circle Circumference</cell>
+                                <cell><var name="$circleperimeter" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Circle Area</cell>
+                                <cell><var name="$circlearea" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Rectangular Prism Volume</cell>
+                                <cell><var name="$prismvolume" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Cylinder Volume</cell>
+                                <cell><var name="$cylindervolume" width="15" /></cell>
+                            </row>
+                            <row>
+                                <cell>Volume of either Rectangular Prism or Cylinder</cell>
+                                <cell><var name="$bothvolume" width="15" /></cell>
+                            </row>
+                        </tabular>
+                    </sidebyside>
+                </statement>
+            </webwork>
+        </exercise>
+    </subsection>
+
+    <exercises>
+        <exercisegroup cols="2">
+            <title>Perimeter and Area</title>
+            <!-- seed set to make shorter images for PDF -->
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea10.pg" seed="6"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea10.pg" seed="26"/>
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="3">
+            <exercise>
+                <webwork source="BasicMath/FractionApplication/FractionAdditionWordProblems50.pg" seed="40"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/FractionApplication/FractionAdditionWordProblems50.pg" seed="43"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/FractionApplication/FractionMultiplicationWordProblems60.pg" seed="44"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/FractionApplication/FractionMultiplicationWordProblems60.pg" seed="46"/>
+            </exercise>
+            <exercise>
+              <webwork>
+                <setup>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $baseF = random(4,6,0.1);
+                      $heightI = random(24,36,1);
+                      $baseI = $baseF*12;
+
+                      $baseFU = NumberWithUnits("$baseF ft");
+                      $baseIU = NumberWithUnits("$baseI in");
+                      $heightIU = NumberWithUnits("$heightI in");
+
+                      $perimeter = 2*($baseI+$heightI);
+                      $area = $baseI*$heightI;
+                      $ansP = NumberWithUnits("$perimeter in");
+                      $ansA = NumberWithUnits("$area in^2");
+
+                      $ansPE = NumberWithUnits("$perimeter/12 ft");
+                      $ansAE = NumberWithUnits("$area/144 ft^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>Find the perimeter and area of a rectangular table top with a length of <m><var name="$baseFU" /></m> and a width of <m><var name="$heightIU" /></m>.</p>
+
+                  <p>Its perimeter is <var name="$ansP" width="8" /> and its area is <var name="$ansA" width="8" />.</p>
+
+                  <instruction>(Use <c>in</c> for inches and <c>in^2</c> for square inches.)</instruction>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the rectangle's length and width are not the same. We must convert them to the same unit. For this solution, we will convert feet to inches to avoid inaccurate answers.</p>
+
+                  <p>The rectangle's length <m><var name="$baseFU" /></m> can be converted to:<me><var name="$baseFU" />\cdot\frac{12\text{ in}}{1\text{ ft}}=<var name="$baseIU" /></me></p>
+
+                  <p>Now we can calculate the rectangle's perimeter by its perimeter formula:<md>
+                         <mrow>\text{rectangle perimeter}\amp=2(<var name="$baseIU" />+<var name="$heightIU" />)</mrow>
+                         <mrow>\amp= <var name="$ansP" /></mrow>
+                  </md>An equivalent answer is <m><var name="$ansPE" /></m>.</p>
+
+                  <p>We will calculate the rectangle's area by its area formula:<md>
+                         <mrow>\text{rectangle area}\amp= (<var name="$baseIU" />) \cdot (<var name="$heightIU" />)</mrow>
+                         <mrow>\amp = <var name="$ansA" /></mrow>
+                  </md>The rectangular table top's area is <m><var name="$ansA" /></m>. An equivalent answer is <m><var name="$ansAE" /></m>.</p>
+                </solution>
+              </webwork>
+            </exercise>
+            <exercise>
+              <webwork>
+                <setup>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $baseF = random(4,6,0.1);
+                      $heightI = random(24,36,1);
+                      $baseI = $baseF*12;
+
+                      $baseFU = NumberWithUnits("$baseF ft");
+                      $baseIU = NumberWithUnits("$baseI in");
+                      $heightIU = NumberWithUnits("$heightI in");
+
+                      $perimeter = 2*($baseI+$heightI);
+                      $area = $baseI*$heightI;
+                      $ansP = NumberWithUnits("$perimeter in");
+                      $ansA = NumberWithUnits("$area in^2");
+
+                      $ansPE = NumberWithUnits("$perimeter/12 ft");
+                      $ansAE = NumberWithUnits("$area/144 ft^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>Find the perimeter and area of a rectangular table top with a length of <m><var name="$baseFU" /></m> and a width of <m><var name="$heightIU" /></m>.</p>
+
+                  <p>Its perimeter is <var name="$ansP" width="8" /> and its area is <var name="$ansA" width="8" />.</p>
+
+                  <instruction>(Use <c>in</c> for inches and <c>in^2</c> for square inches.)</instruction>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the rectangle's length and width are not the same. We must convert them to the same unit. For this solution, we will convert feet to inches to avoid inaccurate answers.</p>
+
+                  <p>The rectangle's length <m><var name="$baseFU" /></m> can be converted to:<me><var name="$baseFU" />\cdot\frac{12\text{ in}}{1\text{ ft}}=<var name="$baseIU" /></me></p>
+
+                  <p>Now we can calculate the rectangle's perimeter by its perimeter formula:<md>
+                         <mrow>\text{rectangle perimeter}\amp=2(<var name="$baseIU" />+<var name="$heightIU" />)</mrow>
+                         <mrow>\amp= <var name="$ansP" /></mrow>
+                  </md>An equivalent answer is <m><var name="$ansPE" /></m>.</p>
+
+                  <p>We will calculate the rectangle's area by its area formula:<md>
+                         <mrow>\text{rectangle area}\amp= (<var name="$baseIU" />) \cdot (<var name="$heightIU" />)</mrow>
+                         <mrow>\amp = <var name="$ansA" /></mrow>
+                  </md>The rectangular table top's area is <m><var name="$ansA" /></m>. An equivalent answer is <m><var name="$ansAE" /></m>.</p>
+                </solution>
+              </webwork>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/Miscellaneous/SquarePerimeterArea10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/Miscellaneous/SquarePerimeterArea10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea10.pg" seed="49"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea10.pg" seed="51"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea20.pg" seed="52"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea20.pg" seed="56"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea30.pg" seed="62"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/TrianglePerimeterArea30.pg" seed="64"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/FractionApplication/MixedNumberMultiplicationWordProblems40.pg"  />
+            </exercise>
+            <exercise>
+                <webwork source="BasicMath/FractionApplication/MixedNumberMultiplicationWordProblems40.pg"  />
+            </exercise>
+            <exercise>
+              <webwork>
+                <setup>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $baseM = random(2,4,0.1);
+                      $heightCM = random(50,150,10);
+                      $heightM = $heightCM/100;
+
+                      $baseMU = NumberWithUnits("$baseM m");
+                      $heightMU = NumberWithUnits("$heightM m");
+                      $heightCMU = NumberWithUnits("$heightCM cm");
+
+                      $area = $baseM*$heightM/2;
+                      $ansA = NumberWithUnits("$area m^2");
+                      $ansAE = NumberWithUnits("$area*10000 cm^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>Find the area of a triangular flag with a base of <m><var name="$baseMU" /></m> and a height of <m><var name="$heightCMU" /></m>.</p>
+
+                  <p>Its area is <var name="$ansA" width="8" />.</p>
+
+                  <instruction>(Use <c>m</c> for meters and <c>m^2</c> for square meters.)</instruction>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the triangle's base and height are not the same. We must convert them to the same unit. For this solution, we will convert centimeters to meters to avoid big numbers.</p>
+
+                  <p>The triangle's height <m><var name="$heightCMU" /></m> can be converted to:<me><var name="$heightCMU" />\cdot\frac{1\text{ m}}{100\text{ cm}}=<var name="$heightMU" /></me></p>
+
+                  <p>We will calculate the triangular flag's area by its area formula:<md>
+                         <mrow>\text{triangle area}\amp= \frac{1}{2}bh</mrow>
+                         <mrow>\amp=\frac{1}{2}(<var name="$baseMU" />) \cdot (<var name="$heightMU" />)</mrow>
+                         <mrow>\amp = <var name="$ansA" /></mrow>
+                  </md>The flag's area is <m><var name="$ansA" /></m>. An equivalent answer is <m><var name="$ansAE" /></m></p>
+                </solution>
+              </webwork>
+            </exercise>
+            <exercise>
+              <webwork>
+                <setup>
+                    <pg-code>
+                      Context("Numeric");
+
+                      $baseM = random(2,4,0.1);
+                      $heightCM = random(50,150,10);
+                      $heightM = $heightCM/100;
+
+                      $baseMU = NumberWithUnits("$baseM m");
+                      $heightMU = NumberWithUnits("$heightM m");
+                      $heightCMU = NumberWithUnits("$heightCM cm");
+
+                      $area = $baseM*$heightM/2;
+                      $ansA = NumberWithUnits("$area m^2");
+                      $ansAE = NumberWithUnits("$area*10000 cm^2");
+                    </pg-code>
+                </setup>
+                <statement>
+                  <p>Find the area of a triangular flag with a base of <m><var name="$baseMU" /></m> and a height of <m><var name="$heightCMU" /></m>.</p>
+
+                  <p>Its area is <var name="$ansA" width="8" />.</p>
+
+                  <instruction>(Use <c>m</c> for meters and <c>m^2</c> for square meters.)</instruction>
+                </statement>
+                <solution>
+                  <p>Notice that the units of the triangle's base and height are not the same. We must convert them to the same unit. For this solution, we will convert centimeters to meters to avoid big numbers.</p>
+
+                  <p>The triangle's height <m><var name="$heightCMU" /></m> can be converted to:<me><var name="$heightCMU" />\cdot\frac{1\text{ m}}{100\text{ cm}}=<var name="$heightMU" /></me></p>
+
+                  <p>We will calculate the triangular flag's area by its area formula:<md>
+                         <mrow>\text{triangle area}\amp= \frac{1}{2}bh</mrow>
+                         <mrow>\amp=\frac{1}{2}(<var name="$baseMU" />) \cdot (<var name="$heightMU" />)</mrow>
+                         <mrow>\amp = <var name="$ansA" /></mrow>
+                  </md>The flag's area is <m><var name="$ansA" /></m>. An equivalent answer is <m><var name="$ansAE" /></m></p>
+                </solution>
+              </webwork>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CircleCircumferenceArea10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CircleCircumferenceArea10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CircleCircumferenceArea20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CircleCircumferenceArea20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/PolygonPerimeterArea20.pg" seed="87"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/PolygonPerimeterArea20.pg" seed="89"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/PolygonPerimeterArea10.pg" seed="83"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/PolygonPerimeterArea10.pg" seed="86"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea40.pg" seed="69"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea40.pg" seed="71"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea50.pg" seed="72"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectanglePerimeterArea50.pg" seed="89"/>
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
+            <exercise>
+                <webwork source="BasicAlgebra/EvaluateExpressions/EvaluateFormula10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/EvaluateExpressions/EvaluateFormula20.pg" />
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
+            <exercise>
+                <webwork source="BasicAlgebra/EvaluateExpressions/EvaluateFormula70.pg" seed="66"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/EvaluateExpressions/EvaluateFormula70.pg" seed="68"/>
+            </exercise>
+        </exercisegroup>
+
+        <exercisegroup cols="3">
+            <title>Volume</title>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume10.pg" seed="90"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume10.pg" seed="92"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume10.pg" seed="97"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume10.pg" seed="98"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume20.pg"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/RectangularPrismVolume20.pg"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CylinderVolume10.pg" seed="103"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CylinderVolume10.pg" seed="138"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CylinderVolume10.pg" seed="110"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CylinderVolume10.pg" seed="114"/>
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CylinderVolume20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Geometry/CylinderVolume20.pg" />
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
+            <exercise>
+                <webwork source="BasicAlgebra/EvaluateExpressions/EvaluateFormula40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/EvaluateExpressions/EvaluateFormula40.pg" />
+            </exercise>
+        </exercisegroup>
+    </exercises>
+</section>
+
+
+
+

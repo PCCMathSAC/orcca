@@ -526,14 +526,264 @@
     </subsection>
 
     <exercises>
-<!--TODO: Alex: add 6 exercises from section-isolating-a-linear-variable.ptx that involve solving 2x+3y=6 for y-->
-<!--         <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,5,1)*list_random(-1,1);
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,5,1)*list_random(-1,1);
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = -1;
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = -1;
+                            $A = $B*non_zero_random(-9,9,1);
+                            $C = $B*non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,9,1)*list_random(-1,1);
+                            $A = non_zero_random(2,9,1)*list_random(-1,1);
+                            $C = non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            $B = non_zero_random(2,9,1)*list_random(-1,1);
+                            $A = non_zero_random(2,9,1)*list_random(-1,1);
+                            $C = non_zero_random(-19,19,1);
+                            Context("Fraction");
+                            $b = Fraction($C,$B);
+                            $m = Fraction(-$A,$B);
+                            Context()->flags->set(reduceConstants=>0);
+                            Context()->variables->are(x=>'Real',y=>'Real');
+                            Context()->noreduce('(-x)-y');
+                            parser::Assignment->Allow;
+                            $left = Formula("$A x+$B y")->reduce;
+                            $right = Formula("$C")->reduce;
+                            $answer = Formula("y=$m x + $b")->reduce->reduce;
+                            $leftsteps[0] = Formula("$left-$A x")->reduce;
+                            $leftsteps[1] = Formula("$B y")->reduce;
+                            $leftsteps[2] = $leftsteps[1]/Formula("$B");
+                            $leftsteps[3] = Formula("y");
+                            $rightsteps[0] = Formula("$right-$A x")->reduce;
+                            $rightsteps[1] = $rightsteps[0];
+                            $rightsteps[2] = $rightsteps[1]/Formula("$B");
+                            $rightsteps[3] = Formula("$m x + $b")->reduce;
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Solve the linear equation for <m>y</m>. <me><var name="$left"/>=<var name="$right"/></me></p>
+                        <p><var name="$answer" width="20"/></p>
+                    </statement>
+                    <solution>
+                        <p><md>
+                            <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
+                            <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
+                            <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
+                            <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
+                            <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
+                        </md></p>
+                    </solution>
+                </webwork>
+            </exercise>
+
         </exercisegroup>
- -->        <exercisegroup cols="2">
-            <introduction>
-                <p>Find the slope and <m>y</m>-intercept.</p>
-            </introduction>
+        <exercisegroup cols="2">
+            <title>Slope and <m>y</m>-intercept</title>
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept110.pg" />
             </exercise>
@@ -572,214 +822,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Plot a line given in standard form.</p>
-            </introduction>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>x+y=2</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-5:7] {-1*x+2};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>-5x-y=-3</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-0.8:2] {-5*x+3};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>x+5y=5</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-7:7] {-1/5*x+1};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>x-2y=2</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-7:7] {1/2*x-1};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>20x-4y=8</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-1:1.8] {5*x-2};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>3x+5y=10</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-7:7] {-3/5*x+2};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>-3x+2y=6</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-6.66:2.66] {3/2*x+3};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>-4x-5y=10</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-6.2:7] {4/5*x-2};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>4x-5y=0</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-7:7] {4/5*x};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-            <exercise>
-                <statement>
-                    <p>Make a graph of the line <m>5x+7y=0</m>.</p>
-                </statement>
-                <solution>
-                    <sidebyside>
-                    <image>
-                        <latex-image>
-                            <![CDATA[
-                                \begin{tikzpicture}
-                                    \begin{axis}[]
-                                        \addplot+[domain=-7:7] {-5/7*x};
-                                    \end{axis}
-                                \end{tikzpicture}
-                            ]]>
-                        </latex-image>
-                    </image>
-                    </sidebyside>
-                </solution>
-            </exercise>
-        </exercisegroup>
-        <exercisegroup cols="2">
-            <introduction>
-                <p>Convert to standard form.</p>
-            </introduction>
+            <title>Converting to Standard Form</title>
             <exercise>
                 <webwork >
                     <setup>
@@ -1080,7 +1123,7 @@
             </exercise>
         </exercisegroup>
         <exercisegroup>
-            <title>Exercises on Graphing Lines by Intercepts</title>
+            <title>Graphs and Standard Form</title>
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts60.pg" />
             </exercise>
@@ -1093,6 +1136,8 @@
             <exercise>
                 <webwork source="BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts90.pg" />
             </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
             <exercise>
                 <statement>
                     <p>Find the <m>x</m>- and <m>y</m>-intercepts of the line with equation <m>4x+6y=24</m>. Then find one other point on the line. Use your results to graph the line.</p>
@@ -1251,6 +1296,206 @@
                     </sidebyside>
                 </solution>
             </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>x+y=2</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-5:7] {-1*x+2};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>-5x-y=-3</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-0.8:2] {-5*x+3};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>x+5y=5</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-7:7] {-1/5*x+1};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>x-2y=2</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-7:7] {1/2*x-1};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>20x-4y=8</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-1:1.8] {5*x-2};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>3x+5y=10</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-7:7] {-3/5*x+2};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>-3x+2y=6</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-6.66:2.66] {3/2*x+3};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>-4x-5y=10</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-6.2:7] {4/5*x-2};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>4x-5y=0</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-7:7] {4/5*x};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
+            <exercise>
+                <statement>
+                    <p>Make a graph of the line <m>5x+7y=0</m>.</p>
+                </statement>
+                <solution>
+                    <sidebyside>
+                    <image>
+                        <latex-image>
+                            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[]
+                                        \addplot+[domain=-7:7] {-5/7*x};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]>
+                        </latex-image>
+                    </image>
+                    </sidebyside>
+                </solution>
+            </exercise>
         </exercisegroup>
         <exercisegroup>
             <title>Interpreting Intercepts in Context</title>
@@ -1280,6 +1525,8 @@
                 <webwork source="BasicAlgebra/LinearEquationApplications/InterceptsApplication80.pg" />
             </exercise>-->
         </exercisegroup>
+        <exercisegroup>
+            <title>Challenge</title>
 
             <exercise><!-- Kara's challenge problem -->
                 <webwork>
@@ -1294,34 +1541,29 @@
                        </pg-code>
                     </setup>
                     <statement>
-                        <p>Fill in the variables <m>A, B,</m> and <m>C</m> in <m>Ax + By = C</m> with the numbers <m><var name="$little"/>, <var name="$medium"/></m> and <m><var name="$big"/></m>.  You may only use each number once.</p>
-                        <ol label="a.">
-                          <li>
-                            <p>To make a line with the steepest slope possible, </p>
-                            <p><m>A</m> must equal <var name="$big" width="10" />,</p>
-                            <p><m>B</m> must equal <var name="$little" width="10" />,</p>
-                            <p> and <m>C</m> must equal <var name="$medium" width="10" />.</p>
-                          </li>
-                          <li>
-                            <p>To make a line with the shallowest slope possible, </p>
-                            <p><m>A</m> must equal <var name="$little" width="10" />,</p>
-                            <p><m>B</m> must equal <var name="$big" width="10" />,</p>
-                            <p> and <m>C</m> must equal <var name="$medium" width="10" />.</p>
-                          </li>
-                        </ol>
+                        <p>Fill in the variables <m>A</m>, <m>B</m>, and <m>C</m> in <m>Ax + By = C</m> with the numbers <m><var name="$little"/>, <var name="$medium"/></m> and <m><var name="$big"/></m>.  You may only use each number once.</p>
+                        <p><ol label="a.">
+                            <li>
+                                <p>To make a line with the steepest slope possible, <m>A</m> must equal <var name="$big" width="10" />, <m>B</m> must equal <var name="$little" width="10" />, and <m>C</m> must equal <var name="$medium" width="10" />.</p>
+                            </li>
+                            <li>
+                                <p>To make a line with the shallowest slope possible, <m>A</m> must equal <var name="$little" width="10" />, <m>B</m> must equal <var name="$big" width="10" />, and <m>C</m> must equal <var name="$medium" width="10" />.</p>
+                            </li>
+                        </ol></p>
                     </statement>
                     <solution>
-                      <ol label="a.">
-                        <li>
-                          <p> Let's put <m> Ax + By = C </m> into slope-intercept form.  Then, the equation becomes <m> y = \frac{-A}{B}x + \frac{C}{B} </m>.  To make the steepest slope possible, we must maximize the fraction <m>\frac{A}{B}</m>.  The possibilities are <m> \frac{<var name="$little"/>}{<var name="$medium"/>}, \frac{<var name="$little"/>}{<var name="$big"/>}, \frac{<var name="$medium"/>}{<var name="$little"/>}, \frac{<var name="$medium"/>}{<var name="$big"/>}, \frac{<var name="$big"/>}{<var name="$little"/>}, </m> and <m> \frac{<var name="$big"/>}{<var name="$medium"/>} </m>.  The biggest of these is <m> \frac{<var name="$big"/>}{<var name="$little"/>} </m>.  Thus, <m>A</m> must equal <var name="$big"/>, <m>B</m> must equal <var name="$little"/>, and <m>C</m> must equal <var name="$medium"/>.</p>
-                        </li>
-                        <li>
-                          <p> To make the shallowest slope possible, we must minimize the fraction <m>\frac{A}{B}</m>.  The smallest of the possible fractions is <m> \frac{<var name="$little"/>}{<var name="$big"/>} </m>.  Thus, <m>A</m> must equal <var name="$little"/>, <m>B</m> must equal <var name="$big"/>, and <m>C</m> must equal <var name="$medium"/>.</p>
-                        </li>
-                        </ol>
+                        <p><ol label="a.">
+                            <li>
+                                <p>Let's put <m> Ax + By = C </m> into slope-intercept form.  Then, the equation becomes <m> y = \frac{-A}{B}x + \frac{C}{B} </m>.  To make the steepest slope possible, we must maximize the fraction <m>\frac{A}{B}</m>.  The possibilities are <m> \frac{<var name="$little"/>}{<var name="$medium"/>}, \frac{<var name="$little"/>}{<var name="$big"/>}, \frac{<var name="$medium"/>}{<var name="$little"/>}, \frac{<var name="$medium"/>}{<var name="$big"/>}, \frac{<var name="$big"/>}{<var name="$little"/>}, </m> and <m> \frac{<var name="$big"/>}{<var name="$medium"/>} </m>.  The biggest of these is <m> \frac{<var name="$big"/>}{<var name="$little"/>} </m>.  Thus, <m>A</m> must equal <var name="$big"/>, <m>B</m> must equal <var name="$little"/>, and <m>C</m> must equal <var name="$medium"/>.</p>
+                            </li>
+                            <li>
+                                <p> To make the shallowest slope possible, we must minimize the fraction <m>\frac{A}{B}</m>.  The smallest of the possible fractions is <m> \frac{<var name="$little"/>}{<var name="$big"/>} </m>.  Thus, <m>A</m> must equal <var name="$little"/>, <m>B</m> must equal <var name="$big"/>, and <m>C</m> must equal <var name="$medium"/>.</p>
+                            </li>
+                        </ol></p>
                     </solution>
                 </webwork>
             </exercise>
+        </exercisegroup>
     </exercises>
 
 </section>
