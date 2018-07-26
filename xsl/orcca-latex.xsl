@@ -146,4 +146,112 @@
 <xsl:template match="p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][not(parent::li)]|p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][parent::li][preceding-sibling::*]" />
 -->
 
+
+<!-- wide exercises -->
+<xsl:template match="exercises//exercise">
+    <!-- heading, start enclosure/environment                    -->
+    <!-- This environment is different within an "exercisegroup" -->
+    <!-- Using only serial number since born here                -->
+    <xsl:choose>
+        <xsl:when test="parent::exercisegroup">
+            <xsl:text>\exercise</xsl:text>
+            <xsl:if test="@width='wide'">
+                <xsl:text>!</xsl:text>
+            </xsl:if>
+            <xsl:text>[</xsl:text>
+            <xsl:apply-templates select="." mode="serial-number" />
+            <xsl:text>.] </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:text>\begin{divisionexercise}</xsl:text>
+            <xsl:text>{</xsl:text>
+            <xsl:apply-templates select="." mode="serial-number" />
+            <xsl:text>}</xsl:text>
+            <xsl:apply-templates select="title" mode="environment-option" />
+        </xsl:otherwise>
+    </xsl:choose>
+    <xsl:apply-templates select="." mode="label"/>
+    <xsl:text>&#xa;</xsl:text>
+    <!-- Allow a webwork or myopenmath exercise to introduce/connect    -->
+    <!-- a problem (especially from server) to the text in various ways -->
+    <xsl:if test="webwork-reps|myopenmath">
+        <xsl:apply-templates select="introduction"/>
+    </xsl:if>
+    <!-- condition on how statement, hint, answer, solution are presented -->
+    <xsl:choose>
+        <!-- webwork, structured with "stage" matches first -->
+        <xsl:when test="webwork-reps/static/stage">
+            <xsl:apply-templates select="webwork-reps/static/stage">
+                <xsl:with-param name="b-original" select="true()" />
+                <xsl:with-param name="b-has-statement" select="true()" />
+                <xsl:with-param name="b-has-hint"      select="$b-has-divisional-hint" />
+                <xsl:with-param name="b-has-answer"    select="$b-has-divisional-answer" />
+                <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
+            </xsl:apply-templates>
+        </xsl:when>
+        <!-- webwork exercise, no "stage" -->
+        <xsl:when test="webwork-reps/static">
+            <xsl:apply-templates select="webwork-reps/static" mode="exercise-components">
+                <xsl:with-param name="b-original" select="true()" />
+                <xsl:with-param name="b-has-statement" select="true()" />
+                <xsl:with-param name="b-has-hint"      select="$b-has-divisional-hint" />
+                <xsl:with-param name="b-has-answer"    select="$b-has-divisional-answer" />
+                <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
+            </xsl:apply-templates>
+        </xsl:when>
+        <!-- myopenmath exercise -->
+        <!-- We only try to open an external file when the source  -->
+        <!-- has a MOM problem (with an id number).  The second    -->
+        <!-- argument of the "document()" function is a node and   -->
+        <!-- causes the relative file name to resolve according    -->
+        <!-- to the location of the XML.   Experiments with the    -->
+        <!-- empty node "/.." are interesting.                     -->
+        <!-- https://ajwelch.blogspot.co.za/2008/04/relative-paths-and-document-function.html -->
+        <!-- http://www.dpawson.co.uk/xsl/sect2/N2602.html#d3862e73 (Point 4) -->
+        <xsl:when test="myopenmath">
+            <xsl:variable name="filename" select="concat(concat('problems/mom-', myopenmath/@problem), '.xml')" />
+            <xsl:apply-templates select="document($filename, .)/myopenmath"  mode="exercise-components">
+                <xsl:with-param name="b-original" select="true()" />
+                <xsl:with-param name="b-has-statement" select="true()" />
+                <xsl:with-param name="b-has-hint"      select="false()" />
+                <xsl:with-param name="b-has-answer"    select="false()" />
+                <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
+            </xsl:apply-templates>
+        </xsl:when>
+        <!-- "normal" exercise, unstructured -->
+        <xsl:when test="not(statement)">
+            <!-- eventually pass b-original? -->
+            <xsl:apply-templates select="*" />
+        </xsl:when>
+        <!-- "normal" exercise, structured -->
+        <xsl:otherwise>
+            <xsl:apply-templates select="." mode="exercise-components">
+                <xsl:with-param name="b-original" select="true()" />
+                <xsl:with-param name="b-has-statement" select="true()" />
+                <xsl:with-param name="b-has-hint"      select="$b-has-divisional-hint" />
+                <xsl:with-param name="b-has-answer"    select="$b-has-divisional-answer" />
+                <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
+            </xsl:apply-templates>
+        </xsl:otherwise>
+    </xsl:choose>
+    <!-- Allow a webwork or myopenmath exercise to conclude/connect     -->
+    <!-- a problem (especially from server) to the text in various ways -->
+    <xsl:if test="webwork-reps|myopenmath">
+        <xsl:apply-templates select="conclusion"/>
+    </xsl:if>
+    <!-- end enclosure/environment                               -->
+    <!-- This environment is different within an "exercisegroup" -->
+    <xsl:choose>
+        <xsl:when test="parent::exercisegroup" />
+        <!-- closing % necessary, as newline between adjacent environments -->
+        <!-- will cause a slight indent on trailing exercise               -->
+        <xsl:otherwise>
+            <xsl:text>\end{divisionexercise}%</xsl:text>
+        </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>&#xa;</xsl:text>
+</xsl:template>
+
+
+
 </xsl:stylesheet>

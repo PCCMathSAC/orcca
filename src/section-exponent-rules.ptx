@@ -202,7 +202,7 @@
         </paragraphs>
 
         <paragraphs>
-            <title>Exercises</title>
+            <title>Practice</title>
 
             <p>Try these exercises that use the quotient rules for exponents.</p>
 
@@ -468,49 +468,83 @@
             </solution>
         </example>
  -->
-<!--TODO: make webwork-->
-        <example>
-            <statement>
-                <p>Simplify the following expressions. Assume all variables represent non-zero real numbers.
-                <ol label="a." cols="4">
-                    <li>
-                        <p><m>\left(173 x^4 y^{251}\right)^0</m></p>
-                    </li>
-                    <li>
-                        <p><m>(-8)^0</m></p>
-                    </li>
-                    <li>
-                        <p><m>-8^0</m></p>
-                    </li>
-                    <li>
-                        <p><m>3x^0</m></p>
-                    </li>
-                </ol></p>
-            </statement>
-            <solution>
-                <p>To simplify any of these expressions, it is critical that we remember an exponent only applies to what it is touching or immediately next to.<ol label="a.">
-                    <li>
-                        <p>In the expression <m>\left(173 x^4 y^{251}\right)^0</m>, the exponent <m>0</m> applies to everything inside the parentheses.<me>\left(173 x^4 y^{251}\right)^0 =  1 </me></p>
-                    </li>
-                    <li>
-                        <p> In the expression <m>(-8)^0</m> the exponent applies to everything inside the parentheses, <m>-8</m>.<me>(-8)^0  =  1 </me></p>
-                    </li>
-                    <li>
-                        <p>In contrast to the previous example, the exponent only applies to the <m>8</m>.  The exponent has a higher priority than negation in the order of operations. We should consider that <m>-8^0 = -\mathopen{}\left(8^0\right)\mathclose{}</m>, and so:<md>
-                            <mrow> -8^0  \amp=  -\mathopen{}\left(8^0\right)\mathclose{} </mrow>
-                            <mrow>   \amp=  -1 </mrow>
-                        </md></p>
-                    </li>
-                    <li>
-                        <p>In the expression <m>3x^0</m>, the exponent <m>0</m> only applies to the <m>x</m>:<md>
-                            <mrow> 3x^0 \amp= 3\cdot x^0  </mrow>
-                            <mrow>  \amp= 3\cdot 1 </mrow>
-                            <mrow>  \amp= 3 </mrow>
-                        </md></p>
-                    </li>
-                </ol></p>
-            </solution>
-        </example>
+
+        <exercise>
+            <webwork>
+                <setup>
+                    <pg-code>
+                        Context()->operators->set(
+                            '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+                            '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+                        );
+                        @answer = (Formula("1"),Formula("1"),Formula("-1"),Formula("3"));
+                        for $i (0..3) {
+                            $evaulatro[$i] = $answer[$i] -> cmp(
+                                checker=>sub{
+                                    my ( $correct, $student, $ansHash ) = @_;
+                                    return 0 if $ansHash->{isPreview} || $correct != $student;
+                                    $student = $ansHash->{student_formula};
+                                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                                    $student = Formula("$student"); $correct = Formula("$correct");
+                                    return 0 unless ($correct == $student);
+                                    Context()->flags->set(bizarroPow=>1,);
+                                    delete $correct->{test_values};
+                                    delete $student->{test_values};
+                                    my $OK = (($correct == $student) or ($student == $correct));
+                                    Context()->flags->set(bizarroPow=>0);
+                                    Value::Error("Your answer is not fully simplified.") unless $OK;
+                                    return $OK;
+                                }
+                            );
+                        }
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p>Simplify the following expressions. Assume all variables represent non-zero real numbers.
+                    <ol label="a." cols="4">
+                        <li>
+                            <p><m>\left(173 x^4 y^{251}\right)^0</m></p>
+                            <p><var name="$answer[0]" evaluator="$evaluator[0]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>(-8)^0</m></p>
+                            <p><var name="$answer[1]" evaluator="$evaluator[1]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>-8^0</m></p>
+                            <p><var name="$answer[2]" evaluator="$evaluator[2]" width="10" /></p>
+                        </li>
+                        <li>
+                            <p><m>3x^0</m></p>
+                            <p><var name="$answer[3]" evaluator="$evaluator[3]" width="10" /></p>
+                        </li>
+                    </ol></p>
+                </statement>
+                <solution>
+                    <p>To simplify any of these expressions, it is critical that we remember an exponent only applies to what it is touching or immediately next to.<ol label="a.">
+                        <li>
+                            <p>In the expression <m>\left(173 x^4 y^{251}\right)^0</m>, the exponent <m>0</m> applies to everything inside the parentheses.<me>\left(173 x^4 y^{251}\right)^0 =  1 </me></p>
+                        </li>
+                        <li>
+                            <p> In the expression <m>(-8)^0</m> the exponent applies to everything inside the parentheses, <m>-8</m>.<me>(-8)^0  =  1 </me></p>
+                        </li>
+                        <li>
+                            <p>In contrast to the previous example, the exponent only applies to the <m>8</m>.  The exponent has a higher priority than negation in the order of operations. We should consider that <m>-8^0 = -\mathopen{}\left(8^0\right)\mathclose{}</m>, and so:<md>
+                                <mrow> -8^0  \amp=  -\mathopen{}\left(8^0\right)\mathclose{} </mrow>
+                                <mrow>   \amp=  -1 </mrow>
+                            </md></p>
+                        </li>
+                        <li>
+                            <p>In the expression <m>3x^0</m>, the exponent <m>0</m> only applies to the <m>x</m>:<md>
+                                <mrow> 3x^0 \amp= 3\cdot x^0  </mrow>
+                                <mrow>  \amp= 3\cdot 1 </mrow>
+                                <mrow>  \amp= 3 </mrow>
+                            </md></p>
+                        </li>
+                    </ol></p>
+                </solution>
+            </webwork>
+        </exercise>
     </subsection>
 
     <subsection>
@@ -646,7 +680,7 @@
         <p>Note that if we take reciprocals of both sides, we have another helpful fact:<me>\frac{1}{a^{-n}}=a^n</me>. Taken together, these facts tell us that a negative exponent power in the numerator belongs in the denominator (with a positive exponent) and a negative exponent power in the denominator belongs in the numerator (with a positive exponent). In other words, you can see a negative exponent as telling you to move things in and out of the numerator and denominator of an expression.</p>
 
         <remark>
-            <p>Traditionally, when mathematicians simplify an expression they write the expression using only positive exponents. (Negative exponents aren't quite as <q>simple</q> as positive exponents.) This can always be accomplished using the negative exponent rule, and you will often be asked to state your final result using only positive exponents.</p>
+            <p>You may be expected to simplify expressions so that they do not have any negative exponents. This can always be accomplished using the negative exponent rule.</p>
         </remark>
 
         <p>Try these exercises that involve negative exponents.</p>
@@ -1053,7 +1087,7 @@
     </subsection>
 
     <exercises>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
             <exercise>
                 <webwork source="BasicAlgebra/Exponents/ExponentDefinition10.pg" />
@@ -1074,7 +1108,7 @@
                 <webwork source="BasicAlgebra/Exponents/exponentsMultiplication10.pg" />
             </exercise>
         </exercisegroup>
-        <exercisegroup cols="2">
+        <exercisegroup cols="4">
             <title>Simplifying Products and Quotients Involving Exponents</title>
             <exercise>
                 <webwork source="BasicAlgebra/Exponents/exponentsMultiplication0.pg" />
@@ -1216,262 +1250,261 @@
             </exercise>
         </exercisegroup>
 
+        <exercisegroup cols="4">
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp0.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp0.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp5.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp5.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp10.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents1.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents1.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents2.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents2.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents3.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents3.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents4.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents4.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents5.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="Math95/NegativeExponents/NegativeExponents5.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp15.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp15.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp20.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp25.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp25.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp30.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp35.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp35.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp36.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp36.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp40.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp41.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp41.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp45.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp45.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp50.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp55.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp55.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp60.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp65.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp65.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp70.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp70.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp75.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp75.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp80.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp85.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp85.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp90.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp90.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp95.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp95.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp100.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp100.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp105.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp105.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp110.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp110.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp115.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp115.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp120.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp120.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp125.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp125.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp130.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp130.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp135.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp135.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp140.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp140.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp145.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp145.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp150.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp150.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp155.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp155.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp160.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp160.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp165.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp165.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp170.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/Exponents/negExp170.pg" />
+            </exercise>
+        </exercisegroup>
         <exercisegroup cols="2">
-            <introduction>
-                <p>Simplify and write your answer without using negative exponents.  All variables represent non-zero real numbers.</p>
-            </introduction>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp0.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp0.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp5.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp5.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents1.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents1.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents2.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents2.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents3.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents3.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents4.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents4.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents5.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Math95/NegativeExponents/NegativeExponents5.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp15.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp15.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp25.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp25.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp35.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp35.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp36.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp36.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp40.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp40.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp41.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp41.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp45.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp45.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp50.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp50.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp55.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp55.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp65.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp65.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp75.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp75.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp85.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp85.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp90.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp90.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp95.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp95.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp100.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp100.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp105.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp105.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp110.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp110.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp115.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp115.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp120.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp120.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp125.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp125.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp130.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp130.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp135.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp135.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp140.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp140.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp145.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp145.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp150.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp150.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp155.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp155.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp160.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp160.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp165.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp165.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp170.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/Exponents/negExp170.pg" />
-            </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Exponents/negExp175.pg" />
             </exercise>
@@ -1485,6 +1518,9 @@
                 <webwork source="BasicAlgebra/Exponents/negExp180.pg" />
             </exercise>
         </exercisegroup>
+
+        <exercisegroup>
+            <title>Challenge</title>
 
             <exercise><!-- Kara's challenge problem -->
                 <webwork>
@@ -1539,17 +1575,15 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
-                        <p><ol label="a.">
-                          <li>
-                            <p>Let <m>a > 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
-                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
-                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
-                          </li>
-                          <li>
-                            <p>Let <m>a > 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?  If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
-                            <p><m>a</m> = <var name="$multians2" width="10"/>, <m>b</m> = <var name="$multians2" width="10"/>, and <m>c</m> = <var name="$multians2" width="10"/></p>
-                          </li>
+                        <p>Consider the exponential expression:  <me> \frac {x^{a} \cdot x^{b}}{x^{c}}</me> where <m>a \gt 0, b \lt 0,</m> and <m>c \gt 0</m>.<ol label="a.">
+                            <li>
+                                <p>Are there values for <m>a</m>, <m>b</m>, and <m>c</m> so that the expression equals <m>x^{<var name="$exponent"/>}</m>? If so, fill in the blanks below with possible values for <m>a</m>, <m>b</m>, and <m>c</m>.  If not, fill in the blanks below with the word <c>none</c>.</p>
+                                <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>Are there values for <m>a</m>, <m>b</m>, and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?  If so, fill in the blanks below with possible values for <m>a</m>, <m>b</m>, and <m>c</m>.  If not, fill in the blanks below with the word <c>none</c>.</p>
+                                <p><m>a</m> = <var name="$multians2" width="10"/>, <m>b</m> = <var name="$multians2" width="10"/>, and <m>c</m> = <var name="$multians2" width="10"/></p>
+                            </li>
                         </ol></p>
                     </statement>
                     <solution>
@@ -1604,29 +1638,26 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
-                        <p><ol label="a.">
-                          <li>
-                            <p>Let <m>a \lt 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
-                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
-                            <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
-                          </li>
-                          <li>
-                            <p>Let <m>a \lt 0, b \lt 0,</m> and <m>c >0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?
-                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
-                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
-                          </li>
+                        <p>Here is an exponential expression:  <me> \frac {x^{a} \cdot x^{b}}{x^{c}}</me> where <m>a \gt 0, b \lt 0,</m> and <m>c \gt 0</m>.<ol label="a.">
+                            <li>
+                                <p>Are there values for <m>a</m>, <m>b</m>, and <m>c</m> so that the expression equals <m>x^{<var name="$exponent"/>}</m>? If so, fill in the blanks below with possible values for <m>a</m>, <m>b</m>, and <m>c</m>.  If not, fill in the blanks below with the word <c>none</c>.</p>
+                                <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>Are there values for <m>a</m>, <m>b</m>, and <m>c</m> so that the expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>? If so, fill in the blanks below with possible values for <m>a</m>, <m>b</m>, and <m>c</m>.  If not, fill in the blanks below with the word <c>none</c>.</p>
+                                <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                            </li>
                         </ol></p>
                     </statement>
                     <solution>
                         <p><ol label="a.">
-                        <li>
-                          <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are negative, <m>a + b</m> is a negative number.  Then, we have to subtract <m>c</m>, which is a positive number.  Thus, <m> a + b - c</m> will result in a negative number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a, b,</m> and <m>c</m> that work.</p>
-                        </li>
-                        <li>
-                          <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$negexponent"/>.  For example, <m><var name="$a"/> + {<var name="$b"/>} - <var name="$c"/> = <var name="$negexponent"/></m>.</p>
-                        </li>
-                      </ol></p>
+                            <li>
+                                <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are negative, <m>a + b</m> is a negative number.  Then, we have to subtract <m>c</m>, which is a positive number.  Thus, <m> a + b - c</m> will result in a negative number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a</m>, <m>b</m>, and <m>c</m> that work.</p>
+                            </li>
+                            <li>
+                                <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$negexponent"/>.  For example, <m><var name="$a"/> + {<var name="$b"/>} - <var name="$c"/> = <var name="$negexponent"/></m>.</p>
+                            </li>
+                        </ol></p>
                     </solution>
                 </webwork>
             </exercise>
@@ -1670,31 +1701,29 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p> Here is an exponential expression:  <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>.</p>
-                        <p><ol label="a.">
-                          <li>
-                            <p>Let <m>a > 0, b > 0,</m> and <m>c \lt 0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>x^{<var name="$exponent"/>}</m>?
-                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
-                            <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
-                          </li>
-                          <li>
-                            <p>Let <m>a > 0, b > 0,</m> and <m>c \lt 0</m>.  Is it possible to come up with numbers for <m>a, b,</m> and <m>c</m> so that the exponential expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>?
-                            If so, fill in the blanks below with possible values for <m>a, b,</m> and <m>c</m>.  If not, fill in the blanks below with the word <q>none</q>.</p>
-                            <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
-                          </li>
+                        <p> Here is an exponential expression:  <me> \frac {x^{a} \cdot x^{b}}{x^{c}}</me> where <m>a \gt 0, b \gt 0,</m> and <m>c \lt 0</m>.<ol label="a.">
+                            <li>
+                                <p>Are there values for <m>a</m>, <m>b</m>, and <m>c</m> so that the expression equals <m>x^{<var name="$exponent"/>}</m>? If so, fill in the blanks below with possible values for <m>a</m>, <m>b</m>, and <m>c</m>.  If not, fill in the blanks below with the word <c>none</c>.</p>
+                                <p><m>a</m> = <var name="$multians" width="10"/>, <m>b</m> = <var name="$multians" width="10"/>, and <m>c</m> = <var name="$multians" width="10"/></p>
+                            </li>
+                            <li>
+                                <p>Are there values for <m>a</m>, <m>b</m>, and <m>c</m> so that the expression equals <m>\frac{1}{x^{<var name="$abs"/>}}</m>? If so, fill in the blanks below with possible values for <m>a</m>, <m>b</m>, and <m>c</m>.  If not, fill in the blanks below with the word <c>none</c>.</p>
+                                <p><m>a</m> = <var name="$answer" width="10"/>, <m>b</m> = <var name="$answer" width="10"/>, and <m>c</m> = <var name="$answer" width="10"/></p>
+                            </li>
                         </ol></p>
                     </statement>
                     <solution>
-                      <p><ol label="a.">
-                        <li>
-                          <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  For example, <m><var name="$a"/> + <var name="$b"/> - {<var name="$c"/>} = <var name="$exponent"/></m>.</p>
-                        </li>
-                        <li>
-                          <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are positive, <m>a + b</m> is a positive number.  Then, we have to subtract <m>c</m> (a negative number), which is the same as adding a positive number.  Thus, <m> a + b - c</m> will result in a positive number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a, b,</m> and <m>c</m> that work.</p>
-                        </li>
-                      </ol></p>
+                        <p><ol label="a.">
+                            <li>
+                                <p>The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$exponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  For example, <m><var name="$a"/> + <var name="$b"/> - {<var name="$c"/>} = <var name="$exponent"/></m>.</p>
+                            </li>
+                            <li>
+                                <p>First off, we must remember that <m>\frac{1}{x^{<var name="$abs"/>}} = x^{<var name="$negexponent"/>}</m>.The problem states that <m> \frac {x^{a} \cdot x^{b}}{x^{c}} = x^{<var name="$negexponent"/>}</m>.  To simplify <m> \frac {x^{a} \cdot x^{b}}{x^{c}}</m>, we must add the exponents <m>a</m> and <m>b</m>, and then subtract the exponent <m>c</m>.  Thus, <m> a + b - c </m> must equal <var name="$exponent"/>.  Since <m>a</m> and <m>b</m> are positive, <m>a + b</m> is a positive number.  Then, we have to subtract <m>c</m> (a negative number), which is the same as adding a positive number.  Thus, <m> a + b - c</m> will result in a positive number, but <m> a + b - c </m> must equal <var name="$exponent"/>.  Therefore, it is not possible to come up with values for <m>a</m>, <m>b</m>, and <m>c</m> that work.</p>
+                            </li>
+                        </ol></p>
                     </solution>
                 </webwork>
             </exercise>
+        </exercisegroup>
     </exercises>
 </section>
