@@ -280,6 +280,8 @@ pdf:
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-184}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'review-graphing-lines'; \
 	perl -pi -e 's/(^.*?\\hypertarget{solution-2340}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-solving-systems-of-linear-equations-by-graphing'; \
+	perl -p0i -e 's/(\\begin{example}\\label{example-solving-systems-by-graphing-intro}\n)/\1\\leavevmode%\n\n/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
