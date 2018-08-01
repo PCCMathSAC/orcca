@@ -292,6 +292,8 @@ pdf:
 	echo 'section-factoring-strategies'; \
 	perl -pi -e 's/(^.*?\\label{exercises-53})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-271}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=-1pc\]/' orcca.tex; \
+	echo 'section-square-root-properties'; \
+	perl -pi -e 's/(^.*?\\label{exercises-56})/\\pagebreak\n\n\1/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
