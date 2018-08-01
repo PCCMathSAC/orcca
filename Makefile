@@ -280,6 +280,20 @@ pdf:
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-184}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'review-graphing-lines'; \
 	perl -pi -e 's/(^.*?\\hypertarget{solution-2340}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-solving-systems-of-linear-equations-by-graphing'; \
+	perl -p0i -e 's/(\\begin{example}\\label{example-solving-systems-by-graphing-intro}\n)/\1\\leavevmode%\n\n/' orcca.tex; \
+	echo 'section-exponent-rules'; \
+	perl -pi -e 's/(^.*?\\label{exercises-41})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-multiplying-polynomials'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-235}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-237}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-special-cases-of-multiplying-polynomials'; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-3059}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-factoring-strategies'; \
+	perl -pi -e 's/(^.*?\\label{exercises-53})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-271}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=-1pc\]/' orcca.tex; \
+	echo 'section-square-root-properties'; \
+	perl -pi -e 's/(^.*?\\label{exercises-56})/\\pagebreak\n\n\1/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 

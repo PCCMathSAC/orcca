@@ -324,9 +324,8 @@
     </subsection>
 
     <exercises>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Review and Warmup</title>
-<!--TODO: add 4 exercises from section-combining-like-terms.ptx when done in WW-->
             <exercise>
                 <webwork source="BasicAlgebra/Exponents/exponentsMultiplication25.pg" />
             </exercise>
@@ -350,6 +349,344 @@
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/Exponents/exponentsMultiplication50.pg" />
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
+                            Context()->operators->set(
+                                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                            );
+                            @termcount = (2,2,2,2,2,2,2,2)[NchooseK(8,4)];
+                            for $i (0..3) {
+                                $expression[$i] = Formula("0");
+                                my @vars;
+                                my @exps;
+                                for $j (1..$termcount[$i]) {
+                                    my $nextvar = list_random(@vars,@vars,@vars,'x','y','z','t','s');
+                                    my $nextexp;
+                                    do {$nextexp = list_random(@exps,@exps,@exps,0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
+                                    push(@vars,$nextvar);
+                                    push(@exps,$nextexp);
+                                    $string = non_zero_random(-9,9,1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $expression[$i] = Compute("$expression[$i]+$string")->reduce->reduce;
+                                }
+                            }
+                            $exp0=$expression[0];
+                            $exp1=$expression[1];
+                            $exp2=$expression[2];
+                            $exp3=$expression[3];
+                            for $i (0..3) {
+                                $answers[$i] = Formula($expression[$i]->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'+'.
+                                        $expression[$i]->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'x+'.
+                                        $expression[$i]->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'y+'.
+                                        $expression[$i]->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'z+'.
+                                        $expression[$i]->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'s+'.
+                                        $expression[$i]->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'t+'.
+                                        $expression[$i]->D('x')->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2x^2+'.
+                                        $expression[$i]->D('y')->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2y^2+'.
+                                        $expression[$i]->D('z')->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2z^2+'.
+                                        $expression[$i]->D('s')->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2s^2+'.
+                                        $expression[$i]->D('t')->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2t^2')->reduce->reduce;
+                                $evaluator[$i] = $answers[$i] -> cmp(
+                                   checker=>sub{
+                                      my ( $correct, $student, $ansHash ) = @_;
+                                      return 0 if $ansHash->{isPreview} || $correct != $student;
+                                      $student = $ansHash->{student_formula};
+                                      $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                                      $student = Formula("$student"); $correct = Formula("$correct");
+                                      return 0 unless ($correct == $student);
+                                      Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                                      delete $correct->{test_values}, $student->{test_values};
+                                      my $OK = (($correct == $student) or ($student == $correct));
+                                      Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                                      Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
+                                      return $OK;
+                                });
+                            }
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Simplify each expression, if possible, by combining like terms.</p>
+                        <instruction>If the expression cannot be simplified further, just enter it as it is.</instruction>
+                        <p><ol label="a.">
+                            <li>
+                                <p><m><var name="$exp0" /></m></p>
+                                <p><var name="$evaluator[0]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp1" /></m></p>
+                                <p><var name="$evaluator[1]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp2" /></m></p>
+                                <p><var name="$evaluator[2]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp3" /></m></p>
+                                <p><var name="$evaluator[3]" width="25" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
+                            Context()->operators->set(
+                                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                            );
+                            @termcount = (2,2,2,2,2,2,2,2)[NchooseK(8,4)];
+                            for $i (0..3) {
+                                $expression[$i] = Formula("0");
+                                my @vars;
+                                my @exps;
+                                for $j (1..$termcount[$i]) {
+                                    my $nextvar = list_random(@vars,@vars,@vars,'x','y','z','t','s');
+                                    my $nextexp;
+                                    do {$nextexp = list_random(@exps,@exps,@exps,0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
+                                    push(@vars,$nextvar);
+                                    push(@exps,$nextexp);
+                                    $string = non_zero_random(-9,9,1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $expression[$i] = Compute("$expression[$i]+$string")->reduce->reduce;
+                                }
+                            }
+                            $exp0=$expression[0];
+                            $exp1=$expression[1];
+                            $exp2=$expression[2];
+                            $exp3=$expression[3];
+                            for $i (0..3) {
+                                $answers[$i] = Formula($expression[$i]->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'+'.
+                                        $expression[$i]->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'x+'.
+                                        $expression[$i]->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'y+'.
+                                        $expression[$i]->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'z+'.
+                                        $expression[$i]->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'s+'.
+                                        $expression[$i]->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'t+'.
+                                        $expression[$i]->D('x')->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2x^2+'.
+                                        $expression[$i]->D('y')->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2y^2+'.
+                                        $expression[$i]->D('z')->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2z^2+'.
+                                        $expression[$i]->D('s')->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2s^2+'.
+                                        $expression[$i]->D('t')->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2t^2')->reduce->reduce;
+                                $evaluator[$i] = $answers[$i] -> cmp(
+                                   checker=>sub{
+                                      my ( $correct, $student, $ansHash ) = @_;
+                                      return 0 if $ansHash->{isPreview} || $correct != $student;
+                                      $student = $ansHash->{student_formula};
+                                      $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                                      $student = Formula("$student"); $correct = Formula("$correct");
+                                      return 0 unless ($correct == $student);
+                                      Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                                      delete $correct->{test_values}, $student->{test_values};
+                                      my $OK = (($correct == $student) or ($student == $correct));
+                                      Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                                      Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
+                                      return $OK;
+                                });
+                            }
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Simplify each expression, if possible, by combining like terms.</p>
+                        <instruction>If the expression cannot be simplified further, just enter it as it is.</instruction>
+                        <p><ol label="a.">
+                            <li>
+                                <p><m><var name="$exp0" /></m></p>
+                                <p><var name="$evaluator[0]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp1" /></m></p>
+                                <p><var name="$evaluator[1]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp2" /></m></p>
+                                <p><var name="$evaluator[2]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp3" /></m></p>
+                                <p><var name="$evaluator[3]" width="25" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                </webwork>
+            </exercise>
+
+            <!-- 2 to 4 terms -->
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
+                            Context()->operators->set(
+                                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                            );
+                            @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
+                            for $i (0..3) {
+                                $expression[$i] = Formula("0");
+                                my @vars;
+                                my @exps;
+                                for $j (1..$termcount[$i]) {
+                                    my $nextvar = list_random(@vars,@vars,@vars,'x','y','z','t','s');
+                                    my $nextexp;
+                                    do {$nextexp = list_random(@exps,@exps,@exps,0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
+                                    push(@vars,$nextvar);
+                                    push(@exps,$nextexp);
+                                    $string = non_zero_random(-9,9,1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $expression[$i] = Compute("$expression[$i]+$string")->reduce->reduce;
+                                }
+                            }
+                            $exp0=$expression[0];
+                            $exp1=$expression[1];
+                            $exp2=$expression[2];
+                            $exp3=$expression[3];
+                            for $i (0..3) {
+                                $answers[$i] = Formula($expression[$i]->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'+'.
+                                        $expression[$i]->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'x+'.
+                                        $expression[$i]->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'y+'.
+                                        $expression[$i]->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'z+'.
+                                        $expression[$i]->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'s+'.
+                                        $expression[$i]->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'t+'.
+                                        $expression[$i]->D('x')->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2x^2+'.
+                                        $expression[$i]->D('y')->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2y^2+'.
+                                        $expression[$i]->D('z')->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2z^2+'.
+                                        $expression[$i]->D('s')->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2s^2+'.
+                                        $expression[$i]->D('t')->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2t^2')->reduce->reduce;
+                                $evaluator[$i] = $answers[$i] -> cmp(
+                                   checker=>sub{
+                                      my ( $correct, $student, $ansHash ) = @_;
+                                      return 0 if $ansHash->{isPreview} || $correct != $student;
+                                      $student = $ansHash->{student_formula};
+                                      $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                                      $student = Formula("$student"); $correct = Formula("$correct");
+                                      return 0 unless ($correct == $student);
+                                      Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                                      delete $correct->{test_values}, $student->{test_values};
+                                      my $OK = (($correct == $student) or ($student == $correct));
+                                      Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                                      Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
+                                      return $OK;
+                                });
+                            }
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Simplify each expression, if possible, by combining like terms.</p>
+                        <instruction>If the expression cannot be simplified further, just enter it as it is.</instruction>
+                        <p><ol label="a.">
+                            <li>
+                                <p><m><var name="$exp0" /></m></p>
+                                <p><var name="$evaluator[0]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp1" /></m></p>
+                                <p><var name="$evaluator[1]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp2" /></m></p>
+                                <p><var name="$evaluator[2]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp3" /></m></p>
+                                <p><var name="$evaluator[3]" width="25" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
+                            Context()->operators->set(
+                                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+                                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                            );
+                            @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
+                            for $i (0..3) {
+                                $expression[$i] = Formula("0");
+                                my @vars;
+                                my @exps;
+                                for $j (1..$termcount[$i]) {
+                                    my $nextvar = list_random(@vars,@vars,@vars,'x','y','z','t','s');
+                                    my $nextexp;
+                                    do {$nextexp = list_random(@exps,@exps,@exps,0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
+                                    push(@vars,$nextvar);
+                                    push(@exps,$nextexp);
+                                    $string = non_zero_random(-9,9,1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $expression[$i] = Compute("$expression[$i]+$string")->reduce->reduce;
+                                }
+                            }
+                            $exp0=$expression[0];
+                            $exp1=$expression[1];
+                            $exp2=$expression[2];
+                            $exp3=$expression[3];
+                            for $i (0..3) {
+                                $answers[$i] = Formula($expression[$i]->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'+'.
+                                        $expression[$i]->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'x+'.
+                                        $expression[$i]->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'y+'.
+                                        $expression[$i]->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'z+'.
+                                        $expression[$i]->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'s+'.
+                                        $expression[$i]->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'t+'.
+                                        $expression[$i]->D('x')->D('x')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2x^2+'.
+                                        $expression[$i]->D('y')->D('y')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2y^2+'.
+                                        $expression[$i]->D('z')->D('z')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2z^2+'.
+                                        $expression[$i]->D('s')->D('t')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2s^2+'.
+                                        $expression[$i]->D('t')->D('s')->eval(x=>0,y=>0,z=>0,t=>0,s=>0).'/2t^2')->reduce->reduce;
+                                $evaluator[$i] = $answers[$i] -> cmp(
+                                   checker=>sub{
+                                      my ( $correct, $student, $ansHash ) = @_;
+                                      return 0 if $ansHash->{isPreview} || $correct != $student;
+                                      $student = $ansHash->{student_formula};
+                                      $correct = $correct->{original_formula} if defined $correct->{original_formula};
+                                      $student = Formula("$student"); $correct = Formula("$correct");
+                                      return 0 unless ($correct == $student);
+                                      Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                                      delete $correct->{test_values}, $student->{test_values};
+                                      my $OK = (($correct == $student) or ($student == $correct));
+                                      Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                                      Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
+                                      return $OK;
+                                });
+                            }
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Simplify each expression, if possible, by combining like terms.</p>
+                        <instruction>If the expression cannot be simplified further, just enter it as it is.</instruction>
+                        <p><ol label="a.">
+                            <li>
+                                <p><m><var name="$exp0" /></m></p>
+                                <p><var name="$evaluator[0]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp1" /></m></p>
+                                <p><var name="$evaluator[1]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp2" /></m></p>
+                                <p><var name="$evaluator[2]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp3" /></m></p>
+                                <p><var name="$evaluator[3]" width="25" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                </webwork>
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
@@ -443,7 +780,7 @@
             </exercise>
         </exercisegroup>
 
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Perfect Square Trinomial Formula</title>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication190.pg" />
@@ -501,7 +838,7 @@
             </exercise>
         </exercisegroup>
 
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Difference of Squares Formula</title>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication160.pg" />
@@ -552,6 +889,32 @@
                 <webwork source="BasicAlgebra/PolynomialMultiplication/polyMultVar120.pg" />
             </exercise>
             <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication161.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication161.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication166.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication166.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication191.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication191.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication196.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication196.pg" />
+            </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
+            <exercise>
                 <webwork source="BasicAlgebra/PolynomialMultiplication/polyMultVar125.pg" />
             </exercise>
             <exercise>
@@ -571,43 +934,7 @@
             </exercise>
         </exercisegroup>
 
-<!--TODO: exercises with c(a-b)^2 and c(a-b)(a+b) are needed; none found in problem library-->
-
-        <exercisegroup cols="2">
-            <title>Application Problems</title>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication90.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication90.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication100.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplicationApplication100.pg" />
-            </exercise>
-        </exercisegroup>
-
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
             <title>Binomials Raised to Other Powers</title>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialMultiplication/PolynomialMultiplication230.pg" />
