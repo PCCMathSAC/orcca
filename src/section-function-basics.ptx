@@ -1173,10 +1173,116 @@
                 <webwork source="BasicAlgebra/EvaluateExpressions/evaluate130.pg" />
             </exercise>
             <exercise>
-                <webwork source="ORCCA-201802/4-Graphing_Lines/4_1-Cartesian_Coordinates/4_1_1_1.pg" />
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            $px[2]=0;
+                            $py[3]=0;
+                            $xmin = -10;$xmax = 10;
+                            $ymin = -10;$ymax = 10;
+                            $xmark = 2;
+                            $ymark = 2;
+                            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+                               axes=>[0,0],
+                               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+                               size=>[240,240]
+                            );
+                            $gr->lb('reset');
+                            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
+                            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
+                            Context("Point");
+                            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Locate each point in the graph:</p>
+
+                        <sidebyside widths="40%">
+                            <image pg-name="$gr"/>
+                        </sidebyside>
+
+                        <p>Write each point's position as an ordered pair, like <m>(1,2)</m>.</p>
+
+                        <sidebyside>
+                            <tabular>
+                                <row>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
             </exercise>
             <exercise>
-                <webwork source="ORCCA-201802/4-Graphing_Lines/4_1-Cartesian_Coordinates/4_1_1_2.pg" />
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+                            $px[2]=0;
+                            $py[3]=0;
+                            $xmin = -10;$xmax = 10;
+                            $ymin = -10;$ymax = 10;
+                            $xmark = 2;
+                            $ymark = 2;
+                            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+                               axes=>[0,0],
+                               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+                               size=>[240,240]
+                            );
+                            $gr->lb('reset');
+                            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
+                            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
+                            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+                              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
+                              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
+                              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom'));}
+                              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top'));}
+                              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top'));}
+                            };
+                            Context("Point");
+                            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>Locate each point in the graph:</p>
+
+                        <sidebyside widths="40%" >
+                            <image pg-name="$gr" />
+                        </sidebyside>
+
+                        <p>Write each point's position as an ordered pair, like <m>(1,2)</m>.</p>
+
+                        <sidebyside>
+                            <tabular>
+                                <row>
+                                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+                                </row>
+                            </tabular>
+                        </sidebyside>
+                    </statement>
+                </webwork>
             </exercise>
         </exercisegroup>
         <exercisegroup cols="2">
