@@ -181,7 +181,7 @@ pdf:
 	perl -pi -e 's/(^.*?\\label{exercise-367})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\label{exercises-6})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'review-basic-math-review'; \
-	perl -pi -e 's/(\\begin{example}.*?\\label{example-2[123456]}\n)/\1\\leavevmode\n/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-2[123456]}\n)/\1\\leavevmode\n/g' orcca.tex; \
 	perl -pi -e 's/(\\begin{example}.*?\\label{example-23})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-37}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-variables-and-evaluating-expressions'; \
@@ -281,26 +281,67 @@ pdf:
 	echo 'review-graphing-lines'; \
 	perl -pi -e 's/(^.*?\\hypertarget{solution-2340}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-solving-systems-of-linear-equations-by-graphing'; \
+	perl -pi -e 's/(\\begin{remark}\\label{remark-35})/\\pagebreak%\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(\\begin{example}\\label{example-solving-systems-by-graphing-intro}\n)/\1\\leavevmode%\n\n/' orcca.tex; \
-	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-200}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-201}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-elimination'; \
-	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-208}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-209}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'review-systems-of-linear-equations'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-213}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-exponent-rules'; \
-	perl -pi -e 's/(^.*?\\label{exercises-41})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-220}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-222}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-adding-and-subtracting-polynomials'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-233}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-multiplying-polynomials'; \
-	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-248}{})/\\pagebreak\n\n\1/' orcca.tex; \
-	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-250}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-special-cases-of-multiplying-polynomials'; \
-	perl -pi -e 's/(^.*?\\hypertarget{solution-3067}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-3065}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-factoring-trinomials-with-leading-coefficient-one'; \
+	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-280}{}\n\\par%\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-skip=-1pc\]/' orcca.tex; \
+	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-281}{}\n\\par%\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-skip=-1pc\]/' orcca.tex; \
+	echo 'section-factoring-special-patterns'; \
+	perl -p0i -e 's/(\\hypertarget{p-\d+}{}%\nTo use these formulas effectively,)/\\leavevmode\n\n\1/' orcca.tex; \
 	echo 'section-factoring-strategies'; \
 	perl -pi -e 's/(^.*?\\label{exercises-53})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-290}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-square-root-properties'; \
 	perl -pi -e 's/(^.*?\\label{exercises-56})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-the-quadratic-formula'; \
-	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-329}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-318}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-complex-solutions-to-quadratic-equations'; \
+	perl -pi -e 's/(^.*?\\label{subsection-203})/\\pagebreak%\n\n\1/' orcca.tex; \
 	echo 'section-strategies-for-solving-quadratic-equations'; \
-	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-334}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'review-solving-quadratic-equations'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-328}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(.*?\\hypertarget{exercisegroup-340}{}\n\\par%\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc\]/' orcca.tex; \
+	echo 'section-introduction-to-functions'; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-4496}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-342}{})/\\pagebreak%\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\exercise!\[13\.\] \\hypertarget{exercise-4087}{}\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\vspace{-1.5pc}/' orcca.tex; \
+	perl -p0i -e 's/(\\exercise!\[14\.\] \\hypertarget{exercise-4088}{}\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\vspace{-1.5pc}/' orcca.tex; \
+	perl -p0i -e 's/\\par\n(\\hypertarget{p-\d+}{}%\nThis function has domain)/\\vspace{-1\.5pc}\n\n\1/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{sidebyside}\n)(\\hypertarget{p-38[56]\d+}{}%\n\\begin{enumerate})/\1\\vspace{-1.5pc}\n\n\2/g' orcca.tex; \
+	perl -pi -e 's/(\\includegraphics\[width=1\\linewidth)(\]{images\/webwork-39[78][1234567890]-image-1\.png})/\1,height=0.95\\linewidth\2/g' orcca.tex; \
+	perl -p0i -e 's/(\\subparagraph\[{Functions Represented with Graphs}\].*?\\hypertarget{exercisegroup-345}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-0.5pc\]/' orcca.tex; \
+	perl -pi -e 's/(The function ..C.. models the the number of customers in a store since the store opened on a certain day, where ..t.. stands for the number of hours since the store opened\.%)/\\pagebreak%\n\n\1/' orcca.tex; \
+	echo 'section-properties-of-quadratic-functions'; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-4578}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\label{exercises-63})/\\newpage\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-355}{})/\\pagebreak%\n\n\1/' orcca.tex; \
+	echo 'section-graphing-quadratic-functions'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-359}{})/\\pagebreak%\n\n\1/' orcca.tex; \
+	echo 'review-graphs-of-quadratic-functions'; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-48[567]}\n)/\1\\leavevmode\n/g' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}.*?\\label{example-490}\n)/\1\\leavevmode\n/g' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{solution-4727}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\end{sidebyside}\n)\\par\n(\\hypertarget{p-\d+}{}%\n\\leavevmode%\n\\begin{multicols}\{)/\1\\vspace{-1pc}\n\n\2/g' orcca.tex; \
+	perl -pi -e 's/(^.*?\\label{exercises-65})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\exercise!\[1\.\] \\hypertarget{exercise-4282}{}\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\vspace{-1.5pc}\n\n/' orcca.tex; \
+	perl -p0i -e 's/(\\exercise!\[2\.\] \\hypertarget{exercise-4283}{}\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\vspace{-1.5pc}\n\n/' orcca.tex; \
+	perl -pi -e 's/(.*\\hypertarget{exercise-4283}{})/\\vspace{-1.5pc}\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*\\hypertarget{exercise-4284}{})/\\vspace{-1.5pc}\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-363}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\exercise\[(19|20)\.\].*?\n.*?\n.*?\n.*?\n.*?\n.*?\n\\begin{tabular}{lllllllll}\n.*?\n.*?\n.*?\n)\\par(}\n.*?\n.*?\n.*?\n.*?\n)/\1\3\\vspace{-1\.5pc}\n\n/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 

@@ -399,7 +399,7 @@
 
 
     <exercises>
-        <exercisegroup cols="3">
+        <exercisegroup cols="2">
             <title>Review and Warmup</title>
             <exercise>
                 <webwork>
@@ -408,19 +408,21 @@
                             Context("Numeric");
                             Context()->noreduce('(-x)+y','(-x)-y');
                             Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
-                            @answer = (1,2,2,3,3,4,4)[NchooseK(7,4)];
+                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
                             for $i (0..3) {
                                 $expression[$i] = Formula("0");
+                                $answers[$i] = List();
                                 my @vars;
                                 my @exps;
-                                for $j (1..$answer[$i]) {
+                                for $j (1..$termcount[$i]) {
                                     my $nextvar = list_random('x','y','z','t','s');
                                     my $nextexp;
                                     do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
                                     push(@vars,$nextvar);
                                     push(@exps,$nextexp);
-                                    $string = non_zero_random(-9,9,1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
                                     $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
+                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
                                 }
                             }
                             $exp0=$expression[0];
@@ -430,38 +432,38 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Count the number of terms in each expression.<ol label="a.">
+                        <p>List the terms in each expression.<ol label="a.">
                             <li>
                                 <p><m><var name="$exp0" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[0]" width="25" /></p>
                             </li>
                             <li>
                                 <p><m><var name="$exp1" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[1]" width="25" /></p>
                             </li>
                             <li>
                                 <p><m><var name="$exp2" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[2]" width="25" /></p>
                             </li>
                             <li>
                                 <p><m><var name="$exp3" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[3]" width="25" /></p>
                             </li>
                         </ol></p>
                     </statement>
                     <solution>
                         <p><ol label="a.">
                             <li>
-                                <p>This expression has <m><var name="$answers[0]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
                             </li>
                             <li>
-                                <p>This expression has <m><var name="$answers[1]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
                             </li>
                             <li>
-                                <p>This expression has <m><var name="$answers[2]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
                             </li>
                             <li>
-                                <p>This expression has <m><var name="$answers[3]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
                             </li>
                         </ol></p>
                     </solution>
@@ -474,19 +476,21 @@
                             Context("Numeric");
                             Context()->noreduce('(-x)+y','(-x)-y');
                             Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
-                            @answer = (1,2,2,3,3,4,4)[NchooseK(7,4)];
+                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
                             for $i (0..3) {
                                 $expression[$i] = Formula("0");
+                                $answers[$i] = List();
                                 my @vars;
                                 my @exps;
-                                for $j (1..$answer[$i]) {
+                                for $j (1..$termcount[$i]) {
                                     my $nextvar = list_random('x','y','z','t','s');
                                     my $nextexp;
                                     do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
                                     push(@vars,$nextvar);
                                     push(@exps,$nextexp);
-                                    $string = non_zero_random(-9,9,1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
                                     $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
+                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
                                 }
                             }
                             $exp0=$expression[0];
@@ -496,317 +500,182 @@
                         </pg-code>
                     </setup>
                     <statement>
-                        <p>Count the number of terms in each expression.<ol label="a.">
+                        <p>List the terms in each expression.<ol label="a.">
                             <li>
                                 <p><m><var name="$exp0" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[0]" width="25" /></p>
                             </li>
                             <li>
                                 <p><m><var name="$exp1" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[1]" width="25" /></p>
                             </li>
                             <li>
                                 <p><m><var name="$exp2" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[2]" width="25" /></p>
                             </li>
                             <li>
                                 <p><m><var name="$exp3" /></m></p>
-                                <p><var name="$answer[d]" width="25" /></p>
+                                <p><var name="$answers[3]" width="25" /></p>
                             </li>
                         </ol></p>
                     </statement>
                     <solution>
                         <p><ol label="a.">
                             <li>
-                                <p>This expression has <m><var name="$answers[0]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
                             </li>
                             <li>
-                                <p>This expression has <m><var name="$answers[1]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
                             </li>
                             <li>
-                                <p>This expression has <m><var name="$answers[2]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
                             </li>
                             <li>
-                                <p>This expression has <m><var name="$answers[3]" /></m> terms.</p>
+                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
                             </li>
                         </ol></p>
                     </solution>
                 </webwork>
             </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
+                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
+                            for $i (0..3) {
+                                $expression[$i] = Formula("0");
+                                $answers[$i] = List();
+                                my @vars;
+                                my @exps;
+                                for $j (1..$termcount[$i]) {
+                                    my $nextvar = list_random('x','y','z','t','s');
+                                    my $nextexp;
+                                    do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
+                                    push(@vars,$nextvar);
+                                    push(@exps,$nextexp);
+                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
+                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
+                                }
+                            }
+                            $exp0=$expression[0];
+                            $exp1=$expression[1];
+                            $exp2=$expression[2];
+                            $exp3=$expression[3];
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>List the terms in each expression.<ol label="a.">
+                            <li>
+                                <p><m><var name="$exp0" /></m></p>
+                                <p><var name="$answers[0]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp1" /></m></p>
+                                <p><var name="$answers[1]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp2" /></m></p>
+                                <p><var name="$answers[2]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp3" /></m></p>
+                                <p><var name="$answers[3]" width="25" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                            <li>
+                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
+                            </li>
+                            <li>
+                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
+                            </li>
+                            <li>
+                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
+                            </li>
+                            <li>
+                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+            <exercise>
+                <webwork>
+                    <setup>
+                        <pg-code>
+                            Context("Numeric");
+                            Context()->noreduce('(-x)+y','(-x)-y');
+                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
+                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
+                            for $i (0..3) {
+                                $expression[$i] = Formula("0");
+                                $answers[$i] = List();
+                                my @vars;
+                                my @exps;
+                                for $j (1..$termcount[$i]) {
+                                    my $nextvar = list_random('x','y','z','t','s');
+                                    my $nextexp;
+                                    do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
+                                    push(@vars,$nextvar);
+                                    push(@exps,$nextexp);
+                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
+                                    $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
+                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
+                                }
+                            }
+                            $exp0=$expression[0];
+                            $exp1=$expression[1];
+                            $exp2=$expression[2];
+                            $exp3=$expression[3];
+                        </pg-code>
+                    </setup>
+                    <statement>
+                        <p>List the terms in each expression.<ol label="a.">
+                            <li>
+                                <p><m><var name="$exp0" /></m></p>
+                                <p><var name="$answers[0]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp1" /></m></p>
+                                <p><var name="$answers[1]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp2" /></m></p>
+                                <p><var name="$answers[2]" width="25" /></p>
+                            </li>
+                            <li>
+                                <p><m><var name="$exp3" /></m></p>
+                                <p><var name="$answers[3]" width="25" /></p>
+                            </li>
+                        </ol></p>
+                    </statement>
+                    <solution>
+                        <p><ol label="a.">
+                            <li>
+                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
+                            </li>
+                            <li>
+                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
+                            </li>
+                            <li>
+                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
+                            </li>
+                            <li>
+                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
+                            </li>
+                        </ol></p>
+                    </solution>
+                </webwork>
+            </exercise>
+        </exercisegroup>
 
-            <exercise>
-                <webwork>
-                    <setup>
-                        <pg-code>
-                            Context("Numeric");
-                            Context()->noreduce('(-x)+y','(-x)-y');
-                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
-                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
-                            for $i (0..3) {
-                                $expression[$i] = Formula("0");
-                                $answers[$i] = List();
-                                my @vars;
-                                my @exps;
-                                for $j (1..$termcount[$i]) {
-                                    my $nextvar = list_random('x','y','z','t','s');
-                                    my $nextexp;
-                                    do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
-                                    push(@vars,$nextvar);
-                                    push(@exps,$nextexp);
-                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
-                                    $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
-                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
-                                }
-                            }
-                            $exp0=$expression[0];
-                            $exp1=$expression[1];
-                            $exp2=$expression[2];
-                            $exp3=$expression[3];
-                        </pg-code>
-                    </setup>
-                    <statement>
-                        <p>List the terms in each expression.<ol label="a.">
-                            <li>
-                                <p><m><var name="$exp0" /></m></p>
-                                <p><var name="$answers[0]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp1" /></m></p>
-                                <p><var name="$answers[1]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp2" /></m></p>
-                                <p><var name="$answers[2]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp3" /></m></p>
-                                <p><var name="$answers[3]" width="25" /></p>
-                            </li>
-                        </ol></p>
-                    </statement>
-                    <solution>
-                        <p><ol label="a.">
-                            <li>
-                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
-                            </li>
-                        </ol></p>
-                    </solution>
-                </webwork>
-            </exercise>
-            <exercise>
-                <webwork>
-                    <setup>
-                        <pg-code>
-                            Context("Numeric");
-                            Context()->noreduce('(-x)+y','(-x)-y');
-                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
-                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
-                            for $i (0..3) {
-                                $expression[$i] = Formula("0");
-                                $answers[$i] = List();
-                                my @vars;
-                                my @exps;
-                                for $j (1..$termcount[$i]) {
-                                    my $nextvar = list_random('x','y','z','t','s');
-                                    my $nextexp;
-                                    do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
-                                    push(@vars,$nextvar);
-                                    push(@exps,$nextexp);
-                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
-                                    $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
-                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
-                                }
-                            }
-                            $exp0=$expression[0];
-                            $exp1=$expression[1];
-                            $exp2=$expression[2];
-                            $exp3=$expression[3];
-                        </pg-code>
-                    </setup>
-                    <statement>
-                        <p>List the terms in each expression.<ol label="a.">
-                            <li>
-                                <p><m><var name="$exp0" /></m></p>
-                                <p><var name="$answers[0]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp1" /></m></p>
-                                <p><var name="$answers[1]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp2" /></m></p>
-                                <p><var name="$answers[2]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp3" /></m></p>
-                                <p><var name="$answers[3]" width="25" /></p>
-                            </li>
-                        </ol></p>
-                    </statement>
-                    <solution>
-                        <p><ol label="a.">
-                            <li>
-                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
-                            </li>
-                        </ol></p>
-                    </solution>
-                </webwork>
-            </exercise>
-            <exercise>
-                <webwork>
-                    <setup>
-                        <pg-code>
-                            Context("Numeric");
-                            Context()->noreduce('(-x)+y','(-x)-y');
-                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
-                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
-                            for $i (0..3) {
-                                $expression[$i] = Formula("0");
-                                $answers[$i] = List();
-                                my @vars;
-                                my @exps;
-                                for $j (1..$termcount[$i]) {
-                                    my $nextvar = list_random('x','y','z','t','s');
-                                    my $nextexp;
-                                    do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
-                                    push(@vars,$nextvar);
-                                    push(@exps,$nextexp);
-                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
-                                    $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
-                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
-                                }
-                            }
-                            $exp0=$expression[0];
-                            $exp1=$expression[1];
-                            $exp2=$expression[2];
-                            $exp3=$expression[3];
-                        </pg-code>
-                    </setup>
-                    <statement>
-                        <p>List the terms in each expression.<ol label="a.">
-                            <li>
-                                <p><m><var name="$exp0" /></m></p>
-                                <p><var name="$answers[0]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp1" /></m></p>
-                                <p><var name="$answers[1]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp2" /></m></p>
-                                <p><var name="$answers[2]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp3" /></m></p>
-                                <p><var name="$answers[3]" width="25" /></p>
-                            </li>
-                        </ol></p>
-                    </statement>
-                    <solution>
-                        <p><ol label="a.">
-                            <li>
-                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
-                            </li>
-                        </ol></p>
-                    </solution>
-                </webwork>
-            </exercise>
-            <exercise>
-                <webwork>
-                    <setup>
-                        <pg-code>
-                            Context("Numeric");
-                            Context()->noreduce('(-x)+y','(-x)-y');
-                            Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
-                            @termcount = (1,2,2,3,3,4,4)[NchooseK(7,4)];
-                            for $i (0..3) {
-                                $expression[$i] = Formula("0");
-                                $answers[$i] = List();
-                                my @vars;
-                                my @exps;
-                                for $j (1..$termcount[$i]) {
-                                    my $nextvar = list_random('x','y','z','t','s');
-                                    my $nextexp;
-                                    do {$nextexp = list_random(0,1,1,1,2,2);} until ($exps[$j-2] != 0 or $nextexp != 0);
-                                    push(@vars,$nextvar);
-                                    push(@exps,$nextexp);
-                                    $string = non_zero_random(-9,9,0.1).$vars[$j-1].'^'.$exps[$j-1];
-                                    $expression[$i] = Compute("$expression[$i]+ $string")->reduce->reduce;
-                                    $answers[$i] = List($answers[$i],Formula("$string")->reduce->reduce);
-                                }
-                            }
-                            $exp0=$expression[0];
-                            $exp1=$expression[1];
-                            $exp2=$expression[2];
-                            $exp3=$expression[3];
-                        </pg-code>
-                    </setup>
-                    <statement>
-                        <p>List the terms in each expression.<ol label="a.">
-                            <li>
-                                <p><m><var name="$exp0" /></m></p>
-                                <p><var name="$answers[0]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp1" /></m></p>
-                                <p><var name="$answers[1]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp2" /></m></p>
-                                <p><var name="$answers[2]" width="25" /></p>
-                            </li>
-                            <li>
-                                <p><m><var name="$exp3" /></m></p>
-                                <p><var name="$answers[3]" width="25" /></p>
-                            </li>
-                        </ol></p>
-                    </statement>
-                    <solution>
-                        <p><ol label="a.">
-                            <li>
-                                <p>The terms are <m><var name="$answers[0]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[1]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[2]" /></m>.</p>
-                            </li>
-                            <li>
-                                <p>The terms are <m><var name="$answers[3]" /></m>.</p>
-                            </li>
-                        </ol></p>
-                    </solution>
-                </webwork>
-            </exercise>
-
+        <exercisegroup cols="2">
             <exercise>
                 <webwork>
                     <setup>
@@ -1146,7 +1015,7 @@
                 </webwork>
             </exercise>
         </exercisegroup>
-        <exercisegroup cols="3">
+        <exercisegroup cols="2">
             <title>Vocabulary Questions</title>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract0.pg" />
@@ -1160,11 +1029,12 @@
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract5.pg" />
             </exercise>
+            <!-- seed set to give distinct degrees -->
             <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract10.pg" />
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract10.pg" seed="725"/>
             </exercise>
             <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract10.pg" />
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract10.pg" seed="728"/>
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract11.pg" />
@@ -1201,8 +1071,6 @@
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract25.pg" />
             </exercise>
-        </exercisegroup>
-        <exercisegroup cols="2">
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract35.pg" />
             </exercise>
@@ -1221,12 +1089,10 @@
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract45.pg" />
             </exercise>
-        </exercisegroup>
-        <exercisegroup>
-            <exercise>
+            <exercise width="wide">
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract50.pg" />
             </exercise>
-            <exercise>
+            <exercise width="wide">
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract50.pg" />
             </exercise>
             <exercise>
@@ -1236,7 +1102,7 @@
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract55.pg" />
             </exercise>
         </exercisegroup>
-        <exercisegroup cols="3">
+        <exercisegroup cols="2">
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract80.pg" />
             </exercise>
@@ -1255,16 +1121,12 @@
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract90.pg" />
             </exercise>
-        </exercisegroup>
-        <exercisegroup>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract95.pg" />
             </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract95.pg" />
             </exercise>
-        </exercisegroup>
-        <exercisegroup cols="2">
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract100.pg" />
             </exercise>
@@ -1278,29 +1140,19 @@
                 <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract105.pg" />
             </exercise>
         </exercisegroup>
-        <exercisegroup>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract130.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract130.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract135.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract135.pg" />
-            </exercise>
-        </exercisegroup>
-        <exercisegroup>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract140.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract140.pg" />
-            </exercise>
-        </exercisegroup>
         <exercisegroup cols="2">
+            <exercise width="wide">
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract130.pg" />
+            </exercise>
+            <exercise width="wide">
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract130.pg" />
+            </exercise>
+            <exercise width="wide">
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract135.pg" />
+            </exercise>
+            <exercise width="wide">
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract135.pg" />
+            </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/polyMultVar15.pg" />
             </exercise>
@@ -1331,14 +1183,20 @@
             <exercise width="wide">
                 <webwork source="BasicAlgebra/PolynomialBasics/polyMultVar35.pg" />
             </exercise>
-            <exercise width="wide">
+            <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/polyMultVar40.pg" />
             </exercise>
-            <exercise width="wide">
+            <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/polyMultVar40.pg" />
             </exercise>
         </exercisegroup>
         <exercisegroup>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract140.pg" />
+            </exercise>
+            <exercise>
+                <webwork source="BasicAlgebra/PolynomialBasics/PolyAddSubtract140.pg" />
+            </exercise>
             <exercise>
                 <webwork source="BasicAlgebra/PolynomialBasics/polyMultVar55.pg" />
             </exercise>
