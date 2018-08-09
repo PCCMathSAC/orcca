@@ -58,7 +58,7 @@
         <exercise>
             <webwork>
                 <statement>
-                    <p>Find an input for the function <m>f</m> that would cause an undefined output, where <m>f(x)=\dfrac{x+2}{x+8}</m>.</p>
+                    <p>If <m>f(x)=\dfrac{x+2}{x+8}</m>, find an input for <m>f</m> that would cause an undefined output.</p>
                     <p>The number <var name="'-8'" width="5" /> would cause an undefined output.</p>
                 </statement>
                 <solution>
@@ -116,6 +116,7 @@
                         <image width="100%">
                             <description>a number line with a mark at 1851; a bracket opens to the right at 1851 and there is an arrow pointing to the right.</description>
                             <latex-image>
+                                <!-- width set for PDF fitting -->
                                 <![CDATA[\begin{tikzpicture}
                                     \begin{axis}[numberline,
                                                 xmin=0,xmax=3000,
@@ -123,6 +124,7 @@
                                                 minor xtick={0,500,...,3000},
                                                 /pgf/number format/1000 sep={},
                                                 xlabel={$t$},
+                                                width=180pt,
                                                 ]
                                         \addplot[closedinfiniteinterval] coordinates {(1851,0) (3000,0)} node[pos=0,above] {1851};
                                     \end{axis}
@@ -139,9 +141,11 @@
                         <image width="100%">
                             <description>a number line with a mark at 0; there is a parenthesis at 0 that opens to the right and a thick line overlays the number line and points to the right</description>
                             <latex-image>
+                                <!-- width set for PDF fitting -->
                                 <![CDATA[\begin{tikzpicture}
                                     \begin{axis}[numberline,
                                                 xlabel={$m$},
+                                                width=180pt,
                                                 ]
                                         \addplot[openinfiniteinterval] coordinates {(0,0) (10,0)} node[pos=0,above] {0};
                                     \end{axis}
@@ -158,8 +162,10 @@
                         <image width="100%">
                             <description>a number line with a mark at 7; there is a parenthesis opening to the left at 7 with an arrow pointing to the left; there is a parenthesis opening to the right at 7 with an arrow pointing to the right.</description>
                             <latex-image>
+                                <!-- width set for PDF fitting -->
                                 <![CDATA[\begin{tikzpicture}
                                     \begin{axis}[numberline,
+                                                width=180pt,
                                                 ]
                                         \addplot[openinfiniteinterval] coordinates {(7.1,0) (10,0)} node[pos=0,above] {7};
                                         \addplot[openinfiniteinterval] coordinates {(6.9,0) (-10,0)};
@@ -623,7 +629,6 @@
         </solution>
       </example>
 
-<!--TODO: this graph needs asymptotes-->
       <exercise xml:id="exercise-rational-function-domain">
         <webwork>
           <setup>
@@ -635,18 +640,28 @@
                     size=&gt;[240,240]
                   );
                   $graph[$i]-&gt;lb('reset');
+                  for my $j (-2..6) {
+                    if (abs($j)&lt;10**(-10)) {next;}
+                    $graph[$i]->lb( new Label($j,0, $j,'black','center','top','large'));
+                  }
+                  for my $j (-2..2) {
+                    if (abs($j)&lt;10**(-10)) {next;}
+                    $graph[$i]->lb( new Label(0, $j, $j,'black','right','middle','large'));
+                  }
                   $xpixel = (7 - (-3))/240;
                   $ypixel = (3 - (-3))/240;
                   add_functions($graph[$i], "1/(x-2) for x in &lt;-3,1.666&gt; using color:blue and weight:1");
                   add_functions($graph[$i], "1/(x-2) for x in &lt;2.333,7&gt; using color:blue and weight:1");
-                  $graph[$i]-&gt;moveTo(-2.5,-0.222222);
-                  $graph[$i]-&gt;arrowTo(-3,-0.2,'blue',2);
-                  $graph[$i]-&gt;moveTo(6.5,0.222222);
-                  $graph[$i]-&gt;arrowTo(7,0.2,'blue',2);
-                  $graph[$i]-&gt;moveTo(1.6,-2.5);
-                  $graph[$i]-&gt;arrowTo(1.666,-3,'blue',2);
-                  $graph[$i]-&gt;moveTo(2.4,2.5);
-                  $graph[$i]-&gt;arrowTo(2.333,3,'blue',2);
+                  $graph[$i]-&gt;moveTo(-3+2*$xpixel,1/(-3+2*$xpixel-2));
+                  $graph[$i]-&gt;arrowTo(-3,-0.2,'blue',1);
+                  $graph[$i]-&gt;moveTo(7-2*$xpixel,1/(7-2*$xpixel-2));
+                  $graph[$i]-&gt;arrowTo(7,0.2,'blue',1);
+                  $graph[$i]-&gt;moveTo(1.666-2*$xpixel,1/(1.666-2*$xpixel-2));
+                  $graph[$i]-&gt;arrowTo(1.666,-3,'blue',1);
+                  $graph[$i]-&gt;moveTo(2.333+2*$xpixel,1/(2.333+2*$xpixel-2));
+                  $graph[$i]-&gt;arrowTo(2.333,3,'blue',1);
+                  $graph[$i]-&gt;moveTo(2,-3);
+                  $graph[$i]-&gt;lineTo(2,3,'red',1,dashed);
                 };
                 for my $i (-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5) {
                   $graph[1]-&gt;moveTo($i,0);
@@ -655,8 +670,8 @@
                 $yoffset = 0*$ypixel;
                 $graph[1]-&gt;moveTo(2-2*$xpixel,$yoffset);$graph[1]-&gt;arrowTo(-3,$yoffset,'red',3);
                 $graph[1]-&gt;moveTo(2+2*$xpixel,$yoffset);$graph[1]-&gt;arrowTo(7,$yoffset,'red',3);
-                $graph[1]-&gt;lb( new Label(2+2*$xpixel,$yoffset,')','red','right','middle'));
-                $graph[1]-&gt;lb( new Label(2,$yoffset,'(','red','left','middle'));
+                $graph[1]-&gt;lb( new Label(2+2*$xpixel,$yoffset,')','red','right','middle','large'));
+                $graph[1]-&gt;lb( new Label(2,$yoffset,'(','red','left','middle','large'));
                 for my $i (-2.6, -2.2, -1.8, -1.4, -1, -0.6, -0.2, 0.2, 0.6, 1, 1.4, 1.8, 2.2, 2.6) {
                   $graph[2]-&gt;moveTo(1/$i + 2,$i);
                   $graph[2]-&gt;arrowTo(0,$i,'black',1);
@@ -664,8 +679,8 @@
                 $xoffset = 0*$xpixel;
                 $graph[2]-&gt;moveTo($xoffset,-2*$ypixel);$graph[2]-&gt;arrowTo($xoffset,-3,'red',3);
                 $graph[2]-&gt;moveTo($xoffset,2*$ypixel);$graph[2]-&gt;arrowTo($xoffset,3,'red',3);
-                $graph[2]-&gt;lb( new Label($xoffset,0,')','red','right','middle','vertical'));
-                $graph[2]-&gt;lb( new Label($xoffset,0,'(','red','left','middle','vertical'));
+                $graph[2]-&gt;lb( new Label($xoffset,0,')','red','right','middle','vertical','large'));
+                $graph[2]-&gt;lb( new Label($xoffset,0,'(','red','left','middle','vertical','large'));
                 InequalitySetBuilder::UseVerticalSuchThat();
                 Context("InequalitySetBuilder");
                 $domain = Compute("(-inf,2)U(2,inf)");
@@ -673,7 +688,7 @@
             </pg-code>
           </setup>
           <statement>
-            <p>Given the function <m>h</m> graphed below, find the domain and range of <m>h</m>.</p>
+            <p>Given the function <m>h</m> graphed below, find the domain and range of <m>h</m>. Note there is an invisible vertical line at <m>x=2</m>, and the two arms of the graph are extending downward (and upward) forever, getting arbitrarily close to that vertical line, but never touching it. Also note that the two arms extend forever to the left and right, getting arbitrarily close to the <m>y</m>-axis, but never touching it.</p>
             <sidebyside widths="47%">
               <image pg-name="$graph[0]" />
                 <description></description>
@@ -765,7 +780,7 @@
 
     <exercises>
         <exercisegroup cols="2">
-            <title>Review and Warmup</title>  
+            <title>Review and Warmup</title>
             <exercise>
                 <webwork source="BasicAlgebra/LinearInequalities/GraphToSetAndIntervalNotation10.pg" />
             </exercise>
@@ -791,10 +806,8 @@
                 <webwork source="BasicAlgebra/LinearInequalities/CompoundInequalityBasics50.pg" />
             </exercise>
         </exercisegroup>
-      <exercisegroup cols="2">
-        <introduction>
-          <p>Find domain and range using a graph.</p>
-        </introduction>
+      <exercisegroup cols="3">
+        <title>Domain and Range From a Graph</title>
         <exercise>
           <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph10.pg"/>
         </exercise>
@@ -836,18 +849,6 @@
         </exercise>
         <exercise>
           <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeByGraph70.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph40.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph40.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph50.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph50.pg"/>
         </exercise>
         <exercise>
             <webwork source="Math95/Functions/Functions20.pg" />
@@ -879,12 +880,22 @@
         <exercise>
             <webwork source="Math95/RadicalFunctions/RadicalFunctionsGraphically150.pg" />
         </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionValuesByGraph50.pg"/>
+        </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
-        <introduction>
-          <p>Find domain using a function's formula.</p>
-        </introduction>
+      <exercisegroup cols="3">
+        <title>Domain From a Formula</title>
         <exercise>
           <webwork source="BasicAlgebra/FunctionBasics/Functions90.pg"/>
         </exercise>
@@ -984,10 +995,49 @@
       </exercisegroup>
 
       <exercisegroup cols="2">
-        <introduction>
-          <p>Find domain and range using context.</p>
-        </introduction>
-<!--TODO: double this exercise-->
+        <title>Domain and Range Using Context</title>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext10.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext10.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext20.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext20.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext30.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext30.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext40.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext50.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext60.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext60.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext70.pg"/>
+        </exercise>
+        <exercise>
+          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext70.pg"/>
+        </exercise>
         <exercise>
             <statement>
                 <p>A student's first name is a function of their student identification number.
@@ -1005,75 +1055,52 @@
             </solution>
         </exercise>
         <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext10.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext10.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext20.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext20.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext30.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext30.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext40.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext40.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext50.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext50.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext60.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext60.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext70.pg"/>
-        </exercise>
-        <exercise>
-          <webwork source="BasicAlgebra/FunctionBasics/FunctionDomainRangeInContext70.pg"/>
+            <statement>
+                <p>The year a car was made is a function of its VIN (Vehicle Identification Number).
+                    <ol>
+                        <li>Describe the domain for this function in a sentence. Specifics are not needed.</li>
+                        <li>Describe the range for this function in a sentence. Specifics are not needed.</li>
+                    </ol></p>
+            </statement>
+            <solution>
+                <p>
+                    <ol>
+                        <li>The domain for this function is be the set of all VIN numbers.</li>
+                        <li>The range for this function is the set of all years since VIN numbers were implemented.</li>
+                    </ol></p>
+            </solution>
         </exercise>
       </exercisegroup>
 
-        <exercise><!-- Kara's challenge problem -->
-            <statement>
-                        <!--This is not a Webwork problem.  The student has to draw a graph.  The instructor must make sure that the domain, range are correct, and that the student drew a function.-->
-                <p>Draw a function whose:</p>
-                    <ol label="a.">
-                        <li>
-                            <p> domain is <m>(0, inf)</m> and range is <m>(-inf, 0)</m></p>
-                        </li>
-                        <li>
-                            <p> domain is <m>(1,2)</m> and range is <m>(3,4)</m></p>
-                        </li>
-                        <li>
-                            <p> domain is <m>(0,inf)</m> and range is <m>[2,3]</m></p>
-                        </li>
-                        <li>
-                            <p> domain is <m>(1,2)</m> and range is <m>(-inf, inf)</m></p>
-                        </li>
-                        <li>
-                            <p> domain is <m>(-inf, inf)</m> and range is <m>(-1,1)</m></p>
-                        </li>
-                        <li>
-                            <p> domain is <m>(0,inf)</m> and range is <m>[0,inf)</m></p>
-                        </li>
-                    </ol>
-            </statement>
-        </exercise>
+      <exercisegroup>
+        <title>Challenge</title>
+
+            <exercise><!-- Kara's challenge problem -->
+                <statement>
+                    <p>For each part, sketch the graph of a function with the given domain and range.</p>
+                        <ol label="a.">
+                            <li>
+                                <p>The domain is <m>(0, \infty)</m> and the range is <m>(-\infty, 0)</m>.</p>
+                            </li>
+                            <li>
+                                <p>The domain is <m>(1,2)</m> and the range is <m>(3,4)</m>.</p>
+                            </li>
+                            <li>
+                                <p>The domain is <m>(0,\infty)</m> and the range is <m>[2,3]</m>.</p>
+                            </li>
+                            <li>
+                                <p>The domain is <m>(1,2)</m> and the range is <m>(-\infty, \infty)</m>.</p>
+                            </li>
+                            <li>
+                                <p>The domain is <m>(-\infty, \infty)</m> and the range is <m>(-1,1)</m>.</p>
+                            </li>
+                            <li>
+                                <p>The domain is <m>(0,\infty)</m> and the range is <m>[0,\infty)</m>.</p>
+                            </li>
+                        </ol>
+                </statement>
+            </exercise>
+        </exercisegroup>
     </exercises>
 <!--TODO: add domain/ range for tables, similar to the last example-->
 </section>
