@@ -147,9 +147,9 @@ pdf:
 	echo 'In division exercise, when the problem starts with an enumerate, pull it upward vertically'; \
 	perl -p0i -e 's/(\\begin{divisionexercise}{\d+}\\hypertarget{exercise-\d+}{}\n\\hypertarget{p-\d+}{}%\n)(\\leavevmode%\n\\begin{enumerate})/\1\\vspace{-\\dimexpr\\parskip+1\\baselineskip-0.4pt\\relax}%\n%\2/g' orcca.tex; \
 	echo 'Images in a multicolumn exercicegroup need their sizing adjusted to account for the narrower column'; \
-	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\.1\}\{0\.1\}\{0\}\n\4\{0\.8\}/g' orcca.tex; done; \
-	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.16+7\}\{0\.16+7\}\{0\}\n(\\begin{sbspanel})\{0\.6+7\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done; \
-	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\(3\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done ;\
+	for i in {1..28}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\.1\}\{0\.1\}\{0\}\n\4\{0\.8\}/g' orcca.tex; done; \
+	for i in {1..28}; do perl -p0i -e 's/(\\begin{exercisegroup}\(2\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.16+7\}\{0\.16+7\}\{0\}\n(\\begin{sbspanel})\{0\.6+7\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done; \
+	for i in {1..28}; do perl -p0i -e 's/(\\begin{exercisegroup}\(3\)\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done ;\
 	echo 'Images in a multicolumn list within a webwork exercise need their sizing adjusted to account for the narrower column'; \
 	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
 	perl -p0i -e 's/(\\begin{inlineexercise}.*?\\label{exercise-\d+}\n(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?[^\n]*\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\6\{1\}/g' orcca.tex; \
