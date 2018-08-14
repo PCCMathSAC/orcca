@@ -21,7 +21,12 @@
 
         <example xml:id="example-solving-systems-by-graphing-intro">
             <sidebyside widths="47% 47%" margins="0%">
-                <p>Fabiana and David are running at constant speeds in parallel lanes on a track. David starts out ahead of Fabiana, but Fabiana is running faster. We want to determine when Fabiana will catch up with David. Let's start by looking at the graph of each runner's distance over time:</p>
+
+                <stack>
+                    <p>Fabiana and David are running at constant speeds in parallel lanes on a track. David starts out ahead of Fabiana, but Fabiana is running faster. We want to determine when Fabiana will catch up with David. Let's start by looking at the graph of each runner's distance over time, in <xref ref="figure-solving-systems-by-graphing-intro">Figure</xref>.</p>
+
+                    <p>Each of the two lines has an equation, as discussed in <xref ref="chapter-graphing-lines">Chapter</xref>. The line representing David appears to have <m>y</m>-intercept <m>(0,4)</m> and slope <m>\frac{4}{3}</m>, so its equation is <m>y=\frac{4}{3}t+4</m>. The line representing Fabiana appears to have <m>y</m>-intercept <m>(0,0)</m> and slope <m>2</m>, so its equation is <m>y=2t</m>.</p>
+                </stack>
 
                 <figure xml:id="figure-solving-systems-by-graphing-intro">
                     <caption>David and Fabiana's distances.</caption>
@@ -50,10 +55,10 @@
                 </figure>
             </sidebyside>
 
-            <p>Each of the two lines in <xref ref="figure-solving-systems-by-graphing-intro">Figure</xref> has an equation, as discussed in <xref ref="chapter-graphing-lines">Chapter</xref>. The line representing David appears to have <m>y</m>-intercept <m>(0,4)</m> and slope <m>\frac{4}{3}</m>, so its equation is <m>y=\frac{4}{3}t+4</m>. The line representing Fabiana appears to have <m>y</m>-intercept <m>(0,0)</m> and slope <m>2</m>, so its equation is <m>y=2t</m>. When these two equations are together as a package, we have what is called a <term>system of linear equations</term><idx><h>system of linear equations</h></idx>:<me>\left\{
+            <p>When these two equations are together as a package, we have what is called a <term>system of linear equations</term><idx><h>system of linear equations</h></idx>:<me>\left\{
                 \begin{alignedat}{4}
-                y \amp {}={} \frac{4}{3}t \amp {}+{} \amp 4 \\
-                y \amp {}={} 2t \\
+                y \amp {}={} \tfrac{4}{3}t \amp {}+{} \amp 4 \\
+                y \amp {}={} 2t
                 \end{alignedat}
                 \right.
             </me> The large left brace indicates that this is a collection of two distinct equations, not one equation that was somehow algebraically manipulated into an equivalent equation.</p>
@@ -104,15 +109,21 @@
                             grid=>[14,14],
                             size=>[240,240]);
                         $gr->lb('reset');
-                        for ($j=-6;$j&lt;6;$j=$j+1) {
-                           $gr->lb( new Label($j,-0.1, $j,'black','center','top'));
+                        for $j (-6..6) {
+                           $gr->lb( new Label($j,0,$j,'black','center','top','large'));
                         }
-                        for ($j=-6;$j&lt;6;$j=$j+1) {
+                        for $j (-6..6) {
                            if (Real($j) == 0) {next;}
-                           $gr->lb( new Label(0,  $j,' '.$j,'black','left','middle'));
+                           $gr->lb( new Label(0,$j,$j,'black','right','middle','large'));
                         }
-                        add_functions($gr, "-1*x+5 for x in &lt;-2,7> using color:red and weight:1");
-                        add_functions($gr, "1*x-1 for x in &lt;-6,7> using color:blue and weight:1");
+                        $gr->moveTo(3,2);
+                        $gr->arrowTo(7,6,'blue',1);
+                        $gr->moveTo(3,2);
+                        $gr->arrowTo(-6,-7,'blue',1);
+                        $gr->moveTo(3,2);
+                        $gr->arrowTo(7,-2,'red',1);
+                        $gr->moveTo(3,2);
+                        $gr->arrowTo(-2,7,'red',1);
                         Context("Point");
                     </pg-code>
                 </setup>
@@ -135,17 +146,21 @@
         <example>
             <p>Solve the following system of equations by graphing:<me>\left\{
                 \begin{alignedat}{4}
-                y \amp {}={} \amp \frac{1}{2}x \amp {}+{} \amp 4 \\
-                y \amp {}={} \amp {-x} \amp {}-{} \amp 5 \\
+                y \amp {}={} \amp \tfrac{1}{2}x \amp {}+{} \amp 4 \\
+                y \amp {}={} \amp {-x} \amp {}-{} \amp 5
                 \end{alignedat}
             \right.</me></p>
 
             <sidebyside widths="47% 47%" margins="0%">
 
-                <p>Notice that each of these equations is written in slope-intercept form. The first equation, <m>y=\frac{1}{2}x+4</m>, is a linear equation with a slope of <m>\frac{1}{2}</m> and a <m>y</m>-intercept of <m>(0,4)</m>. The second equation, <m>y=-x-5</m>, is a linear equation with a slope of <m>-1</m> and a <m>y</m>-intercept of <m>(0,-5)</m>. We'll use this information to graph both lines:</p>
+                <stack>
+                    <p>Notice that each of these equations is written in slope-intercept form. The first equation, <m>y=\frac{1}{2}x+4</m>, is a linear equation with a slope of <m>\frac{1}{2}</m> and a <m>y</m>-intercept of <m>(0,4)</m>. The second equation, <m>y=-x-5</m>, is a linear equation with a slope of <m>-1</m> and a <m>y</m>-intercept of <m>(0,-5)</m>. We'll use this information to graph both lines.</p>
+
+                    <p>The two lines intersect where <m>x=-6</m> and <m>y=1</m>, so the solution of the system of equations is the point <m>(-6,1)</m>. We write the solution set as <m>\{(-6,1)\}</m>.</p>
+                </stack>
 
                 <figure>
-                    <caption>Graphs of <m>y=\frac{1}{2}x+4</m> and <m>y=-x-5</m>.</caption>
+                    <caption><m>y=\frac{1}{2}x+4</m> and <m>y=-x-5</m>.</caption>
                     <image>
                         <description>A Cartesian grid with two intersecting lines; one line has a y-intercept of 4 and a slope of 1/2; the other line has a y-intercept of -5 and a slope of -1</description>
                         <latex-image>
@@ -161,8 +176,6 @@
                     </image>
                 </figure>
             </sidebyside>
-
-            <p>The two lines intersect where <m>x=-6</m> and <m>y=1</m>, so the solution of the system of equations is the point <m>(-6,1)</m>. We write the solution set as <m>\{(-6,1)\}</m>.</p>
         </example>
 
 
@@ -171,7 +184,7 @@
                 <p>Solve the following system of equations by graphing:<me>\left\{
                     \begin{alignedat}{3}
                     x \amp {}-{} \amp 3y \amp {}={} \amp {-12} \\
-                    2x \amp {}+{} \amp 3y \amp {}={} \amp 3 \\
+                    2x \amp {}+{} \amp 3y \amp {}={} \amp 3
                     \end{alignedat}
                 \right.</me></p>
             </statement>
@@ -184,13 +197,13 @@
                         <mrow>x-3(\substitute{0}) \amp= -12 \amp \substitute{0}-3y \amp=-12</mrow>
                         <mrow>x \amp= -12 \amp -3y \amp= -12 </mrow>
                         <mrow>\amp\amp y\amp= 4</mrow>
-                    </md>. So the <m>x</m>-intercept is <m>(-12,0)</m> and the <m>y</m>-intercept is <m>(0,4)</m>.</p>
+                    </md>. So the intercepts are <m>(-12,0)</m> and <m>(0,4)</m>.</p>
 
                     <p>For our second linear equation, we have:<md>
                         <mrow>2x+3(\substitute{0}) \amp= 3\amp 2(\substitute{0})+3y \amp= 3</mrow>
                         <mrow>2x \amp= 3\amp 3y \amp= 3</mrow>
                         <mrow>x \amp= \frac{3}{2}\amp y\amp= 1</mrow>
-                    </md>. So the <m>x</m>-intercept is <m>\left(\frac{3}{2},0\right)</m> and the <m>y</m>-intercept is <m>(0,1)</m>.</p>
+                    </md>. So the intercepts are <m>\left(\frac{3}{2},0\right)</m> and <m>(0,1)</m>.</p>
                 </sidebyside>
 
                 <p>Now we can graph each line by plotting the intercepts and connecting these points:</p>
@@ -223,7 +236,7 @@
                 <p>It appears that the solution of the system of equations is the point of intersection of those two lines, which is <m>(-3,3)</m>. Again, it's important to check to verify that this solution is correct. To check, we can substitute the values of <m>x</m> and <m>y</m> from the point <m>(-3,3)</m> into each equation:<md>
                     <mrow>x-3y \amp=-12\amp 2x+3y \amp= 3</mrow>
                     <mrow>\substitute{-3}-3(\substitute{3}) \amp\stackrel{?}{=}-12 \amp 2(\substitute{-3})+3(\substitute{3}) \amp\stackrel{?}{=} 3</mrow>
-                    <mrow>-12\amp\stackrel{\checkmark}{=}-12\amp 3\amp\stackrel{\checkmark}{=}3</mrow>
+                    <mrow>-3-9 \amp\stackrel{\checkmark}{=}-12 \amp -6+9 \amp\stackrel{\checkmark}{=} 3</mrow>
                 </md>So we have checked that <m>(-3,3)</m> is indeed the solution for the system. We write the solution set as <m>\{(-3,3)\}</m>.</p>
             </solution>
         </example>
@@ -243,7 +256,7 @@
                         \left\{
                             \begin{alignedat}{4}
                             y \amp {}={} \amp {-\frac{4}{5}}t \amp {}+{} \amp 18 \\
-                            y \amp {}={} \amp \frac{3}{5}t \amp {}+{} \amp 4 \\
+                            y \amp {}={} \amp \frac{3}{5}t \amp {}+{} \amp 4
                             \end{alignedat}
                         \right.
                     </mrow></md>We will graph both lines using their slopes and <m>y</m>-intercepts.</p>
@@ -283,7 +296,7 @@
                 <p>Solve the following system of equations by graphing:<me>\left\{
                     \begin{alignedat}{3}
                     y \amp {}={} \amp 3(x-2) \amp {}+{} \amp 1 \\
-                    y \amp {}={} \amp -\frac{1}{2}(x+1) \amp {}-{} \amp 1 \\
+                    y \amp {}={} \amp -\tfrac{1}{2}(x+1) \amp {}-{} \amp 1
                     \end{alignedat}
                 \right.</me></p>
             </statement>
@@ -291,8 +304,8 @@
                 <p>Since both line equations are given in <xref ref="definition-point-slope-form" text="title">point-slope form</xref>, we can start by graphing the point indicated in each equation and use the slope to determine the rest of the line.</p>
 
                 <sidebyside widths="47% 47%" margins="0%">
-                    <p>For our first linear equation, <m>y=3(x-2)+1</m>, the point indicated in the equation is <m>(2,1)</m> and the slope is <m>3</m>.</p>
-                    <p>For our first linear equation, <m>y=-\frac{1}{2}(x+1)-1</m>, the point indicated in the equation is <m>(-1,-1)</m> and the slope is <m>-\frac{1}{2}</m>.</p>
+                    <p>For our first equation, <m>y=3(x-2)+1</m>, the point indicated in the equation is <m>(2,1)</m> and the slope is <m>3</m>.</p>
+                    <p>For our second equation, <m>y=-\frac{1}{2}(x+1)-1</m>, the point indicated in the equation is <m>(-1,-1)</m> and the slope is <m>-\frac{1}{2}</m>.</p>
                 </sidebyside>
 
                 <p>Now we can graph each line by plotting the points and using their slopes.</p>
@@ -328,15 +341,13 @@
                         <mrow>y\amp=3(x-2)+1</mrow>
                         <mrow>\substitute{-2}\amp\stackrel{?}{=}3(\substitute{1}-2)+1</mrow>
                         <mrow>-2\amp\stackrel{?}{=}3(-1)+1</mrow>
-                        <mrow>-2\amp\stackrel{?}{=}-3+1</mrow>
-                        <mrow>-2\amp\stackrel{\checkmark}{=}-2</mrow>
+                        <mrow>-2\amp\stackrel{\checkmark}{=}-3+1</mrow>
                     </md></p>
                     <p><md>
                         <mrow>y\amp=-\frac{1}{2}(x+1)-1</mrow>
                         <mrow>\substitute{-2}\amp\stackrel{?}{=}-\frac{1}{2}(\substitute{1}+1)-1</mrow>
                         <mrow>-2\amp\stackrel{?}{=}-\frac{1}{2}(2)-1</mrow>
-                        <mrow>-2\amp\stackrel{?}{=}-1-1</mrow>
-                        <mrow>-2\amp\stackrel{?}{=}-2</mrow>
+                        <mrow>-2\amp\stackrel{\checkmark}{=}-1-1</mrow>
                     </md></p>
                 </sidebyside>
 
@@ -372,45 +383,44 @@
                 </image>
             </figure>
 
-            <p>For this system of equations, what is the solution? Since the two lines have the same slope they are <term>parallel lines</term> and will never intersect. This means that there is <em>no solution</em> to this system of equations. We write the solution set as <m>\emptyset</m>. (This is a special symbol to represent a set with nothing in it, not the number zero.)</p>
+            <p>For this system of equations, what is the solution? Since the two lines have the same slope they are <term>parallel lines</term> and will never intersect. This means that there is <em>no solution</em> to this system of equations. We write the solution set as <m>\emptyset</m>.</p>
         </example>
 
-        <aside>
-            <title>The Empty Set Symbol</title><idx><h>empty set</h></idx>
-            <p>The symbol <m>\emptyset</m> is a special symbol that represents the <term>empty set</term>, a <em>set</em> that has no numbers in it. This symbol is <em>not</em> the same thing as the number zero. The <em>number</em> of eggs in an empty egg carton is zero whereas the empty carton itself could represent the empty set. The symbols for the empty set and the number zero may look similar depending on how you write the number zero. Try to keep the concepts separate.</p>
-        </aside>
+        <p>The symbol <m>\emptyset</m> is a special symbol that represents the <term>empty set</term>, a <em>set</em> that has no numbers in it.<idx><h>empty set</h></idx> This symbol is <em>not</em> the same thing as the number zero. The <em>number</em> of eggs in an empty egg carton is zero whereas the empty carton itself could represent the empty set. The symbols for the empty set and the number zero may look similar depending on how you write the number zero. Try to keep the concepts separate.</p>
 
         <example xml:id="example-solving-systems-by-graphing-equivalent-equations">
             <title>Coinciding Lines</title>
             <p>Next we'll look at the other special case. Let's start with this system of equations:<me>\left\{
                 \begin{alignedat}{4}
                 y \amp {}={} \amp 2x-4 \\
-                6x-3y \amp {}={} \amp 12 \\
+                6x-3y \amp {}={} \amp 12
                 \end{alignedat}
             \right.</me></p>
 
             <p>To solve this system of equations, we want to graph each line. The first equation is in slope-intercept form and can be graphed easily using its slope of <m>2</m> and its <m>y</m>-intercept of <m>(0,-4)</m>.</p>
 
-            <p>The second equation, <m>6x-3y=12</m>, can either be graphed by solving for <m>y</m> and using the slope-intercept form or by finding the intercepts. If we use the intercept method, we'll find that this line has an <m>x</m>-intercept of <m>(2,0)</m> and a <m>y</m>-intercept of <m>(0,-4)</m>. When we graph both lines we have:</p>
+            <p>The second equation, <m>6x-3y=12</m>, can either be graphed by solving for <m>y</m> and using the slope-intercept form or by finding the intercepts. If we use the intercept method, we'll find that this line has an <m>x</m>-intercept of <m>(2,0)</m> and a <m>y</m>-intercept of <m>(0,-4)</m>. When we graph both lines we get <xref ref="figure-coinciding-lines">Figure</xref>.</p>
 
-            <figure>
-                <caption>Graphs of <m>y=2x-4</m> and <m>6x-3y=12</m></caption>
-                <image width="50%">
-                    <description>a coordinate plot of two lines that are coinciding; they both have a y-intercept of (0,-4) and a slope of 2</description>
-                    <latex-image>
-                    <![CDATA[\begin{tikzpicture}
-                        \begin{axis}[]
-                            \addplot[primarycurve,domain = -1.5:5.5]{2*x-4.1} node[pos=0.75,sloped,below] {$y=2x-4$};
-                            \addplot[secondarycurve,domain = -1.5:5.5]{2*x-4} node[pos=0.75,sloped,above] {$6x-3y=12$};
-                            \addplot[soliddot,color=firstcolor] coordinates {(0,-4.1) (1,-2.1) (2,-0.1)};
-                            \addplot[soliddot,color=secondcolor] coordinates {(0,-4) (2,0)};
-                        \end{axis}
-                    \end{tikzpicture}]]>
-                    </latex-image>
-                </image>
-            </figure>
+            <sidebyside widths="47% 47%">
+                <p>Now we can see these are actually the <em>same</em> line, or <term>coinciding lines</term>. To determine the solution to this system, we'll note that they overlap everywhere. This means that we have an infinite number of solutions: <em>all</em> points that fall on the line. It may be enough to report that there are infinitely many solutions. In order to be more specific, all we can do is say that any ordered pair <m>(x,y)</m> satisfying the line equation is a solution. In set-builder notation, we would write <m>\{(x,y)\mid y=2x-4\}</m>.</p>
 
-            <p>Now we can see these are actually the <em>same</em> line, or <term>coinciding lines</term>. To determine the solution to this system, we'll note that they overlap everywhere. This means that we have an infinite number of solutions: <em>all</em> points that fall on the line. It may be enough to report that there are infinitely many solutions. In order to be more specific, all we can do is say that any ordered pair <m>(x,y)</m> satisfying the line equation is a solution. In set-builder notation, we would write <m>\{(x,y)\mid y=2x-4\}</m>. </p>
+                <figure xml:id="figure-coinciding-lines">
+                    <caption>Graphs of <m>y=2x-4</m> and <m>6x-3y=12</m></caption>
+                    <image width="50%">
+                        <description>a coordinate plot of two lines that are coinciding; they both have a y-intercept of (0,-4) and a slope of 2</description>
+                        <latex-image>
+                        <![CDATA[\begin{tikzpicture}
+                            \begin{axis}[]
+                                \addplot[primarycurve,domain = -1.5:5.5]{2*x-4.1} node[pos=0.75,sloped,below] {$y=2x-4$};
+                                \addplot[secondarycurve,domain = -1.5:5.5]{2*x-4} node[pos=0.75,sloped,above] {$6x-3y=12$};
+                                \addplot[soliddot,color=firstcolor] coordinates {(0,-4.1) (1,-2.1) (2,-0.1)};
+                                \addplot[soliddot,color=secondcolor] coordinates {(0,-4) (2,0)};
+                            \end{axis}
+                        \end{tikzpicture}]]>
+                        </latex-image>
+                    </image>
+                </figure>
+            </sidebyside>
         </example>
 
         <remark>
@@ -473,6 +483,8 @@
             <exercise>
                 <webwork source="BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept60.pg" />
             </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
             <exercise>
                 <statement>
                     <p>Graph the equation <m>y=-3x</m>.</p>
@@ -557,6 +569,8 @@
                     </sidebyside>
                 </solution>
             </exercise>
+        </exercisegroup>
+        <exercisegroup cols="2">
             <exercise>
                 <webwork>
                     <setup>
@@ -747,16 +761,17 @@
                 <webwork source="BasicAlgebra/SystemsOfLinearEquations/SolutionOfSystem30.pg" />
             </exercise>
         </exercisegroup>
-        <exercisegroup cols="2">
+        <exercisegroup cols="3">
+            <title>Using a Graph to Solve a System</title>
             <introduction>
                 <p>Use a graph to solve the system of equations.</p>
             </introduction>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=-\frac{7}{2}x-8\\
                         y\amp=5x+9
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -783,10 +798,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=\frac{2}{3}x+5\\
                         y\amp=-2x-11
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -813,10 +828,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=12x+7\\
                         3x+y\amp=-8
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -843,10 +858,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=-3x+5\\
                         4x+y\amp=8
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -873,10 +888,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         x+y\amp=0\\
                         3x-y\amp=8
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -899,13 +914,14 @@
                         </image>
                     </sidebyside>
                     <p>The two lines intersect where <m>x=2</m> and <m>y=-2</m>, so the solution is the point <m>(2,-2)</m>. We write the solution set as <m>\{(2,-2)\}</m>.</p>
-                </solution>            </exercise>
+                </solution>
+            </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         4x-2y\amp=4\\
                         x+2y\amp=6
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -926,10 +942,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=4x-5\\
                         y\amp=-1
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -950,10 +966,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         3x-4y\amp=12\\
                         y\amp=3
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -980,10 +996,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         x+y\amp=-1\\
                         x\amp=2
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1004,10 +1020,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         x-2y\amp=-4\\
                         x\amp=-4
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1028,10 +1044,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=2(x+3)-5\\
-                        y\amp=-\frac{4}{3}(x-4)-1\\
-                    \end{aligned}\right.</m></p>
+                        y\amp=-\frac{4}{3}(x-4)-1
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1054,10 +1070,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=-\frac{2}{3}(x-6)-2\\
-                        y\amp=-\frac{1}{2}(x-1)+2\\
-                    \end{aligned}\right.</m></p>
+                        y\amp=-\frac{1}{2}(x-1)+2
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1080,10 +1096,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=-\frac{1}{2}(x-6)+4\\
-                        y\amp=4(x+1)-6\\
-                    \end{aligned}\right.</m></p>
+                        y\amp=4(x+1)-6
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1106,10 +1122,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=\frac{5}{6}(x-6)+4\\
-                        y\amp=2(x+1)+4\\
-                    \end{aligned}\right.</m></p>
+                        y\amp=2(x+1)+4
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1132,10 +1148,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=-\frac{4}{5}x+8\\
                         4x+5y\amp=-35
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1161,10 +1177,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         2x-7y\amp=28\\
                         y\amp=\frac{2}{7}x-3
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1184,10 +1200,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         -10x+15y\amp=60\\
                         6x-9y\amp=36
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1207,10 +1223,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         6x-8y\amp=32\\
                         9x-12y\amp=12
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1230,10 +1246,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         y\amp=-\frac{3}{5}x+7\\
                         9x+15y\amp=105
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
@@ -1258,10 +1274,10 @@
             </exercise>
             <exercise>
                 <statement>
-                    <p><m>\left\{\begin{aligned}[t]
+                    <p><me>\left\{\begin{aligned}
                         9y-12x\amp=18\\
                         y\amp=\frac{4}{3}x+2
-                    \end{aligned}\right.</m></p>
+                    \end{aligned}\right.</me></p>
                 </statement>
                 <solution>
                     <sidebyside>
