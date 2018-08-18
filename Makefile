@@ -375,10 +375,26 @@ pdf:
 	perl -pi -e 's/(\\begin{example}.*?\\label{example-530})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/^(.*?\\label{exercise-4632})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-technical-definition-of-a-function'; \
-	perl -pi -e 's/(Could this be the table of values for a function)/\\vspace{-1.5pc}\n\n\1/g' orcca.tex; \	
+	perl -pi -e 's/(Could this be the table of values for a function)/\\vspace{-1.5pc}\n\n\1/g' orcca.tex; \
 	echo 'review-functions-and-their-representations'; \
 	perl -pi -e 's/(^.*?\\hypertarget{solution-5166}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-398}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-introduction-to-absolute-value-functions'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-406}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-409}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\label{exercises-73})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-compound-inequalities'; \
+	perl -p0i -e 's/(\\begin{sidebyside}\{1\}{0\.1}{0\.1}\{0\}\n.*?\n.*?\n.*webwork-456[56]-image.*\n.*?\n.*?\n)/\\vspace{-1pc}\n\n\1\\vspace{-2pc}\n\n/g' orcca.tex; \
+	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-416}{}\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=-0.5pc\]/' orcca.tex; \
+	perl -p0i -e 's/(webwork-(458[5-9]|4590)-image.*\n.*\n.*\n.*\n.*\n)/\1\\vspace{-2pc}\n\n/g' orcca.tex; \
+	echo 'section-absolute-value-equations-and-inequalities'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-425}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(number, so the absolute value is meaningful\.%\n)/\1\\columnbreak\n\n/' orcca.tex; \
+	echo 'review-absolute-value-functios'; \
+	perl -pi -e 's/(^.*?\\label{exercises-75})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-428}{}\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc\]/' orcca.tex; \
+	perl -p0i -e 's/(webwork-(468[7-9]|4690)-image.*\n.*\n.*\n.*\n.*\n)/\1\\vspace{-2.5pc}\n\n/g' orcca.tex; \
+	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-429}{}%\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-skip=-2pc\]/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
