@@ -395,6 +395,16 @@ pdf:
 	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-428}{}\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc\]/' orcca.tex; \
 	perl -p0i -e 's/(webwork-(468[7-9]|4690)-image.*\n.*\n.*\n.*\n.*\n)/\1\\vspace{-2.5pc}\n\n/g' orcca.tex; \
 	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-429}{}%\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-skip=-2pc\]/' orcca.tex; \
+	echo 'section-graphs-and-vertex=form'; \
+	perl -pi -e 's/(.*?\\label{exercise-4934})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-435}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-436}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(The formula for a quadratic function \\\(.\\\) is )/\1\\\\\n/g' orcca.tex; \
+	echo 'section-completing-the-square'; \
+	echo 'section-complex-number-operations'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-457}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'review-more-on-quadratic-functions'; \
+	perl -pi -e 's/(.*?\\hypertarget{solution-5700}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
