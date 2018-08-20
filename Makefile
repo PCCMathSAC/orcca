@@ -89,7 +89,7 @@ WWOUT      = $(OUTPUT)/webwork-extraction
 # For all but trivial testing or examples, please look into setting
 # up your own WeBWorK server, or consult Alex Jordan about the use
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
-SERVER = https://webwork.pcc.edu
+SERVER = "(https://webwork.pcc.edu,anonymous,anonymous,anonymous,anonymous)"
 #SERVER = http://localhost
 
 webwork-extraction:
@@ -379,6 +379,7 @@ pdf:
 	echo 'review-functions-and-their-representations'; \
 	perl -pi -e 's/(^.*?\\hypertarget{solution-5166}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-398}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-403}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-introduction-to-absolute-value-functions'; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-406}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-409}{})/\\pagebreak\n\n\1/' orcca.tex; \
@@ -386,11 +387,13 @@ pdf:
 	echo 'section-compound-inequalities'; \
 	perl -p0i -e 's/(\\begin{sidebyside}\{1\}{0\.1}{0\.1}\{0\}\n.*?\n.*?\n.*webwork-456[56]-image.*\n.*?\n.*?\n)/\\vspace{-1pc}\n\n\1\\vspace{-2pc}\n\n/g' orcca.tex; \
 	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-416}{}\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=-0.5pc\]/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-417}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(webwork-(458[5-9]|4590)-image.*\n.*\n.*\n.*\n.*\n)/\1\\vspace{-2pc}\n\n/g' orcca.tex; \
 	echo 'section-absolute-value-equations-and-inequalities'; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-425}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(number, so the absolute value is meaningful\.%\n)/\1\\columnbreak\n\n/' orcca.tex; \
-	echo 'review-absolute-value-functios'; \
+	echo 'review-absolute-value-functions'; \
+	perl -pi -e 's/(\\exercise\[15\.\] \\hypertarget{exercise-4897}{})/\\newpage\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(^.*?\\label{exercises-75})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-428}{}\n.*?\n.*?\n.*?\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc\]/' orcca.tex; \
 	perl -p0i -e 's/(webwork-(468[7-9]|4690)-image.*\n.*\n.*\n.*\n.*\n)/\1\\vspace{-2.5pc}\n\n/g' orcca.tex; \
@@ -401,10 +404,35 @@ pdf:
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-436}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -pi -e 's/(The formula for a quadratic function \\\(.\\\) is )/\1\\\\\n/g' orcca.tex; \
 	echo 'section-completing-the-square'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-447}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'section-complex-number-operations'; \
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-457}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	echo 'review-more-on-quadratic-functions'; \
 	perl -pi -e 's/(.*?\\hypertarget{solution-5700}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-introduction-to-rational-functions'; \
+	perl -pi -e 's/(^.*?\\label{exercises-81})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-463}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-465}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-466}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\n.*?\\hypertarget{exercisegroup-466}{}\n\\begin{exercisegroup})/\1\[after-item-skip=-1pc,after-skip=-1pc\]/' orcca.tex; \
+	echo 'section-multiplying-rational-expressions'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-472}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-474}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?\\hypertarget{solution-6043}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-solving-rational-equations'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-487}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'review-rational-functions-and-equations'; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-492}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-radical-expressions-and-rational-exponents'; \
+	perl -pi -e 's/(.*?\\hypertarget{solution-6254}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-505}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'section-solving-radical-equations'; \
+	perl -pi -e 's/(.*?\\hypertarget{solution-6367}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
+	echo 'review-radical-functions-and-equations'; \
+	perl -pi -e 's/(.*?\\hypertarget{solution-6437}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?\\hypertarget{solution-6438}{}\\quad%)/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-525}{})/\\pagebreak\n\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\n.*\\hypertarget{exercise-584[12]}{}\n.*?\n.*?\n.*?\n.*?\n)\\par\n((.*?\n)*?\\end{itemize}\n)/\1\\begin{multicols}{2}\n\2\\end{multicols}\n/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex
 
