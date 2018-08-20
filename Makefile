@@ -89,7 +89,7 @@ WWOUT      = $(OUTPUT)/webwork-extraction
 # For all but trivial testing or examples, please look into setting
 # up your own WeBWorK server, or consult Alex Jordan about the use
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
-SERVER = "(https://webwork.pcc.edu,anonymous,anonymous,anonymous,anonymous)"
+SERVER = https://webwork.pcc.edu
 #SERVER = http://localhost
 
 webwork-extraction:
@@ -460,7 +460,7 @@ images:
 	install -d $(OUTPUT)
 	install -d $(IMAGESOUT)
 	-rm $(IMAGESOUT)/*.svg
-	$(MB)/script/mbx -c latex-image -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
+	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 #	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 # run this to scrape thumbnail images from YouTube for any YouTube videos
