@@ -89,7 +89,7 @@ WWOUT      = $(OUTPUT)/webwork-extraction
 # For all but trivial testing or examples, please look into setting
 # up your own WeBWorK server, or consult Alex Jordan about the use
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
-SERVER = https://webwork.pcc.edu
+SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-extraction:
