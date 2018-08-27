@@ -107,6 +107,23 @@ pg:
 	rm -r ORCCA; \
 	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
 
+pdf-ptx:
+	install -d $(OUTPUT)
+	install -d $(PDFOUT)
+	install -d $(PDFOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
+	-rm $(PDFOUT)/images/*
+	-rm $(PDFOUT)/*.*
+	cp -a $(IMAGESOUT) $(PDFOUT)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images
+	cp -a $(IMAGESSRC) $(PDFOUT)
+	cd $(PDFOUT); \
+	xsltproc -xinclude --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex; \
+
 pdf:
 	install -d $(OUTPUT)
 	install -d $(PDFOUT)
@@ -468,7 +485,7 @@ youtube:
 	install -d $(OUTPUT)
 	install -d $(IMAGESOUT)
 	-rm $(IMAGESOUT)/*.jpg
-	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(MAINFILE)
+	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 
 ###########
