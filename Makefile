@@ -89,7 +89,7 @@ WWOUT      = $(OUTPUT)/webwork-extraction
 # For all but trivial testing or examples, please look into setting
 # up your own WeBWorK server, or consult Alex Jordan about the use
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
-SERVER = https://webwork.pcc.edu
+SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-extraction:
@@ -106,6 +106,32 @@ pg:
 	cd $(PGOUT); \
 	rm -r ORCCA; \
 	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
+
+lanepdf:
+	install -d $(OUTPUT)
+	install -d $(PDFOUT)
+	install -d $(PDFOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
+	-rm $(PDFOUT)/images/*
+	-rm $(PDFOUT)/*.*
+	cp -a $(IMAGESOUT) $(PDFOUT)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images
+	cp -a $(IMAGESSRC) $(PDFOUT)
+	cd $(PDFOUT); \
+	xsltproc -xinclude --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(LATEX) $(OUTPUT)/merge.xml; \
+	perl -pi -e 's/\\usepackage\{geometry\}//' orcca.tex; \
+	perl -pi -e 's/\\documentclass\[10pt,\]\{book\}/\\documentclass\[paper=letter,DIV=14,BCOR=0.25in,chapterprefix,numbers=noenddot,fontsize=10pt,toc=indentunnumbered\]\{scrbook\}/' orcca.tex; \
+	perl -pi -e 's/\\geometry\{letterpaper,total=\{340pt,9\.0in\}\}//' orcca.tex; \
+	perl -pi -e 's/\%\% fontspec package will make Latin Modern \(lmodern\) the default font/\%\% Customized to load Palatino fonts\n\\usepackage[T1]{fontenc}\n\\renewcommand\{\\rmdefault\}\{zpltlf\} \%Roman font for use in math mode\n\\usepackage\[scaled=.85\]\{beramono\}\% used only by \\mathtt\n\\usepackage\[type1\]\{cabin\}\%used only by \\mathsf\n\\usepackage\{amsmath,amssymb,amsthm\}\%load before newpxmath\n\\usepackage\[varg,cmintegrals,bigdelims,varbb\]\{newpxmath\}\n\\usepackage\[scr=rsfso\]\{mathalfa\}\n\\usepackage\{bm\} \%load after all math to give access to bold math\n\% Now load the otf text fonts using fontspec--wont affect math\n\\usepackage\[no-math\]\{fontspec\}\n\\setmainfont\{TeXGyrePagellaX\}\n\\defaultfontfeatures\{Ligatures=TeX,Scale=1,Mapping=tex-text\}\n\% This is a palatino-like font\n\%\\setmainfont\[BoldFont = texgyrepagella-bold.otf, ItalicFont = texgyrepagella-italic.otf, BoldItalicFont = texgyrepagella-bolditalic.otf]\{texgyrepagella-regular.otf\}\n\\linespread\{1.02\}/' orcca.tex; \
+	perl -pi -e 's/\\usepackage\{fontspec\}\n//' orcca.tex; \
+	perl -pi -e 's/title={{Checkpoint/title={{\\includegraphics[height=1pc]{images\/webwork-logo.eps} Checkpoint/g' orcca.tex; \
+	echo 'Images in a multicolumn exercicegroup need their sizing adjusted to account for the narrower column'; \
+	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\{2\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\.1\}\{0\.1\}\{0\}\n\4\{0\.8\}/g' orcca.tex; done; \
+	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\{2\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.16+7\}\{0\.16+7\}\{0\}\n(\\begin{sbspanel})\{0\.6+7\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done; \
+	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\{3\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done ;\
+	xelatex orcca.tex; \
+	xelatex orcca.tex
 
 pdf:
 	install -d $(OUTPUT)
@@ -365,7 +391,7 @@ html:
 	xsltproc -xinclude --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam exercise.text.hint no --stringparam exercise.text.answer no --stringparam exercise.text.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
-images:
+laneimages:
 	install -d $(OUTPUT)
 	install -d $(IMAGESOUT)
 	-rm $(IMAGESOUT)/*.svg

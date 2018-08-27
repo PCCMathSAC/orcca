@@ -80,11 +80,11 @@
 
 <!--If all exercises are webwork, and if they all open with the same p, then print that p after the introduction. -->
 <!--Later, in each such exercise statement, ignore that p -->
-<xsl:template match="exercisegroup[count(exercise)>1][not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+<!-- <xsl:template match="exercisegroup[count(exercise)>1][not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:if test="title">
-        <xsl:text>\subparagraph</xsl:text>
+        <xsl:text>\subparagraph</xsl:text> -->
         <!-- keep optional title if LaTeX source is re-purposed -->
-        <xsl:text>[{</xsl:text>
+<!--         <xsl:text>[{</xsl:text>
         <xsl:apply-templates select="." mode="title-simple" />
         <xsl:text>}]</xsl:text>
         <xsl:text>{</xsl:text>
@@ -96,9 +96,9 @@
     <xsl:apply-templates select="introduction" />
     <xsl:if test="title or introduction">
         <xsl:text>\par%&#xa;</xsl:text>
-    </xsl:if>
+    </xsl:if> -->
     <!-- <xsl:text>For the following exercises: </xsl:text> -->
-    <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
+<!--     <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
     <xsl:text>\begin{exercisegroup}(</xsl:text>
     <xsl:choose>
         <xsl:when test="not(@cols)">
@@ -124,16 +124,16 @@
 
 <xsl:template match="statement[ancestor::webwork-reps][count(ancestor::exercisegroup/exercise)>1][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:apply-templates select="*[not(self::p and position()=1)]" />
-</xsl:template>
+</xsl:template> -->
 
 
 <!-- When the first common p was moved in exercisegroup statements above, we need the second (new first) p to *not* be preceded by a \par -->
-<xsl:template match="p[position()=2][ancestor::webwork-reps][parent::statement][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+<!-- <xsl:template match="p[position()=2][ancestor::webwork-reps][parent::statement][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:apply-templates select="." mode="label" />
     <xsl:text>%&#xa;</xsl:text>
     <xsl:apply-templates />
     <xsl:text>%&#xa;</xsl:text>
-</xsl:template>
+</xsl:template> -->
 
 
 <!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
@@ -148,11 +148,11 @@
 
 
 <!-- wide exercises -->
-<xsl:template match="exercises//exercise">
+<!-- <xsl:template match="exercises//exercise"> -->
     <!-- heading, start enclosure/environment                    -->
     <!-- This environment is different within an "exercisegroup" -->
     <!-- Using only serial number since born here                -->
-    <xsl:choose>
+<!--     <xsl:choose>
         <xsl:when test="parent::exercisegroup">
             <xsl:text>\exercise</xsl:text>
             <xsl:if test="@width='wide'">
@@ -171,16 +171,16 @@
         </xsl:otherwise>
     </xsl:choose>
     <xsl:apply-templates select="." mode="label"/>
-    <xsl:text>&#xa;</xsl:text>
+    <xsl:text>&#xa;</xsl:text> -->
     <!-- Allow a webwork or myopenmath exercise to introduce/connect    -->
     <!-- a problem (especially from server) to the text in various ways -->
-    <xsl:if test="webwork-reps|myopenmath">
+<!--     <xsl:if test="webwork-reps|myopenmath">
         <xsl:apply-templates select="introduction"/>
-    </xsl:if>
+    </xsl:if> -->
     <!-- condition on how statement, hint, answer, solution are presented -->
-    <xsl:choose>
+    <!-- <xsl:choose> -->
         <!-- webwork, structured with "stage" matches first -->
-        <xsl:when test="webwork-reps/static/stage">
+<!--         <xsl:when test="webwork-reps/static/stage">
             <xsl:apply-templates select="webwork-reps/static/stage">
                 <xsl:with-param name="b-original" select="true()" />
                 <xsl:with-param name="b-has-statement" select="true()" />
@@ -188,9 +188,9 @@
                 <xsl:with-param name="b-has-answer"    select="$b-has-divisional-answer" />
                 <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
             </xsl:apply-templates>
-        </xsl:when>
+        </xsl:when> -->
         <!-- webwork exercise, no "stage" -->
-        <xsl:when test="webwork-reps/static">
+<!--         <xsl:when test="webwork-reps/static">
             <xsl:apply-templates select="webwork-reps/static" mode="exercise-components">
                 <xsl:with-param name="b-original" select="true()" />
                 <xsl:with-param name="b-has-statement" select="true()" />
@@ -198,7 +198,7 @@
                 <xsl:with-param name="b-has-answer"    select="$b-has-divisional-answer" />
                 <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
             </xsl:apply-templates>
-        </xsl:when>
+        </xsl:when> -->
         <!-- myopenmath exercise -->
         <!-- We only try to open an external file when the source  -->
         <!-- has a MOM problem (with an id number).  The second    -->
@@ -208,7 +208,7 @@
         <!-- empty node "/.." are interesting.                     -->
         <!-- https://ajwelch.blogspot.co.za/2008/04/relative-paths-and-document-function.html -->
         <!-- http://www.dpawson.co.uk/xsl/sect2/N2602.html#d3862e73 (Point 4) -->
-        <xsl:when test="myopenmath">
+<!--         <xsl:when test="myopenmath">
             <xsl:variable name="filename" select="concat(concat('problems/mom-', myopenmath/@problem), '.xml')" />
             <xsl:apply-templates select="document($filename, .)/myopenmath"  mode="exercise-components">
                 <xsl:with-param name="b-original" select="true()" />
@@ -217,14 +217,14 @@
                 <xsl:with-param name="b-has-answer"    select="false()" />
                 <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
             </xsl:apply-templates>
-        </xsl:when>
+        </xsl:when> -->
         <!-- "normal" exercise, unstructured -->
-        <xsl:when test="not(statement)">
+        <!-- <xsl:when test="not(statement)"> -->
             <!-- eventually pass b-original? -->
-            <xsl:apply-templates select="*" />
-        </xsl:when>
+<!--             <xsl:apply-templates select="*" />
+        </xsl:when> -->
         <!-- "normal" exercise, structured -->
-        <xsl:otherwise>
+<!--         <xsl:otherwise>
             <xsl:apply-templates select="." mode="exercise-components">
                 <xsl:with-param name="b-original" select="true()" />
                 <xsl:with-param name="b-has-statement" select="true()" />
@@ -233,24 +233,24 @@
                 <xsl:with-param name="b-has-solution"  select="$b-has-divisional-solution" />
             </xsl:apply-templates>
         </xsl:otherwise>
-    </xsl:choose>
+    </xsl:choose> -->
     <!-- Allow a webwork or myopenmath exercise to conclude/connect     -->
     <!-- a problem (especially from server) to the text in various ways -->
-    <xsl:if test="webwork-reps|myopenmath">
+<!--     <xsl:if test="webwork-reps|myopenmath">
         <xsl:apply-templates select="conclusion"/>
-    </xsl:if>
+    </xsl:if> -->
     <!-- end enclosure/environment                               -->
     <!-- This environment is different within an "exercisegroup" -->
-    <xsl:choose>
-        <xsl:when test="parent::exercisegroup" />
+<!--     <xsl:choose>
+        <xsl:when test="parent::exercisegroup" /> -->
         <!-- closing % necessary, as newline between adjacent environments -->
         <!-- will cause a slight indent on trailing exercise               -->
-        <xsl:otherwise>
+<!--         <xsl:otherwise>
             <xsl:text>\end{divisionexercise}%</xsl:text>
         </xsl:otherwise>
     </xsl:choose>
     <xsl:text>&#xa;</xsl:text>
-</xsl:template>
+</xsl:template> -->
 
 
 
