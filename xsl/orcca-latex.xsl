@@ -80,11 +80,11 @@
 
 <!--If all exercises are webwork, and if they all open with the same p, then print that p after the introduction. -->
 <!--Later, in each such exercise statement, ignore that p -->
-<!-- <xsl:template match="exercisegroup[count(exercise)>1][not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+<xsl:template match="exercisegroup[count(exercise)>1][not(exercise[not(webwork-reps)])][exercise/webwork-reps][count(exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:if test="title">
-        <xsl:text>\subparagraph</xsl:text> -->
+        <xsl:text>\subparagraph</xsl:text>
         <!-- keep optional title if LaTeX source is re-purposed -->
-<!--         <xsl:text>[{</xsl:text>
+        <xsl:text>[{</xsl:text>
         <xsl:apply-templates select="." mode="title-simple" />
         <xsl:text>}]</xsl:text>
         <xsl:text>{</xsl:text>
@@ -96,10 +96,10 @@
     <xsl:apply-templates select="introduction" />
     <xsl:if test="title or introduction">
         <xsl:text>\par%&#xa;</xsl:text>
-    </xsl:if> -->
+    </xsl:if>
     <!-- <xsl:text>For the following exercises: </xsl:text> -->
-<!--     <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
-    <xsl:text>\begin{exercisegroup}(</xsl:text>
+    <xsl:apply-templates select="exercise[1]/webwork-reps/static/statement/p[1]" />
+    <xsl:text>\begin{exercisegroup}{</xsl:text>
     <xsl:choose>
         <xsl:when test="not(@cols)">
             <xsl:text>1</xsl:text>
@@ -111,29 +111,31 @@
             <xsl:message terminate="yes">MBX:ERROR: invalid value <xsl:value-of select="@cols" /> for cols attribute of exercisegroup</xsl:message>
         </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>)&#xa;</xsl:text>
+    <xsl:text>}&#xa;</xsl:text>
     <xsl:apply-templates select="exercise">
         <xsl:with-param name="b-has-hint" select="$b-has-divisional-hint" />
         <xsl:with-param name="b-has-answer" select="$b-has-divisional-answer" />
         <xsl:with-param name="b-has-solution" select="$b-has-divisional-solution" />
         </xsl:apply-templates>
-    <xsl:text>\end{exercisegroup}</xsl:text>
+    <xsl:text>\end{exercisegroup}&#xa;</xsl:text>
+    <xsl:text>\par\noindent%&#xa;</xsl:text>
     <xsl:apply-templates select="conclusion" />
     <xsl:text>\par\medskip\noindent&#xa;</xsl:text>
 </xsl:template>
 
+
 <xsl:template match="statement[ancestor::webwork-reps][count(ancestor::exercisegroup/exercise)>1][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:apply-templates select="*[not(self::p and position()=1)]" />
-</xsl:template> -->
+</xsl:template>
 
 
 <!-- When the first common p was moved in exercisegroup statements above, we need the second (new first) p to *not* be preceded by a \par -->
-<!-- <xsl:template match="p[position()=2][ancestor::webwork-reps][parent::statement][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
+<xsl:template match="p[position()=2][ancestor::webwork-reps][parent::statement][count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1]">
     <xsl:apply-templates select="." mode="label" />
     <xsl:text>%&#xa;</xsl:text>
     <xsl:apply-templates />
     <xsl:text>%&#xa;</xsl:text>
-</xsl:template> -->
+</xsl:template>
 
 
 <!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
