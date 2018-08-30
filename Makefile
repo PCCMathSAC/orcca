@@ -131,6 +131,7 @@ lanepdf:
 	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\{2\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.16+7\}\{0\.16+7\}\{0\}\n(\\begin{sbspanel})\{0\.6+7\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done; \
 	for i in {1..26}; do perl -p0i -e 's/(\\begin{exercisegroup}\{3\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}\n\4\{1\}/g' orcca.tex; done ;\
 	xelatex orcca.tex; \
+xelatex orcca.tex; \
 	xelatex orcca.tex
 
 pdf:
