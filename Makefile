@@ -379,6 +379,7 @@ pdf:
 	perl -pi -e 's/(^.*?\\hypertarget{exercisegroup-363}{})/\\pagebreak\n\n\1/' orcca.tex; \
 	perl -p0i -e 's/(\\exercise\[(19|20)\.\].*?\n.*?\n.*?\n.*?\n.*?\n.*?\n\\begin{tabular}{lllllllll}\n.*?\n.*?\n.*?\n)\\par(}\n.*?\n.*?\n.*?\n.*?\n)/\1\3\\vspace{-1\.5pc}\n\n/g' orcca.tex; \
 	xelatex orcca.tex; \
+	xelatex orcca.tex; \
 	xelatex orcca.tex
 
 #  HTML output
