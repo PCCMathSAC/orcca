@@ -415,7 +415,7 @@ laneimages:
 	install -d $(OUTPUT)
 	install -d $(IMAGESOUT)
 	-rm $(IMAGESOUT)/*.svg
-	$(MB)/script/mbx -c latex-image -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
+	$(MB)/script/mbx -vv -c latex-image -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 #	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 # run this to scrape thumbnail images from YouTube for any YouTube videos
