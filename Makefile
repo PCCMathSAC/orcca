@@ -470,7 +470,7 @@ html:
 	cp -a $(WWOUT)/*.png $(HTMLOUT)/images
 	cp $(CSS) $(HTMLOUT)
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
+	xsltproc -xinclude --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam exercise.text.hint no --stringparam exercise.text.answer no --stringparam exercise.text.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
 images:
