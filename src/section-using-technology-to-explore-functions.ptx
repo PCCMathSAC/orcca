@@ -1538,10 +1538,36 @@
                             @x = (0,-$b/$m);
                             @y = (0,$b);
                             #one good answer
-                            $xbound = 10**ceil(log(abs(-$b/$m))/log(10));
-                            $ybound = 10**ceil(log(abs($b))/log(10));
-                            $x = Interval("[-$xbound,$xbound]");
-                            $y = Interval("[-$ybound,$ybound]");
+                            #for x-interval
+                            $xdiameter = max(@x) - min(@x);
+                            $xdiameter = 1 if ($xdiameter == 0);
+                            #Assuming a 160 pixel wide TI-89 screen, set lowx
+                            # 8 pixels to the left of least special x-value
+                            # and highx to be 8 pixels to the right of greatest
+                            $lowx = min(@x) - $xdiameter*8/144;
+                            $highx = max(@x) + $xdiameter*8/144;
+                            #Adjust lowx and highx to make resp. smaller and larger with cleaner decimals
+                            $xwidth = $highx - $lowx;
+                            $xorder = floor(log10($xwidth));
+                            $xscale = 10**($xorder-1);
+                            $lowx = floor($lowx/$xscale)*$xscale;
+                            $highx = ceil($highx/$xscale)*$xscale;
+                            #for y-interval
+                            $ydiameter = max(@y) - min(@y);
+                            $ydiameter = 1 if ($ydiameter == 0);
+                            #Assuming a 100 pixel tall TI-89 screen, set lowy
+                            # 5 pixels below least special y-value
+                            # and highy to be 5 pixels above greatest
+                            $lowy = min(@y) - $ydiameter*5/90;
+                            $highy = max(@y) + $ydiameter*5/90;
+                            #Adjust lowy and highy to make resp. smaller and larger with cleaner decimals
+                            $ywidth = $highy - $lowy;
+                            $yorder = floor(log10($ywidth));
+                            $yscale = 10**($yorder-1);
+                            $lowy = floor($lowy/$yscale)*$yscale;
+                            $highy = ceil($highy/$yscale)*$yscale;
+                            $x = Interval("[$lowx,$highx]");
+                            $y = Interval("[$lowy,$highy]");
                             $multians = MultiAnswer($x, $y)->with(
                               singleResult => 1,
                               checker => sub {
@@ -1618,10 +1644,36 @@
                             @x = (0,-$b/$m);
                             @y = (0,$b);
                             #one good answer
-                            $xbound = 10**ceil(log(abs(-$b/$m))/log(10));
-                            $ybound = 10**ceil(log(abs($b))/log(10));
-                            $x = Interval("[-$xbound,$xbound]");
-                            $y = Interval("[-$ybound,$ybound]");
+                            #for x-interval
+                            $xdiameter = max(@x) - min(@x);
+                            $xdiameter = 1 if ($xdiameter == 0);
+                            #Assuming a 160 pixel wide TI-89 screen, set lowx
+                            # 8 pixels to the left of least special x-value
+                            # and highx to be 8 pixels to the right of greatest
+                            $lowx = min(@x) - $xdiameter*8/144;
+                            $highx = max(@x) + $xdiameter*8/144;
+                            #Adjust lowx and highx to make resp. smaller and larger with cleaner decimals
+                            $xwidth = $highx - $lowx;
+                            $xorder = floor(log10($xwidth));
+                            $xscale = 10**($xorder-1);
+                            $lowx = floor($lowx/$xscale)*$xscale;
+                            $highx = ceil($highx/$xscale)*$xscale;
+                            #for y-interval
+                            $ydiameter = max(@y) - min(@y);
+                            $ydiameter = 1 if ($ydiameter == 0);
+                            #Assuming a 100 pixel tall TI-89 screen, set lowy
+                            # 5 pixels below least special y-value
+                            # and highy to be 5 pixels above greatest
+                            $lowy = min(@y) - $ydiameter*5/90;
+                            $highy = max(@y) + $ydiameter*5/90;
+                            #Adjust lowy and highy to make resp. smaller and larger with cleaner decimals
+                            $ywidth = $highy - $lowy;
+                            $yorder = floor(log10($ywidth));
+                            $yscale = 10**($yorder-1);
+                            $lowy = floor($lowy/$yscale)*$yscale;
+                            $highy = ceil($highy/$yscale)*$yscale;
+                            $x = Interval("[$lowx,$highx]");
+                            $y = Interval("[$lowy,$highy]");
                             $multians = MultiAnswer($x, $y)->with(
                               singleResult => 1,
                               checker => sub {
@@ -1707,10 +1759,36 @@
                               push(@y,$func->eval(x=>$xval));
                             }
                             #one good answer
-                            $xbound = 10**ceil(log( max(map {abs($_)} (@x)) )/log(10));
-                            $ybound = 10**ceil(log( max(map {abs($_)} (@y)) )/log(10));
-                            $x = Interval("[-$xbound,$xbound]");
-                            $y = Interval("[-$ybound,$ybound]");
+                            #for x-interval
+                            $xdiameter = max(@x) - min(@x);
+                            $xdiameter = 1 if ($xdiameter == 0);
+                            #Assuming a 160 pixel wide TI-89 screen, set lowx
+                            # 8 pixels to the left of least special x-value
+                            # and highx to be 8 pixels to the right of greatest
+                            $lowx = min(@x) - $xdiameter*8/144;
+                            $highx = max(@x) + $xdiameter*8/144;
+                            #Adjust lowx and highx to make resp. smaller and larger with cleaner decimals
+                            $xwidth = $highx - $lowx;
+                            $xorder = floor(log10($xwidth));
+                            $xscale = 10**($xorder-1);
+                            $lowx = floor($lowx/$xscale)*$xscale;
+                            $highx = ceil($highx/$xscale)*$xscale;
+                            #for y-interval
+                            $ydiameter = max(@y) - min(@y);
+                            $ydiameter = 1 if ($ydiameter == 0);
+                            #Assuming a 100 pixel tall TI-89 screen, set lowy
+                            # 5 pixels below least special y-value
+                            # and highy to be 5 pixels above greatest
+                            $lowy = min(@y) - $ydiameter*5/90;
+                            $highy = max(@y) + $ydiameter*5/90;
+                            #Adjust lowy and highy to make resp. smaller and larger with cleaner decimals
+                            $ywidth = $highy - $lowy;
+                            $yorder = floor(log10($ywidth));
+                            $yscale = 10**($yorder-1);
+                            $lowy = floor($lowy/$yscale)*$yscale;
+                            $highy = ceil($highy/$yscale)*$yscale;
+                            $x = Interval("[$lowx,$highx]");
+                            $y = Interval("[$lowy,$highy]");
                             $multians = MultiAnswer($x, $y)->with(
                               singleResult => 1,
                               checker => sub {
@@ -1801,10 +1879,36 @@
                               push(@y,$func->eval(x=>$xval));
                             }
                             #one good answer
-                            $xbound = 10**ceil(log( max(map {abs($_)} (@x)) )/log(10));
-                            $ybound = 10**ceil(log( max(map {abs($_)} (@y)) )/log(10));
-                            $x = Interval("[-$xbound,$xbound]");
-                            $y = Interval("[-$ybound,$ybound]");
+                            #for x-interval
+                            $xdiameter = max(@x) - min(@x);
+                            $xdiameter = 1 if ($xdiameter == 0);
+                            #Assuming a 160 pixel wide TI-89 screen, set lowx
+                            # 8 pixels to the left of least special x-value
+                            # and highx to be 8 pixels to the right of greatest
+                            $lowx = min(@x) - $xdiameter*8/144;
+                            $highx = max(@x) + $xdiameter*8/144;
+                            #Adjust lowx and highx to make resp. smaller and larger with cleaner decimals
+                            $xwidth = $highx - $lowx;
+                            $xorder = floor(log10($xwidth));
+                            $xscale = 10**($xorder-1);
+                            $lowx = floor($lowx/$xscale)*$xscale;
+                            $highx = ceil($highx/$xscale)*$xscale;
+                            #for y-interval
+                            $ydiameter = max(@y) - min(@y);
+                            $ydiameter = 1 if ($ydiameter == 0);
+                            #Assuming a 100 pixel tall TI-89 screen, set lowy
+                            # 5 pixels below least special y-value
+                            # and highy to be 5 pixels above greatest
+                            $lowy = min(@y) - $ydiameter*5/90;
+                            $highy = max(@y) + $ydiameter*5/90;
+                            #Adjust lowy and highy to make resp. smaller and larger with cleaner decimals
+                            $ywidth = $highy - $lowy;
+                            $yorder = floor(log10($ywidth));
+                            $yscale = 10**($yorder-1);
+                            $lowy = floor($lowy/$yscale)*$yscale;
+                            $highy = ceil($highy/$yscale)*$yscale;
+                            $x = Interval("[$lowx,$highx]");
+                            $y = Interval("[$lowy,$highy]");
                             $multians = MultiAnswer($x, $y)->with(
                               singleResult => 1,
                               checker => sub {
@@ -1896,10 +2000,36 @@
                               push(@y,$func->eval(x=>$xval));
                             }
                             #one good answer
-                            $xbound = 10**ceil(log( max(map {abs($_)} (@x)) )/log(10));
-                            $ybound = 10**ceil(log( max(map {abs($_)} (@y)) )/log(10));
-                            $x = Interval("[-$xbound,$xbound]");
-                            $y = Interval("[-$ybound,$ybound]");
+                            #for x-interval
+                            $xdiameter = max(@x) - min(@x);
+                            $xdiameter = 1 if ($xdiameter == 0);
+                            #Assuming a 160 pixel wide TI-89 screen, set lowx
+                            # 8 pixels to the left of least special x-value
+                            # and highx to be 8 pixels to the right of greatest
+                            $lowx = min(@x) - $xdiameter*8/144;
+                            $highx = max(@x) + $xdiameter*8/144;
+                            #Adjust lowx and highx to make resp. smaller and larger with cleaner decimals
+                            $xwidth = $highx - $lowx;
+                            $xorder = floor(log10($xwidth));
+                            $xscale = 10**($xorder-1);
+                            $lowx = floor($lowx/$xscale)*$xscale;
+                            $highx = ceil($highx/$xscale)*$xscale;
+                            #for y-interval
+                            $ydiameter = max(@y) - min(@y);
+                            $ydiameter = 1 if ($ydiameter == 0);
+                            #Assuming a 100 pixel tall TI-89 screen, set lowy
+                            # 5 pixels below least special y-value
+                            # and highy to be 5 pixels above greatest
+                            $lowy = min(@y) - $ydiameter*5/90;
+                            $highy = max(@y) + $ydiameter*5/90;
+                            #Adjust lowy and highy to make resp. smaller and larger with cleaner decimals
+                            $ywidth = $highy - $lowy;
+                            $yorder = floor(log10($ywidth));
+                            $yscale = 10**($yorder-1);
+                            $lowy = floor($lowy/$yscale)*$yscale;
+                            $highy = ceil($highy/$yscale)*$yscale;
+                            $x = Interval("[$lowx,$highx]");
+                            $y = Interval("[$lowy,$highy]");
                             $multians = MultiAnswer($x, $y)->with(
                               singleResult => 1,
                               checker => sub {
@@ -1990,10 +2120,36 @@
                               push(@y,$func->eval(x=>$xval));
                             }
                             #one good answer
-                            $xbound = 10**ceil(log( max(map {abs($_)} (@x)) )/log(10));
-                            $ybound = 10**ceil(log( max(map {abs($_)} (@y)) )/log(10));
-                            $x = Interval("[-$xbound,$xbound]");
-                            $y = Interval("[-$ybound,$ybound]");
+                            #for x-interval
+                            $xdiameter = max(@x) - min(@x);
+                            $xdiameter = 1 if ($xdiameter == 0);
+                            #Assuming a 160 pixel wide TI-89 screen, set lowx
+                            # 8 pixels to the left of least special x-value
+                            # and highx to be 8 pixels to the right of greatest
+                            $lowx = min(@x) - $xdiameter*8/144;
+                            $highx = max(@x) + $xdiameter*8/144;
+                            #Adjust lowx and highx to make resp. smaller and larger with cleaner decimals
+                            $xwidth = $highx - $lowx;
+                            $xorder = floor(log10($xwidth));
+                            $xscale = 10**($xorder-1);
+                            $lowx = floor($lowx/$xscale)*$xscale;
+                            $highx = ceil($highx/$xscale)*$xscale;
+                            #for y-interval
+                            $ydiameter = max(@y) - min(@y);
+                            $ydiameter = 1 if ($ydiameter == 0);
+                            #Assuming a 100 pixel tall TI-89 screen, set lowy
+                            # 5 pixels below least special y-value
+                            # and highy to be 5 pixels above greatest
+                            $lowy = min(@y) - $ydiameter*5/90;
+                            $highy = max(@y) + $ydiameter*5/90;
+                            #Adjust lowy and highy to make resp. smaller and larger with cleaner decimals
+                            $ywidth = $highy - $lowy;
+                            $yorder = floor(log10($ywidth));
+                            $yscale = 10**($yorder-1);
+                            $lowy = floor($lowy/$yscale)*$yscale;
+                            $highy = ceil($highy/$yscale)*$yscale;
+                            $x = Interval("[$lowx,$highx]");
+                            $y = Interval("[$lowy,$highy]");
                             $multians = MultiAnswer($x, $y)->with(
                               singleResult => 1,
                               checker => sub {
