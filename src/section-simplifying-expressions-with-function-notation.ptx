@@ -1329,6 +1329,9 @@
                         $emptyf =~ s/$x/(\phantom{$x})/g;
 
                         $answer = Formula("sqrt($b+$m $x)+$a")->reduce;
+                        if ($m > 0) {($min, $max) = (100, 200)}
+                        else {($min, $max) = (-200, -100)};
+                        Context()->variables->set(x=>{limits=>[$min,$max]});
 
                         $evaluator = $answer -> cmp(
                            checker=>sub{
@@ -1382,6 +1385,9 @@
                         $emptyf =~ s/$x/(\phantom{$x})/g;
 
                         $answer = Formula("sqrt($b+$m $x)+$a")->reduce;
+                        if ($m > 0) {($min, $max) = (100, 200)}
+                        else {($min, $max) = (-200, -100)};
+                        Context()->variables->set(x=>{limits=>[$min,$max]});
 
                         $evaluator = $answer -> cmp(
                            checker=>sub{
