@@ -1535,8 +1535,13 @@
                             $b = random(1001,9999,1)*random(-1,1,2);
                             $func = Formula("$m x + $b")->reduce;
                             #important values to appear in plot
-                            @x = (0,-$b/$m);
-                            @y = (0,$b);
+                            @keypoints = (Point(0,$b),Point(-$b/$m,0));
+                            @x;
+                            @y;
+                            for my $keypoint (@keypoints) {
+                              push(@x, ($keypoint->value)[0]);
+                              push(@y, ($keypoint->value)[1]);
+                            };
                             #one good answer
                             #for x-interval
                             $xdiameter = max(@x) - min(@x);
@@ -1576,36 +1581,55 @@
                                 my ($xcor, $ycor) = @{$correct};
                                 my ($xmin,$xmax) = $xstu->value;
                                 my ($ymin,$ymax) = $ystu->value;
-                                #Check important values are all present;
-                                for my $xval (@x) {
-                                  if (!$xstu->contains($xval)) {
-                                    Value::Error('Your x-range is not large enough');
+                                #check end points are not infinite
+                                if ($xmin->type eq 'Infinity' or $xmax->type eq 'Infinity' or $ymin->type eq 'Infinity' or $ymax->type eq 'Infinity')
+                                  {Value::Error("The dimensions of a viewing window cannot be infinite.");}
+                                my @errors;
+                                #Check important points are all present;
+                                for my $keypoint (@keypoints) {
+                                  if (!$xstu->contains(($keypoint->value)[0]) or !$ystu->contains(($keypoint->value)[1]) ) {
+                                    push(@errors,"Your viewing window does not contain the important point $keypoint.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (!$ystu->contains($yval)) {
-                                    Value::Error('Your y-range is not large enough');
-                                  }
-                                }
-                                #Check important values are not right on the boundary;
+                                #Check important points are not right on the boundary;
                                 my %xbounds = map { $_ => 1 } ($xmin,$xmax);
                                 my %ybounds = map { $_ => 1 } ($ymin,$ymax);
-                                for my $xval (@x) {
-                                  if (exists($xbounds{$xval})) {
-                                    Value::Error('An important x-value is right on the edge of your window');
+                                for my $keypoint (@keypoints) {
+                                  if (exists($xbounds{($keypoint->value)[0]}) or exists($ybounds{($keypoint->value)[1]})) {
+                                    push(@errors,"The important point $keypoint is on the border of your viewing window.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (exists($ybounds{$yval})) {
-                                    Value::Error('An important y-value is right on the edge of your window');
+                                if (@errors) {
+                                  Value::Error(join("$BR",@errors));
+                                }
+                                #At this point, if for each of the four edges, some key point is within 20% of that edge,
+                                #call it good. This may leave other key points appearing very close together.
+                                my $xstudiameter = $xmax - $xmin;
+                                my $ystudiameter = $ymax - $ymin;
+                                my ($rightOK, $topOK, $leftOK, $bottomOK) = (0,0,0,0);
+                                for my $keypoint (@keypoints) {
+                                  if (Interval($xmax-0.2*$xstudiameter,$xmax)->contains(($keypoint->value)[0])) {
+                                    $rightOK = 1;
+                                  }
+                                  if (Interval($ymax-0.2*$ystudiameter,$ymax)->contains(($keypoint->value)[1])) {
+                                    $topOK = 1;
+                                  }
+                                  if (Interval($xmin,$xmin+0.2*$xstudiameter)->contains(($keypoint->value)[0])) {
+                                    $leftOK = 1;
+                                  }
+                                  if (Interval($ymin,$ymin+0.2*$ystudiameter)->contains(($keypoint->value)[1])) {
+                                    $bottomOK = 1;
                                   }
                                 }
-                                #Check important x-values are not visually too close together;
-                                #For a 160-pixel wide TI-89, we ask for at least four pixels of separation
-                                for my $xval1 (@x) {
-                                  for my $xval2 (@x) {
-                                    if ($xval1 != $xval2 and abs(($xval1 - $xval2)/($xmax - $xmin)) &lt; 3/160) {
-                                      Value::Error('Your x-range makes important x-values appear too close together');
+                                if ($rightOK and $topOK and $leftOK and $bottomOK)
+                                  {return 1};
+                                #Check important points are not visually too close together;
+                                #For a 160x100-pixel TI-89, we ask for at least two pixels of separation
+                                #using the taxicab metric
+                                for my $keypoint1 (@keypoints) {
+                                  for my $keypoint2 (@keypoints) {
+                                    if ($keypoint1 != $keypoint2 and abs((($keypoint1->value)[0]-($keypoint2->value)[0])/($xmax - $xmin))*160 + abs((($keypoint1->value)[1]-($keypoint2->value)[1])/($ymax - $ymin))*100 < 2) {
+                                      Value::Error("Your viewing window makes the important points $keypoint1 and $keypoint2 appear too close together.");
                                     }
                                   }
                                 }
@@ -1641,8 +1665,13 @@
                             $b = random(10,999,1)*random(-1,1,2);
                             $func = Formula("$m x + $b")->reduce;
                             #important values to appear in plot
-                            @x = (0,-$b/$m);
-                            @y = (0,$b);
+                            @keypoints = (Point(0,$b),Point(-$b/$m,0));
+                            @x;
+                            @y;
+                            for my $keypoint (@keypoints) {
+                              push(@x, ($keypoint->value)[0]);
+                              push(@y, ($keypoint->value)[1]);
+                            };
                             #one good answer
                             #for x-interval
                             $xdiameter = max(@x) - min(@x);
@@ -1682,36 +1711,55 @@
                                 my ($xcor, $ycor) = @{$correct};
                                 my ($xmin,$xmax) = $xstu->value;
                                 my ($ymin,$ymax) = $ystu->value;
-                                #Check important values are all present;
-                                for my $xval (@x) {
-                                  if (!$xstu->contains($xval)) {
-                                    Value::Error('Your x-range is not large enough');
+                                #check end points are not infinite
+                                if ($xmin->type eq 'Infinity' or $xmax->type eq 'Infinity' or $ymin->type eq 'Infinity' or $ymax->type eq 'Infinity')
+                                  {Value::Error("The dimensions of a viewing window cannot be infinite.");}
+                                my @errors;
+                                #Check important points are all present;
+                                for my $keypoint (@keypoints) {
+                                  if (!$xstu->contains(($keypoint->value)[0]) or !$ystu->contains(($keypoint->value)[1]) ) {
+                                    push(@errors,"Your viewing window does not contain the important point $keypoint.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (!$ystu->contains($yval)) {
-                                    Value::Error('Your y-range is not large enough');
-                                  }
-                                }
-                                #Check important values are not right on the boundary;
+                                #Check important points are not right on the boundary;
                                 my %xbounds = map { $_ => 1 } ($xmin,$xmax);
                                 my %ybounds = map { $_ => 1 } ($ymin,$ymax);
-                                for my $xval (@x) {
-                                  if (exists($xbounds{$xval})) {
-                                    Value::Error('An important x-value is right on the edge of your window');
+                                for my $keypoint (@keypoints) {
+                                  if (exists($xbounds{($keypoint->value)[0]}) or exists($ybounds{($keypoint->value)[1]})) {
+                                    push(@errors,"The important point $keypoint is on the border of your viewing window.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (exists($ybounds{$yval})) {
-                                    Value::Error('An important y-value is right on the edge of your window');
+                                if (@errors) {
+                                  Value::Error(join("$BR",@errors));
+                                }
+                                #At this point, if for each of the four edges, some key point is within 20% of that edge,
+                                #call it good. This may leave other key points appearing very close together.
+                                my $xstudiameter = $xmax - $xmin;
+                                my $ystudiameter = $ymax - $ymin;
+                                my ($rightOK, $topOK, $leftOK, $bottomOK) = (0,0,0,0);
+                                for my $keypoint (@keypoints) {
+                                  if (Interval($xmax-0.2*$xstudiameter,$xmax)->contains(($keypoint->value)[0])) {
+                                    $rightOK = 1;
+                                  }
+                                  if (Interval($ymax-0.2*$ystudiameter,$ymax)->contains(($keypoint->value)[1])) {
+                                    $topOK = 1;
+                                  }
+                                  if (Interval($xmin,$xmin+0.2*$xstudiameter)->contains(($keypoint->value)[0])) {
+                                    $leftOK = 1;
+                                  }
+                                  if (Interval($ymin,$ymin+0.2*$ystudiameter)->contains(($keypoint->value)[1])) {
+                                    $bottomOK = 1;
                                   }
                                 }
-                                #Check important x-values are not visually too close together;
-                                #For a 160-pixel wide TI-89, we ask for at least four pixels of separation
-                                for my $xval1 (@x) {
-                                  for my $xval2 (@x) {
-                                    if ($xval1 != $xval2 and abs(($xval1 - $xval2)/($xmax - $xmin)) &lt; 3/160) {
-                                      Value::Error('Your x-range makes important x-values appear too close together');
+                                if ($rightOK and $topOK and $leftOK and $bottomOK)
+                                  {return 1};
+                                #Check important points are not visually too close together;
+                                #For a 160x100-pixel TI-89, we ask for at least two pixels of separation
+                                #using the taxicab metric
+                                for my $keypoint1 (@keypoints) {
+                                  for my $keypoint2 (@keypoints) {
+                                    if ($keypoint1 != $keypoint2 and abs((($keypoint1->value)[0]-($keypoint2->value)[0])/($xmax - $xmin))*160 + abs((($keypoint1->value)[1]-($keypoint2->value)[1])/($ymax - $ymin))*100 < 2) {
+                                      Value::Error("Your viewing window makes the important points $keypoint1 and $keypoint2 appear too close together.");
                                     }
                                   }
                                 }
@@ -1749,15 +1797,15 @@
                             $c = random(100,9999,1)*random(-1,1,2);
                             $func = Formula("$a x^2 + $b x + $c")->reduce;
                             #important values to appear in plot
-                            @x = (0,-$b/(2*$a));
-                            if ($b**2 - 4*$a*$c >= 0) {
-                              push(@x,(-$b-sqrt($b**2 - 4*$a*$c))/(2*$a));
-                              push(@x,(-$b+sqrt($b**2 - 4*$a*$c))/(2*$a));
-                            }
-                            @y = ();
-                            for my $xval (@x) {
-                              push(@y,$func->eval(x=>$xval));
-                            }
+                            @keypoints = (Point(0,$c), Point(-$b/(2*$a),$a*(-$b/(2*$a))**2+$b*(-$b/(2*$a))+$c));
+                            if ($b**2 - 4*$a*$c > 0)
+                              {push(@keypoints,Point((-$b-sqrt($b**2 - 4*$a*$c))/(2*$a),0), Point((-$b+sqrt($b**2 - 4*$a*$c))/(2*$a),0));}
+                            @x;
+                            @y;
+                            for my $keypoint (@keypoints) {
+                              push(@x, ($keypoint->value)[0]);
+                              push(@y, ($keypoint->value)[1]);
+                            };
                             #one good answer
                             #for x-interval
                             $xdiameter = max(@x) - min(@x);
@@ -1797,36 +1845,55 @@
                                 my ($xcor, $ycor) = @{$correct};
                                 my ($xmin,$xmax) = $xstu->value;
                                 my ($ymin,$ymax) = $ystu->value;
-                                #Check important values are all present;
-                                for my $xval (@x) {
-                                  if (!$xstu->contains($xval)) {
-                                    Value::Error('Your x-range is not large enough');
+                                #check end points are not infinite
+                                if ($xmin->type eq 'Infinity' or $xmax->type eq 'Infinity' or $ymin->type eq 'Infinity' or $ymax->type eq 'Infinity')
+                                  {Value::Error("The dimensions of a viewing window cannot be infinite.");}
+                                my @errors;
+                                #Check important points are all present;
+                                for my $keypoint (@keypoints) {
+                                  if (!$xstu->contains(($keypoint->value)[0]) or !$ystu->contains(($keypoint->value)[1]) ) {
+                                    push(@errors,"Your viewing window does not contain the important point $keypoint.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (!$ystu->contains($yval)) {
-                                    Value::Error('Your y-range is not large enough');
-                                  }
-                                }
-                                #Check important values are not right on the boundary;
+                                #Check important points are not right on the boundary;
                                 my %xbounds = map { $_ => 1 } ($xmin,$xmax);
                                 my %ybounds = map { $_ => 1 } ($ymin,$ymax);
-                                for my $xval (@x) {
-                                  if (exists($xbounds{$xval})) {
-                                    Value::Error('An important x-value is right on the edge of your window');
+                                for my $keypoint (@keypoints) {
+                                  if (exists($xbounds{($keypoint->value)[0]}) or exists($ybounds{($keypoint->value)[1]})) {
+                                    push(@errors,"The important point $keypoint is on the border of your viewing window.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (exists($ybounds{$yval})) {
-                                    Value::Error('An important y-value is right on the edge of your window');
+                                if (@errors) {
+                                  Value::Error(join("$BR",@errors));
+                                }
+                                #At this point, if for each of the four edges, some key point is within 20% of that edge,
+                                #call it good. This may leave other key points appearing very close together.
+                                my $xstudiameter = $xmax - $xmin;
+                                my $ystudiameter = $ymax - $ymin;
+                                my ($rightOK, $topOK, $leftOK, $bottomOK) = (0,0,0,0);
+                                for my $keypoint (@keypoints) {
+                                  if (Interval($xmax-0.2*$xstudiameter,$xmax)->contains(($keypoint->value)[0])) {
+                                    $rightOK = 1;
+                                  }
+                                  if (Interval($ymax-0.2*$ystudiameter,$ymax)->contains(($keypoint->value)[1])) {
+                                    $topOK = 1;
+                                  }
+                                  if (Interval($xmin,$xmin+0.2*$xstudiameter)->contains(($keypoint->value)[0])) {
+                                    $leftOK = 1;
+                                  }
+                                  if (Interval($ymin,$ymin+0.2*$ystudiameter)->contains(($keypoint->value)[1])) {
+                                    $bottomOK = 1;
                                   }
                                 }
-                                #Check important x-values are not visually too close together;
-                                #For a 160-pixel wide TI-89, we ask for at least four pixels of separation
-                                for my $xval1 (@x) {
-                                  for my $xval2 (@x) {
-                                    if ($xval1 != $xval2 and abs(($xval1 - $xval2)/($xmax - $xmin)) &lt; 3/160) {
-                                      Value::Error('Your x-range makes important x-values appear too close together');
+                                if ($rightOK and $topOK and $leftOK and $bottomOK)
+                                  {return 1};
+                                #Check important points are not visually too close together;
+                                #For a 160x100-pixel TI-89, we ask for at least two pixels of separation
+                                #using the taxicab metric
+                                for my $keypoint1 (@keypoints) {
+                                  for my $keypoint2 (@keypoints) {
+                                    if ($keypoint1 != $keypoint2 and abs((($keypoint1->value)[0]-($keypoint2->value)[0])/($xmax - $xmin))*160 + abs((($keypoint1->value)[1]-($keypoint2->value)[1])/($ymax - $ymin))*100 < 2) {
+                                      Value::Error("Your viewing window makes the important points $keypoint1 and $keypoint2 appear too close together.");
                                     }
                                   }
                                 }
@@ -1869,15 +1936,15 @@
                             $c = random(100,9999,1)*random(-1,1,2);
                             $func = Formula("$a x^2 + $b x + $c")->reduce;
                             #important values to appear in plot
-                            @x = (0,-$b/(2*$a));
-                            if ($b**2 - 4*$a*$c >= 0) {
-                              push(@x,(-$b-sqrt($b**2 - 4*$a*$c))/(2*$a));
-                              push(@x,(-$b+sqrt($b**2 - 4*$a*$c))/(2*$a));
-                            }
-                            @y = ();
-                            for my $xval (@x) {
-                              push(@y,$func->eval(x=>$xval));
-                            }
+                            @keypoints = (Point(0,$c), Point(-$b/(2*$a),$a*(-$b/(2*$a))**2+$b*(-$b/(2*$a))+$c));
+                            if ($b**2 - 4*$a*$c > 0)
+                              {push(@keypoints,Point((-$b-sqrt($b**2 - 4*$a*$c))/(2*$a),0), Point((-$b+sqrt($b**2 - 4*$a*$c))/(2*$a),0));}
+                            @x;
+                            @y;
+                            for my $keypoint (@keypoints) {
+                              push(@x, ($keypoint->value)[0]);
+                              push(@y, ($keypoint->value)[1]);
+                            };
                             #one good answer
                             #for x-interval
                             $xdiameter = max(@x) - min(@x);
@@ -1917,36 +1984,55 @@
                                 my ($xcor, $ycor) = @{$correct};
                                 my ($xmin,$xmax) = $xstu->value;
                                 my ($ymin,$ymax) = $ystu->value;
-                                #Check important values are all present;
-                                for my $xval (@x) {
-                                  if (!$xstu->contains($xval)) {
-                                    Value::Error('Your x-range is not large enough');
+                                #check end points are not infinite
+                                if ($xmin->type eq 'Infinity' or $xmax->type eq 'Infinity' or $ymin->type eq 'Infinity' or $ymax->type eq 'Infinity')
+                                  {Value::Error("The dimensions of a viewing window cannot be infinite.");}
+                                my @errors;
+                                #Check important points are all present;
+                                for my $keypoint (@keypoints) {
+                                  if (!$xstu->contains(($keypoint->value)[0]) or !$ystu->contains(($keypoint->value)[1]) ) {
+                                    push(@errors,"Your viewing window does not contain the important point $keypoint.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (!$ystu->contains($yval)) {
-                                    Value::Error('Your y-range is not large enough');
-                                  }
-                                }
-                                #Check important values are not right on the boundary;
+                                #Check important points are not right on the boundary;
                                 my %xbounds = map { $_ => 1 } ($xmin,$xmax);
                                 my %ybounds = map { $_ => 1 } ($ymin,$ymax);
-                                for my $xval (@x) {
-                                  if (exists($xbounds{$xval})) {
-                                    Value::Error('An important x-value is right on the edge of your window');
+                                for my $keypoint (@keypoints) {
+                                  if (exists($xbounds{($keypoint->value)[0]}) or exists($ybounds{($keypoint->value)[1]})) {
+                                    push(@errors,"The important point $keypoint is on the border of your viewing window.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (exists($ybounds{$yval})) {
-                                    Value::Error('An important y-value is right on the edge of your window');
+                                if (@errors) {
+                                  Value::Error(join("$BR",@errors));
+                                }
+                                #At this point, if for each of the four edges, some key point is within 20% of that edge,
+                                #call it good. This may leave other key points appearing very close together.
+                                my $xstudiameter = $xmax - $xmin;
+                                my $ystudiameter = $ymax - $ymin;
+                                my ($rightOK, $topOK, $leftOK, $bottomOK) = (0,0,0,0);
+                                for my $keypoint (@keypoints) {
+                                  if (Interval($xmax-0.2*$xstudiameter,$xmax)->contains(($keypoint->value)[0])) {
+                                    $rightOK = 1;
+                                  }
+                                  if (Interval($ymax-0.2*$ystudiameter,$ymax)->contains(($keypoint->value)[1])) {
+                                    $topOK = 1;
+                                  }
+                                  if (Interval($xmin,$xmin+0.2*$xstudiameter)->contains(($keypoint->value)[0])) {
+                                    $leftOK = 1;
+                                  }
+                                  if (Interval($ymin,$ymin+0.2*$ystudiameter)->contains(($keypoint->value)[1])) {
+                                    $bottomOK = 1;
                                   }
                                 }
-                                #Check important x-values are not visually too close together;
-                                #For a 160-pixel wide TI-89, we ask for at least four pixels of separation
-                                for my $xval1 (@x) {
-                                  for my $xval2 (@x) {
-                                    if ($xval1 != $xval2 and abs(($xval1 - $xval2)/($xmax - $xmin)) &lt; 3/160) {
-                                      Value::Error('Your x-range makes important x-values appear too close together');
+                                if ($rightOK and $topOK and $leftOK and $bottomOK)
+                                  {return 1};
+                                #Check important points are not visually too close together;
+                                #For a 160x100-pixel TI-89, we ask for at least two pixels of separation
+                                #using the taxicab metric
+                                for my $keypoint1 (@keypoints) {
+                                  for my $keypoint2 (@keypoints) {
+                                    if ($keypoint1 != $keypoint2 and abs((($keypoint1->value)[0]-($keypoint2->value)[0])/($xmax - $xmin))*160 + abs((($keypoint1->value)[1]-($keypoint2->value)[1])/($ymax - $ymin))*100 < 2) {
+                                      Value::Error("Your viewing window makes the important points $keypoint1 and $keypoint2 appear too close together.");
                                     }
                                   }
                                 }
@@ -1990,15 +2076,15 @@
                             $c = random(0.1,0.9,0.01)*random(-1,1,2);
                             $func = Formula("$a x^2 + $b x + $c")->reduce;
                             #important values to appear in plot
-                            @x = (0,-$b/(2*$a));
-                            if ($b**2 - 4*$a*$c >= 0) {
-                              push(@x,(-$b-sqrt($b**2 - 4*$a*$c))/(2*$a));
-                              push(@x,(-$b+sqrt($b**2 - 4*$a*$c))/(2*$a));
-                            }
-                            @y = ();
-                            for my $xval (@x) {
-                              push(@y,$func->eval(x=>$xval));
-                            }
+                            @keypoints = (Point(0,$c), Point(-$b/(2*$a),$a*(-$b/(2*$a))**2+$b*(-$b/(2*$a))+$c));
+                            if ($b**2 - 4*$a*$c > 0)
+                              {push(@keypoints,Point((-$b-sqrt($b**2 - 4*$a*$c))/(2*$a),0), Point((-$b+sqrt($b**2 - 4*$a*$c))/(2*$a),0));}
+                            @x;
+                            @y;
+                            for my $keypoint (@keypoints) {
+                              push(@x, ($keypoint->value)[0]);
+                              push(@y, ($keypoint->value)[1]);
+                            };
                             #one good answer
                             #for x-interval
                             $xdiameter = max(@x) - min(@x);
@@ -2038,36 +2124,55 @@
                                 my ($xcor, $ycor) = @{$correct};
                                 my ($xmin,$xmax) = $xstu->value;
                                 my ($ymin,$ymax) = $ystu->value;
-                                #Check important values are all present;
-                                for my $xval (@x) {
-                                  if (!$xstu->contains($xval)) {
-                                    Value::Error('Your x-range is not large enough');
+                                #check end points are not infinite
+                                if ($xmin->type eq 'Infinity' or $xmax->type eq 'Infinity' or $ymin->type eq 'Infinity' or $ymax->type eq 'Infinity')
+                                  {Value::Error("The dimensions of a viewing window cannot be infinite.");}
+                                my @errors;
+                                #Check important points are all present;
+                                for my $keypoint (@keypoints) {
+                                  if (!$xstu->contains(($keypoint->value)[0]) or !$ystu->contains(($keypoint->value)[1]) ) {
+                                    push(@errors,"Your viewing window does not contain the important point $keypoint.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (!$ystu->contains($yval)) {
-                                    Value::Error('Your y-range is not large enough');
-                                  }
-                                }
-                                #Check important values are not right on the boundary;
+                                #Check important points are not right on the boundary;
                                 my %xbounds = map { $_ => 1 } ($xmin,$xmax);
                                 my %ybounds = map { $_ => 1 } ($ymin,$ymax);
-                                for my $xval (@x) {
-                                  if (exists($xbounds{$xval})) {
-                                    Value::Error('An important x-value is right on the edge of your window');
+                                for my $keypoint (@keypoints) {
+                                  if (exists($xbounds{($keypoint->value)[0]}) or exists($ybounds{($keypoint->value)[1]})) {
+                                    push(@errors,"The important point $keypoint is on the border of your viewing window.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (exists($ybounds{$yval})) {
-                                    Value::Error('An important y-value is right on the edge of your window');
+                                if (@errors) {
+                                  Value::Error(join("$BR",@errors));
+                                }
+                                #At this point, if for each of the four edges, some key point is within 20% of that edge,
+                                #call it good. This may leave other key points appearing very close together.
+                                my $xstudiameter = $xmax - $xmin;
+                                my $ystudiameter = $ymax - $ymin;
+                                my ($rightOK, $topOK, $leftOK, $bottomOK) = (0,0,0,0);
+                                for my $keypoint (@keypoints) {
+                                  if (Interval($xmax-0.2*$xstudiameter,$xmax)->contains(($keypoint->value)[0])) {
+                                    $rightOK = 1;
+                                  }
+                                  if (Interval($ymax-0.2*$ystudiameter,$ymax)->contains(($keypoint->value)[1])) {
+                                    $topOK = 1;
+                                  }
+                                  if (Interval($xmin,$xmin+0.2*$xstudiameter)->contains(($keypoint->value)[0])) {
+                                    $leftOK = 1;
+                                  }
+                                  if (Interval($ymin,$ymin+0.2*$ystudiameter)->contains(($keypoint->value)[1])) {
+                                    $bottomOK = 1;
                                   }
                                 }
-                                #Check important x-values are not visually too close together;
-                                #For a 160-pixel wide TI-89, we ask for at least four pixels of separation
-                                for my $xval1 (@x) {
-                                  for my $xval2 (@x) {
-                                    if ($xval1 != $xval2 and abs(($xval1 - $xval2)/($xmax - $xmin)) &lt; 3/160) {
-                                      Value::Error('Your x-range makes important x-values appear too close together');
+                                if ($rightOK and $topOK and $leftOK and $bottomOK)
+                                  {return 1};
+                                #Check important points are not visually too close together;
+                                #For a 160x100-pixel TI-89, we ask for at least two pixels of separation
+                                #using the taxicab metric
+                                for my $keypoint1 (@keypoints) {
+                                  for my $keypoint2 (@keypoints) {
+                                    if ($keypoint1 != $keypoint2 and abs((($keypoint1->value)[0]-($keypoint2->value)[0])/($xmax - $xmin))*160 + abs((($keypoint1->value)[1]-($keypoint2->value)[1])/($ymax - $ymin))*100 < 2) {
+                                      Value::Error("Your viewing window makes the important points $keypoint1 and $keypoint2 appear too close together.");
                                     }
                                   }
                                 }
@@ -2110,15 +2215,15 @@
                             $c = random(0.1,0.9,0.01)*random(-1,1,2);
                             $func = Formula("$a x^2 + $b x + $c")->reduce;
                             #important values to appear in plot
-                            @x = (0,-$b/(2*$a));
-                            if ($b**2 - 4*$a*$c >= 0) {
-                              push(@x,(-$b-sqrt($b**2 - 4*$a*$c))/(2*$a));
-                              push(@x,(-$b+sqrt($b**2 - 4*$a*$c))/(2*$a));
-                            }
-                            @y = ();
-                            for my $xval (@x) {
-                              push(@y,$func->eval(x=>$xval));
-                            }
+                            @keypoints = (Point(0,$c), Point(-$b/(2*$a),$a*(-$b/(2*$a))**2+$b*(-$b/(2*$a))+$c));
+                            if ($b**2 - 4*$a*$c > 0)
+                              {push(@keypoints,Point((-$b-sqrt($b**2 - 4*$a*$c))/(2*$a),0), Point((-$b+sqrt($b**2 - 4*$a*$c))/(2*$a),0));}
+                            @x;
+                            @y;
+                            for my $keypoint (@keypoints) {
+                              push(@x, ($keypoint->value)[0]);
+                              push(@y, ($keypoint->value)[1]);
+                            };
                             #one good answer
                             #for x-interval
                             $xdiameter = max(@x) - min(@x);
@@ -2158,36 +2263,55 @@
                                 my ($xcor, $ycor) = @{$correct};
                                 my ($xmin,$xmax) = $xstu->value;
                                 my ($ymin,$ymax) = $ystu->value;
-                                #Check important values are all present;
-                                for my $xval (@x) {
-                                  if (!$xstu->contains($xval)) {
-                                    Value::Error('Your x-range is not large enough');
+                                #check end points are not infinite
+                                if ($xmin->type eq 'Infinity' or $xmax->type eq 'Infinity' or $ymin->type eq 'Infinity' or $ymax->type eq 'Infinity')
+                                  {Value::Error("The dimensions of a viewing window cannot be infinite.");}
+                                my @errors;
+                                #Check important points are all present;
+                                for my $keypoint (@keypoints) {
+                                  if (!$xstu->contains(($keypoint->value)[0]) or !$ystu->contains(($keypoint->value)[1]) ) {
+                                    push(@errors,"Your viewing window does not contain the important point $keypoint.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (!$ystu->contains($yval)) {
-                                    Value::Error('Your y-range is not large enough');
-                                  }
-                                }
-                                #Check important values are not right on the boundary;
+                                #Check important points are not right on the boundary;
                                 my %xbounds = map { $_ => 1 } ($xmin,$xmax);
                                 my %ybounds = map { $_ => 1 } ($ymin,$ymax);
-                                for my $xval (@x) {
-                                  if (exists($xbounds{$xval})) {
-                                    Value::Error('An important x-value is right on the edge of your window');
+                                for my $keypoint (@keypoints) {
+                                  if (exists($xbounds{($keypoint->value)[0]}) or exists($ybounds{($keypoint->value)[1]})) {
+                                    push(@errors,"The important point $keypoint is on the border of your viewing window.");
                                   }
                                 }
-                                for my $yval (@y) {
-                                  if (exists($ybounds{$yval})) {
-                                    Value::Error('An important y-value is right on the edge of your window');
+                                if (@errors) {
+                                  Value::Error(join("$BR",@errors));
+                                }
+                                #At this point, if for each of the four edges, some key point is within 20% of that edge,
+                                #call it good. This may leave other key points appearing very close together.
+                                my $xstudiameter = $xmax - $xmin;
+                                my $ystudiameter = $ymax - $ymin;
+                                my ($rightOK, $topOK, $leftOK, $bottomOK) = (0,0,0,0);
+                                for my $keypoint (@keypoints) {
+                                  if (Interval($xmax-0.2*$xstudiameter,$xmax)->contains(($keypoint->value)[0])) {
+                                    $rightOK = 1;
+                                  }
+                                  if (Interval($ymax-0.2*$ystudiameter,$ymax)->contains(($keypoint->value)[1])) {
+                                    $topOK = 1;
+                                  }
+                                  if (Interval($xmin,$xmin+0.2*$xstudiameter)->contains(($keypoint->value)[0])) {
+                                    $leftOK = 1;
+                                  }
+                                  if (Interval($ymin,$ymin+0.2*$ystudiameter)->contains(($keypoint->value)[1])) {
+                                    $bottomOK = 1;
                                   }
                                 }
-                                #Check important x-values are not visually too close together;
-                                #For a 160-pixel wide TI-89, we ask for at least four pixels of separation
-                                for my $xval1 (@x) {
-                                  for my $xval2 (@x) {
-                                    if ($xval1 != $xval2 and abs(($xval1 - $xval2)/($xmax - $xmin)) &lt; 3/160) {
-                                      Value::Error('Your x-range makes important x-values appear too close together');
+                                if ($rightOK and $topOK and $leftOK and $bottomOK)
+                                  {return 1};
+                                #Check important points are not visually too close together;
+                                #For a 160x100-pixel TI-89, we ask for at least two pixels of separation
+                                #using the taxicab metric
+                                for my $keypoint1 (@keypoints) {
+                                  for my $keypoint2 (@keypoints) {
+                                    if ($keypoint1 != $keypoint2 and abs((($keypoint1->value)[0]-($keypoint2->value)[0])/($xmax - $xmin))*160 + abs((($keypoint1->value)[1]-($keypoint2->value)[1])/($ymax - $ymin))*100 < 2) {
+                                      Value::Error("Your viewing window makes the important points $keypoint1 and $keypoint2 appear too close together.");
                                     }
                                   }
                                 }
