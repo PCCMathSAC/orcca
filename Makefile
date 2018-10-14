@@ -387,25 +387,13 @@ pdf:
 html:
 	install -d $(OUTPUT)
 	install -d $(HTMLOUT)
-	install -d $(HTMLOUT)/images
-	install -d $(IMAGESOUT)
-	install -d $(IMAGESSRC)
 	-rm $(HTMLOUT)/*.html
-	-rm $(HTMLOUT)/knowl/*.html
-	-rm $(HTMLOUT)/images/*
-	-rm $(HTMLOUT)/*.css
+	-rm -r $(HTMLOUT)/knowl
+	-rm -r $(HTMLOUT)/images
+	install -d $(HTMLOUT)/images
 	cp -a $(IMAGESOUT) $(HTMLOUT)
 	cp -a $(IMAGESSRC) $(HTMLOUT)
-	 cp -a $(WWOUT)/*0-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*1-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*2-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*3-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*4-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*5-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*6-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*7-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*8-image-*.png $(PDFOUT)/images
-	cp -a $(WWOUT)/*9-image-*.png $(PDFOUT)/images
+	cp -a $(WWOUT)/*.png $(HTMLOUT)/images/
 	cp $(CSS) $(HTMLOUT)
 	cd $(HTMLOUT); \
 	xsltproc -xinclude --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam exercise.text.hint no --stringparam exercise.text.answer no --stringparam exercise.text.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
