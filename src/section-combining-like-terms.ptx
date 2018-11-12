@@ -434,8 +434,7 @@
                     Context()->noreduce('(-x)+y','(-x)-y');
                     Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                     Context()->operators->set(
-                        '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                        '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                        '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                     );
                     $ans[0]=Formula("14x-7y");
                     $ans[1]=Formula("-7y+2x^2");
@@ -450,10 +449,10 @@
                               $correct = $correct->{original_formula} if defined $correct->{original_formula};
                               $student = Formula("$student"); $correct = Formula("$correct");
                               return 0 unless ($correct == $student);
-                              Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                              Context()->flags->set(bizarroMul=>1);
                               delete $correct->{test_values}, $student->{test_values};
                               my $OK = (($correct == $student) or ($student == $correct));
-                              Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                              Context()->flags->set(bizarroMul=>0);
                               Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                               return $OK;
                         });
@@ -647,7 +646,7 @@
                     </p>
 
                     <p permid="tbi">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[0]" width="25" />
                     </p>
                   </li>
 
@@ -657,7 +656,7 @@
                     </p>
 
                     <p permid="FpA">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[1]" width="25" />
                     </p>
                   </li>
 
@@ -667,7 +666,7 @@
                     </p>
 
                     <p permid="RDS">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[2]" width="25" />
                     </p>
                   </li>
 
@@ -677,7 +676,7 @@
                     </p>
 
                     <p permid="dSk">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[3]" width="25" />
                     </p>
                   </li>
                 </ol>
@@ -688,25 +687,25 @@
                 <ol label="a." permid="Ayq">
                   <li permid="SQp">
                     <p permid="JZt">
-                      This expression has <m><var name="$answers[0]" /></m> terms.
+                      This expression has <m><var name="$answer[0]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="yXy">
                     <p permid="qgC">
-                      This expression has <m><var name="$answers[1]" /></m> terms.
+                      This expression has <m><var name="$answer[1]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="feH">
                     <p permid="WnL">
-                      This expression has <m><var name="$answers[2]" /></m> terms.
+                      This expression has <m><var name="$answer[2]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="LlQ">
                     <p permid="CuU">
-                      This expression has <m><var name="$answers[3]" /></m> terms.
+                      This expression has <m><var name="$answer[3]" /></m> terms.
                     </p>
                   </li>
                 </ol>
@@ -755,7 +754,7 @@
                     </p>
 
                     <p permid="OJm">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[0]" width="25" />
                     </p>
                   </li>
 
@@ -765,7 +764,7 @@
                     </p>
 
                     <p permid="aXE">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[1]" width="25" />
                     </p>
                   </li>
 
@@ -775,7 +774,7 @@
                     </p>
 
                     <p permid="nlW">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[2]" width="25" />
                     </p>
                   </li>
 
@@ -785,7 +784,7 @@
                     </p>
 
                     <p permid="zAo">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[3]" width="25" />
                     </p>
                   </li>
                 </ol>
@@ -796,25 +795,25 @@
                 <ol label="a." permid="gFz">
                   <li permid="PVJ">
                     <p permid="fHx">
-                      This expression has <m><var name="$answers[0]" /></m> terms.
+                      This expression has <m><var name="$answer[0]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="wcS">
                     <p permid="LOG">
-                      This expression has <m><var name="$answers[1]" /></m> terms.
+                      This expression has <m><var name="$answer[1]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="ckb">
                     <p permid="rVP">
-                      This expression has <m><var name="$answers[2]" /></m> terms.
+                      This expression has <m><var name="$answer[2]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="Irk">
                     <p permid="YcY">
-                      This expression has <m><var name="$answers[3]" /></m> terms.
+                      This expression has <m><var name="$answer[3]" /></m> terms.
                     </p>
                   </li>
                 </ol>
@@ -863,7 +862,7 @@
                     </p>
 
                     <p permid="krq">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[0]" width="25" />
                     </p>
                   </li>
 
@@ -873,7 +872,7 @@
                     </p>
 
                     <p permid="wFI">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[1]" width="25" />
                     </p>
                   </li>
 
@@ -883,7 +882,7 @@
                     </p>
 
                     <p permid="IUa">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[2]" width="25" />
                     </p>
                   </li>
 
@@ -893,7 +892,7 @@
                     </p>
 
                     <p permid="Vis">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[3]" width="25" />
                     </p>
                   </li>
                 </ol>
@@ -904,25 +903,25 @@
                 <ol label="a." permid="MMI">
                   <li permid="Nbd">
                     <p permid="BpB">
-                      This expression has <m><var name="$answers[0]" /></m> terms.
+                      This expression has <m><var name="$answer[0]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="tim">
                     <p permid="hwK">
-                      This expression has <m><var name="$answers[1]" /></m> terms.
+                      This expression has <m><var name="$answer[1]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="Zpv">
                     <p permid="NDT">
-                      This expression has <m><var name="$answers[2]" /></m> terms.
+                      This expression has <m><var name="$answer[2]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="FwE">
                     <p permid="tLc">
-                      This expression has <m><var name="$answers[3]" /></m> terms.
+                      This expression has <m><var name="$answer[3]" /></m> terms.
                     </p>
                   </li>
                 </ol>
@@ -971,7 +970,7 @@
                     </p>
 
                     <p permid="FZu">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[0]" width="25" />
                     </p>
                   </li>
 
@@ -981,7 +980,7 @@
                     </p>
 
                     <p permid="SnM">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[1]" width="25" />
                     </p>
                   </li>
 
@@ -991,7 +990,7 @@
                     </p>
 
                     <p permid="eCe">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[2]" width="25" />
                     </p>
                   </li>
 
@@ -1001,7 +1000,7 @@
                     </p>
 
                     <p permid="qQw">
-                      <var name="$answer[d]" width="25" />
+                      <var name="$answer[3]" width="25" />
                     </p>
                   </li>
                 </ol>
@@ -1012,25 +1011,25 @@
                 <ol label="a." permid="sTR">
                   <li permid="Kgx">
                     <p permid="WXF">
-                      This expression has <m><var name="$answers[0]" /></m> terms.
+                      This expression has <m><var name="$answer[0]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="qnG">
                     <p permid="DeO">
-                      This expression has <m><var name="$answers[1]" /></m> terms.
+                      This expression has <m><var name="$answer[1]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="WuP">
                     <p permid="jlX">
-                      This expression has <m><var name="$answers[2]" /></m> terms.
+                      This expression has <m><var name="$answer[2]" /></m> terms.
                     </p>
                   </li>
 
                   <li permid="CBY">
                     <p permid="Ptg">
-                      This expression has <m><var name="$answers[3]" /></m> terms.
+                      This expression has <m><var name="$answer[3]" /></m> terms.
                     </p>
                   </li>
                 </ol>
@@ -1716,8 +1715,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,2,2,2,2,2)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -1758,10 +1756,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -1831,8 +1829,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,2,2,2,2,2)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -1873,10 +1870,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -1946,8 +1943,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -1988,10 +1984,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2061,8 +2057,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2103,10 +2098,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2176,8 +2171,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2218,10 +2212,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2291,8 +2285,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2333,10 +2326,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2406,8 +2399,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2448,10 +2440,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2521,8 +2513,7 @@
                 Context()->noreduce('(-x)+y','(-x)-y');
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2563,10 +2554,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2637,8 +2628,7 @@
                 Context()->flags->set(reduceConstants=>0);
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2679,10 +2669,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2753,8 +2743,7 @@
                 Context()->flags->set(reduceConstants=>0);
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2795,10 +2784,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2869,8 +2858,7 @@
                 Context()->flags->set(reduceConstants=>0);
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -2911,10 +2899,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
@@ -2985,8 +2973,7 @@
                 Context()->flags->set(reduceConstants=>0);
                 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',t=>'Real',s=>'Real');
                 Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
                 );
                 @termcount = (2,2,2,3,3,3,4,4)[NchooseK(8,4)];
                 for $i (0..3) {
@@ -3027,10 +3014,10 @@
                           $correct = $correct->{original_formula} if defined $correct->{original_formula};
                           $student = Formula("$student"); $correct = Formula("$correct");
                           return 0 unless ($correct == $student);
-                          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+                          Context()->flags->set(bizarroMul=>1);
                           delete $correct->{test_values}, $student->{test_values};
                           my $OK = (($correct == $student) or ($student == $correct));
-                          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+                          Context()->flags->set(bizarroMul=>0);
                           Value::Error("Your answer is not in the expected form. It might not be fully simplified.") unless $OK;
                           return $OK;
                     });
