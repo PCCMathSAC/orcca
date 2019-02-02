@@ -89,13 +89,14 @@ WWOUT      = $(OUTPUT)/webwork-extraction
 # For all but trivial testing or examples, please look into setting
 # up your own WeBWorK server, or consult Alex Jordan about the use
 # of PCC's server in a nontrivial capacity.    <alex.jordan@pcc.edu>
-SERVER = "(https://webwork-ptx.aimath.org,anonymous,anonymous,anonymous,anonymous)"
+#SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
+SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-extraction:
 	install -d $(WWOUT)
 	-rm $(WWOUT) webwork-extraction.xml
-	$(MB)/script/mbx -vv -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
+	$(MB)/script/mbx -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
 merge:
 	cd $(OUTPUT); \
