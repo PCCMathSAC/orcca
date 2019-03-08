@@ -84,6 +84,7 @@ HTMLOUT    = $(OUTPUT)/html
 PDFOUT     = $(OUTPUT)/pdf
 IMAGESOUT  = $(OUTPUT)/images
 WWOUT      = $(OUTPUT)/webwork-extraction
+PREVIEW    = $(OUTPUT)/preview
 
 # Some aspects of producing these examples require a WeBWorK server.
 # For all but trivial testing or examples, please look into setting
@@ -487,6 +488,12 @@ youtube:
 	install -d $(IMAGESOUT)
 	-rm $(IMAGESOUT)/*.jpg
 	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(OUTPUT)/merge.xml
+
+preview:
+	install -d $(OUTPUT)
+	install -d $(IMAGESOUT)
+	-rm $(IMAGESOUT)/*.png
+	$(MB)/script/mbx -vv -c preview -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 
 ###########
