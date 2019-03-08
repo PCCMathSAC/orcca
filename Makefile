@@ -95,8 +95,8 @@ SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-extraction:
+	-rm -r $(WWOUT)
 	install -d $(WWOUT)
-	-rm $(WWOUT) webwork-extraction.xml
 	$(MB)/script/mbx -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
 merge:
@@ -459,14 +459,11 @@ pdf:
 #  Output lands in the subdirectory:  $(HTMLOUT)
 html:
 	install -d $(OUTPUT)
+	-rm -r $(HTMLOUT)
 	install -d $(HTMLOUT)
 	install -d $(HTMLOUT)/images
 	install -d $(IMAGESOUT)
 	install -d $(IMAGESSRC)
-	-rm $(HTMLOUT)/*.html
-	-rm $(HTMLOUT)/knowl/*.html
-	-rm $(HTMLOUT)/images/*
-	-rm $(HTMLOUT)/*.css
 	cp -a $(IMAGESOUT) $(HTMLOUT)
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cp -a $(WWOUT)/*.png $(HTMLOUT)/images
@@ -478,6 +475,10 @@ html:
 images:
 	install -d $(OUTPUT)
 	install -d $(IMAGESOUT)
+	-rm $(IMAGESOUT)/*.tex
+	-rm $(IMAGESOUT)/*.pdf
+	-rm $(IMAGESOUT)/*.png
+	-rm $(IMAGESOUT)/*.eps
 	-rm $(IMAGESOUT)/*.svg
 	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 #	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
