@@ -56,13 +56,13 @@
 
   <introduction permid="Jwi">
     <p permid="hhU">
-      To move beyond <em>arithmetic</em> and learn <em>algebra</em>,
-      we begin working with <term>variables</term>.
-      Any combination of numbers and variables using mathematical operations is called an algebraic <term>expression</term>.
+      To go beyond <em>arithmetic</em> and learn <em>algebra</em>,
+      we need to work with <em>variables</em>.
+      Any combination of numbers and variables using mathematical operations is called an <em>algebraic expression</em>.
       Some expressions are simple, and some are complicated.
       Some expressions are abstract,
       and some have context and meaning.
-      One example of a simple algebraic expression with context is <q><m>220 - a</m>,</q>
+      One example of an algebraic expression with context is <q><m>220 - a</m>,</q>
       which has one variable, <m>a</m>,
       and is the expression for the maximum heart rate of a person who is <m>a</m> years old.
     </p>
@@ -70,12 +70,12 @@
     <p permid="Npd">
       In this section, we'll focus on variables and expressions.
       In the remainder of this chapter,
-      we'll focus on mathematical <term>equations</term>
-      and <term>inequalities</term>
+      we'll focus on mathematical <em>equations</em>
+      and <em>inequalities</em>
       which are also very important in algebra.
     </p>
 
-    <figure permid="twm">
+    <figure permid="twm" xml:id="video-variables-and-evaluating-expressions">
       <caption>Alternative Video Lesson</caption>
       <video youtubeplaylist="PLmuZCPhWPt-eJdbyTErz2vXrizIRNdNjG" />
     </figure>
@@ -166,8 +166,8 @@
 
                 Context()->strings->add('ft^2'=>{});
                 Context()->strings->add('square feet'=>{alias=>'ft^2'}, 'feet squared'=>{alias=>'ft^2'}, 'feet square'=>{alias=>'ft^2'}, 'sq ft'=>{alias=>'ft^2'}, 'sqft'=>{alias=>'ft^2'}, 'sq. ft.'=>{alias=>'ft^2'}, 'ft.^2'=>{alias=>'ft^2'});
-                $a=OneOf('a','A');
-                $t=OneOf('t','T');
+                $a=OneOf('a','A','x','y','z');
+                $t=OneOf('t','T','x','y','z');
             </pg-code>
           </setup>
           <statement>
@@ -270,8 +270,9 @@
   <subsection permid="Vwf">
     <title>Algebraic Expressions</title>
     <p permid="MjK">
-      An algebraic <term>expression</term>
-          <idx><h>expression</h></idx>
+      An <term>algebraic expression</term>
+          <idx><h>expression</h><h>algebraic</h></idx>
+          <idx><h>algebraic expression</h></idx>
       is any combination of variables and numbers using arithmetic operations.
       The following are all examples of algebraic expressions:
       <me permid="EFl">
@@ -304,8 +305,8 @@
           </quantity>
           to the Celsius scale by evaluating the expression.
           <md permid="QTD">
-            <mrow>\frac{5}{9}(F - 32) \amp= \frac{5}{9}(\substitute{89} - 32)</mrow>
-            <mrow>\amp= \frac{5}{9}(57)</mrow>
+            <mrow>\frac{5}{9}(F - 32) \amp= \frac{5}{9}(\substitute{89} - 32)\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/></mrow>
+            <mrow>\amp= \frac{5}{9}(57)\amp\text{Review fraction multiplication in }<xref ref="section-fractions-and-fraction-arithmetic"/></mrow>
             <mrow>\amp= \frac{285}{9}\approx 31.67</mrow>
           </md>
         </p>
@@ -324,16 +325,16 @@
     </example>
 
     <warning permid="SPU">
-      <title>Evaluating Versus Solving</title>
+      <title>Correct Vocabulary</title>
       <p permid="XOi">
         The steps in <xref ref="example-evaluate-temperature">Example</xref>
         are not considered <q>solving</q> anything. <q>Solving</q>
         is a word you might be tempted to use,
-        because in some sense the steps from <xref ref="example-evaluate-temperature">Example</xref> are
-        <q>finding an answer.</q> There is a special meaning in algebra for words like <q>solve</q>
-        and <q>solution</q> that will come soon.
-        Instead, when we substitute a value and compute the result,
-        the proper vocabulary is <q>evaluating an expression.</q>
+        because in everyday English you are <q>finding an answer.</q>
+        In algebra, there is a special meaning for <q>solving</q> something,
+        and that will come soon in <xref ref="section-solving-one-step-equations">Section</xref>.
+        When we substitute values in for variables and then compute the result,
+        the technical thing to say is we are <q>evaluating an expression.</q>
       </p>
     </warning>
 
@@ -424,6 +425,41 @@
       </solution>
       </webwork>
     </exercise>
+
+    <example>
+      <title>Allowing Variables to Vary</title>
+      <p>With the help of technology, it is possible to quickly evaluate expressions as variables vary. In the GeoGebra applet in <xref ref="figure-variables-vary">Figure</xref>, you may slide the value of <m>F</m> and see how a computer can quickly calculate the correspoding Celsius temperature.</p>
+      <figure xml:id="figure-variables-vary">
+        <caption>Allowing Variables to Vary</caption>
+        <interactive platform="geogebra" aspect="3:2">
+          <slate surface="geogebra" aspect="3:2">
+            setPerspective("G");
+            setCoordSystem(-1,1,-1,1);
+            setAxesVisible(false, false);
+            evalCommand("F = Slider(20,120,1)");
+            evalCommand("F = 20");
+            evalCommand("s = F-32");
+            evalCommand("g = GCD(s,9)");
+            evalCommand("num = s/g");
+            evalCommand("den = 9/g");
+            evalCommand("newnum = 5*num");
+            evalCommand("C = newnum/den");
+            evalCommand('reduced=If(g==1,"","&amp;=\\frac{5}{"+den+"}\\cdot\\frac{"+num+"}{1}\\\\")');
+            setVisible("reduced",false);
+            evalCommand('final=If(Mod(newnum,den)==0,"&amp;="+C,"&amp;\\approx"+C)');
+            setVisible("final",false);
+            setRounding("3");
+            evalCommand('simple=If(s==0 || s==1 || s==-1,"",Text("&amp;=\\frac{5}{9}\\cdot\\frac{"+s+"}{1}\\\\"+reduced+"&amp;=\\frac{"+newnum+"}{"+den+"}\\\\"))');
+            setVisible("simple",false);
+            evalCommand('evaluation=Text("\\begin{aligned}\\frac{5}{9}(F-32)&amp;=\\frac{5}{9}("+F+"-32)\\\\&amp;=\\frac{5}{9}("+s+")\\\\"+simple+final+"\\end{aligned}",(-0.9,0.6),true,true)');
+            evalCommand('about=If(Mod(newnum,den)==0,"","about ")');
+            setVisible("about",false);
+            evalCommand('conclusion=Text("\\text{A Fahrenheit temperature of }"+F+"^{\\circ}\\mathrm{F}\\\\\\text{corresponds to a Celsius}\\\\\\text{temperature of }{"+C+"}^{\\circ}\\mathrm{C}\\text{.}",(0,0.5),true,true)');
+            enableShiftDragZoom(false);
+          </slate>
+        </interactive>
+      </figure>
+    </example>
 
     <example permid="DsB">
       <title>Target heart rate</title>
@@ -651,8 +687,8 @@
         <p permid="zly">
           Using <m>d=30</m>, we find:
           <md permid="BKF">
-            <mrow>\sqrt{9.8d} \amp= \sqrt{9.8(\substitute{30})}</mrow>
-            <mrow>\amp=\sqrt{294}</mrow>
+            <mrow>\sqrt{9.8d} \amp= \sqrt{9.8(\substitute{30})}\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/></mrow>
+            <mrow>\amp=\sqrt{294}\amp\text{Review square root in }<xref ref="section-absolute-value-and-square-root"/></mrow>
             <mrow>\amp\approx \overbrace{17.14}^{\text{four}}6428\ldots</mrow>
           </md>
           The speed of tsunami with a depth of
@@ -678,7 +714,7 @@
       <m>220-a</m>, can be written as the formula, <m>H=220-a</m>.
       When we substitute a value for <m>a</m> we are <q>evaluating</q> the formula.
       Even though we have an equation, we are not <q>solving</q> yet.
-      That will come soon.
+      What <q>solving</q> means is coming soon in <xre ref="section-solving-one-step-equations">Section</xre>.
     </p>
 
     <exercise permid="UqM">
@@ -731,8 +767,8 @@
                     When <m>d=5</m>, we have:
                     <md permid="hRO">
                       <mrow>h\amp= -2\abs{d-3}+6</mrow>
-                      <mrow>\amp= -2\abs{\substitute{5}-3}+6</mrow>
-                      <mrow>\amp= -2\abs{2}+6</mrow>
+                      <mrow>\amp= -2\abs{\substitute{5}-3}+6\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/></mrow>
+                      <mrow>\amp= -2\abs{2}+6\amp\text{Review absolute value in }<xref ref="section-absolute-value-and-square-root"/></mrow>
                       <mrow>\amp= -2(2)+6</mrow>
                       <mrow>\amp= -4+6</mrow>
                       <mrow>\amp=2</mrow>
@@ -751,8 +787,8 @@
                     When <m>d=2.5</m>, we have:
                     <md permid="NYX">
                       <mrow>h\amp= -2\abs{d-3}+6</mrow>
-                      <mrow>\amp= -2\abs{\substitute{2.5}-3}+6</mrow>
-                      <mrow>\amp= -2\abs{-0.5}+6</mrow>
+                      <mrow>\amp= -2\abs{\substitute{2.5}-3}+6\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/></mrow>
+                      <mrow>\amp= -2\abs{-0.5}+6\amp\text{Review absolute value in }<xref ref="section-absolute-value-and-square-root"/></mrow>
                       <mrow>\amp= -2(0.5)+6</mrow>
                       <mrow>\amp=-1+6</mrow>
                       <mrow>\amp=5</mrow>
@@ -856,13 +892,14 @@
           <mrow>x^2\amp=-2^2\amp\text{incorrect!}</mrow>
           <mrow>\amp=-4</mrow>
         </md>
-        The original expression, <m>x^2</m>, takes <m>x</m> and squares it.
-        With <m>-2^2</m>, the number <m>-2</m> is not being squared.
-        Since the exponent has higher priority than the negation,
-        it's just the number <m>2</m> that is being squared and then the resut is negated.
+        The original expression, <m>x^2</m>, takes <m>x</m> and squares it,
+        so we want to do the same thing to the number <m>-2</m>.
+        But with <m>-2^2</m>, the number <m>-2</m> is not being squared.
+        Since the exponent has higher priority than the negation in the order of operations,
+        it's just the number <m>2</m> that is being squared and then the result is negated.
         With <m>(-2)^2</m> the number <m>-2</m>
         <em>is</em> being squared,
-        which is what we would want given the expression <m>x^2</m>.
+        which is what we want.
       </p>
 
       <p permid="BaL">
@@ -898,6 +935,7 @@
             </p>
           </statement>
           <solution permid="mIL">
+            <p>You may review multiplying negative numbers in <xref ref="section-arithmetic-with-negative-numbers">Section</xref>.</p>
             <p permid="rGZ">
               <ol label="a." cols="3" permid="jOf">
                 <li permid="cTA">
@@ -939,29 +977,196 @@
     </exercise>
   </subsection>
 
+  <reading-questions>
+    <exercise>
+      <statement>
+        <p>
+          Describe a situation where it might be better
+          to use a letter other than <m>x</m>, <m>y</m>, or <m>z</m> as a variable.
+        </p>
+      </statement>
+    </exercise>
+    <exercise>
+      <statement>
+        <p>
+          What is the difference between an <q>algebraic expression</q>
+          and a <q>formula,</q> as described in this section?
+          (Other math resources may define these terms differently.)
+        </p>
+      </statement>
+    </exercise>
+    <exercise>
+      <statement>
+        <p>
+          What should you watch out for when substituting
+          a negative number in for a variable?
+        </p>
+      </statement>
+    </exercise>
+  </reading-questions>
+
   <exercises permid="hKx">
-    <!-- <exercise>
-            <statement>
-                <p>For each scenario below, identify the unknown quantity and define a possible variable with appropriate units.<ol>
-                    <li><p>The water depth of a swimming pool.</p></li>
-                    <li><p>The speed of a dog running at a full sprint.</p></li>
-                    <li><p>The weight of a dog.</p></li>
-                    <li><p>The surface area of a patio.</p></li>
-                </ol></p>
-            </statement>
-            <solution>
-                <p><ol>
-                    <li><p>The unknown quantity is depth, which we generally measure in feet or meters. Thus we could define this variable as:</p>
-                        <p>Let <m>d</m> be the depth of a swimming pool, measured in feet.</p></li>
-                    <li><p>The unknown quantity is speed, which we generally measure in feet per second or miles per hour. Thus we could define this variable as:</p>
-                        <p>Let <m>s</m> be the speed of the dog, measured in feet per second.</p></li>
-                    <li><p>The unknown quantity is weight, which we generally measure in pounds. Thus we could define this variable as:</p>
-                        <p>Let <m>w</m> be the weight of a dog, measured in pounds.</p></li>
-                    <li><p>The unknown quantity is surface area, which we often measure in square feet. Thus we could define this variable as:</p>
-                        <p>Let <m>A</m> be the area of the patio, measured in square feet.</p></li>
-                </ol></p>
-            </solution>
-        </exercise> -->
+    <exercise>
+      <webwork>
+          <setup>
+
+            <pg-code>
+                Context()->variables->are();
+                for my $i (1..26) {
+                    Context()->variables->add($ALPHABET[$i-1]=>'Real');
+                    Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
+                    };
+
+                $d=OneOf('d','D','x','y');
+                Context()->strings->add('feet'=>{});
+                Context()->strings->add('foot'=>{alias=>'feet'}, 'ft'=>{alias=>'feet'}, 'ft.'=>{alias=>'feet'});
+                Context()->strings->add('meters'=>{});
+                Context()->strings->add('meter'=>{alias=>'meters'}, 'm'=>{alias=>'meters'}, 'm.'=>{alias=>'meters'});
+                $ftorm = OneOf("feet, meters");
+
+                $w=OneOf('w','W','x','y');
+                Context()->strings->add('pounds'=>{});
+                Context()->strings->add('pound'=>{alias=>'pounds'}, 'lb'=>{alias=>'pounds'}, 'lb.'=>{alias=>'pounds'}, 'lbs'=>{alias=>'pounds'}, 'lbs.'=>{alias=>'pounds'});
+                Context()->strings->add('kilograms'=>{});
+                Context()->strings->add('kilogram'=>{alias=>'kilograms'}, 'kg'=>{alias=>'kilograms'}, 'kg.'=>{alias=>'kilograms'}, 'kgs'=>{alias=>'kilograms'}, 'kgs.'=>{alias=>'kilograms'});
+                $lborkg = OneOf("pounds, kilograms");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Identify a variable you might use to represent each quantity.
+              And identify what units would be most appropriate.
+
+              <ol label="a.">
+                <li>
+                  <p>
+                    Let <var name="$d" width="2" /> be the depth of a swimming pool,
+                    measured in <var name="$ftorm" width="12" />.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    Let <var name="$w" width="2" /> be the weight of a dog, 
+                    measured in <var name="$lborkg" width="12" />.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <ol label="a.">
+                <li>
+                  <p>
+                    The unknown quantity is depth, which starts with <q>d</q>.
+                    We generally measure depth in feet for a swimming pool. 
+                    (Meters is another reasonable unit.)
+                    So we could define this variable as:
+                  </p>
+
+                  <p>
+                    <q>Let <m>d</m> be the depth of a swimming pool, measured in feet.</q>
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    The weight of the dog is the unknown quantity, and <q>weight</q> starts with <q>w</q>.
+                    We generally measure the weight of a dog in pounds.
+                    (Kilograms is another reasonable unit.)
+                    So we could define this variable as:
+                  </p>
+
+                  <p>
+                    <q>Let <m>w</m> be be the weight of a dog, measured in pounds.</q>
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </solution>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork>
+          <setup>
+
+            <pg-code>
+                Context()->variables->are();
+                for my $i (1..26) {
+                    Context()->variables->add($ALPHABET[$i-1]=>'Real');
+                    Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
+                    };
+
+                $t=OneOf('t','T','x','y');
+                Context()->strings->add('hours'=>{});
+                Context()->strings->add('hour'=>{alias=>'hours'}, 'hr'=>{alias=>'hours'}, 'hr.'=>{alias=>'hours'}, 'hrs'=>{alias=>'hours'}, 'hrs.'=>{alias=>'hours'}, 'h'=>{alias=>'hours'}, 'h.'=>{alias=>'hours'});
+                $hours = String("hours");
+
+                $a=OneOf('a','A','s','S','x','y');
+                Context()->strings->add('ft^2'=>{});
+                Context()->strings->add('square feet'=>{alias=>'ft^2'}, 'feet squared'=>{alias=>'ft^2'}, 'feet square'=>{alias=>'ft^2'}, 'sq ft'=>{alias=>'ft^2'}, 'sqft'=>{alias=>'ft^2'}, 'sq. ft.'=>{alias=>'ft^2'}, 'ft.^2'=>{alias=>'ft^2'});
+                Context()->strings->add('m^2'=>{});
+                Context()->strings->add('square meters'=>{alias=>'m^2'}, 'meters squared'=>{alias=>'m^2'}, 'meters square'=>{alias=>'m^2'}, 'sq m'=>{alias=>'m^2'}, 'sqm'=>{alias=>'m^2'}, 'sq. m.'=>{alias=>'m^2'}, 'm.^2'=>{alias=>'m^2'});
+                $sqftorsqm = OneOf("ft^2, m^2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Identify a variable you might use to represent each quantity.
+              And identify what units would be most appropriate.
+
+              <ol label="a.">
+                <li>
+                  <p>
+                    Let <var name="$t" width="2" /> be the amount of time a person sleeps each night,
+                    measured in <var name="$hours" width="12" />.
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    Let <var name="$a" width="2" /> be the surface area of a patio,
+                    measured in <var name="$sqftorsqm" width="12" />.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <ol label="a.">
+                <li>
+                  <p>
+                    The unknown quantity is time, and <q>time</q> starts with a <q>t</q>.
+                    The amount of time a person sleeps would typically be measured in hours.
+                    So we could define this variable as:
+                  </p>
+
+                  <p>
+                    <q>Let <m>t</m> be the amount of time a person sleeps each night, measured in hours.</q>
+                  </p>
+                </li>
+
+                <li>
+                  <p>
+                    The unknown quantity is area, and <q>area</q> starts with an <q>a</q>.
+                    Patio area is usually measured in square feet.
+                    (Square meters is another reasonable unit.)
+                    So we could define this variable as:
+                  </p>
+
+                  <p>
+                    <q>Let <m>A</m> be the area of a patio, measured in <m>\text{ft}^2</m>.</q>
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </solution>
+      </webwork>
+    </exercise>
+
     <exercisegroup cols="3" permid="NRG">
       <title>Evaluating Expressions</title>
       <exercise permid="MMn">
@@ -1293,8 +1498,188 @@
                 <webwork source="Library/CollegeOfIdaho/setAlgebra_01_01_AlgebraicExpressions/11IntAlg_14_AlgebraicExpressions.pg" />
             </exercise> -->
     </exercisegroup>
+    <exercisegroup>
+      <title>Challenge</title>
+      <exercise>
+        <webwork>
+          <statement>
+            <p>In <xref ref="figure-variables-vary">Figure</xref>, when you change the value of <m>F</m>, why do some values of <m>F</m> cause there to be more steps in the calculation than other values of <m>F</m>?</p>
+            <p><var form="$essay" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
   </exercises>
+
+
+  <worksheet>
+    <author>Ann Cary</author>
+    <p>
+      This worksheet has the exercises that are worked out in
+      <xref ref="video-variables-and-evaluating-expressions">Video</xref>.
+    </p>
+    <exercise workspace="10%">
+      <statement>
+        <p>
+          What does it mean to evaluate an expression?
+        </p>
+      </statement>
+    </exercise>
+    <exercise workspace="10%">
+      <statement>
+        <p>
+          Evaluate the expression
+          <m>4x-1</m> for <m>x=5</m>.
+        </p>
+      </statement>
+    </exercise>
+    <exercise workspace="10%">
+      <statement>
+        <p>
+          Evaluate the expression
+          <m>3x^2+5x+4</m> for <m>x=2</m>.
+        </p>
+      </statement>
+    </exercise>
+    <exercise workspace="10%">
+      <statement>
+        <p>
+          Evaluate the expression
+          <m>xy+2y-7x</m> for <m>x=3</m> and <m>y=6</m>.
+        </p>
+      </statement>
+    </exercise>
+    <exercise workspace="10%">
+      <statement>
+        <p>
+          Evaluate the expression
+          <m>\abs{x-5}+3</m> for <m>x=-8</m>.
+        </p>
+      </statement>
+    </exercise>
+    <exercise workspace="10%">
+      <statement>
+        <p>
+          Evaluate the expression
+          <m>3-\sqrt{7t+8}</m> for <m>t=4</m>.
+        </p>
+      </statement>
+    </exercise>
+  </worksheet>
+
+  <worksheet>
+    <author>Cara Lee</author>
+    <p>
+      Evaluate each expression for <m>x=7</m> and <m>y=-5</m>.
+    </p>
+    <sidebyside>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>4(x-y)</m>
+          </p>
+        </statement>
+      </exercise>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>2xy+3</m>
+          </p>
+        </statement>
+      </exercise>
+    </sidebyside>
+    <sidebyside>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>\frac{40}{y}-\frac{7}{x}</m>
+          </p>
+        </statement>
+      </exercise>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>\frac{3x+4y-1}{4y}</m>
+          </p>
+        </statement>
+      </exercise>
+    </sidebyside>
+    <sidebyside>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>y^2</m>
+          </p>
+        </statement>
+      </exercise>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>-y^2</m>
+          </p>
+        </statement>
+      </exercise>
+    </sidebyside>
+    <sidebyside>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>3y-\sqrt{2(x+y)}</m>
+          </p>
+        </statement>
+      </exercise>
+      <exercise workspace="20%">
+        <statement>
+          <p>
+            <m>9+2\abs{3y-7}</m>
+          </p>
+        </statement>
+      </exercise>
+    </sidebyside>
+    <pagebreak/>
+    <exercise workspace="25%">
+      <statement>
+        <p>
+          To convert a temperature measured in degrees Fahrenheit,
+          <m>F</m>, to degrees Celsius, <m>C</m>,
+          we use the formula <m>C=\frac{5}{9}(F-32)</m>.
+          Convert the room temperature of
+          <quantity><mag>68</mag><unit base="fahrenheit"/></quantity> to Celsius.
+          Write your answer in a complete sentence including units.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise workspace="25%">
+      <statement>
+        <p>
+          The speed of a tsunami (in meters per second)
+          can be modeled by <m>\sqrt{9.8d}</m>,
+          where <m>d</m> is the depth of the tsunami (in meters).
+          Determine the speed of a tsunami that has a depth of
+          <quantity><mag>80</mag><unit base="meter"/></quantity>
+          to four significant digits.
+        </p>
+      </statement>
+    </exercise>
+
+    <exercise workspace="25%">
+      <statement>
+        <p>
+          While camping, the height (in feet) inside a tent
+          when you are <m>d</m> feet from the north side of the tent
+          is given by the formula <m>-3\abs{d-4}+7</m>.
+          When you are <quantity><mag>3</mag><unit base="foot"/></quantity>
+          from the north side, what is the height of the tent?
+        </p>
+      </statement>
+    </exercise>
+  </worksheet>
 </section>
+
+
+
+
 <!--
         <exercise>
             <statement>
