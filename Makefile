@@ -111,13 +111,12 @@ pg:
 
 pdf-ptx:
 	install -d $(OUTPUT)
+	-rm -r $(PDFOUT)
 	install -d $(PDFOUT)
 	install -d $(PDFOUT)/images
 	install -d $(IMAGESOUT)
 	install -d $(IMAGESSRC)
-	-rm $(PDFOUT)/images/*
-	-rm $(PDFOUT)/*.*
-	cp -a $(IMAGESOUT) $(PDFOUT)
+	cp -a $(IMAGESOUT)/*-preview.png $(PDFOUT)/images
 	cp -a $(WWOUT)/*.png $(PDFOUT)/images
 	cp -a $(IMAGESSRC) $(PDFOUT)
 	cd $(PDFOUT); \
@@ -482,6 +481,7 @@ images:
 	-rm $(IMAGESOUT)/*.eps
 	-rm $(IMAGESOUT)/*.svg
 	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
+#	$(MB)/script/mbx -vv -c preview -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 #	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 # run this to scrape thumbnail images from YouTube for any YouTube videos
