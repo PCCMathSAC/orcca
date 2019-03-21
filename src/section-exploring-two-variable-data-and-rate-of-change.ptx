@@ -60,10 +60,9 @@
   <subsection permid="hFO">
     <title>Modeling data with two variables</title>
     <p permid="CpQ">
-      Using mathematics, we can analyze real data from the world around us.
-      We can use what we discover to better understand the world,
-      and sometimes to make predictions.
-      Here's an example of data about the economic situation in the US:
+      Using mathematics, we can analyze data from the world around us.
+      We can use what we discover to understand the world better and make predictions.
+      Here's an example with economic data from the US, plotted in a Cartesian plane.
     </p>
 
     <!-- TODO: Make a table of these values. Write a brief paragraph about how trends in these data may not be apparent from staring at the numbers, and note that a graph of the data pairs may be more enlightening...-->
@@ -140,8 +139,8 @@
     <p permid="OEi">
       Does that trend line have an equation like those we looked at in <xref ref="section-graphing-equations">Section</xref>?
       Is it even correct to look at this data set and decide that a straight line is a good model?
-      These are some of the questions we want to consider as we begin this section.
-      The answers will evolve through the next several sections.
+      <!-- These are some of the questions we want to consider as we begin this section.
+      The answers will evolve through the next several sections. -->
     </p>
   </subsection>
 
@@ -451,11 +450,9 @@
           </statement>
           <solution permid="hUj">
             <p permid="hyK">
-              Looking for a similar relationship in each row is one approach to pattern recognition.
-              Here, the <m>y</m>-value in each row is <m>10</m> greater than its corresponding <m>x</m>-value.
-              So the equation <m><var name="$eq" /></m> describes the pattern.
-              Of course, there are more complicated patterns to explore,
-              as we'll see in the next exercise.
+              One approach to pattern recognition is to look for a relationship in each row.
+              Here, the <m>y</m>-value in each row is always <m>10</m> more than the <m>x</m>-value.
+              So the pattern is described by the equation <m><var name="$eq" /></m>.
             </p>
           </solution>
       </webwork>
@@ -472,6 +469,7 @@
                 Context("Numeric")->variables->add(y=>'Real');
                 parser::Assignment->Allow;
                 $eq=Formula("y=$f")->reduce;
+                @t=map{$_*3}(@x);
             </pg-code>
           </setup>
           <statement>
@@ -525,6 +523,8 @@
             <sidebyside permid="jvb">
               <tabular  permid="nQM">
               <col halign="right" />
+              <col halign="center" />
+              <col halign="center" />
               <col halign="left" />
               <row bottom="medium">
                 <cell />
@@ -560,19 +560,49 @@
 
             </sidebyside>
 
-            <p permid="tNc">
+            <p>
               Since row-to-row change is always <m>1</m> for <m>x</m> and is always <m>3</m> for <m>y</m>,
-              the rate of change from one row to another row is always the same:
+              the <em>rate of change</em> from one row to another row is always the same:
               <m>3</m> units of <m>y</m> for every <m>1</m> unit of <m>x</m>.
+              This suggests that <m>y=3x</m> <em>might</em> be a good equation for the table pattern.
+              But if we try to make a table with that pattern:
             </p>
 
-            <p permid="ZUl">
-              We know that the output for <m>x = 0</m> is <m>y = -1</m>.
-              And our observation about the constant rate of change tells us that if we increase the input by <m>x</m> units from <m>0</m>,
-              the output should increase by <m>\overbrace{3+3+\cdots+3}^{x\text{ times}}</m>,
-              which is <m>3x</m>.
-              So the output would be <m>-1+3x</m>.
-              So the equation is <m><var name="$eq" /></m>.
+            <sidebyside>
+              <tabular>
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>y</m> using <m>y=3x</m></cell>
+                <cell>Actual <m>y</m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[0]" /></m></cell>
+                <cell><m><var name="$t[0]" /></m></cell>
+                <cell><m><var name="$y[0]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[1]" /></m></cell>
+                <cell><m><var name="$t[1]" /></m></cell>
+                <cell><m><var name="$y[1]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[2]" /></m></cell>
+                <cell><m><var name="$t[2]" /></m></cell>
+                <cell><m><var name="$y[2]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[3]" /></m></cell>
+                <cell><m><var name="$t[3]" /></m></cell>
+                <cell><m><var name="$y[3]" /></m></cell>
+              </row>
+              </tabular>
+
+            </sidebyside>
+
+            <p>
+              We find that the values from <m>y=3x</m> are <m>1</m> too large.
+              So now we make an adjustement.
+              The eqution <m><var name="$eq" /></m> describes the pattern in the table.
             </p>
           </solution>
       </webwork>
@@ -634,6 +664,7 @@
             <p permid="Gbu">
               Looking for a relationship in each row here,
               we see that each <m>y</m>-value is the square of the corresponding <m>x</m>-value.
+              That may not be obvious to you. It comes down to recognizing what square numbers are.
               So the equation is <m><var name="$eq" /></m>.
             </p>
 
@@ -689,7 +720,7 @@
               While the <m>x</m>-values are increasing by <m>1</m> from row to row,
               the <m>y</m>-values increase more and more from row to row.
               Notice that there is a pattern there as well?
-              Mathematicians are fascinated by relationships that produce more complicated patterns.
+              Mathematicians are interested in relationships that produce more complicated patterns.
               (We'll study more complicated patterns later.)
             </p>
           </solution>
@@ -845,7 +876,8 @@
         The total (net) change in diagnoses over that timespan is
         <me permid="wAE">
           19727-17446=2281
-        </me>.
+        </me>
+        meaning that there were <m>2281</m> more invasive cancer incidents in 2010 than in 2000.
         Since <m>10</m> years passed
         (which you can calculate as <m>2010-2000</m>),
         the rate of change is <m>2281</m> diagnoses per <m>10</m> years, or
@@ -854,8 +886,8 @@
         </me>
         We read that last quantity as <q><m>228.1</m> diagnoses per year.</q>
         This rate of change means that between the years <m>2000</m> and <m>2010</m>,
-        there were <m>228.1</m> more diagnoses each year, on average.
-        (Notice that there was no single year in that span when diagnoses increased by <m>228.1</m>.)
+        there were <m>228.1</m> more diagnoses <em>each</em> year, on average.
+        This is just an average over those ten years.
       </p>
     </example>
 
@@ -915,7 +947,7 @@
 
     <p permid="fCt">
       We are ready to give a formal definition for
-      <term>rate of change</term>.
+      <q>rate of change</q>.
       Considering our work from <xref ref="example-cancer-data">Example</xref>
       and <xref ref="exercise-cancer-data">Checkpoint</xref>,
       we settle on:
@@ -985,9 +1017,9 @@
                            (2012,20035)
                            (2013,20458)
                     };
-                    \addplot[firstcurve,-] coordinates {(2000,17446) (2010,19727)} node[pos=0.35, pin=100:{rate $228.1$}]{};
-                    \addplot[firstcurve,-] coordinates {(1999,17599) (2002,17887)} node[pos=0.5, pin=120:{rate $96$}]{};
-                    \addplot[firstcurve,-] coordinates {(2003,17559) (2011,20636)} node[pos=0.25, pin=-45:{rate $384.6$}]{};
+                    \addplot[firstcurve,-] coordinates {(2000,17446) (2010,19727)} node[pos=0.35, pin=100:{rate $228.1\,\frac{\text{diagnoses}}{\text{year}}$}]{};
+                    \addplot[firstcurve,-] coordinates {(1999,17599) (2002,17887)} node[pos=0.5, pin=120:{rate $96\,\frac{\text{diagnoses}}{\text{year}}$}]{};
+                    \addplot[firstcurve,-] coordinates {(2003,17559) (2011,20636)} node[pos=0.25, pin=-45:{rate $384.6\,\frac{\text{diagnoses}}{\text{year}}$}]{};
                 \end{axis}
             \end{tikzpicture}]]>
             </latex-image>
@@ -1033,13 +1065,12 @@
 
     <p permid="rQL">
       In the solution to <xref ref="exercise-linear-data">Checkpoint</xref>,
-      the key observation was that the
-      <term>rate of change</term>
+      the key observation was that the rate of change
       from one row to the next was constant:
       <m>3</m> units of increase in <m>y</m> for every <m>1</m> unit of increase in <m>x</m>.
       Graphing this pattern in <xref ref="figure-linear-data">Figure</xref>,
       we see that every line segment here has the same steepness,
-      so the entire graph is a line.
+      so the whole picture is a straight line.
     </p>
 
     <figure xml:id="figure-linear-data" permid="Qtv">
@@ -1277,7 +1308,7 @@
 
     <sidebyside widths="47% 47%" margins="0%" permid="Rrx">
       <p permid="AWc">
-        However if we stand back,
+        However if we step back,
         there does seem to be an overall upward trend that is captured by the line someone has drawn over the data.
         Points <em>on this line</em> do have a linear pattern.
         Let's estimate the rate of change between some points on this line.
@@ -1333,7 +1364,6 @@
                            (2012,22)
                            (2013,20)
                     };
-                    \addplot+[domain = 1990:2035,->]{0.34434783*x-670.71};
                     \addplot[firstcurve,domain = 1991:2020,-,ultra thick]{0.34434783*x-670.71};
                     \addplot[soliddot] coordinates {(1991,15) (2020,25)};
                 \end{axis}
@@ -1356,6 +1386,34 @@
       </quantity>.
     </p>
   </subsection>
+
+  <reading-questions>
+    <exercise>
+      <statement>
+        <p>
+          Given a table of data with <m>x</m>- and <m>y</m>-values,
+          explain how to calculate the rate of change from one row to the next.
+        </p>
+      </statement>
+    </exercise>
+    <exercise>
+      <statement>
+        <p>
+          If there is a table of data with <m>x</m>- and <m>y</m>-values,
+          and the plot of all that data makes a straight line,
+          what is true about the rates of change as you move from row to row in the table?
+        </p>
+      </statement>
+    </exercise>
+    <exercise>
+      <statement>
+        <p>
+          What does it mean for a rate of change to be positive (or negative)
+          with regard to a graph with two points plotted?
+        </p>
+      </statement>
+    </exercise>
+  </reading-questions>
 
   <exercises permid="abp">
     <exercisegroup cols="6" permid="Giy">
