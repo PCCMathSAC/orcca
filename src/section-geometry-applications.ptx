@@ -45,5 +45,239 @@
       </li>
     </ul>
   </objectives>
+
+  <!-- This geometry exposition comes from edition 1's section-modeling-with-equations-and-ineqialities -->
+   <subsection permid="qnp">
+    <title>Setting Up Equations for Geometry Problems</title>
+    <p permid="laT">
+      With geometry problems and algebra,
+      there is often the possibility to draw some picture to help understand the scenario better.
+      Additionally it is often necessary to rely on some formula from geometry,
+      such as the formulas from <xref ref="subsection-perimeter-and-area">Subsection</xref>.
+    </p>
+
+    <example permid="cTE">
+      <statement>
+        <p permid="Snv">
+          An Olympic-size swimming pool is rectangular and
+          <quantity>
+            <mag>50</mag><unit base="meter" />
+          </quantity>
+          in length.
+          We don't know its width, but we do know that it required
+          <quantity>
+            <mag>150</mag><unit base="meter" />
+          </quantity>
+          of painter's tape to outline the edge of the pool during recent renovations.
+          Use this information to set up an equation that models the width of the pool.
+        </p>
+      </statement>
+      <solution permid="sqX">
+        <sidebyside widths="59% 35%" margins="0%" permid="JaN">
+          <p permid="YcH">
+            Since the pool's shape is a rectangle,
+            it helps to sketch a rectangle representing the pool as in <xref ref="figure-olympic-pool">Figure</xref>.
+            Since we know its length is
+            <quantity>
+              <mag>50</mag><unit base="meter" />
+            </quantity>, it is a good idea to label that in the sketch.
+            The width is our unknown quantity,
+            so we can use <m>w</m> as a variable to represent the pool's width in meters and label that too.
+          </p>
+
+          <figure xml:id="figure-olympic-pool" permid="Qyi">
+            <caption>An Olympic-size pool</caption>
+            <image permid="flH">
+
+            <latex-image>
+                \begin{tikzpicture}[x=1mm,y=1mm]
+                    \draw[fill=blue!60!green!40!white] (0,0) rectangle (50,25);
+                    \node[below] at (25,0) {$50$};
+                    \node[right] at (50,12.5) {$w$};
+                \end{tikzpicture}
+            </latex-image>
+            </image>
+
+          </figure>
+        </sidebyside>
+
+        <p permid="EjQ">
+          Since it required
+          <quantity>
+            <mag>150</mag><unit base="meter" />
+          </quantity>
+          of painter's tape to outline the pool,
+          we know the perimeter of the pool is
+          <quantity>
+            <mag>150</mag><unit base="meter" />
+          </quantity>.
+          This suggests using the perimeter formula for a rectangle:
+          <m>P=2(\ell+w)</m>. (This formula was discussed in <xref ref="subsection-perimeter-and-area">Subsection</xref>).
+        </p>
+
+        <p permid="kqZ">
+          With this formula,
+          we can substitute <m>150</m> in for <m>P</m> and <m>50</m> in for <m>\ell</m>:
+          <me permid="GIX">
+            150=2(50+w)
+          </me>
+          and this equation models the width of the pool.
+        </p>
+      </solution>
+    </example>
+
+    <exercise permid="Vpf">
+      <webwork>
+          <setup>
+
+            <pg-code>
+                Context("ImplicitPlane");
+                Context()->flags->set(reduceConstants=>0);
+                Context()->variables->are(h=>'Real');
+                $equation = ImplicitPlane("125=1/2(10)h");
+                $evaluator = $equation->cmp(correct_ans_latex_string=>'125=\frac{1}{2}(10)h');
+                $triangle = init_graph(-1,-2,11.5,26.2,size=>[48,120]);
+                $triangle->moveTo(1,1);
+                $triangle->lineTo(11,1,'black',1);
+                $triangle->lineTo(1,26,'black',1);
+                $triangle->lineTo(1,1,'black',1);
+                $triangle->lb( new Label(6,1,'10','black','center','top','large'));
+                $triangle->lb( new Label(1,13,'h','black','right','middle','large'));
+            </pg-code>
+          </setup>
+          <statement>
+            <p permid="nVz">
+              One sail on a sail boat is approximately shaped like a triangle.
+              If the base length is <m>10</m> feet and the total sail area is <m>125</m> square feet,
+              we can wonder how tall is the sail.
+              Set up an equation to model the sail's height.
+            </p>
+            <instruction>
+              Use <c>h</c> as the variable representing the sail's height.
+            </instruction>
+            <p permid="UcI">
+              <var name="$equation" evaluator="$evaluator" width="25" />
+            </p>
+          </statement>
+          <solution permid="xaQ">
+            <p permid="wFr">
+              Since the sail's shape is (approximately) a triangle,
+              it helps to sketch a triangle representing the sail.
+              Since we know its base width is <m>10</m> feet,
+              it is a good idea to label that in the sketch.
+              The heigth is our unknown quantity,
+              so we can use <m>h</m> as a variable to represent the sail's height in feet and label that too.
+            </p>
+
+            <sidebyside widths="8%" permid="phW">
+              <image pg-name="$triangle"/>
+            </sidebyside>
+
+            <p permid="cMA">
+              Since the total area is known to be <m>125</m> square feet,
+              this suggests using the area formula for a triangle:
+              <m>A=\frac{1}{2}bh</m>.
+            </p>
+
+            <p permid="ITJ">
+              With this formula,
+              we can substitute <m>125</m> in for <m>A</m> and <m>100</m> in for <m>b</m>:
+              <me permid="mQg">
+                125=\frac{1}{2}(10)h
+              </me>
+              and this equation models the height of the pool.
+            </p>
+          </solution>
+      </webwork>
+    </exercise>
+  </subsection>
+
+
+  <exercises>
+    <!-- Geometry exercises here come from <section-solving-one-step-equations during edition 1->2 revision -->
+    <exercisegroup cols="2" permid="DDW">
+      <title>Geometry Application Problems</title>
+      <exercise permid="WFP">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea30.pg" />
+      </exercise>
+
+      <exercise permid="CMY">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea30.pg" />
+      </exercise>
+
+      <exercise permid="iUh">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea40.pg" />
+      </exercise>
+
+      <exercise permid="Pbq">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea40.pg" />
+      </exercise>
+      <!-- Commented out these because they amount to quadratic equations.            -->
+      <!--<exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea50.pg" />
+      </exercise>
+
+      <exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea50.pg" />
+      </exercise>
+
+      <exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea60.pg" />
+      </exercise>
+
+      <exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea60.pg" />
+      </exercise> -->
+
+      <exercise permid="viz">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea30.pg" />
+      </exercise>
+
+      <exercise permid="bpI">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea30.pg" />
+      </exercise>
+
+      <exercise permid="HwR">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea40.pg" />
+      </exercise>
+
+      <exercise permid="nEa">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CircleCircumferenceArea40.pg" />
+      </exercise>
+
+      <exercise permid="TLj">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CylinderVolume30.pg" />
+      </exercise>
+
+      <exercise permid="zSs">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/CylinderVolume30.pg" />
+      </exercise>
+
+      <exercise permid="fZB">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/RectanglePerimeterArea30.pg" />
+      </exercise>
+
+      <exercise permid="MgK">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/RectanglePerimeterArea30.pg" />
+      </exercise>
+
+      <exercise permid="snT">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/RectangularPrismVolume30.pg" />
+      </exercise>
+
+      <exercise permid="Yvc">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/RectangularPrismVolume30.pg" />
+      </exercise>
+
+      <exercise permid="ECl">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/TrianglePerimeterArea40.pg" />
+      </exercise>
+
+      <exercise permid="kJu">
+        <webwork source="Contrib/PCC/BasicAlgebra/Geometry/TrianglePerimeterArea40.pg" />
+      </exercise>
+
+    </exercisegroup>
+  </exercises>
 </section>
 
