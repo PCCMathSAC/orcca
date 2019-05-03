@@ -116,11 +116,27 @@ pdf-ptx:
 	install -d $(PDFOUT)/images
 	install -d $(IMAGESOUT)
 	install -d $(IMAGESSRC)
-	cp -a $(IMAGESOUT)/*-preview.png $(PDFOUT)/images
 	cp -a $(WWOUT)/*.png $(PDFOUT)/images
+	cp -a $(PREVIEW)/*.png $(PDFOUT)/images
 	cp -a $(IMAGESSRC) $(PDFOUT)
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml; \
+	xsltproc -xinclude --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex; \
+
+pdf-edition2:
+	install -d $(OUTPUT)
+	-rm -r $(PDFOUT)
+	install -d $(PDFOUT)
+	install -d $(PDFOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images || :
+	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
+	cp -a $(IMAGESSRC) $(PDFOUT) || :
+	cd $(PDFOUT); \
+	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
@@ -481,7 +497,7 @@ images:
 	-rm $(IMAGESOUT)/*.eps
 	-rm $(IMAGESOUT)/*.svg
 	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
-#	$(MB)/script/mbx -vv -c preview -d $(IMAGESOUT) $(OUTPUT)/merge.xml
+	$(MB)/script/mbx -vv -c preview $(OUTPUT)/preview $(OUTPUT)/merge.xml
 #	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 # run this to scrape thumbnail images from YouTube for any YouTube videos
@@ -495,7 +511,8 @@ preview:
 	install -d $(OUTPUT)
 	install -d $(IMAGESOUT)
 	-rm $(IMAGESOUT)/*.png
-	$(MB)/script/mbx -vv -c preview -d $(IMAGESOUT) $(OUTPUT)/merge.xml
+	-rm $(PREVIEW)/*.png
+	$(MB)/script/mbx -vv -c preview -d $(OUTPUT)/preview $(OUTPUT)/merge.xml
 
 
 ###########
