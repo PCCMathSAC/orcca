@@ -7,9 +7,10 @@
 <!-- Intend output for rendering by xelatex -->
 <xsl:output method="text" />
 
-<!-- Omit objectives and CCOGs -->
+<!-- Omit objectives, CCOGs, worksheets -->
 <xsl:template match="objectives" />
 <xsl:template match="appendix[@xml:id='appendix-ccogs']" />
+<xsl:template match="worksheet" />
 
 <!-- Omit alternative video lessons; important to increment counter -->
 <xsl:template match="figure[contains(child::caption,'Alternative Video Lesson')]">
