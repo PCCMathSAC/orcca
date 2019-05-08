@@ -95,7 +95,7 @@ SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-extraction:
-	-rm -r $(WWOUT)
+	-rm -r $(WWOUT) || :
 	install -d $(WWOUT)
 	$(MB)/script/mbx -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
@@ -104,9 +104,9 @@ merge:
 	xsltproc --xinclude --stringparam webwork.extraction $(WWOUT)/webwork-extraction.xml $(MBXSL)/pretext-merge.xsl $(MAINFILE) > merge.xml
 
 pg:
+	-rm -r $(PGOUT) || :
 	install -d $(PGOUT)
 	cd $(PGOUT); \
-	rm -r ORCCA; \
 	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
 
 pdf-ptx:
@@ -127,7 +127,7 @@ pdf-ptx:
 
 pdf-edition2:
 	install -d $(OUTPUT)
-	-rm -r $(PDFOUT)
+	-rm -r $(PDFOUT) || :
 	install -d $(PDFOUT)
 	install -d $(PDFOUT)/images
 	install -d $(IMAGESOUT)
@@ -141,6 +141,7 @@ pdf-edition2:
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
+# This was edition 1
 pdf:
 	install -d $(OUTPUT)
 	install -d $(PDFOUT)
@@ -474,45 +475,32 @@ pdf:
 #  Output lands in the subdirectory:  $(HTMLOUT)
 html:
 	install -d $(OUTPUT)
-	-rm -r $(HTMLOUT)
+	-rm -r $(HTMLOUT) || :
 	install -d $(HTMLOUT)
 	install -d $(HTMLOUT)/images
 	install -d $(IMAGESOUT)
 	install -d $(IMAGESSRC)
-	cp -a $(IMAGESOUT) $(HTMLOUT)
-	cp -a $(IMAGESSRC) $(HTMLOUT)
-	cp -a $(WWOUT)/*.png $(HTMLOUT)/images
-	cp -a $(PRJSRC)/favicon $(HTMLOUT)
-	cp $(CSS) $(HTMLOUT)
+	cp -a $(IMAGESOUT) $(HTMLOUT) || :
+	cp -a $(IMAGESSRC) $(HTMLOUT) || :
+	cp -a $(WWOUT)/*.png $(HTMLOUT)/images || :
+	cp -a $(PRJSRC)/favicon $(HTMLOUT) || :
+	cp $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
 	xsltproc -xinclude --stringparam watermark.text "DRAFT 2nd ED" --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
+# latex-image images
+# youtube thumbnails
+# interative preview images
+# asymptote images
 images:
 	install -d $(OUTPUT)
+	-rm $(IMAGESOUT) || :	
 	install -d $(IMAGESOUT)
-	-rm $(IMAGESOUT)/*.tex
-	-rm $(IMAGESOUT)/*.pdf
-	-rm $(IMAGESOUT)/*.png
-	-rm $(IMAGESOUT)/*.eps
-	-rm $(IMAGESOUT)/*.svg
 	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
-	$(MB)/script/mbx -vv -c preview $(OUTPUT)/preview $(OUTPUT)/merge.xml
-#	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
-
-# run this to scrape thumbnail images from YouTube for any YouTube videos
-youtube:
-	install -d $(OUTPUT)
-	install -d $(IMAGESOUT)
-	-rm $(IMAGESOUT)/*.jpg
 	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(OUTPUT)/merge.xml
-
-preview:
-	install -d $(OUTPUT)
-	install -d $(IMAGESOUT)
-	-rm $(IMAGESOUT)/*.png
-	-rm $(PREVIEW)/*.png
-	$(MB)/script/mbx -vv -c preview -d $(OUTPUT)/preview $(OUTPUT)/merge.xml
+	$(MB)/script/mbx -c preview -d $(OUTPUT)/preview $(OUTPUT)/merge.xml
+#	$(MB)/script/mbx -c asymptote -f svg -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 
 
 ###########
@@ -535,7 +523,7 @@ check:
 
 gource:
 	install -d $(OUTPUT)
-	-rm $(OUTPUT)/gource.mp4
+	-rm $(OUTPUT)/gource.mp4 || :
 	-gource --user-filter 'Stephen Simonds' --title ORCCA --key --background-image src/images/orca3.png --user-image-dir .git/avatar/ --hide filenames --seconds-per-day 0.2 --auto-skip-seconds 1 -1280x720 -o - | ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264 -preset veryslow -pix_fmt yuv420p -crf 23 -threads 0 -bf 0 $(OUTPUT)/gource.mp4
 	-mv gource.mp4 $(OUTPUT)/gource.mp4
     
