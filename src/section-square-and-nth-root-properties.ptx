@@ -54,17 +54,57 @@
 
   <introduction permid="hXs">
     <p permid="pQm">
-      In this chapter,
-      we will learn how to both simplify square roots and to do operations with square roots.
+      In this section, we learn what expressions like <m>\sqrt{25}</m> and <m>\sqrt[3]{27}</m> mean,
+      and some of the properties they have that allow for simplification.
     </p>
-            <!-- TODO: Videos use prime factorization instead of factor pairs -->
+    <!-- TODO: Videos use prime factorization instead of factor pairs -->
     <figure permid="CeE">
       <caption>Alternative Video Lesson</caption>
       <video youtubeplaylist="PLmuZCPhWPt-ex0-JuRQ4P920Qz1x5LwUO"/>
     </figure>
+  </introduction>
+
+  <subsection>
+    <title>Square Roots</title>
+    <sidebyside widths="47% 47%" margins="0%">
+      <stack>
+        <p>
+          Consider the non-negative number <m>25</m>.
+          You can ask the question <q>what number multiplies by itself to make <m>25</m>?</q>
+          We use the symbol <m>\sqrt{25}</m> to represent the answer to this question,
+          whether or not you know the <q>answer</q>.
+        </p>
+        <p>
+          A geometric visualization of the same idea is to imagine a square with <m>25</m> units of area inside it.
+          What would a side length have to be? We use <m>\sqrt{25}</m> to represent that side length.
+        </p>
+      </stack>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}[baseline=(D.base)]
+            \node[node distance=0cm, inner xsep=0cm] (A) at (0,0) {$(\phantom{5})$};
+            \node[node distance=0cm, inner xsep=0cm, right=of A] (B) {$(\phantom{5})$}; 
+            \node[node distance=0cm, inner xsep=0cm, right=of B] (C) {${}=25$}; 
+            \node[above=1cm of $(A)!0.5!(B)$] (D) {$\sqrt{25}$};
+            \draw[->] (D.south) -- (A.north);
+            \draw[->] (D.south) -- (B.north);
+          \end{tikzpicture}
+          \begin{tikzpicture}[baseline=(A.base)]
+            \draw[fill=firstcolor!30] (0,0) -- (5,0) -- (5,5) -- (0,5) -- cycle;
+            \node[below] at (2.5,0) {$\sqrt{25}$};
+            \node[left] at (0,2.5) {$\sqrt{25}$};
+            \node (A) at (2.5,2.5) {25};
+            \foreach \i in {1,2,3,4} {
+              \draw[gray,very thin] (\i,0) -- (\i,5);
+              \draw[gray,very thin] (0,\i) -- (5,\i);
+            };
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </sidebyside>
 
     <definition xml:id="definition-square-root" permid="VJa">
-      <title>The Definition of the Square Root of a Number</title>
+      <title>Square Root</title>
       <idx>square root</idx>
 
       <notation>
@@ -74,15 +114,16 @@
 
       <statement>
         <p permid="DjX">
-          If <m>y^2=x</m> for a positive number <m>y</m>,
-          then <m>y</m> is called the <term>square root</term>
+          Given a non-negative number <m>x</m>,
+          if <m>r^2=x</m> for some positive number <m>r</m>,
+          then <m>r</m> is called the <term>square root</term>
               <idx><h>square root</h></idx>
-          of <m>x</m>, and we write <m>y=\sqrt{x}</m>,
-          where the <m>\sqrt{\phantom{x}}</m> symbol is called the <term>radical</term>
+          of <m>x</m>, and we can write <m>\sqrt{x}</m> instead of <m>r</m>.
+          The <m>\sqrt{\phantom{x}}</m> symbol is called the <term>radical</term>
               <idx><h>radical</h></idx>
           or the <term>root</term>.
               <idx><h>root</h></idx>
-          We call expressions with a root symbol
+          We call expressions with the <m>\sqrt{\phantom{x}}</m> symbol
           <term>radical expressions</term>.
           The number inside the radical is called the <term>radicand</term>.
               <idx><h>radicand</h></idx>
@@ -90,14 +131,20 @@
       </statement>
     </definition>
 
-    <p permid="VXv">
-      For example, since <m>4^2=16</m>, then <m>\sqrt{16}=4</m>.
-      Both <m>\sqrt{2}</m> and <m>3\sqrt{2}</m> are radical expressions.
-      In both expressions, the number <m>2</m> is the radicand.
-      You can review the square root basics in <xref ref="section-absolute-value-and-square-root">Section</xref>.
+    <p>
+      For example, if you are confronted with the expression <m>\sqrt{16}</m>,
+      you should think about the equation <m>r\cdot r=16</m> (or if you prefer, <m>r^2=16</m>)
+      and ask yourself if you know a positive value for <m>r</m> that solves that equation.
+      Of course, <m>4</m> is a non-negative solution.
+      So we an say <m>\sqrt{16}=4</m>.
     </p>
 
-    <sidebyside widths="59% 35%" margins="0%" permid="BQj">
+    <p>
+      To demonstrate more of the vocabulary, both <m>\sqrt{2}</m> and <m>3\sqrt{2}</m> are radical expressions.
+      In both expressions, the number <m>2</m> is the radicand.
+    </p>
+
+    <sidebyside widths="69% 25%" margins="0%" permid="BQj">
       <p permid="dBU">
         The word <q>radical</q> means something like <q>on the fringes</q>
         when used in politics, sports, and other places.
@@ -112,94 +159,320 @@
 
             <latex-image>
                 <![CDATA[\begin{tikzpicture}
-                    \draw [fill=firstcolor!30] (0,0) rectangle (5,5);
-                    \node at (2.5,2.5) {area $A$};
-                    \node[right] at (5,2.5) {$\sqrt{A}$};
-                    \node[below] at (2.5,0) {side length $\sqrt{A}$};
+                    \draw [fill=firstcolor!30] (0,0) rectangle (2.5,2.5);
+                    \node at (1.25,1.25) {area $A$};
+                    \node[right] at (2.5,1.25) {$\sqrt{A}$};
+                    \node[below] at (1.25,0) {side length $\sqrt{A}$};
                 \end{tikzpicture}]]>
             </latex-image>
         </image>
 
       </figure>
     </sidebyside>
-  </introduction>
-<!--TODO: add right triangle picture showing that \sqrt{12}=2*\sqrt{3}-->
-<!-- 7/31/18: Alex isn't sure what this means. Could make a square with area 12, cut into fourhts? -->
-  <subsection xml:id="estimating-square-root" permid="JBM">
-    <title>Estimating Square Roots</title>
+
+    <sidebyside widths="47% 47%" margins="0%" valign="bottom">
+      <stack>
+        <p>
+          The one-digit multiplication times table has special numbers along the diagonal.
+          They are known as <term>perfect squares</term>.
+              <idx><h>perfect squares</h></idx>
+          And for working with square roots,
+          it will be helpful if you can memorize these first few perfect square numbers.
+          For example, the times table tells us that <m>7\cdot7=49</m>.
+          Just knowing that fact from memory lets us know that <m>\sqrt{49}=7</m>.
+          It's advisable to memorize the following:
+        </p>
+
+        <tabular halign="center" permid="hvx">
+          <row>
+            <cell><m>\sqrt{0}=0</m></cell>
+            <cell><m>\sqrt{1}=1</m></cell>
+            <cell><m>\sqrt{4}=2</m></cell>
+          </row>
+          <row>
+            <cell><m>\sqrt{9}=3</m></cell>
+            <cell><m>\sqrt{16}=4</m></cell>
+            <cell><m>\sqrt{25}=5</m></cell>
+          </row>
+          <row>
+            <cell><m>\sqrt{36}=6</m></cell>
+            <cell><m>\sqrt{49}=7</m></cell>
+            <cell><m>\sqrt{64}=8</m></cell>
+          </row>
+          <row>
+            <cell><m>\sqrt{81}=9</m></cell>
+            <cell><m>\sqrt{100}=10</m></cell>
+            <cell><m>\sqrt{121}=11</m></cell>
+          </row>
+          <row>
+            <cell><m>\sqrt{144}=12</m></cell>
+            <cell><m>\sqrt{225}=15</m></cell>
+            <cell><m>\sqrt{256}=16</m></cell>
+          </row>
+        </tabular>
+      </stack>
+
+      <table xml:id="table-perfect-squares" permid="NCG">
+        <caption>Multiplication table with squares</caption>
+        <tabular top="major" bottom="minor" left="major" right="minor" halign="center" permid="tJP">
+          <col right="medium" />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col right="major"/>
+          <row bottom="medium">
+            <cell><m>\times</m></cell>
+            <cell><m>1</m></cell>
+            <cell><m>2</m></cell>
+            <cell><m>3</m></cell>
+            <cell><m>4</m></cell>
+            <cell><m>5</m></cell>
+            <cell><m>6</m></cell>
+            <cell><m>7</m></cell>
+            <cell><m>8</m></cell>
+            <cell><m>9</m></cell>
+          </row>
+          <row>
+            <cell><m>1</m></cell>
+            <cell><m>1</m></cell>
+            <cell><m>\lowlight{2}</m></cell>
+            <cell><m>\lowlight{3}</m></cell>
+            <cell><m>\lowlight{4}</m></cell>
+            <cell><m>\lowlight{5}</m></cell>
+            <cell><m>\lowlight{6}</m></cell>
+            <cell><m>\lowlight{7}</m></cell>
+            <cell><m>\lowlight{8}</m></cell>
+            <cell><m>\lowlight{9}</m></cell>
+          </row>
+          <row>
+            <cell><m>2</m></cell>
+            <cell><m>\lowlight{2}</m></cell>
+            <cell><m>4</m></cell>
+            <cell><m>\lowlight{6}</m></cell>
+            <cell><m>\lowlight{8}</m></cell>
+            <cell><m>\lowlight{10}</m></cell>
+            <cell><m>\lowlight{12}</m></cell>
+            <cell><m>\lowlight{14}</m></cell>
+            <cell><m>\lowlight{16}</m></cell>
+            <cell><m>\lowlight{18}</m></cell>
+          </row>
+          <row>
+            <cell><m>3</m></cell>
+            <cell><m>\lowlight{3}</m></cell>
+            <cell><m>\lowlight{6}</m></cell>
+            <cell><m>9</m></cell>
+            <cell><m>\lowlight{12}</m></cell>
+            <cell><m>\lowlight{15}</m></cell>
+            <cell><m>\lowlight{18}</m></cell>
+            <cell><m>\lowlight{21}</m></cell>
+            <cell><m>\lowlight{24}</m></cell>
+            <cell><m>\lowlight{27}</m></cell>
+          </row>
+          <row>
+            <cell><m>4</m></cell>
+            <cell><m>\lowlight{4}</m></cell>
+            <cell><m>\lowlight{8}</m></cell>
+            <cell><m>\lowlight{12}</m></cell>
+            <cell><m>16</m></cell>
+            <cell><m>\lowlight{20}</m></cell>
+            <cell><m>\lowlight{24}</m></cell>
+            <cell><m>\lowlight{28}</m></cell>
+            <cell><m>\lowlight{32}</m></cell>
+            <cell><m>\lowlight{36}</m></cell>
+          </row>
+          <row>
+            <cell><m>5</m></cell>
+            <cell><m>\lowlight{5}</m></cell>
+            <cell><m>\lowlight{10}</m></cell>
+            <cell><m>\lowlight{15}</m></cell>
+            <cell><m>\lowlight{20}</m></cell>
+            <cell><m>25</m></cell>
+            <cell><m>\lowlight{30}</m></cell>
+            <cell><m>\lowlight{35}</m></cell>
+            <cell><m>\lowlight{40}</m></cell>
+            <cell><m>\lowlight{45}</m></cell>
+          </row>
+          <row>
+            <cell><m>6</m></cell>
+            <cell><m>\lowlight{6}</m></cell>
+            <cell><m>\lowlight{12}</m></cell>
+            <cell><m>\lowlight{18}</m></cell>
+            <cell><m>\lowlight{24}</m></cell>
+            <cell><m>\lowlight{30}</m></cell>
+            <cell><m>36</m></cell>
+            <cell><m>\lowlight{42}</m></cell>
+            <cell><m>\lowlight{48}</m></cell>
+            <cell><m>\lowlight{54}</m></cell>
+          </row>
+          <row>
+            <cell><m>7</m></cell>
+            <cell><m>\lowlight{7}</m></cell>
+            <cell><m>\lowlight{14}</m></cell>
+            <cell><m>\lowlight{21}</m></cell>
+            <cell><m>\lowlight{28}</m></cell>
+            <cell><m>\lowlight{35}</m></cell>
+            <cell><m>\lowlight{42}</m></cell>
+            <cell><m>49</m></cell>
+            <cell><m>\lowlight{56}</m></cell>
+            <cell><m>\lowlight{63}</m></cell>
+          </row>
+          <row>
+            <cell><m>8</m></cell>
+            <cell><m>\lowlight{8}</m></cell>
+            <cell><m>\lowlight{16}</m></cell>
+            <cell><m>\lowlight{24}</m></cell>
+            <cell><m>\lowlight{32}</m></cell>
+            <cell><m>\lowlight{40}</m></cell>
+            <cell><m>\lowlight{48}</m></cell>
+            <cell><m>\lowlight{56}</m></cell>
+            <cell><m>64</m></cell>
+            <cell><m>\lowlight{72}</m></cell>
+          </row>
+          <row bottom="major">
+            <cell><m>9</m></cell>
+            <cell><m>\lowlight{9}</m></cell>
+            <cell><m>\lowlight{18}</m></cell>
+            <cell><m>\lowlight{27}</m></cell>
+            <cell><m>\lowlight{36}</m></cell>
+            <cell><m>\lowlight{45}</m></cell>
+            <cell><m>\lowlight{54}</m></cell>
+            <cell><m>\lowlight{63}</m></cell>
+            <cell><m>\lowlight{72}</m></cell>
+            <cell><m>81</m></cell>
+          </row>
+        </tabular>
+      </table>
+    </sidebyside>
+  </subsection>
+
+  <subsection permid="yWl">
+    <title>Square Root Decimal Values</title>
+    <p permid="kqd">
+      Most square roots have decimal places that go on forever.
+      Take <m>\sqrt{5}</m> as an example. The number <m>5</m> is in between two perfect squares,
+      <m>4</m> and <m>9</m>. Therefore, as demonstrated in <xref ref="figure-compare-square-roots">Figure</xref>,
+      <m>\sqrt{4}\lt\sqrt{5}\lt\sqrt{9}</m>. In other words,
+      <me>
+        2\lt\sqrt{5}\lt3
+      </me>
+      So <m>\sqrt{5}</m> has a decimal value somewhere in between <m>2</m> and <m>3</m>.
+    </p>
+    <figure xml:id="figure-compare-square-roots">
+      <caption><m>2\lt\sqrt{5}\lt3</m></caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \draw[] (0,0) --++ (3,0) --++ (0,3) --++ (-3,0) -- cycle;
+            \draw[fill=firstcolor!30] (0,0) --++ (2,0) --++ (0,2) --++ (-2,0) -- cycle;
+            \foreach \i in {1,2} {
+              \draw[gray,very thin] (\i,0) -- (\i,3);
+              \draw[gray,very thin] (0,\i) -- (3,\i);
+            };
+            \draw (0,0) --++ (2,0) --++ (0,2) --++ (-2,0) -- cycle;
+            \node at (1,1) {4};
+            \node (A) at (0,0) {};
+            \node (B) at (2,0) {};
+            \node (C) at (1,-1) {$\sqrt{4}$};
+            \draw (A.south) -- (C.west);
+            \draw (B.south) -- (C.east);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+            \draw[] (0,0) --++ (3,0) --++ (0,3) --++ (-3,0) -- cycle;
+            \draw[fill=secondcolor!30] (0,0) --++ (2.236,0) --++ (0,2.236) --++ (-2.236,0) -- cycle;
+            \foreach \i in {1,2} {
+              \draw[gray,very thin] (\i,0) -- (\i,3);
+              \draw[gray,very thin] (0,\i) -- (3,\i);
+            };
+            \draw (0,0) --++ (2.236,0) --++ (0,2.236) --++ (-2.236,0) -- cycle;
+            \node at (1.118,1.118) {5};
+            \node (A) at (0,0) {};
+            \node (B) at (2.236,0) {};
+            \node (C) at (1.118,-1) {$\sqrt{5}$};
+            \draw (A.south) -- (C.west);
+            \draw (B.south) -- (C.east);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+            \draw[fill=thirdcolor!30] (0,0) --++ (3,0) --++ (0,3) --++ (-3,0) -- cycle;
+            \foreach \i in {1,2} {
+              \draw[gray,very thin] (\i,0) -- (\i,3);
+              \draw[gray,very thin] (0,\i) -- (3,\i);
+            };
+            \node at (1.5,1.5) {9};
+            \node (A) at (0,0) {};
+            \node (B) at (3,0) {};
+            \node (C) at (1.5,-1) {$\sqrt{9}$};
+            \draw (A.south) -- (C.west);
+            \draw (B.south) -- (C.east);
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p permid="Qxm">
+      With a calculator, we can see:
+      <me permid="Vhf">
+        \sqrt{5}\approx2.236
+      </me>
+      Actually the decimal will not terminate,
+      and that is why we used the <m>\approx</m> symbol instead of an equals sign.
+      To get <m>2.236</m> we rounded down slightly from the true value of <m>\sqrt{5}</m>.
+      With a calculator, we can check that
+      <m>2.236^2=4.999696</m>, a little shy of <m>5</m>.
+    </p>
+
     <p permid="rFz">
       When the radicand is a perfect square,
       its square root is a rational number.
-      If the radicand is not a perfect square,
-      the square root is irrational.
+      If the radicand is not a perfect square, the square root is irrational.
+      (It has a decimal that goes on forever without any pattern that is easy to see.)
       We want to be able to estimate square roots without using a calculator.
     </p>
 
-    <p permid="XMI">
-      To estimate <m>\sqrt{10}</m>,
-      we can find the nearest perfect squares that are whole numbers on either side of <m>10</m>.
-      Recall that the perfect squares are
-      <m>1, 4, 9, 16, 25, 36, 49, 64,\dots</m> The perfect square that is just below <m>10</m> is <m>9</m> and the perfect square just above <m>10</m> is <m>16</m>.
-      This tells us that <m>\sqrt{10}</m> is between
-      <m>\sqrt{9}</m> and <m>\sqrt{16}</m>,
-      or between <m>3</m> and <m>4</m>.
-      We can also say that <m>\sqrt{10}</m> is much closer to <m>3</m> than <m>4</m> because <m>10</m> is closer to <m>9</m>,
-      so we think <m>3.1</m> or <m>3.2</m> would be a good estimate.
-    </p>
+    <example>
+      <p>
+        To estimate <m>\sqrt{10}</m> without a calculator,
+        we can find the nearest perfect squares that are whole numbers on either side of <m>10</m>.
+        Recall that the perfect squares are
+        <m>1, 4, 9, 16, 25, 36, 49, 64,\dots</m> The perfect square that is just below <m>10</m> is <m>9</m> and the perfect square just above <m>10</m> is <m>16</m>.
+      </p>
+      <image>
+        <latex-image>
+          <![CDATA[
+            \begin{tikzpicture}
+              \begin{axis}[numberline,
+                          xtick={9,10,16},
+                          minor xtick={0,...,20},
+                          xmin=0,
+                          xmax=20,
+                          ]
+                  \addplot[soliddot] coordinates {(9,0)};
+                  \addplot[soliddot] coordinates {(10,0)};
+                  \addplot[soliddot] coordinates {(16,0)};
+              \end{axis}
+            \end{tikzpicture}
+          ]]>
+        </latex-image>
+      </image>
+      <p>
+        This tells us that <m>\sqrt{10}</m> is between
+        <m>\sqrt{9}</m> and <m>\sqrt{16}</m>,
+        or between <m>3</m> and <m>4</m>.
+        We can also say that <m>\sqrt{10}</m> is much closer to <m>3</m> than <m>4</m> because <m>10</m> is closer to <m>9</m>,
+        so we think <m>3.1</m> or <m>3.2</m> would be a good estimate.
+      </p>
 
-    <p permid="DTR">
-      To check our estimate, let's find <m>\sqrt{10}</m> with a calculator:
-      <me permid="elO">
-        \sqrt{10}\approx3.162
-      </me>
-      The actual value is just above <m>3</m> as we estimated,
-      and between <m>3.1</m> and <m>3.2</m>.
-      Let's look at some more examples.
-    </p>
+      <p>
+        To check our estimates (<m>3.1</m> or <m>3.2</m>) we can square them and see if the result is close to <m>10</m>.
+        We find <m>3.1^2=9.61</m> and <m>3.2^2=10.24</m>, so our estimates are pretty good.
+      </p>
+    </example>
 
-    <exercise permid="wib">
-      <webwork>
-          <setup>
-
-            <pg-code>
-                Context("LimitedNumeric");
-                Context()->flags->set(tolType=>'absolute',tolerance=>'0.15');
-            </pg-code>
-          </setup>
-          <statement>
-            <p permid="ilN">
-              Estimate <m>\sqrt{19}</m> without a calculator.
-            </p>
-
-            <p permid="OsW">
-              <var name="'4.35'" width="5" />
-            </p>
-          </statement>
-          <solution permid="cig">
-            <p permid="Tyo">
-              The radicand, <m>19</m>, is between <m>16</m> and <m>25</m>,
-              so <m>\sqrt{19}</m> is between
-              <m>\sqrt{16}</m> and <m>\sqrt{25}</m>,
-              or between <m>4</m> and <m>5</m>.
-            </p>
-
-            <p permid="zFx">
-              To be more precise,
-              we notice that <m>19</m> is in the middle between <m>16</m> and <m>25</m> but closer to <m>16</m>.
-              We estimate <m>\sqrt{19}</m> to be about <m>4.4</m>.
-            </p>
-
-            <p permid="fMG">
-              We will check our estimate with a calculator:
-              <me permid="KsX">
-                \sqrt{19}\approx4.358
-              </me>
-            </p>
-          </solution>
-      </webwork>
-    </exercise>
-
-    <example permid="QaS">
+    <!-- <example permid="QaS">
       <statement>
         <p permid="jrg">
           Estimate <m>\sqrt{3.2}</m> without a calculator.
@@ -225,272 +498,653 @@
           </me>
         </p>
       </solution>
-    </example>
-  </subsection>
+    </example> -->
 
-  <subsection permid="pIV">
-    <title>Multiplication and Division Properties of Square Roots</title>
-    <p permid="kba">
-      Here is an example using perfect squares and the rules of exponents to show a relationship between the product of two square roots:
-      <md permid="WHp">
-        <mrow>\sqrt{9\cdot16}=\sqrt{3^2\cdot 4^2}=\sqrt{(3\cdot4)^2}=3\cdot4=12</mrow>
-        <intertext>and</intertext>
-        <mrow>\sqrt{9}\cdot\sqrt{16}=\sqrt{3^2}\cdot\sqrt{4^2}=3\cdot4=12</mrow>
-      </md>
-    </p>
-
-    <p permid="Qij">
-      Whether we multiply the radicands first or take the square roots first,
-      we get the same result.
-      This tells us that in multiplication with radicals,
-      we can combine factors into a single radical or separate them as needed.
-    </p>
-
-    <p permid="wps">
-      Now let's look at division.
-      When we learned how to find the square root of a fraction in <xref ref="section-absolute-value-and-square-root">Section</xref>,
-      we saw that the numerators and denominators could be simplified separately.
-      We multiply the numerators and denominators independently.
-      Here is an example of two different ways to simplify a fraction in a square root:
-      <md permid="COy">
-        <mrow>\sqrt{\frac{25}{9}}=\sqrt{\left(\frac{5}{3}\right)^2}=\frac{5}{3}</mrow>
-        <intertext>and</intertext>
-        <mrow>\frac{\sqrt{25}}{\sqrt{9}}=\frac{\sqrt{5^2}}{\sqrt{3^2}}=\frac{5}{3}</mrow>
-      </md>
-    </p>
-
-    <p permid="cwB">
-      Just like with multiplication,
-      we can separate the numerators and denominators in a radical expression or combine them as needed.
-      Note that we worked with expressions that were perfect squares,
-      but these properties will work regardless of the number inside the radical.
-      Let's summarize these properties.
-    </p>
-
-    <fact xml:id="fact-mult-div-square-root-properties" permid="cpk">
-      <title>Multiplication and Division Properties of Square Roots</title>
-      <idx><h>multiplication</h><h>property of square roots</h></idx>
-      <idx><h>division</h><h>property of square roots</h></idx>
-      <statement>
-        <p permid="xuL">
-          For any positive real numbers <m>x</m> and <m>y</m> we have the following properties:
-          <dl permid="ZnA">
-            <li xml:id="item-multiplication-property-of-square-roots" permid="WsU">
-              <title>Multiplication Property of Square Roots</title>
-              <p permid="iHm">
-                <m>\sqrt{x\cdot y}=\sqrt{x}\cdot\sqrt{y}</m>
-              </p>
-            </li>
-
-            <li xml:id="item-division-property-of-square-roots" permid="CAd">
-              <title>Division Property of Square Roots</title>
-              <p permid="OOv">
-                <m>\sqrt{\frac{x}{y}}=\frac{\sqrt{x}}{\sqrt{y}}</m>
-              </p>
-            </li>
-          </dl>
-        </p>
-      </statement>
-    </fact>
-  </subsection>
-
-  <subsection permid="VQe">
-    <title>Simplifying Square Roots</title>
-    <p permid="IDK">
-      We can use <xref ref="fact-mult-div-square-root-properties" text="title"/> to simplify a radicand that is not a perfect square.
-      Simplifying radicals is similar to simplifying fractions because we want the radicand to be as small as possible.
-    </p>
-
-    <p permid="oKT">
-      To understand why we can simplify radicals,
-      let's use a calculator to compare
-      <m>\sqrt{12}</m> and <m>2\sqrt{3}</m>.
-      <md permid="iVH">
-        <mrow>\sqrt{12}\amp=3.4641\ldots \amp\amp\text{and}\amp2\sqrt{3}\amp=3.4641\ldots</mrow>
-      </md>
-      These are equivalent expressions so let's see how we can simplify <m>\sqrt{12}</m> to <m>2\sqrt{3}</m>.
-    </p>
-
-    <p permid="USc">
-      First, we will make a table of factor pairs for the number <m>12</m>,
-      as we did in <xref ref="section-factoring-trinomials-with-leading-coefficient-one">Section</xref>.
-      <md permid="PcQ">
-        <mrow>1\amp\cdot12</mrow>
-        <mrow>2\amp\cdot6</mrow>
-        <mrow>3\amp\cdot4</mrow>
-      </md>
-    </p>
-
-    <p permid="AZl">
-      The factor pair with the largest perfect square is <m>3\cdot4</m>.
-      We will use the property of multiplying radicals to separate the perfect square from the other factor.
-      We write the perfect square first because it will end up in front of the radical.
-      <md permid="vjZ">
-        <mrow>\sqrt{12}\amp=\sqrt{4}\cdot\sqrt{3}</mrow>
-        <mrow>\amp=2\cdot\sqrt{3}</mrow>
-        <mrow>\amp=2\sqrt{3}</mrow>
-      </md>
-      This process can be used to simplify any square root,
-      or to determine that it is fully simplified.
-      Let's look at a few more examples.
-    </p>
-
-    <example permid="Iwt">
-      <statement>
-        <p permid="Pyp">
-          Simplify <m>\sqrt{72}</m>.
-        </p>
-      </statement>
-      <solution permid="ulK">
-        <sidebyside widths="47% 47%" margins="0%" permid="ARU">
-          <p permid="Epq">
-            Here is a table of factor pairs for the number <m>72</m>.
-            <md permid="bri">
-              <mrow>1\amp\cdot72\amp4\amp\cdot18</mrow>
-              <mrow>2\amp\cdot36\amp6\amp\cdot12</mrow>
-              <mrow>3\amp\cdot24\amp8\amp\cdot9</mrow>
-            </md>
-          </p>
-
-          <p permid="kwz">
-            The largest perfect square is <m>36</m> so we will rewrite <m>72</m> as <m>36\cdot2</m>.
-            <md permid="Hyr">
-              <mrow>\sqrt{72}\amp=\sqrt{36\cdot2}</mrow>
-              <mrow>\amp=\sqrt{36}\cdot\sqrt{2}</mrow>
-              <mrow>\amp=6\sqrt{2}</mrow>
-            </md>
-          </p>
-        </sidebyside>
-
-        <p permid="QDI">
-          Notice that if we had chosen
-          <m>4\cdot18</m> we could simplify the radical partially but we would need to continue and find the perfect square of <m>9</m> in <m>18</m>.
-        </p>
-      </solution>
-    </example>
-
-    <exercise permid="Ngm">
+    <exercise permid="wib">
       <webwork>
           <setup>
 
             <pg-code>
-                Context("LimitedRadical");
-                $answer=Formula("5sqrt(5)");
+                Context("LimitedNumeric");
+                Context()->flags->set(tolType=>'absolute',tolerance=>'0.15');
             </pg-code>
           </setup>
           <statement>
-            <p permid="uAf">
-              Simplify <m>\sqrt{125}</m>.
+            <p permid="ilN">
+              Estimate <m>\sqrt{19}</m> without a calculator.
             </p>
-            <instruction>
-              To type <m>\sqrt{\phantom{x}}</m>, use <c>sqrt( )</c>.
-            </instruction>
-            <p permid="aHo">
-              <var name="$answer" width="10" />
+
+            <p permid="OsW">
+              <var name="'4.35'" width="5" />
             </p>
           </statement>
-          <solution permid="Ipp">
-            <p permid="wKR">
-              Here is a table of factor pairs for the number <m>125</m>.
-              <md permid="nFA">
-                <mrow>1\amp\cdot125</mrow>
-                <mrow>5\amp\cdot25</mrow>
-              </md>
-              The largest perfect square is <m>25</m> so we will rewrite <m>125</m> as <m>25\cdot5</m>.
-              <md permid="TMJ">
-                <mrow>\sqrt{125}\amp=\sqrt{25\cdot5}</mrow>
-                <mrow>\amp=\sqrt{25}\cdot\sqrt{5}</mrow>
-                <mrow>\amp=5\sqrt{5}</mrow>
-              </md>
+          <solution permid="cig">
+            <p>
+              The radicand, <m>19</m>, is between <m>16</m> and <m>25</m>,
+              so <m>\sqrt{19}</m> is between
+              <m>\sqrt{16}</m> and <m>\sqrt{25}</m>,
+              or between <m>4</m> and <m>5</m>.
+              We notice that <m>19</m> is in the middle between <m>16</m> and <m>25</m> but closer to <m>16</m>.
+              We estimate <m>\sqrt{19}</m> to be about <m>4.4</m>.
+            </p>
+
+            <p permid="fMG">
+              We can check our estimate by calculating:
+              <me permid="KsX">
+                4.4^2=19.36
+              </me>
+              So <m>4.4^2</m> is close to <m>19</m>, and <m>4.4</m> is close to <m>\sqrt{19}</m>.
             </p>
           </solution>
       </webwork>
     </exercise>
+  </subsection>
 
-    <example permid="oDC">
+  <subsection xml:id="subsection-cube-root-and-higher-order-roots" permid="Jaa">
+    <title>Cube Root and Higher Order Roots</title>
+    <sidebyside widths="47% 47%" margins="0%">
+      <stack>
+        <p>
+          The concept behind a square root easily extends to a <term>cube root</term>.
+          What if we have a number in mind, like <m>64</m>,
+          and we would like to know what number can be multiplied with itself <em>three</em> times to make <m>64</m>?
+        </p>
+        <p>
+          A geometric visualization of the same idea is to imagine a cube with <m>64</m> units of area inside it.
+          What would an edge length have to be? We use <m>\sqrt[3]{64}</m> to represent that edge length.
+        </p>
+      </stack>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}[baseline=(E.base)]
+            \node[node distance=0cm, inner xsep=0cm] (A) at (0,0) {$(\phantom{4})$};
+            \node[node distance=0cm, inner xsep=0cm, right=of A] (B) {$(\phantom{4})$}; 
+            \node[node distance=0cm, inner xsep=0cm, right=of B] (C) {$(\phantom{4})$}; 
+            \node[node distance=0cm, inner xsep=0cm, right=of C] (D) {${}=64$}; 
+            \node[above=1cm of $(A)!0.5!(C)$] (E) {$\sqrt[3]{64}$};
+            \draw[->] (E.south) -- (A.north);
+            \draw[->] (E.south) -- (B.north);
+            \draw[->] (E.south) -- (C.north);
+          \end{tikzpicture}
+          \begin{tikzpicture}[baseline=(A.base)]
+            \coordinate (v) at (14,12);
+            \foreach \i in {0,...,4}{
+            \draw (\i,0) -- (\i,4) -- ( $ (\i,4)!.142!(v) $ );
+            }
+            \foreach \j in {0,...,4}{
+            \draw (0,\j) -- (4,\j) -- ( $ (4,\j)!.142!(v) $ );
+            }
+            \foreach \k in {0.04,0.076,0.110,0.142}{
+            \draw ( $ (4,0)!{\k}!(v) $) -- ( $ (4,4)!{\k}!(v) $) -- ( $ (0,4)!{\k}!(v) $);
+            }
+            \coordinate (A) at (0,2);
+            \node[below] at (2,0) {$\sqrt[3]{64}$};
+            \node[left] at (0,2) {$\sqrt[3]{64}$};
+            \path (4,0) -- ( $ (4,0)!.142!(v) $ ) node[sloped,below,pos=0.5] {$\sqrt[3]{64}$};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </sidebyside>
+
+    <definition xml:id="definition-nth-root">
+      <title><m>n</m>th Root</title>
+      <idx>nth root</idx>
+
+      <notation>
+        <usage>\sqrt[n]{x}</usage>
+        <description>nth root</description>
+      </notation>
+
       <statement>
-        <p permid="vFy">
-          Simplify <m>\sqrt{30}</m>.
+        <p permid="DjX">
+          Given a number <m>x</m>,
+          if <m>\overbrace{r\cdot r\cdot \cdots \cdot r}^{n\text{ times}}=x</m> for some number <m>r</m>,
+          then <m>r</m> is called an <term><m>n</m>th root</term>
+              <idx><h sortby="nth root"><m>n</m>th root</h></idx>
+          of <m>x</m>. (Or if you prefer, when <m>r^n=x</m>.)
+          <ul>
+            <li>
+              <p>
+                When <m>n</m> is odd, there is always exactly one real number <m>n</m>th root for any <m>x</m>,
+                and we can write <m>\sqrt[n]{x}</m> to mean that one <m>n</m>th root.
+              </p>
+            </li>
+            <li>
+              <p>
+                When <m>n</m> is even and <m>x</m> is positive, there are two real number <m>n</m>th roots,
+                one of which is positive and the other of which is negative.
+                We can write <m>\sqrt[n]{x}</m> to mean the positive <m>n</m>th root.
+              </p>
+            </li>
+            <li>
+              <p>
+                When <m>n</m> is even and <m>x</m> is negative, there aren't any real number <m>n</m>th roots,
+                and we say that <m>\sqrt[n]{x}</m> is <q>undefined</q> or <q>does not exist</q>.
+              </p>
+            </li>
+          </ul>
+        </p>
+        <p>
+          The <m>\sqrt[n]{\phantom{x}}</m> symbol is called the <term><m>n</m>th radical</term>
+              <idx><h sortby="nth radical"><m>n</m>th radical</h></idx>
+          or the <term><m>n</m>th root</term>.
+              <idx><h sortby="nth root"><m>n</m>th root</h></idx>
+          We call expressions with the <m>\sqrt[n]{\phantom{x}}</m> symbol
+          <term>radical expressions</term>.
+          The number inside the radical is called the <term>radicand</term>.
+              <idx><h>radicand</h></idx>
+          The <term>index</term>
+              <idx><h>index</h></idx>
+          of a radical is the number <m>n</m>
+          in <m>\sqrt[n]{\phantom{x}}</m>.
         </p>
       </statement>
-      <solution permid="asT">
-        <sidebyside widths="47% 47%" margins="0%" permid="gZd">
-          <p permid="cSa">
-            Here is a table of factor pairs for the number <m>30</m>.
-            <md permid="zTS">
-              <mrow>1\amp\cdot30\amp3\amp\cdot10</mrow>
-              <mrow>2\amp\cdot15\amp5\amp\cdot6</mrow>
-            </md>
-          </p>
+    </definition>
 
-          <p permid="IZj">
-            The number <m>30</m> does not have any factors that are perfect squares so it cannot be simplified further.
-          </p>
-        </sidebyside>
-      </solution>
-    </example>
-
-    <p permid="hgu">
-      We can also use <xref ref="item-division-property-of-square-roots" text="title" /> to simplify expressions.
+    <p>
+      As noted earlier, when we have <m>\sqrt[3]{\phantom{x}}</m>,
+      we can say <q>cube root</q> instead of <q><m>3</m>rd root</q>.
+      Also, when we have <m>\sqrt[2]{\phantom{x}}</m>,
+      we can say <q>square root</q> instead of <q><m>2</m>nd root</q> and we can simply write <m>\sqrt{x}</m> intead.
     </p>
 
-    <example permid="UKL">
-      <statement>
-        <p permid="bMH">
-          <ol label="a." cols="2" permid="tgr">
-            <li permid="xQk">
-              <p permid="uVE">
-                Simplify <m>\sqrt{\frac{9}{16}}</m>.
-              </p>
-            </li>
+    <p>
+      For some examples of <m>n</m>th roots:
+      <ul>
+        <li>
+          <p>
+            <m>\sqrt[3]{8}=2</m>, because <m>\overbrace{2\cdot2\cdot2}^{\text{3 instances}}=8</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\sqrt[4]{81}=3</m>, because <m>\overbrace{3\cdot3\cdot3\cdot3}^{\text{4 instances}}=81</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\sqrt[5]{-32}=-2</m>, because <m>\overbrace{(-2)\cdot(-2)\cdot(-2)\cdot(-2)\cdot(-2)}^{\text{5 instances}}=-32</m>.
+          </p>
+        </li>
+      </ul>
+    </p>
 
-            <li permid="dXt">
-              <p permid="bcN">
-                Simplify <m>\frac{\sqrt{50}}{\sqrt{2}}</m>.
-              </p>
-            </li>
-          </ol>
+    <p>
+      As with square roots, in general an <m>n</m>th root's decimal value is a decimal that goes on forever.
+      For example, <m>\sqrt[3]{20}\approx2.714\ldots</m>.
+      For practical applications, we may want to use a calculator to find a decimal approximation
+      to an <m>n</m>th root.
+      Some calculators will do this for you directly, and some will not.
+      <ul>
+        <li>
+          <p>
+            Maybe your calculator has a button that looks like <m>\sqrt[x]{y}</m>.
+            Then you should be able to type something like <c>3 </c><m>\sqrt[x]{y}</m><c> 20</c>
+            to get <m>\sqrt[3]{20}\approx2.714\ldots</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            Maybe your calculator has a button that looks like <m>\sqrt[n]{\phantom{y}}</m>.
+            Then you should be able to type something like <c>3 </c><m>\sqrt[n]{\phantom{y}}</m><c> 20</c>
+            to get <m>\sqrt[3]{20}\approx2.714\ldots</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            Maybe your calculator allows you to type letters, parentheses, and commas,
+            and you can type <c>root(3,20)</c> to get <m>\sqrt[3]{20}\approx2.714\ldots</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            Maybe your calculator allows you to type letters, parentheses, and commas,
+            but the syntax for an <m>n</m>th root is reversed from the last example,
+            and you can type <c>root(20,3)</c> to get <m>\sqrt[3]{20}\approx2.714\ldots</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If your calculator has none of the above options,
+            then you should be able to type <c>20^(1/3)</c> as a way to get <m>\sqrt[3]{20}\approx2.714\ldots</m>.
+            This is technically using mathematics we will learn in <xref ref="section-radical-expressions-and-rational-exponents">Section</xref>.
+          </p>
+        </li>
+      </ul>
+      Try using your own calculator to calculate <m>\sqrt[3]{20}</m>
+      so that you can become familiar with whatever method it uses.
+    </p>
+
+    <example>
+      <sidebyside widths="70% 24%" margins="0%">
+        <p>
+          A pyramid has a square base, and its height is equal to one side length of the square at its base.
+          In this situation, the volume <m>V</m> of the pyramid,
+          in <quantity><unit base="inch" exp="3"/></quantity>,
+          is given by <m>V=\frac{1}{3}s^3</m>,
+          where <m>s</m> is the pyramid's base side length in <quantity><unit base="inch"/></quantity>.
+          Archimedes droppped the pyramid in a bathtub, and judging by how high the water level rose,
+          the volume of the pyramid is <quantity><mag>243</mag><unit base="inch" exp="3"/></quantity>
+          (a little more than <quantity><mag>1</mag><unit base="gallon"/></quantity>).
+          How tall is the pyramid?
+        </p>
+        <image>
+          <latex-image>
+            \tdplotsetmaincoords{70}{-20}
+            \begin{tikzpicture}[tdplot_main_coords,line cap=butt,line join=bevel]
+              \pgfmathsetmacro{\B}{2}
+              \pgfmathsetmacro{\H}{2}
+              \draw[firstcolor,thick] (-\B/2,-\B/2,0) -- (\B/2,-\B/2,0) -- (\B/2,\B/2,0) -- (-\B/2,\B/2,0) -- cycle;
+              \node[below left] at (-\B/2,0,0) {$s$};
+              \node[below] at (0,-\B/2,0) {$s$};
+              \draw[firstcolor,thick] (\B/2,\B/2,0) -- (0,0,\H);
+              \draw[dashed,firstcolor] (0,0,0) -- (0,0,\H) coordinate[midway](aux1);
+              \draw[firstcolor] (0,0,0.3) -- (0.3,0,0.3) -- (0.3,0,0);
+              \coordinate (aux3) at (1,0,0);
+              \draw[firstcolor,thick,fill=secondcolor,fill opacity=0.3] (-\B/2,-\B/2,0) -- (0,0,\H) -- (\B/2,-\B/2,0) -- cycle;
+              \draw[firstcolor,thick,fill=firstcolor,fill opacity=0.3] (-\B/2,-\B/2,0) -- (0,0,\H) -- (-\B/2,\B/2,0) -- cycle;
+              \begin{scope}[tdplot_screen_coords]
+                \draw (aux1) -- ++ (1,0.1) node[right,font=\itshape] {$s$};
+              \end{scope}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </sidebyside>
+      <p>
+        The equation tells us that:
+        <me>
+          243=\frac{1}{3}s^3
+        </me>
+        We can multiply on both sides by <m>3</m> and:
+        <me>
+          729=s^3
+        </me>
+        This means that <m>s</m> is <m>\sqrt[3]{729}</m>. A calculator tells us that this is <m>9</m>.
+        So the pyramid's height is <m>9</m> inches.
+      </p>
+    </example>
+
+      <!-- Move this to a later point. -->
+      <!-- One major difference between a cube root and a square root is that we can find the cube root of negative numbers.
+      For example:
+      <me permid="CmM">
+        (-4)(-4)(-4)=-64\text{, so }\sqrt[3]{-64}=-4
+      </me>
+      However, <m>\sqrt{-64}</m> is non-real and in general we cannot take the square root of a negative number. -->
+
+      <!-- Do we really need cube root estimation? Commenting out for now. -->
+
+    <!-- <p permid="XkW">
+      We can also estimate the value of a cube root,
+      like <m>\sqrt[3]{10}</m>, by knowing the perfect cubes nearby:
+      <md permid="OBe">
+        <mrow>\sqrt[3]{8}\amp=2\amp\sqrt[3]{10}\amp=\mathord{?}\amp\sqrt[3]{27}\amp=3</mrow>
+      </md>
+      Since <m>10</m> is between the perfect cubes <m>8</m> and <m>27</m>,
+      <m>\sqrt[3]{10}</m> must be between <m>2</m> and <m>3</m>,
+      and closer to <m>2</m>.
+      We can use a calculator to verify <m>\sqrt[3]{10}\approx2.154</m>
+    </p> -->
+
+
+    <!-- This example feels "too much" for MTH 65. -->
+
+    <!-- <example permid="MEA">
+      <statement>
+        <p permid="xYs">
+          Nasim makes solid copper spheres for their grounding and healing properties.
+          A sphere's radius can be calculated by the formula <m>r(V)=\sqrt[3]{\frac{3V}{4\pi}}</m>,
+          where <m>r(V)</m> stands for the sphere's radius for a given volume <m>V</m>.
+          If Nasim uses <m>2</m> cubic inches of copper per sphere,
+          what diameter should he list on his website?
+          Round your answer to two decimal places.
         </p>
       </statement>
-      <solution permid="GAc">
-        <p permid="pgs">
-          <ol label="a." cols="2" permid="gRZ">
-            <li permid="KeC">
-              <p permid="HjW">
-                For the first expression,
-                we will use the <xref ref="item-division-property-of-square-roots" text="title" />:
-                <md permid="gbb">
-                  <mrow>\sqrt{\frac{9}{16}}\amp=\frac{\sqrt{9}}{\sqrt{16}}</mrow>
-                  <mrow>\amp=\frac{3}{4}</mrow>
-                </md>
-              </p>
-            </li>
+      <solution permid="LdI">
+        <p permid="aBb"> -->
+<!-- We will solve for <m>r</m> in the formula <m>V(r)=\frac{4}{3}\pi r^3</m>:<md>
+                    <mrow>V\amp=\frac{4}{3}\pi r^3</mrow>
+                    <mrow>\multiplyleft{3}V\amp=\multiplyleft{3}\frac{4}{3}\pi r^3</mrow>
+                    <mrow>3V\amp=4\pi r^3</mrow>
+                    <mrow>\frac{3V}{4\pi}\amp=\frac{4\pi r^3}{4\pi}</mrow>
+                    <mrow>\frac{3V}{4\pi}\amp=r^3</mrow>
+                    <mrow>\sqrt[3]{\frac{3V}{4\pi}}\amp=\sqrt[3]{r^3}</mrow>
+                    <mrow>\sqrt[3]{\frac{3V}{4\pi}}\amp=r</mrow>
+                    <mrow>r(V)\amp=\sqrt[3]{\frac{3V}{4\pi}}</mrow>
+                </md>Next, -->
+          <!-- First, to find the radius we will substitute
+          <m>\substitute{2}</m> in for <m>V</m>, and we have:
+          <md permid="aPw">
+            <mrow>r(V)\amp=\sqrt[3]{\frac{3V}{4\pi}}</mrow>
+            <mrow>r(\substitute{2})\amp=\sqrt[3]{\frac{3(\substitute{2})}{4\pi}}</mrow>
+            <mrow>\amp\approx0.78</mrow>
+          </md>
+          The spheres will have a radius of approximately
+          <quantity>
+            <mag>0.78</mag><unit base="inch"/>
+          </quantity>.
+        </p>
 
-            <li permid="qlL">
-              <p permid="nrf">
-                For the second expression, we use the same property in reverse:
-                <m>\frac{\sqrt{x}}{\sqrt{y}}=\sqrt{\frac{x}{y}}</m>:
-                <md permid="Mik">
-                  <mrow>\frac{\sqrt{50}}{\sqrt{2}}\amp=\sqrt{\frac{50}{2}}</mrow>
-                  <mrow>\amp=\sqrt{25}</mrow>
-                  <mrow>\amp=5</mrow>
-                </md>
-              </p>
-            </li>
-          </ol>
+        <p permid="GIk">
+          When we calculate <m>\sqrt[3]{\frac{3(2)}{4\pi}}</m> with a calculator,
+          we enter <c>(3*2/(4π))^(1/3)</c>.
+          To find the diameter, we multiply the radius by <m>2</m> to get
+          <quantity>
+            <mag>1.56</mag><unit base="inch"/>
+          </quantity>.
+          Nasim can advertise the spheres to be 1.56 inches in diameter.
         </p>
       </solution>
-    </example>
+    </example> -->
   </subsection>
+
+  <subsection permid="LkD">
+    <title>Roots of Negative Numbers</title>
+    <p permid="cLE">
+      Can we find the square root of a negative number,
+      such as <m>\sqrt{-64}</m>?
+      How about its cube root, <m>\sqrt[3]{-64}</m>?
+    </p>
+
+    <p>
+      As noted in <xref ref="definition-nth-root">Defintion</xref>, when the index of an <m>n</m>th root is odd,
+      there will always be a real number <m>n</m>th root even when the radicand is negative.
+      For example, <m>\sqrt[3]{-64}</m> is <m>-4</m>, because <m>(-4)(-4)(-4)=-64</m>.
+    </p>
+
+    <p>
+      When the index of an <m>n</m>th root is even, it is a problem to have a negative radicand.
+      For example, to find <m>\sqrt{-64}</m>,
+      you would need to find a value <m>r</m> so that <m>r\cdot r=-64</m>.
+      But whether <m>r</m> is positive or negative, multiplying it by itself will give a positive result.
+      It could never be <m>-64</m>. So there is no way to have a real number square root of a negative number.
+      And the same thing is true for <em>any</em> even index <m>n</m>th root with a negative radicand,
+      such as <m>\sqrt[4]{-64}</m>.
+      An even-indexed root of a negative number is not a real number.
+    </p>
+
+    <aside permid="gSH">
+      <title>Imaginary Numbers</title>
+      <p permid="CtH">
+        Mathematicians imagined a new type of number,
+        neither positive nor negative,
+        that would multiply by itself to make a negative result.
+        But that is beyond the scope of this section.
+      </p>
+    </aside>
+
+    <p permid="ISN">
+      If you are confronted with an expression like <m>\sqrt{-25}</m> or <m>\sqrt[4]{-16}</m>
+      (any square root or even-indexed root of a negative number),
+      you can state that the expression <q>is not real</q>
+      or that it is <q>not defined</q> (as a real number). Don't get carried away though.
+      Expressions like <m>\sqrt[3]{-27}</m> and <m>\sqrt[5]{-1}</m> <em>are</em> defined,
+      because the index is odd.
+    </p>
+  </subsection>
+
+  <subsection>
+    <!-- Capitalization doesn't look right to me, but this is what capitalizemytitle.com says. -->
+    <title>Radical Rules Are like Exponent Rules</title>
+
+    <p>
+      In an earlier chapter, we learned some algebra rules for exponents.
+      A summary of these rules is in <xref ref="list-exponent-rules">List</xref>.
+      There are a couple of very similar rules for radicals, presented here without motivation.
+      (These rules are easier to explain once we study <xref ref="section-radical-expressions-and-rational-exponents">Section</xref>.)
+    </p>
+
+    <list xml:id="list-radical-rules">
+      <caption>Rules of Radicals for Multiplication and Division</caption>
+      <introduction>
+        <p>
+          If <m>a</m> and <m>b</m> are postive real numbers,
+          and <m>m</m> and <m>n</m> are positive integers,
+          then we have the following rules:
+        </p>
+      </introduction>
+
+      <dl>
+        <li xml:id="item-radical-rules-product">
+          <title>Root of a Product Rule</title>
+          <p>
+            <m>\sqrt[m]{a\cdot b} = \sqrt[m]{a} \cdot \sqrt[m]{b}</m>
+          </p>
+        </li>
+
+        <li xml:id="item-radical-rules-quotient">
+          <title>Root of a Quotient Rule</title>
+          <p>
+            <m>\sqrt[m]{\frac{a}{b}} = \frac{\sqrt[m]{a}}{\sqrt[m]{b}}</m>
+            as long as <m>b \neq 0</m>
+          </p>
+        </li>
+      </dl>
+    </list>
+
+    <p>
+      Knowing these algebra rules helps to make complicated radical expressions look simpler.
+    </p>
+
+    <example>
+      <p>
+        Simplify <m>\sqrt{18}</m>. Anything we can do to make the radicand a smaller simpler number is helpful.
+        Note that <m>18=9\cdot2</m>, so we can write
+        <md>
+          <mrow>\sqrt{18}\amp=\sqrt{9\cdot 2}</mrow>
+          <mrow>\amp=\sqrt{9}\cdot\sqrt{2}\amp\amp\text{according to }<xref ref="item-radical-rules-product" text="title"/></mrow>
+          <mrow>\amp=3\sqrt{2}</mrow>
+        </md>
+        This expression <m>3\sqrt{2}</m> is considered <q>simpler</q> than <m>\sqrt{18}</m> because the radicand is so much smaller.
+      </p>
+    </example>
+
+    <exercise>
+      <webwork>
+        <pg-macros>
+          <macro-file>contextForm.pl</macro-file>
+        </pg-macros>
+        <setup>
+          <pg-code>
+            Context("Form");
+            $a = Formula('6sqrt(2)');
+          </pg-code>
+        </setup>
+        <statement>
+          <p>
+            Simplify <m>\sqrt{72}</m>.
+          </p>
+          <instruction>
+            If you need to enter a sqare root, like <m>\sqrt{2}</m>, type <c>sqrt(2)</c>.
+          </instruction>
+          <p>
+            <var name="$a" width="15"/>
+          </p>
+        </statement>
+        <solution>
+          <p>
+            As with the previous example, it will help if <m>72</m> can be written as a product of a perfect square.
+            In this case, <m>4</m> divides <m>72</m>, and <m>72=4\cdot18</m>. So
+            <md>
+              <mrow>\sqrt{72}\amp=\sqrt{4\cdot18}</mrow>
+              <mrow>\amp=\sqrt{4}\sqrt{18}</mrow>
+              <mrow>\amp=2\sqrt{18}</mrow>
+            </md>
+            But we aren't done. Can <m>18</m> can be written as a product of a perfect square?
+            Yes, because <m>18=9\cdot2</m>. So
+            <md>
+              <mrow>\sqrt{72}\amp=2\sqrt{18}</mrow>
+              <mrow>\amp=2\sqrt{9\cdot2}</mrow>
+              <mrow>\amp=2\sqrt{9}\sqrt{2}</mrow>
+              <mrow>\amp=2\cdot3\sqrt{2}</mrow>
+              <mrow>\amp=6\sqrt{2}</mrow>
+            </md>
+            This is as simple as we can make this expression.
+          </p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <example>
+      <p>
+        Simplify <m>\sqrt[3]{80}</m>. Anything we can do to make the radicand a smaller simpler number is helpful.
+        With lessons learned from the previous examples,
+        maybe there is a way to rewrite <m>80</m> as the product of two numbers in a helpful way.
+        Since we have a <em>cube</em> root,
+        writing <m>80</m> as a product of a perfect <em>cube</em> would be helpful.
+        We can write <m>80=8\cdot10</m>, where <m>8</m> is a perfect cube.
+        <md>
+          <mrow>\sqrt[3]{80}\amp=\sqrt[3]{8\cdot 10}</mrow>
+          <mrow>\amp=\sqrt[3]{8}\cdot\sqrt[3]{10}\amp\amp\text{according to the }<xref ref="item-radical-rules-product" text="title"/></mrow>
+          <mrow>\amp=2\sqrt[3]{10}</mrow>
+        </md>
+        This expression <m>2\sqrt[3]{10}</m> is considered <q>simpler</q> than <m>\sqrt[3]{80}</m> because the radicand is so much smaller.
+      </p>
+    </example>
+
+    <exercise>
+      <webwork>
+        <pg-macros>
+          <macro-file>contextForm.pl</macro-file>
+        </pg-macros>
+        <setup>
+          <pg-code>
+            Context("Form");
+            $a = Formula('2root(4,3)');
+          </pg-code>
+        </setup>
+        <statement>
+          <p>
+            Simplify <m>\sqrt[4]{48}</m>.
+          </p>
+          <instruction>
+            If you need to enter a <m>4</m>th root, like <m>\sqrt[4]{2}</m>, type <c>root(4,2)</c>.
+          </instruction>
+          <p>
+            <var name="$a" width="15"/>
+          </p>
+        </statement>
+        <solution>
+          <p>
+            As with the previous example, it will help if <m>48</m> can be written as a product of a <m>4</m>th power.
+            In this case, <m>16</m> divides <m>48</m>, and <m>48=16\cdot3</m>. So
+            <md>
+              <mrow>\sqrt[4]{48}\amp=\sqrt[4]{16\cdot3}</mrow>
+              <mrow>\amp=\sqrt[4]{16}\sqrt[4]{3}</mrow>
+              <mrow>\amp=2\sqrt[4]{3}</mrow>
+            </md>
+            This is as simple as we can make this expression.
+          </p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <p>
+      When a radical is applied to a fraction, the <xref ref="item-radical-rules-quotient" text="title"/> is useful.
+    </p>
+
+    <example>
+      <p>
+        Simplify <m>\sqrt{\frac{8}{25}}</m>. According to the <xref ref="item-radical-rules-quotient" text="title"/>,
+        <md>
+          <mrow>\sqrt{\frac{8}{25}}\amp=\frac{\sqrt{8}}{\sqrt{25}}</mrow>
+          <mrow>\amp=\frac{\sqrt{8}}{5}</mrow>
+          <mrow>\amp=\frac{\sqrt{4\cdot2}}{5}</mrow>
+          <mrow>\amp=\frac{\sqrt{4}\sqrt{2}}{5}</mrow>
+          <mrow>\amp=\frac{2\sqrt{2}}{5}</mrow>
+        </md>
+        This is as simple as we can make this expression, unless you prefer to write it as <m>\frac{2}{5}\sqrt{2}</m>.
+      </p>
+    </example>
+
+
+    <exercise permid="ALy">
+      <webwork>
+        <pg-macros>
+          <macro-file>contextForm.pl</macro-file>
+        </pg-macros>
+        <setup>
+          <pg-code>
+            Context("Form");
+            $a[0] = Formula('1/6');
+            $a[1] = Formula('2/3');
+            $a[2] = OneOf(Formula('3root(3,3)/5'), Formula('3/5 root(3,3)'));
+          </pg-code>
+        </setup>
+        <statement>
+          <p>
+            <ol label="a." cols="3">
+              <li>
+                <p>
+                  <m>\sqrt{\dfrac{1}{36}}=</m><var name="$a[0]" width="25" />
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\sqrt[3]{\dfrac{8}{27}}=</m><var name="$a[1]" width="25" />
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\sqrt[3]{\dfrac{81}{125}}=</m><var name="$a[2]" width="25" />
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <ol label="a." cols="3">
+              <li>
+                <p>
+                  <m>
+                    \begin{aligned}[t]
+                      \sqrt{\frac{1}{25}}\amp=\frac{\sqrt{1}}{\sqrt{25}}\\
+                      \amp=\frac{1}{5}
+                    \end{aligned}
+                  </m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>
+                    \begin{aligned}[t]
+                      \sqrt[3]{\frac{8}{27}}\amp=\frac{\sqrt[3]{8}}{\sqrt[3]{27}}\\
+                      \amp=\frac{2}{3}
+                    \end{aligned}
+                  </m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>
+                    \begin{aligned}[t]
+                      \sqrt[3]{\frac{81}{125}}\amp=\frac{\sqrt[3]{81}}{\sqrt[3]{125}}\\
+                      \amp=\frac{\sqrt[3]{81}}{5}\\
+                      \amp=\frac{\sqrt[3]{27\cdot3}}{5}\\
+                      \amp=\frac{\sqrt[3]{27}\sqrt[3]{3}}{5}\\
+                      \amp=\frac{3\sqrt[3]{3}}{5}\\
+                    \end{aligned}
+                  </m>
+                </p>
+              </li>
+            </ol>
+          </p>
+        </solution>
+      </webwork>
+    </exercise>
+  </subsection>
+
 
   <subsection permid="BXn">
     <title>Multiplying Square Root Expressions</title>
-    <p permid="NnD">
-      If we use the <xref ref="item-multiplication-property-of-square-roots" text="title" /> and the <xref ref="item-division-property-of-square-roots" text="title" /> in the reverse order as
-      <md permid="spt">
-        <mrow>\sqrt{x}\cdot\sqrt{y}\amp=\sqrt{xy}\amp\amp \text{and}\amp \frac{\sqrt{x}}{\sqrt{y}}\amp=\sqrt{\frac{x}{y}}</mrow>
-      </md>,
-      we can use these properties to multiply and divide square root expressions.
+    <p>
+      We can use the <xref ref="item-radical-rules-product" text="title" />
+      and the <xref ref="item-radical-rules-quotient" text="title" /> to multiply and divide square root expressions.
       We want to simplify each radical first to keep the radicands as small as possible.
       Let's look at a few examples.
     </p>
@@ -498,7 +1152,7 @@
     <example permid="tnv">
       <statement>
         <p permid="HTQ">
-          Multiply <m>\sqrt{8}\cdot\sqrt{54}</m>.
+          Multiply <m>\sqrt{8}\sqrt{54}</m>.
         </p>
       </statement>
       <solution permid="mHl">
@@ -508,15 +1162,17 @@
           We do not want to multiply
           <m>8\cdot54</m> because we will end up with a larger number that is harder to factor.
           <md permid="YwC">
-            <mrow>\sqrt{8}\cdot\sqrt{54}\amp=\sqrt{4\cdot2}\cdot\sqrt{9\cdot6}</mrow>
+            <mrow>\sqrt{8}\sqrt{54}\amp=\sqrt{4\cdot2}\sqrt{9\cdot6}</mrow>
+            <mrow>\amp=\sqrt{4}\sqrt{2}\cdot\sqrt{9}\sqrt{6}</mrow>
             <mrow>\amp=2\sqrt{2}\cdot3\sqrt{6}</mrow>
-            <mrow>\amp=2\cdot3\sqrt{2\cdot6}</mrow>
-            <mrow>\amp=2\cdot3\sqrt{2\cdot2\cdot3}</mrow>
+            <mrow>\amp=6\sqrt{2}\sqrt{6}</mrow>
+            <mrow>\amp=6\sqrt{12}</mrow>
+            <mrow>\amp=6\sqrt{4\cdot3}</mrow>
+            <mrow>\amp=6\sqrt{4}\sqrt{3}</mrow>
             <mrow>\amp=6\cdot2\sqrt{3}</mrow>
             <mrow>\amp=12\sqrt{3}</mrow>
           </md>
-          We could have multiplied <m>2\cdot6</m> inside the radical to get <m>12</m> and then factored <m>12</m> into <m>4\cdot3</m>.
-          Whenever you find a pair of identical factors, this is a perfect square.
+          It is worth noting that this is considered as simple as we canmake it, because the radicand of <m>3</m> is so small.
         </p>
       </solution>
     </example>
@@ -561,7 +1217,7 @@
               <md permid="EDL">
                 <mrow>2\sqrt{7}\cdot3\sqrt{21}\amp=2\cdot3\cdot\sqrt{7}\cdot\sqrt{21}</mrow>
                 <mrow>\amp=6\cdot\sqrt{7}\cdot\sqrt{7\cdot3}</mrow>
-                <mrow>\amp=6\sqrt{7\cdot7\cdot3}</mrow>
+                <mrow>\amp=6\sqrt{49\cdot3}</mrow>
                 <mrow>\amp=6\cdot7\cdot\sqrt{3}</mrow>
                 <mrow>\amp=42\sqrt{3}</mrow>
               </md>
@@ -578,6 +1234,8 @@
       </statement>
       <solution permid="SOu">
         <p permid="hBT">
+          First multiply the fractions together under the radical.
+          Then look for further simplifications.
           <md permid="kKU">
             <mrow>\sqrt{\frac{6}{5}}\cdot\sqrt{\frac{3}{5}}\amp=\sqrt{\frac{6}{5}\cdot\frac{3}{5}}</mrow>
             <mrow>\amp=\sqrt{\frac{18}{25}}</mrow>
@@ -593,16 +1251,17 @@
   <subsection permid="iew">
     <title>Adding and Subtracting Square Root Expressions</title>
     <p permid="tuM">
-      We learned the <xref ref="item-multiplication-property-of-square-roots" text="title"/> previously and applied this to multiplication of square roots,
+      We learned the <xref ref="item-radical-rules-product" text="title"/> previously
+      and applied this to multiplication of square roots,
       but we cannot apply this property to the operations of addition or subtraction.
-      Here are two examples to demonstrate this:
+      Here are two examples to demonstrate why not.
       <md permid="QSd">
-        <mrow>\sqrt{9+16}\amp\stackrel{?}{=}\sqrt{9}+\sqrt{16}\amp\sqrt{169-25}\amp\stackrel{?}{=}\sqrt{169}-\sqrt{25}</mrow>
-        <mrow>\sqrt{25}\amp\stackrel{?}{=}3+4\amp\sqrt{144}\amp\stackrel{?}{=}13-5</mrow>
-        <mrow>5\amp\stackrel{\text{no}}{=}7\amp12\amp\stackrel{\text{no}}{=}8</mrow>
+        <mrow>\sqrt{9}+\sqrt{16}\amp\stackrel{?}{=}\sqrt{9+16}\amp\sqrt{169}-\sqrt{25}\amp\stackrel{?}{=}\sqrt{169-25}</mrow>
+        <mrow>3+4\amp\stackrel{?}{=}\sqrt{25}\amp13-5\amp\stackrel{?}{=}\sqrt{144}</mrow>
+        <mrow>7\amp\stackrel{\text{no}}{=}5\amp8\amp\stackrel{\text{no}}{=}12</mrow>
       </md>
-      We do not get the same result if we separate the radicals,
-      so we must complete any additions and subtractions inside the radical first.
+      We do not get the same result if we combine radical sums and differences
+      in the same way we can combine radical products and quotiens.
     </p>
 
     <p permid="ZBV">
@@ -610,15 +1269,10 @@
       we will need to recognize that we can only add and subtract like terms.
       In this case, we will call them
       <term>like radicals</term>.
-      In fact, adding like radicals will work just like adding like terms
-      <md permid="wZm">
-        <mrow>x+x\amp=2x</mrow>
-        <intertext>and</intertext>
-        <mrow>\sqrt{5}+\sqrt{5}\amp=2\sqrt{5}</mrow>
-      </md>
-      We can verify that the second equation is true by replacing <m>x</m> with
-      <m>\sqrt{5}</m> in the second equation.
-      Let's look at a few more examples.
+      Adding like radicals will work just like adding like terms.
+      In the same way that <m>x+3x=4x</m> combines two like terms,
+      <m>\sqrt{5}+3\sqrt{5}=4\sqrt{5}</m> combines two like radicals.
+      Let's look at a few examples.
     </p>
 
     <example permid="lIW">
@@ -629,13 +1283,13 @@
       </statement>
       <solution permid="yVD">
         <p permid="NJc">
+          First, simplify each radical.
+          Simplifying is the best way to understand whether or not we even have two like radicals that could be combined.
           <md permid="dgv">
             <mrow>\sqrt{2}+\sqrt{8}\amp=\sqrt{2}+\sqrt{4\cdot2}</mrow>
             <mrow>\amp=\sqrt{2}+2\sqrt{2}</mrow>
             <mrow>\amp=3\sqrt{2}</mrow>
           </md>
-          To help understand <m>\sqrt{2}+2\sqrt{2}=3\sqrt{2}</m>,
-          think of <m>x+2x=3x</m> or <q>a taco plus two tacos is three tacos.</q>
         </p>
       </solution>
     </example>
@@ -643,7 +1297,6 @@
     <exercise permid="eex">
       <webwork>
           <setup>
-
             <pg-code>
                 Context("LimitedRadical");
                 $answer=Formula("-10sqrt(3)");
@@ -702,11 +1355,12 @@
       <solution permid="LjV">
         <p permid="GeD">
           In this example,
-          we should multiply the latter two square roots first and then see if we have like radicals.
+          we should multiply the latter two square roots first (after simplifying them)
+          and then see if we have like radicals.
           <md permid="VBW">
             <mrow>\sqrt{6}-\sqrt{18}\cdot\sqrt{12}\amp=\sqrt{6}-\sqrt{9\cdot2}\cdot\sqrt{4\cdot3}</mrow>
             <mrow>\amp=\sqrt{6}-3\sqrt{2}\cdot2\sqrt{3}</mrow>
-            <mrow>\amp=\sqrt{6}-3\cdot2\cdot\sqrt{2}\cdot\sqrt{3}</mrow>
+            <mrow>\amp=\sqrt{6}-6\sqrt{2}\cdot\sqrt{3}</mrow>
             <mrow>\amp=\sqrt{6}-6\sqrt{6}</mrow>
             <mrow>\amp=-5\sqrt{6}</mrow>
           </md>
@@ -716,12 +1370,12 @@
   </subsection>
 
 
-  <subsection xml:id="subsection-more-complicated-square-root-operations" permid="usO">
-    <title>More Complicated Square Root Operations</title>
+  <subsection xml:id="subsection-distributing-with-square-roots" permid="usO">
+    <title>Distributing with Square Roots</title>
     <p permid="RXw">
       In <xref ref="section-multiplying-polynomials">Section</xref>,
       we learned how to multiply polynomials like <m>2(x+3)</m> and <m>(x+2)(x+3)</m>.
-      All the methods we learned apply when we multiply square root expressions.
+      All the methods we learned there apply when we multiply square root expressions.
       We will look at a few examples done with different methods.
     </p>
 
@@ -766,7 +1420,8 @@
       </statement>
       <solution permid="jMF">
         <p permid="KOw">
-          We will use the <acro>FOIL</acro> Method to do this problem:
+          We will use the <acro>FOIL</acro> Method to expand the product.
+          This time, there is an opportunity to simplify some of the radicals after multiplying.
           <md permid="mAh">
             <mrow>\left(\sqrt{6}+\sqrt{12}\right)\left(\sqrt{3}-\sqrt{2}\right)\amp=\sqrt{6}\sqrt{3}-\sqrt{6}\sqrt{2}+\sqrt{12}\sqrt{3}-\sqrt{12}\sqrt{2}</mrow>
             <mrow>\amp=\sqrt{18}-\sqrt{12}+\sqrt{36}-\sqrt{24}</mrow>
@@ -776,12 +1431,12 @@
       </solution>
     </example>
 
-    <p permid="yeF">
+    <!-- <p permid="yeF">
       When simplifying radicals it is useful to keep in mind that for any <m>x\ge 0</m>,
       <me permid="SHq">
         \sqrt{x}\cdot\sqrt{x}=x
       </me>.
-    </p>
+    </p> -->
 
     <example permid="OVz">
       <statement>
@@ -810,9 +1465,9 @@
       </statement>
       <solution permid="waX">
         <p permid="XcO">
-          We will again use the <acro>FOIL</acro> method to expand this expression,
-          but will note that it is a special form
-          <m>(a-b)(a+b)</m> and will simplify to <m>a^2-b^2</m>:
+          We can once again use the <acro>FOIL</acro> method to expand this expression.
+          (But it is worth noting that this expression is in the special form
+          <m>(a-b)(a+b)</m> and will simplify to <m>a^2-b^2</m>.)
           <md permid="eVI">
             <mrow>\left(\sqrt{5}-\sqrt{7}\right)\left(\sqrt{5}+\sqrt{7}\right)\amp=\left(\sqrt{5}\right)^2+\sqrt{5}\sqrt{7}-\sqrt{7}\sqrt{5}-\left(\sqrt{7}\right)^2</mrow>
             <mrow>\amp=5+\sqrt{35}-\sqrt{35}-7</mrow>
@@ -912,6 +1567,32 @@
             </solution>
         </example>
     </subsection>-->
+
+  <reading-questions>
+    <exercise>
+      <statement>
+        <p>
+          Is there a difference between <m>\sqrt[3]{2}</m> and <m>3\sqrt{2}</m>? Explain.
+        </p>
+      </statement>
+    </exercise>
+    <exercise>
+      <statement>
+        <p>
+          Choose one of the radical rules from <xref ref="list-radical-rules">List</xref>.
+          Then find its counterpart in the exponent rules from <xref ref="list-exponent-rules">List</xref>.
+        </p>
+      </statement>
+    </exercise>
+    <exercise>
+      <statement>
+        <p>
+          Describe a way you can visualize <m>\sqrt{81}</m> in a geometric shape.
+          Describe a way you can visualize <m>\sqrt[3]{27}</m> in a geometric shape.
+        </p>
+      </statement>
+    </exercise>
+  </reading-questions>
   <exercises permid="azX">
     <exercisegroup permid="GHg">
       <title>Review and Warmup</title>
@@ -1176,7 +1857,7 @@
     </exercisegroup>
 
     <exercisegroup cols="2" permid="jTJ">
-      <title>More Complicated Square Root Operations</title>
+      <title>Distributing with Square Roots</title>
       <exercise permid="WOt">
         <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/SimplifyRadicals100.pg" />
       </exercise>
@@ -1258,6 +1939,1014 @@
       </exercise>
 
     </exercisegroup>
+
+    <exercisegroup cols="3">
+      <title>Higher Index Roots</title>
+
+      <!-- root(n,x) with positive x, integer answers -->
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = Formula("$r");
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m><var name="$explanation"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>. Or if you prefer, since <m><var name="$explanation2"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = Formula("$r");
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m><var name="$explanation"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>. Or if you prefer, since <m><var name="$explanation2"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = Formula("$r");
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m><var name="$explanation"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>. Or if you prefer, since <m><var name="$explanation2"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = Formula("$r");
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m><var name="$explanation"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>. Or if you prefer, since <m><var name="$explanation2"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = Formula("$r");
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m><var name="$explanation"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>. Or if you prefer, since <m><var name="$explanation2"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = Formula("$r");
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Since <m><var name="$explanation"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>. Or if you prefer, since <m><var name="$explanation2"/> = <var name="$x"/></m>, then <m><var name="$expression"/>=<var name="$answer"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <!-- root(n,x) with negative x, integer or nonreal answers -->
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = -$r**($n);
+              } until (abs($x) &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = ($n % 2 == 1) ? Formula("-$r") : String('not a real number');
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+              if ($n % 2 == 1) {
+                $th = ($n == 3) ? 'rd' : 'th';
+                $explanationText =
+                  "Since $x is negative and $n is odd, a ${n}${th} root of $x exists and is equal to $r.";
+              }
+              else {
+                $explanationText =
+                  "Since $x is negative and $n is even, this is not a real number.";
+              }
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <var name="$explanationText"/>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = -$r**($n);
+              } until (abs($x) &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = ($n % 2 == 1) ? Formula("-$r") : String('not a real number');
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+              if ($n % 2 == 1) {
+                $th = ($n == 3) ? 'rd' : 'th';
+                $explanationText =
+                  "Since $x is negative and $n is odd, a ${n}${th} root of $x exists and is equal to $r.";
+              }
+              else {
+                $explanationText =
+                  "Since $x is negative and $n is even, this is not a real number.";
+              }
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <var name="$explanationText"/>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <!-- seed set to guarantee an even index -->
+      <exercise>
+        <webwork seed="4">
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = -$r**($n);
+              } until (abs($x) &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = ($n % 2 == 1) ? Formula("-$r") : String('not a real number');
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+              if ($n % 2 == 1) {
+                $th = ($n == 3) ? 'rd' : 'th';
+                $explanationText =
+                  "Since $x is negative and $n is odd, a ${n}${th} root of $x exists and is equal to $r.";
+              }
+              else {
+                $explanationText =
+                  "Since $x is negative and $n is even, this is not a real number.";
+              }
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <var name="$explanationText"/>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <!-- seed set to guarantee an even index -->
+      <exercise>
+        <webwork seed="5">
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = -$r**($n);
+              } until (abs($x) &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = ($n % 2 == 1) ? Formula("-$r") : String('not a real number');
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+              if ($n % 2 == 1) {
+                $th = ($n == 3) ? 'rd' : 'th';
+                $explanationText =
+                  "Since $x is negative and $n is odd, a ${n}${th} root of $x exists and is equal to $r.";
+              }
+              else {
+                $explanationText =
+                  "Since $x is negative and $n is even, this is not a real number.";
+              }
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <var name="$explanationText"/>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = -$r**($n);
+              } until (abs($x) &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = ($n % 2 == 1) ? Formula("-$r") : String('not a real number');
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+              if ($n % 2 == 1) {
+                $th = ($n == 3) ? 'rd' : 'th';
+                $explanationText =
+                  "Since $x is negative and $n is odd, a ${n}${th} root of $x exists and is equal to $r.";
+              }
+              else {
+                $explanationText =
+                  "Since $x is negative and $n is even, this is not a real number.";
+              }
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <var name="$explanationText"/>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = -$r**($n);
+              } until (abs($x) &lt;= 125);
+              $expression = Formula("root($n,$x)");
+              $answer = ($n % 2 == 1) ? Formula("-$r") : String('not a real number');
+              $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
+              $explanation2 = Formula("$r ^ $n");
+              if ($n % 2 == 1) {
+                $th = ($n == 3) ? 'rd' : 'th';
+                $explanationText =
+                  "Since $x is negative and $n is odd, a ${n}${th} root of $x exists and is equal to $r.";
+              }
+              else {
+                $explanationText =
+                  "Since $x is negative and $n is even, this is not a real number.";
+              }
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <var name="$explanationText"/>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <!-- root(n,x) with positive integer x, non-integer answers -->
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $X = $x*$y;
+              } until ($x &lt;= 125 and $X &lt;= 200);
+              $expression = Formula("root($n,$X)");
+              $answer = Formula("$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>\cdot <var name="$y"/>}</mrow>
+                <mrow>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>}\cdot \sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+                <mrow>\amp = <var name="$answer"/></mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $X = $x*$y;
+              } until ($x &lt;= 125 and $X &lt;= 200);
+              $expression = Formula("root($n,$X)");
+              $answer = Formula("$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>\cdot <var name="$y"/>}</mrow>
+                <mrow>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>}\cdot \sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+                <mrow>\amp = <var name="$answer"/></mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $X = $x*$y;
+              } until ($x &lt;= 125 and $X &lt;= 200);
+              $expression = Formula("root($n,$X)");
+              $answer = Formula("$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>\cdot <var name="$y"/>}</mrow>
+                <mrow>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>}\cdot \sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+                <mrow>\amp = <var name="$answer"/></mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $X = $x*$y;
+              } until ($x &lt;= 125 and $X &lt;= 200);
+              $expression = Formula("root($n,$X)");
+              $answer = Formula("$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>\cdot <var name="$y"/>}</mrow>
+                <mrow>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>}\cdot \sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+                <mrow>\amp = <var name="$answer"/></mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $X = $x*$y;
+              } until ($x &lt;= 125 and $X &lt;= 200);
+              $expression = Formula("root($n,$X)");
+              $answer = Formula("$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>\cdot <var name="$y"/>}</mrow>
+                <mrow>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>}\cdot \sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+                <mrow>\amp = <var name="$answer"/></mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $X = $x*$y;
+              } until ($x &lt;= 125 and $X &lt;= 200);
+              $expression = Formula("root($n,$X)");
+              $answer = Formula("$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>\cdot <var name="$y"/>}</mrow>
+                <mrow>\amp = \sqrt[<var name="$n"/>]{<var name="$x"/>}\cdot \sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+                <mrow>\amp = <var name="$answer"/></mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <!-- root(n,x) with positive fraction x, denominator is nth power -->
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$y/$x)");
+              $answer = Formula("1/$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$y"/>}}{\sqrt[<var name="$n"/>]{<var name="$x"/>}}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{1}{<var name="$r"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                $r = random(2,5,1);
+                $x = $r**($n);
+                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1);
+              } until ($x &lt;= 125);
+              $expression = Formula("root($n,$y/$x)");
+              $answer = Formula("1/$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$y"/>}}{\sqrt[<var name="$n"/>]{<var name="$x"/>}}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{1}{<var name="$r"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <!-- root(n,x) with positive fraction x, denominator is nth power, numerator has nth power factor -->
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                do {
+                  $r = random(2,5,1);
+                  $R = random(2,5,1);
+                } until (gcd($r,$R) == 1);
+                $x = $r**($n);
+                $z = $R**($n);
+                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
+                $Y = $z*$y;
+              } until ($x &lt;= 125 and $z &lt;= 125 and $Y &lt;= 200);
+              $expression = Formula("root($n,$Y/$x)");
+              $answer = Formula("$R/$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$Y"/>}}{\sqrt[<var name="$n"/>]{<var name="$x"/>}}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>\cdot <var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>}{<var name="$r"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                do {
+                  $r = random(2,5,1);
+                  $R = random(2,5,1);
+                } until (gcd($r,$R) == 1);
+                $x = $r**($n);
+                $z = $R**($n);
+                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
+                $Y = $z*$y;
+              } until ($x &lt;= 125 and $z &lt;= 125 and $Y &lt;= 200);
+              $expression = Formula("root($n,$Y/$x)");
+              $answer = Formula("$R/$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$Y"/>}}{\sqrt[<var name="$n"/>]{<var name="$x"/>}}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>\cdot <var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>}{<var name="$r"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                do {
+                  $r = random(2,5,1);
+                  $R = random(2,5,1);
+                } until (gcd($r,$R) == 1);
+                $x = $r**($n);
+                $z = $R**($n);
+                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
+                $Y = $z*$y;
+              } until ($x &lt;= 125 and $z &lt;= 125 and $Y &lt;= 200);
+              $expression = Formula("root($n,$Y/$x)");
+              $answer = Formula("$R/$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$Y"/>}}{\sqrt[<var name="$n"/>]{<var name="$x"/>}}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>\cdot <var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>}{<var name="$r"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <pg-code>
+              Context("Form");
+              do {
+                $n = random(3,6,1);
+                do {
+                  $r = random(2,5,1);
+                  $R = random(2,5,1);
+                } until (gcd($r,$R) == 1);
+                $x = $r**($n);
+                $z = $R**($n);
+                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
+                $Y = $z*$y;
+              } until ($x &lt;= 125 and $z &lt;= 125 and $Y &lt;= 200);
+              $expression = Formula("root($n,$Y/$x)");
+              $answer = Formula("$R/$r root($n,$y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>
+              Simplify <m><var name="$expression"/></m>.
+            </p>
+            <instruction>To enter <m>\sqrt[n]{x}</m>, type <c>root(n, x)</c>. If the value is not a real number, enter <c>not a real number</c>.</instruction>
+            <p>
+              <var name="$answer" width="30"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow><var name="$expression"/>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$Y"/>}}{\sqrt[<var name="$n"/>]{<var name="$x"/>}}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>\cdot <var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{\sqrt[<var name="$n"/>]{<var name="$z"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>\sqrt[<var name="$n"/>]{<var name="$y"/>}}{<var name="$r"/>}</mrow>
+                <mrow>\amp = \frac{<var name="$R"/>}{<var name="$r"/>}\sqrt[<var name="$n"/>]{<var name="$y"/>}</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+
+      <!-- <exercise permid="frY">
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/EvaluateOtherRoots10.pg" />
+      </exercise>
+
+      <exercise permid="frY">
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/EvaluateOtherRoots10.pg" />
+      </exercise>
+
+      <exercise permid="Lzh">
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/EvaluateOtherRoots20.pg" />
+      </exercise>
+
+      <exercise permid="Lzh">
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/EvaluateOtherRoots20.pg" />
+      </exercise>
+
+
+      <exercise permid="DUI">
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/EstimateRadical20.pg" />
+      </exercise>
+
+      <exercise permid="kbR">
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalsAndRationalExponents/EstimateRadical20.pg" />
+      </exercise> -->
+
+
         <!-- <exercisegroup>
             <introduction>
                 <p>Trigonometry Ratios</p>
