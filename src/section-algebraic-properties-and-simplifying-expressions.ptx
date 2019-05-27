@@ -2138,35 +2138,254 @@
       <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/SimplifyInContext10.pg" />
     </exercise>
 
-    <exercisegroup cols="3" permid="bJU">
-
-      <exercise permid="zvG">
-        <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/DistributiveProperty41.pg" />
-      </exercise>
-
-      <exercise permid="fCP">
-        <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/DistributiveProperty41.pg" />
-      </exercise>
-
-      <exercise permid="LJY">
-        <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/DistributiveProperty51.pg" />
-      </exercise>
-
-      <exercise permid="rRh">
-        <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/DistributiveProperty51.pg" />
-      </exercise>
-
-      <exercise permid="XYq">
-        <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/DistributiveProperty52.pg" />
-      </exercise>
-
-      <exercise permid="Efz">
-        <webwork source="Contrib/PCC/BasicAlgebra/AlgebraicProperties/DistributiveProperty52.pg" />
-      </exercise>
-
-    </exercisegroup>
     <exercisegroup cols="2" permid="HRd">
-      <!--The following four problems are exaclty the same code. Implement some way to only code once, then "copy" for the other three instances. -->
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                $left=Formula("$a[0]x+$a[1]")->reduce;
+                $right=Formula("$b[0]x+$b[1]")->reduce;
+                $unsimplified='('.$left->TeX.')+('.$right->TeX.')';
+                $simplified=Formula("($a[0]+$b[0])*x+($a[1]+$b[1])")->reduce;
+                $termsrearranged=Formula("$a[0]x+$b[0]x+$a[1]+$b[1]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                $left=Formula("$a[0]x+$a[1]")->reduce;
+                $right=Formula("$b[0]x+$b[1]")->reduce;
+                $unsimplified='('.$left->TeX.')+('.$right->TeX.')';
+                $simplified=Formula("($a[0]+$b[0])*x+($a[1]+$b[1])")->reduce;
+                $termsrearranged=Formula("$a[0]x+$b[0]x+$a[1]+$b[1]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                $left=Formula("$a[0]x+$a[1]")->reduce;
+                $right=Formula("$b[0]x+$b[1]")->reduce;
+                $unsimplified='('.$left->TeX.')+('.$right->TeX.')';
+                $simplified=Formula("($a[0]+$b[0])*x+($a[1]+$b[1])")->reduce;
+                $termsrearranged=Formula("$a[0]x+$b[0]x+$a[1]+$b[1]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                $left=Formula("$a[0]x+$a[1]")->reduce;
+                $right=Formula("$b[0]x+$b[1]")->reduce;
+                $unsimplified='('.$left->TeX.')+('.$right->TeX.')';
+                $simplified=Formula("($a[0]+$b[0])*x+($a[1]+$b[1])")->reduce;
+                $termsrearranged=Formula("$a[0]x+$b[0]x+$a[1]+$b[1]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                $left=Formula("$a[0]x+$a[1]")->reduce;
+                $right=Formula("$b[0]x+$b[1]")->reduce;
+                $unsimplified='('.$left->TeX.')+('.$right->TeX.')';
+                $simplified=Formula("($a[0]+$b[0])*x+($a[1]+$b[1])")->reduce;
+                $termsrearranged=Formula("$a[0]x+$b[0]x+$a[1]+$b[1]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,2));
+                $left=Formula("$a[0]x+$a[1]")->reduce;
+                $right=Formula("$b[0]x+$b[1]")->reduce;
+                $unsimplified='('.$left->TeX.')+('.$right->TeX.')';
+                $simplified=Formula("($a[0]+$b[0])*x+($a[1]+$b[1])")->reduce;
+                $termsrearranged=Formula("$a[0]x+$b[0]x+$a[1]+$b[1]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+
       <exercise permid="kmI">
         <webwork>
             <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
@@ -2212,7 +2431,6 @@
             </solution>
         </webwork>
       </exercise>
-
       <exercise permid="QtR">
         <webwork>
             <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
@@ -2258,7 +2476,6 @@
             </solution>
         </webwork>
       </exercise>
-
       <exercise permid="wBa">
         <webwork>
             <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
@@ -2304,7 +2521,6 @@
             </solution>
         </webwork>
       </exercise>
-
       <exercise permid="cIj">
         <webwork>
             <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
@@ -2350,7 +2566,186 @@
             </solution>
         </webwork>
       </exercise>
+      <exercise permid="kmI">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
 
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                $left=Formula("$a[0]($a[1]x+$a[2])");
+                $right=Formula("$b[0]($b[1]x+$b[2])");
+                $unsimplified=$left+$right;
+                $unsimplified=$unsimplified->reduce;
+                $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="FUZ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="mci">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Dag">
+              <p permid="xGG">
+                <md permid="HoN">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                  <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="QtR">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                $left=Formula("$a[0]($a[1]x+$a[2])");
+                $right=Formula("$b[0]($b[1]x+$b[2])");
+                $unsimplified=$left+$right;
+                $unsimplified=$unsimplified->reduce;
+                $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="Sjr">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="yqA">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="jhp">
+              <p permid="dNP">
+                <md permid="nvW">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                  <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="wBa">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                $left=Formula("$a[0]($a[1]x+$a[2])");
+                $right=Formula("$b[0]($b[1]x+$b[2])");
+                $unsimplified=$left+$right;
+                $unsimplified=$unsimplified->reduce;
+                $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="exJ">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="KES">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="Poy">
+              <p permid="JUY">
+                <md permid="TDf">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                  <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise permid="cIj">
+        <webwork>
+            <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file></pg-macros>
+            <setup>
+
+            <pg-code>
+                Context("Numeric");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                @a=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                @b=map{($_+1)*random(-1,1,2)}(NchooseK(9,3));
+                $left=Formula("$a[0]($a[1]x+$a[2])");
+                $right=Formula("$b[0]($b[1]x+$b[2])");
+                $unsimplified=$left+$right;
+                $unsimplified=$unsimplified->reduce;
+                $simplified=Formula("($a[0]*$a[1]+$b[0]*$b[1])*x+($a[0]*$a[2]+$b[0]*$b[2])")->reduce;
+                $leftdist=Formula("$a[0]*$a[1]x+$a[0]*$a[2]")->reduce;
+                $rightdist=Formula("$b[0]*$b[1]x+$b[0]*$b[2]")->reduce;
+                $termsrearranged=Formula("$a[0]*$a[1]x+$b[0]*$b[1]x+$a[0]*$a[2]+$b[0]*$b[2]")->reduce;
+                Context("LimitedPolynomial-Strict");
+                Context()->reduction->set('(-x)-y'=>0);
+                Context()->reduction->set('(-x)+y'=>0);
+                $simplified=Formula("$simplified");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="qMb">
+                Fully simplify <m><var name="$unsimplified" /></m>.
+              </p>
+
+              <p permid="WTk">
+                <var name="$simplified" width="15" />
+              </p>
+            </statement>
+            <solution permid="vvH">
+              <p permid="qch">
+                <md permid="zKo">
+                  <mrow><var name="$unsimplified" />\amp=<var name="$leftdist" />+<var name="$rightdist" /></mrow>
+                  <mrow>\amp=<var name="$termsrearranged" /></mrow>
+                  <mrow>\amp=<var name="$simplified" /></mrow>
+                </md>
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
     </exercisegroup>
   </exercises>
 
