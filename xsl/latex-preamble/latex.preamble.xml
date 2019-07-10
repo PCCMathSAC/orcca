@@ -1,10 +1,47 @@
 <latex-preamble>
 
 <latex-preamble-early>
+<![CDATA[
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{euler}
+
+]]>
 </latex-preamble-early>
 
 <latex-preamble-late>
 <![CDATA[
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont{Palatino}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Asides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{floatflt}
+\newtcolorbox{asideinsideleft}[2]
+  {breakable,phantomlabel={#2},
+   bwminimalstyle,
+   width=\dimexpr1.2in+0.6in\relax,
+   enlarge left by=-0.6in,
+   coltitle=black, fonttitle=\bfseries, title={\footnotesize#1}, detach title, before upper={\tcbtitle\ \ }}
+\newtcolorbox{asideinsideright}[2]
+  {breakable,phantomlabel={#2},
+   bwminimalstyle,
+   width=\dimexpr1.2in+0.6in\relax,
+   enlarge right by=-0.6in,
+   coltitle=black, fonttitle=\bfseries, title={\footnotesize#1}, detach title, before upper={\tcbtitle\ \ }}
+\renewenvironment{aside}[2]{
+\begin{floatingfigure}{1.2in}%\vspace{\dimexpr-\topskip}
+\ifnumodd{\thepage}{\begin{asideinsideright}{#1}{#2}}{\begin{asideinsideleft}{#1}{#2}}
+\footnotesize\quad}
+{
+\ifnumodd{\thepage}{\end{asideinsideright}}{\end{asideinsideleft}
+}
+\end{floatingfigure}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Used by assemblage, which is stealing aside's style
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -54,8 +91,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Basic paragraph parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5pc}
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{0.5pc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Greg's L
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

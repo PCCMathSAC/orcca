@@ -128,12 +128,6 @@
         which are the symbols for the <term>empty set</term><idx><h>empty set</h></idx> (not to be confused with the number <m>0</m>.)
       </p>
 
-      <remark>
-        <p>
-          We often use the empty set when we want to indicate that there are no solutions for a given equation.
-        </p>
-      </remark>
-
       <p permid="wDA">
         The equation <m>0=4</m> is known a
         <term>false statement</term>.
@@ -250,7 +244,7 @@
           <mrow>0\amp\le -1</mrow>
         </md>
         As we can see,
-        all we found was another false statement<mdash />a different equation that is not true for any real number.
+        all we found was another false statement<mdash />a different inequality that is not true for any real number.
       </p>
     </remark>
 
@@ -396,7 +390,7 @@
   </reading-questions>
 
   <exercises permid="FIR">
-    <exercisegroup cols="4" permid="lQa">
+    <exercisegroup cols="3" permid="lQa">
       <title>Review and Warmup</title>
       <exercise permid="gaO">
         <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnOneStepMultiDiv140.pg" />
@@ -431,7 +425,7 @@
       </exercise>
     </exercisegroup>
 
-    <exercisegroup cols="3" permid="RXj">
+    <exercisegroup cols="2" permid="RXj">
       <title>Solving Equations with Special Solution Sets</title>
       <exercise permid="dgi">
         <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation10.pg" />
@@ -473,17 +467,6 @@
         <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation80.pg" />
       </exercise>
 
-      <exercise permid="mzU">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation50.pg" />
-      </exercise>
-
-      <exercise permid="SHd">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation50.pg" />
-      </exercise>
-
-    </exercisegroup>
-    <exercisegroup cols="2" permid="yes">
-
       <exercise permid="yOm">
         <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation60.pg" />
       </exercise>
@@ -499,9 +482,19 @@
       <exercise permid="rjN">
         <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation70.pg" />
       </exercise>
+    </exercisegroup>
+    <exercisegroup cols="2">
+
+      <exercise permid="mzU">
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation50.pg" />
+      </exercise>
+
+      <exercise permid="SHd">
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation50.pg" />
+      </exercise>
 
     </exercisegroup>
-    <exercisegroup cols="3" permid="elB">
+    <exercisegroup cols="2" permid="elB">
       <title>Solving Inequalities with Special Solution Sets</title>
       <exercise permid="XqW">
         <webwork source="Contrib/PCC/BasicAlgebra/LinearInequalities/SolveSpecialInequality10.pg" />
@@ -559,9 +552,6 @@
         <webwork source="Contrib/PCC/BasicAlgebra/LinearInequalities/SolveSpecialInequality80.pg" />
       </exercise>
 
-    </exercisegroup>
-    <exercisegroup cols="2" permid="KsK">
-
       <exercise permid="Fns">
         <webwork source="Contrib/PCC/BasicAlgebra/LinearInequalities/SolveSpecialInequality60.pg" />
       </exercise>
@@ -586,8 +576,9 @@
                 $evaluator2 = $answer2->cmp(
                     checker => sub {
                         my ($correct,$student,$ansHash) = @_;
-                        Value::Error('This is not a linear equation.') unless ($student->D('x') == 0 );
+                        Value::Error('This is not a linear equation.') unless ($student->D('x')->D('x') == 0 );
                         Value::Error('x=2 is not a solution to this equation.') unless ($student->eval(x=>2) == 6);
+                        Value::Error('This equation has infinitely many solutions, not just 2.') unless ($student != $answer);
                         return 1;
                     }
                 );
@@ -595,8 +586,18 @@
             </setup>
             <statement>
               <p permid="PqY">
-                Fill in the right side of the equation to create a linear equation with the properties listed.
+                Fill in the right side of the equation to create a linear equation that meets the description.
                 <ol label="a." permid="CsM">
+                  <li permid="uOn">
+                    <p permid="LMy">
+                      Create a linear equation with solution set <m>\{2\}</m>.
+                    </p>
+
+                    <p permid="rTH">
+                      <m> <var name = "$a"/>(x + 4) = </m> <var name="$answer2" evaluator="$evaluator2" width="20"/>
+                    </p>
+                  </li>
+
                   <li permid="OHe">
                     <p permid="zyg">
                       Create a linear equation with <em>infinitely many solutions</em>.
@@ -604,16 +605,6 @@
 
                     <p permid="fFp">
                       <m> <var name = "$a"/>(x + 4) = </m> <var name="$answer" width="20"/>
-                    </p>
-                  </li>
-
-                  <li permid="uOn">
-                    <p permid="LMy">
-                      Create a linear equation with the solution <m>x = 2</m>.
-                    </p>
-
-                    <p permid="rTH">
-                      <m> <var name = "$a"/>(x + 4) = </m> <var name="$answer2" evaluator="$evaluator2" width="20"/>
                     </p>
                   </li>
                 </ol>
