@@ -495,8 +495,10 @@ html:
 # asymptote images
 images:
 	install -d $(OUTPUT)
-	-rm $(IMAGESOUT) || :	
+	-rm $(IMAGESOUT) || :
+	-rm $(OUTPUT)/preview || :
 	install -d $(IMAGESOUT)
+	install -d $(OUTPUT)/preview
 	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 	$(MB)/script/mbx -c preview -d $(OUTPUT)/preview $(OUTPUT)/merge.xml
