@@ -521,6 +521,16 @@ check:
 	install -d $(OUTPUT)
 	-rm $(OUTPUT)/jingreport.txt
 	-java -classpath ~/jing-trang/build -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar ~/jing-trang/build/jing.jar $(MB)/schema/pretext.rng $(MAINFILE) > $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*permid.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*reseed.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*reading-questions.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*document-id.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .html.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .instruction.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .image. incomplete.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*attribute .pg-name.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -p0i -e 's/.*? .tabular. not allowed here.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
+	perl -p0i -e 's/.*? .interactive. not allowed anywhere.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
 	less $(OUTPUT)/jingreport.txt
 
 gource:
