@@ -136,10 +136,69 @@ pdf-edition2:
 	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
 	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	echo 'GLOBAL SPACING'; \
+	echo 'Next line removes \leavevmode when it comes right before an enumerate'; \
+	perl -p0i -e 's/\\leavevmode%\n(\\begin{enumerate})/\1/g' orcca.tex; \
+	echo 'Next line removes \leavevmode when it comes right before a multicols'; \
+	perl -p0i -e 's/\\leavevmode%\n(\\begin{multicols})/\1/g' orcca.tex; \
+	echo 'Next line removes \par when it comes right before an equation'; \
+	perl -p0i -e 's/\\par\n(%\n\\begin\{equation)/\1/g' orcca.tex; \
+	echo 'Next two lines attempt to prevent pagebreaks after an "Explanation" title; not always with success'; \
+	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\begin).)*?\n)*?)(.*\\par)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\4/g' orcca.tex; \
+	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	echo 'Next line attempts to prevent pagebreaks after an "Exercises" starts; not always with success'; \
+	perl -p0i -e 's/(\\begin\{exercises-subsection\}\{Exercises\}.*?\n(.*?\n)*?\\end\{divisionexercise\}%\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	echo 'Next two lines look for a list in an exercise where the exercise starts, and gets first line to start on exercise opening line'; \
+	perl -p0i -e 's/(\\begin{divisionexerciseegcol}.*?\n\\begin{enumerate)(}\[label=\\alph\*\.)(\]\n)((.*?\n)*?\\end{enumerate)}/\1\*\2,itemjoin=\{\\vspace\{0\.5pc\}\\newline\},afterlabel=\{\\hspace\{1ex\}\}\3\4\*}\\vspace{0.5pc}\n\n/g' orcca.tex; \
+	perl -p0i -e 's/(\\begin{divisionexerciseegcol}.*?\n\\hypertarget{.*?}\{\}%\n\\begin{enumerate)(}\[label=\\alph\*\.)(\]\n)((.*?\n)*?\\end{enumerate)}/\1\*\2,itemjoin=\{\\vspace\{0\.5pc\}\\newline\},afterlabel=\{\\hspace\{1ex\}\}\3\4\*}\\vspace{0.5pc}\n\n/g' orcca.tex; \
+	echo 'IMAGE WIDTH ADJUSTMENT'; \
+	echo 'WeBWorK images in a multicolumn list or exercisegroup need these sizing adjustments, effectively resizing them to 100%. The for loops are just to make the regex search and replace repeat enough times to hit all instances within a list or exerisegroup'; \
+	for i in {1..3}; do perl -p0i -e 's/(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/g' orcca.tex; done; \
+	for i in {1..6}; do perl -p0i -e 's/(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/(\\begin{exercisegroupcol}\{3\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
+	echo 'INDIVIDUAL INSERTIONS'; \
+	echo 'Insert a \par following an aside, before a sidebyside'; \
+	perl -pi -e 's/(\{Figure\~\\ref\{x:figure:figure-balance-scale\}\} shows the scale\.\%\n)/\1\\par\n/' orcca.tex; \
+	echo 'Insert a \par following the last reading question which follows an aside from pages earlier causing problems'; \
+	perl -p0i -e 's/(Every time you solve an equation, there is something you should do to guarantee success\. Describe what that thing is that you should do\.%\n\\end{divisionexercise}%\n)/\1\\par\n/' orcca.tex; \
+	echo 'INDIVIDUAL PAGE BREAKS'; \
+	echo 'CHAPTER 1'; \
+	echo 'SECTION 1.1'; \
+	perl -p0i -e 's/(:UqM.*?\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage\n\3/' orcca.tex; \
+	perl -pi -e 's/(^\\begin{exercises-subsection}.*?:hKx)/\\newpage\n\1/' orcca.tex; \
+	echo 'SECTION 1.2'; \
+	perl -p0i -e 's/(\\hrulefill\\\\%\n.*?\n.*?\n.*?:HsV)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 1.3'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?:xbu)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\hrulefill\\\\%\n.*?\n.*?\n.*?:DAA}%)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 1.4'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?:nJi)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 1.5'; \
+	perl -pi -e 's/(^\\begin\{example\}\{\}\{x:example:example-one-step-equation-fraction-type-one\}%)/\\newpage\n\1/' orcca.tex; \
+	echo 'SECTION 2.2'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 2.3'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:JoV)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 2.4'; \
+	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage\n\1/' orcca.tex; \
+	echo 'SECTION 2.5'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?\n.*?\n.*?exercises:dvU)/\\newpage\n\1/' orcca.tex; \
+	echo 'INDIVIDUAL CUTTING'; \
+	echo 'SECTION 1.3'; \
+	perl -pi -e 's/^In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
+	echo 'SECTION 1.6'; \
+	perl -p0i -e 's/\\par\nIn .*? notation, the solution set is +\\fillin{\d+}\.%\n//g' orcca.tex; \
+	echo 'SECTION 2.2'; \
+	perl -pi -e 's/^ *\\fillin\{10\}  \\fillin\{2\}  \\fillin\{10\}%//g' orcca.tex; \
+	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
+	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
+	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
+	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}{(.*?)}/\1/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
-	xelatex orcca.tex; \
+#	xelatex orcca.tex; \
+	perl -p0i -e 's/(\\textbf{.*?}\\space\\space%\n\\begin\{exercisegroup.*?\n(.*?\n)*?\\end\{divisionexerciseeg.*?\n)((.*?\n)*?\\end\{exercisegroup.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\3\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 
 # This was edition 1
 pdf:
@@ -495,8 +554,10 @@ html:
 # asymptote images
 images:
 	install -d $(OUTPUT)
-	-rm $(IMAGESOUT) || :	
+	-rm $(IMAGESOUT) || :
+	-rm $(OUTPUT)/preview || :
 	install -d $(IMAGESOUT)
+	install -d $(OUTPUT)/preview
 	$(MB)/script/mbx -c latex-image -f all -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 	$(MB)/script/mbx -c youtube -d $(IMAGESOUT) $(OUTPUT)/merge.xml
 	$(MB)/script/mbx -c preview -d $(OUTPUT)/preview $(OUTPUT)/merge.xml
@@ -519,6 +580,16 @@ check:
 	install -d $(OUTPUT)
 	-rm $(OUTPUT)/jingreport.txt
 	-java -classpath ~/jing-trang/build -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar ~/jing-trang/build/jing.jar $(MB)/schema/pretext.rng $(MAINFILE) > $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*permid.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*reseed.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*reading-questions.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*document-id.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .html.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .instruction.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .image. incomplete.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*attribute .pg-name.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -p0i -e 's/.*? .tabular. not allowed here.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
+	perl -p0i -e 's/.*? .interactive. not allowed anywhere.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
 	less $(OUTPUT)/jingreport.txt
 
 gource:
