@@ -83,7 +83,7 @@
           x+2=6
         </me>
         where <m>x</m> is the number we are trying to find.
-        And then ask what should be substituted in for <m>x</m> to make the equation true?
+        And then ask what should be substituted in for <m>x</m> to make the equation true.
       </p>
 
       <p permid="ReY">
@@ -187,11 +187,18 @@
       </p>
     </example>
 
-    <p permid="vbv">
-      These examples explore an important principle for solving an equation<mdash/>applying an opposite arithmetic operation.
-    </p>
+    <!-- aside intentionally placed here for PDF -->
+    <aside>
+      <title>Abbreviation for <q>pound</q></title>
+      <p>
+        Why is <q>lb</q> the abbreviation for <q>pound</q>?
+        It has a connection to a balance scale,
+        which is the symbol for the Zodiac sign <alert>L</alert>i<alert>b</alert>ra.
+      </p>
+    </aside>
 
-    <p permid="biE">
+    <p oldpermid="biE">
+      These examples explore an important principle for solving an equation<mdash/>applying an opposite arithmetic operation.
       We can revisit <xref ref="example-first-solution">Example</xref> and more intentionally
       apply this strategy.
       If a number plus <m>2</m> is <m>6</m>, what is the number?
@@ -208,16 +215,7 @@
       <xref ref="figure-balance-scale">Figure</xref> shows the scale.
     </p>
 
-    <aside>
-      <title>Abbreviation for <q>pound</q></title>
-      <p>
-        Why is <q>lb</q> the abbreviation for <q>pound</q>?
-        It has a connection to a balance scale,
-        which is the symbol for the Zodiac sign <alert>L</alert>i<alert>b</alert>ra.
-      </p>
-    </aside>
-
-    <sidebyside widths="47% 47%" valign="bottom" permid="gQz">
+    <sidebyside widths="47% 47%" permid="gQz">
       <figure xml:id="figure-balance-scale" permid="LpM">
         <caption>Balance scale representing <m>x+2=6</m>.</caption>
         <image permid="Rtt">
@@ -258,6 +256,7 @@
                       \draw [fill=secondcolor!25] (9,\x) rectangle (10,\x+1);
                   \foreach \x in {1.5,2.5,...,4.5}
                       \draw (9.5,\x) node {$1$ lb};
+                  \node at (10,7) {};
               \end{tikzpicture}]]>
           </latex-image>
         </image>
@@ -301,13 +300,45 @@
       For this example, the solution set is <m>\{4\}</m>.
     </p>
 
-    <p permid="zLo">
+    <p>
+      In <xref ref="figure-geogebra-solve-one-step">Figure</xref>,
+      try adding or subtracting something to each side of the equation to find its solution.
+    </p>
+
+    <figure xml:id="figure-geogebra-solve-one-step">
+      <caption>Allowing Variables to Vary</caption>
+      <interactive xml:id="geogebra-solve-one-step" platform="geogebra" aspect="3:1">
+        <slate surface="geogebra" aspect="3:1">
+          setPerspective("G");
+          setCoordSystem(-1,1,-0.2,1);
+          setAxesVisible(false, false);
+          evalCommand("b = Slider(-9,9,1)");
+          evalCommand("b = 1");
+          setColor("b",158,12,15);
+          setLabelStyle("b",2);
+          evalCommand("B = abs(b)");
+          evalCommand('s = If(b&lt;0,"{}-"+B,"{}+"+B)');
+          setVisible("s", false);
+          evalCommand("l = 2+b");
+          evalCommand("r = 9+b");
+          evalCommand("left = x+l");
+          evalCommand("right = r");
+          setVisible("left", false);
+          setVisible("right", false);
+          evalCommand('stylesolution = If(r==7,"\\color[HTML]{263c53}\\bf","")');
+          setVisible("stylesolution", false);
+          evalCommand('solutionstatement = If(r==7,"The solution set is {7}.","")');
+          evalCommand('evaluation=Text("\\begin{aligned}x+2&amp;=9\\\\x+2\\color[HTML]{9e0c0f}\\bf"+s+"&amp;=9\\color[HTML]{9e0c0f}\\bf"+s+"\\\\"+left+"&amp;="+stylesolution+right"\\end{aligned}",(-0.9,0.6),true,true)');
+          evalCommand('instrucitons=Text("Use the slider to add or subtract\\\\nfrom each side of the equation\\\\nuntil you find the solution.",(0,0.6),false,false)');
+          enableShiftDragZoom(false);
+        </slate>
+      </interactive>
+    </figure>
+
+    <p oldpermid="zLo">
       We have learned we can add or subtract the same number on both sides of the equals sign,
       just like we can add or remove the same amount of weight on a balanced scale.
       Can we multiply and divide the same number on both sides of the equals sign?
-    </p>
-
-    <p permid="fSx">
       Let's look at <xref ref="example-two-x-equals-six">Example</xref>
       again: If a number times <m>2</m> is <m>6</m>, what is the number?
       Another balance scale can help visualize this.
@@ -401,56 +432,55 @@
       <idx><h>division</h><h>property of equality</h></idx>
       <statement>
         <p permid="zbu">
-          If there is an equation <m>A=B</m>,
+          If there is an equation <m>\text{Left}=\text{Right}</m>,
           we can do the following to obtain an equivalent equation.
         </p>
-          <sidebyside>
-            <tabular>
-              <col halign="left"/>
-              <col halign="center"/>
-              <row>
-                <cell>
-                  add the same number to each side:
-                </cell>
-                <cell>
-                  <m>A\addright{c}=B\addright{c}</m>
-                </cell>
-              </row>
-              <row>
-                <cell>
-                  subtract the same number from each side:
-                </cell>
-                <cell>
-                  <m>A\subtractright{c}=B\subtractright{c}</m>
-                </cell>
-              </row>
-              <row>
-                <cell>
-                  multiply each side of the equation by the same
-                  <em>non-zero</em> number:
-                </cell>
-                <cell>
-                  <m>A\multiplyright{c}=B\multiplyright{c}</m>
-                </cell>
-              </row>
-              <row>
-                <cell>
-                  divide each side of the equation by the same
-                  <em>non-zero</em> number:
-                </cell>
-                <cell>
-                  <m>\divideunder{A}{c}=\divideunder{B}{c}</m>
-                </cell>
-              </row>
-            </tabular>
-          </sidebyside>
-        </statement>
+        <sidebyside margins="0%">
+          <tabular>
+            <col width="25%"/>
+            <col width="25%"/>
+            <col width="25%"/>
+            <col width="25%"/>
+            <row>
+              <cell>
+                <line><m>\text{Left}\addright{c}=\text{Right}\addright{c}</m></line>
+              </cell>
+              <cell>
+                <line><m>\text{Left}\subtractright{c}=\text{Right}\subtractright{c}</m></line>
+              </cell>
+              <cell>
+                <line><m>\text{(Left)}\multiplyright{c}=\text{(Right)}\multiplyright{c}</m></line>
+              </cell>
+              <cell>
+                <line><m>\displaystyle\divideunder{\text{Left}}{c}=\divideunder{\text{Right}}{c}</m></line>
+              </cell>
+            </row>
+            <row valign="top">
+              <cell>
+                <p>
+                  (add the same number to each side)
+                </p>
+              </cell>
+              <cell>
+                <p>
+                  (subtract the same number from each side)
+                </p>
+              </cell>
+              <cell>
+                <p>
+                  (multiply each side of the equation by the same <em>non-zero</em> number)
+                </p>
+              </cell>
+              <cell>
+                <p>
+                  (divide each side of the equation by the same <em>non-zero</em> number)
+                </p>
+              </cell>
+            </row>
+          </tabular>
+        </sidebyside>
+      </statement>
     </fact>
-
-    <p permid="Evh">
-      With practice,
-      you will learn when it is helpful to use each of these properties.
-    </p>
 
   </subsection>
 
@@ -470,7 +500,7 @@
       Putting together both strategies
       (applying the opposite operation and balancing equations like a scale)
       that we just explored,
-      we will summarize how to solve a one-step linear equation.
+      we summarize how to solve a one-step linear equation.
     </p>
 
     <algorithm xml:id="algorithm-steps-to-solve-one-step-linear-equation" permid="teR">
@@ -484,7 +514,7 @@
                 Apply the opposite operation to both sides of the equation.
                 If a number was added to the variable,
                 subtract that number, and vice versa.
-                If a number was multiplied by the variable,
+                If the variable was multiplied by a number,
                 divide by that number, and vice versa.
               </p>
             </li>
@@ -559,9 +589,10 @@
     <exercise permid="xOK">
       <webwork>
           <setup>
-
             <pg-code>
-                Context("Interval");
+                Context("FiniteSolutionSets");
+                Context()->flags->remove("NumberCheck");
+                $answer = Formula("12.4");
             </pg-code>
           </setup>
           <statement>
@@ -569,12 +600,8 @@
               Solve for <m>z</m> in the equation <m>-7.3+z=5.1</m>.
             </p>
 
-            <p permid="cnX">
-              The solution is <var name="12.4" width="10" />.
-            </p>
-
-            <p permid="Ivg">
-              The solution set is <var name="'{12.4}'" width="10" />.
+            <p>
+              <var name="$answer" width="10" />
             </p>
           </statement>
           <solution permid="Gry">
@@ -611,7 +638,9 @@
       <webwork>
           <setup>
             <pg-code>
-                Context("Interval");
+                Context("FiniteSolutionSets");
+                Context()->flags->remove("NumberCheck");
+                $answer = Formula("-5");
             </pg-code>
           </setup>
           <statement>
@@ -619,12 +648,8 @@
               Solve for <m>a</m> in the equation <m>10=-2a</m>.
             </p>
 
-            <p permid="UJy">
-              The solution is <var name="-5" width="10" />.
-            </p>
-
-            <p permid="AQH">
-              The solution set is <var name="'{-5}'" width="10" />.
+            <p>
+              <var name="$answer" width="10" />
             </p>
           </statement>
           <solution permid="myH">
@@ -667,8 +692,8 @@
     <example permid="Ftj">
       <statement>
         <p permid="Oks">
-          The formula for a circle's circumference is <m>C=\pi d</m>,
-          where <m>C</m> stands for circumference,
+          The formula for a circle's circumference is <m>c=\pi d</m>,
+          where <m>c</m> stands for circumference,
           <m>d</m> stands for diameter,
           and <m>\pi</m> is a constant with the value of <m>3.1415926\ldots</m>.
           If a circle's circumference is
@@ -694,9 +719,9 @@
         </p>
 
         <p permid="IQF">
-          We will substitute <m>C</m> in the formula with <m>12\pi</m> and solve for <m>d</m>:
+          We will substitute <m>c</m> in the formula with <m>12\pi</m> and solve for <m>d</m>:
           <md permid="eNe">
-            <mrow>C\amp=\pi d</mrow>
+            <mrow>c\amp=\pi d</mrow>
             <mrow>\substitute{12\pi}\amp=\pi d</mrow>
             <mrow>\divideunder{12\pi}{\pi}\amp=\divideunder{\pi d}{\pi}</mrow>
             <mrow>12\amp=d</mrow>
@@ -817,9 +842,8 @@
           <setup>
 
             <pg-code>
-                Context("Fraction-NoDecimals");
-                $frac = Fraction(27,14);
-                Context("Interval");
+                Context("FiniteSolutionSets");
+                $answer = Formula("27/14");
             </pg-code>
           </setup>
           <statement>
@@ -827,12 +851,8 @@
               Solve for <m>q</m> in the equation <m>q-\frac{3}{7}=\frac{3}{2}</m>.
             </p>
 
-            <p permid="NeZ">
-              The solution is <var name="$frac" width="10" />.
-            </p>
-
-            <p permid="tmi">
-              The solution set is <var name="'{27/14}'" width="10" />.
+            <p>
+              <var name="$answer" width="10" />
             </p>
           </statement>
           <solution permid="SFQ">
@@ -845,6 +865,7 @@
               <md permid="vLp">
                 <mrow>q-\frac{3}{7}\amp=\frac{3}{2}</mrow>
                 <mrow>q-\frac{3}{7}\addright{\frac{3}{7}}\amp=\frac{3}{2}\addright{\frac{3}{7}}</mrow>
+                <mrow>q\amp=\frac{21}{14}+\frac{6}{14}</mrow>
                 <mrow>q\amp=\frac{27}{14}</mrow>
               </md>
             </p>
@@ -997,9 +1018,8 @@
           <setup>
 
             <pg-code>
-                Context("Fraction-NoDecimals");
-                $frac = Fraction(-8,7);
-                Context("Interval");
+                Context("FiniteSolutionSets");
+                $answer = Formula("-8/7");
             </pg-code>
           </setup>
           <statement>
@@ -1007,12 +1027,8 @@
               Solve for <m>H</m> in the equation <m>\frac{-7H}{12}=\frac{2}{3}</m>.
             </p>
 
-            <p permid="FAA">
-              The solution is <var name="$frac" width="10" />.
-            </p>
-
-            <p permid="lHJ">
-              The solution set is <var name="'{-8/7}'" width="10" />.
+            <p>
+              <var name="$frac" width="10" />
             </p>
           </statement>
           <solution permid="yMZ">
