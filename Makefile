@@ -109,19 +109,18 @@ pg:
 	cd $(PGOUT); \
 	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
 
-pdf-ptx:
+pdf-nopost:
 	install -d $(OUTPUT)
-	-rm -r $(PDFOUT)
+	-rm -r $(PDFOUT) || :
 	install -d $(PDFOUT)
 	install -d $(PDFOUT)/images
 	install -d $(IMAGESOUT)
 	install -d $(IMAGESSRC)
-	cp -a $(WWOUT)/*.png $(PDFOUT)/images
-	cp -a $(PREVIEW)/*.png $(PDFOUT)/images
-	cp -a $(IMAGESSRC) $(PDFOUT)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images || :
+	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
+	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml; \
-	xelatex orcca.tex; \
+	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
@@ -146,7 +145,7 @@ pdf-edition2:
 	perl -p0i -e 's/\\par\n(%\n\\begin\{equation)/\1/g' orcca.tex; \
 	echo 'Next two lines attempt to prevent pagebreaks after an "Explanation" title; not always with success'; \
 	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\begin).)*?\n)*?)(.*\\par)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\4/g' orcca.tex; \
-	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end(?!{tikzpicture}).*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 	echo 'Next line attempts to prevent pagebreaks after an "Exercises" starts; not always with success'; \
 	perl -p0i -e 's/(\\begin\{exercises-subsection\}\{Exercises\}.*?\n(.*?\n)*?\\end\{divisionexercise\}%\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 	echo 'Next two lines look for a list in an exercise where the exercise starts, and gets first line to start on exercise opening line'; \
@@ -156,12 +155,14 @@ pdf-edition2:
 	echo 'WeBWorK images in a multicolumn list or exercisegroup need these sizing adjustments, effectively resizing them to 100%. The for loops are just to make the regex search and replace repeat enough times to hit all instances within a list or exerisegroup'; \
 	for i in {1..3}; do perl -p0i -e 's/(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/g' orcca.tex; done; \
 	for i in {1..6}; do perl -p0i -e 's/(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
-	for i in {1..8}; do perl -p0i -e 's/(\\begin{exercisegroupcol}\{3\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
+	for i in {1..16}; do perl -p0i -e 's/(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
 	echo 'INDIVIDUAL INSERTIONS'; \
 	echo 'Insert a \par following an aside, before a sidebyside'; \
 	perl -pi -e 's/(\{Figure\~\\ref\{x:figure:figure-balance-scale\}\} shows the scale\.\%\n)/\1\\par\n/' orcca.tex; \
 	echo 'Insert a \par following the last reading question which follows an aside from pages earlier causing problems'; \
 	perl -p0i -e 's/(Every time you solve an equation, there is something you should do to guarantee success\. Describe what that thing is that you should do\.%\n\\end{divisionexercise}%\n)/\1\\par\n/' orcca.tex; \
+	echo 'Insert a \par following an aside that is causing problems'; \
+	perl -pi -e 's/(If Carl has an out-of-town guest who asks him how to get to the restaurant, Carl could say:%)/\\par\n\1/' orcca.tex; \
 	echo 'INDIVIDUAL PAGE BREAKS'; \
 	echo 'CHAPTER 1'; \
 	echo 'SECTION 1.1'; \
@@ -176,6 +177,7 @@ pdf-edition2:
 	perl -p0i -e 's/(.*?\n.*?\n.*?:nJi)/\\newpage\\noindent%\n\1/' orcca.tex; \
 	echo 'SECTION 1.5'; \
 	perl -pi -e 's/(^\\begin\{example\}\{\}\{x:example:example-one-step-equation-fraction-type-one\}%)/\\newpage\n\1/' orcca.tex; \
+	echo 'CHAPTER 2'; \
 	echo 'SECTION 2.2'; \
 	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/' orcca.tex; \
 	echo 'SECTION 2.3'; \
@@ -184,6 +186,28 @@ pdf-edition2:
 	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage\n\1/' orcca.tex; \
 	echo 'SECTION 2.5'; \
 	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?\n.*?\n.*?exercises:dvU)/\\newpage\n\1/' orcca.tex; \
+	echo 'CHAPTER 3'; \
+	echo 'SECTION 3.2'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?exercise:RHS)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 3.4'; \
+	perl -pi -e 's/(.*?example:uFj)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?exercise:XRM)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.5'; \
+	perl -pi -e 's/(.*?example:gBr)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.6'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:WRk)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?exercise:Ohs)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 3.7'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:zcU)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 3.8'; \
+	perl -pi -e 's/(.*?example:sSa)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?exercise:PjY)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?exercise:YKX)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.10'; \
+	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?\n.*?subsection:VHV)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?example:UCC)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?example:tfm)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/(.*?\n.*?solution:TbK)/\\newpage\\noindent%\n\1/' orcca.tex; \
 	echo 'INDIVIDUAL CUTTING'; \
 	echo 'SECTION 1.3'; \
 	perl -pi -e 's/^In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
@@ -191,6 +215,9 @@ pdf-edition2:
 	perl -p0i -e 's/\\par\nIn .*? notation, the solution set is +\\fillin{\d+}\.%\n//g' orcca.tex; \
 	echo 'SECTION 2.2'; \
 	perl -pi -e 's/^ *\\fillin\{10\}  \\fillin\{2\}  \\fillin\{10\}%//g' orcca.tex; \
+	echo 'SECTION 3.6'; \
+	perl -pi -e 's/^An equation for this line in.*\\fillin{\d+}\.%\n//g' orcca.tex; \
+	perl -pi -e 's/^In slope-intercept form:  \\fillin\{20\}%\n//g' orcca.tex; \
 	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
@@ -545,7 +572,7 @@ html:
 	cp -a $(PRJSRC)/favicon $(HTMLOUT) || :
 	cp $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam watermark.text "DRAFT 2nd ED" --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
+	xsltproc -xinclude --stringparam debug.colors ruby_emerald --stringparam watermark.text "DRAFT 2nd ED" --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
 # latex-image images
