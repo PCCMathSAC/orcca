@@ -156,6 +156,10 @@
     <xsl:text>%&#xa;</xsl:text>
 </xsl:template>
 
+<!-- Except when the above is only containing an answer blank and nothing else... -->
+<xsl:template match="p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][not(parent::li)]|p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][parent::li][preceding-sibling::*]" />
+
+
 
 <!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
 <!--<xsl:template match="webwork-reps//p[position()>1][not(count(ancestor::exercisegroup/exercise/webwork-reps/static/statement[not(p[1] = ancestor::exercise/preceding-sibling::exercise/webwork-reps/static/statement/p[1])]) = 1)][count(*)=1][not(text())][count(m)=1][contains(m,'\displaystyle') or contains(m,'\begin{aligned')]">
