@@ -145,7 +145,7 @@ pdf-edition2:
 	perl -p0i -e 's/\\par\n(%\n\\begin\{equation)/\1/g' orcca.tex; \
 	echo 'Next two lines attempt to prevent pagebreaks after an "Explanation" title; not always with success'; \
 	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\begin).)*?\n)*?)(.*\\par)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\4/g' orcca.tex; \
-	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end(?!{tikzpicture}).*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end(?!({tikzpicture}|{aligned}|{alignedat})).*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 	echo 'Next line attempts to prevent pagebreaks after an "Exercises" starts; not always with success'; \
 	perl -p0i -e 's/(\\begin\{exercises-subsection\}\{Exercises\}.*?\n(.*?\n)*?\\end\{divisionexercise\}%\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 	echo 'Next two lines look for a list in an exercise where the exercise starts, and gets first line to start on exercise opening line'; \
@@ -156,6 +156,14 @@ pdf-edition2:
 	for i in {1..3}; do perl -p0i -e 's/(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/g' orcca.tex; done; \
 	for i in {1..6}; do perl -p0i -e 's/(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
 	for i in {1..16}; do perl -p0i -e 's/(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
+	echo 'SYSTEMS OF EQUATIONS IN DISPLAY MODE'; \
+	for i in {1..20}; do perl -p0i -e 's/(\\textbf{Using a Graph to Solve a System}\\space\\space%\nUse a graph to solve the system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/' orcca.tex; done; \
+	for i in {1..50}; do perl -p0i -e 's/(\\textbf{Solving System of Equations Using Substitution}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/' orcca.tex; done; \
+	for i in {1..32}; do perl -p0i -e 's/(\\textbf{Solving System of Equations by Elimination}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/(\\textbf{Solving Systems of Linear Equations by Graphing}\\space\\space%\nUse a graph to solve the system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/(\\textbf{Substitution}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/(\\textbf{Elimination}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/' orcca.tex; done; \
+	perl -p0i -e 's/(\\begin{example}[^\n]*?example:VQz}%\n.*?\n.*?\n.*?\n)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)%\n\\item\{\}%\n(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)/\1\\begin{fleqn}\[1em\]\n\2\\end{fleqn}\n%\n\\item\{\}%\n\\begin{fleqn}\[1em\]\n\4\\end{fleqn}\n/' orcca.tex; \
 	echo 'INDIVIDUAL INSERTIONS'; \
 	echo 'Insert a \par following an aside, before a sidebyside'; \
 	perl -pi -e 's/(\{Figure\~\\ref\{x:figure:figure-balance-scale\}\} shows the scale\.\%\n)/\1\\par\n/' orcca.tex; \
@@ -208,6 +216,15 @@ pdf-edition2:
 	perl -pi -e 's/(.*?example:UCC)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(.*?example:tfm)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/(.*?\n.*?solution:TbK)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'CHAPTER 4'; \
+	echo 'SECTION 4.1'; \
+	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{A summary of the three types of systems of equations and their solution sets\.\\label{x:list:list-summary-of-types-of-systems}})/\\newpage\n\1/' orcca.tex; \
+	perl -p0i -e 's/(.*?\n.*?exercise:ysn)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	echo 'SECTION 4.2'; \
+	perl -pi -e 's/(.*?exercise:lJw)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?example:ULl)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 4.3'; \
+	perl -pi -e 's/(To check our work, substitute \\\(A=560\\\) and \\\(B=440\\\) into the original equations:%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'INDIVIDUAL CUTTING'; \
 	echo 'SECTION 1.3'; \
 	perl -pi -e 's/^In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
