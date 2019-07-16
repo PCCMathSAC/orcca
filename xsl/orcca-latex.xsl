@@ -17,9 +17,8 @@
     <xsl:text>\stepcounter{cthm}&#xa;&#xa;</xsl:text>
 </xsl:template>
 
-<!-- Omit solutions to sectional exercises -->
-<!-- <xsl:template match="webwork[@insec='sectional']//solution" />
-<xsl:template match="exercises//solution" /> -->
+<!-- Omit solutions/answers -->
+<xsl:template match="solutions"/>
 
 <!-- This version for print -->
 <!-- <xsl:param name="latex.preamble.early" select="concat(document('latex-preamble/latex.preamble.xml')//latex-preamble-early, document('latex-preamble/print.preamble.xml')//latex-preamble-early)" />
