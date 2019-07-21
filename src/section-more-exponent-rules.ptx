@@ -58,11 +58,13 @@
     <p permid="iqi">
       In <xref ref="section-introduction-to-exponent-rules">Section</xref>,
       we introduced three basic rules involving products and exponents.
-      We'll begin with a recap and some examples.
+      Then in <xref ref="section-dividing-by-a-monomial">Section</xref>,
+      we introduced one more.
+      We begin this section with a recap of these four exponent rules.
     </p>
 
     <list xml:id="list-exponent-rules-recap" permid="Hoe">
-      <title>Summary of Exponent Rules</title>
+      <title>Summary of Exponent Rules (Thus Far)</title>
       <dl permid="YPf">
         <li xml:id="item-exponent-rules-product-rule-verbal-statement" permid="Ifp">
           <title>Product Rule</title>
@@ -96,26 +98,34 @@
             </me>
           </p>
         </li>
+
+        <li xml:id="item-exponent-rules-quotient-of-powers-rule-verbal-statement">
+          <title>Quotient of Powers Rule</title>
+          <p>
+            When dividing two expressions that have the same base,
+            simplify the quotient by subtracting the exponents.
+            <me>
+              \frac{x^m}{x^n} = x^{m-n}
+            </me>
+            For now, we only know this rule when <m>m\gt n</m>.
+          </p>
+        </li>
       </dl>
     </list>
 
     <exercise permid="nvn">
       <webwork>
-          <pg-macros><macro-file>contextLimitedPolynomial.pl</macro-file>
-          <macro-file>answerHints.pl</macro-file></pg-macros>
+          <pg-macros>
+            <macro-file>contextForm.pl</macro-file>
+          </pg-macros>
           <setup>
-
             <pg-code>
-                Context("LimitedPolynomial-Strict");
+                Context("Form");
                 Context()->variables->are(r=>'Real',x=>'Real',y=>'Real');
-                Context()->{error}{msg}{"A variable can appear only once in each term of a polynomial"}
-                  = "Your answer must be fully simplified";
-                Context()->{error}{msg}{"You can only raise a variable to a power in a polynomial"}
-                  = "Your answer must be fully simplified";
                 $a = Formula("r^21");
                 $b = Formula("x^110");
                 $c = Formula("81r^4");
-                $d = Formula("9y^19");
+                $d = Formula("3y^4");
             </pg-code>
           </setup>
           <statement>
@@ -151,12 +161,12 @@
                   </p>
                 </li>
 
-                <li permid="mSK">
-                  <p permid="aSN">
-                    Simplify <m>\left(3y^2\right)^{2}\left(y^3\right)^5</m>.
+                <li>
+                  <p>
+                    Simplify <m>\frac{3y^7}{y^3}</m>.
                   </p>
 
-                  <p permid="GZW">
+                  <p>
                     <var name="$d" width="8" />
                   </p>
                 </li>
@@ -196,16 +206,13 @@
                   </p>
                 </li>
 
-                <li permid="Lvu">
-                  <p permid="fCG">
-                    All three exponent rules must be used, one at a time:
-                    <md permid="ZGq">
-                      <mrow>\left(3y^2\right)^{2}\left(y^3\right)^5\amp=3^2\left(y^2\right)^2\left(y^3\right)^5</mrow>
-                      <mrow>\amp=9\left(y^2\right)^2\left(y^3\right)^5</mrow>
-                      <mrow>\amp=9y^{2\cdot2}y^{3\cdot5}</mrow>
-                      <mrow>\amp=9y^{4}y^{15}</mrow>
-                      <mrow>\amp=9y^{4+15}</mrow>
-                      <mrow>\amp=9y^{19}</mrow>
+                <li>
+                  <p>
+                    We <em>subtract</em> the exponents because this expression is dividing powers with the same base:
+                    <md>
+                      <mrow>\frac{3y^7}{y^3}\amp=\frac{3}{1}\frac{y^7}{y^3}</mrow>
+                      <mrow>\amp=3y^{7-3}</mrow>
+                      <mrow>\amp=3y^4</mrow>
                     </md>
                   </p>
                 </li>
@@ -217,157 +224,77 @@
   </subsection>
 
   <subsection permid="ZrI">
-    <title>Quotients and Exponents</title>
-    <p permid="Oxr">
-      Since division is the same as multiplication by a reciprocal,
-      it may come as no surprise that there are some exponent rules for division as well.
-      Not only are there division exponent rules,
-      these rules for division and exponents are direct counterparts to some of the product rules for exponents.
+    <title>Quotient to a Power Rule</title>
+
+    <p permid="nab">
+      One rule we have learned is the <xref ref="item-exponent-rules-product-to-a-power" text="title">product to a power rule</xref>,
+      as in <m>(2x)^{3}=2^{3}x^{3}</m>.
+      When two factors are multiplied and the product is raised to a power,
+      we may apply the exponent to each of those factors individually.
+      We can use the rules of fractions to extend this property to a
+      <em>quotient</em> raised to a power.
     </p>
 
-    <paragraphs permid="OSD">
-      <title>Quotient of Powers</title>
-      <p permid="uEA">
-        When we <em>multiply</em> the same base raised to powers,
-        we <em>add</em> the exponents, 
-        as in <m>2^{2}\cdot2^{3}=2^{5}</m>.
-        What happens when we <em>divide</em> the same base raised to powers?
-      </p>
+    <example xml:id="example-quotient-to-power" permid="zJF">
+      <statement>
+        <p permid="vJT">
+          Let <m>y</m> be a real number, where <m>y \neq 0</m>.
+          Find another way to write <m>\left(\frac{5}{y}\right)^4</m>.
+        </p>
+      </statement>
+      <solution permid="ZUy">
+        <p permid="abP">
+          Writing the expression without an exponent and then simplifying, we have:
+          <md permid="yja">
+            <mrow>\left( \frac{5}{y} \right)^4 \amp= \left( \frac{5}{y} \right) \left( \frac{5}{y} \right) \left( \frac{5}{y} \right) \left( \frac{7}{y} \right)</mrow>
+            <mrow>\amp= \frac{5 \cdot 5 \cdot 5 \cdot 5}{y \cdot y \cdot y \cdot y}</mrow>
+            <mrow>\amp= \frac{5^4}{y^4}</mrow>
+            <mrow>\amp= \frac{625}{y^4}</mrow>
+          </md>
+          Similar to the product to a power rule,
+          we essentially applied the outer exponent to the <q>factors</q>
+          inside the parentheses<mdash/>to factors of the numerator <em>and</em>
+          factors of the denominator.
+          The general rule is:
+        </p>
+      </solution>
+    </example>
 
-      <example xml:id="example-quotient-of-powers-i" permid="TCw">
-        <statement>
-          <p permid="PCK">
-            Simplify <m>\frac{x^5}{x^2}</m> by first writing out what each power means.
-          </p>
-        </statement>
-        <solution permid="tNp">
-          <p permid="tUG">
-            Without knowing a rule for simplifying this quotient of powers,
-            we can write the expressions without exponents and simplify.
-            <md permid="FNz">
-              <mrow>\frac{x^5}{x^2} \amp= \frac{x \cdot x \cdot x \cdot x \cdot x}{x \cdot x}</mrow>
-              <mrow>\amp= \frac{\cancel{x} \cdot \cancel{x} \cdot x \cdot x \cdot x}{\cancel{x} \cdot \cancel{x} \cdot 1}</mrow>
-              <mrow>\amp= \frac{x \cdot x \cdot x}{1}</mrow>
-              <mrow>\amp= x^3</mrow>
-            </md>
-            Notice that the difference of the exponents of the numerator and the denominator (<m>5</m> and <m>2</m>,
-            respectively) is <m>3</m>,
-            which is the exponent of the simplified expression.
-          </p>
-        </solution>
-      </example>
+    <fact xml:id="fact-quotient-to-a-power-rule" permid="LXX">
+      <title>Quotient to a Power Rule</title>
+      <idx><h>exponent</h><h>quotient to a power rule</h></idx>
+      <statement>
+        <p permid="HYl">
+          For real numbers <m>a</m> and <m>b</m>
+          (with <m>b \neq 0</m>)
+          and natural number <m>m</m>,
+          <me permid="eqj">
+            \left( \frac{a}{b}  \right)^{m} = \frac{a^{m}}{b^{m}}
+          </me>
+        </p>
+      </statement>
+    </fact>
 
-      <p permid="aLJ">
-        When we divide as we've just done,
-        we end up canceling factors from the numerator and denominator one-for-one.
-        These common factors cancel to give us factors of <m>1</m>.
-        The general rule for this is:
-      </p>
-
-      <fact permid="fQO">
-        <title>Quotient of Powers Rule</title>
-        <idx><h>exponent</h><h>quotient of powers rule</h></idx>
-        <statement>
-          <p permid="bRc">
-            For any non-zero real number <m>a</m> and <xref ref="item-integer-definition">integers</xref> <m>m</m> and <m>n</m>,
-            <me permid="lUI">
-              \frac{a^{m}}{a^{n}} = a^{m-n}
-            </me>
-          </p>
-        </statement>
-      </fact>
-
-      <p permid="GSS">
-        This rule says that when you're dividing two expressions that have the same base,
-        you can simplify the quotient by subtracting the exponents.
-        In <xref ref="example-quotient-of-powers-i">Example</xref>,
-        this means that we can directly compute <m>\frac{x^5}{x^2}</m>:
-        <md permid="SbR">
-          <mrow>\frac{x^5}{x^2} \amp= x^{5-2}</mrow>
-          <mrow>\amp=x^3</mrow>
-        </md>
-      </p>
-    </paragraphs>
-
-    <paragraphs permid="uZM">
-      <title>Quotient to a Power</title>
-      <p permid="nab">
-        Another rule we learned is the <xref ref="item-exponent-rules-product-to-a-power" text="title">product to a power rule</xref>,
-        which applies an outer exponent to each factor in a product,
-        as in <m>(2x)^{3}=2^{3}x^{3}</m>.
-        We can use the rules of fractions to extend this property to a
-        <em>quotient</em> raised to a power.
-      </p>
-
-      <example xml:id="example-quotient-to-power" permid="zJF">
-        <statement>
-          <p permid="vJT">
-            Let <m>y</m> be a real number, where <m>y \neq 0</m>.
-            Find another way to write <m>\left(\frac{5}{y}\right)^4</m>.
-          </p>
-        </statement>
-        <solution permid="ZUy">
-          <p permid="abP">
-            Writing the expression without an exponent and then simplifying, we have:
-            <md permid="yja">
-              <mrow>\left( \frac{5}{y} \right)^4 \amp= \left( \frac{5}{y} \right) \left( \frac{5}{y} \right) \left( \frac{5}{y} \right) \left( \frac{7}{y} \right)</mrow>
-              <mrow>\amp= \frac{5 \cdot 5 \cdot 5 \cdot 5}{y \cdot y \cdot y \cdot y}</mrow>
-              <mrow>\amp= \frac{5^4}{y^4}</mrow>
-              <mrow>\amp= \frac{625}{y^4}</mrow>
-            </md>
-            Similar to the product to a power rule,
-            we essentially applied the outer exponent to the <q>factors</q>
-            inside the parentheses<mdash/>to factors of the numerator <em>and</em>
-            factors of the denominator.
-            The general rule is:
-          </p>
-        </solution>
-      </example>
-
-      <fact xml:id="fact-quotient-to-a-power-rule" permid="LXX">
-        <title>Quotient to a Power Rule</title>
-        <idx><h>exponent</h><h>quotient to a power rule</h></idx>
-        <statement>
-          <p permid="HYl">
-            For real numbers <m>a</m> and <m>b</m>
-            (with <m>b \neq 0</m>)
-            and integer <m>n</m>,
-            <me permid="eqj">
-              \left( \frac{a}{b}  \right)^{m} = \frac{a^{m}}{b^{m}}
-            </me>
-          </p>
-        </statement>
-      </fact>
-
-      <p permid="Thk">
-        This rule says that when you raise a fraction to a power,
-        you may separately raise the numerator and denominator to that power.
-        In <xref ref="example-quotient-to-power">Example</xref>,
-        this means that we can directly calculate <m>\left( \frac{7}{y} \right)^4</m>:
-        <md permid="Kxs">
-          <mrow>\left( \frac{5}{y} \right)^4 \amp= \frac{5^4}{y^4}</mrow>
-          <mrow>\amp=\frac{625}{y^4}</mrow>
-        </md>
-      </p>
-    </paragraphs>
+    <p permid="Thk">
+      This rule says that when you raise a fraction to a power,
+      you may separately raise the numerator and denominator to that power.
+      In <xref ref="example-quotient-to-power">Example</xref>,
+      this means that we can directly calculate <m>\left( \frac{5}{y} \right)^4</m>:
+      <md permid="Kxs">
+        <mrow>\left( \frac{5}{y} \right)^4 \amp= \frac{5^4}{y^4}</mrow>
+        <mrow>\amp=\frac{625}{y^4}</mrow>
+      </md>
+    </p>
 
     <exercise permid="sfg">
       <webwork>
         <pg-macros>
-          <macro-file>contextLimitedPolynomial.pl</macro-file>
-          <macro-file>answerHints.pl</macro-file>
+          <macro-file>contextForm.pl</macro-file>
         </pg-macros>
         <setup>
           <pg-code>
-              Context("LimitedPolynomial");
-              Context()->variables->are(p=>'Real',r=>'Real',w=>'Real',x=>'Real');
-              Context()->{error}{msg}{"A variable can appear only once in each term of a polynomial"}
-                = "Your answer must be fully simplified";
-              Context()->{error}{msg}{"You can only raise a variable to a power in a polynomial"}
-                = "Your answer must be fully simplified";
-              Context()->{error}{msg}{"In a polynomial, you can only divide by numbers"}
-                = "Your answer must be fully simplified";
-              $a = Formula("243x^5");
+              Context("Form");
+              Context()->variables->are(p=>'Real',r=>'Real',w=>'Real');
               $b = Formula("p^6/64");
               $c = Formula("5^36w^27");
               $d = Formula("2r^11");
@@ -376,16 +303,6 @@
         <statement>
           <p permid="FdF">
             <ol label="a." permid="RkG">
-              <li permid="rCD">
-                <p permid="LJP">
-                  Simplify <m>\dfrac{3^7x^9}{3^2x^4}</m>.
-                </p>
-
-                <p permid="rQY">
-                  <var name="$a" width="8" />
-                </p>
-              </li>
-
               <li permid="XJM">
                 <p permid="XYh">
                   Simplify <m>\left(\dfrac{p}{2}\right)^6</m>.
@@ -425,17 +342,6 @@
         <solution permid="miQ">
           <p permid="GiY">
             <ol label="a." permid="vCC">
-              <li permid="Qfn">
-                <p permid="oWs">
-                  We can use the quotient of powers rule separately on the <m>3</m>s and on the <m>x</m>s:
-                  <md permid="qEB">
-                    <mrow>\frac{3^7x^9}{3^2x^4}\amp=3^{7-2}x^{9-4}</mrow>
-                    <mrow>\amp=3^5x^5</mrow>
-                    <mrow>\amp=243x^5</mrow>
-                  </md>
-                </p>
-              </li>
-
               <li permid="wmw">
                 <p permid="VdB">
                   We can use the quotient to a power rule:
@@ -494,83 +400,88 @@
   </subsection>
 
   <subsection permid="FyR">
-    <title>The Zero Exponent</title>
+    <title>Zero as an Exponent</title>
     <p permid="fvC">
       So far, we have been working with exponents that are natural numbers
       (<m>1, 2, 3, \ldots</m>).
-      By the end of this chapter,
+      By the end of this section,
       we will expand our understanding to include exponents that are any integer,
-      including <m>0</m> and negative numbers.
+      as with <m>5^{0}</m> and <m>12^{-2}</m>.
       As a first step,
-      we will focus on understanding how <m>0</m> should behave as an exponent by considering the pattern of decreasing powers of <m>2</m> below.
+      let's explore how <m>0</m> should behave as an exponent
+      by considering the pattern of decreasing powers of <m>2</m> in <xref ref="figure-descending-powers-of-two">Figure</xref>.
     </p>
 
-    <table xml:id="table-descending-powers-of-two" permid="hUJ">
+    <figure xml:id="figure-descending-powers-of-two" permid="hUJ">
       <caption>Descending Powers of <m>2</m></caption>
       <tabular permid="ObS">
-        <row>
-          <cell halign="right">power</cell>
+        <col halign="right"/>
+        <col/>
+        <col halign="left"/>
+        <col/>
+        <col halign="left"/>
+        <col/>
+        <row bottom="medium">
+          <cell>Power</cell>
           <cell></cell>
-          <cell halign="center">product</cell>
+          <cell>Product</cell>
           <cell></cell>
-          <cell>value</cell>
+          <cell>Result</cell>
           <cell />
         </row>
         <row>
-          <cell halign="right"><m>2^4</m></cell>
+          <cell><m>2^4</m></cell>
           <cell><m>=</m></cell>
-          <cell halign="center"><m>2 \cdot 2 \cdot 2 \cdot 2</m></cell>
+          <cell><m>2 \cdot 2 \cdot 2 \cdot 2</m></cell>
           <cell><m>=</m></cell>
           <cell><m>16</m></cell>
-          <cell>(divide by <m>2</m>)</cell>
+          <cell></cell>
         </row>
         <row>
-          <cell halign="right"><m>2^3</m></cell>
+          <cell><m>2^3</m></cell>
           <cell><m>=</m></cell>
-          <cell halign="center"><m>2 \cdot 2 \cdot 2</m></cell>
+          <cell><m>2 \cdot 2 \cdot 2</m></cell>
           <cell><m>=</m></cell>
           <cell><m>8</m></cell>
           <cell>(divide by <m>2</m>)</cell>
         </row>
         <row>
-          <cell halign="right"><m>2^2</m></cell>
+          <cell><m>2^2</m></cell>
           <cell><m>=</m></cell>
-          <cell halign="center"><m>2 \cdot 2</m></cell>
+          <cell><m>2 \cdot 2</m></cell>
           <cell><m>=</m></cell>
           <cell><m>4</m></cell>
           <cell>(divide by <m>2</m>)</cell>
         </row>
         <row>
-          <cell halign="right"><m>2^1</m></cell>
+          <cell><m>2^1</m></cell>
           <cell><m>=</m></cell>
-          <cell halign="center"><m>2</m></cell>
+          <cell><m>2</m></cell>
           <cell><m>=</m></cell>
           <cell><m>2</m></cell>
           <cell>(divide by <m>2</m>)</cell>
         </row>
         <row>
-          <cell halign="right"><m>2^0</m></cell>
+          <cell><m>2^0</m></cell>
           <cell><m>=</m></cell>
-          <cell halign="center"><m>\mathord{?}</m></cell>
+          <cell><m>\mathord{?}</m></cell>
           <cell><m>=</m></cell>
           <cell><m>\mathord{?}</m></cell>
           <cell />
         </row>
       </tabular>
 
-    </table>
+    </figure>
 
-    <p permid="LCL">
+    <p oldpermid="LCL">
       As we move down from one row to the row below it,
-      we reduce the power by <m>1</m> and we remove a factor of <m>2</m>.
-      The question then becomes,
-      <q>What happens when you remove the only remaining factor of <m>2</m>,
-      when you have no factors of 2?</q>
-      We can see that <q>removing a factor of <m>2</m></q>
-      really means that we're dividing the value by <m>2</m>.
-      Following that pattern,
-      we can see that moving from <m>2^1</m> to <m>2^0</m> means that we need to divide the value <m>2</m> by <m>2</m>.
-      Since <m>2\div 2 = 1</m>, we have:
+      we reduce the exponent in the power by <m>1</m> and we remove a factor of <m>2</m> from the product.
+      The result in one row is half of the result of the previous row.
+      The question is, what happens when the exponent gets down to <m>0</m>
+      and you remove the last remaining factor of <m>2</m>?
+      Following that pattern with the final results,
+      moving from <m>2^1</m> to <m>2^0</m> should meant the result of <m>2</m> is divided by <m>2</m>,
+      leaving <m>1</m>. So we have:
       <me permid="Phl">
         2^0 = 1
       </me>
@@ -650,8 +561,8 @@
 
     <p permid="rJU">
       We exclude the case where <m>a=0</m> from this rule,
-      because our reasoning for this rule with the table had us dividing by the base.
-      And we cannot divide by <m>0</m>.
+      because our reasoning for this rule with the table had us dividing by the base,
+      and we cannot divide by <m>0</m>.
     </p>
     <!-- <example>
       <statement>
@@ -814,39 +725,37 @@
 
   <subsection permid="lGa">
     <title>Negative Exponents</title>
-    <p permid="XRd">
-      In <xref ref="section-introduction-to-exponent-rules">Section</xref>,
-      we developed rules for simplifying expressions with whole number exponents,
-      like <m>0</m>,
-      <m>1</m>, <m>2</m>, <m>3</m>, etc.
-      It turns out that these same rules apply even if the exponent is a negative integer,
-      like <m>-1</m>,
-      <m>-2</m>, <m>-3</m>, etc.
+    <p oldpermid="XRd">
+      We understand what it means for a variable to have a natural number exponent.
+      For example, <m>x^5</m> means <m>\overbrace{x\cdot x\cdot x\cdot x\cdot x}^{\text{five times}}</m>.
+      Now we will try to give meaning to an exponent that is a negative integer,
+      like in <m>x^{-5}</m>.
     </p>
 
-    <p permid="DYm">
-      To consider the effects of negative integer exponents,
-      let's extend the pattern we examined in <xref ref="table-descending-powers-of-two">Table</xref>.
+    <p oldpermid="DYm">
+      To consider what it could possibly mean to have a negative integer exponent,
+      let's extend the pattern we examined in <xref ref="figure-descending-powers-of-two">Figure</xref>.
       In that table, each time we move down a row,
       we reduce the power by <m>1</m> and we divide the value by <m>2</m>.
       We can continue this pattern in the power and value columns,
-      paying particular attention to the values for negative exponents:
+      going all the way down into when the exponent is negeative.
     </p>
 
-    <sidebyside permid="wOZ">
+    <figure permid="wOZ">
+      <caption>Descending Deeper into Powers of <m>2</m></caption>
 
       <tabular permid="BNA">
         <col halign="left"/>
         <col />
         <col />
-        <row>
+        <row bottom="medium">
           <cell>Power</cell>
-          <cell>Value</cell>
+          <cell>Result</cell>
         </row>
         <row>
           <cell><m>2^3</m></cell>
           <cell><m>8</m></cell>
-          <cell>(divide by <m>2</m>)</cell>
+          <cell></cell>
         </row>
         <row>
           <cell><m>2^2</m></cell>
@@ -876,11 +785,11 @@
         <row>
           <cell><m>2^{-3}</m></cell>
           <cell><m>\sfrac{1}{8}=\sfrac{1}{2^3}</m></cell>
-          <cell />
+          <cell>(divide by <m>2</m>)</cell>
         </row>
       </tabular>
 
-    </sidebyside>
+    </figure>
     <!-- <p>
       As the pattern in the power column continues to include negative exponents for the base <m>2</m>,
       we continue to divide each value by <m>2</m> from row to row and we have <me>2^{-1} = \frac{1}{2},
@@ -964,7 +873,9 @@
         2^{-1}  = \left(\frac{1}{2}\right)^1 = \frac{1}{2^1}, \qquad 2^{-2}  = \left(\frac{1}{2}\right)^2 = \frac{1}{2^2}, \qquad 2^{-3}  = \left(\frac{1}{2}\right)^3 = \frac{1}{2^3}
       </me>
     </p> -->
-    <p permid="kfv">
+
+    <p>
+      We are seeing a pattern where <m>2^{\text{negative number}}</m> is equal to <m>\frac{1}{2^{\text{positive number}}}</m>.
       Note that the choice of base <m>2</m> was arbitrary,
       and this pattern works for all bases except <m>0</m>,
       since we cannot divide by <m>0</m> in moving from one row to the next.
@@ -975,7 +886,7 @@
       <idx><h>exponent</h><h>negative exponent rule</h></idx>
       <statement>
         <p permid="UmD">
-          For any non-zero real number <m>a</m> and any integer <m>n</m>,
+          For any non-zero real number <m>a</m> and any natural number <m>n</m>,
           <me permid="zYn">
             a^{-n} = \frac{1}{a^n}
           </me>
@@ -984,18 +895,19 @@
     </fact>
 
     <p permid="QmE">
-      Note that if we take reciprocals of both sides,
+      If we take reciprocals of both sides,
       we have another helpful fact:
       <me permid="gfw">
         \frac{1}{a^{-n}}=a^n
       </me>.
       Taken together,
-      these facts tell us that a negative exponent in the numerator belongs in the denominator
-      (with a positive exponent)
-      and a negative exponent in the denominator belongs in the numerator
-      (with a positive exponent).
+      these facts tell us that a power in the numerator with a negative exponent belongs in the <em>denominator</em>
+      (with a <em>positive</em> exponent).
+      And similarly, a power in the denominator with a negative exponent belongs in the <em>numerator</em>
+      (with a <em>positive</em> exponent).
       In other words,
-      you can see a negative exponent as telling you to move things in and out of the numerator and denominator of an expression.
+      you can view a negative exponent as telling you to move something to/from the numerator/denominator of an expression,
+      changing the sign of the exponent at the same time.
     </p>
 
     <p permid="AtM">
@@ -1093,6 +1005,8 @@
                 <li permid="Kqb">
                   <p permid="Afr">
                     Negative exponents tell us to move some variables between the numerator and denominator to make the exponents positive.
+                    The <m>x^{-4}</m> in the numerator should become <m>x^4</m> in the denominator.
+                    The <m>z^{-2}</m> in the denominator should become <m>z^2</m> in the numerator.
                     <me permid="stO">
                       \frac{ 3 \highlight{x^{-4}} }{ y\highlight{z^{-2}} }=\frac{ 3 \highlight{z^{2}} }{ y\highlight{x^{4}} }
                     </me>
@@ -1181,7 +1095,7 @@
   <subsection permid="RNj">
     <title>Summary of Exponent Rules</title>
     <p permid="cAW">
-      Now that we have some new exponent rules beyond those from <xref ref="section-introduction-to-exponent-rules">Section</xref>,
+      Now that we have some new exponent rules beyond those from <xref ref="section-introduction-to-exponent-rules">Section</xref> and <xref ref="section-dividing-by-a-monomial">Section</xref>,
       let's summarize.
     </p>
 
@@ -1576,7 +1490,7 @@
           </setup>
           <statement>
             <p permid="JNy">
-              <ol label="a." cols="2" permid="pNq">
+              <ol label="a." permid="pNq">
                 <li permid="prR">
                   <p permid="lGn">
                     Simplify <m>\dfrac{6x^{3}}{2x^{7}}</m> and write it without using negative exponents.
@@ -1755,7 +1669,7 @@
       </exercise>
 
     </exercisegroup>
-    <exercisegroup cols="4" permid="qpT">
+    <exercisegroup cols="3" permid="qpT">
       <title>Simplifying Products and Quotients Involving Exponents</title>
       <exercise permid="yEm">
         <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentsMultiplication0.pg" />
@@ -1869,38 +1783,6 @@
         <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision55.pg" />
       </exercise>
 
-      <exercise permid="Oxe">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision60.pg" />
-      </exercise>
-
-      <exercise permid="uEn">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision60.pg" />
-      </exercise>
-
-      <exercise permid="aLw">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision65.pg" />
-      </exercise>
-
-      <exercise permid="GSF">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision65.pg" />
-      </exercise>
-
-      <exercise permid="mZO">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision70.pg" />
-      </exercise>
-
-      <exercise permid="TgX">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision70.pg" />
-      </exercise>
-
-      <exercise permid="zog">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision75.pg" />
-      </exercise>
-
-      <exercise permid="fvp">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision75.pg" />
-      </exercise>
-
       <exercise permid="LCy">
         <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision80.pg" />
       </exercise>
@@ -1915,30 +1797,6 @@
 
       <exercise permid="DXZ">
         <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision85.pg" />
-      </exercise>
-
-      <exercise permid="kfi">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision95.pg" />
-      </exercise>
-
-      <exercise permid="Qmr">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision95.pg" />
-      </exercise>
-
-      <exercise permid="wtA">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision100.pg" />
-      </exercise>
-
-      <exercise permid="cAJ">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision100.pg" />
-      </exercise>
-
-      <exercise permid="IHS">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision105.pg" />
-      </exercise>
-
-      <exercise permid="oPb">
-        <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentDivision105.pg" />
       </exercise>
 
     </exercisegroup>

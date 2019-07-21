@@ -252,6 +252,20 @@ pdf-edition2:
 	echo 'SECTION 4.3'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}If an equation involves fractions, it is helpful to clear denominators by multiplying both sides of the equation by a common multiple of the denominators.%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(To check our work, substitute \\\(A=560\\\) and \\\(B=440\\\) into the original equations:%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 5.2'; \
+	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents for Multiplication\\label{x:list:list-rules-of-exponents}})/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 5.3'; \
+	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents \(Thus Far\)\\label{x:list:list-rules-of-exponents-four-rules}})/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(where \\\(m\\\) is the object.s mass, and \\\(V\\\) is its volume\. The mass of a certain cancerous growth can be modeled by \\\(4t\^3-6t\^2\+8t\\\) grams, where \\\(t\\\) is the number of days since the growth began\. If its volume is \\\(2t\\\) cubic centimeters, find the growth.s density\.%\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
+	echo 'SECTION 5.4'; \
+	perl -pi -e 's/^(To finish multiplying, we.ll continue by distributing again, but this time across \\\(\(x+3\)\\\):%)/\\newline%\n\1/' orcca.tex; \
+	echo 'SECTION 5.5'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:goW)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 5.6'; \
+	perl -pi -e 's/^(\\begin{subsectionptx}{Summary of Exponent Rules}\{\}{Summary of Exponent Rules}\{\}\{\}{p:subsection:RNj})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 5.8'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:wBV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:snB)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
@@ -273,12 +287,12 @@ pdf-edition2:
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}{(.*?)}/\1/g' orcca.tex; \
 	echo 'REMOVE ALL ANSWER BLANKS AND EQUALS SIGNS THAT ARE IN SHORT LINES LIKE 1+2=___ '; \
-	perl -pi -e 's/^(\\\(((?!\\\)).)*) *=([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\3%\n/g' orcca.tex; \
-	perl -pi -e 's/^(\\item\{\}\\\(((?!\\\)).)*) *=([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\3%\n/g' orcca.tex; \
-	perl -pi -e 's/^(\\\(((?!\\\)).)*\\\)) *= *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
-	perl -pi -e 's/^(\\item\{\}\\\(((?!\\\)).)*\\\)) *= *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
-	perl -pi -e 's/^(\\\(((?!\\\)).)*) *\\approx([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\3%\n/g' orcca.tex; \
-	perl -pi -e 's/^(\\\(((?!\\\)).)*) *=\{\}([ }]*\\\)) *\\fillin\{\d+\} *\.?%\n/\1\3%\n/g' orcca.tex; \
+	perl -p0i -e 's/^(\\\(((?!(\\\)|text)).)*) *=([ \n}]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/gm' orcca.tex; \
+	perl -pi -e 's/^(\\item\{\}\\\(((?!(\\\)|text)).)*) *=([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*\\\)) *= *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\item\{\}\\\(((?!(\\\)|text)).)*\\\)) *= *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*) *\\approx([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*) *=\{\}([ }]*\\\)) *\\fillin\{\d+\} *\.?%\n/\1\4%\n/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 #	xelatex orcca.tex; \
