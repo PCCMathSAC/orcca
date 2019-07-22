@@ -109,19 +109,18 @@ pg:
 	cd $(PGOUT); \
 	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
 
-pdf-ptx:
+pdf-nopost:
 	install -d $(OUTPUT)
-	-rm -r $(PDFOUT)
+	-rm -r $(PDFOUT) || :
 	install -d $(PDFOUT)
 	install -d $(PDFOUT)/images
 	install -d $(IMAGESOUT)
 	install -d $(IMAGESSRC)
-	cp -a $(WWOUT)/*.png $(PDFOUT)/images
-	cp -a $(PREVIEW)/*.png $(PDFOUT)/images
-	cp -a $(IMAGESSRC) $(PDFOUT)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images || :
+	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
+	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml; \
-	xelatex orcca.tex; \
+	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
@@ -146,44 +145,133 @@ pdf-edition2:
 	perl -p0i -e 's/\\par\n(%\n\\begin\{equation)/\1/g' orcca.tex; \
 	echo 'Next two lines attempt to prevent pagebreaks after an "Explanation" title; not always with success'; \
 	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\begin).)*?\n)*?)(.*\\par)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\4/g' orcca.tex; \
-	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	perl -p0i -e 's/(\\noindent\\textbf\{Explanation\}.*?\n(((?!\\par).)*?\n)*?\\end(?!({tikzpicture}|{aligned}|{alignedat})).*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 	echo 'Next line attempts to prevent pagebreaks after an "Exercises" starts; not always with success'; \
 	perl -p0i -e 's/(\\begin\{exercises-subsection\}\{Exercises\}.*?\n(.*?\n)*?\\end\{divisionexercise\}%\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 	echo 'Next two lines look for a list in an exercise where the exercise starts, and gets first line to start on exercise opening line'; \
-	perl -p0i -e 's/(\\begin{divisionexerciseegcol}.*?\n\\begin{enumerate)(}\[label=\\alph\*\.)(\]\n)((.*?\n)*?\\end{enumerate)}/\1\*\2,itemjoin=\{\\vspace\{0\.5pc\}\\newline\},afterlabel=\{\\hspace\{1ex\}\}\3\4\*}\\vspace{0.5pc}\n\n/g' orcca.tex; \
-	perl -p0i -e 's/(\\begin{divisionexerciseegcol}.*?\n\\hypertarget{.*?}\{\}%\n\\begin{enumerate)(}\[label=\\alph\*\.)(\]\n)((.*?\n)*?\\end{enumerate)}/\1\*\2,itemjoin=\{\\vspace\{0\.5pc\}\\newline\},afterlabel=\{\\hspace\{1ex\}\}\3\4\*}\\vspace{0.5pc}\n\n/g' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{divisionexerciseegcol}.*?\n\\begin{enumerate)(}\[label=\\alph\*\.)(\]\n)((.*?\n)*?\\end{enumerate)}/\1\*\2,itemjoin=\{\\vspace\{0\.5pc\}\\newline\},afterlabel=\{\\hspace\{1ex\}\}\3\4\*}\\vspace{0.5pc}\n\n/gm' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{divisionexerciseegcol}.*?\n\\hypertarget{.*?}\{\}%\n\\begin{enumerate)(}\[label=\\alph\*\.)(\]\n)((.*?\n)*?\\end{enumerate)}/\1\*\2,itemjoin=\{\\vspace\{0\.5pc\}\\newline\},afterlabel=\{\\hspace\{1ex\}\}\3\4\*}\\vspace{0.5pc}\n\n/gm' orcca.tex; \
 	echo 'IMAGE WIDTH ADJUSTMENT'; \
 	echo 'WeBWorK images in a multicolumn list or exercisegroup need these sizing adjustments, effectively resizing them to 100%. The for loops are just to make the regex search and replace repeat enough times to hit all instances within a list or exerisegroup'; \
-	for i in {1..3}; do perl -p0i -e 's/(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/g' orcca.tex; done; \
-	for i in {1..6}; do perl -p0i -e 's/(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
-	for i in {1..8}; do perl -p0i -e 's/(\\begin{exercisegroupcol}\{3\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/g' orcca.tex; done; \
+	for i in {1..3}; do perl -p0i -e 's/^(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/gm' orcca.tex; done; \
+	for i in {1..6}; do perl -p0i -e 's/^(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
+	for i in {1..16}; do perl -p0i -e 's/^(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
+	perl -p0i -e 's/^(The pie chart represents a collector.s collection of signatures from various artists.%\n\\begin{sidebyside}\{1\}){0\.166666666666667}{0\.166666666666667}\{0\}%\n\\begin{sbspanel}{0\.666666666666667}/\1\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}/gm' orcca.tex; \
+	perl -p0i -e 's/^((The pie chart .* artists.|The following is a nutrition .* box.|A community college .* the survey.)%\n\\begin{sidebyside}\{1\}){0\.166666666666667}{0\.166666666666667}\{0\}%\n\\begin{sbspanel}{0\.666666666666667}/\1\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}/gm' orcca.tex; \
+	echo 'SYSTEMS OF EQUATIONS IN DISPLAY MODE'; \
+	for i in {1..20}; do perl -p0i -e 's/^(\\textbf{Using a Graph to Solve a System}\\space\\space%\nUse a graph to solve the system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
+	for i in {1..50}; do perl -p0i -e 's/^(\\textbf{Solving System of Equations Using Substitution}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
+	for i in {1..32}; do perl -p0i -e 's/^(\\textbf{Solving System of Equations by Elimination}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/^(\\textbf{Solving Systems of Linear Equations by Graphing}\\space\\space%\nUse a graph to solve the system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/^(\\textbf{Substitution}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
+	for i in {1..8}; do perl -p0i -e 's/^(\\textbf{Elimination}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
+	perl -p0i -e 's/^(\\begin{example}[^\n]*?example:VQz}%\n.*?\n.*?\n.*?\n)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)%\n\\item\{\}%\n(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)/\1\\begin{fleqn}\[1em\]\n\2\\end{fleqn}\n%\n\\item\{\}%\n\\begin{fleqn}\[1em\]\n\4\\end{fleqn}\n/m' orcca.tex; \
 	echo 'INDIVIDUAL INSERTIONS'; \
+	echo 'Redefine sectionptx to address aside side effect'; \
+	perl -p0i -e 's/^(\\NewDocumentEnvironment{sectionptx}{mmmmmm}\n{%\n\\renewcommand{\\divisionnameptx}{Section}%\n\\renewcommand{\\titleptx}\{..}%\n\\renewcommand{\\subtitleptx}\{..\}%\n\\renewcommand{\\shortitleptx}\{..\}%\n\\renewcommand{\\authorsptx}\{..\}%\n\\renewcommand{\\epigraphptx}\{..\}%\n\\section\[..\]\{..\}%\n\\label\{..\}%\n\}\{)(\}%\n)/\1\n\n\2/m' orcca.tex; \
 	echo 'Insert a \par following an aside, before a sidebyside'; \
 	perl -pi -e 's/(\{Figure\~\\ref\{x:figure:figure-balance-scale\}\} shows the scale\.\%\n)/\1\\par\n/' orcca.tex; \
 	echo 'Insert a \par following the last reading question which follows an aside from pages earlier causing problems'; \
 	perl -p0i -e 's/(Every time you solve an equation, there is something you should do to guarantee success\. Describe what that thing is that you should do\.%\n\\end{divisionexercise}%\n)/\1\\par\n/' orcca.tex; \
+	echo 'Insert a \par following an aside that is causing problems'; \
+	perl -pi -e 's/(If Carl has an out-of-town guest who asks him how to get to the restaurant, Carl could say:%)/\\par\n\1/' orcca.tex; \
 	echo 'INDIVIDUAL PAGE BREAKS'; \
 	echo 'CHAPTER 1'; \
 	echo 'SECTION 1.1'; \
-	perl -p0i -e 's/(:UqM.*?\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage\n\3/' orcca.tex; \
+	perl -p0i -e 's/^(.*:UqM.*?\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage\n\3/m' orcca.tex; \
 	perl -pi -e 's/(^\\begin{exercises-subsection}.*?:hKx)/\\newpage\n\1/' orcca.tex; \
 	echo 'SECTION 1.2'; \
-	perl -p0i -e 's/(\\hrulefill\\\\%\n.*?\n.*?\n.*?:HsV)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}\{\}{x:example:example-combining-like-terms}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}\{\}{p:example:XHm}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:xZj)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 1.3'; \
-	perl -p0i -e 's/(.*?\n.*?\n.*?:xbu)/\\newpage\\noindent%\n\1/' orcca.tex; \
-	perl -p0i -e 's/(\\hrulefill\\\\%\n.*?\n.*?\n.*?:DAA}%)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?:xbu)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\hrulefill\\\\%\n.*?\n.*?\n.*?:DAA}%)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 1.4'; \
-	perl -p0i -e 's/(.*?\n.*?\n.*?:nJi)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -pi -e 's/(The following are some linear equations in one variable:%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:yin}%\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage%\n\2/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?:nJi)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 1.5'; \
 	perl -pi -e 's/(^\\begin\{example\}\{\}\{x:example:example-one-step-equation-fraction-type-one\}%)/\\newpage\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\begin{example}\{\}{p:example:CyD}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 1.7'; \
+	perl -pi -e 's/(\\begin{inlineexercise}\{\}{p:exercise:mST}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 1.8'; \
+	echo 'CHAPTER 2'; \
+	echo 'SECTION 2.1'; \
+	perl -pi -e 's/(\\begin{inlineexercise}\{\}{p:exercise:ggs}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(Here we revisit \\hyperref\[x:example:example-savings-pattern\]{Example~\\ref{x:example:example-savings-pattern\}\}\.%\n\\par\nA savings account starts with \\\(\\\$500\\\)\. Each month, an automatic deposit of \\\(\\\$150\\\) is made. Find the number of months it will take for the balance to reach \\\(\\\$1\{,\}700\\\)\.%\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
+	perl -pi -e 's/^(Here is a summary collection of the distinctions that you should understand between simplifying expressions, evaluating expressions and solving equations.%)/\1\n\\newpage%/' orcca.tex; \
 	echo 'SECTION 2.2'; \
-	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 2.3'; \
-	perl -p0i -e 's/(.*?\n.*?\n.*?exercise:JoV)/\\newpage\\noindent%\n\1/' orcca.tex; \
+	perl -pi -e 's/(\\noindent\\textbf{Explanation}.*Assume Bao)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JoV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 2.4'; \
 	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage\n\1/' orcca.tex; \
 	echo 'SECTION 2.5'; \
-	perl -p0i -e 's/(.*?\n.*?\n.*?\n.*?\n.*?\n.*?exercises:dvU)/\\newpage\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{example}\{\}{x:example:example-solve-for-variable-slope-intercept}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:Xlj})/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{x:exercise:exercise-solve-for-variable-standard-form}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?\n.*?\n.*?exercises:dvU)/\\newpage\n\1/m' orcca.tex; \
+	echo 'CHAPTER 3'; \
+	echo 'SECTION 3.1'; \
+	perl -p0i -e 's/^(\\begin{reading-questions-subsection-numberless}{Reading Questions}\{\}{Reading Questions}\{\}\{\}{.*?}\n\\begin{divisionexercise}\{1\}\{\}\{\}{.*?}%\nWhat are the coordinates of the gas station in the map of Carl.s neighborhood\?%)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 3.2'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:RHS)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 3.3'; \
+	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:EYb}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:bQC}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.4'; \
+	perl -pi -e 's/(.*?example:uFj)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?exercise:XRM)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.5'; \
+	perl -pi -e 's/(.*?example:gBr)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\quad\{\}Do your best to identify two points on the line. We go with \\\(\(0,27500\)\\\) and \\\(\(11000,45000\)\\text\{\.\}\\\)%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.6'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:WRk)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:Ohs)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 3.7'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:zcU)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 3.8'; \
+	perl -pi -e 's/(.*?example:sSa)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}First, we will find Line \\\(A\\\).s slope by rewriting its equation from standard form to slope-intercept form:%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:PjY)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -pi -e 's/(.*?exercise:YKX)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 3.10'; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:OrR}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:aGj}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:GNs}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'CHAPTER 4'; \
+	echo 'SECTION 4.1'; \
+	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{A summary of the three types of systems of equations and their solution sets\.\\label{x:list:list-summary-of-types-of-systems}})/\\newpage\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?exercise:ysn)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 4.2'; \
+	perl -pi -e 's/(.*?exercise:lJw)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(.*?example:ULl)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 4.3'; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}If an equation involves fractions, it is helpful to clear denominators by multiplying both sides of the equation by a common multiple of the denominators.%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/(To check our work, substitute \\\(A=560\\\) and \\\(B=440\\\) into the original equations:%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 5.2'; \
+	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents for Multiplication\\label{x:list:list-rules-of-exponents}})/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 5.3'; \
+	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents \(Thus Far\)\\label{x:list:list-rules-of-exponents-four-rules}})/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(where \\\(m\\\) is the object.s mass, and \\\(V\\\) is its volume\. The mass of a certain cancerous growth can be modeled by \\\(4t\^3-6t\^2\+8t\\\) grams, where \\\(t\\\) is the number of days since the growth began\. If its volume is \\\(2t\\\) cubic centimeters, find the growth.s density\.%\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
+	echo 'SECTION 5.4'; \
+	perl -pi -e 's/^(To finish multiplying, we.ll continue by distributing again, but this time across \\\(\(x+3\)\\\):%)/\\newline%\n\1/' orcca.tex; \
+	echo 'SECTION 5.5'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:goW)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 5.6'; \
+	perl -pi -e 's/^(\\begin{subsectionptx}{Summary of Exponent Rules}\{\}{Summary of Exponent Rules}\{\}\{\}{p:subsection:RNj})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 5.8'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:wBV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:snB)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'APPENDIX'; \
+	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
+	perl -pi -e 's/(\\begin{divisionexerciseeg}{\d+}{}{}{p:exercise:zKS}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:FpW}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:CJL}%)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'INDIVIDUAL CUTTING'; \
 	echo 'SECTION 1.3'; \
 	perl -pi -e 's/^In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
@@ -191,10 +279,20 @@ pdf-edition2:
 	perl -p0i -e 's/\\par\nIn .*? notation, the solution set is +\\fillin{\d+}\.%\n//g' orcca.tex; \
 	echo 'SECTION 2.2'; \
 	perl -pi -e 's/^ *\\fillin\{10\}  \\fillin\{2\}  \\fillin\{10\}%//g' orcca.tex; \
+	echo 'SECTION 3.6'; \
+	perl -pi -e 's/^An equation for this line in.*\\fillin{\d+}\.%\n//g' orcca.tex; \
+	perl -pi -e 's/^In slope-intercept form:  \\fillin\{20\}%\n//g' orcca.tex; \
 	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}{(.*?)}/\1/g' orcca.tex; \
+	echo 'REMOVE ALL ANSWER BLANKS AND EQUALS SIGNS THAT ARE IN SHORT LINES LIKE 1+2=___ '; \
+	perl -p0i -e 's/^(\\\(((?!(\\\)|text)).)*) *=([ \n}]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/gm' orcca.tex; \
+	perl -pi -e 's/^(\\item\{\}\\\(((?!(\\\)|text)).)*) *=([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*\\\)) *= *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\item\{\}\\\(((?!(\\\)|text)).)*\\\)) *= *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*) *\\approx([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/g' orcca.tex; \
+	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*) *=\{\}([ }]*\\\)) *\\fillin\{\d+\} *\.?%\n/\1\4%\n/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 #	xelatex orcca.tex; \
@@ -545,7 +643,7 @@ html:
 	cp -a $(PRJSRC)/favicon $(HTMLOUT) || :
 	cp $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam watermark.text "DRAFT 2nd ED" --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
+	xsltproc -xinclude --stringparam debug.colors ruby_emerald --stringparam watermark.text "DRAFT 2nd ED" --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
 # latex-image images
@@ -589,7 +687,7 @@ check:
 	perl -pi -e 's/^.*element .image. incomplete.*\n//g' $(OUTPUT)/jingreport.txt
 	perl -pi -e 's/^.*attribute .pg-name.*\n//g' $(OUTPUT)/jingreport.txt
 	perl -p0i -e 's/.*? .tabular. not allowed here.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
-	perl -p0i -e 's/.*? .interactive. not allowed anywhere.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
+	perl -p0i -e 's/.*? .interactive. not allowed anywhere.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt; \
 	less $(OUTPUT)/jingreport.txt
 
 gource:

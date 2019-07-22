@@ -199,7 +199,7 @@
                   (2012,22)
                   (2013,20)
                 };
-                \addplot+[domain = 1990:2035,->]{0.34434783*x-670.71};
+                \addplot[firstcurve,domain = 1991:2020,-,ultra thick]{0.34434783*x-670.71};
               \end{axis}
             \end{tikzpicture}]]>
           </latex-image>
@@ -424,14 +424,14 @@
         And its function is to take a number as input,
         and give twice that number as its output.
         Mathematically, we can describe the pattern as
-        <q><m>y=2x\text{,}</m></q>
+        <q><m>y=2x</m>,</q>
         where <m>x</m> represents the input,
         and <m>y</m> represents the output.
         Labeling the table mathematically,
-        we have <xref ref="table-pattern-double">Table</xref>.
+        we have <xref ref="figure-pattern-double">Figure</xref>.
       </p>
 
-      <table xml:id="table-pattern-double" permid="Mtw">
+      <figure xml:id="figure-pattern-double" permid="Mtw">
         <caption>Table with a mathematical pattern</caption>
         <tabular permid="sAF">
           <col halign="center" />
@@ -469,7 +469,7 @@
           </row>
         </tabular>
 
-      </table>
+      </figure>
 
     </sidebyside>
 
@@ -804,9 +804,8 @@
               constant from one row to the next.
               While the <m>x</m>-values are increasing by <m>1</m> from row to row,
               the <m>y</m>-values increase more and more from row to row.
-              Notice that there is a pattern there as well?
-              Mathematicians are interested in relationships that produce more complicated patterns.
-              (We'll study more complicated patterns later.)
+              Do you notice that there is a pattern there as well?
+              Mathematicians are interested in relationships with patterns.
             </p>
           </solution>
       </webwork>
@@ -967,22 +966,19 @@
         (which you can calculate as <m>2010-2000</m>),
         the rate of change is <m>2281</m> diagnoses per <m>10</m> years, or
         <me permid="cHN">
-          \frac{2281\,\text{diagnoses}}{10\,\text{year}}=228.1\,\frac{\text{diagnoses}}{\text{year}}\text{.}
-        </me>
+          \frac{2281\,\text{diagnoses}}{10\,\text{year}}=228.1\,\frac{\text{diagnoses}}{\text{year}}
+        </me>.
         We read that last quantity as <q><m>228.1</m> diagnoses per year.</q>
         This rate of change means that between the years <m>2000</m> and <m>2010</m>,
         there were <m>228.1</m> more diagnoses <em>each</em> year, on average.
-        This is just an average over those ten years.
-        We dare not interpret <em>why</em> that increase existed,
-        just that it did.
-        If you are interested in examining causal relationships that exist in real life,
-        we strongly recommend a statistics course or two in your future!
+        This is just an average over those ten years<mdash/>it does not mean
+        that the diagnoses grew by exactly this much each year.
+        % We dare not interpret <em>why</em> that increase existed,
+        % just that it did.
+        % If you are interested in examining causal relationships that exist in real life,
+        % we strongly recommend a statistics course or two in your future!
       </p>
     </example>
-
-    <p permid="zvk">
-      Let's practice calculating rates of change over different timespans:
-    </p>
 
     <exercise xml:id="exercise-cancer-data" permid="xyG">
       <webwork>
@@ -994,18 +990,30 @@
                 %f=map{$x[$_]=>$y[$_]}(0..14);
                 $r[0]=($f{2002}-$f{1999})/(2002-1999);
                 $r[1]=($f{2011}-$f{2003})/(2011-2003);
+                $newUnits = [
+                  {name=>'diagnoses'},
+                  {name=>'year',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'years',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'yr',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'yrs',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'y',conversion=>{factor=>365*24*60*60,s=>1}},
+                ];
+                $rate[0] = NumberWithUnits("$r[0] diagnoses/yr",{newUnit=>$newUnits});
+                $rate[1] = NumberWithUnits("$r[1] diagnoses/yr",{newUnit=>$newUnits});
             </pg-code>
           </setup>
           <statement>
             <p permid="KpO">
               Use the data in <xref ref="example-cancer-data">Example</xref>
               to find the rate of change in Oregon invasive cancer diagnoses between 1999 and 2002.
-              Just give the numerical value;
-              the units are provided.
             </p>
 
+            <instruction>
+              You can type the unit as <c>diagnoses/yr</c>.
+            </instruction>
+
             <p permid="qwX">
-              <var name="$r[0]" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m>
+              <var name="$rate[0]" width="10" />
             </p>
 
             <p permid="WEg">
@@ -1013,22 +1021,24 @@
             </p>
 
             <p permid="CLp">
-              <var name="$r[1]" width="10" /><m>\,\frac{\text{diagnoses}}{\text{year}}</m>
+              <var name="$rate[1]" width="10" />
             </p>
           </statement>
           <solution permid="apK">
             <p permid="ywV">
               To find the rate of change between 1999 and 2002, calculate
               <me permid="IOW">
-                \frac{17887-17599}{2002-1999}=96\text{.}
-              </me>
+                \frac{17887-17599}{2002-1999}=96
+              </me>.
+              So the rate of change was <m><var name="$r[0]"/></m>.
             </p>
 
             <p permid="eEe">
               To find the rate of change between 2003 and 2011, calculate
               <me permid="oWf">
-                \frac{20636-17559}{2011-2003}=384.625\text{.}
-              </me>
+                \frac{20636-17559}{2011-2003}=384.625
+              </me>.
+              So the rate of change was <m><var name="$r[1]"/></m>.
             </p>
           </solution>
       </webwork>
@@ -1051,8 +1061,8 @@
           <m>\left(x_2,y_2\right)</m> are two data points from a set of two-variable data,
           then the <term>rate of change</term> between them is
           <me permid="Vdo">
-            \frac{\text{change in $y$}}{\text{change in $x$}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}\text{.}
-          </me>
+            \frac{\text{change in $y$}}{\text{change in $x$}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}
+          </me>.
           (The Greek letter delta, <m>\Delta</m>,
           is used to represent <q>change in</q>
           since it is the first letter of the Greek word for <q>difference.</q>)
@@ -1173,7 +1183,7 @@
 
             <latex-image>
             <![CDATA[\begin{tikzpicture}
-                \begin{axis}[ymin=-5,ymax=9,ytick={-4,2,...,8},minor ytick={-5,-4,...,9},]
+                \begin{axis}[ymin=-5,ymax=9,ytick={-4,2,...,8},minor ytick={-5,-4,...,9},width=0.47\linewidth]
                     \addplot[only marks]coordinates{
                            (0,-1)
                            (1,2)
@@ -1469,8 +1479,8 @@
     <p permid="kmm">
       The rate of change between those two points is
       <me permid="Bkx">
-        \frac{(25-15)\,\text{percentage points}}{(2020-1991)\text{years}}=\frac{10\,\text{percentage points}}{29\text{years}}\approx0.3448\frac{\,percentage points}{\text{year}}\text{.}
-      </me>
+        \frac{(25-15)\,\text{percentage points}}{(2020-1991)\text{years}}=\frac{10\,\text{percentage points}}{29\text{years}}\approx0.3448\frac{\text{percentage points}}{\text{year}}
+      </me>.
       So we might say that <em>on average</em>
       the rate of change expressed by this data is <m>0.3448</m> percentage points per year.
     </p>
@@ -3135,7 +3145,18 @@
                 @y=(487849,491064,493754,497432,497659,498396,501646,503205,502945,503637,529922,535185,538803,539546,533120,534112,538091,546747,556442,566143,585261,593859,602954,609520,619360);
                 %f=map{$x[$_]=>$y[$_]}(0..24);
                 @year=num_sort(@x[NchooseK(25,4)]);
+                $newUnits = [
+                  {name=>'people'},
+                  {name=>'person',conversion=>{factor=>1,people=>1}},
+                  {name=>'ppl',conversion=>{factor=>1,people=>1}},
+                  {name=>'year',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'years',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'yr',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'yrs',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'y',conversion=>{factor=>365*24*60*60,s=>1}},
+                ];
                 @rate=map{Real(($f{$year[2*$_+1]}-$f{$year[2*$_]})/($year[2*$_+1]-$year[2*$_]))}(0,1);
+                @rate=map{NumberWithUnits("$_ people/yr",{newUnit=>$newUnits})}(@rate);
                 $declines=List(1997,2003);
             </pg-code>
         </setup>
@@ -3240,12 +3261,14 @@
 
           <p permid="MOV">
             Find the rate of change in Portland population between <var name="$year[0]" /> and <var name="$year[1]" />.
-            Just give the numerical value;
-            the units are provided.
           </p>
 
+          <instruction>
+            You can type the unit as <c>people/yr</c>.
+          </instruction>
+
           <p permid="sWe">
-            <var name="$rate[0]" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m>
+            <var name="$rate[0]" width="10" />
           </p>
 
           <p permid="Zdn">
@@ -3253,7 +3276,7 @@
           </p>
 
           <p permid="Fkw">
-            <var name="$rate[1]" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m>
+            <var name="$rate[1]" width="10" />
           </p>
 
           <p permid="lrF">
@@ -3270,15 +3293,15 @@
           <p permid="uwW">
             To find the rate of change between <var name="$year[0]" /> and <var name="$year[1]" />, calculate
             <me permid="tFY">
-              \frac{<var name="$f{$year[1]}"/>-<var name="$f{$year[0]}"/>}{<var name="$year[1]"/>-<var name="$year[0]"/>}=<var name="$rate[0]"/>\text{.}
-            </me>
+              \frac{<var name="$f{$year[1]}"/>-<var name="$f{$year[0]}"/>}{<var name="$year[1]"/>-<var name="$year[0]"/>}=<var name="$rate[0]"/>
+            </me>.
           </p>
 
           <p permid="aEf">
             To find the rate of change between <var name="$year[2]" /> and <var name="$year[3]" />, calculate
             <me permid="ZNh">
-              \frac{<var name="$f{$year[3]}"/>-<var name="$f{$year[2]}"/>}{<var name="$year[3]"/>-<var name="$year[2]"/>}=<var name="$rate[1]"/>\text{.}
-            </me>
+              \frac{<var name="$f{$year[3]}"/>-<var name="$f{$year[2]}"/>}{<var name="$year[3]"/>-<var name="$year[2]"/>}=<var name="$rate[1]"/>
+            </me>.
           </p>
 
           <p permid="GLo">
@@ -3303,8 +3326,20 @@
                 $answer=List(1999,2001);
                 Context("Numeric");
                 $rate=($f{2001}-$f{1999})/2;
+                $newUnits = [
+                  {name=>'people'},
+                  {name=>'person',conversion=>{factor=>1,people=>1}},
+                  {name=>'ppl',conversion=>{factor=>1,people=>1}},
+                  {name=>'year',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'years',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'yr',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'yrs',conversion=>{factor=>365*24*60*60,s=>1}},
+                  {name=>'y',conversion=>{factor=>365*24*60*60,s=>1}},
+                ];
+                $rate=($f{2001}-$f{1999})/2;
+                $rate=NumberWithUnits("$rate people/yr",{newUnit=>$newUnits});
                 for my$j(0,1){
-                  $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[240,240]);
+                  $graph[$j]=init_graph(1989,-100000,2015,700000,axes=>[1990,0],grid=>[26,8],size=>[240,200]);
                   $graph[$j]->lb('reset');
                   $graph[$j]->lb(new Label(2014,6000,'year','black','right','bottom','large'));
                   $graph[$j]->lb(new Label(1990.5,690000,'population','black','left','top','large'));
@@ -3437,12 +3472,14 @@
 
           <p permid="qby">
             What was that rate of change?
-            Just give the numerical value;
-            the units are provided.
           </p>
 
+          <instruction>
+            You can type the unit as <c>people/yr</c>.
+          </instruction>
+
           <p permid="WiH">
-            <var name="$rate" width="10" /><m>\,\frac{\text{people}}{\text{year}}</m>
+            <var name="$rate" width="10" />
           </p>
         </statement>
         <solution permid="WpL">
@@ -3458,29 +3495,29 @@
           <p permid="SZG">
             Between 1998 and 2000:
             <me permid="FUq">
-              \frac{529922-502945}{2000-1998}=13488.5\text{.}
-            </me>
+              \frac{529922-502945}{2000-1998}=13488.5
+            </me>.
           </p>
 
           <p permid="zgP">
             Between 1999 and 2001:
             <me permid="mbz">
-              \frac{535185-503637}{2001-1999}=15774\text{.}
-            </me>
+              \frac{535185-503637}{2001-1999}=15774
+            </me>.
           </p>
 
           <p permid="fnY">
             Between 2008 and 2010:
             <me permid="SiI">
-              \frac{585261-556442}{2010-2008}=14409.5\text{.}
-            </me>
+              \frac{585261-556442}{2010-2008}=14409.5
+            </me>.
           </p>
 
           <p permid="Lvh">
             Between 2009 and 2011:
             <me permid="ypR">
-              \frac{593858-566143}{2011-2009}=13857.5\text{.}
-            </me>
+              \frac{593858-566143}{2011-2009}=13857.5
+            </me>.
           </p>
 
           <p permid="rCq">

@@ -17,9 +17,8 @@
     <xsl:text>\stepcounter{cthm}&#xa;&#xa;</xsl:text>
 </xsl:template>
 
-<!-- Omit solutions to sectional exercises -->
-<!-- <xsl:template match="webwork[@insec='sectional']//solution" />
-<xsl:template match="exercises//solution" /> -->
+<!-- Omit solutions/answers -->
+<xsl:template match="solutions"/>
 
 <!-- This version for print -->
 <!-- <xsl:param name="latex.preamble.early" select="concat(document('latex-preamble/latex.preamble.xml')//latex-preamble-early, document('latex-preamble/print.preamble.xml')//latex-preamble-early)" />
@@ -155,6 +154,10 @@
     <xsl:apply-templates />
     <xsl:text>%&#xa;</xsl:text>
 </xsl:template>
+
+<!-- Except when the above is only containing an answer blank and nothing else... -->
+<xsl:template match="p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][not(parent::li)]|p[not(normalize-space(text()))][count(fillin)=1 and count(*)=1][parent::li][preceding-sibling::*]" />
+
 
 
 <!-- When a p in a webwork-reps only contains m math, in certain conditions, use display math. -->
