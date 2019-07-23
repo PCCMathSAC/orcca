@@ -266,6 +266,14 @@ pdf-edition2:
 	echo 'SECTION 5.8'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:wBV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:snB)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	echo 'SECTION 6.3'; \
+	perl -pi -e 's/^(\\begin{remark}\{\}{x:remark:remark-two-representations-of-rational-exponents}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{example}\{\}{p:example:SaN}%)/\\newpage\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{subsectionptx}{More Expressions with Rational Exponents}\{\}{More Expressions with Rational Exponents}\{\}\{\}{p:subsection:QlA})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 6.4'; \
+	perl -pi -e 's/^(\\begin{divisionexerciseegcol}\{50\}\{\}\{\}{p:exercise:vMx}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 6.5'; \
+	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
