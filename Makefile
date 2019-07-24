@@ -136,6 +136,7 @@ pdf-edition2:
 	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
 	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	cp orcca.tex orcca-no-regex.tex; \
 	echo 'GLOBAL SPACING'; \
 	echo 'Next line removes \leavevmode when it comes right before an enumerate'; \
 	perl -p0i -e 's/\\leavevmode%\n(\\begin{enumerate})/\1/g' orcca.tex; \
@@ -175,6 +176,8 @@ pdf-edition2:
 	perl -p0i -e 's/(Every time you solve an equation, there is something you should do to guarantee success\. Describe what that thing is that you should do\.%\n\\end{divisionexercise}%\n)/\1\\par\n/' orcca.tex; \
 	echo 'Insert a \par following an aside that is causing problems'; \
 	perl -pi -e 's/(If Carl has an out-of-town guest who asks him how to get to the restaurant, Carl could say:%)/\\par\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{divisionexerciseegcol}\{\d+\}\{\}\{\}{p:exercise:KFJ}%\nLocate each point in the graph:%\n\\begin{sidebyside}\{1\})\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n/\1\{0.05\}\{0.05\}\{0\}%\n\\begin{sbspanel}\{0.9\}/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{divisionexerciseegcol}\{\d+\}\{\}\{\}{p:exercise:qMS}%\nLocate each point in the graph:%\n\\begin{sidebyside}\{1\})\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n/\1\{0.05\}\{0.05\}\{0\}%\n\\begin{sbspanel}\{0.9\}/m' orcca.tex; \
 	echo 'INDIVIDUAL PAGE BREAKS'; \
 	echo 'CHAPTER 1'; \
 	echo 'SECTION 1.1'; \
@@ -276,6 +279,10 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 7.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:Yhh)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 10.1'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
+	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{55\}\{\}\{\}{p:exercise:FAr}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{98\}\{\}\{\}{p:exercise:AuZ}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
