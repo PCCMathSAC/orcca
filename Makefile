@@ -137,6 +137,11 @@ pdf-edition2:
 	cd $(PDFOUT); \
 	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	cp orcca.tex orcca-no-regex.tex; \
+	echo 'DO NOT INDENT IN SOME PLACES'; \
+	perl -p0i -e 's/(\\end{inlineexercise}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{example}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{figure}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{sidebyside}%\n\\par\n)(\w)/\1\\noindent \2/g' orcca.tex; \
 	echo 'GLOBAL SPACING'; \
 	echo 'Next line removes \leavevmode when it comes right before an enumerate'; \
 	perl -p0i -e 's/\\leavevmode%\n(\\begin{enumerate})/\1/g' orcca.tex; \
@@ -156,7 +161,7 @@ pdf-edition2:
 	echo 'WeBWorK images in a multicolumn list or exercisegroup need these sizing adjustments, effectively resizing them to 100%. The for loops are just to make the regex search and replace repeat enough times to hit all instances within a list or exerisegroup'; \
 	for i in {1..3}; do perl -p0i -e 's/^(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/gm' orcca.tex; done; \
 	for i in {1..6}; do perl -p0i -e 's/^(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
-	for i in {1..16}; do perl -p0i -e 's/^(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
+	for i in {1..28}; do perl -p0i -e 's/^(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
 	perl -p0i -e 's/^(The pie chart represents a collector.s collection of signatures from various artists.%\n\\begin{sidebyside}\{1\}){0\.166666666666667}{0\.166666666666667}\{0\}%\n\\begin{sbspanel}{0\.666666666666667}/\1\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}/gm' orcca.tex; \
 	perl -p0i -e 's/^((The pie chart .* artists.|The following is a nutrition .* box.|A community college .* the survey.)%\n\\begin{sidebyside}\{1\}){0\.166666666666667}{0\.166666666666667}\{0\}%\n\\begin{sbspanel}{0\.666666666666667}/\1\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}/gm' orcca.tex; \
 	echo 'SYSTEMS OF EQUATIONS IN DISPLAY MODE'; \
@@ -252,9 +257,14 @@ pdf-edition2:
 	echo 'SECTION 4.2'; \
 	perl -pi -e 's/(.*?exercise:lJw)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(.*?example:ULl)/\\newpage%\n\1/' orcca.tex; \
-	echo 'SECTION 4.3'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}If an equation involves fractions, it is helpful to clear denominators by multiplying both sides of the equation by a common multiple of the denominators.%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(Lastly, we can determine the value of \\\(v\\\) by using the earlier equation where we isolated \\\(v\\\):%)/\\newpage\n\1/' orcca.tex; \
+	perl -pi -e 's/^(And then substitute \\\(s\\\) in the second equation with \\\(600-v\\\):%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:qHK)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 4.3'; \
 	perl -pi -e 's/(To check our work, substitute \\\(A=560\\\) and \\\(B=440\\\) into the original equations:%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(To solve for \\\(y\\\), we can substitute \\\(2\\\) for \\\(x\\\) into either of the original equations or the new one\. We use the first original equation, \\\(3x-4y=2\\\):%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent To summarize, if a variable is already isolated or has a coefficient of \\\(1\\\), consider using the substitution method\. If both equations are in standard form or none of the coefficients are equal to \\\(1\\\), we suggest using the elimination method\. Either way, if you have fraction or decimal coefficients, it may help to scale your equations so that only integer coefficients remain.%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 5.2'; \
 	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents for Multiplication\\label{x:list:list-rules-of-exponents}})/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 5.3'; \
@@ -274,6 +284,7 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{example}\{\}{p:example:SaN}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{subsectionptx}{More Expressions with Rational Exponents}\{\}{More Expressions with Rational Exponents}\{\}\{\}{p:subsection:QlA})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 6.4'; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:KkT)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseegcol}\{50\}\{\}\{\}{p:exercise:vMx}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 6.5'; \
 	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
@@ -283,6 +294,18 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{55\}\{\}\{\}{p:exercise:FAr}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{98\}\{\}\{\}{p:exercise:AuZ}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 11.7'; \
+	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:cvo})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 11.8'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 12.1'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:ruz)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:HJM)/\\newpage%\n\1/m' orcca.tex; \
+	perl -pi -e 's/^(\\begin{example}\{\}{p:example:xjL}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 12.3'; \
+	echo 'SECTION 12.4'; \
+	perl -pi -e 's/^(\\begin{example}{Range\.}{p:example:IXR}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:ECt})/\\newpage%\n\1/' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
@@ -299,6 +322,8 @@ pdf-edition2:
 	echo 'SECTION 3.6'; \
 	perl -pi -e 's/^An equation for this line in.*\\fillin{\d+}\.%\n//g' orcca.tex; \
 	perl -pi -e 's/^In slope-intercept form:  \\fillin\{20\}%\n//g' orcca.tex; \
+	echo 'SECTION 12.1'; \
+	perl -p0i -e 's/\\par\n\\noindent In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
 	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
