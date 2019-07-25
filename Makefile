@@ -161,7 +161,7 @@ pdf-edition2:
 	echo 'WeBWorK images in a multicolumn list or exercisegroup need these sizing adjustments, effectively resizing them to 100%. The for loops are just to make the regex search and replace repeat enough times to hit all instances within a list or exerisegroup'; \
 	for i in {1..3}; do perl -p0i -e 's/^(\\begin{inlineexercise}.*?(((?!inlineexercise).)*\n)*?\\begin{multicols}\{3\}\n(((?!multicols).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\6\{1\}/gm' orcca.tex; done; \
 	for i in {1..6}; do perl -p0i -e 's/^(\\begin{exercisegroup}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
-	for i in {1..16}; do perl -p0i -e 's/^(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
+	for i in {1..28}; do perl -p0i -e 's/^(\\begin{exercisegroupcol}\{[234]\}\n(((?!exercisegroup).)*\n)*?\\begin{sidebyside}\{1\})\{0\.3\}\{0\.3\}\{0\}%\n(\\begin{sbspanel})\{0\.4\}/\1\{0\}\{0\}\{0\}%\n\4\{1\}/gm' orcca.tex; done; \
 	perl -p0i -e 's/^(The pie chart represents a collector.s collection of signatures from various artists.%\n\\begin{sidebyside}\{1\}){0\.166666666666667}{0\.166666666666667}\{0\}%\n\\begin{sbspanel}{0\.666666666666667}/\1\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}/gm' orcca.tex; \
 	perl -p0i -e 's/^((The pie chart .* artists.|The following is a nutrition .* box.|A community college .* the survey.)%\n\\begin{sidebyside}\{1\}){0\.166666666666667}{0\.166666666666667}\{0\}%\n\\begin{sbspanel}{0\.666666666666667}/\1\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}/gm' orcca.tex; \
 	echo 'SYSTEMS OF EQUATIONS IN DISPLAY MODE'; \
@@ -298,6 +298,14 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:cvo})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 11.8'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 12.1'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:ruz)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:HJM)/\\newpage%\n\1/m' orcca.tex; \
+	perl -pi -e 's/^(\\begin{example}\{\}{p:example:xjL}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 12.3'; \
+	echo 'SECTION 12.4'; \
+	perl -pi -e 's/^(\\begin{example}{Range\.}{p:example:IXR}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:ECt})/\\newpage%\n\1/' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
@@ -314,6 +322,8 @@ pdf-edition2:
 	echo 'SECTION 3.6'; \
 	perl -pi -e 's/^An equation for this line in.*\\fillin{\d+}\.%\n//g' orcca.tex; \
 	perl -pi -e 's/^In slope-intercept form:  \\fillin\{20\}%\n//g' orcca.tex; \
+	echo 'SECTION 12.1'; \
+	perl -p0i -e 's/\\par\n\\noindent In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
 	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
