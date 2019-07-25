@@ -137,6 +137,11 @@ pdf-edition2:
 	cd $(PDFOUT); \
 	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	cp orcca.tex orcca-no-regex.tex; \
+	echo 'DO NOT INDENT IN SOME PLACES'; \
+	perl -p0i -e 's/(\\end{inlineexercise}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{example}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{figure}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
+	perl -p0i -e 's/(\\end{sidebyside}%\n\\par\n)(\w)/\1\\noindent \2/g' orcca.tex; \
 	echo 'GLOBAL SPACING'; \
 	echo 'Next line removes \leavevmode when it comes right before an enumerate'; \
 	perl -p0i -e 's/\\leavevmode%\n(\\begin{enumerate})/\1/g' orcca.tex; \
@@ -252,9 +257,14 @@ pdf-edition2:
 	echo 'SECTION 4.2'; \
 	perl -pi -e 's/(.*?exercise:lJw)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(.*?example:ULl)/\\newpage%\n\1/' orcca.tex; \
-	echo 'SECTION 4.3'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}If an equation involves fractions, it is helpful to clear denominators by multiplying both sides of the equation by a common multiple of the denominators.%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(Lastly, we can determine the value of \\\(v\\\) by using the earlier equation where we isolated \\\(v\\\):%)/\\newpage\n\1/' orcca.tex; \
+	perl -pi -e 's/^(And then substitute \\\(s\\\) in the second equation with \\\(600-v\\\):%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:qHK)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 4.3'; \
 	perl -pi -e 's/(To check our work, substitute \\\(A=560\\\) and \\\(B=440\\\) into the original equations:%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(To solve for \\\(y\\\), we can substitute \\\(2\\\) for \\\(x\\\) into either of the original equations or the new one\. We use the first original equation, \\\(3x-4y=2\\\):%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent To summarize, if a variable is already isolated or has a coefficient of \\\(1\\\), consider using the substitution method\. If both equations are in standard form or none of the coefficients are equal to \\\(1\\\), we suggest using the elimination method\. Either way, if you have fraction or decimal coefficients, it may help to scale your equations so that only integer coefficients remain.%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 5.2'; \
 	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents for Multiplication\\label{x:list:list-rules-of-exponents}})/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 5.3'; \
@@ -274,6 +284,7 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{example}\{\}{p:example:SaN}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{subsectionptx}{More Expressions with Rational Exponents}\{\}{More Expressions with Rational Exponents}\{\}\{\}{p:subsection:QlA})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 6.4'; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:KkT)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseegcol}\{50\}\{\}\{\}{p:exercise:vMx}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 6.5'; \
 	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
