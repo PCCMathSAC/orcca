@@ -294,6 +294,10 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{55\}\{\}\{\}{p:exercise:FAr}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{98\}\{\}\{\}{p:exercise:AuZ}%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 11.7'; \
+	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:cvo})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 11.8'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
