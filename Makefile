@@ -184,13 +184,14 @@ pdf-edition2:
 	perl -p0i -e 's/^(\\begin{divisionexerciseegcol}\{\d+\}\{\}\{\}{p:exercise:KFJ}%\nLocate each point in the graph:%\n\\begin{sidebyside}\{1\})\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n/\1\{0.05\}\{0.05\}\{0\}%\n\\begin{sbspanel}\{0.9\}/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseegcol}\{\d+\}\{\}\{\}{p:exercise:qMS}%\nLocate each point in the graph:%\n\\begin{sidebyside}\{1\})\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n/\1\{0.05\}\{0.05\}\{0\}%\n\\begin{sbspanel}\{0.9\}/m' orcca.tex; \
 	perl -p0i -e 's/^(\\textbf{Domain and Range From a Graph}\\space\\space%\nA function is graphed.)(%\n\\begin{exercisegroupcol}\{3\}\n\\begin{divisionexerciseegcol}\{9\}\{\}\{\}{p:exercise:ruz}%)/\1 Find its domain and range\.\2/m' orcca.tex; \
-	perl -p0i -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:iFU}\n.*?\n.*?\nA function is graphed\.)/1 Find its domain and range\./' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:iFU}\n.*?\n.*?\nA function is graphed\.)/\1 Find its domain and range\./m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseeg}\{\d+\}\{\}\{\}{p:exercise:fdz}%\n.*?\n\\begin{sidebyside})\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n)\\end{sidebyside}%\n\\begin{sidebyside}\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n\\end{sidebyside}%\n)/\1\{2\}\{0.12\}\{0.12\}\{0.12\}%\n\\begin{sbspanel}\{0.32\}%\n\2\\begin{sbspanel}\{0.32\}%\n\3/gm' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseeg}\{\d+\}\{\}\{\}{p:exercise:LkI}%\n.*?\n\\begin{sidebyside})\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n)\\end{sidebyside}%\n\\begin{sidebyside}\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n\\end{sidebyside}%\n)/\1\{2\}\{0.12\}\{0.12\}\{0.12\}%\n\\begin{sbspanel}\{0.32\}%\n\2\\begin{sbspanel}\{0.32\}%\n\3/gm' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseeg}\{\d+\}\{\}\{\}{p:exercise:rrR}%\n.*?\n\\begin{sidebyside})\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n)\\end{sidebyside}%\n\\begin{sidebyside}\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n\\end{sidebyside}%\n)/\1\{2\}\{0.12\}\{0.12\}\{0.12\}%\n\\begin{sbspanel}\{0.32\}%\n\2\\begin{sbspanel}\{0.32\}%\n\3/gm' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseeg}\{\d+\}\{\}\{\}{p:exercise:Xza}%\n.*?\n\\begin{sidebyside})\{1\}\{0\.3\}\{0\.3\}\{0\}%\n\\begin{sbspanel}\{0\.4\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n)\\end{sidebyside}%\n\\begin{sidebyside}\{1\}\{0\.3\}\{0\.3\}\{0\}%\n\\begin{sbspanel}\{0\.4\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n\\end{sidebyside}%\n)/\1\{2\}\{0.12\}\{0.12\}\{0.12\}%\n\\begin{sbspanel}\{0.32\}%\n\2\\begin{sbspanel}\{0.32\}%\n\3/gm' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseeg}\{\d+\}\{\}\{\}{p:exercise:lOV}%\n.*?\n\\begin{sidebyside})\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n)\\end{sidebyside}%\n\\begin{sidebyside}\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n\\end{sidebyside}%\n)/\1\{2\}\{0.12\}\{0.12\}\{0.12\}%\n\\begin{sbspanel}\{0.32\}%\n\2\\begin{sbspanel}\{0.32\}%\n\3/gm' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{divisionexerciseeg}\{\d+\}\{\}\{\}{p:exercise:RWe}%\n.*?\n\\begin{sidebyside})\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n)\\end{sidebyside}%\n\\begin{sidebyside}\{1\}\{0\}\{0\}\{0\}%\n\\begin{sbspanel}\{1\}%\n(\\includegraphics\[width=1\\linewidth\]{images\/webwork-.*?png}\n\\end{sbspanel}%\n\\end{sidebyside}%\n)/\1\{2\}\{0.12\}\{0.12\}\{0.12\}%\n\\begin{sbspanel}\{0.32\}%\n\2\\begin{sbspanel}\{0.32\}%\n\3/gm' orcca.tex; \
+	perl -p0i -e 's/^(A function is graphed.)(%\n\\begin{exercisegroupcol}\{3\}\n\\begin{divisionexerciseegcol}\{21\}\{\}\{\}{p:exercise:gTd}%)/\1 Find its domain.\2/m' orcca.tex; \
 	echo 'INDIVIDUAL PAGE BREAKS'; \
 	echo 'CHAPTER 1'; \
 	echo 'SECTION 1.1'; \
@@ -314,6 +315,14 @@ pdf-edition2:
 	echo 'SECTION 12.4'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:ECt})/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:oJB)/\\newpage%\n\1/m' orcca.tex; \
+	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{19\}\{\}\{\}{p:exercise:lOV}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(.*?solution:jlT)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 13.4'; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:CCY)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 13.5'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KNJ)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 13.6'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:TME)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
@@ -333,6 +342,8 @@ pdf-edition2:
 	echo 'SECTION 12.1'; \
 	perl -p0i -e 's/\\par\n\\noindent In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
 	perl -p0i -e 's/^((This|The) function has domain  \\fillin\{\d+\} and range  \\fillin\{\d+\}\.%\n)//gm' orcca.tex; \
+	echo 'SECTION 13.1'; \
+	perl -p0i -e 's/^What is its domain\?%\n//gm' orcca.tex; \
 	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
 	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
