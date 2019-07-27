@@ -40,7 +40,7 @@
 
   <introduction>
     <p>
-      In this section, we will learn techniques to differentiate between different types of equations and recall the various methods used to solve them. Real life doesn't come with instructions, so it is important to develop the skills in this section. One day, you might be faced with a geometry problem in your home, or a rational equation in a lab and it will be your responsibility to make the right choice of how to tackle the situation!
+      In this section, we will learn to differentiate between different types of equations and recall the various methods used to solve them. Real life doesn't come with instructions, so it is important to develop the skills in this section. One day, you might be faced with a geometry problem in your home, or a rational equation in a lab and it will be your responsibility to make the right choice of how to tackle the situation!
     </p>
     <p>
       We have solved a variety of equations in ORCCA and we have already covered a section on <xref ref="section-solving-equations-in-general" text="title"></xref>. Since then, we have covered even more topics, so it seems time to refresh ourselves on everything that we have done so far. Here is a reference guide to all of the sections that cover solving equations. We hope that this section will help pinpoint those that you need help with.
@@ -358,6 +358,11 @@
                 </md>
               </p>
             </li>
+            <li>
+              <p>
+                <m>2x^2-12x=7</m> (using completing the square)
+              </p>
+            </li>
           </ol>
         </p>
       </statement>
@@ -527,9 +532,9 @@
                 </md>
                 is a system of linear equations, we can either use <xref ref="algorithm-solving-systems-of-equations-by-substitution" text="title">substitution</xref> or <xref ref="algorithm-solving-systems-of-equations-by-elimination" text="title">elimination</xref> to solve. Here we will use elimination. To use elimination, we need to make one variable have equal but opposite sign in the two equations. We will accomplish this by multiplying the second equation by <m>2</m>.
                 <md>
-                  <mrow>3x\amp-{}\amp y \amp={}\amp 11</mrow>
-                  <mrow>\multiplyleft{2}(3x\amp-{}\amp y) \amp={}\amp 11\multiplyright{2}</mrow>
-                  <mrow>6x\amp-{}\amp 2y \amp={}\amp 22</mrow>
+                  <mrow>3x-y \amp=11</mrow>
+                  <mrow>\multiplyleft{2}(3x-y)\amp=11\multiplyright{2}</mrow>
+                  <mrow>6x-2y \amp=22</mrow>
                 </md>
                 So our original system becomes:
                 <md>
@@ -557,6 +562,26 @@
                 So, the solution must be the point <m>(3,-2)</m>.
               </p>
             </li>
+            <li>
+              <p>
+                Since the equation <m>2x^2-10x=7</m> is quadratic and we are instructed to solve by using completing the square, we should recall that <xref ref="fact-completing-the-square">Fact</xref> tells us how to complete the square, after we have sufficiently simplified. Let's start by dividing all of the terms by <m>2</m>.
+                <md>
+                  <mrow>2x^2-12x\amp=7</mrow>
+                  <mrow>x^2-6x\amp=\frac{7}{2}</mrow>
+                  <intertext>Next, we need to add <m>\left(\frac{b}{2}\right)^2=\left(\frac{6}{2}\right)^2=\substitute{9}</m> to both sides of the equation.</intertext>
+                  <mrow>x^2-6x+\substitute{9}\amp=\frac{7}{2}+\substitute{9}</mrow>
+                  <mrow>(x-3)^2\amp=\frac{7}{2}+\frac{18}{2}</mrow>
+                  <mrow>(x-3)^2\amp=\frac{25}{2}</mrow>
+                  <mrow>x-3\amp=\pm\sqrt{\frac{25}{2}}</mrow>
+                  <mrow>x-3\amp=\pm\frac{\sqrt{25}}{\sqrt{2}}</mrow>
+                  <mrow>x-3\amp=\pm\frac{5}{\sqrt{2}}</mrow>
+                  <mrow>x-3\amp=\pm\frac{5}{\sqrt{2}}\multiplyright{\frac{\sqrt{2}}{\sqrt{2}}}</mrow>
+                  <mrow>x-3\amp=\pm\frac{5\sqrt{2}}{2}</mrow>
+                  <mrow>x\amp=3\pm\frac{5\sqrt{2}}{2}</mrow>
+                </md>
+                So, our solution set is <m>\left\{3+\frac{5\sqrt{2}}{2},3-\frac{5\sqrt{2}}{2}\right\}</m>
+              </p>
+            </li>
           </ol>
         </p>
       </solution>
@@ -566,7 +591,479 @@
   <exercises>
     <exercisegroup>
       <title>Solving Mixed Equations</title>
-     <!--  Linear
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations4.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations4.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveLinearEquationParentheses170.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveLinearEquationParentheses170.pg" />
+      </exercise>
+      <exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad260.pg" />
+      </exercise>
+      <exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad260.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation40.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveSpecialLinearEquation40.pg" />
+      </exercise>
+      <exercise permid="GQS">
+        <webwork>
+            <setup>
+
+            <pg-code>
+                $x = RandomVariableName(type=>'variable');
+                Context("Fraction");
+                Context()->variables->are($x=>'Real');
+                @squares = map{$_**2} (2..23);
+                do {
+                    do {
+                        $a = 2;#random(2,9,1);
+                        $b = non_zero_random(-9,9,1);
+                        $c = non_zero_random(-5,5,1);
+                        $discriminant = $b**2 - 4*$a*$c;
+                    } until ($discriminant > 0);
+                    $B = Fraction($b,$a);
+                    $C = Fraction($c,$a);
+                    ($Bnum,$Bden) = $B->value;
+                    $absBnum = abs($Bnum);
+                    ($Cnum,$Cden) = $C->value;
+                    $absCnum = abs($Cnum);
+                    $helper = $B/2;
+                    $helpersquared = $helper**2;
+                    $rightplushelpersquared = Fraction("-$C + $helpersquared");
+                    $squarenumpart = 1;
+                    $squaredenpart = 1;
+                    for my $square (@squares) {
+                        $squarenumpart = $square if (($rightplushelpersquared->value)[0] % $square == 0);
+                        $squaredenpart = $square if (($rightplushelpersquared->value)[1] % $square == 0);
+                    }
+                    $nonsquarenumpart = ($rightplushelpersquared->value)[0]/$squarenumpart;
+                    $nonsquaredenpart = ($rightplushelpersquared->value)[1]/$squaredenpart;
+                } until ($nonsquarenumpart > 1);
+                $reducednumpart = sqrt($squarenumpart);
+                $reduceddenpart = sqrt($squaredenpart);
+
+                $reducedpartMargin = Fraction($reducednumpart, $reduceddenpart * $nonsquaredenpart);
+                $nonsquarepartMargin = Fraction($nonsquarenumpart * $nonsquaredenpart,1);
+
+                $left0 = Formula("$a $x^2 + $b $x + $c")->reduce;
+                $right0 = Formula("0")->reduce;
+                $left1 = Formula("$a $x^2 + $b $x")->reduce;
+                $right1 = Formula("-$c")->reduce;
+                $left = ($B > 0) ? Formula("$x^2 + $B $x") : Formula("$x^2 - $absBnum/$Bden $x");
+                $right = ($C > 0) ? Formula("-$C") : Formula("$absCnum/$Cden");
+
+                Context("FiniteSolutionSets");
+                Context()->variables->are($x=>'Real');
+                $margin = ($reducedpartMargin == 1) ? Formula("sqrt($nonsquarepartMargin)") : Formula("$reducedpartMargin sqrt($nonsquarepartMargin)");
+                $nhelper = -$helper;
+                $sol1 = Formula("$nhelper-$margin");
+                $sol2 = Formula("$nhelper+$margin");
+                if (int(sqrt($nonsquarepartMargin)) == sqrt($nonsquarepartMargin)) {
+                    $mycontext = Context();
+                    Context("Fraction");
+                    $sol1 = Compute("$sol1");
+                    $sol2 = Compute("$sol2");
+                    Context($mycontext);
+                }
+
+                $solstep1 = Formula("-$helper - $margin");
+                $solstep2 = Formula("-$helper + $margin");
+
+                $answer = Formula("{$sol1, $sol2}");
+                ($num,$den) = $helper->value;
+                $absnum = abs($num);
+                if ($den != 1) {$linear = ($helper > 0) ? Formula("$x + $helper") : Formula("$x - $absnum/$den");}
+                else {$linear = ($helper > 0) ? Formula("$x + $helper") : Formula("$x - $absnum");}
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="CvH">
+                Solve the equation by completing the square.
+              </p>
+
+              <p permid="iCQ">
+                <m><var name="$left0"/>=<var name="$right0"/></m>
+              </p>
+
+              <p permid="OJZ">
+                <var name="$answer" width="25" />
+              </p>
+            </statement>
+            <solution permid="OJM">
+              <p permid="PIb">
+                Move the constant term to the other side to get <m><var name="$left1" /> = <var name="$right1" /></m>.
+              </p>
+
+              <p permid="vPk">
+                Divide through by <m><var name="$a"/></m> to get <m><var name="$left" /> = <var name="$right" /></m>.
+              </p>
+
+              <p permid="bWt">
+                Compute <m>\left(\frac{<var name="$B" />}{2}\right)^2=<var name="$helpersquared" /></m>.
+                Then
+                <md permid="RxB">
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$right" />+<var name="$helpersquared" /></mrow>
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$rightplushelpersquared" /></mrow>
+                  <mrow>\left(<var name="$linear" />\right)^2\amp = <var name="$rightplushelpersquared" /></mrow>
+                </md>
+                <md permid="xEK">
+                  <mrow><var name="$linear" /> \amp = -<var name="$margin" />\amp\amp\text{or}\amp <var name="$linear" /> \amp = <var name="$margin" /></mrow>
+                  <mrow><var name="$x" /> \amp = <var name="$sol1" />\amp\amp\text{or}\amp <var name="$x" /> \amp = <var name="$sol2" /></mrow>
+                </md>
+                So the solution set is <m><var name="$answer" /></m>.
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+
+      <exercise permid="mYb">
+        <webwork>
+            <setup>
+
+            <pg-code>
+                $x = RandomVariableName(type=>'variable');
+                Context("Fraction");
+                Context()->variables->are($x=>'Real');
+                @squares = map{$_**2} (2..23);
+                do {
+                    do {
+                        $a = 2;#random(2,9,1);
+                        $b = non_zero_random(-9,9,1);
+                        $c = non_zero_random(-5,5,1);
+                        $discriminant = $b**2 - 4*$a*$c;
+                    } until ($discriminant > 0);
+                    $B = Fraction($b,$a);
+                    $C = Fraction($c,$a);
+                    ($Bnum,$Bden) = $B->value;
+                    $absBnum = abs($Bnum);
+                    ($Cnum,$Cden) = $C->value;
+                    $absCnum = abs($Cnum);
+                    $helper = $B/2;
+                    $helpersquared = $helper**2;
+                    $rightplushelpersquared = Fraction("-$C + $helpersquared");
+                    $squarenumpart = 1;
+                    $squaredenpart = 1;
+                    for my $square (@squares) {
+                        $squarenumpart = $square if (($rightplushelpersquared->value)[0] % $square == 0);
+                        $squaredenpart = $square if (($rightplushelpersquared->value)[1] % $square == 0);
+                    }
+                    $nonsquarenumpart = ($rightplushelpersquared->value)[0]/$squarenumpart;
+                    $nonsquaredenpart = ($rightplushelpersquared->value)[1]/$squaredenpart;
+                } until ($nonsquarenumpart > 1);
+                $reducednumpart = sqrt($squarenumpart);
+                $reduceddenpart = sqrt($squaredenpart);
+
+                $reducedpartMargin = Fraction($reducednumpart, $reduceddenpart * $nonsquaredenpart);
+                $nonsquarepartMargin = Fraction($nonsquarenumpart * $nonsquaredenpart,1);
+
+                $left0 = Formula("$a $x^2 + $b $x + $c")->reduce;
+                $right0 = Formula("0")->reduce;
+                $left1 = Formula("$a $x^2 + $b $x")->reduce;
+                $right1 = Formula("-$c")->reduce;
+                $left = ($B > 0) ? Formula("$x^2 + $B $x") : Formula("$x^2 - $absBnum/$Bden $x");
+                $right = ($C > 0) ? Formula("-$C") : Formula("$absCnum/$Cden");
+
+                Context("FiniteSolutionSets");
+                Context()->variables->are($x=>'Real');
+                $margin = ($reducedpartMargin == 1) ? Formula("sqrt($nonsquarepartMargin)") : Formula("$reducedpartMargin sqrt($nonsquarepartMargin)");
+                $nhelper = -$helper;
+                $sol1 = Formula("$nhelper-$margin");
+                $sol2 = Formula("$nhelper+$margin");
+                if (int(sqrt($nonsquarepartMargin)) == sqrt($nonsquarepartMargin)) {
+                    $mycontext = Context();
+                    Context("Fraction");
+                    $sol1 = Compute("$sol1");
+                    $sol2 = Compute("$sol2");
+                    Context($mycontext);
+                }
+
+                $solstep1 = Formula("-$helper - $margin");
+                $solstep2 = Formula("-$helper + $margin");
+
+                $answer = Formula("{$sol1, $sol2}");
+                ($num,$den) = $helper->value;
+                $absnum = abs($num);
+                if ($den != 1) {$linear = ($helper > 0) ? Formula("$x + $helper") : Formula("$x - $absnum/$den");}
+                else {$linear = ($helper > 0) ? Formula("$x + $helper") : Formula("$x - $absnum");}
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="uRi">
+                Solve the equation by completing the square.
+              </p>
+
+              <p permid="aYr">
+                <m><var name="$left0"/>=<var name="$right0"/></m>
+              </p>
+
+              <p permid="HfA">
+                <var name="$answer" width="25" />
+              </p>
+            </statement>
+            <solution permid="uQV">
+              <p permid="IdC">
+                Move the constant term to the other side to get <m><var name="$left1" /> = <var name="$right1" /></m>.
+              </p>
+
+              <p permid="okL">
+                Divide through by <m><var name="$a"/></m> to get <m><var name="$left" /> = <var name="$right" /></m>.
+              </p>
+
+              <p permid="UrU">
+                Compute <m>\left(\frac{<var name="$B" />}{2}\right)^2=<var name="$helpersquared" /></m>.
+                Then
+                <md permid="dLT">
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$right" />+<var name="$helpersquared" /></mrow>
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$rightplushelpersquared" /></mrow>
+                  <mrow>\left(<var name="$linear" />\right)^2\amp = <var name="$rightplushelpersquared" /></mrow>
+                </md>
+                <md permid="JTc">
+                  <mrow><var name="$linear" /> \amp = -<var name="$margin" />\amp\amp\text{or}\amp <var name="$linear" /> \amp = <var name="$margin" /></mrow>
+                  <mrow><var name="$x" /> \amp = <var name="$sol1" />\amp\amp\text{or}\amp <var name="$x" /> \amp = <var name="$sol2" /></mrow>
+                </md>
+                So the solution set is <m><var name="$answer" /></m>.
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad155.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad155.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/43IntAlg_04_AbsValEq.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/43IntAlg_04_AbsValEq.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RationalEquations/solveRationalEquations70.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RationalEquations/solveRationalEquations70.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad81.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad81.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveLinearEquationFraction290.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/SolveLinearEquationFraction290.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations6.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations6.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad245.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad245.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/s5p6.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/s5p6.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad255.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad255.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RationalEquations/solveRationalEquations60.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RationalEquations/solveRationalEquations60.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad270.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad270.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/43IntAlg_13_AbsValEq.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/43IntAlg_13_AbsValEq.pg" />
+      </exercise>
+      <exercise>
+          <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad75.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad75.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/43IntAlg_02_AbsValEq.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/Math95/AbsValueEquations/43IntAlg_02_AbsValEq.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad305.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad305.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation80.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation80.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RationalEquations/solveRationalEquations28.pg" />
+      </exercise>
+      <exercise>
+        <webwork source="Contrib/PCC/BasicAlgebra/RationalEquations/solveRationalEquations28.pg" />
+      </exercise>
+      <exercise permid="YUw">
+        <webwork>
+            <setup>
+
+            <pg-code>
+                $x = RandomVariableName(type=>'variable');
+                $a = 1;
+                do {
+                    $sol1 = non_zero_random(-9,9,1);
+                    $sol2 = non_zero_random(-9,9,1);
+                    ($sol1, $sol2) = (min($sol1, $sol2), max($sol1, $sol2));
+                } until (abs($sol1) != abs($sol2)  and  ($sol1 + $sol2) % 2 == 0);
+                $b = -($sol1 + $sol2);
+                Context()->variables->are($x=>'Real');
+                $left = Formula("$a^2 $x^2 + $b $x")->reduce;
+                $right = Formula("-$sol1*$sol2")->reduce;
+                Context("Fraction");
+                $helper = Fraction(-$sol1 - $sol2, 2);
+                $helpersquared = $helper**2;
+                $rightplushelpersquared = Fraction("$right + $helpersquared");
+                $margin = Fraction(sqrt($rightplushelpersquared));
+                Context("FiniteSolutionSets");
+                Context()->variables->are($x=>'Real');
+                $answer = Formula("{$sol1, $sol2}");
+                $linear = Formula("$a $x")->reduce;
+                ($num,$den) = $helper->value;
+                $absnum = abs($num);
+                $linear = ($helper > 0) ? Formula("$linear + $helper") : Formula("$linear - $absnum/$den");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="EGt">
+                Solve the equation by completing the square.
+              </p>
+
+              <p permid="kNC">
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+
+              <p permid="QUL">
+                <var name="$answer" width="25" />
+              </p>
+            </statement>
+            <solution permid="gNq">
+              <p permid="JiV">
+                Compute <m>\left(\frac{<var name="$b" />}{2}\right)^2=<var name="$helpersquared" /></m>.
+                Then
+                <md permid="BEJ">
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$right" />+<var name="$helpersquared" /></mrow>
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$rightplushelpersquared" /></mrow>
+                  <mrow>\left(<var name="$linear" />\right)^2\amp = <var name="$rightplushelpersquared" /></mrow>
+                </md>
+                <md permid="hLS">
+                  <mrow><var name="$linear" /> \amp = -<var name="$margin" />\amp\amp\text{or}\amp <var name="$linear" /> \amp = <var name="$margin" /></mrow>
+                  <mrow><var name="$x" /> \amp = <var name="$sol1" />\amp\amp\text{or}\amp <var name="$x" /> \amp = <var name="$sol2" /></mrow>
+                </md>
+                So the solution set is <m><var name="$answer" /></m>.
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+
+      <exercise permid="FbF">
+        <webwork>
+            <setup>
+
+            <pg-code>
+                $x = RandomVariableName(type=>'variable');
+                $a = 1;
+                do {
+                    $sol1 = non_zero_random(-9,9,1);
+                    $sol2 = non_zero_random(-9,9,1);
+                    ($sol1, $sol2) = (min($sol1, $sol2), max($sol1, $sol2));
+                } until (abs($sol1) != abs($sol2)  and  ($sol1 + $sol2) % 2 == 0);
+                $b = -($sol1 + $sol2);
+                Context()->variables->are($x=>'Real');
+                $left = Formula("$a^2 $x^2 + $b $x")->reduce;
+                $right = Formula("-$sol1*$sol2")->reduce;
+                Context("Fraction");
+                $helper = Fraction(-$sol1 - $sol2, 2);
+                $helpersquared = $helper**2;
+                $rightplushelpersquared = Fraction("$right + $helpersquared");
+                $margin = Fraction(sqrt($rightplushelpersquared));
+                Context("FiniteSolutionSets");
+                Context()->variables->are($x=>'Real');
+                $answer = Formula("{$sol1, $sol2}");
+                $linear = Formula("$a $x")->reduce;
+                ($num,$den) = $helper->value;
+                $absnum = abs($num);
+                $linear = ($helper > 0) ? Formula("$linear + $helper") : Formula("$linear - $absnum/$den");
+            </pg-code>
+            </setup>
+            <statement>
+              <p permid="xbU">
+                Solve the equation by completing the square.
+              </p>
+
+              <p permid="djd">
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+
+              <p permid="Jqm">
+                <var name="$answer" width="25" />
+              </p>
+            </statement>
+            <solution permid="MUz">
+              <p permid="pqe">
+                Compute <m>\left(\frac{<var name="$b" />}{2}\right)^2=<var name="$helpersquared" /></m>.
+                Then
+                <md permid="NTb">
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$right" />+<var name="$helpersquared" /></mrow>
+                  <mrow><var name="$left" />+<var name="$helpersquared" />\amp = <var name="$rightplushelpersquared" /></mrow>
+                  <mrow>\left(<var name="$linear" />\right)^2\amp = <var name="$rightplushelpersquared" /></mrow>
+                </md>
+                <md permid="uak">
+                  <mrow><var name="$linear" /> \amp = -<var name="$margin" />\amp\amp\text{or}\amp <var name="$linear" /> \amp = <var name="$margin" /></mrow>
+                  <mrow><var name="$x" /> \amp = <var name="$sol1" />\amp\amp\text{or}\amp <var name="$x" /> \amp = <var name="$sol2" /></mrow>
+                </md>
+                So the solution set is <m><var name="$answer" /></m>.
+              </p>
+            </solution>
+        </webwork>
+      </exercise>
+
+
+      <!--  Linear
       Systems
       Radical
       Square root method
@@ -575,9 +1072,6 @@
       Factoring
       Rational
       Absolute Value -->
-      <exercise permid="faZ">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnOneStepMultiDiv155.pg" />
-      </exercise>
     </exercisegroup>
   </exercises>
 </section>
