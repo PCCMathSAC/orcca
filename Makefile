@@ -187,7 +187,6 @@ pdf-edition2:
 	for i in {1..8}; do perl -p0i -e 's/^(\\textbf{Substitution}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
 	for i in {1..8}; do perl -p0i -e 's/^(\\textbf{Elimination}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
 	perl -p0i -e 's/^(\\begin{example}[^\n]*?example:VQz}%\n.*?\n.*?\n.*?\n)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)%\n\\item\{\}%\n(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)/\1\\begin{fleqn}\[1em\]\n\2\\end{fleqn}\n%\n\\item\{\}%\n\\begin{fleqn}\[1em\]\n\4\\end{fleqn}\n/m' orcca.tex; \
-	perl -pi -e 's/^(\\includegraphics[.*?]{images\/webwork.*?\.png})/\\raisebox{-3pt}{\1}/g' orcca.tex; \
 	echo 'INDIVIDUAL INSERTIONS'; \
 	echo 'Redefine sectionptx to address aside side effect'; \
 	perl -p0i -e 's/^(\\NewDocumentEnvironment{sectionptx}{mmmmmm}\n{%\n\\renewcommand{\\divisionnameptx}{Section}%\n\\renewcommand{\\titleptx}\{..}%\n\\renewcommand{\\subtitleptx}\{..\}%\n\\renewcommand{\\shortitleptx}\{..\}%\n\\renewcommand{\\authorsptx}\{..\}%\n\\renewcommand{\\epigraphptx}\{..\}%\n\\section\[..\]\{..\}%\n\\label\{..\}%\n\}\{)(\}%\n)/\1\n\n\2/m' orcca.tex; \
@@ -315,6 +314,8 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 7.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:Yhh)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 8.3'; \
+	perl -pi -e 's/^(\\begin{subsectionptx}{Summary}\{\}{Summary}\{\}\{\}{x:subsection:subsection-list-of-geometry-formulas})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 9.1'; \
 	perl -pi -e 's/^(\\begin{example}{}{p:example:olh}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(\\textbf{Algebraically Determining the Vertex and Axis of Symmetry of Quadratic Functions}\\space\\space%\nFind the axis of symmetry and vertex of the quadratic )function.%/\\newpage%\n\\noindent \1equation\.%/m' orcca.tex; \
