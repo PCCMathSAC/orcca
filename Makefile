@@ -109,6 +109,21 @@ pg:
 	cd $(PGOUT); \
 	xsltproc --xinclude --stringparam chunk.level 2 $(MBXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
 
+pdf-pure:
+	install -d $(OUTPUT)
+	-rm -r $(PDFOUT) || :
+	install -d $(PDFOUT)
+	install -d $(PDFOUT)/images
+	install -d $(IMAGESOUT)
+	install -d $(IMAGESSRC)
+	cp -a $(WWOUT)/*.png $(PDFOUT)/images || :
+	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
+	cp -a $(IMAGESSRC) $(PDFOUT) || :
+	cd $(PDFOUT); \
+	xsltproc -xinclude  --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xelatex orcca.tex; \
+	xelatex orcca.tex; \
+
 pdf-nopost:
 	install -d $(OUTPUT)
 	-rm -r $(PDFOUT) || :
@@ -299,6 +314,11 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 7.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:Yhh)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 8.3'; \
+	perl -pi -e 's/^(\\begin{subsectionptx}{Summary}\{\}{Summary}\{\}\{\}{x:subsection:subsection-list-of-geometry-formulas})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 9.1'; \
+	perl -pi -e 's/^(\\begin{example}{}{p:example:olh}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\textbf{Algebraically Determining the Vertex and Axis of Symmetry of Quadratic Functions}\\space\\space%\nFind the axis of symmetry and vertex of the quadratic )function.%/\\newpage%\n\\noindent \1equation\.%/m' orcca.tex; \
 	echo 'SECTION 10.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{55\}\{\}\{\}{p:exercise:FAr}%)/\\newpage%\n\1/' orcca.tex; \
@@ -322,7 +342,7 @@ pdf-edition2:
 	echo 'SECTION 13.5'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KNJ)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 13.6'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:TME)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:TME)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
@@ -339,6 +359,15 @@ pdf-edition2:
 	echo 'SECTION 3.6'; \
 	perl -pi -e 's/^An equation for this line in.*\\fillin{\d+}\.%\n//g' orcca.tex; \
 	perl -pi -e 's/^In slope-intercept form:  \\fillin\{20\}%\n//g' orcca.tex; \
+	echo 'SECTION 9.1'; \
+	perl -p0i -e 's/^(Axis of symmetry:  \\fillin{\d+}%\n\\par\nVertex:  \\fillin{\d+}%\n)//gm' orcca.tex; \
+	echo 'SECTION 9.2'; \
+	perl -p0i -e 's/^(\\\(y\\\)-intercept:  \\fillin{\d+}%\n\\par\n\\\(x\\\)-intercept\(s\):  \\fillin{\d+}%\n)//gm' orcca.tex; \
+	perl -pi -e 's/^(\\begin{example}\{\}{x:example:example-refrigerator-production-quadratic-application}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:Nfq})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 9.3'; \
+	perl -pi -e 's/^(\\noindent If we are solving graphically and something is already providing you with the graph, it.s not even necessary to have math expressions for the two curves\.%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent Occasionally, a curve abruptly ..stops.., and we need to recognize this in a solution to an inequality\.%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 12.1'; \
 	perl -p0i -e 's/\\par\n\\noindent In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
 	perl -p0i -e 's/^((This|The) function has domain  \\fillin\{\d+\} and range  \\fillin\{\d+\}\.%\n)//gm' orcca.tex; \
