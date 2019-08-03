@@ -350,6 +350,8 @@ pdf-edition2:
 	echo 'SECTION 13.2'; \
 	perl -pi -e 's/^(\\textbf{Technology and Features of Quadratic Function Graphs})/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(\\hrulefill.*?\n.*?\n.*?\n.*?p:exercise:YvT}%)/\\newpage%\n\\noindent\1/m' orcca.tex; \
+	echo 'SECTION 13.4'; \
+	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:wSm})/\\newpage%\n\1/' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
@@ -380,10 +382,7 @@ pdf-edition2:
 	perl -p0i -e 's/^((This|The) function has domain  \\fillin\{\d+\} and range  \\fillin\{\d+\}\.%\n)//gm' orcca.tex; \
 	echo 'SECTION 13.1'; \
 	perl -p0i -e 's/^What is its domain\?%\n//gm' orcca.tex; \
-	echo 'SHORTEN UNRESOLVED XREF WARNINGS'; \
-	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}\{(\w*?)~\}/\1 A.B/g' orcca.tex; \
-	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}(\w*?)~/\1 A.B/g' orcca.tex; \
-	perl -pi -e 's/\{\(\(\(Unresolved xref, reference "[\w\-]*"; check spelling or use "provisional" attribute\)\)\)\}\\hyperlink\{\}{(.*?)}/\1/g' orcca.tex; \
+	perl -p0i -e 's/^(The domain of \\\(.\\\) is  \\fillin{\d+}%\n\\par\nThe range of \\\(.\\\) is  \\fillin{\d+}%\n)//gm' orcca.tex; \
 	echo 'REMOVE ALL ANSWER BLANKS AND EQUALS SIGNS THAT ARE IN SHORT LINES LIKE 1+2=___ '; \
 	perl -p0i -e 's/^(\\\(((?!(\\\)|text)).)*) *=([ \n}]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/gm' orcca.tex; \
 	perl -pi -e 's/^(\\item\{\}\\\(((?!(\\\)|text)).)*) *=([ }]*\\\)) *\\fillin{\d+} *\.?%\n/\1\4%\n/g' orcca.tex; \
