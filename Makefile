@@ -188,8 +188,6 @@ pdf-edition2:
 	for i in {1..8}; do perl -p0i -e 's/^(\\textbf{Elimination}\\space\\space%\nSolve the following system of equations.%\n\\begin{exercisegroupcol}\{\d\}\n(.*?\n)*?\\begin{divisionexerciseegcol}.*?\n(.*?\n)*?)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*})/\1\\begin{fleqn}\[1em\]\n\\leavevmode\\vspace\*\{-\\dimexpr\\baselineskip\+\\abovedisplayskip\\relax}\4\\end{fleqn}\\newline/m' orcca.tex; done; \
 	perl -p0i -e 's/^(\\begin{example}[^\n]*?example:VQz}%\n.*?\n.*?\n.*?\n)(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)%\n\\item\{\}%\n(\\begin{equation\*}\n(.*?\n)*?\\end{equation\*}\n)/\1\\begin{fleqn}\[1em\]\n\2\\end{fleqn}\n%\n\\item\{\}%\n\\begin{fleqn}\[1em\]\n\4\\end{fleqn}\n/m' orcca.tex; \
 	echo 'INDIVIDUAL INSERTIONS'; \
-	echo 'Redefine sectionptx to address aside side effect'; \
-	perl -p0i -e 's/^(\\NewDocumentEnvironment{sectionptx}{mmmmmm}\n{%\n\\renewcommand{\\divisionnameptx}{Section}%\n\\renewcommand{\\titleptx}\{..}%\n\\renewcommand{\\subtitleptx}\{..\}%\n\\renewcommand{\\shortitleptx}\{..\}%\n\\renewcommand{\\authorsptx}\{..\}%\n\\renewcommand{\\epigraphptx}\{..\}%\n\\section\[..\]\{..\}%\n\\label\{..\}%\n\}\{)(\}%\n)/\1\n\n\2/m' orcca.tex; \
 	echo 'Insert a \par following an aside, before a sidebyside'; \
 	perl -pi -e 's/(\{Figure\~\\ref\{x:figure:figure-balance-scale\}\} shows the scale\.\%\n)/\1\\par\n/' orcca.tex; \
 	echo 'Insert a \par following the last reading question which follows an aside from pages earlier causing problems'; \
@@ -316,6 +314,10 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:Yhh)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 8.3'; \
 	perl -pi -e 's/^(\\begin{subsectionptx}{Summary}\{\}{Summary}\{\}\{\}{x:subsection:subsection-list-of-geometry-formulas})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 8.3'; \
+	perl -p0i -e 's/^(\\hrulefill\\\\%\n.*?\n.*?\n\\begin{divisionexerciseegcol}\{29\}\{\}\{\}{p:exercise:rSy}%)/\\newpage%\n\\noindent\1/m' orcca.tex; \
+	echo 'SECTION 8.5'; \
+	perl -p0i -e 's/^(\\begin{exercises-subsection}.*?\n.*?\n.*?\n.*?\n\\begin{divisionexerciseegcol}\{1\}\{\}\{\}{p:exercise:WFP}%)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 9.1'; \
 	perl -pi -e 's/^(\\begin{example}{}{p:example:olh}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(\\textbf{Algebraically Determining the Vertex and Axis of Symmetry of Quadratic Functions}\\space\\space%\nFind the axis of symmetry and vertex of the quadratic )function.%/\\newpage%\n\\noindent \1equation\.%/m' orcca.tex; \
@@ -343,6 +345,11 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KNJ)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 13.6'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:TME)/\\newpage%\n\1/m' orcca.tex; \
+	echo 'SECTION 13.1'; \
+	perl -pi -e 's/^(\\noindent.*solution:izz)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 13.2'; \
+	perl -pi -e 's/^(\\textbf{Technology and Features of Quadratic Function Graphs})/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\hrulefill.*?\n.*?\n.*?\n.*?p:exercise:YvT}%)/\\newpage%\n\\noindent\1/m' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
