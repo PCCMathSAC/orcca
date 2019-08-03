@@ -15,12 +15,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main font
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setmainfont{Palatino}[SmallCapsFont={Linux Libertine Capitals}]
+\setmainfont{Palatino}[SmallCapsFont={Palatino SC}]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Asides
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{floatflt}
+\usepackage{changepage}
+\strictpagecheck
 \newtcolorbox{asideinsideleft}[2]
   {breakable,phantomlabel={#2},
    bwminimalstyle,
@@ -35,11 +37,19 @@
    coltitle=black, fonttitle=\bfseries, title={\footnotesize#1}, detach title, before upper={\tcbtitle\ \ }}
 \renewenvironment{aside}[2]{
 \begin{floatingfigure}{1.2in}%\vspace{\dimexpr-\topskip}
-\ifnumodd{\thepage}{\begin{asideinsideright}{#1}{#2}}{\begin{asideinsideleft}{#1}{#2}}
+\checkoddpage
+\ifoddpage
+\begin{asideinsideright}{#1}{#2}
+\else
+\begin{asideinsideleft}{#1}{#2}
+\fi
 \footnotesize\quad}
 {
-\ifnumodd{\thepage}{\end{asideinsideright}}{\end{asideinsideleft}
-}
+\ifoddpage
+\end{asideinsideright}
+\else
+\end{asideinsideleft}
+\fi
 \end{floatingfigure}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
