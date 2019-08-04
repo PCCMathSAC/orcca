@@ -355,6 +355,8 @@ pdf-edition2:
 	echo 'SECTION 13.5'; \
 	perl -pi -e 's/^(\\noindent.*?solution:zIF)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:fBt})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 13.5'; \
+	perl -p0i -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{g.*?\n.*?\n.*?\nThe specifics of how to use any one particular technology)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'APPENDIX'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise[^\n]*?:VDr}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise.*exercise:LKP}%\n.*?\n.*?\n)/\1\\newpage%\n/m' orcca.tex; \
