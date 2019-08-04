@@ -1,7 +1,7 @@
 # Open Resources for Community College Algebra (ORCCA)
 An open text book for basic and intermediate algebra written with PreTeXt
 
-Copyright 2016-2018
+Copyright 2016-2019
 Portland Community College
 
 Open Resources for Community College Algebra is licensed under a    
