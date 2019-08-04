@@ -1,5 +1,5 @@
 ## ********************************************************************* ##
-## Copyright 2016-2018                                                   ##
+## Copyright 2016-2019                                                   ##
 ## Portland Community College                                            ##
 ##                                                                       ##
 ## This file is part of Open Resources for Community College Algebra     ##
