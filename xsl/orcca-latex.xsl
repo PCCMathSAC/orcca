@@ -27,6 +27,20 @@
 <!-- <xsl:param name="latex.preamble.early" select="document('latex-preamble/latex.preamble.xml')//latex-preamble-early" />
 <xsl:param name="latex.preamble.late" select="document('latex-preamble/latex.preamble.xml')//latex-preamble-late" /> -->
 
+<!-- geometry of the page -->
+<xsl:param name="latex.geometry" select="'papersize={8.625in,11.25in},total={6.5in,8in},inner=1in}'"/>
+
+<!-- boxes for answer blanks -->
+<xsl:param name="latex.fillin.style" select="'box'"/>
+
+<!-- hinsts, answers, solutions -->
+<xsl:param name="exercise.inline.hint" select="'no'"/>
+<xsl:param name="exercise.inline.answer" select="'no'"/>
+<xsl:param name="exercise.inline.solution" select="'yes'"/>
+<xsl:param name="exercise.divisional.hint" select="'no'"/>
+<xsl:param name="exercise.divisional.answer" select="'no'"/>
+<xsl:param name="exercise.divisional.solution" select="'no'"/>
+
 
 <!--<xsl:template match="exercise" mode="backmatter">
     <xsl:variable name="serial">
