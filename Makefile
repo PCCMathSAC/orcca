@@ -120,7 +120,7 @@ pdf-pure:
 	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
 	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
-	xsltproc -xinclude  --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc -xinclude $(MBXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
@@ -135,7 +135,7 @@ pdf-nopost:
 	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
 	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc -xinclude --stringparam toc.level 3 --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
@@ -150,7 +150,7 @@ pdf-edition2:
 	cp -a $(PREVIEW)/*.png $(PDFOUT)/images || :
 	cp -a $(IMAGESSRC) $(PDFOUT) || :
 	cd $(PDFOUT); \
-	xsltproc -xinclude --stringparam toc.level 3 --stringparam watermark.text "DRAFT 2nd ED" --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' --stringparam latex.geometry 'total={6.5in,8in}' --stringparam latex.fillin.style box --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc -xinclude --stringparam toc.level 3 --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' $(PRJXSL)/orcca-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
 	cp orcca.tex orcca-no-regex.tex; \
 	echo 'DO NOT INDENT IN SOME PLACES'; \
 	perl -p0i -e 's/(\\end{inlineexercise}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
@@ -231,12 +231,12 @@ pdf-edition2:
 	echo 'SECTION 2.1'; \
 	perl -pi -e 's/(\\begin{inlineexercise}\{\}{p:exercise:ggs}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(Here we revisit \\hyperref\[x:example:example-savings-pattern\]{Example~\\ref{x:example:example-savings-pattern\}\}\.%\n\\par\nA savings account starts with \\\(\\\$500\\\)\. Each month, an automatic deposit of \\\(\\\$150\\\) is made. Find the number of months it will take for the balance to reach \\\(\\\$1\{,\}700\\\)\.%\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
-	perl -pi -e 's/^(Here is a summary collection of the distinctions that you should understand between simplifying expressions, evaluating expressions and solving equations.%)/\1\n\\newpage%/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent Here is a summary collection of the distinctions that you should understand between simplifying expressions, evaluating expressions and solving equations.%)/\1\n\\newpage%/' orcca.tex; \
+	perl -p0i -e 's/^(A savings account starts with \\\(\\\$500\\\)\. Each month, an automatic deposit of \\\(\\\$150\\\) is made\. Find.*?\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
 	echo 'SECTION 2.2'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 2.3'; \
 	perl -pi -e 's/(\\noindent\\textbf{Explanation}.*Assume Bao)/\\newpage%\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JoV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 2.4'; \
 	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage\n\1/' orcca.tex; \
 	echo 'SECTION 2.5'; \
@@ -263,11 +263,11 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:Ohs)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 3.7'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:zcU)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -pi -e 's/^(.*?p:exercises:PMK})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 3.8'; \
 	perl -pi -e 's/(.*?example:sSa)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}First, we will find Line \\\(A\\\).s slope by rewriting its equation from standard form to slope-intercept form:%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:PjY)/\\newpage\\noindent%\n\1/m' orcca.tex; \
-	perl -pi -e 's/(.*?exercise:YKX)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 3.10'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:OrR}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:aGj}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
@@ -363,6 +363,8 @@ pdf-edition2:
 	perl -pi -e 's/(\\begin{divisionexerciseeg}{\d+}{}{}{p:exercise:zKS}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:FpW}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:CJL}%)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:FNi}%)/\\newpage%\n\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{sidebyside}.*?\n.*?\n.*?\n.*?\n.*?\n{Units of Area)/\\newpage%\n\\noindent\1/m' orcca.tex; \
 	echo 'INDIVIDUAL CUTTING'; \
 	echo 'SECTION 1.3'; \
 	perl -pi -e 's/^In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
@@ -401,10 +403,28 @@ pdf-edition2:
 	perl -pi -e 's/^(\\item\{\}\\\(((?!(\\\)|text)).)*\\\)) *\\approx *\\fillin{\d+} *\.?%\n/\1%\n/g' orcca.tex; \
 	perl -pi -e 's/^(\\\(((?!(\\\)|text)).)*) *\\approx\{\}([ }]*\\\)) *\\fillin\{\d+\} *\.?%\n/\1\4%\n/g' orcca.tex; \
 	perl -p0i -e 's/^\\\(x\\\)%\n/%\n/gm' orcca.tex; \
+	echo 'EDGE INDEXING AND PAGE RENUMBERING'; \
+	perl -pi -e 's/^(\\begin{partptx}{Linear Equations and Lines})/\\xpatchcmd{\\part}{\\thispagestyle{plain}}{\\begin{tikzpicture}\[remember picture,overlay\]\\draw \[color=emerald, fill=emerald\] \(\[xshift=-0.625in\]current page\.north east\) rectangle \(current page\.south east\);\\end{tikzpicture}\\break\\pagenumbering{arabic}\\thispagestyle{plain}}\{\}\{\}\\xpatchcmd{\\\@endpart}{\\vfil\\newpage}{\\vfil\\newpage}\{\}\{\}\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{partptx}{Preparation for STEM})/\\xpatchcmd{\\part}{\\thispagestyle{plain}}{\\begin{tikzpicture}\[remember picture,overlay\]\\draw \[color=turquoise, fill=turquoise\] \(\[xshift=-0.625in\]current page\.north east\) rectangle \(current page\.south east\);\\end{tikzpicture}\\break\\pagenumbering{arabic}\\thispagestyle{plain}}\{\}\{\}\\xpatchcmd{\\\@endpart}{\\vfil\\newpage}{\\vfil\\newpage}\{\}\{\}\n\1/' orcca.tex; \
+	perl -pi -e 's/^(\\begin{partptx}{Preparation for College Algebra})/\\xpatchcmd{\\part}{\\thispagestyle{plain}}{\\begin{tikzpicture}\[remember picture,overlay\]\\draw \[color=amethyst, fill=amethyst\] \(\[xshift=-0.625in\]current page\.north east\) rectangle \(current page\.south east\);\\end{tikzpicture}\\break\\pagenumbering{arabic}\\thispagestyle{plain}}\{\}\{\}\\xpatchcmd{\\\@endpart}{\\vfil\\newpage}{\\vfil\\newpage}\{\}\{\}\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=emerald,   fill=emerald  ] ([xshift=-0.625in] \$$ \(current page.north east\) \$$ ) rectangle ( \$$  \(A\)!1\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=emerald,   fill=emerald  ] ([xshift=-0.625in] \$$  \(A\)!2\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!2\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=emerald,   fill=emerald  ] ([xshift=-0.625in] \$$  \(A\)!3\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!3\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=emerald,   fill=emerald  ] ([xshift=-0.625in] \$$  \(A\)!4\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!4\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=turquoise, fill=turquoise] ([xshift=-0.625in] \$$  \(A\)!5\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!5\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=turquoise, fill=turquoise] ([xshift=-0.625in] \$$  \(A\)!6\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!6\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=turquoise, fill=turquoise] ([xshift=-0.625in] \$$  \(A\)!7\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!7\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=turquoise, fill=turquoise] ([xshift=-0.625in] \$$  \(A\)!8\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!8\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=turquoise, fill=turquoise] ([xshift=-0.625in] \$$  \(A\)!9\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$  \(A\)!9\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=amethyst,  fill=amethyst ] ([xshift=-0.625in] \$$ \(A\)!10\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$ \(A\)!10\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=amethyst,  fill=amethyst ] ([xshift=-0.625in] \$$ \(A\)!11\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$ \(A\)!11\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=amethyst,  fill=amethyst ] ([xshift=-0.625in] \$$ \(A\)!12\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$ \(A\)!12\/13!\(B\)          \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{chapterptx}.*?{x:chapter:[^}]*?})\n/\1\\begin\{tikzpicture\}[remember picture,overlay]\\node \(A\) at ( \$$ (current page.north east) - (0,0.125) \$$ ) \{\}; \\node \(B\) at ( \$$ (current page.south east) + (0,0.125) \$$ ) \{\}; \\draw [color=amethyst,  fill=amethyst ] ([xshift=-0.625in] \$$ \(A\)!13\/13-1\/13!\(B\)    \$$ ) rectangle ( \$$ \(current page.south east\) \$$ );\\end{tikzpicture}\n/m' orcca.tex; \
+	perl -pi -e 's/^(\\begin{appendixptx}.*?\n)/\\cleardoublepage\n\\pagenumbering{arabic}\n\\renewcommand{\\thepage}{\\thechapter\\arabic{page}}\n\1\\begin{tikzpicture}\[remember picture,overlay\]\\draw \[color=ruby, fill=ruby\] \(\[xshift=-0.625in\]current page.north east\) rectangle \(current page\.south east\);\\end{tikzpicture}\n/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
-#	xelatex orcca.tex; \
-	perl -p0i -e 's/(\\textbf{.*?}\\space\\space%\n\\begin\{exercisegroup.*?\n(.*?\n)*?\\end\{divisionexerciseeg.*?\n)((.*?\n)*?\\end\{exercisegroup.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\3\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	xelatex orcca.tex; \
+#	perl -p0i -e 's/(\\textbf{.*?}\\space\\space%\n\\begin\{exercisegroup.*?\n(.*?\n)*?\\end\{divisionexerciseeg.*?\n)((.*?\n)*?\\end\{exercisegroup.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\3\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 
 # This was edition 1
 pdf:
@@ -751,7 +771,7 @@ html:
 	cp -a $(PRJSRC)/favicon $(HTMLOUT) || :
 	cp $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam debug.colors ruby_emerald --stringparam watermark.text "DRAFT 2nd ED" --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
+	xsltproc -xinclude --stringparam debug.colors ruby_emerald --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(PRJXSL)/orcca-html.xsl $(OUTPUT)/merge.xml
 
 # make all the image files in svg format
 # latex-image images

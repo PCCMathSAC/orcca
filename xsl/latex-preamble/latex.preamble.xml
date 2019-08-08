@@ -52,28 +52,6 @@
 \fi
 \end{floatingfigure}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Used by assemblage, which is stealing aside's style
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usetikzlibrary{shadows}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Modified from Mitch Keller's chapter handling
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\definecolor{ORCCABlue}{cmyk}{1, 0.1634, 0, 0.4}
-%\colorlet{chaptercolor}{ORCCABlue}
-%\setkomafont{chapter}{\normalfont\color{chaptercolor}\Huge\itshape}
-%\setkomafont{chapterprefix}{\normalfont\Large}
-%\renewcommand*{\raggedchapter}{\raggedleft}
-%\renewcommand*{\chapterformat}{\MakeUppercase{\chapappifchapterprefix{}}\rlap{\enskip\resizebox{!}{1.2cm}{\thechapter} %\rule{15cm}{1.2cm} }}
-%\RedeclareSectionCommand[beforeskip=30pt,afterskip=20pt]{chapter}
-%\renewcommand*\chapterheadmidvskip{\par\nobreak\vspace{10pt}}
-%\setkomafont{captionlabel}{}
-%\setkomafont{caption}{}
-%\setcapindent{0em}
-%\addtokomafont{disposition}{\rmfamily}
-%\addtokomafont{descriptionlabel}{\rmfamily}
-%\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CC icon at bottom of each page
@@ -154,20 +132,33 @@
 
 \tcbset{ inlineexercisestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, enhanced,
      overlay unbroken = {\draw[sixthcolor,line width=1pt]
-       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west) node[below left] {\includegraphics[height=10pt]{images/webwork-logo.eps}};},
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=-15pt, xshift=-1.5em]frame.north west);
+       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{images/webwork-logo.eps}};},
      overlay first = {\draw[sixthcolor,line width=1pt]
-       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west) node[below left] {\includegraphics[height=10pt]{images/webwork-logo.eps}};},
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=-15pt, xshift=-1.5em]frame.north west);
+       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{images/webwork-logo.eps}};},
      overlay middle = {\draw[sixthcolor,line width=1pt]
        ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
      overlay last = {\draw[sixthcolor,line width=1pt]
        ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
 } }%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Used for certain systems of equations to align better
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{nccmath}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Index page numbering and edge index
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\indexsetup{
+  firstpagestyle=empty,
+  othercode=\pagenumbering{Roman}\renewcommand{\thepage}{\Roman{page}}{\begin{tikzpicture}[remember picture,overlay]\draw [color=amber, fill=amber] ([xshift=-0.625in]current page.north east) rectangle (current page.south east);\end{tikzpicture}}}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Used with inserting edge indexing on parts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xpatch}
 
 ]]>
 </latex-preamble-late>
