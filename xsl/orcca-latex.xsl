@@ -28,7 +28,7 @@
 <xsl:param name="latex.preamble.late" select="document('latex-preamble/latex.preamble.xml')//latex-preamble-late" /> -->
 
 <!-- geometry of the page -->
-<xsl:param name="latex.geometry" select="'papersize={8.625in,11.25in},total={6.5in,8in},inner=1in}'"/>
+<xsl:param name="latex.geometry" select="'papersize={8.625in,11.25in},total={6.5in,8in},inner=1in'"/>
 
 <!-- boxes for answer blanks -->
 <xsl:param name="latex.fillin.style" select="'box'"/>
