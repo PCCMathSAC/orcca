@@ -421,8 +421,8 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{appendixptx}.*?\n)/\\cleardoublepage\n\\pagenumbering{arabic}\n\\renewcommand{\\thepage}{\\thechapter\\arabic{page}}\n\1\\begin{tikzpicture}\[remember picture,overlay\]\\draw \[color=ruby, fill=ruby\] \(\[xshift=-0.625in\]current page.north east\) rectangle \(current page\.south east\);\\end{tikzpicture}\n/g' orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
-#	xelatex orcca.tex; \
-	perl -p0i -e 's/(\\textbf{.*?}\\space\\space%\n\\begin\{exercisegroup.*?\n(.*?\n)*?\\end\{divisionexerciseeg.*?\n)((.*?\n)*?\\end\{exercisegroup.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\3\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
+	xelatex orcca.tex; \
+#	perl -p0i -e 's/(\\textbf{.*?}\\space\\space%\n\\begin\{exercisegroup.*?\n(.*?\n)*?\\end\{divisionexerciseeg.*?\n)((.*?\n)*?\\end\{exercisegroup.*?\n)/\\makeatletter\\\@beginparpenalty=10000\\makeatother\n\1\\makeatletter\\\@beginparpenalty=-51\\makeatother\n\3\\makeatletter\\\@beginparpenalty=-51\\makeatother\n/g' orcca.tex; \
 
 # This was edition 1
 pdf:
