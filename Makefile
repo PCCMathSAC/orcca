@@ -231,12 +231,12 @@ pdf-edition2:
 	echo 'SECTION 2.1'; \
 	perl -pi -e 's/(\\begin{inlineexercise}\{\}{p:exercise:ggs}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(Here we revisit \\hyperref\[x:example:example-savings-pattern\]{Example~\\ref{x:example:example-savings-pattern\}\}\.%\n\\par\nA savings account starts with \\\(\\\$500\\\)\. Each month, an automatic deposit of \\\(\\\$150\\\) is made. Find the number of months it will take for the balance to reach \\\(\\\$1\{,\}700\\\)\.%\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
-	perl -pi -e 's/^(Here is a summary collection of the distinctions that you should understand between simplifying expressions, evaluating expressions and solving equations.%)/\1\n\\newpage%/' orcca.tex; \
+	perl -pi -e 's/^(\\noindent Here is a summary collection of the distinctions that you should understand between simplifying expressions, evaluating expressions and solving equations.%)/\1\n\\newpage%/' orcca.tex; \
+	perl -p0i -e 's/^(A savings account starts with \\\(\\\$500\\\)\. Each month, an automatic deposit of \\\(\\\$150\\\) is made\. Find.*?\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
 	echo 'SECTION 2.2'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 2.3'; \
 	perl -pi -e 's/(\\noindent\\textbf{Explanation}.*Assume Bao)/\\newpage%\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JoV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 2.4'; \
 	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage\n\1/' orcca.tex; \
 	echo 'SECTION 2.5'; \
@@ -263,11 +263,11 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:Ohs)/\\newpage\\noindent%\n\1/m' orcca.tex; \
 	echo 'SECTION 3.7'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:zcU)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -pi -e 's/^(.*?p:exercises:PMK})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 3.8'; \
 	perl -pi -e 's/(.*?example:sSa)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}First, we will find Line \\\(A\\\).s slope by rewriting its equation from standard form to slope-intercept form:%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:PjY)/\\newpage\\noindent%\n\1/m' orcca.tex; \
-	perl -pi -e 's/(.*?exercise:YKX)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 3.10'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:OrR}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:aGj}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
@@ -363,6 +363,8 @@ pdf-edition2:
 	perl -pi -e 's/(\\begin{divisionexerciseeg}{\d+}{}{}{p:exercise:zKS}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:FpW}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:CJL}%)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:FNi}%)/\\newpage%\n\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{sidebyside}.*?\n.*?\n.*?\n.*?\n.*?\n{Units of Area)/\\newpage%\n\\noindent\1/m' orcca.tex; \
 	echo 'INDIVIDUAL CUTTING'; \
 	echo 'SECTION 1.3'; \
 	perl -pi -e 's/^In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
