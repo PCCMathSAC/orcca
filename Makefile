@@ -208,21 +208,21 @@ pdf-edition2:
 	echo 'INDIVIDUAL PAGE BREAKS'; \
 	echo 'CHAPTER 1'; \
 	echo 'SECTION 1.1'; \
-	perl -p0i -e 's/^(.*:UqM.*?\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage\n\3/m' orcca.tex; \
-	perl -pi -e 's/(^\\begin{exercises-subsection}.*?:hKx)/\\newpage\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*:UqM.*?\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage%\n\3/m' orcca.tex; \
+	perl -pi -e 's/(^\\begin{exercises-subsection}.*?:hKx)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 1.2'; \
 	perl -pi -e 's/(\\begin{example}\{\}{x:example:example-combining-like-terms}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(\\begin{example}\{\}{p:example:XHm}%)/\\newpage%\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:xZj)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:xZj)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 1.3'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?:xbu)/\\newpage\\noindent%\n\1/m' orcca.tex; \
-	perl -p0i -e 's/^(\\hrulefill\\\\%\n.*?\n.*?\n.*?:DAA}%)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?:xbu)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\hrulefill\\\\%\n.*?\n.*?\n.*?:DAA}%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 1.4'; \
 	perl -pi -e 's/(The following are some linear equations in one variable:%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:yin}%\n(.*?\n)*?)(\\noindent\\textbf{Explanation})/\1\\newpage%\n\2/m' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?:nJi)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?:nJi)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 1.5'; \
-	perl -pi -e 's/(^\\begin\{example\}\{\}\{x:example:example-one-step-equation-fraction-type-one\}%)/\\newpage\n\1/' orcca.tex; \
+	perl -pi -e 's/(^\\begin\{example\}\{\}\{x:example:example-one-step-equation-fraction-type-one\}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(\\begin{example}\{\}{p:example:CyD}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 1.7'; \
 	perl -pi -e 's/(\\begin{inlineexercise}\{\}{p:exercise:mST}%)/\\newpage%\n\1/' orcca.tex; \
@@ -234,21 +234,21 @@ pdf-edition2:
 	perl -pi -e 's/^(\\noindent Here is a summary collection of the distinctions that you should understand between simplifying expressions, evaluating expressions and solving equations.%)/\1\n\\newpage%/' orcca.tex; \
 	perl -p0i -e 's/^(A savings account starts with \\\(\\\$500\\\)\. Each month, an automatic deposit of \\\(\\\$150\\\) is made\. Find.*?\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
 	echo 'SECTION 2.2'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JOH)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:JOH)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 2.3'; \
 	perl -pi -e 's/(\\noindent\\textbf{Explanation}.*Assume Bao)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 2.4'; \
-	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage\n\1/' orcca.tex; \
+	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{Special Solution Sets for Equations and Inequalities\\label{x:list:list-special-solution-sets}})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 2.5'; \
 	perl -p0i -e 's/^(\\begin{example}\{\}{x:example:example-solve-for-variable-slope-intercept}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:Xlj})/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{x:exercise:exercise-solve-for-variable-standard-form}%)/\\newpage%\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?\n.*?\n.*?exercises:dvU)/\\newpage\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?\n.*?\n.*?exercises:dvU)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'CHAPTER 3'; \
 	echo 'SECTION 3.1'; \
 	perl -p0i -e 's/^(\\begin{reading-questions-subsection-numberless}{Reading Questions}\{\}{Reading Questions}\{\}\{\}{.*?}\n\\begin{divisionexercise}\{1\}\{\}\{\}{.*?}%\nWhat are the coordinates of the gas station in the map of Carl.s neighborhood\?%)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 3.2'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:RHS)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:RHS)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 3.3'; \
 	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:EYb}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:bQC}%)/\\newpage%\n\1/' orcca.tex; \
@@ -259,48 +259,51 @@ pdf-edition2:
 	perl -pi -e 's/(.*?example:gBr)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\quad\{\}Do your best to identify two points on the line. We go with \\\(\(0,27500\)\\\) and \\\(\(11000,45000\)\\text\{\.\}\\\)%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 3.6'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:WRk)/\\newpage\\noindent%\n\1/m' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:Ohs)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:WRk)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:Ohs)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 3.7'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:zcU)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:zcU)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	perl -pi -e 's/^(.*?p:exercises:PMK})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 3.8'; \
 	perl -pi -e 's/(.*?example:sSa)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}First, we will find Line \\\(A\\\).s slope by rewriting its equation from standard form to slope-intercept form:%)/\\newpage%\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:PjY)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:PjY)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 3.10'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:OrR}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:aGj}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:GNs}\{\}\\quad\{\}\\leavevmode%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'CHAPTER 4'; \
 	echo 'SECTION 4.1'; \
-	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{A summary of the three types of systems of equations and their solution sets\.\\label{x:list:list-summary-of-types-of-systems}})/\\newpage\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?exercise:ysn)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/(\\begin{namedlist}\n\\captionof{namedlistcap}{A summary of the three types of systems of equations and their solution sets\.\\label{x:list:list-summary-of-types-of-systems}})/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?exercise:ysn)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 4.2'; \
 	perl -pi -e 's/(.*?exercise:lJw)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/(.*?example:ULl)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{.*?}\{\}\\quad\{\}If an equation involves fractions, it is helpful to clear denominators by multiplying both sides of the equation by a common multiple of the denominators.%)/\\newpage%\n\1/' orcca.tex; \
-	perl -pi -e 's/^(Lastly, we can determine the value of \\\(v\\\) by using the earlier equation where we isolated \\\(v\\\):%)/\\newpage\n\1/' orcca.tex; \
+	perl -pi -e 's/^(Lastly, we can determine the value of \\\(v\\\) by using the earlier equation where we isolated \\\(v\\\):%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(And then substitute \\\(s\\\) in the second equation with \\\(600-v\\\):%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:qHK)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 4.3'; \
 	perl -pi -e 's/(To check our work, substitute \\\(A=560\\\) and \\\(B=440\\\) into the original equations:%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(To solve for \\\(y\\\), we can substitute \\\(2\\\) for \\\(x\\\) into either of the original equations or the new one\. We use the first original equation, \\\(3x-4y=2\\\):%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent To summarize, if a variable is already isolated or has a coefficient of \\\(1\\\), consider using the substitution method\. If both equations are in standard form or none of the coefficients are equal to \\\(1\\\), we suggest using the elimination method\. Either way, if you have fraction or decimal coefficients, it may help to scale your equations so that only integer coefficients remain.%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 5.1'; \
+	perl -p0i -e 's/^(\\hrulefill\\\\%\n.*?\n.*?\n.*?p:exercise:bzu)/\\newpage%\n\\noindent\1/m' orcca.tex; \
 	echo 'SECTION 5.2'; \
 	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents for Multiplication\\label{x:list:list-rules-of-exponents}})/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 5.3'; \
 	perl -p0i -e 's/^(\\begin{namedlist}\n\\captionof{namedlistcap}{Summary of the Rules of Exponents \(Thus Far\)\\label{x:list:list-rules-of-exponents-four-rules}})/\\newpage%\n\1/m' orcca.tex; \
 	perl -p0i -e 's/^(where \\\(m\\\) is the object.s mass, and \\\(V\\\) is its volume\. The mass of a certain cancerous growth can be modeled by \\\(4t\^3-6t\^2\+8t\\\) grams, where \\\(t\\\) is the number of days since the growth began\. If its volume is \\\(2t\\\) cubic centimeters, find the growth.s density\.%\n\\par\\smallskip%\n)/\1\\newpage%\n/m' orcca.tex; \
 	echo 'SECTION 5.4'; \
-	perl -pi -e 's/^(To finish multiplying, we.ll continue by distributing again, but this time across \\\(\(x+3\)\\\):%)/\\newline%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(To finish multiplying, we.ll continue by distributing again, but this time across \\\(\(x+3\)\\\):%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 5.5'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:goW)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{inlineexercise}.*?\nExpand \\\(\(2y-6\)\^3\\text\{\.\}\\\)%)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:goW)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 5.6'; \
-	perl -pi -e 's/^(\\begin{subsectionptx}{Summary of Exponent Rules}\{\}{Summary of Exponent Rules}\{\}\{\}{p:subsection:RNj})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 5.8'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:wBV)/\\newpage\\noindent%\n\1/m' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:snB)/\\newpage\\noindent%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:snB)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	echo 'SECTION 6.1'; \
+	perl -p0i -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:ALy}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n\\end{multicols}\n)/\1\\newpage%\n/m' orcca.tex; \
 	echo 'SECTION 6.3'; \
 	perl -pi -e 's/^(\\begin{remark}\{\}{x:remark:remark-two-representations-of-rational-exponents}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{example}\{\}{p:example:SaN}%)/\\newpage%\n\1/' orcca.tex; \
@@ -308,6 +311,7 @@ pdf-edition2:
 	echo 'SECTION 6.4'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:KkT)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseegcol}\{50\}\{\}\{\}{p:exercise:vMx}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(\\textbf{Solving Radical Equations with Variables}.*?\n.*?\n.*?p:exercise:DLN)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 6.5'; \
 	perl -pi -e 's/^(\\begin{example}{More Expressions with Rational Exponents\.}{p:example:XFm}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 7.1'; \
@@ -319,7 +323,10 @@ pdf-edition2:
 	echo 'SECTION 8.5'; \
 	perl -p0i -e 's/^(\\begin{exercises-subsection}.*?\n.*?\n.*?\n.*?\n\\begin{divisionexerciseegcol}\{1\}\{\}\{\}{p:exercise:WFP}%)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 9.1'; \
+	perl -p0i -e 's/^(\\textbf{Tables for Equations}.*?\nMake a table for the equation.%\n\\begin{exercisegroupcol}\{2\}\n\\begin{divisionexerciseegcol}\{5\}\{\}\{\}{g:exercise:)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	echo 'SECTION 9.2'; \
 	perl -pi -e 's/^(\\begin{example}{}{p:example:olh}%)/\\newpage%\n\1/' orcca.tex; \
+	perl -pi -e 's/^(.*?p:solution:TBs)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(\\textbf{Algebraically Determining the Vertex and Axis of Symmetry of Quadratic Functions}\\space\\space%\nFind the axis of symmetry and vertex of the quadratic )function.%/\\newpage%\n\\noindent \1equation\.%/m' orcca.tex; \
 	echo 'SECTION 10.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
