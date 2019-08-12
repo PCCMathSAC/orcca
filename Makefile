@@ -332,14 +332,12 @@ pdf-edition2:
 	perl -pi -e 's/^(\\item\{\}To determine the horizontal intercepts, we.ll solve \\\(H=0\\\)\.%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 9.4'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?\n.*?This region is highlighted in \\hyperref\[x:figure:figure-parabola-line-inequality\])/\\newpage%\n\1/m' orcca.tex; \
-	echo 'SECTION 10.1'; \
+	echo 'SECTION 10.7'; \
+	echo 'SECTION 10.8'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\noindent \1/m' orcca.tex; \
+	echo 'SECTION 11.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
-	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{55\}\{\}\{\}{p:exercise:FAr}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{98\}\{\}\{\}{p:exercise:AuZ}%)/\\newpage%\n\1/' orcca.tex; \
-	echo 'SECTION 11.7'; \
-	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:cvo})/\\newpage%\n\1/' orcca.tex; \
-	echo 'SECTION 11.8'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 12.1'; \
 	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:maM})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 12.2'; \
