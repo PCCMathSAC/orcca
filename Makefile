@@ -299,9 +299,9 @@ pdf-edition2:
 	echo 'SECTION 5.5'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise}.*?\nExpand \\\(\(2y-6\)\^3\\text\{\.\}\\\)%)/\\newpage%\n\1/m' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:goW)/\\newpage%\n\\noindent \1/m' orcca.tex; \
-	echo 'SECTION 5.6'; \
-	echo 'SECTION 5.8'; \
+	echo 'SECTION 5.7'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:snB)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:vSb)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 6.1'; \
 	perl -p0i -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:ALy}%\n.*?\n.*?\n.*?\n.*?\n.*?\n.*?\n\\end{multicols}\n)/\1\\newpage%\n/m' orcca.tex; \
 	echo 'SECTION 6.3'; \
@@ -328,6 +328,10 @@ pdf-edition2:
 	perl -pi -e 's/^(\\begin{example}{}{p:example:olh}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(.*?p:solution:TBs)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(\\textbf{Algebraically Determining the Vertex and Axis of Symmetry of Quadratic Functions}\\space\\space%\nFind the axis of symmetry and vertex of the quadratic )function.%/\\newpage%\n\\noindent \1equation\.%/m' orcca.tex; \
+	echo 'SECTION 9.3'; \
+	perl -pi -e 's/^(\\item\{\}To determine the horizontal intercepts, we.ll solve \\\(H=0\\\)\.%)/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 9.4'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?\n.*?This region is highlighted in \\hyperref\[x:figure:figure-parabola-line-inequality\])/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 10.1'; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{55\}\{\}\{\}{p:exercise:FAr}%)/\\newpage%\n\1/' orcca.tex; \
@@ -386,8 +390,6 @@ pdf-edition2:
 	perl -p0i -e 's/^(Axis of symmetry:  \\fillin{\d+}%\n\\par\nVertex:  \\fillin{\d+}%\n)//gm' orcca.tex; \
 	echo 'SECTION 9.2'; \
 	perl -p0i -e 's/^(\\\(y\\\)-intercept:  \\fillin{\d+}%\n\\par\n\\\(x\\\)-intercept\(s\):  \\fillin{\d+}%\n)//gm' orcca.tex; \
-	perl -pi -e 's/^(\\begin{example}\{\}{x:example:example-refrigerator-production-quadratic-application}%)/\\newpage%\n\1/' orcca.tex; \
-	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:Nfq})/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 9.3'; \
 	perl -pi -e 's/^(\\noindent If we are solving graphically and something is already providing you with the graph, it.s not even necessary to have math expressions for the two curves\.%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent Occasionally, a curve abruptly ..stops.., and we need to recognize this in a solution to an inequality\.%)/\\newpage%\n\1/' orcca.tex; \
