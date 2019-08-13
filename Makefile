@@ -334,20 +334,20 @@ pdf-edition2:
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?\n.*?This region is highlighted in \\hyperref\[x:figure:figure-parabola-line-inequality\])/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 10.7'; \
 	echo 'SECTION 10.8'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\noindent \1/m' orcca.tex; \
-	echo 'SECTION 11.1'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:xvL)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KMR)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	echo 'SECTION 12.3'; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{98\}\{\}\{\}{p:exercise:AuZ}%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 12.1'; \
-	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:maM})/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?p:exercise:zbl)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 12.2'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:HJM)/\\newpage%\n\1/m' orcca.tex; \
-	echo 'SECTION 12.3'; \
-	echo 'SECTION 12.4'; \
+	perl -pi -e 's/^(\\begin{exercises-subsection}{Exercises}\{\}{Exercises}\{\}\{\}{p:exercises:maM})/\\newpage%\n\1/' orcca.tex; \
+	echo 'SECTION 12.5'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:ECt})/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:oJB)/\\newpage%\n\1/m' orcca.tex; \
 	perl -pi -e 's/^(\\begin{divisionexerciseeg}\{19\}\{\}\{\}{p:exercise:lOV}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(.*?solution:jlT)/\\newpage%\n\1/' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?p:exercise:fdz}%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?p:exercise:ciT}%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 13.4'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:CCY)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 13.5'; \
@@ -372,7 +372,7 @@ pdf-edition2:
 	perl -pi -e 's/(\\begin{divisionexerciseeg}{\d+}{}{}{p:exercise:zKS}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\begin{inlineexercise}\{\}{p:exercise:FpW}%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:CJL}%)/\\newpage%\n\1/m' orcca.tex; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:FNi}%)/\\newpage%\n\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:FNi}%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	perl -p0i -e 's/^(\\begin{sidebyside}.*?\n.*?\n.*?\n.*?\n.*?\n{Units of Area)/\\newpage%\n\\noindent\1/m' orcca.tex; \
 	echo 'INDIVIDUAL CUTTING'; \
 	echo 'SECTION 1.3'; \
@@ -392,6 +392,8 @@ pdf-edition2:
 	perl -pi -e 's/^(\\noindent If we are solving graphically and something is already providing you with the graph, it.s not even necessary to have math expressions for the two curves\.%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\noindent Occasionally, a curve abruptly ..stops.., and we need to recognize this in a solution to an inequality\.%)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 12.1'; \
+	perl -pi -e 's/^Interpretation:%$/%/g' orcca.tex; \
+	echo 'SECTION 12.2'; \
 	perl -p0i -e 's/\\par\n\\noindent In .*? notation: +\\fillin{\d+}%\n//g' orcca.tex; \
 	perl -p0i -e 's/^((This|The) function has domain  \\fillin\{\d+\} and range  \\fillin\{\d+\}\.%\n)//gm' orcca.tex; \
 	echo 'SECTION 13.1'; \
