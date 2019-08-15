@@ -348,12 +348,14 @@ pdf-edition2:
 	perl -pi -e 's/^(.*?solution:jlT)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?p:exercise:fdz}%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?p:exercise:ciT}%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
+	echo 'SECTION 12.2'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?p:exercise:SJh)/\\newpage%\n\\noindent \1/' orcca.tex; \
+	echo 'SECTION 12.5'; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?p:exercise:NIp)/\\newpage%\n\\noindent \1/' orcca.tex; \
 	echo 'SECTION 13.4'; \
 	perl -pi -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{p:solution:CCY)/\\newpage%\n\1/' orcca.tex; \
-	echo 'SECTION 13.5'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:KNJ)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 13.6'; \
-	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:TME)/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:TME)/\\newpage%\n\\noindent\1/m' orcca.tex; \
 	echo 'SECTION 13.1'; \
 	perl -pi -e 's/^(\\noindent.*solution:izz)/\\newpage%\n\1/' orcca.tex; \
 	echo 'SECTION 13.2'; \
