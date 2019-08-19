@@ -362,7 +362,7 @@ pdf-edition2:
 	perl -p0i -e 's/^(\\begin{inlineexercise}.*?\nFind the \\\(y\\\)-intercept and \\\(x\\\)-intercept of the line given by the equation\. If a particular intercept does not exist, enter \\mono{none} into all the answer blanks for that row\.%\n%\n\\begin{equation\*}\n2 x + 5 y = -20)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 13.2'; \
 	perl -p0i -e 's/^(\\hrulefill.*?\n.*?\n.*?\n.*?p:exercise:YvT}%)/\\newpage%\n\\noindent\1/m' orcca.tex; \
-	perl -pi -e 's/^(\\noindent Let.s look at another graph\. Let \\\(h\(x\)=-x\^2\\\) and let \\\(j\(x\)=-\(x+3\)\^2+4\\\)\.%)/\\newpage%\n\1' orcca.tex; \
+	perl -pi -e 's/^(\\noindent Let.s look at another graph\. Let \\\(h\(x\)=-x\^2\\\) and let \\\(j\(x\)=-\(x+3\)\^2+4\\\)\.%)/\\newpage%\n\1/' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?exercise:zjp)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	perl -p0i -e 's/^(.*?\n.*?\n.*?\n.*?exercise:tud)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	echo 'SECTION 13.4'; \
@@ -374,10 +374,10 @@ pdf-edition2:
 	perl -p0i -e 's/^(\\noindent\\textbf{Explanation}\.\\hypertarget{g.*?\n.*?\n.*?\nThe specifics of how to use any one particular technology)/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 13.7'; \
 	perl -p0i -e 's/^(\\noindent Let.s turn to an example involving a linear equation.%\n\\begin{example}.*?\nSolve the inequality \\\(3x-2\\lt7\\\) graphically\.%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
-	perl -p0i -e 's/^(\\begin{example}.*?\nTo graphically solve the inequality \\\(\\abs{x-1} \\gt 3\\\) would mean looking for the \\\(x\\\)-values where the graph of \\\(y=\\abs{x-1}\\\) is \\emph{above} the line \\\(y=3\\\)\.%)/\\newpage%\n\noindent \1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\begin{example}.*?\nTo graphically solve the inequality \\\(\\abs{x-1} \\gt 3\\\) would mean looking for the \\\(x\\\)-values where the graph of \\\(y=\\abs{x-1}\\\) is \\emph{above} the line \\\(y=3\\\)\.%)/\\newpage%\n\\noindent \1/m' orcca.tex; \
 	perl -pi -e 's/^(\\noindent Solving inequalities with quadratic expressions graphically is very similar to solving absolute value inequalities graphically.%)/\\newpage%\n\1/' orcca.tex; \
 	perl -pi -e 's/^(\\item\{\}To now solve \\\(42\(x-2\)\^2-60 \\lt 21x-39\\\),)/\\newpage%\n\1/' orcca.tex; \
-	perl -p0i -e 's/^(\\noindent\textbf{Explanation}.*?\n\\begin{sidebyside}.*?\n\\begin{sbspanel}\{0.47\}%\nTo solve the inequality \\\(2\\le f\(x\) \\lt 6\\\))/\\newpage%\n\1/m' orcca.tex; \
+	perl -p0i -e 's/^(\\noindent\\textbf{Explanation}.*?\n\\begin{sidebyside}.*?\n\\begin{sbspanel}\{0.47\}%\nTo solve the inequality \\\(2\\le f\(x\) \\lt 6\\\))/\\newpage%\n\1/m' orcca.tex; \
 	echo 'SECTION 13.8'; \
 	perl -p0i -e 's/^(\\begin{example}{Graphing Lines Using Intercepts.}.*?\nUse the intercepts of \\\(4x-2y=16\\\) to graph the equation\.%)/\\newpage%\n\1/m' orcca.tex; \
 	perl -p0i -e 's/^(\\item\{\}\\leavevmode%\n\\begin{sidebyside}.*?\n\\begin{sbspanel}{0\.47}%\nThe solutions are all \\\(x\\\)-values where)/\\newpage%\n\1/m' orcca.tex; \
