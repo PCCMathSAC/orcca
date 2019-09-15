@@ -33,7 +33,7 @@
 <!-- boxes for answer blanks -->
 <xsl:param name="latex.fillin.style" select="'box'"/>
 
-<!-- hinsts, answers, solutions -->
+<!-- hints, answers, solutions -->
 <xsl:param name="exercise.inline.hint" select="'no'"/>
 <xsl:param name="exercise.inline.answer" select="'no'"/>
 <xsl:param name="exercise.inline.solution" select="'yes'"/>
