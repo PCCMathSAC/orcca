@@ -1823,6 +1823,8 @@
 
                 $subbed = $fofx->substitute($x=>$inner)->reduce;
                 $answer = Formula("$c $x + $c*$a + sqrt($m $x + ($b + $m*$a))")->reduce;
+                $crita  = -($b + $m*$a)/$m;
+                $critb = bizarro::f(-1*bizarro::g($b+$m*$a)/bizarro::g($m));
 
                 $cxpca = Formula("$c $x+$c $a")->reduce;
                 $mxpma = Formula("$m $x+$m $a")->reduce;
@@ -1830,14 +1832,20 @@
                 $evaluator = $answer -> cmp(
                    checker=>sub{
                       my ( $correct, $student, $ansHash ) = @_;
-                      return 0 if $ansHash->{isPreview} || $correct != $student;
+                      return 0 if $ansHash->{isPreview};
                       $student = $ansHash->{student_formula};
                       $correct = $correct->{original_formula} if defined $correct->{original_formula};
                       $student = Formula("$student"); $correct = Formula("$correct");
-                      return 0 unless ($correct == $student);
+                      $student->{limits} = ($m > 0) ? [$crita+1,$crita+10] : [$crita-10,$crita-1];
+                      $correct->{limits} = ($m > 0) ? [$crita+1,$crita+10] : [$crita-10,$crita-1];
+                      return 0 unless ($student == $correct);
                       Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                      delete $correct->{test_points};
+                      delete $student->{test_points};
                       delete $correct->{test_values};
                       delete $student->{test_values};
+                      $student->{limits} = ($m > 0) ? [$critb+1,$critb+10] : [$critb-10,$critb-1];
+                      $correct->{limits} = ($m > 0) ? [$critb+1,$critb+10] : [$critb-10,$critb-1];
                       my $OK = (($correct == $student) or ($student == $correct));
                       Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
                       Value::Error("Your answer is correct, but please simplify it further") unless $OK;
@@ -1896,6 +1904,8 @@
 
                 $subbed = $fofx->substitute($x=>$inner)->reduce;
                 $answer = Formula("$c $x + $c*$a + sqrt($m $x + ($b + $m*$a))")->reduce;
+                $crita  = -($b + $m*$a)/$m;
+                $critb = bizarro::f(-1*bizarro::g($b+$m*$a)/bizarro::g($m));
 
                 $cxpca = Formula("$c $x+$c $a")->reduce;
                 $mxpma = Formula("$m $x+$m $a")->reduce;
@@ -1903,19 +1913,26 @@
                 $evaluator = $answer -> cmp(
                    checker=>sub{
                       my ( $correct, $student, $ansHash ) = @_;
-                      return 0 if $ansHash->{isPreview} || $correct != $student;
+                      return 0 if $ansHash->{isPreview};
                       $student = $ansHash->{student_formula};
                       $correct = $correct->{original_formula} if defined $correct->{original_formula};
                       $student = Formula("$student"); $correct = Formula("$correct");
-                      return 0 unless ($correct == $student);
+                      $student->{limits} = ($m > 0) ? [$crita+1,$crita+10] : [$crita-10,$crita-1];
+                      $correct->{limits} = ($m > 0) ? [$crita+1,$crita+10] : [$crita-10,$crita-1];
+                      return 0 unless ($student == $correct);
                       Context()->flags->set(bizarroAdd=>1, bizarroSub=>1, bizarroMul=>1);
+                      delete $correct->{test_points};
+                      delete $student->{test_points};
                       delete $correct->{test_values};
                       delete $student->{test_values};
+                      $student->{limits} = ($m > 0) ? [$critb+1,$critb+10] : [$critb-10,$critb-1];
+                      $correct->{limits} = ($m > 0) ? [$critb+1,$critb+10] : [$critb-10,$critb-1];
                       my $OK = (($correct == $student) or ($student == $correct));
                       Context()->flags->set(bizarroAdd=>0, bizarroSub=>0, bizarroMul=>0);
                       Value::Error("Your answer is correct, but please simplify it further") unless $OK;
                       return $OK;
                 });
+
             </pg-code>
             </setup>
             <statement>
