@@ -1986,7 +1986,9 @@
                 $emptyf =~ s/$x/(\phantom{$x})/g;
 
                 $subbed = $fofx->substitute($x=>$inner)->reduce;
-                $answer = Formula("$c/($m $x + ($m*$a+$b))")->reduce;
+                $g = gcd(gcd($m,$m*$a+$b),$c);
+                $preanswer = ($g == 1) ? '' : '\amp = ' . Formula("$c/($m $x + ($m*$a+$b))")->reduce->TeX . '\\';
+                $answer = Formula("($c/$g)/($m/$g $x + ($m*$a+$b)/$g)")->reduce;
 
                 $mxpma = Formula("$m $x+$m $a")->reduce;
 
@@ -2024,7 +2026,7 @@
                   <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
                   <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
                   <mrow>\amp=\frac{<var name="$c" />}{<var name="$mxpma" /> + <var name="$b" />}</mrow>
-                  <mrow>\amp=<var name="$answer" /></mrow>
+                  <mrow><var name="$preanswer" />\amp=<var name="$answer" /></mrow>
                 </md>
               </p>
             </solution>
@@ -2059,7 +2061,9 @@
                 $emptyf =~ s/$x/(\phantom{$x})/g;
 
                 $subbed = $fofx->substitute($x=>$inner)->reduce;
-                $answer = Formula("$c/($m $x + ($m*$a+$b))")->reduce;
+                $g = gcd(gcd($m,$m*$a+$b),$c);
+                $preanswer = ($g == 1) ? '' : '\amp = ' . Formula("$c/($m $x + ($m*$a+$b))")->reduce->TeX . '\\';
+                $answer = Formula("($c/$g)/($m/$g $x + ($m*$a+$b)/$g)")->reduce;
 
                 $mxpma = Formula("$m $x+$m $a")->reduce;
 
@@ -2097,7 +2101,7 @@
                   <mrow><var name="$f" />(\phantom{<var name="$x" />})\amp= <var name="$emptyf" /></mrow>
                   <mrow><var name="$f" />(<var name="$inner" />)\amp=<var name="$subbed" /></mrow>
                   <mrow>\amp=\frac{<var name="$c" />}{<var name="$mxpma" /> + <var name="$b" />}</mrow>
-                  <mrow>\amp=<var name="$answer" /></mrow>
+                  <mrow><var name="$preanswer" />\amp=<var name="$answer" /></mrow>
                 </md>
               </p>
             </solution>
@@ -2129,15 +2133,17 @@
                 $c = non_zero_random(1,9,1);
                 $fofx = Formula("$c $x/($m $x^2+$b)")->reduce;
                 $emptyf = $fofx->TeX;
-                $emptyf =~ s/$x/(\phantom{$x})/g;
+                $innertex = $inner->TeX;
+                $emptyf =~ s/$x/(\phantom{$innertex})/g;
 
-                $subbed = $fofx->substitute($x=>$inner)->reduce;
+                $subbed = $emptyf;
+                $subbed =~ s/\phantom//g;
                 $G = gcd($m*($a**2), $b);
                 $G = gcd($G, $c*$a);
                 $answer = Formula("$c*$a/$G $x/($m*($a)^2/$G $x^2+$b/$G)")->reduce;
 
                 $cax = Formula("$c*$a $x")->reduce;
-                $a2x2 = Formula("($a^2) $x^2")->reduce;
+                $a2x2 = Formula("($a)^2 $x^2")->reduce;
 
                 $evaluator = $answer -> cmp(
                    checker=>sub{
@@ -2204,16 +2210,17 @@
                 $b = non_zero_random(-8,8,1);
                 $c = non_zero_random(1,9,1);
                 $fofx = Formula("$c $x/($m $x^2+$b)")->reduce;
-                $emptyf = $fofx->TeX;
-                $emptyf =~ s/$x/(\phantom{$x})/g;
+                $innertex = $inner->TeX;
+                $emptyf =~ s/$x/(\phantom{$innertex})/g;
 
-                $subbed = $fofx->substitute($x=>$inner)->reduce;
+                $subbed = $emptyf;
+                $subbed =~ s/\phantom//g;
                 $G = gcd($m*($a**2), $b);
                 $G = gcd($G, $c*$a);
                 $answer = Formula("$c*$a/$G $x/($m*($a)^2/$G $x^2+$b/$G)")->reduce;
 
                 $cax = Formula("$c*$a $x")->reduce;
-                $a2x2 = Formula("($a^2) $x^2")->reduce;
+                $a2x2 = Formula("($a)^2 $x^2")->reduce;
 
                 $evaluator = $answer -> cmp(
                    checker=>sub{
