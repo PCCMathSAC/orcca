@@ -911,8 +911,10 @@
         <webwork>
           <setup>
             <pg-code>
-              $a = list_random(3,5,7,11);
-              $b = list_random(2,6,13);
+              do {
+                $a = list_random(3,5,7,11);
+                $b = list_random(2,6,13);
+              } until ($a*$b != 18);
               if (random(0,1,1)) {($a,$b) = ($b,$a);};
               Context()->noreduce('(-x)+y', '(-x)-y');
               $left = Formula("$a x^2")->reduce;
@@ -939,8 +941,10 @@
         <webwork>
           <setup>
             <pg-code>
-              $a = list_random(3,5,7,11);
-              $b = list_random(2,6,13);
+              do {
+                $a = list_random(3,5,7,11);
+                $b = list_random(2,6,13);
+              } until ($a*$b != 18);
               if (random(0,1,1)) {($a,$b) = ($b,$a);};
               Context()->noreduce('(-x)+y', '(-x)-y');
               $left = Formula("$a x^2")->reduce;
@@ -969,8 +973,10 @@
         <webwork>
           <setup>
             <pg-code>
-              $a = list_random(3,5,7,11);
-              $b = list_random(2,6,13);
+              do {
+                $a = list_random(3,5,7,11);
+                $b = list_random(2,6,13);
+              } until ($a*$b != 18);
               $c = non_zero_random(-9,9,1);
               if (random(0,1,1)) {($a,$b) = ($b,$a);};
               Context()->noreduce('(-x)+y', '(-x)-y');
@@ -989,7 +995,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="30"/>
             </p>
           </statement>
         </webwork>
@@ -998,8 +1004,10 @@
         <webwork>
           <setup>
             <pg-code>
-              $a = list_random(3,5,7,11);
-              $b = list_random(2,6,13);
+              do {
+                $a = list_random(3,5,7,11);
+                $b = list_random(2,6,13);
+              } until ($a*$b != 18);
               $c = non_zero_random(-9,9,1);
               if (random(0,1,1)) {($a,$b) = ($b,$a);};
               Context()->noreduce('(-x)+y', '(-x)-y');
@@ -1018,7 +1026,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="30"/>
             </p>
           </statement>
         </webwork>
@@ -1030,6 +1038,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 $a[0] = non_zero_random(-9,9,1); $a[1] = 0;
                 $b[0] = non_zero_random(-9,9,1); $b[1] = 0;
                 $c[0] = non_zero_random(-9,9,1); $c[1] = 0;
@@ -1044,27 +1053,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1076,7 +1085,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1086,6 +1095,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 $a[0] = non_zero_random(-9,9,1); $a[1] = 0;
                 $b[0] = non_zero_random(-9,9,1); $b[1] = 0;
                 $c[0] = non_zero_random(-9,9,1); $c[1] = 0;
@@ -1100,27 +1110,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1132,7 +1142,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1144,6 +1154,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 $a[0] = non_zero_random(-9,9,1); $a[1] = 0;
                 $b[0] = non_zero_random(-9,9,1); $b[1] = 0;
                 @c = (1..9)[NchooseK(9,2)];
@@ -1158,27 +1169,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1190,7 +1201,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1200,6 +1211,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 $a[0] = non_zero_random(-9,9,1); $a[1] = 0;
                 $b[0] = non_zero_random(-9,9,1); $b[1] = 0;
                 @c = (1..9)[NchooseK(9,2)];
@@ -1214,27 +1226,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1246,7 +1258,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1258,6 +1270,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 $a[0] = random(1,9,1); $a[1] = 0;
                 @b = (1..9)[NchooseK(9,2)];
                 @c = (1..9)[NchooseK(9,2)];
@@ -1272,27 +1285,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1304,7 +1317,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1314,6 +1327,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 $a[0] = random(1,9,1); $a[1] = 0;
                 @b = (1..9)[NchooseK(9,2)];
                 @c = (1..9)[NchooseK(9,2)];
@@ -1328,27 +1342,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1360,7 +1374,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1372,6 +1386,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 @a = (1..9)[NchooseK(9,2)];
                 @b = (1..9)[NchooseK(9,2)];
                 @c = (1..9)[NchooseK(9,2)];
@@ -1386,27 +1401,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1418,7 +1433,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1428,6 +1443,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 @a = (1..9)[NchooseK(9,2)];
                 @b = (1..9)[NchooseK(9,2)];
                 @c = (1..9)[NchooseK(9,2)];
@@ -1442,27 +1458,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1474,7 +1490,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1505,7 +1521,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="30"/>
             </p>
           </statement>
         </webwork>
@@ -1534,7 +1550,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="30"/>
             </p>
           </statement>
         </webwork>
@@ -1734,6 +1750,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 do {
                   ($a, $c) = (1..9)[NchooseK(9,2)];
                   $b = non_zero_random(-9,9,1);
@@ -1756,27 +1773,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1788,7 +1805,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -1798,6 +1815,7 @@
           <setup>
             <pg-code>
               do {
+              do {
                 do {
                   ($a, $c) = (1..9)[NchooseK(9,2)];
                   $b = non_zero_random(-9,9,1);
@@ -1820,27 +1838,27 @@
               $squarepart = 1;
               $nonsquarepart = $disc;
               do {
-                if ($nonsquarepart % 4 == 0) {$squarepart *= 4; $nonsquarepart /= 4}
-                if ($nonsquarepart % 9 == 0) {$squarepart *= 9; $nonsquarepart /= 9}
-                if ($nonsquarepart % 25 == 0) {$squarepart *= 25; $nonsquarepart /= 25}
-                if ($nonsquarepart % 49 == 0) {$squarepart *= 49; $nonsquarepart /= 49}
-                if ($nonsquarepart % 121 == 0) {$squarepart *= 121; $nonsquarepart /= 121}
-                if ($nonsquarepart % 169 == 0) {$squarepart *= 169; $nonsquarepart /= 169}
-              } until (
-                ($nonsquarepart % 4 != 0) and
-                ($nonsquarepart % 9 != 0) and
-                ($nonsquarepart % 25 != 0) and
-                ($nonsquarepart % 49 != 0) and
-                ($nonsquarepart % 121 != 0) and
-                ($nonsquarepart % 169 != 0));
+                $squarefree = 1;
+                for my $p (2,3,5,7,11,13,17,19,23,29,31,37) {
+                  if ($nonsquarepart % ($p**2) == 0) {$squarepart *= $p**2; $nonsquarepart /= $p**2}
+                  $squarefree = $squarefree and ($nonsquarepart % ($p**2) != 0)
+                }
+              } until ($squarefree);
               Context("Fraction");
               $rational = Fraction(-$B,2*$A);
               $coefficient = Fraction(sqrt($squarepart),2*$A);
+              $effcoeff = (abs($coefficient) == 1) ? '' : $coefficient;
+              } until (
+                # various known issues with bizarroArithmetic/FiniteSolutionSets and simplification
+                abs(($rational->value)[0]) != 1
+                and ($rational->value)[1] == ($coefficient->value)[1]
+                and gcd(($rational->value)[0], ($coefficient->value)[0]) == 1
+              );
               $sum = $rational + $coefficient;
               $dif = $rational - $coefficient;
               Context("FiniteSolutionSets");
               $solution = ($nonsquarepart != 1) ?
-                Formula("{$rational + $coefficient sqrt($nonsquarepart),$rational - $coefficient sqrt($nonsquarepart)}") :
+                Formula("{$rational + $effcoeff sqrt($nonsquarepart),$rational - $effcoeff sqrt($nonsquarepart)}") :
                 Formula("{$sum,$dif}");
             </pg-code>
           </setup>
@@ -1852,7 +1870,7 @@
               <m><var name="$left"/>=<var name="$right"/></m>
             </p>
             <p>
-              <var name="$solution" width="15"/>
+              <var name="$solution" width="60"/>
             </p>
           </statement>
         </webwork>
@@ -2539,7 +2557,7 @@
               If there is more than one solution, enter the solutions as a list with commas.
             </instruction>
             <p>
-              <var name="$answer" width="30"/>
+              <var name="$answer" width="80"/>
             </p>
           </statement>
         </webwork>
