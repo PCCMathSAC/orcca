@@ -1538,12 +1538,13 @@
               {name=>'yrs',conversion=>{factor=>365*24*60*60,s=>1}},
               {name=>'y',conversion=>{factor=>365*24*60*60,s=>1}},
             ];
-            $m=Real(244.064)->with(tolType=>'absolute',tolerance=>100);
+            $m=Real(244.064);
+            Context()->flags->set(tolType=>'absolute',tolerance=>20);
             $rate = NumberWithUnits("$m diagnoses/yr",{newUnit=>$newUnits});
             for my$j(0,1){
-              $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[240,240]);
+              $gr[$j] = init_graph(1998,-2000,2017,25000,axes=>[1999,0],grid=>[19,27],size=>[480,400]);
               $xpixel = 19/240;
-              $ypoxel = 27/240;
+              $ypixel = 27/240;
               $gr[$j] -> lb('reset');
               $gr[$j]->h_ticks(0,'black',2000,2005,2010);
               $gr[$j]->v_ticks(1999,'black',5000,10000,15000,20000);
@@ -1565,7 +1566,7 @@
             and a trend-line has been drawn.
           </p>
 
-          <sidebyside widths="40%" permid="ZGZ">
+          <sidebyside widths="80%" permid="ZGZ">
             <image pg-name="$gr[0]" />
           </sidebyside>
 
@@ -1588,7 +1589,7 @@
             it seems <m>(2006,19000)</m> and <m>(2014,21000)</m> are two such points.
           </p>
 
-          <sidebyside widths="40%" permid="FOi">
+          <sidebyside widths="80%" permid="FOi">
             <image pg-name="$gr[1]" />
           </sidebyside>
 
