@@ -337,14 +337,12 @@
 
     <exercise xml:id="exercise-restaurant-tip" permid="QFm">
       <webwork>
-          <setup>
             <pg-code>
                 Context("ImplicitPlane");
                 Context()->variables->are(x=>'Real');
                 $equation = ImplicitPlane("x+0.19x=150");
                 $evaluator = $equation->cmp(correct_ans_latex_string=>'x+0.19x=150');
             </pg-code>
-          </setup>
           <statement>
             <p permid="PsP">
               Kirima offered to pay the bill and tip at a restaurant where she and her friends had dinner.
@@ -415,14 +413,12 @@
 
     <exercise xml:id="exercise-shirt" permid="wMv">
       <webwork>
-          <setup>
             <pg-code>
                 Context("ImplicitPlane");
                 Context()->variables->are(x=>'Real');
                 $equation = ImplicitPlane("x-0.2x=51");
                 $evaluator = $equation->cmp(correct_ans_latex_string=>'x-0.2x=51');
             </pg-code>
-          </setup>
           <statement>
             <p permid="bHh">
               A shirt is on sale at <m>20\%</m> off.
@@ -740,29 +736,34 @@
       <exercise permid="NKG">
         <!-- TODO: randomize? -->
         <webwork>
-            <setup>
-
             <pg-code>
-                Context()->variables->are();
-                for my $i (1..26) {
-                    Context()->variables->add($ALPHABET[$i-1]=>'Real');
-                    Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
-                    };
-                Context()->strings->add('years'=>{});
-                Context()->strings->add('year'=>{alias=>'years'}, 'yrs'=>{alias=>'years'}, 'yr'=>{alias=>'years'}, 'y'=>{alias=>'years'}, 'yrs.'=>{alias=>'years'}, 'yr.'=>{alias=>'years'}, 'y.'=>{alias=>'years'});
+              Context("Numeric")->variables->are();
+              for my $i (1..26) {
+                  Context()->variables->add($ALPHABET[$i-1]=>'Real');
+                  Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
+                  };
+              $a=OneOf('a','A','x','y','z');
+              $t=OneOf('t','T','x','y','z');
 
-                Context()->strings->add('hours'=>{});
-                Context()->strings->add('hour'=>{alias=>'hours'}, 'hrs'=>{alias=>'hours'}, 'hr'=>{alias=>'hours'}, 'h'=>{alias=>'hours'}, 'hrs.'=>{alias=>'hours'}, 'hr.'=>{alias=>'hours'}, 'h.'=>{alias=>'hours'});
+              Context("Numeric");
+              Context()->strings->add('years'=>{});
+              Context()->strings->add('year'=>{alias=>'years'}, 'yrs'=>{alias=>'years'}, 'yr'=>{alias=>'years'}, 'y'=>{alias=>'years'}, 'yrs.'=>{alias=>'years'}, 'yr.'=>{alias=>'years'}, 'y.'=>{alias=>'years'});
+              Context()->strings->add('months'=>{});
+              Context()->strings->add('month'=>{alias=>'months'}, 'mos'=>{alias=>'months'}, 'mo'=>{alias=>'months'}, 'mos.'=>{alias=>'months'}, 'mo.'=>{alias=>'months'});
 
-                Context()->strings->add('miles'=>{});
-                Context()->strings->add('mile'=>{alias=>'miles'}, 'mis'=>{alias=>'miles'}, 'mi'=>{alias=>'miles'}, 'm'=>{alias=>'miles'}, 'mis.'=>{alias=>'hours'}, 'mi.'=>{alias=>'miles'}, 'm.'=>{alias=>'miles'});
+              Context()->strings->add('hours'=>{});
+              Context()->strings->add('hour'=>{alias=>'hours'}, 'hrs'=>{alias=>'hours'}, 'hr'=>{alias=>'hours'}, 'h'=>{alias=>'hours'}, 'hrs.'=>{alias=>'hours'}, 'hr.'=>{alias=>'hours'}, 'h.'=>{alias=>'hours'});
+              Context()->strings->add('minutes'=>{});
+              Context()->strings->add('minute'=>{alias=>'minutes'}, 'min'=>{alias=>'minutes'}, 'min.'=>{alias=>'minutes'});
 
-                Context()->strings->add('ft^2'=>{});
-                Context()->strings->add('square feet'=>{alias=>'ft^2'}, 'feet squared'=>{alias=>'ft^2'}, 'feet square'=>{alias=>'ft^2'}, 'sq ft'=>{alias=>'ft^2'}, 'sqft'=>{alias=>'ft^2'}, 'sq. ft.'=>{alias=>'ft^2'}, 'ft.^2'=>{alias=>'ft^2'});
-                $a=OneOf('a','A','x','y','z');
-                $t=OneOf('t','T','x','y','z');
+              Context()->strings->add('miles'=>{});
+              Context()->strings->add('mile'=>{alias=>'miles'}, 'mis'=>{alias=>'miles'}, 'mi'=>{alias=>'miles'}, 'm'=>{alias=>'miles'}, 'mis.'=>{alias=>'hours'}, 'mi.'=>{alias=>'miles'}, 'm.'=>{alias=>'miles'});
+
+              Context()->strings->add('ft^2'=>{});
+              Context()->strings->add('square feet'=>{alias=>'ft^2'}, 'feet squared'=>{alias=>'ft^2'}, 'feet square'=>{alias=>'ft^2'}, 'sq ft'=>{alias=>'ft^2'}, 'sqft'=>{alias=>'ft^2'}, 'sq. ft.'=>{alias=>'ft^2'}, 'ft.^2'=>{alias=>'ft^2'});
+              Context()->strings->add('m^2'=>{});
+              Context()->strings->add('square meters'=>{alias=>'m^2'}, 'meters squared'=>{alias=>'m^2'}, 'meters square'=>{alias=>'m^2'}, 'sq m'=>{alias=>'m^2'}, 'sqm'=>{alias=>'m^2'}, 'sq. m.'=>{alias=>'m^2'}, 'm.^2'=>{alias=>'m^2'});
             </pg-code>
-            </setup>
             <statement>
               <p permid="AjR">
                 Identify a variable you might use to represent each quantity.
@@ -772,21 +773,21 @@
                   <li permid="SIU">
                     <p permid="Uyh">
                       Let <var name="$a" width="2" /> be the area of a house,
-                      measured in <var name="'ft^2'" width="10" />.
+                      measured in <var name="OneOf('ft^2','m^2')" width="10" />.
                     </p>
                   </li>
 
                   <li permid="yQd">
                     <p permid="AFq">
                       Let <var name="$a" width="2" /> be the age of a dog,
-                      measured in <var name="'years'" width="10" />.
+                      measured in <var name="OneOf('years','months')" width="10" />.
                     </p>
                   </li>
 
                   <li permid="eXm">
                     <p permid="gMz">
                       Let <var name="$t" width="2" /> be the amount of time passed since a driver left Seattle, Washington,
-                      bound for Portland, Oregon, measured in <var name="'hours'" width="10" />.
+                      bound for Portland, Oregon, measured in <var name="OneOf('hours','minutes')" width="10" />.
                     </p>
                   </li>
                 </ol>
@@ -840,8 +841,6 @@
 
       <exercise permid="tRP">
         <webwork>
-            <setup>
-
             <pg-code>
                 Context()->variables->are();
                 for my $i (1..26) {
@@ -862,7 +861,6 @@
                 $a=OneOf('a','A','x','y','z');
                 $d=OneOf('d','D','m','M','x','y','z');
             </pg-code>
-            </setup>
             <statement>
               <p permid="gra">
                 Identify a variable you might use to represent each quantity.
@@ -1242,8 +1240,6 @@
         <webwork>
             <pg-macros><macro-file>contextPercent.pl</macro-file>
             <macro-file>contextCurrency.pl</macro-file></pg-macros>
-            <setup>
-
              <pg-code>
                  Context("Percent");
                  $p = Percent(random(0.01,0.03,0.005));
@@ -1255,7 +1251,6 @@
                  $current = Currency(sprintf("%.2f",$original*(1+$p->value)*(1+$q->value)));
                  $original = Currency($current/(1+$p)/(1+$q));
             </pg-code>
-            </setup>
             <statement>
               <p permid="Myj">
                 Last year, Joan received a <m><var name="$p"/></m> raise.

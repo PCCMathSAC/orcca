@@ -133,7 +133,6 @@
 
     <exercise permid="rej">
       <webwork reseed="1">
-          <setup>
             <pg-code>
                 Context()->variables->are();
                 for my $i (1..26) {
@@ -154,7 +153,6 @@
                 $a=OneOf('a','A','x','y','z');
                 $t=OneOf('t','T','x','y','z');
             </pg-code>
-          </setup>
           <statement>
             <p permid="FKE">
               Identify a variable you might use to represent each quantity.
@@ -329,14 +327,11 @@
       </introduction>
 
       <webwork >
-      <setup>
-
             <pg-code>
                 Context("Numeric");
                 $celsius[0] = NumberWithUnits(10,'degC');
                 $celsius[1] = NumberWithUnits(-260/9,'degC');
             </pg-code>
-      </setup>
       <statement>
         <p permid="RYW">
           <ol label="a." permid="IqP">
@@ -505,13 +500,10 @@
 
     <exercise permid="vOc">
       <webwork>
-          <setup>
-
             <pg-code>
                 Context()->flags->set(tolType=>'absolute',tolerance=>'1');
                 $rate=Real(53/100*(220-56));
             </pg-code>
-          </setup>
           <statement>
             <p permid="ygf">
               We can use the expression <m>\frac{p}{100}(220-a)</m> to represent a person's target heart rate when their target rate is <m>p\%</m> of their maximum heart rate,
@@ -546,9 +538,6 @@
     <exercise permid="bVl">
       <title>Rising Rents</title>
       <webwork>
-          <pg-macros><macro-file>contextCurrency.pl</macro-file></pg-macros>
-          <setup>
-
             <pg-code>
                 $r=10.173;
                 $b=974.78;
@@ -559,7 +548,6 @@
                 @rent=map{Currency($r*$_+$b)}(0,60);
                 for my $i (0,1) {$rentev[$i]=$rent[$i]->cmp(cmp_class =>"an amount of money");};
             </pg-code>
-          </setup>
           <statement>
             <p oldpermid="qBG">
               From January, 2011, to October, 2016, an
@@ -694,13 +682,10 @@
     <exercise permid="UqM">
       <title>Tent Height</title>
       <webwork>
-          <setup>
-
             <pg-code>
                 $height1 = NumberWithUnits("2 ft");
                 $height2 = NumberWithUnits("5 ft");
             </pg-code>
-          </setup>
           <statement>
             <p permid="CPY">
               While camping, the height
@@ -782,9 +767,6 @@
     <exercise xml:id = "exercise-mortgage-payments" permid="AxV">
       <title>Mortgage Payments</title>
       <webwork>
-          <pg-macros><macro-file>contextCurrency.pl</macro-file></pg-macros>
-          <setup>
-
             <pg-code>
                 $L=200000;
                 $r=0.06;
@@ -796,7 +778,6 @@
                 $payment=Currency($r*$L*(1+$r/12)**($n)/(12*((1+$r/12)**($n)-1)));
                 $paymentev[$i]=$payment->cmp(cmp_class =>"an amount of money");
             </pg-code>
-          </setup>
           <statement>
             <p permid="iXh">
               If we borrow <m>L</m> dollars for a home mortgage loan at an annual interest rate <m>r</m>,
@@ -1001,8 +982,6 @@
   <exercises permid="hKx">
     <exercise>
       <webwork>
-          <setup>
-
             <pg-code>
                 Context()->variables->are();
                 for my $i (1..26) {
@@ -1024,7 +1003,6 @@
                 Context()->strings->add('kilogram'=>{alias=>'kilograms'}, 'kg'=>{alias=>'kilograms'}, 'kg.'=>{alias=>'kilograms'}, 'kgs'=>{alias=>'kilograms'}, 'kgs.'=>{alias=>'kilograms'});
                 $lborkg = OneOf("pounds, kilograms");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Identify a variable you might use to represent each quantity.
@@ -1083,8 +1061,6 @@
 
     <exercise>
       <webwork>
-          <setup>
-
             <pg-code>
                 Context()->variables->are();
                 for my $i (1..26) {
@@ -1104,7 +1080,6 @@
                 Context()->strings->add('square meters'=>{alias=>'m^2'}, 'meters squared'=>{alias=>'m^2'}, 'meters square'=>{alias=>'m^2'}, 'sq m'=>{alias=>'m^2'}, 'sqm'=>{alias=>'m^2'}, 'sq. m.'=>{alias=>'m^2'}, 'm.^2'=>{alias=>'m^2'});
                 $sqftorsqm = OneOf("ft^2, m^2");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Identify a variable you might use to represent each quantity.
@@ -1271,15 +1246,11 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               Context("Fraction");
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
-              $x = random(-9,9,1);
-              do {
-                $h = random(-9,9,1);
-              } until ($x != $h);
+              ($x,$h) = map{$_-9} (NchooseK(19,2));
               $k = random(-9,9,1);
               $denom = $x - $h;
               $expression = Formula("1/$denom($var - $h)^2 + $k")->reduce;
@@ -1288,7 +1259,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1301,15 +1271,11 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               Context("Fraction");
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
-              $x = random(-9,9,1);
-              do {
-                $h = random(-9,9,1);
-              } until ($x != $h);
+              ($x,$h) = map{$_-9} (NchooseK(19,2));
               $k = random(-9,9,1);
               $denom = $x - $h;
               $expression = Formula("1/$denom($var - $h)^2 + $k")->reduce;
@@ -1318,7 +1284,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1332,7 +1297,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1346,7 +1310,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1359,7 +1322,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1373,7 +1335,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1387,7 +1348,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1400,7 +1360,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1413,7 +1372,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1426,7 +1384,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1440,7 +1397,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1453,7 +1409,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1466,7 +1421,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1479,7 +1433,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1493,7 +1446,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1507,7 +1459,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1520,7 +1471,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1534,7 +1484,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1548,7 +1497,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1563,7 +1511,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1576,7 +1523,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1591,7 +1537,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1605,7 +1550,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1618,7 +1562,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1631,7 +1574,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1644,7 +1586,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1658,7 +1599,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1672,7 +1612,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1685,7 +1624,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               $var = RandomVariableName();
               Context()->variables->are($var=>'Real');
@@ -1699,7 +1637,6 @@
               Context("LimitedNumeric");
               $answer = Real($answer);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m><var name="$expression"/></m> for <m><var name="$var"/>=<var name="$x"/></m>.
@@ -1714,14 +1651,12 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
-              Context("Fraction");
+              Context("LimitedFraction");
               @x = (-10..10)[NchooseK(21,2)];
               @y = (-10..10)[NchooseK(21,2)];
               $answer = Fraction(($y[1]-$y[0])/($x[1]-$x[0]));
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m>\frac{y_2-y_1}{x_2-x_1}</m> for <m>x_1=<var name="$x[0]"/></m>,
@@ -1736,14 +1671,12 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
-              Context("Fraction");
+              Context("LimitedFraction");
               @x = (-10..10)[NchooseK(21,2)];
               @y = (-10..10)[NchooseK(21,2)];
               $answer = Fraction(($y[1]-$y[0])/($x[1]-$x[0]));
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m>\frac{y_2-y_1}{x_2-x_1}</m> for <m>x_1=<var name="$x[0]"/></m>,
@@ -1759,7 +1692,6 @@
 
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               @m = (1..3)[NchooseK(3,2)];
               @m = num_sort(@m);
@@ -1773,7 +1705,6 @@
               Context("LimitedNumeric");
               $answer = Real($c);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m>\sqrt{\left(x_2-x_1\right)^2 + \left(y_2-y_1\right)^2}</m> for <m>x_1=<var name="$x[0]"/></m>,
@@ -1788,7 +1719,6 @@
       </exercise>
       <exercise>
         <webwork>
-          <setup>
             <pg-code>
               @m = (1..3)[NchooseK(3,2)];
               @m = num_sort(@m);
@@ -1802,7 +1732,6 @@
               Context("LimitedNumeric");
               $answer = Real($c);
             </pg-code>
-          </setup>
           <statement>
             <p>
               Evaluate <m>\sqrt{\left(x_2-x_1\right)^2 + \left(y_2-y_1\right)^2}</m> for <m>x_1=<var name="$x[0]"/></m>,

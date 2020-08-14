@@ -58,7 +58,7 @@ include Makefile.paths
 SRC       = $(PRJ)/src
 IMGSRC    = $(SRC)/images
 OUTPUT    = $(PRJ)/output
-STYLE     = $(PRJ)/style
+PUB       = $(PRJ)/publication
 XSL       = $(PRJ)/xsl
 
 # The project's root file
@@ -71,7 +71,8 @@ SCRNPDF    = $(XSL)/orcca-screenpdf.xsl
 HTML       = $(XSL)/orcca-html.xsl
 
 # The project's styling files
-CSS       = $(STYLE)/css/orcca.css
+PUBFILE   = $(PUB)/publication.xml
+CSS       = $(PUB)/css
 
 # These paths are subdirectories of
 # the PreTeXt distribution
@@ -83,30 +84,28 @@ PRINTOUT   = $(OUTPUT)/print
 ODDANSOUT  = $(OUTPUT)/odd-answers
 SCRNPDFOUT = $(OUTPUT)/screenpdf
 HTMLOUT    = $(OUTPUT)/html
-WWOUT      = $(OUTPUT)/webwork-extraction
+WWOUT      = $(OUTPUT)/webwork-representations
 IMGOUT     = $(OUTPUT)/images
 PGOUT      = $(OUTPUT)/pg
 PRVOUT     = $(OUTPUT)/preview
 
 # The WeBWorK server we use
-#SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
-SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
+SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
+#SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
-webwork-extraction:
+webwork-representations:
+	date
 	-rm -r $(WWOUT) || :
 	install -d $(WWOUT)
-	$(PTX)/script/mbx -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
-
-merge:
-	cd $(OUTPUT); \
-	xsltproc --xinclude --stringparam webwork.extraction $(WWOUT)/webwork-extraction.xml $(PTXXSL)/pretext-merge.xsl $(MAINFILE) > merge.xml
+	$(PTX)/pretext/pretext -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
+	date
 
 pg:
 	-rm -r $(PGOUT) || :
 	install -d $(PGOUT)
 	cd $(PGOUT); \
-	xsltproc --xinclude --stringparam chunk.level 2 $(PTXXSL)/pretext-ww-problem-sets.xsl $(OUTPUT)/merge.xml
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam chunk.level 2 $(PTXXSL)/pretext-ww-problem-sets.xsl $(MAINFILE)
 
 print-pretext:
 	install -d $(OUTPUT)
@@ -119,7 +118,7 @@ print-pretext:
 	cp -a $(PRVOUT)/*.png $(PRINTOUT)/images || :
 	cp -a $(IMGSRC) $(PRINTOUT) || :
 	cd $(PRINTOUT); \
-	xsltproc -xinclude $(PTXXSL)/mathbook-latex.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) $(PTXXSL)/pretext-latex.xsl $(MAINFILE) > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
@@ -134,14 +133,14 @@ pdf-nopost:
 	cp -a $(PRVOUT)/*.png $(PRINTOUT)/images || :
 	cp -a $(IMGSRC) $(PRINTOUT) || :
 	cd $(PRINTOUT); \
-	xsltproc -xinclude --stringparam toc.level 3 --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' $(PRINT) $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam toc.level 3 --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' $(PRINT) $(MAINFILE) > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
 
 #should be done after pdf
 odd-answers:
 	cd $(PRINTOUT); \
-	xsltproc -xinclude --stringparam toc.level 3 --stringparam latex.pageref 'no' --stringparam latex.sides 'one' $(XSL)/orcca-odd-answers.xsl $(OUTPUT)/merge.xml > orcca-odd-answers.tex; \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam toc.level 3 --stringparam latex.pageref 'no' --stringparam latex.sides 'one' $(XSL)/orcca-odd-answers.xsl $(MAINFILE) > orcca-odd-answers.tex; \
 	xelatex orcca-odd-answers.tex; \
 	xelatex orcca-odd-answers.tex; \
 	xelatex orcca-odd-answers.tex;
@@ -157,7 +156,7 @@ screenpdf:
 	cp -a $(PRVOUT)/*.png $(SCRNPDFOUT)/images || :
 	cp -a $(IMGSRC) $(SCRNPDFOUT) || :
 	cd $(SCRNPDFOUT); \
-	xsltproc $(SCRNPDF) $(OUTPUT)/merge.xml > orcca-screenpdf.tex; \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) $(SCRNPDF) $(MAINFILE)  > orcca-screenpdf.tex; \
 	cp orcca-screenpdf.tex orcca-screenpdf-no-regex.tex; \
 	perl -p0i -e 's/(\\end{inlineexercise}\n)(\w)/\1\\noindent \2/g' orcca-screenpdf.tex; \
 	perl -p0i -e 's/(\\end{example}\n)(\w)/\1\\noindent \2/g' orcca-screenpdf.tex; \
@@ -236,7 +235,7 @@ pdf-edition2:
 	cp -a $(PRVOUT)/*.png $(PRINTOUT)/images || :
 	cp -a $(IMGSRC) $(PRINTOUT) || :
 	cd $(PRINTOUT); \
-	xsltproc -xinclude $(XSL)/orcca-print.xsl $(OUTPUT)/merge.xml > orcca.tex; \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) $(XSL)/orcca-print.xsl $(MAINFILE) > orcca.tex; \
 	cp orcca.tex orcca-no-regex.tex; \
 	echo 'DO NOT INDENT IN SOME PLACES'; \
 	perl -p0i -e 's/(\\end{inlineexercise}\n)(\w)/\1\\noindent \2/g' orcca.tex; \
@@ -544,6 +543,7 @@ pdf-edition2:
 #  HTML output
 #  Output lands in the subdirectory:  $(HTMLOUT)
 html:
+	date
 	install -d $(OUTPUT)
 	-rm -r $(HTMLOUT) || :
 	install -d $(HTMLOUT)
@@ -554,16 +554,16 @@ html:
 	cp -a $(IMGSRC) $(HTMLOUT) || :
 	cp -a $(WWOUT)/*.png $(HTMLOUT)/images || :
 	cp -a $(SRC)/favicon $(HTMLOUT) || :
-	cp $(CSS) $(HTMLOUT) || :
+	cp -r $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	xsltproc -xinclude --stringparam html.google-global-site-tag UA-147228535-1 --stringparam html.calculator geogebra-graphing --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra orcca.css $(XSL)/orcca-html.xsl $(OUTPUT)/merge.xml; \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.knowl.exercise.inline no --stringparam html.knowl.example no --stringparam html.css.extra 'css/orcca.css' --stringparam webwork.divisional.static no $(XSL)/orcca-html.xsl $(MAINFILE); \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' *.html; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' knowl/*.html; \
-	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/colors_sapphire_gray.css/' index.html orcca.html frontmatter.html colophon-1.html acknowledgement-1.html preface-to-all.html preface-pedagogical-decisions.html preface-entering-webwork-answers.html; \
-	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/colors_sapphire_emerald.css/' part-linear-equations-and-lines.html chapter-variables-expressions-and-equations.html section-variables-and-evaluating-expressions.html section-combining-like-terms.html section-comparison-symbols-and-notation-for-intervals.html section-equations-and-inequalities-as-true-false-statements.html section-solving-one-step-equations.html section-solving-one-step-inequalities.html section-algebraic-properties-and-simplifying-expressions.html section-modeling-with-equations-and-inequalities.html review-variables-expressions-and-equations.html chapter-linear-equations-and-inequalities.html section-solving-multistep-linear-equations.html section-solving-multistep-linear-inequalities.html section-linear-equations-and-inequalities-with-fractions.html section-special-solution-sets.html section-isolating-a-linear-variable.html review-linear-equations-and-inequalities.html chapter-graphing-lines.html section-cartesian-coordinates.html section-graphing-equations.html section-exploring-two-variable-data-and-rate-of-change.html section-slope.html section-slope-intercept-form.html section-point-slope-form.html section-standard-form.html section-horizontal-vertical-parallel-and-perpendicular-lines.html section-summary-of-graphing-lines.html review-graphing-lines.html chapter-systems-of-linear-equations.html section-solving-systems-of-linear-equations-by-graphing.html section-substitution.html section-elimination.html review-systems-of-linear-equations.html; \
-	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/colors_sapphire_turquoise.css/' part-preparation-for-stem.html chapter-exponents-and-polynomials.html section-adding-and-subtracting-polynomials.html section-introduction-to-exponent-rules.html section-dividing-by-a-monomial.html section-multiplying-polynomials.html section-special-cases-of-multiplying-polynomials.html section-more-exponent-rules.html review-exponents-and-polynomials.html chapter-radical-expressions-and-equations.html section-square-and-nth-root-properties.html section-rationalizing-the-denominator.html section-radical-expressions-and-rational-exponents.html section-solving-radical-equations.html review-radical-functions-and-equations.html chapter-solving-quadratic-equations.html section-solving-quadratic-equations-by-using-a-square-root.html section-the-quadratic-formula.html section-complex-solutions-to-quadratic-equations.html section-solving-equations-in-general.html review-solving-quadratic-equations.html chapter-quantities-in-the-physical-world.html section-scientific-notation.html section-unit-conversion.html section-geometry-formulas.html section-geometry-applications.html review-quantities-in-the-physical-world.html chapter-topics-in-graphing.html section-review-of-graphing.html section-key-features-of-quadratic-graphs.html section-graphing-quadratic-expressions.html section-graphically-solving-equations-and-inequalities.html review-topics-in-graphing.html; \
-	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/colors_sapphire_amethyst.css/' part-preparation-for-college-algebra.html chapter-factoring.html section-factoring-out-the-common-factor.html section-factoring-by-grouping.html section-factoring-trinomials-with-leading-coefficient-one.html section-factoring-trinomials-with-a-nontrivial-leading-coefficient.html section-factoring-special-polynomials.html section-factoring-strategies.html section-solving-quadratic-equations-by-factoring.html review-factoring.html chapter-functions.html section-function-basics.html section-domain-and-range.html section-using-technology-to-explore-functions.html section-simplifying-expressions-with-function-notation.html section-technical-definition-of-a-function.html review-functions.html chapter-rational-functions-and-equations.html section-introduction-to-rational-functions.html section-multiplication-and-division-of-rational-expressions.html section-addition-and-subtraction-of-rational-expressions.html section-complex-fractions.html section-solving-rational-equations.html review-rational-functions-and-equations.html chapter-graphs-and-equations.html section-overview-of-graphing.html section-quadratic-graphs-and-vertex-form.html section-completing-the-square.html section-absolute-value-equations.html section-solving-mixed-equations.html section-compound-inequalities.html section-inequalities-graphically.html review-graphs-and-equations.html; \
-	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/colors_sapphire_ruby.css/' backmatter.html appendix-basic-math-review.html section-arithmetic-with-negative-numbers.html section-fractions-and-fraction-arithmetic.html section-absolute-value-and-square-root.html section-percentages.html section-order-of-operations.html section-set-notation-and-types-of-numbers.html appendix-unit-conversions.html appendix-ccogs.html ccogs-mth60.html ccogs-mth65.html ccogs-mth95.html index-1.html; \
+	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_gray.css/' index.html orcca.html frontmatter.html colophon-1.html acknowledgement-1.html preface-to-all.html preface-pedagogical-decisions.html preface-entering-webwork-answers.html; \
+	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_emerald.css/' part-linear-equations-and-lines.html chapter-variables-expressions-and-equations.html section-variables-and-evaluating-expressions.html section-combining-like-terms.html section-comparison-symbols-and-notation-for-intervals.html section-equations-and-inequalities-as-true-false-statements.html section-solving-one-step-equations.html section-solving-one-step-inequalities.html section-algebraic-properties-and-simplifying-expressions.html section-modeling-with-equations-and-inequalities.html review-variables-expressions-and-equations.html chapter-linear-equations-and-inequalities.html section-solving-multistep-linear-equations.html section-solving-multistep-linear-inequalities.html section-linear-equations-and-inequalities-with-fractions.html section-special-solution-sets.html section-isolating-a-linear-variable.html review-linear-equations-and-inequalities.html chapter-graphing-lines.html section-cartesian-coordinates.html section-graphing-equations.html section-exploring-two-variable-data-and-rate-of-change.html section-slope.html section-slope-intercept-form.html section-point-slope-form.html section-standard-form.html section-horizontal-vertical-parallel-and-perpendicular-lines.html section-summary-of-graphing-lines.html review-graphing-lines.html chapter-systems-of-linear-equations.html section-solving-systems-of-linear-equations-by-graphing.html section-substitution.html section-elimination.html review-systems-of-linear-equations.html; \
+	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_turquoise.css/' part-preparation-for-stem.html chapter-exponents-and-polynomials.html section-adding-and-subtracting-polynomials.html section-introduction-to-exponent-rules.html section-dividing-by-a-monomial.html section-multiplying-polynomials.html section-special-cases-of-multiplying-polynomials.html section-more-exponent-rules.html review-exponents-and-polynomials.html chapter-radical-expressions-and-equations.html section-square-and-nth-root-properties.html section-rationalizing-the-denominator.html section-radical-expressions-and-rational-exponents.html section-solving-radical-equations.html review-radical-functions-and-equations.html chapter-solving-quadratic-equations.html section-solving-quadratic-equations-by-using-a-square-root.html section-the-quadratic-formula.html section-complex-solutions-to-quadratic-equations.html section-solving-equations-in-general.html review-solving-quadratic-equations.html chapter-quantities-in-the-physical-world.html section-scientific-notation.html section-unit-conversion.html section-geometry-formulas.html section-geometry-applications.html review-quantities-in-the-physical-world.html chapter-topics-in-graphing.html section-review-of-graphing.html section-key-features-of-quadratic-graphs.html section-graphing-quadratic-expressions.html section-graphically-solving-equations-and-inequalities.html review-topics-in-graphing.html; \
+	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_amethyst.css/' part-preparation-for-college-algebra.html chapter-factoring.html section-factoring-out-the-common-factor.html section-factoring-by-grouping.html section-factoring-trinomials-with-leading-coefficient-one.html section-factoring-trinomials-with-a-nontrivial-leading-coefficient.html section-factoring-special-polynomials.html section-factoring-strategies.html section-solving-quadratic-equations-by-factoring.html review-factoring.html chapter-functions.html section-function-basics.html section-domain-and-range.html section-using-technology-to-explore-functions.html section-simplifying-expressions-with-function-notation.html section-technical-definition-of-a-function.html review-functions.html chapter-rational-functions-and-equations.html section-introduction-to-rational-functions.html section-multiplication-and-division-of-rational-expressions.html section-addition-and-subtraction-of-rational-expressions.html section-complex-fractions.html section-solving-rational-equations.html review-rational-functions-and-equations.html chapter-graphs-and-equations.html section-overview-of-graphing.html section-quadratic-graphs-and-vertex-form.html section-completing-the-square.html section-absolute-value-equations.html section-solving-mixed-equations.html section-compound-inequalities.html section-inequalities-graphically.html review-graphs-and-equations.html; \
+	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_ruby.css/' backmatter.html appendix-basic-math-review.html section-arithmetic-with-negative-numbers.html section-fractions-and-fraction-arithmetic.html section-absolute-value-and-square-root.html section-percentages.html section-order-of-operations.html section-set-notation-and-types-of-numbers.html appendix-unit-conversions.html appendix-ccogs.html ccogs-mth60.html ccogs-mth65.html ccogs-mth95.html index-1.html; \
 	perl -p0i -e 's/(<li class="(link|link active))(">\n<a href="frontmatter.html")/\1 partf\3/' *.html; \
 	perl -p0i -e 's/(<li class="(link part|link part active))("><a href="part-linear-equations-and-lines.html")/\1 part1\3/' *.html; \
 	perl -p0i -e 's/(<li class="(link|link active))(">\n<a href="chapter-variables-expressions-and-equations.html")/\1 part1\3/' *.html; \
@@ -587,6 +587,7 @@ html:
 	perl -p0i -e 's/(<li class="(link|link active))(">\n<a href="appendix-ccogs.html")/\1 partb\3/' *.html; \
 	perl -p0i -e 's/(<li class="(link|link active))("><a href="solutions-1.html")/\1 partb\3/' *.html; \
 	perl -p0i -e 's/(<li class="(link|link active))("><a href="index-1.html")/\1 partb\3/' *.html; \
+	date
 
 
 
@@ -601,10 +602,10 @@ images:
 	-rm $(OUTPUT)/preview || :
 	install -d $(IMGOUT)
 	install -d $(OUTPUT)/preview
-	$(PTX)/script/mbx -c latex-image -f all -d $(IMGOUT) $(OUTPUT)/merge.xml
-	$(PTX)/script/mbx -c youtube -d $(IMGOUT) $(OUTPUT)/merge.xml
+	$(PTX)/script/mbx -c latex-image -f all -d $(IMGOUT) $(MAINFILE)
+	$(PTX)/script/mbx -c youtube -d $(IMGOUT) $(MAINFILE)
 	cd $(OUTPUT)/preview; \
-	$(PTX)/script/mbx -c preview -d $(OUTPUT)/preview $(OUTPUT)/merge.xml
+	$(PTX)/script/mbx -c preview -d $(OUTPUT)/preview $(MAINFILE)
 #	$(PTX)/script/mbx -c asymptote -f svg -d $(IMGOUT) $(OUTPUT)/merge.xml
 
 

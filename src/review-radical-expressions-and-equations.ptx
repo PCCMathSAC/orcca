@@ -92,14 +92,12 @@
         <pg-macros>
           <macro-file>contextForm.pl</macro-file>
         </pg-macros>
-        <setup>
           <pg-code>
             Context("Form");
             $a = Formula('6sqrt(2)');
             $b = Formula('2root(3,9)');
             $c = Formula('6sqrt(2)/5');
           </pg-code>
-        </setup>
         <statement>
           <instruction>
             If you need to enter a square root, like <m>\sqrt{2}</m>, type <c>sqrt(2)</c>.
@@ -262,8 +260,8 @@
     <title>Radical Expressions and Rational Exponents</title>
     <p permid="Vnw">
       In <xref ref="section-radical-expressions-and-rational-exponents">Section</xref>
-      we learned the <xref ref="fact-rational-exponent-rule-ii" text="title">rational exponent rule</xref>
-      and added it to our <xref ref="list-exponent-rules-complete" text="title"> list of exponent rules</xref>.
+      we learned the <xref ref="fact-rational-exponent-rule-ii" text="custom">rational exponent rule</xref>
+      and added it to our <xref ref="list-exponent-rules-complete" text="title">list of exponent rules</xref>.
     </p>
 
     <example permid="ryd">
@@ -682,7 +680,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -695,7 +692,6 @@
               $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
               $explanation2 = Formula("$r ^ $n");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -717,7 +713,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -730,7 +725,6 @@
               $explanation = Formula("$r" . ('*' . "$r") x ($n-1));
               $explanation2 = Formula("$r ^ $n");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -754,7 +748,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -776,7 +769,6 @@
                   "Since $x is negative and $n is even, this is not a real number.";
               }
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -798,7 +790,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -820,7 +811,6 @@
                   "Since $x is negative and $n is even, this is not a real number.";
               }
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -843,7 +833,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -865,7 +854,6 @@
                   "Since $x is negative and $n is even, this is not a real number.";
               }
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -888,7 +876,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -910,7 +897,6 @@
                   "Since $x is negative and $n is even, this is not a real number.";
               }
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -934,20 +920,18 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
                 $n = random(3,6,1);
                 $r = random(2,5,1);
                 $x = $r**($n);
-                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $y = ($n % 2 == 0) ? list_random(2,3,5..7,10,11) : list_random(2..7,9..12);
                 $X = $x*$y;
               } until ($x &lt;= 125 and $X &lt;= 200);
               $expression = Formula("root($n,$X)");
               $answer = Formula("$r root($n,$y)");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -973,20 +957,18 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
                 $n = random(3,6,1);
                 $r = random(2,5,1);
                 $x = $r**($n);
-                $y = list_random(2,3,4,5,6,7,9,10,11,12);
+                $y = ($n % 2 == 0) ? list_random(2,3,5..7,10,11) : list_random(2..7,9..12);
                 $X = $x*$y;
               } until ($x &lt;= 125 and $X &lt;= 200);
               $expression = Formula("root($n,$X)");
               $answer = Formula("$r root($n,$y)");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -1014,19 +996,17 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
                 $n = random(3,6,1);
                 $r = random(2,5,1);
                 $x = $r**($n);
-                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1);
+                do {$y = ($n % 2 == 0) ? list_random(2,3,5..7,10,11) : list_random(2..7,9..12);} until (gcd($x,$y) == 1);
               } until ($x &lt;= 125);
               $expression = Formula("root($n,$y/$x)");
               $answer = Formula("1/$r root($n,$y)");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -1052,19 +1032,17 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
                 $n = random(3,6,1);
                 $r = random(2,5,1);
                 $x = $r**($n);
-                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1);
+                do {$y = ($n % 2 == 0) ? list_random(2,3,5..7,10,11) : list_random(2..7,9..12);} until (gcd($x,$y) == 1);
               } until ($x &lt;= 125);
               $expression = Formula("root($n,$y/$x)");
               $answer = Formula("1/$r root($n,$y)");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -1092,7 +1070,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -1103,13 +1080,12 @@
                 } until (gcd($r,$R) == 1);
                 $x = $r**($n);
                 $z = $R**($n);
-                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
+                do {$y = ($n % 2 == 0) ? list_random(2,3,5..7,10,11) : list_random(2..7,9..12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
                 $Y = $z*$y;
               } until ($x &lt;= 125 and $z &lt;= 125 and $Y &lt;= 200);
               $expression = Formula("root($n,$Y/$x)");
               $answer = Formula("$R/$r root($n,$y)");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
@@ -1137,7 +1113,6 @@
           <pg-macros>
             <macro-file>contextForm.pl</macro-file>
           </pg-macros>
-          <setup>
             <pg-code>
               Context("Form");
               do {
@@ -1148,13 +1123,12 @@
                 } until (gcd($r,$R) == 1);
                 $x = $r**($n);
                 $z = $R**($n);
-                do {$y = list_random(2,3,4,5,6,7,9,10,11,12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
+                do {$y = ($n % 2 == 0) ? list_random(2,3,5..7,10,11) : list_random(2..7,9..12);} until (gcd($x,$y) == 1 and gcd($z,$y) == 1);
                 $Y = $z*$y;
               } until ($x &lt;= 125 and $z &lt;= 125 and $Y &lt;= 200);
               $expression = Formula("root($n,$Y/$x)");
               $answer = Formula("$R/$r root($n,$y)");
             </pg-code>
-          </setup>
           <statement>
             <p>
               Simplify <m><var name="$expression"/></m>.
