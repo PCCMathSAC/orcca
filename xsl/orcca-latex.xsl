@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- Thin layer on MathBook XML -->
-<xsl:import href="../../mathbook/xsl/mathbook-latex.xsl" />
+<xsl:import href="../../mathbook/xsl/pretext-latex.xsl" />
 
 <!-- Intend output for rendering by xelatex -->
 <xsl:output method="text" />
