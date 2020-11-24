@@ -90,8 +90,9 @@ PGOUT      = $(OUTPUT)/pg
 PRVOUT     = $(OUTPUT)/preview
 
 # The WeBWorK server we use
-SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
-#SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
+#SERVER = "(https://webwork.runestone.academy,anonymous,anonymous,anonymous,anonymous)"
+#SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
+SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-representations:
