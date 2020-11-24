@@ -603,10 +603,10 @@ images:
 	-rm $(OUTPUT)/preview || :
 	install -d $(IMGOUT)
 	install -d $(OUTPUT)/preview
-	$(PTX)/script/mbx -c latex-image -f all -d $(IMGOUT) $(MAINFILE)
-	$(PTX)/script/mbx -c youtube -d $(IMGOUT) $(MAINFILE)
+	$(PTX)/pretext/pretext -c latex-image -p $(PUBFILE) -f all -d $(IMGOUT) $(MAINFILE)
+	$(PTX)/pretext/pretext -c youtube -p $(PUBFILE) -d $(IMGOUT) $(MAINFILE)
 	cd $(OUTPUT)/preview; \
-	$(PTX)/script/mbx -c preview -d $(OUTPUT)/preview $(MAINFILE)
+	$(PTX)/pretext/pretext -c preview -p $(PUBFILE) -d $(OUTPUT)/preview $(MAINFILE)
 #	$(PTX)/script/mbx -c asymptote -f svg -d $(IMGOUT) $(OUTPUT)/merge.xml
 
 
