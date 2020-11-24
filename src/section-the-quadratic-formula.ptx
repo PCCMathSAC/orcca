@@ -462,52 +462,360 @@
 
 
   <exercises permid="hvC">
-    <exercisegroup cols="2" permid="NCL">
+    <subexercises>
       <title>Review and Warmup</title>
-      <exercise permid="Aja">
-        <webwork source="Contrib/PCC/BasicAlgebra/EvaluateExpressions/evaluate90.pg" />
-      </exercise>
+      <exercisegroup cols="4">
+        <exercise xml:id="fraction-warmup-for-quadratic-formula-1">
+          <webwork mathobjects="yes" static="no">
+            <description>
+              <line>Reduce fractions. Denominators should be like the ones expected from the quadratic formula.</line>
+              <line>In random order: an integer; displayed with positive denominator</line>
+              <line>an integer; displayed with negative denominator</line>
+              <line>not an integer; positive; less than 1; displayed with positive denominator</line>
+              <line>not an integer; positive; less than 1; displayed with negative denominator</line>
+            </description>
 
-      <exercise permid="gqj">
-        <webwork source="Contrib/PCC/BasicAlgebra/EvaluateExpressions/evaluate90.pg" />
-      </exercise>
+            <taxonomy>Arithmetic</taxonomy>
+            <taxonomy>Fractions/rational numbers</taxonomy>
+            <taxonomy>Reducing fractions</taxonomy>
+            <taxonomy>2</taxonomy>
 
-      <exercise permid="Mxs">
-        <webwork source="Library/FortLewis/Algebra/1-1-Expressions/MCH1-1-1-04-Expressions.pg" />
-      </exercise>
+            <keyword>reducing fractions</keyword>
+            <keyword>fractions</keyword>
+            <keyword>fraction</keyword>
 
-      <exercise permid="sEB">
-        <webwork source="Library/FortLewis/Algebra/1-1-Expressions/MCH1-1-1-04-Expressions.pg" />
-      </exercise>
+            <pg-code>
+              # an integer; displayed with positive denominator
+              $d[0] = 1;
+              $n[0] = list_random(-9..-3,3..9);
+              $den[0] = random(2,12,2);
+              $num[0] = $n[0]*$den[0];
 
-      <exercise permid="YLK">
-        <webwork source="Library/FortLewis/Algebra/1-1-Expressions/MCH1-1-1-02-Expressions.pg" />
-      </exercise>
+              # an integer; displayed with negative denominator
+              $d[1] = 1;
+              $n[1] = list_random(-9..-3,3..9);
+              $den[1] = random(-12,-2,2);
+              $num[1] = $n[1]*$den[1];
 
-      <exercise permid="EST">
-        <webwork source="Library/FortLewis/Algebra/1-1-Expressions/MCH1-1-1-02-Expressions.pg" />
-      </exercise>
+              # not an integer; positive; less than 1; displayed with positive denominator
+              $d[2] = random(2,12,1);
+              do {$n[2] = random(1,$d[2]-1,1)} until (gcd($d[2],$n[2]) == 1);
+              do {$den[2] = $d[2]*random(2,floor(40/$d[2]),1)} until ($den[2] % 2 == 0);
+              $num[2] = $n[2] * $den[2]/$d[2];
 
-      <exercise permid="lac">
-        <webwork source="Contrib/PCC/BasicAlgebra/EvaluateExpressions/evaluate100.pg" />
-      </exercise>
+              # not an integer; positive; less than 1; displayed with negative denominator
+              $d[3] = random(2,12,1);
+              do {$n[3] = random(1,$d[3]-1,1)} until (gcd($d[3],$n[3]) == 1);
+              do {$den[3] = $d[3]*random(-floor(40/$d[3]),-2,1)} until ($den[3] % 2 == 0);
+              $num[3] = $n[3] * $den[3]/$d[3];
 
-      <exercise permid="Rhl">
-        <webwork source="Contrib/PCC/BasicAlgebra/EvaluateExpressions/evaluate100.pg" />
-      </exercise>
+              Context("LimitedFraction")->flags->set(allowMixedNumbers=>0,showMixedNumbers=>0,requirePureFractions=>1);
+              for my $i (0..3) {
+                $f[$i] = "\frac{$num[$i]}{$den[$i]}";
+                $ans[$i] = Fraction($n[$i],$d[$i]);
+              };
+              @i = NchooseK(4,4);
 
-      <exercise permid="xou">
-        <webwork source="Library/Mizzou/College_Algebra/Real_Numbers/Simplifying_Expressions/Simplifying_Algebraic_Expressions_01.pg" />
-      </exercise>
+              # explanations
+              Context()->texStrings;
+              $sol[0] = "Since [`$den[0]`] divides evenly into [`$num[0]`], the result is an integer. It's [`$ans[0]`].";
+              $sol[1] = "Since [`$den[1]`] divides evenly into [`$num[1]`], the result is an integer. Note that dividing a "
+                . (($num[1] &lt; 0)?'negative':'positive') . " number by a negative number results in a "
+                . (($num[1] &lt; 0)?'positive':'negative') . " number. The result is [`$ans[1]`].";
+              $sol[2] = "The numerator and denominator have a greatest common factor of [`" . gcd($num[2],$den[2])
+                . "`]. Dividing this out of each, the result is [`$ans[2]`].";
+              $sol[3] = "Note that dividing a " . (($num[3] &lt; 0)?'negative':'positive') . " number by a negative number results in a "
+                . (($num[3] &lt; 0)?'positive':'negative') . " number. The numerator and denominator have a greatest common factor of [`" . gcd($num[3],$den[3])
+                . "`]. Dividing this out of each, the result is [`$ans[3]`].";
+              Context()->normalStrings;
+            </pg-code>
 
-      <exercise permid="dvD">
-        <webwork source="Library/Mizzou/College_Algebra/Real_Numbers/Simplifying_Expressions/Simplifying_Algebraic_Expressions_01.pg" />
-      </exercise>
+            <statement>
+              <p>
+                Write each fraction in simplified form.
+                <ol>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[0]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[0]]" width="10"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[1]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[1]]" width="10"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[2]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[2]]" width="10"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[3]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[3]]" width="10"/>
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                <ol>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[0]]" content="pgml"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[1]]" content="pgml"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[2]]" content="pgml"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[3]]" content="pgml"/>
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
 
-    </exercisegroup>
+        <exercise>
+          <webwork copy="fraction-warmup-for-quadratic-formula-1"/>
+        </exercise>
+
+        <exercise>
+          <webwork xml:id="fraction-warmup-for-quadratic-formula-2">
+            <description>Reduce fractions. Denominators should be like the ones expected from the quadratic formula.</description>
+
+            <pg-code>
+              # not an integer; greater than 1; displayed with positive denominator
+              $d[0] = random(2,12,1);
+              do {$n[0] = random($d[0]+1,3*$d[0]-1,1)} until (gcd($d[0],$n[0]) == 1);
+              do {$den[0] = $d[0]*random(2,floor(40/$d[0]),1)} until ($den[0] % 2 == 0);
+              $num[0] = $n[0] * $den[0]/$d[0];
+
+              # not an integer; less than -1; displayed with positive denominator
+              $d[1] = random(2,12,1);
+              do {$n[1] = -random($d[1]+1,3*$d[1]-1,1)} until (gcd($d[1],$n[1]) == 1);
+              do {$den[1] = $d[1]*random(2,floor(40/$d[1]),1)} until ($den[1] % 2 == 0);
+              $num[1] = $n[1] * $den[1]/$d[1];
+
+              # not an integer; positive; less than 1; displayed with positive denominator
+              $d[2] = random(2,12,1);
+              do {$n[2] = random(1,$d[2]-1,1)} until (gcd($d[2],$n[2]) == 1);
+              do {$den[2] = $d[2]*random(2,floor(40/$d[2]),1)} until ($den[2] % 2 == 0);
+              $num[2] = $n[2] * $den[2]/$d[2];
+
+              # not an integer; positive; less than 1; displayed with negative denominator
+              $d[3] = random(2,12,1);
+              do {$n[3] = random(1,$d[3]-1,1)} until (gcd($d[3],$n[3]) == 1);
+              do {$den[3] = $d[3]*random(-floor(40/$d[3]),-2,1)} until ($den[3] % 2 == 0);
+              $num[3] = $n[3] * $den[3]/$d[3];
+
+              Context("LimitedFraction")->flags->set(allowMixedNumbers=>0,showMixedNumbers=>0,requirePureFractions=>1);
+              for my $i (0..3) {
+                $f[$i] = "\frac{$num[$i]}{$den[$i]}";
+                $ans[$i] = Fraction($n[$i],$d[$i]);
+              };
+              @i = NchooseK(4,4);
+
+              # explanations
+              Context()->texStrings;
+              $sol[0] = "The numerator and denominator have a greatest common factor of [`" . gcd($num[0],$den[0])
+                . "`]. Dividing this out of each, the result is [`$ans[0]`].";
+              $sol[1] = "The numerator and denominator have a greatest common factor of [`" . gcd($num[1],$den[1])
+                . "`]. Dividing this out of each, the result is [`$ans[1]`].";
+              $sol[2] = "The numerator and denominator have a greatest common factor of [`" . gcd($num[2],$den[2])
+                . "`]. Dividing this out of each, the result is [`$ans[2]`].";
+              $sol[3] = "Note that dividing a " . (($num[3] &lt; 0)?'negative':'positive') . " number by a negative number results in a "
+                . (($num[3] &lt; 0)?'positive':'negative') . " number. The numerator and denominator have a greatest common factor of [`" . gcd($num[3],$den[3])
+                . "`]. Dividing this out of each, the result is [`$ans[3]`].";
+              Context()->normalStrings;
+            </pg-code>
+
+            <statement>
+              <p>
+                Write each fraction in simplified form.
+                <ol>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[0]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[0]]" width="10"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[1]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[1]]" width="10"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[2]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[2]]" width="10"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <m><var name="$f[$i[3]]"/></m>
+                    </p>
+                    <p>
+                      <var name="$ans[$i[3]]" width="10"/>
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                <ol>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[0]]" content="pgml"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[1]]" content="pgml"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[2]]" content="pgml"/>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var name="$sol[$i[3]]" content="pgml"/>
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise>
+          <webwork copy="fraction-warmup-for-quadratic-formula-1"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="4">
+        <exercise>
+          <webwork xml:id="discriminant-evaluation-1">
+            <description>Evaluate b^2 - 4ac with a, b, c positive integers</description>
+
+            <pg-code>
+              Context()->variables->are(a=>'Real',b=>'Real',c=>'Real');
+              ($a,$b,$c) = map{$_+1} (NchooseK(12,3));
+              $d = Formula("b^2-4ac");
+              $answer = $d->eval(a=>$a,b=>$b,c=>$c);
+              Context()->flags->set(reduceConstants=>0);
+              $substituted = $d->substitute(a=>$a,b=>$b,c=>$c);
+              $b2 = $b**2;
+              $ac4 = 4*$a*$c;
+              $solutionstep = Formula("$b2-$ac4");
+            </pg-code>
+
+            <statement>
+              <p>
+                Evaluate <m><var name="$d"/></m> for <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+              </p>
+              <p>
+                <var name="$answer" width="10"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Substituting in the three values,
+                <md>
+                  <mrow><var name="$d"/>\amp=<var name="$substituted"/></mrow>
+                  <mrow>\amp=<var name="$solutionstep"/></mrow>
+                  <mrow>\amp=<var name="$answer"/></mrow>
+                </md>
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise>
+          <webwork copy="discriminant-evaluation-1"/>
+        </exercise>
+
+        <exercise>
+          <webwork xml:id="discriminant-evaluation-2">
+            <description>Evaluate b^2 - 4ac with b a negative integer and a, c integers</description>
+
+            <pg-code>
+              Context()->variables->are(a=>'Real',b=>'Real',c=>'Real');
+              $b = random(-12,-1,1);
+              ($a,$c) = map{($_+1)*random(-1,1,2)} (NchooseK(12,2));
+              $d = Formula("b^2-4ac");
+              $answer = $d->eval(a=>$a,b=>$b,c=>$c);
+              Context()->flags->set(reduceConstants=>0);
+              $substituted = $d->substitute(a=>$a,b=>$b,c=>$c);
+              $b2 = $b**2;
+              $ac4 = 4*$a*$c;
+              $solutionstep = Formula("$b2-$ac4");
+            </pg-code>
+
+            <statement>
+              <p>
+                Evaluate <m><var name="$d"/></m> for <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+              </p>
+              <p>
+                <var name="$answer" width="10"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Substituting in the three values,
+                <md>
+                  <mrow><var name="$d"/>\amp=<var name="$substituted"/></mrow>
+                  <mrow>\amp=<var name="$solutionstep"/></mrow>
+                  <mrow>\amp=<var name="$answer"/></mrow>
+                </md>
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+
+        <exercise>
+          <webwork copy="discriminant-evaluation-2"/>
+        </exercise>
+      </exercisegroup>
+
+      <!-- TODO: Add exercises about simplifying radicals relevant to QF -->
+
+    </subexercises>
     <exercisegroup cols="3" permid="tJU">
       <title>Solve Quadratic Equations Using the Quadratic Formula</title>
-      <exercise permid="JCM">
+      <!-- <exercise permid="JCM">
         <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad155.pg" />
       </exercise>
 
@@ -561,7 +869,7 @@
 
       <exercise permid="LrZ">
         <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad176.pg" />
-      </exercise>
+      </exercise> -->
 
     </exercisegroup>
     <exercisegroup cols="3" permid="ZRd">
@@ -668,7 +976,7 @@
 
     <exercisegroup cols="2">
       <title>Radical Equations That Give Rise to Quadratic Equations</title>
-      <exercise permid="Ahn">
+      <!-- <exercise permid="Ahn">
         <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation60.pg" />
       </exercise>
 
@@ -714,14 +1022,14 @@
 
       <exercise permid="Lqm">
         <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations7.pg" />
-      </exercise>
+      </exercise> -->
 
     </exercisegroup>
 
     <exercisegroup cols="2" permid="FYm">
       <title>Quadratic Formula Applications</title>
       <!-- TODO: Should these be mixed applications with factoring and square root method added? -->
-      <exercise permid="iPq">
+      <!-- <exercise permid="iPq">
         <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication10.pg" />
       </exercise>
 
@@ -791,40 +1099,39 @@
 
       <exercise permid="pow">
         <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication90.pg" />
-      </exercise>
+      </exercise> -->
 
     </exercisegroup>
 
     <exercise permid="VvF">
       <!-- Kara's challenge problem -->
       <webwork>
-          <setup>
+        <pg-code>
+          Context()->variables->are(m=>'Real',n=>'Real',p=>'Real');
+          $answer = Compute("(-n-sqrt(n^2-4mp))/(2m),(-n+sqrt(n^2-4mp))/(2m)");
+        </pg-code>
 
-             <pg-code>
-                 Context()->variables->are(m=>'Real',n=>'Real',p=>'Real');
-                 $answer = Compute("(-n-sqrt(n^2-4mp))/(2m),(-n+sqrt(n^2-4mp))/(2m)");
-            </pg-code>
-          </setup>
-          <statement>
-            <p permid="bzm">
-              Solve for <m>x</m> in the equation <m>mx^{2}+nx+p=0</m>.
-            </p>
-            <instruction>
-              Enter the two solutions as a comma-separated list.  Be mindful of how you use parentheses in typing up the answers.
-            </instruction>
-            <p permid="HGv">
-              <var name = "$answer" width="40"/>
-            </p>
-          </statement>
-          <solution permid="XkS">
-            <p permid="oSX">
-              To solve a quadratic equation of the form <m>ax^{2}+bx+c=0</m>,
-              we can use the quadratic formula.
-              In this case, <m>a=m</m>, <m>b=n</m>, and <m>c=p</m>.
-              Thus, the solutions are<m>\frac{-n + \sqrt{n^{2}-4mp}}{2m}, \frac{-n - \sqrt{n^{2}-4mp}}{2m}</m>,
-              or <m>\frac{-n \pm \sqrt{n^{2}-4mp}}{2m}</m>.
-            </p>
-          </solution>
+        <statement>
+          <p permid="bzm">
+            Solve for <m>x</m> in the equation <m>mx^{2}+nx+p=0</m>.
+          </p>
+          <instruction>
+            Enter the two solutions as a comma-separated list.  Be mindful of how you use parentheses in typing up the answers.
+          </instruction>
+          <p permid="HGv">
+            <var name = "$answer" width="40"/>
+          </p>
+        </statement>
+
+        <solution permid="XkS">
+          <p permid="oSX">
+            To solve a quadratic equation of the form <m>ax^{2}+bx+c=0</m>,
+            we can use the quadratic formula.
+            In this case, <m>a=m</m>, <m>b=n</m>, and <m>c=p</m>.
+            Thus, the solutions are<m>\frac{-n + \sqrt{n^{2}-4mp}}{2m}, \frac{-n - \sqrt{n^{2}-4mp}}{2m}</m>,
+            or <m>\frac{-n \pm \sqrt{n^{2}-4mp}}{2m}</m>.
+          </p>
+        </solution>
       </webwork>
     </exercise>
 
