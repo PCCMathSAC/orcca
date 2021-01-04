@@ -96,11 +96,9 @@ SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
 #SERVER = http://localhost
 
 webwork-representations:
-	date
 	-rm -r $(WWOUT) || :
 	install -d $(WWOUT)
 	$(PTX)/pretext/pretext -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
-	date
 
 pg:
 	-rm -r $(PGOUT) || :
@@ -137,14 +135,6 @@ pdf-nopost:
 	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam toc.level 3 --stringparam latex.print 'yes' --stringparam latex.pageref 'no' --stringparam latex.sides 'two' $(PRINT) $(MAINFILE) > orcca.tex; \
 	xelatex orcca.tex; \
 	xelatex orcca.tex; \
-
-#should be done after pdf
-odd-answers:
-	cd $(PRINTOUT); \
-	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam toc.level 3 --stringparam latex.pageref 'no' --stringparam latex.sides 'one' $(XSL)/orcca-odd-answers.xsl $(MAINFILE) > orcca-odd-answers.tex; \
-	xelatex orcca-odd-answers.tex; \
-	xelatex orcca-odd-answers.tex; \
-	xelatex orcca-odd-answers.tex;
 
 screenpdf:
 	install -d $(OUTPUT)
@@ -544,7 +534,6 @@ pdf-edition2:
 #  HTML output
 #  Output lands in the subdirectory:  $(HTMLOUT)
 html:
-	date
 	install -d $(OUTPUT)
 	-rm -r $(HTMLOUT) || :
 	install -d $(HTMLOUT)
@@ -588,7 +577,6 @@ html:
 	perl -p0i -e 's/(<li class="(link|link active))(">\n<a href="appendix-ccogs.html")/\1 partb\3/' *.html; \
 	perl -p0i -e 's/(<li class="(link|link active))("><a href="solutions-1.html")/\1 partb\3/' *.html; \
 	perl -p0i -e 's/(<li class="(link|link active))("><a href="index-1.html")/\1 partb\3/' *.html; \
-	date
 
 
 
