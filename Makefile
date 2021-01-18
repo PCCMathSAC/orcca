@@ -587,14 +587,14 @@ html:
 # asymptote images
 images:
 	install -d $(OUTPUT)
-	-rm $(IMGOUT) || :
-	-rm $(OUTPUT)/preview || :
+	-rm -r $(IMGOUT) || :
+	-rm -r $(OUTPUT)/preview || :
 	install -d $(IMGOUT)
 	install -d $(OUTPUT)/preview
 	$(PTX)/pretext/pretext -c latex-image -p $(PUBFILE) -f all -d $(IMGOUT) $(MAINFILE)
-	$(PTX)/pretext/pretext -c youtube -p $(PUBFILE) -d $(IMGOUT) $(MAINFILE)
-	cd $(OUTPUT)/preview; \
-	$(PTX)/pretext/pretext -c preview -p $(PUBFILE) -d $(OUTPUT)/preview $(MAINFILE)
+#	$(PTX)/pretext/pretext -c youtube -p $(PUBFILE) -d $(IMGOUT) $(MAINFILE)
+#	cd $(OUTPUT)/preview; \
+#	$(PTX)/pretext/pretext -c preview -p $(PUBFILE) -d $(OUTPUT)/preview $(MAINFILE)
 #	$(PTX)/script/mbx -c asymptote -f svg -d $(IMGOUT) $(OUTPUT)/merge.xml
 
 
