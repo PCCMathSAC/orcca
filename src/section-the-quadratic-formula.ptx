@@ -412,7 +412,7 @@
       </solution>
     </example>
 
-    <p>
+    <!-- <p>
       The following are examples of how the quadratic formula can be used to solve word-based problems.
     </p>
 
@@ -513,9 +513,9 @@
         <p>
           You have a total of <m>485</m> feet of fence to use, and the area of the pen must be <m>29375</m> square feet.
           Find the dimensions (length and width) of the pen.
-          There will be two solutions, find both.
+          There will be two solutions, find both. -->
           <!-- TODO: add figure/diagram of sheep pen next to river with labels l=485-2w at the length and w at the width, once we figure out how to get make images to work -->
-        </p>
+        <!-- </p>
       </statement>
       <solution>
         <p>
@@ -567,9 +567,9 @@
         <p>
           There is a rectangular lot in a garden with a length of <quantity><mag>9</mag><unit base="foot"/></quantity> and a width of <quantity><mag>6</mag><unit base="foot"/></quantity>.
           You plan to expand the lot by an equal length around its four sides, and make the area of the expanded rectangular lot <quantity><mag>180</mag><unit base="foot" exp="2"/></quantity>.
-          How long should you expand the original lot in four directions?
+          How long should you expand the original lot in four directions? -->
           <!-- TODO: add figure for this problem that shows the original 6 x 9 lot, then a larger lot with length 6+2x and width 9+2x -->
-        </p>
+        <!-- </p>
       </statement>
       <solution>
         <p>
@@ -615,9 +615,9 @@
           One car started at a town, and traveled due north at <m>50</m> miles per hour.
           <m>2</m> hours later, at the same town, another car started to travel due east at <m>60</m> miles per hour.
           Assume both cars don't stop and maintain the same speed, after how many hours since the second car starts would the distance between both cars be <m>300</m> miles?
-          Round your answer to two decimal places.
+          Round your answer to two decimal places. -->
           <!-- TODO: add figure similar to exercises of this type of problem in this section -->
-        </p>
+        <!-- </p>
       </statement>
       <solution>
         <p>
@@ -722,7 +722,7 @@
           </md>
         </p>
       </solution>
-    </example>
+    </example> -->
 
 <!-- Originally this chapter came after the quadratic functions chapter. The move makes this a forward reference. -->
 <!--         <example>
@@ -771,62 +771,57 @@
     </exercise>
   </reading-questions>
 
-
   <exercises permid="hvC">
     <subexercises>
       <title>Review and Warmup</title>
       <exercisegroup cols="4">
-        <exercise xml:id="fraction-warmup-for-quadratic-formula-1">
-          <webwork mathobjects="yes" static="no">
+        <introduction>
+          <p>
+            Write each fraction in simplified form.
+          </p>
+        </introduction>
+        <exercise>
+          <webwork>
             <description>
               <line>Reduce fractions. Denominators should be like the ones expected from the quadratic formula.</line>
-              <line>In random order: an integer; displayed with positive denominator</line>
+              <line>In random order:</line>
+              <line>an integer; displayed with positive denominator</line>
               <line>an integer; displayed with negative denominator</line>
               <line>not an integer; positive; less than 1; displayed with positive denominator</line>
               <line>not an integer; positive; less than 1; displayed with negative denominator</line>
             </description>
-
-            <taxonomy>Arithmetic</taxonomy>
-            <taxonomy>Fractions/rational numbers</taxonomy>
-            <taxonomy>Reducing fractions</taxonomy>
-            <taxonomy>2</taxonomy>
-
-            <keyword>reducing fractions</keyword>
-            <keyword>fractions</keyword>
-            <keyword>fraction</keyword>
-
             <pg-code>
               # an integer; displayed with positive denominator
               $d[0] = 1;
               $n[0] = list_random(-9..-3,3..9);
               $den[0] = random(2,12,2);
               $num[0] = $n[0]*$den[0];
-
+              #
               # an integer; displayed with negative denominator
               $d[1] = 1;
               $n[1] = list_random(-9..-3,3..9);
               $den[1] = random(-12,-2,2);
               $num[1] = $n[1]*$den[1];
-
+              #
               # not an integer; positive; less than 1; displayed with positive denominator
               $d[2] = random(2,12,1);
               do {$n[2] = random(1,$d[2]-1,1)} until (gcd($d[2],$n[2]) == 1);
               do {$den[2] = $d[2]*random(2,floor(40/$d[2]),1)} until ($den[2] % 2 == 0);
               $num[2] = $n[2] * $den[2]/$d[2];
-
+              #
               # not an integer; positive; less than 1; displayed with negative denominator
               $d[3] = random(2,12,1);
               do {$n[3] = random(1,$d[3]-1,1)} until (gcd($d[3],$n[3]) == 1);
               do {$den[3] = $d[3]*random(-floor(40/$d[3]),-2,1)} until ($den[3] % 2 == 0);
               $num[3] = $n[3] * $den[3]/$d[3];
-
+              #
               Context("LimitedFraction")->flags->set(allowMixedNumbers=>0,showMixedNumbers=>0,requirePureFractions=>1);
               for my $i (0..3) {
                 $f[$i] = "\frac{$num[$i]}{$den[$i]}";
                 $ans[$i] = Fraction($n[$i],$d[$i]);
               };
               @i = NchooseK(4,4);
-
+              #
               # explanations
               Context()->texStrings;
               $sol[0] = "Since [`$den[0]`] divides evenly into [`$num[0]`], the result is an integer. It's [`$ans[0]`].";
@@ -840,10 +835,8 @@
                 . "`]. Dividing this out of each, the result is [`$ans[3]`].";
               Context()->normalStrings;
             </pg-code>
-
             <statement>
               <p>
-                Write each fraction in simplified form.
                 <ol>
                   <li>
                     <p>
@@ -885,22 +878,22 @@
                 <ol>
                   <li>
                     <p>
-                      <var name="$sol[$i[0]]" content="pgml"/>
+                      <var name="$sol[$i[0]]" data="pgml"/>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <var name="$sol[$i[1]]" content="pgml"/>
+                      <var name="$sol[$i[1]]" data="pgml"/>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <var name="$sol[$i[2]]" content="pgml"/>
+                      <var name="$sol[$i[2]]" data="pgml"/>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <var name="$sol[$i[3]]" content="pgml"/>
+                      <var name="$sol[$i[3]]" data="pgml"/>
                     </p>
                   </li>
                 </ol>
@@ -908,47 +901,42 @@
             </solution>
           </webwork>
         </exercise>
-
+        <!-- TODO: copy the above problem -->
         <exercise>
-          <webwork copy="fraction-warmup-for-quadratic-formula-1"/>
-        </exercise>
-
-        <exercise>
-          <webwork xml:id="fraction-warmup-for-quadratic-formula-2">
+          <webwork>
             <description>Reduce fractions. Denominators should be like the ones expected from the quadratic formula.</description>
-
             <pg-code>
               # not an integer; greater than 1; displayed with positive denominator
               $d[0] = random(2,12,1);
               do {$n[0] = random($d[0]+1,3*$d[0]-1,1)} until (gcd($d[0],$n[0]) == 1);
               do {$den[0] = $d[0]*random(2,floor(40/$d[0]),1)} until ($den[0] % 2 == 0);
               $num[0] = $n[0] * $den[0]/$d[0];
-
+              #
               # not an integer; less than -1; displayed with positive denominator
               $d[1] = random(2,12,1);
               do {$n[1] = -random($d[1]+1,3*$d[1]-1,1)} until (gcd($d[1],$n[1]) == 1);
               do {$den[1] = $d[1]*random(2,floor(40/$d[1]),1)} until ($den[1] % 2 == 0);
               $num[1] = $n[1] * $den[1]/$d[1];
-
+              #
               # not an integer; positive; less than 1; displayed with positive denominator
               $d[2] = random(2,12,1);
               do {$n[2] = random(1,$d[2]-1,1)} until (gcd($d[2],$n[2]) == 1);
               do {$den[2] = $d[2]*random(2,floor(40/$d[2]),1)} until ($den[2] % 2 == 0);
               $num[2] = $n[2] * $den[2]/$d[2];
-
+              #
               # not an integer; positive; less than 1; displayed with negative denominator
               $d[3] = random(2,12,1);
               do {$n[3] = random(1,$d[3]-1,1)} until (gcd($d[3],$n[3]) == 1);
               do {$den[3] = $d[3]*random(-floor(40/$d[3]),-2,1)} until ($den[3] % 2 == 0);
               $num[3] = $n[3] * $den[3]/$d[3];
-
+              #
               Context("LimitedFraction")->flags->set(allowMixedNumbers=>0,showMixedNumbers=>0,requirePureFractions=>1);
               for my $i (0..3) {
                 $f[$i] = "\frac{$num[$i]}{$den[$i]}";
                 $ans[$i] = Fraction($n[$i],$d[$i]);
               };
               @i = NchooseK(4,4);
-
+              #
               # explanations
               Context()->texStrings;
               $sol[0] = "The numerator and denominator have a greatest common factor of [`" . gcd($num[0],$den[0])
@@ -962,7 +950,6 @@
                 . "`]. Dividing this out of each, the result is [`$ans[3]`].";
               Context()->normalStrings;
             </pg-code>
-
             <statement>
               <p>
                 Write each fraction in simplified form.
@@ -1007,22 +994,22 @@
                 <ol>
                   <li>
                     <p>
-                      <var name="$sol[$i[0]]" content="pgml"/>
+                      <var name="$sol[$i[0]]" data="pgml"/>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <var name="$sol[$i[1]]" content="pgml"/>
+                      <var name="$sol[$i[1]]" data="pgml"/>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <var name="$sol[$i[2]]" content="pgml"/>
+                      <var name="$sol[$i[2]]" data="pgml"/>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <var name="$sol[$i[3]]" content="pgml"/>
+                      <var name="$sol[$i[3]]" data="pgml"/>
                     </p>
                   </li>
                 </ol>
@@ -1030,20 +1017,22 @@
             </solution>
           </webwork>
         </exercise>
-
-        <exercise>
-          <webwork copy="fraction-warmup-for-quadratic-formula-1"/>
-        </exercise>
+        <!-- TODO: copy the above problem -->
       </exercisegroup>
 
       <exercisegroup cols="4">
+        <introduction>
+          <p>
+            Evaluate the given expression for the given values.
+          </p>
+        </introduction>
         <exercise>
-          <webwork xml:id="discriminant-evaluation-1">
+          <webwork>
             <description>Evaluate b^2 - 4ac with a, b, c positive integers</description>
-
             <pg-code>
               Context()->variables->are(a=>'Real',b=>'Real',c=>'Real');
-              ($a,$b,$c) = map{$_+1} (NchooseK(12,3));
+              ($a,$c) = (1..5)[NchooseK(5,2)];
+              $b = list_random(4..9);
               $d = Formula("b^2-4ac");
               $answer = $d->eval(a=>$a,b=>$b,c=>$c);
               Context()->flags->set(reduceConstants=>0);
@@ -1052,10 +1041,9 @@
               $ac4 = 4*$a*$c;
               $solutionstep = Formula("$b2-$ac4");
             </pg-code>
-
             <statement>
               <p>
-                Evaluate <m><var name="$d"/></m> for <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <m><var name="$d"/></m> for <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>
               </p>
               <p>
                 <var name="$answer" width="10"/>
@@ -1073,19 +1061,14 @@
             </solution>
           </webwork>
         </exercise>
-
+        <!-- TODO: copy the above problem -->
         <exercise>
-          <webwork copy="discriminant-evaluation-1"/>
-        </exercise>
-
-        <exercise>
-          <webwork xml:id="discriminant-evaluation-2">
+          <webwork>
             <description>Evaluate b^2 - 4ac with b a negative integer and a, c integers</description>
-
             <pg-code>
               Context()->variables->are(a=>'Real',b=>'Real',c=>'Real');
-              $b = random(-12,-1,1);
-              ($a,$c) = map{($_+1)*random(-1,1,2)} (NchooseK(12,2));
+              ($a,$c) = (-5..-1,1..5)[NchooseK(10,2)];
+              $b = list_random(-9..-4);
               $d = Formula("b^2-4ac");
               $answer = $d->eval(a=>$a,b=>$b,c=>$c);
               Context()->flags->set(reduceConstants=>0);
@@ -1094,10 +1077,9 @@
               $ac4 = 4*$a*$c;
               $solutionstep = Formula("$b2-$ac4");
             </pg-code>
-
             <statement>
               <p>
-                Evaluate <m><var name="$d"/></m> for <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <m><var name="$d"/></m> for <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>
               </p>
               <p>
                 <var name="$answer" width="10"/>
@@ -1115,337 +1097,3363 @@
             </solution>
           </webwork>
         </exercise>
-
-        <exercise>
-          <webwork copy="discriminant-evaluation-2"/>
-        </exercise>
+        <!-- TODO: copy the above problem -->
       </exercisegroup>
 
-      <!-- TODO: Add exercises about simplifying radicals relevant to QF -->
-
+      <exercisegroup>
+        <introduction>
+          <p>
+            Simplify the radical.
+          </p>
+        </introduction>
+        <exercise>
+          <webwork>
+            <description>Simplify a radical expression of the form sqrt(a^2b)</description>
+            <pg-macros>
+              <macro-file>contextForm.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $b = list_random(2,3,5,6,7,10,11,13,14,15);
+              $a = random(2,int(sqrt(100/$b)),1);
+              $r = $a**2*$b;
+              Context("Form");
+              $answer = Formula("$a sqrt($b)");
+            </pg-code>
+            <statement>
+              <p>
+                <m>\sqrt{<var name="$r"/>}</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem several times-->
+      </exercisegroup>
     </subexercises>
-    <exercisegroup cols="3" permid="tJU">
-      <title>Solve Quadratic Equations Using the Quadratic Formula</title>
-      <!-- <exercise permid="JCM">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad155.pg" />
-      </exercise>
 
-      <exercise permid="pJV">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad155.pg" />
-      </exercise>
-
-      <exercise permid="VRe">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad165.pg" />
-      </exercise>
-
-      <exercise permid="BYn">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad165.pg" />
-      </exercise>
-
-      <exercise permid="ifw">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad150.pg" />
-      </exercise>
-
-      <exercise permid="OmF">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad150.pg" />
-      </exercise>
-
-      <exercise permid="utO">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad160.pg" />
-      </exercise>
-
-      <exercise permid="aAX">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad160.pg" />
-      </exercise>
-
-      <exercise permid="GIg">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad170.pg" />
-      </exercise>
-
-      <exercise permid="mPp">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad170.pg" />
-      </exercise>
-
-      <exercise permid="SWy">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad175.pg" />
-      </exercise>
-
-      <exercise permid="zdH">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad175.pg" />
-      </exercise>
-
-      <exercise permid="fkQ">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad176.pg" />
-      </exercise>
-
-      <exercise permid="LrZ">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad176.pg" />
-      </exercise> -->
-
-    </exercisegroup>
-    <exercisegroup cols="3" permid="ZRd">
-      <title>Solve Quadratic Equations Using an Appropriate Method</title>
-      <exercise permid="rzi">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad205.pg" />
-      </exercise>
-
-      <exercise permid="XGr">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad205.pg" />
-      </exercise>
-
-      <!-- <exercise permid="DNA">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnMultiSteps110.pg" />
-      </exercise>
-
-      <exercise permid="jUJ">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnMultiSteps110.pg" />
-      </exercise> -->
-
-      <exercise permid="QbS">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad315.pg" />
-      </exercise>
-
-      <exercise permid="wjb">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad315.pg" />
-      </exercise>
-
-      <exercise permid="cqk">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad71.pg" />
-      </exercise>
-
-      <exercise permid="Ixt">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad71.pg" />
-      </exercise>
-
-      <!-- Best to factor
-
-      <exercise permid="oEC">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad210.pg" />
-      </exercise>
-
-      <exercise permid="ULL">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad210.pg" />
-      </exercise> -->
-
-      <!-- <exercise permid="ASU">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnMultiSteps170.pg" />
-      </exercise>
-
-      <exercise permid="had">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnMultiSteps170.pg" />
-      </exercise> -->
-
-      <exercise permid="Nhm">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad260.pg" />
-      </exercise>
-
-      <exercise permid="tov">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad260.pg" />
-      </exercise>
-
-      <exercise permid="ZvE">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad80.pg" />
-      </exercise>
-
-      <exercise permid="FCN">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad80.pg" />
-      </exercise>
-
-      <exercise permid="lJW">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad150.pg" />
-      </exercise>
-
-      <exercise permid="RRf">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad150.pg" />
-      </exercise>
-
-      <exercise permid="xYo">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad185.pg" />
-      </exercise>
-
-      <exercise permid="efx">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad185.pg" />
-      </exercise>
-
-      <exercise permid="KmG">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad81.pg" />
-      </exercise>
-
-      <exercise permid="qtP">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticEquations/solveQuad81.pg" />
-      </exercise>
-
-      <!-- <exercise permid="WAY">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnMultiSteps70.pg" />
-      </exercise>
-
-      <exercise permid="CIh">
-        <webwork source="Contrib/PCC/BasicAlgebra/SolveLinearEquations/solveLinearEqnMultiSteps70.pg" />
-      </exercise> -->
-
-    </exercisegroup>
-
-    <exercisegroup cols="2">
-      <title>Radical Equations That Give Rise to Quadratic Equations</title>
-      <!-- <exercise permid="Ahn">
-        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation60.pg" />
-      </exercise>
-
-      <exercise permid="gow">
-        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation60.pg" />
-      </exercise>
-
-      <exercise permid="MvF">
-        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation70.pg" />
-      </exercise>
-
-      <exercise permid="sCO">
-        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation70.pg" />
-      </exercise>
-
-      <exercise permid="YJX">
-        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation80.pg" />
-      </exercise>
-
-      <exercise permid="ERg">
-        <webwork source="Contrib/PCC/BasicAlgebra/RadicalEquations/SolvingRadicalEquation80.pg" />
-      </exercise>
-
-      <exercise permid="usb">
-        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations4.pg" />
-      </exercise>
-
-      <exercise permid="azk">
-        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations4.pg" />
-      </exercise>
-
-      <exercise permid="SUL">
-        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations6.pg" />
-      </exercise>
-
-      <exercise permid="zbU">
-        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations6.pg" />
-      </exercise>
-
-      <exercise permid="fjd">
-        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations7.pg" />
-      </exercise>
-
-      <exercise permid="Lqm">
-        <webwork source="Contrib/PCC/Math95/SolvingRadicalEquations/SolvingRadicalEquations7.pg" />
-      </exercise> -->
-
-    </exercisegroup>
-
-    <exercisegroup cols="2" permid="FYm">
-      <title>Quadratic Formula Applications</title>
-      <!-- TODO: Should these be mixed applications with factoring and square root method added? -->
-      <!-- <exercise permid="iPq">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication10.pg" />
-      </exercise>
-
-      <exercise permid="OWz">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication10.pg" />
-      </exercise>
-
-      <exercise permid="vdI">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication20.pg" />
-      </exercise>
-
-      <exercise permid="bkR">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication20.pg" />
-      </exercise>
-
-      <exercise permid="Hsa">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication30.pg" />
-      </exercise>
-
-      <exercise permid="nzj">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication30.pg" />
-      </exercise>
-
-      <exercise permid="TGs">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication40.pg" />
-      </exercise>
-
-      <exercise permid="zNB">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication40.pg" />
-      </exercise>
-
-      <exercise permid="MbT">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication50.pg" />
-      </exercise>
-
-      <exercise permid="sjc">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication50.pg" />
-      </exercise>
-
-      <exercise permid="Yql">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication60.pg" />
-      </exercise>
-
-      <exercise permid="Exu">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication60.pg" />
-      </exercise>
-
-      <exercise permid="kED">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication70.pg" />
-      </exercise>
-
-      <exercise permid="QLM">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication70.pg" />
-      </exercise>
-
-      <exercise permid="wSV">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication80.pg" />
-      </exercise>
-
-      <exercise permid="dae">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication80.pg" />
-      </exercise>
-
-      <exercise permid="Jhn">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication90.pg" />
-      </exercise>
-
-      <exercise permid="pow">
-        <webwork source="Contrib/PCC/BasicAlgebra/QuadraticApplications/QuadraticEquationApplication90.pg" />
-      </exercise> -->
-
-    </exercisegroup>
-
-    <exercise permid="VvF">
-      <!-- Kara's challenge problem -->
-      <webwork>
-        <pg-code>
-          Context()->variables->are(m=>'Real',n=>'Real',p=>'Real');
-          $answer = Compute("(-n-sqrt(n^2-4mp))/(2m),(-n+sqrt(n^2-4mp))/(2m)");
-        </pg-code>
-
-        <statement>
-          <p permid="bzm">
-            Solve for <m>x</m> in the equation <m>mx^{2}+nx+p=0</m>.
+    <subexercises>
+      <title>Skills Practice</title>
+      <exercisegroup cols="3">
+        <introduction>
+          <p>
+            Use the quadratic formula to solve the equation.
           </p>
-          <instruction>
-            Enter the two solutions as a comma-separated list.  Be mindful of how you use parentheses in typing up the answers.
-          </instruction>
-          <p permid="HGv">
-            <var name = "$answer" width="40"/>
-          </p>
-        </statement>
+        </introduction>
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where the roots are nonzero integers</description>
+            <pg-code>
+              ($r,$s) = (1..9)[NchooseK(9,2)];
+              ($r,$s) = num_sort(map{$_*list_random(-1,1)}($r,$s));
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Real(sqrt($discriminant));
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where a,b,c are integers and only one root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $s = non_zero_random(-9,9,1);
+              ($r,$s) = num_sort($r,$s);
+              $B = -($r + $s);
+              $C = $r*$s;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              $a2 = 2*$a;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where a,b,c are integers and neither root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              do {$s = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1 and $r != $s);
+              ($r,$s) = num_sort($r,$s);
+              $B = -($r + $s);
+              $C = $r*$s;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              $a2 = 2*$a;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are integers and there is no solution</description>
+            <pg-code>
+              $c = random(1,9,1);
+              $b = random(1,int(sqrt(4*$c))-1,1)*list_random(-1,1);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              Context("FiniteSolutionSets");
+              $solutions = Compute("no real solutions");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                </md>
+                Since we are asked to take the square root of a negative number, there are no real solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are rational and only one root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $s = non_zero_random(-9,9,1);
+              ($r,$s) = num_sort($r,$s);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where there is a nonzero integer doubled root</description>
+            <pg-code>
+              $r = non_zero_random(-9,9,1);
+              $b = -2*$r;
+              $c = ($r)**2;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = 0;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>}{2}</mrow>
+                </md>
+                Since the disciriminant (that number in the radical) is <m>0</m>, there is only one solution.
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where a!=1,b,c are integers and there is no solution</description>
+            <pg-code>
+              $a = random(2,9,1);
+              $c = random(1,9,1);
+              $b = random(1,int(sqrt(4*$a*$c))-1,1)*list_random(-1,1);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              Context("FiniteSolutionSets");
+              $solutions = Compute("no real solutions");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2(<var name="$a"/>)}</mrow>
+                </md>
+                Since we are asked to take the square root of a negative number, there are no real solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are rational and neither root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              do {$s = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1 and $r != $s);
+              ($r,$s) = num_sort($r,$s);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)\left(<var name="$c"/>\right)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are positive, and there are irrational roots</description>
+            <pg-code>
+              do {
+                $c = random(1,9,1);
+                $b = random(int(sqrt(4*$c))+1,9,1);
+              } until (sqrt($b**2-4*$c) != int(sqrt($b**2-4*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $disc = $b**2-4*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2);
+              $P = Fraction($pull,2);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where there is a nonzero rational doubled root</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $b = -2*$r;
+              $c = ($r)**2;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = 0;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)\left(<var name="$c"/>\right)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>}{2}</mrow>
+                </md>
+                Since the disciriminant (that number in the radical) is <m>0</m>, there is only one solution.
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are integers, and there are irrational roots</description>
+            <pg-code>
+              do {
+                $c = non_zero_random(-9,9,1);
+                $b = ($c > 0) ? random(int(sqrt(4*$c))+1,9,1) * list_random(-1,1) : non_zero_random(-9,9,1);
+              } until (sqrt($b**2-4*$c) != int(sqrt($b**2-4*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $disc = $b**2-4*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2);
+              $P = Fraction($pull,2);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where a!=1,b,c are integers, and there are irrational roots</description>
+            <pg-code>
+              do {
+                ($a,$c) = (-9..-2,2..9)[NchooseK(18,2)];
+                $b = ($a*$c > 0) ? random(int(sqrt(4*$a*$c))+1,20,1) * list_random(-1,1) : non_zero_random(-9,9,1);
+              } until (sqrt($b**2-4*$a*$c) != int(sqrt($b**2-4*$a*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $disc = $b**2-4*$a*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2*$a);
+              $P = Fraction($pull,2*$a);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $a2 = 2*$a;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where a,b,c integers and there is a nonzero rational doubled root</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $B = -2*$r;
+              $C = ($r)**2;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $a2 = 2*$a;
+              $discriminant = 0;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>}{<var name="$a2"/>}</mrow>
+                </md>
+                Since the disciriminant (that number in the radical) is <m>0</m>, there is only one solution.
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are fractions, and there are irrational roots</description>
+            <pg-code>
+              Context("Fraction");
+              do {
+                do {
+                  $cd = random(2,3,1);
+                  $cn = non_zero_random(-5,5,1);
+                  $c = Fraction($cn,$cd);
+                } until (($c->value)[1] != 1);
+                if ($c > 0) {
+                  $bd = random(2,3,1);
+                  $bn = random(int(sqrt(4*$c)*$bd)+1,6) * list_random(-1,1);
+                  $b = Fraction($bn,$bd);
+                } else {
+                  $bd = 2;
+                  $bn = non_zero_random(-3,3,1);
+                  $b = Fraction($bn,$bd);
+                }
+              } until (sqrt($bn**2*$cd**2 - 4*$cn*$cd*$bd**2) != int(sqrt($bn**2*$cd**2 - 4*$cn*$cd*$bd**2)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $disc = ($b)**2-4*$c;
+              ($discn,$discd) = $disc->value;
+              ($newdiscn,$newdiscd) = ($discn*$discd,$discd*$discd);
+              $squarepart = 1;
+              $squarefree = $newdiscn;
+              for $i (2,3,5,7,11,13,17) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b/2);
+              $P = Fraction($pull/(2*$newdiscd));
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)\left(<var name="$c"/>\right)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where a,b,c are fractions, and there are irrational roots</description>
+            <pg-code>
+              Context("Fraction");
+              do {
+                do {
+                  $ad = random(2,3,1);
+                  $an = 1;
+                  $a = Fraction($an,$ad);
+                } until (($a->value)[1] != 1);
+                do {
+                  $cd = 2;
+                  $cn = random(-3,3,2);
+                  $c = Fraction($cn,$cd);
+                } until (($c->value)[1] != 1);
+                if ($c > 0) {
+                  $bd = random(2,3,1);
+                  $bn = random(int(sqrt(4*$a*$c)*$bd)+1,4) * list_random(-1,1);
+                  $b = Fraction($bn,$bd);
+                } else {
+                  $bd = 2;
+                  $bn = non_zero_random(-1,1,1);
+                  $b = Fraction($bn,$bd);
+                }
+              } until (sqrt($bn**2*$ad**2*$cd**2 - 4*$an*$ad*$cn*$cd*$bd**2) != int(sqrt($bn**2*$ad**2*$cd**2 - 4*$an*$ad*$cn*$cd*$bd**2)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $disc = ($b)**2-4*$a*$c;
+              ($discn,$discd) = $disc->value;
+              ($newdiscn,$newdiscd) = ($discn*$discd,$discd*$discd);
+              $squarepart = 1;
+              $squarefree = $newdiscn;
+              for $i (2,3,5,7,11,13,17,19) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              Context("Fraction");
+              $pull = Fraction(sqrt($squarepart), $discd);
+              $B = Fraction($b/(2*$a));
+              $P = Fraction($pull/(2*$a));
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $a2 = 2*$a;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              Context("FiniteSolutionSets");
+              $NB = -$B;
+              ($r,$s) = (Formula("$NB - $P sqrt($squarefree)"),Formula("$NB + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$NB - $P sqrt($squarefree),$NB + $P sqrt($squarefree)}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where there is a doubled decimal root</description>
+            <pg-code>
+              $r = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+              $b = -2*$r;
+              $c = ($r)**2;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              Context("FiniteSolutionSets");
+              Context()->flags->remove("NumberCheck");
+              Context()->flags->set(useBizarro=>0);
+              $solutions = Formula("{$r}");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = 0;
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>}{2}</mrow>
+                </md>
+                Since the disciriminant (that number in the radical) is <m>0</m>, there is only one solution.
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2+bx+c=0 where there is a doubled decimal root</description>
+            <pg-code>
+              $r = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+              $a = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+              $b = -2*$a*$r;
+              $c = $a*($r)**2;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              Context("FiniteSolutionSets");
+              Context()->flags->remove("NumberCheck");
+              Context()->flags->set(useBizarro=>0);
+              $solutions = Formula("{$r}");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = 0;
+              $a2 = 2*$a;
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>}{<var name="$a2"/>}</mrow>
+                </md>
+                Since the disciriminant (that number in the radical) is <m>0</m>, there is only one solution.
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are decimals, where one root is an integer and one has tenths place</description>
+            <pg-code>
+              $r = non_zero_random(-9,9,1);
+              $s = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+              ($r,$s) = num_sort($r,$s);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              Context("FiniteSolutionSets");
+              Context()->flags->remove("NumberCheck");
+              Context()->flags->set(useBizarro=>0);
+              $solutions = Formula("{$r,$s}");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Real(sqrt($discriminant));
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2+bx+c=0 where b,c are decimals, and there are irrational roots</description>
+            <pg-code>
+              do {
+                $c = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+                if ($c > 0) {
+                  $b = (random(int(sqrt(4*$c))+1,9,1) + random(0.1,0.9,0.1)) * list_random(-1,1);
+                } else {
+                  $b = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+                }
+              } until (sqrt(($b**2-4*$c)*10) != int(sqrt(($b**2-4*$c)*10)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2+$b x+$c")->reduce;
+              $disc = $b**2-4*$c;
+              $B = $b/2;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Real(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              Context()->flags->remove("NumberCheck");
+              Context()->flags->set(useBizarro=>0);
+              $r = Real(-$B - 1/2*sqrt($disc));
+              $s = Real(-$B + 1/2*sqrt($disc));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp\approx\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp\approx<var name="$r"/>\quad\text{or}\quad x\approx<var name="$s"/></mrow>
+                </md>
+                The solution set is approximately <m><var name="$solutions"/></m>.
+                Note that since we started with decimal coefficients,
+                we felt it was acceptible to round the solutions to decimal approximations rather than keep to the exact solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a x^2+bx+c=0 where a,b,c are decimals, and there are irrational roots</description>
+            <pg-code>
+              do {
+                $a = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+                $c = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+                if ($a*$c > 0) {
+                  $b = (random(int(sqrt(4*$a*$c))+1,9,1) + random(0.1,0.9,0.1)) * list_random(-1,1);
+                } else {
+                  $b = non_zero_random(-9,9,1)+non_zero_random(-0.9,0.9,0.1);
+                }
+              } until (sqrt(($b**2-4*$a*$c)*10) != int(sqrt(($b**2-4*$a*$c)*10)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $disc = $b**2-4*$a*$c;
+              $denom = 2*$a;
+              $B = $b/$denom;
+              $negb = -$b;
+              $a2 = 2*$a;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Real(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              Context()->flags->remove("NumberCheck");
+              Context()->flags->set(useBizarro=>0);
+              $r = Real(-$B - 1/$denom*sqrt($disc));
+              $s = Real(-$B + 1/$denom*sqrt($disc));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/>=0</m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp\approx\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp\approx<var name="$r"/>\quad\text{or}\quad x\approx<var name="$s"/></mrow>
+                </md>
+                The solution set is approximately <m><var name="$solutions"/></m>.
+                Note that since we started with decimal coefficients,
+                we felt it was acceptible to round the solutions to decimal approximations rather than keep to the exact solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of x^2+bx+c=0 where the roots are nonzero integers</description>
+            <pg-code>
+              ($r,$s) = (1..9)[NchooseK(9,2)];
+              ($r,$s) = num_sort(map{$_*list_random(-1,1)}($r,$s));
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("x^2-$left")->reduce;
+              $right = $right->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Real(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2=bx+c where the roots are nonzero integers</description>
+            <pg-code>
+              ($r,$s) = (1..9)[NchooseK(9,2)];
+              ($r,$s) = num_sort(map{$_*list_random(-1,1)}($r,$s));
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              $left = Formula("x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Real(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of ax^2+bx+c=0 where a,b,c are integers and only one root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $s = non_zero_random(-9,9,1);
+              ($r,$s) = num_sort($r,$s);
+              $B = -($r + $s);
+              $C = $r*$s;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2 + $b x + $c")->reduce;
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("$a x^2-$left")->reduce;
+              $right = $right->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              $a2 = 2*$a;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2=bx+c where a,b,c are integers and only one root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $s = non_zero_random(-9,9,1);
+              ($r,$s) = num_sort($r,$s);
+              $B = -($r + $s);
+              $C = $r*$s;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2 + $b x + $c")->reduce;
+              $left = Formula("$a x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              $a2 = 2*$a;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangment of ax^2+bx+c=0 where a,b,c are integers and neither root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              do {$s = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1 and $r != $s);
+              ($r,$s) = num_sort($r,$s);
+              $B = -($r + $s);
+              $C = $r*$s;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("$a x^2-$left")->reduce;
+              $right = $right->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              $a2 = 2*$a;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2=bx+c where a,b,c are integers and neither root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              do {$s = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1 and $r != $s);
+              ($r,$s) = num_sort($r,$s);
+              $B = -($r + $s);
+              $C = $r*$s;
+              $a = lcm(($B->value)[1],($C->value)[1]);
+              $b = $a*$B;
+              $c = $a*$C;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2+$b x+$c")->reduce;
+              $left = Formula("$a x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              $a2 = 2*$a;
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of x^2+bx+c=0 where b,c are integers and there is no solution</description>
+            <pg-code>
+              $c = random(1,9,1);
+              $b = random(1,int(sqrt(4*$c))-1,1)*list_random(-1,1);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("x^2-$left")->reduce;
+              $right = $right->reduce;
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              Context("FiniteSolutionSets");
+              $solutions = Compute("no real solutions");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                </md>
+                Since we are asked to take the square root of a negative number, there are no real solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of x^2+bx+c=0 where b,c are rational and only one root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $s = non_zero_random(-9,9,1);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("x^2-$left")->reduce;
+              $right = $right->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)\left(<var name="$c"/>\right)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of x^2+bx+c=0 where roots are rational and neither root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              do {$s = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1 and $r != $s);
+              ($r,$s) = num_sort($r,$s);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("x^2-$left")->reduce;
+              $right = $right->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of x^2+bx+c=0 where b,c are integers, and there are irrational roots</description>
+            <pg-code>
+              do {
+                $c = non_zero_random(-9,9,1);
+                $b = ($c > 0) ? random(int(sqrt(4*$c))+1,9,1) : non_zero_random(-9,9,1);
+              } until (sqrt($b**2-4*$c) != int(sqrt($b**2-4*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("x^2-$left")->reduce;
+              $right = $right->reduce;
+              $disc = $b**2-4*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2);
+              $P = Fraction($pull,2);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of ax^2+bx+c=0 where a!=1,b,c are integers and there is no solution</description>
+            <pg-code>
+              $a = random(2,9,1);
+              $c = non_zero_random(1,9,1);
+              $b = random(1,int(sqrt(4*$a*$c))-1,1)*list_random(-1,1);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $left = Formula("$a x^2-$left")->reduce;
+              $right = $right->reduce;
+              $f = Formula("$a x^2 + $b x + $c")->reduce;
+              Context("FiniteSolutionSets");
+              $solutions = Compute("no real solutions");
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2(<var name="$a"/>)}</mrow>
+                </md>
+                Since we are asked to take the square root of a negative number, there are no real solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2=bx+c where b,c are rational and only one root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              $s = non_zero_random(-9,9,1);
+              ($r,$s) = num_sort($r,$s);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $left = Formula("x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2=bx+c where roots are rational and neither root is an integer</description>
+            <pg-code>
+              Context("Fraction");
+              do {$r = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1);
+              do {$s = Fraction(non_zero_random(-9,9,1),random(2,9,1))} until (($r->value)[1] != 1 and $r != $s);
+              ($r,$s) = num_sort($r,$s);
+              $b = -($r + $s);
+              $c = $r*$s;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              $left = Formula("x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$c;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of ax^2+bx+c=0 where a!=1,b,c are integers, and there are irrational roots</description>
+            <pg-code>
+              do {
+                ($a,$c) = (-9..-2,2..9)[NchooseK(18,2)];
+                $b = ($a*$c > 0) ? random(int(sqrt(4*$a*$c))+1,20,1) : non_zero_random(-9,9,1);
+              } until (sqrt($b**2-4*$a*$c) != int(sqrt($b**2-4*$a*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              ($left,$right) = (Formula("-$b x"),Formula("-$c"))[NchooseK(2,2)];
+              $f = Formula("$a x^2 + $b x + $c")->reduce;
+              $left = Formula("$a x^2-$left")->reduce;
+              $right = $right->reduce;
+              $disc = $b**2-4*$a*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2*$a);
+              $P = Fraction($pull,2*$a);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $a2 = 2*$a;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve x^2=bx+c where b,c are integers, and there are irrational roots</description>
+            <pg-code>
+              do {
+                $c = non_zero_random(-9,9,1);
+                $b = ($c > 0) ? random(int(sqrt(4*$c))+1,9,1) : non_zero_random(-9,9,1);
+              } until (sqrt($b**2-4*$c) != int(sqrt($b**2-4*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("x^2 + $b x + $c")->reduce;
+              $left = Formula("x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $disc = $b**2-4*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2);
+              $P = Fraction($pull,2);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*1*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=1</m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)(<var name="$c"/>)}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{2}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve ax^2=bx+c where a!=1,b,c are integers, and there are irrational roots</description>
+            <pg-code>
+              do {
+                ($a,$c) = (-9..-2,2..9)[NchooseK(18,2)];
+                $b = ($a*$c > 0) ? random(int(sqrt(4*$a*$c))+1,20,1) : non_zero_random(-9,9,1);
+              } until (sqrt($b**2-4*$a*$c) != int(sqrt($b**2-4*$a*$c)));
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$a x^2 + $b x + $c")->reduce;
+              $left = Formula("$a x^2")->reduce;
+              $right = Formula("-$b x - $c")->reduce;
+              $disc = $b**2-4*$a*$c;
+              $squarepart = 1;
+              $squarefree = $disc;
+              for $i (2,3,5,7) {
+                while ($squarefree % $i**2 == 0) {
+                  $squarepart *= $i**2;
+                  $squarefree /= $i**2;
+                }
+              }
+              $pull = sqrt($squarepart);
+              Context("Fraction");
+              $B = Fraction($b,2*$a);
+              $P = Fraction($pull,2*$a);
+              if ($P == 1) {$P = ''};
+              if ($pull == 1) {$pull = ''};
+              $negb = -$b;
+              $a2 = 2*$a;
+              $bsquared = ($b)**2;
+              $discriminant = ($b)**2 - 4*$a*$c;
+              Context("FiniteSolutionSets");
+              ($r,$s) = (Formula("-$B - $P sqrt($squarefree)"),Formula("-$B + $P sqrt($squarefree)"));
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                To use the quadratic formula, we write the equation in standard form:
+                <me><var name="$f"/>=0</me>
+                and identify <m>a=<var name="$a"/></m>, <m>b=<var name="$b"/></m>, and <m>c=<var name="$c"/></m>.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$pull"/>\sqrt{<var name="$squarefree"/>}}{<var name="$a2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+      </exercisegroup>
 
-        <solution permid="XkS">
-          <p permid="oSX">
-            To solve a quadratic equation of the form <m>ax^{2}+bx+c=0</m>,
-            we can use the quadratic formula.
-            In this case, <m>a=m</m>, <m>b=n</m>, and <m>c=p</m>.
-            Thus, the solutions are<m>\frac{-n + \sqrt{n^{2}-4mp}}{2m}, \frac{-n - \sqrt{n^{2}-4mp}}{2m}</m>,
-            or <m>\frac{-n \pm \sqrt{n^{2}-4mp}}{2m}</m>.
+      <exercisegroup cols="2">
+        <title>Radical Equations That Give Rise to Quadratic Equations</title>
+        <introduction>
+          <p>
+            Solve the equation.
           </p>
-        </solution>
-      </webwork>
-    </exercise>
+        </introduction>
+        <exercise>
+          <webwork>
+            <description>Solve sqrt(x)=mx+b, where there are two integer solutions</description>
+            <pg-code>
+              $rs = list_random([1,4],[1,9],[1,16],[4,9],[4,16],[9,16]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              Context("Fraction");
+              $m = Fraction(sqrt($s)-sqrt($r),$s-$r);
+              $b = Fraction(sqrt($r) - $m*$r);
+              $a = lcm(($m->value)[1],($b->value)[1]);
+              $am = $a*$m;
+              $ab = $a*$b;
+              $left = Formula("$a sqrt(x)")->reduce;
+              $right = Formula("$am x + $ab")->reduce;
+              $leftsquared = Formula("$a^2 x")->reduce;
+              $rightsquared = Formula("($am)^2 x^2 + 2*$am*$ab x + ($ab)^2")->reduce;
+              $A = $am*$am;
+              $B = 2*$am*$ab - $a*$a;
+              $C = $ab*$ab;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r,$s}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negB"/>-<var name="$sqrtdisc"/>}{<var name="$A2"/>}\quad\text{or}\quad x=\frac{<var name="$negB"/>+<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The only possible solutions are <m><var name="$r"/></m> and <m><var name="$s"/></m>.
+                They each check as valid solutions in the original equation,
+                so the solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve sqrt(x)=mx+b, where there is one (non-repeated) integer solution and one extraneous solution</description>
+            <pg-code>
+              $rs = list_random([1,4],[1,9],[1,16],[4,9],[4,16],[9,16]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              ($r,$s) = (random(0,1,1) ? ($r,$s) : ($s,$r));
+              ($low,$high) = num_sort($r,$s);
+              Context("Fraction");
+              # (r,sqrt(r)) and (s,-sqrt(s))
+              $m = Fraction(-sqrt($s)-sqrt($r),$s-$r);
+              $b = Fraction(sqrt($r) - $m*$r);
+              $a = lcm(($m->value)[1],($b->value)[1]);
+              $am = $a*$m;
+              $ab = $a*$b;
+              $left = Formula("$a sqrt(x)")->reduce;
+              $right = Formula("$am x + $ab")->reduce;
+              $leftsquared = Formula("$a^2 x")->reduce;
+              $rightsquared = Formula("($am)^2 x^2 + 2*$am*$ab x + ($ab)^2")->reduce;
+              $A = $am*$am;
+              $B = 2*$am*$ab - $a*$a;
+              $C = $ab*$ab;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$r}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negB"/>-<var name="$sqrtdisc"/>}{<var name="$A2"/>}\quad\text{or}\quad x=\frac{<var name="$negB"/>+<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=<var name="$low"/>\quad\text{or}\quad x=<var name="$high"/></mrow>
+                </md>
+                The only possible solutions are <m><var name="$low"/></m> and <m><var name="$high"/></m>.
+                But if we check the original equation, we find that <m><var name="$r"/></m> is a soluiton,
+                but <m><var name="$s"/></m> is not.
+                So the solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve sqrt(x)=mx+b, where there are no solutions because of a negative discriminant</description>
+            <pg-code>
+              $rs = list_random([1,4],[1,9],[1,16],[4,9],[4,16],[9,16]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              Context("Fraction");
+              # (r,sqrt(r)+1) and (s,sqrt(s)+1)   guarantees no solution
+              $yr = sqrt($r)+random(1,2,1);
+              $ys = sqrt($s)+random(1,2,1);
+              $m = Fraction($ys-$yr,$s-$r);
+              $b = Fraction($yr - $m*$r);
+              $a = lcm(($m->value)[1],($b->value)[1]);
+              $am = $a*$m;
+              $ab = $a*$b;
+              $left = Formula("$a sqrt(x)")->reduce;
+              $right = Formula("$am x + $ab")->reduce;
+              $leftsquared = Formula("$a^2 x")->reduce;
+              $rightsquared = Formula("($am)^2 x^2 + 2*$am*$ab x + ($ab)^2")->reduce;
+              $A = $am*$am;
+              $B = 2*$am*$ab - $a*$a;
+              $C = $ab*$ab;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              Context("FiniteSolutionSets");
+              $solutions = Compute("no real solution");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                </md>
+                Since we would need to take the square root of a negative number, there is no solution.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve sqrt(x)=mx+b, where there are no solutions becasue there are two extraneous solutions</description>
+            <pg-code>
+              $rs = list_random([1,4],[1,9],[1,16],[4,9],[4,16],[9,16]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              Context("Fraction");
+              Context()->noreduce('(-x)-y');
+              # (r,-sqrt(r)) and (s,-sqrt(s))
+              $m = Fraction(-sqrt($s)+sqrt($r),$s-$r);
+              $b = Fraction(-sqrt($r) - $m*$r);
+              $a = lcm(($m->value)[1],($b->value)[1]);
+              $am = $a*$m;
+              $ab = $a*$b;
+              $left = Formula("$a sqrt(x)")->reduce;
+              $right = Formula("$am x + $ab")->reduce;
+              $leftsquared = Formula("$a^2 x")->reduce;
+              $rightsquared = Formula("($am)^2 x^2 + 2*$am*$ab x + ($ab)^2")->reduce;
+              $A = $am*$am;
+              $B = 2*$am*$ab - $a*$a;
+              $C = $ab*$ab;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              $solutions = Compute("no real solution");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negB"/>-<var name="$sqrtdisc"/>}{<var name="$A2"/>}\quad\text{or}\quad x=\frac{<var name="$negB"/>+<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+                </md>
+                The only possible solutions are <m><var name="$r"/></m> and <m><var name="$s"/></m>.
+                But if we check the original equation, we find that neither of them actually work.
+                So there are no solutions.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve sqrt(nx+c)=mx+b, where there are two integer solutions</description>
+            <pg-code>
+              # unshifted $r, $s, possibilities for $n
+              $rs = list_random([1,4,[3]],[1,9,[2,4,8]],[1,16,[3,5]],[4,9,[5]],[4,16,[2,3,4,6,12]],[9,16,[7]]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              $n = list_random(@{$rs->[2]});
+              # shift c such that n divides (r-c)
+              $c = $r - $n*non_zero_random(-3,3,1);
+              Context("Fraction");
+              $m = Fraction(sqrt($s)-sqrt($r),$s-$r);
+              $b = Fraction(sqrt($r) - $m*$r);
+              $newm = $m*$n;
+              $newb = $m*$c+$b;
+              $a = lcm(($newm->value)[1],($newb->value)[1]);
+              $anewm = $a*$newm;
+              $anewb = $a*$newb;
+              $left = Formula("$a sqrt($n x + $c)")->reduce;
+              $right = Formula("$anewm x + $anewb")->reduce;
+              $leftsquared = Formula("$a^2($n x + $c)")->reduce;
+              $leftsquaredexpanded = Formula("$a^2*$n x + $a^2*$c")->reduce;
+              $rightsquared = Formula("($anewm)^2 x^2 + 2*$anewm*$anewb x + ($anewb)^2")->reduce;
+              $A = ($anewm)**2;
+              $B = 2*$anewm*$anewb - $a*$a*$n;
+              $C = ($anewb)**2 - $a*$a*$c;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              Context("FiniteSolutionSets");
+              ($sol1,$sol2) = map{($_-$c)/$n}($r,$s);
+              $solutions = Formula("{$sol1,$sol2}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$left"/>=<var name="$right"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow><var name="$leftsquaredexpanded"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negB"/>-<var name="$sqrtdisc"/>}{<var name="$A2"/>}\quad\text{or}\quad x=\frac{<var name="$negB"/>+<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=<var name="$sol1"/>\quad\text{or}\quad x=<var name="$sol2"/></mrow>
+                </md>
+                The only possible solutions are <m><var name="$sol1"/></m> and <m><var name="$sol2"/></m>.
+                They each check as valid solutions in the original equation,
+                so the solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of sqrt(nx+c)=mx+b, where there are two rational solutions</description>
+            <pg-code>
+              # unshifted $r, $s
+              $rs = list_random([1,4],[1,9],[1,16],[4,9],[4,16],[9,16]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              if ($r % 2 != $s % 2 and $r % 3 != $s % 3) {$n = random(2,3,1)}
+              elsif ($r % 2 != $s % 2) {$n = 2}
+              elsif ($r % 3 != $s % 3) {$n = 3}
+              else {$n = 5};
+              # shift c such that n divides (r-c)
+              $c = $r - non_zero_random(-3,3,1);
+              Context("Fraction");
+              $m = Fraction(sqrt($s)-sqrt($r),$s-$r);
+              $b = Fraction(sqrt($r) - $m*$r);
+              $newm = $m*$n;
+              $newb = $m*$c+$b;
+              $a = lcm(($newm->value)[1],($newb->value)[1]);
+              $anewm = $a*$newm;
+              $anewb = $a*$newb;
+              ($origleft,$origright) = (Formula("$anewm x")->reduce,Formula("$anewb"))[NchooseK(2,2)];
+              $origleft = Formula("$a sqrt($n x + $c)-$origleft")->reduce;
+              $left = Formula("$a sqrt($n x + $c)")->reduce;
+              $right = Formula("$anewm x + $anewb")->reduce;
+              $leftsquared = Formula("$a^2($n x + $c)")->reduce;
+              $leftsquaredexpanded = Formula("$a^2*$n x + $a^2*$c")->reduce;
+              $rightsquared = Formula("($anewm)^2 x^2 + 2*$anewm*$anewb x + ($anewb)^2")->reduce;
+              $A = ($anewm)**2;
+              $B = 2*$anewm*$anewb - $a*$a*$n;
+              $C = ($anewb)**2 - $a*$a*$c;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              ($sol1,$sol2) = map{Fraction($_-$c,$n)}($r,$s);
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$sol1,$sol2}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$origleft"/>=<var name="$origright"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we arrange so the radical term is the only term on one side.
+                <md>
+                  <mrow><var name="$origleft"/>\amp=<var name="$origright"/></mrow>
+                  <mrow><var name="$left"/>\amp=<var name="$right"/></mrow>
+                </md>
+                Now we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow><var name="$leftsquaredexpanded"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negB"/>-<var name="$sqrtdisc"/>}{<var name="$A2"/>}\quad\text{or}\quad x=\frac{<var name="$negB"/>+<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=<var name="$sol1"/>\quad\text{or}\quad x=<var name="$sol2"/></mrow>
+                </md>
+                The only possible solutions are <m><var name="$sol1"/></m> and <m><var name="$sol2"/></m>.
+                They each check as valid solutions in the original equation,
+                so the solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+        <exercise>
+          <webwork>
+            <description>Solve a rearrangement of sqrt(nx+c)=mx+b, where there is only one (non-repeated) solution and it is rational, non-integer</description>
+            <pg-code>
+              # unshifted $r, $s
+              $rs = list_random([1,4],[1,9],[1,16],[4,9],[4,16],[9,16]);
+              ($r,$s) = ($rs->[0],$rs->[1]);
+              if ($r % 2 != $s % 2 and $r % 3 != $s % 3) {$n = random(2,3,1)}
+              elsif ($r % 2 != $s % 2) {$n = 2}
+              elsif ($r % 3 != $s % 3) {$n = 3}
+              else {$n = 5};
+              # shift c such that n divides (r-c)
+              $c = $r - non_zero_random(-3,3,1);
+              Context("Fraction");
+              #(r,sqrt(r)) and (s,-sqrt(s))
+              $m = Fraction(-sqrt($s)-sqrt($r),$s-$r);
+              $b = Fraction(sqrt($r) - $m*$r);
+              $newm = $m*$n;
+              $newb = $m*$c+$b;
+              $a = lcm(($newm->value)[1],($newb->value)[1]);
+              $anewm = $a*$newm;
+              $anewb = $a*$newb;
+              ($origleft,$origright) = (Formula("$anewm x")->reduce,Formula("$anewb"))[NchooseK(2,2)];
+              $origleft = Formula("$a sqrt($n x + $c)-$origleft")->reduce;
+              $left = Formula("$a sqrt($n x + $c)")->reduce;
+              $right = Formula("$anewm x + $anewb")->reduce;
+              $leftsquared = Formula("$a^2($n x + $c)")->reduce;
+              $leftsquaredexpanded = Formula("$a^2*$n x + $a^2*$c")->reduce;
+              $rightsquared = Formula("($anewm)^2 x^2 + 2*$anewm*$anewb x + ($anewb)^2")->reduce;
+              $A = ($anewm)**2;
+              $B = 2*$anewm*$anewb - $a*$a*$n;
+              $C = ($anewb)**2 - $a*$a*$c;
+              $f = Formula("$A x^2 + $B x + $C")->reduce;
+              $negB = -$B;
+              $Bsquared = $B*$B;
+              $discriminant = $Bsquared - 4*$A*$C;
+              $A2 = 2*$A;
+              $sqrtdisc = Fraction(sqrt($discriminant));
+              ($sol1,$sol2) = map{Fraction($_-$c,$n)}($r,$s);
+              Context("FiniteSolutionSets");
+              $solutions = Formula("{$sol1}");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$origleft"/>=<var name="$origright"/></m>
+              </p>
+              <instruction>
+                If you need to enter a square root like <m>\sqrt{17}</m>, type <c>sqrt(17)</c>.
+                If there is no real solution, enter <c>no real solution</c>.
+              </instruction>
+              <p>
+                <var name="$solutions" width="40"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                First we arrange so the radical term is the only term on one side.
+                <md>
+                  <mrow><var name="$origleft"/>\amp=<var name="$origright"/></mrow>
+                  <mrow><var name="$left"/>\amp=<var name="$right"/></mrow>
+                </md>
+                Now we square each side to obtain a quadratic equation.
+                Then we can rearrange that into standard form.
+                <md>
+                  <mrow>\left(<var name="$left"/>\right)^2\amp=\left(<var name="$right"/>\right)^2</mrow>
+                  <mrow><var name="$leftsquared"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow><var name="$leftsquaredexpanded"/>\amp=<var name="$rightsquared"/></mrow>
+                  <mrow>0\amp=<var name="$f"/></mrow>
+                </md>
+                Now we can identify <m>a=<var name="$A"/></m>, <m>b=<var name="$B"/></m>, and <m>c=<var name="$C"/></m>,
+                and apply the quadratic formula.
+                <md>
+                  <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$Bsquared"/>-4\left(<var name="$A"/>\right)\left(<var name="$C"/>\right)}}{2\left(<var name="$A"/>\right)}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$A2"/>}</mrow>
+                  <mrow>\amp=\frac{<var name="$negB"/>\pm<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=\frac{<var name="$negB"/>-<var name="$sqrtdisc"/>}{<var name="$A2"/>}\quad\text{or}\quad x=\frac{<var name="$negB"/>+<var name="$sqrtdisc"/>}{<var name="$A2"/>}</mrow>
+                  <mrow>x\amp=<var name="$sol1"/>\quad\text{or}\quad x=<var name="$sol2"/></mrow>
+                </md>
+                The only possible solutions are <m><var name="$sol1"/></m> and <m><var name="$sol2"/></m>.
+                We can check that <m><var name="$sol1"/></m> solves the original equation,
+                but <m><var name="$sol2"/></m> does not.
+                So the solution set is <m><var name="$solutions"/></m>.
+              </p>
+            </solution>
+          </webwork>
+        </exercise>
+        <!-- TODO: copy the above problem -->
+      </exercisegroup>
+    </subexercises>
 
+    <subexercises>
+      <title>Applications</title>
+      <m>$</m>
+      <exercise>
+        <webwork>
+          <description>Find time for falling object to hit ground after upward throw from elevation using SI units.</description>
+          <pg-code>
+            $g = -9.8;
+            $gU = NumberWithUnits("$g m/s^2");
+            $h = random(4,12,1);
+            $hU = NumberWithUnits("$h m");
+            $v = random(10,26,1);
+            $vU = NumberWithUnits("$v m/s");
+            Context()->variables->are(t=>'Real');
+            $a = $g/2;
+            $b = $v;
+            $c = $h+2;
+            $f = Formula("$a t^2 + $b t + $c");
+            $s = Real((-$b + sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $t = Real((-$b - sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $tU = NumberWithUnits("$t s");
+            $negb = -$b;
+            $discriminant = $b**2 - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+          </pg-code>
+          <statement>
+            <p>
+              While standing on a rooftop that is <var name="$hU"/> high off the ground,
+              you throw a tennis ball off the roof in an arc. Because of the speed that you throw the ball,
+              its height from the ground, in meters, <m>t</m> seconds after the throw is <m><var name="$f"/></m>.
+              How long will it be until the ball hits the ground?
+            </p>
+            <p>
+              <var name="$tU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              When the ball hits the ground, the height will be <m>0</m>.
+              So we must solve the equation <m><var name="$f"/>=0</m>.
+              Using the quadratic formula:
+              <md>
+                <mrow>t\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$b"/>^2-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad t\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx<var name="$t"/>\quad\text{or}\quad t\approx<var name="$s"/></mrow>
+              </md>
+              Only the solution <m>t\approx<var name="$t"/></m> makes sense in this situation.
+              So it will takes <m><var name="$tU"/></m> for the ball to hit the ground.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find time for falling object to hit ground after upward throw from elevation using American units.</description>
+          <pg-code>
+            $g = -32;
+            $gU = NumberWithUnits("$g ft/s^2");
+            $h = random(16,42,1);
+            $hU = NumberWithUnits("$h ft");
+            $v = random(1.5,4,0.1);
+            $vU = NumberWithUnits("$v ft/s");
+            Context()->variables->are(t=>'Real');
+            $a = $g/2;
+            $b = $v;
+            $c = $h;
+            $f = Formula("$a t^2 + $b t + $c");
+            $s = Real((-$b + sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $t = Real((-$b - sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $tU = NumberWithUnits("$t s");
+            $negb = -$b;
+            $discriminant = $b**2 - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+          </pg-code>
+          <statement>
+            <p>
+              While standing on a tree branch that is <var name="$hU"/> high off the ground, a squirrel kicks a nut in an arc.
+              The nut falls cleanly to the ground without hitting anything on the way down.
+              While the nut is in the air,
+              its height from the ground, in feet, <m>t</m> seconds after the kick is <m><var name="$f"/></m>.
+              How long will it be until the nut hits the ground?
+            </p>
+            <p>
+              <var name="$tU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              When the nut hits the ground, the height will be <m>0</m>.
+              So we must solve the equation <m><var name="$f"/>=0</m>.
+              Using the quadratic formula:
+              <md>
+                <mrow>t\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$b"/>^2-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad t\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx<var name="$t"/>\quad\text{or}\quad t\approx<var name="$s"/></mrow>
+              </md>
+              Only the solution <m>t\approx<var name="$t"/></m> makes sense in this situation.
+              So it will takes <m><var name="$tU"/></m> for the ball to hit the ground.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find time for falling object on the moon to hit ground after upward throw from elevation using SI units.</description>
+          <pg-code>
+            $g = -1.62;
+            $gU = NumberWithUnits("$g m/s^2");
+            $h = random(2,8,1);
+            $hU = NumberWithUnits("$h m");
+            $v = random(1,2,0.1);
+            $vU = NumberWithUnits("$v m/s");
+            Context()->variables->are(t=>'Real');
+            $a = $g/2;
+            $b = $v;
+            $c = $h+2;
+            $f = Formula("$a t^2 + $b t + $c");
+            $s = Real((-$b + sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $t = Real((-$b - sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $tU = NumberWithUnits("$t s");
+            $negb = -$b;
+            $discriminant = $b**2 - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+          </pg-code>
+          <statement>
+            <p>
+              An astronaut on the moon makes a running jump off a cliff onto a broad flat plain.
+              The clifftop is <var name="$hU"/> higher than the plain. Because of the slight upward jump,
+              the astronaut's height from the plain, in meters, <m>t</m> seconds after the jump is <m><var name="$f"/></m>.
+              How long will it be until the astronaut lands in the plain?
+            </p>
+            <p>
+              <var name="$tU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              When the astronaut lands, the height will be <m>0</m>.
+              So we must solve the equation <m><var name="$f"/>=0</m>.
+              Using the quadratic formula:
+              <md>
+                <mrow>t\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$b"/>^2-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad t\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx<var name="$t"/>\quad\text{or}\quad t\approx<var name="$s"/></mrow>
+              </md>
+              Only the solution <m>t\approx<var name="$t"/></m> makes sense in this situation.
+              So it will takes <m><var name="$tU"/></m> for the astronaut to land.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find time for falling object on Mars to hit ground after upward throw from elevation using SI units.</description>
+          <pg-code>
+            $g = -3.7;
+            $gU = NumberWithUnits("$g m/s^2");
+            $h = random(10,20,1);
+            $hU = NumberWithUnits("$h m");
+            $v = random(2,4,0.1);
+            $vU = NumberWithUnits("$v m/s");
+            Context()->variables->are(t=>'Real');
+            $a = $g/2;
+            $b = $v;
+            $c = $h+2;
+            $f = Formula("$a t^2 + $b t + $c");
+            $s = Real((-$b + sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $t = Real((-$b - sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $tU = NumberWithUnits("$t s");
+            $negb = -$b;
+            $discriminant = $b**2 - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+          </pg-code>
+          <statement>
+            <p>
+              An robot on Mars makes a running jump off a cliff onto a broad flat plain.
+              The clifftop is <var name="$hU"/> higher than the plain. Because of the slight upward jump,
+              the robot's height from the plain, in meters, <m>t</m> seconds after the jump is <m><var name="$f"/></m>.
+              How long will it be until the robot lands in the plain?
+            </p>
+            <p>
+              <var name="$tU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              When the robot lands, the height will be <m>0</m>.
+              So we must solve the equation <m><var name="$f"/>=0</m>.
+              Using the quadratic formula:
+              <md>
+                <mrow>t\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$b"/>^2-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad t\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>t\amp\approx<var name="$t"/>\quad\text{or}\quad t\approx<var name="$s"/></mrow>
+              </md>
+              Only the solution <m>t\approx<var name="$t"/></m> makes sense in this situation.
+              So it will takes <m><var name="$tU"/></m> for the robot to land.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find dimensions of a rectangular wall with known area and one dimension is known to be so many m longer than then other.</description>
+          <pg-code>
+            $h = random(8,12,0.25);
+            $hU = NumberWithUnits("$h ft");
+            $w = random(16,32,4);
+            $extra = $w-$h;
+            $extraU = NumberWithUnits("$extra ft");
+            $area = $h*$w;
+            $areaU = NumberWithUnits("$area ft^2");
+            Context()->variables->are(h=>'Real');
+            $widthformula = Formula("h+$extra");
+            $areaformula = Formula("h(h+$extra)");
+            $a = 1;
+            $b = $extra;
+            $c = -$area;
+            $f = Formula("$a h^2 + $b h + $c")->reduce;
+            $s = Real((-$b + sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $t = Real((-$b - sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $sU = NumberWithUnits("$s ft");
+            $negb = -$b;
+            $discriminant = $b**2 - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+          </pg-code>
+          <statement>
+            <p>
+              One rectangular wall in your classroom is <m><var name="$extraU"/></m> longer than it is tall.
+              The total area of the wall is <m><var name="$areaU"/></m>. How tall is the wall?
+            </p>
+            <p>
+              <var name="$hU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              The area of a rectangle is given by multipying its two dimensions.
+              If we let <m>h</m> stand for the height of the wall,
+              then <m><var name="$widthformula"/></m> is the width,
+              and the total area is <m><var name="$areaformula"/></m>.
+              So we must solve the equation <m><var name="$areaformula"/>=<var name="$area"/></m>.
+            </p>
+            <p>
+              After multiplying and moving to standard form, we have <m><var name="$f"/>=0</m>.
+              Using the quadratic formula:
+              <md>
+                <mrow>h\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$b"/>^2-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>h\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad h=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>h\amp=<var name="$t"/>\quad\text{or}\quad h=<var name="$s"/></mrow>
+              </md>
+              Only the solution <m>t\approx<var name="$s"/></m> makes sense in this situation.
+              The wall is <m><var name="$sU"/></m> tall.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find dimensions of a rectangular floor with known area and one dimension is known to be so many ft longer than then other.</description>
+          <pg-code>
+            $w = random(8,12,0.25);
+            $wU = NumberWithUnits("$w m");
+            $l = random(16,32,4);
+            $extra = $l-$w;
+            $extraU = NumberWithUnits("$extra m");
+            $area = $w*$l;
+            $areaU = NumberWithUnits("$area m^2");
+            Context()->variables->are(w=>'Real');
+            $lengthformula = Formula("w+$extra");
+            $areaformula = Formula("w(w+$extra)");
+            $a = 1;
+            $b = $extra;
+            $c = -$area;
+            $f = Formula("$a w^2 + $b w + $c")->reduce;
+            $s = Real((-$b + sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $t = Real((-$b - sqrt(($b)**2 - 4*$a*$c))/(2*$a));
+            $sU = NumberWithUnits("$s m");
+            $negb = -$b;
+            $discriminant = $b**2 - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+          </pg-code>
+          <statement>
+            <p>
+              The rectangular floor of your classroom is <m><var name="$extraU"/></m> longer than it is wide.
+              The total floor area is <m><var name="$areaU"/></m>. How wide is the floor? (This is asking for the shorter dimension.)
+            </p>
+            <p>
+              <var name="$hU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              The area of a rectangle is given by multipying its two dimensions.
+              If we let <m>w</m> stand for the width of the floor (the shorter dimension),
+              then <m><var name="$lengthformula"/></m> is the length,
+              and the total area is <m><var name="$areaformula"/></m>.
+              So we must solve the equation <m><var name="$areaformula"/>=<var name="$area"/></m>.
+            </p>
+            <p>
+              After multiplying and moving to standard form, we have <m><var name="$f"/>=0</m>.
+              Using the quadratic formula:
+              <md>
+                <mrow>h\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$b"/>^2-4\left(<var name="$a"/>\right)\left(<var name="$c"/>\right)}}{2\left(<var name="$a"/>\right)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>h\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad h=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>h\amp=<var name="$t"/>\quad\text{or}\quad h=<var name="$s"/></mrow>
+              </md>
+              Only the solution <m>t\approx<var name="$s"/></m> makes sense in this situation.
+              The floor is <m><var name="$sU"/></m> wide.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find width of a picture frame for given rectangular image dimensions with fixed frame area.</description>
+          <pg-code>
+            $h = random(25,60,5);
+            $hU = NumberWithUnits("$h cm");
+            $w = 1.6*$h;
+            $wU = NumberWithUnits("$w cm");
+            $s = random(2,5,1)+random(0.1,0.9,0.1);
+            $sU = NumberWithUnits("$s cm");
+            $area = int(($h+2*$s)*($w+2*$s) - $h*$w);
+            $areaU = NumberWithUnits("$area cm^2");
+            $a = 4;
+            $b = 2*($h+$w);
+            $c = -$area;
+            $surface = Formula("4x^2 + $b x")->reduce;
+            $f = Formula("4x^2 + $b x + $c")->reduce;
+            $negb = -$b;
+            $bsquared = $b*$b;
+            $discriminant = $bsquared - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+            $r = ($negb - $sqrtdisc)/$a2;
+            $s = ($negb + $sqrtdisc)/$a2;
+            $sU = NumberWithUnits("$s cm");
+            $gr = init_graph(0,0,160,100,size=>[240,150]);
+            $gr->moveTo(10,10);
+            $gr->lineTo(150,10,'black');
+            $gr->lineTo(150,90,'black');
+            $gr->lineTo(10,90,'black');
+            $gr->lineTo(10,10,'black');
+            $gr->moveTo(20,20);
+            $gr->lineTo(140,20,'black');
+            $gr->lineTo(140,80,'black');
+            $gr->lineTo(20,80,'black');
+            $gr->lineTo(20,20,'black');
+            $gr->moveTo(10,20);
+            $gr->lineTo(20,20,'black',1,'dashed');
+            $gr->lb(new Label(15,20,'x','black','center','bottom','large'));
+            $gr->moveTo(20,10);
+            $gr->lineTo(20,20,'black',1,'dashed');
+            $gr->lb(new Label(20,15,'x','black','left','middle','large'));
+            $gr->lb(new Label(80,20,$wU,'black','center','bottom','large'));
+            $gr->lb(new Label(20,50,$hU,'black','left','middle','large'));
+            $gr->fillRegion([15,15,"gray"]);
+            $gr->new_color("lightblue", 214,230,244);
+            $gr->fillRegion([80,50,"lightblue"]);
+          </pg-code>
+          <statement>
+            <p>
+              A metals factory will produce steel picture frames in the form of a rectagle with a smaller rectangle cut out,
+              as in the diagram. The widths of the four edges is to be consistent,
+              and leave a <m><var name="$wU"/></m> by <m><var name="$hU"/></m> visible area for photos and other images.
+              There is a standard thickness for the metal from which these frames will be cut,
+              and the manufacturer has a target weight in mind for the final product so that shipping costs will be kept low.
+              This leads to the decision that the surface area of the frame needs to be <m><var name="$areaU"/></m>.
+              How wide should the four edges be? (What is the value of <m>x</m> in the diagram?)
+            </p>
+            <image pg-name="$gr" width="40%"/>
+            <p>
+              <var name="$sU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We can find a formula for the surface area of the frame by taking the area of the outer rectangle
+              and subtracting the area of the inner rectangle. The outer rectangle's width is <m><var name="$w"/>+2x</m> centimeters.
+              Its height is <m><var name="$h"/>+2x</m> centimeters.
+              So its area is <m>(<var name="$w"/>+2x)(<var name="$h"/>+2x)</m> square centimeters.
+              The inner rectangle area is <m>(<var name="$w"/>)(<var name="$h"/>)</m> square centimeters.
+              So the surface area of the frame, in square centimeters,
+              is <m>(<var name="$w"/>+2x)(<var name="$h"/>+2x)-(<var name="$w"/>)(<var name="$h"/>)</m>,
+              which simplifies to <m><var name="$surface"/></m>.
+              So we must solve the equation <m><var name="$surface"/>=<var name="$area"/></m>.
+            </p>
+            <p>
+              Writing the quadratic equation in standard form, <m><var name="$f"/>=0</m>. Now we apply the quadratic formula.
+              <md>
+                <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp<var name="$r"/>\quad\text{or}\quad x\approx<var name="$s"/></mrow>
+              </md>
+              The possible solutions are <m><var name="$r"/></m> and <m><var name="$s"/></m>,
+              but only <m><var name="$s"/></m> makes sense in this context.
+              Each edge of the frame will be about <m><var name="$sU"/></m> wide.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find width of a grass frame for given rectangular garden dimensions with fixed frame area.</description>
+          <pg-code>
+            ($h,$w) = num_sort((8..20)[NchooseK(13,2)]);
+            $hU = NumberWithUnits("$h ft");
+            $wU = NumberWithUnits("$w ft");
+            $s = random(1,2,1)+random(0.1,0.9,0.1);
+            $sU = NumberWithUnits("$s ft");
+            $area = int(($h+2*$s)*($w+2*$s) - $h*$w);
+            $areaU = NumberWithUnits("$area ft^2");
+            $a = 4;
+            $b = 2*($h+$w);
+            $c = -$area;
+            $surface = Formula("4x^2 + $b x")->reduce;
+            $f = Formula("4x^2 + $b x + $c")->reduce;
+            $negb = -$b;
+            $bsquared = $b*$b;
+            $discriminant = $bsquared - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+            $r = ($negb - $sqrtdisc)/$a2;
+            $s = ($negb + $sqrtdisc)/$a2;
+            $sU = NumberWithUnits("$s ft");
+            $gr = init_graph(0,0,160,100,size=>[240,150]);
+            $gr->moveTo(10,10);
+            $gr->lineTo(150,10,'black');
+            $gr->lineTo(150,90,'black');
+            $gr->lineTo(10,90,'black');
+            $gr->lineTo(10,10,'black');
+            $gr->moveTo(20,20);
+            $gr->lineTo(140,20,'black');
+            $gr->lineTo(140,80,'black');
+            $gr->lineTo(20,80,'black');
+            $gr->lineTo(20,20,'black');
+            $gr->moveTo(10,20);
+            $gr->lineTo(20,20,'black',1,'dashed');
+            $gr->lb(new Label(15,20,'x','black','center','bottom','large'));
+            $gr->moveTo(20,10);
+            $gr->lineTo(20,20,'black',1,'dashed');
+            $gr->lb(new Label(20,15,'x','black','left','middle','large'));
+            $gr->lb(new Label(80,20,$wU,'black','center','bottom','large'));
+            $gr->lb(new Label(20,50,$hU,'black','left','middle','large'));
+            $gr->new_color("grass",86,125,70);
+            $gr->fillRegion([15,15,"grass"]);
+            $gr->new_color("dirt",155,118,83);
+            $gr->fillRegion([80,50,"dirt"]);
+          </pg-code>
+          <statement>
+            <p>
+              A vegetable garden will be surrounded by a frame of grass sod.
+              The garden itself will be <m><var name="$wU"/></m> by <m><var name="$hU"/></m>.
+              The widths of the four edges of the frame will be equal to each other.
+              There is only <m><var name="$areaU"/></m> of grass sod available, and it will all be used for this frame.
+              How wide should the four edges be? (What is the value of <m>x</m> in the diagram?)
+            </p>
+            <image pg-name="$gr" width="40%"/>
+            <p>
+              <var name="$sU" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We can find a formula for the surface area of the frame by taking the area of the outer rectangle
+              and subtracting the area of the inner rectangle. The outer rectangle's width is <m><var name="$w"/>+2x</m> feet.
+              Its height is <m><var name="$h"/>+2x</m> feet.
+              So its area is <m>(<var name="$w"/>+2x)(<var name="$h"/>+2x)</m> square feet.
+              The inner rectangle area is <m>(<var name="$w"/>)(<var name="$h"/>)</m> square feet.
+              So the surface area of the frame, in square feet,
+              is <m>(<var name="$w"/>+2x)(<var name="$h"/>+2x)-(<var name="$w"/>)(<var name="$h"/>)</m>,
+              which simplifies to <m><var name="$surface"/></m>.
+              So we must solve the equation <m><var name="$surface"/>=<var name="$area"/></m>.
+            </p>
+            <p>
+              Writing the quadratic equation in standard form, <m><var name="$f"/>=0</m>. Now we apply the quadratic formula.
+              <md>
+                <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp<var name="$r"/>\quad\text{or}\quad x\approx<var name="$s"/></mrow>
+              </md>
+              The possible solutions are <m><var name="$r"/></m> and <m><var name="$s"/></m>,
+              but only <m><var name="$s"/></m> makes sense in this context.
+              Each edge of the frame will be about <m><var name="$sU"/></m> wide.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find product price that leads to required profit, given a sales model as a function of price.</description>
+          <pg-code>
+            Context("Currency")->currency->addSymbol("dollars","dollar");
+            Context()->variables->are(p=>'Real');
+            Context()->flags->set(trimTrailingZeros=>1);
+            Context()->noreduce('(-x)+y','(-x)-y');
+            $initial = random(20000,40000,5000);
+            $initialC = Currency($initial);
+            $unit = random(6,10,0.5);
+            $unitC = Currency($unit);
+            $maxSales = 50000;
+            $desiredProfit = random(40000,60000,10000);
+            $desiredProfitC = Currency($desiredProfit);
+            # no one will buy it for $50;
+            $rate = $maxSales/50;
+            $sales = Formula("$maxSales - $rate p")->reduce;
+            $revenue = Formula("-$rate p^2 + $maxSales p")->reduce;
+            $costs = Formula("-$rate*$unit p + ($maxSales*$unit + $initial)")->reduce;
+            $a = -$rate;
+            $b = $maxSales + $rate*$unit;
+            $c = -($maxSales*$unit + $initial) - $desiredProfit;
+            $profit = Formula("$a p^2 + $b p - ($maxSales*$unit + $initial)")->reduce;
+            $f = Formula("$a p^2 + $b p + $c")->reduce;
+            $negb = -$b;
+            $bsquared = $b*$b;
+            $discriminant = $bsquared - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+            $r = ($negb - $sqrtdisc)/$a2;
+            $s = ($negb + $sqrtdisc)/$a2;
+            $rC = Currency(Round($r,2));
+          </pg-code>
+          <statement>
+            <p>
+              You are ready to self-publish a book online.
+              It has cost you <m><var name="$initialC"/></m> to get to this point, including hours of labor and printing equipment.
+              To actually print and mail one copy costs you <m><var name="$unitC"/></m>.
+              If the book were free, you estimate <m><var name="$maxSales"/></m> would order a copy.
+              If you increase the price to <m>p</m> dollars per book you will have fewer orders,
+              and after studying similar book sales you estimate you would have <m><var name="$sales"/></m> sales.
+              What is the largest price that you could set to end up with a profit of <m><var name="$desiredProfitC"/></m>?
+            </p>
+            <p>
+              <var name="$rC" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              If you set the price at <m>p</m> dollars per book, your revenue will be <m>(\text{number sold})\cdot\text{price}</m>,
+              which is <m>(<var name="$sales"/>)p</m>, which simplifies to <m><var name="$revenue"/></m>.
+              But your costs will be <m>\text{initial costs} + (\text{number sold})(\text{cost to print and mail})</m>,
+              which is <m><var name="$initial"/> + (<var name="$sales"/>)(<var name="$unit"/>)</m>,
+              which simplifies to <m><var name="$costs"/></m>.
+            </p>
+            <p>
+              So your profit will be revenue minus costs, which is <m><var name="$revenue"/>-\left(<var name="$costs"/>\right)</m>,
+              which simplifies to <m><var name="$profit"/></m>.
+              We need to solve the equation <m><var name="$profit"/>=<var name="$desiredProfit"/></m>.
+              In standard form, this is <m><var name="$f"/>=0</m>, and the quadratic formula says:
+              <md>
+                <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp<var name="$r"/>\quad\text{or}\quad x\approx<var name="$s"/></mrow>
+              </md>
+              The possible solutions are <m><var name="$r"/></m> and <m><var name="$s"/></m>.
+              They are both valid solutions,
+              but the question was to find the <em>largest</em> price we could set to reach a profit of <m><var name="$desiredProfitC"/></m>.
+              So we should set the price to be <m><var name="$rC"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>Find product price that leads to required profit, given a sales model as a function of price.</description>
+          <pg-code>
+            Context("Currency")->currency->addSymbol("dollars","dollar");
+            Context()->variables->are(p=>'Real');
+            Context()->flags->set(trimTrailingZeros=>1,tolerance=>100);
+            Context()->noreduce('(-x)+y','(-x)-y');
+            Context()->{format}{number} = "%.11g";
+            $initial = random(300,800,100)*10**6;
+            $initialC = Currency($initial/10**6);
+            $unit = random(40,60,10)*10**3;
+            $unitC = Currency($unit/10**3);
+            $maxSales = 1000000;
+            $desiredProfit = random(1,2,1)*10**9;
+            $desiredProfitC = Currency($desiredProfit/10**9);
+            # no one will buy it for $250000;
+            $rate = $maxSales/250000;
+            $sales = Formula("$maxSales - $rate p")->reduce;
+            $revenue = Formula("-$rate p^2 + $maxSales p")->reduce;
+            $costs = Formula("-$rate*$unit p + ($maxSales*$unit + $initial)")->reduce;
+            $a = -$rate;
+            $b = $maxSales + $rate*$unit;
+            $c = -($maxSales*$unit + $initial) - $desiredProfit;
+            $profit = Formula("$a p^2 + $b p - ($maxSales*$unit + $initial)")->reduce;
+            $f = Formula("$a p^2 + $b p + $c")->reduce;
+            $negb = -$b;
+            $bsquared = $b*$b;
+            $discriminant = $bsquared - 4*$a*$c;
+            $sqrtdisc = Real(sqrt($discriminant));
+            $a2 = 2*$a;
+            $r = ($negb - $sqrtdisc)/$a2;
+            $s = ($negb + $sqrtdisc)/$a2;
+            $sC = Currency(Round($s,2));
+          </pg-code>
+          <statement>
+            <p>
+              A new electric car company is ready to sell its debut model.
+              It has cost the company <m><var name="$initialC"/></m> million to set up a production line and be ready to produce cars.
+              To actually build and deliver one of the new models costs <m><var name="$unitC"/></m> thousand.
+              Studying the current state of the electric car market,
+              you estimate that if you charge each customer <m>p</m> dollars, you would have <m><var name="$sales"/></m> sales.
+              What is the lowest price that you could set to end up with a profit of <m><var name="$desiredProfitC"/></m> billion?
+            </p>
+            <p>
+              <var name="$sC" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              If you set the price at <m>p</m> dollars per car, your revenue will be <m>(\text{number sold})\cdot\text{price}</m>,
+              which is <m>(<var name="$sales"/>)p</m>, which simplifies to <m><var name="$revenue"/></m>.
+              But your costs will be <m>\text{initial costs} + (\text{number sold})(\text{cost to print and mail})</m>,
+              which is <m><var name="$initial"/> + (<var name="$sales"/>)(<var name="$unit"/>)</m>,
+              which simplifies to <m><var name="$costs"/></m>.
+            </p>
+            <p>
+              So your profit will be revenue minus costs, which is <m><var name="$revenue"/>-\left(<var name="$costs"/>\right)</m>,
+              which simplifies to <m><var name="$profit"/></m>.
+              We need to solve the equation <m><var name="$profit"/>=<var name="$desiredProfit"/></m>.
+              In standard form, this is <m><var name="$f"/>=0</m>, and the quadratic formula says:
+              <md>
+                <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp\approx\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x\approx\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\approx\amp<var name="$r"/>\quad\text{or}\quad x\approx<var name="$s"/></mrow>
+              </md>
+              The possible solutions are <m><var name="$r"/></m> and <m><var name="$s"/></m>.
+              They are both valid solutions,
+              but the question was to find the <em>lowest</em> price we could set to reach a profit of <m><var name="$desiredProfitC"/></m>.
+              So we should set the price to be <m><var name="$sC"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>If you add this to a number, and subtract that from the same number, and multiply the results, you get this. What was the original number?</description>
+          <pg-code>
+            Context("Fraction");
+            do {$r = Fraction(list_random(-9..-1),random(2,3,1))} until (($r->value)[1] != 1);
+            do {$s = Fraction(list_random(1..9),random(2,3,1))} until (($r->value)[1] != 1);
+            $a = 1;
+            $b = -($r + $s);
+            $c = $r*$s;
+            Context()->noreduce('(-x)-y','(-x)+y');
+            $f = Formula("x^2+$b x+$c")->reduce;
+            $negb = -$b;
+            $bsquared = ($b)**2;
+            $discriminant = ($b)**2 - 4*1*$c;
+            $sqrtdisc = Fraction(sqrt($discriminant));
+            $sub = random(1,3,1);
+            $add = -$r - $s + $sub;
+            $as = $add*$sub;
+            $product = -$as - $c;
+          </pg-code>
+          <statement>
+            <p>
+              If you add <m><var name="$add"/></m> to a certain positive number,
+              then also subtract <m><var name="$sub"/></m> from that same number,
+              and multiply the results, you get <m><var name="$product"/></m>.
+              What was the original number?
+            </p>
+            <p>
+              <var name="$s" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Let <m>x</m> be the mystery number.
+              We are told that <m>\left(x+<var name="$add"/>\right)\left(x-<var name="$sub"/>\right)=<var name="$product"/></m>.
+              So
+              <md>
+                <mrow>x^2-<var name="$sub"/>x + <var name="$add"/>x - <var name="$as"/>\amp=<var name="$product"/></mrow>
+                <mrow><var name="$f"/>\amp=0</mrow>
+              </md>
+              Now we can apply the quadratic formula:
+              <md>
+                <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(1)\left(<var name="$c"/>\right)}}{2}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{2}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{2}</mrow>
+                <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{2}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{2}</mrow>
+                <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+              </md>
+              Both <m><var name="$r"/></m> and <m><var name="$s"/></m> solve the equation,
+              but we were asked to find a positive number.
+              So the mystery number is <m><var name="$s"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork>
+          <description>If you double a number, and add this to the same number, and multiply the results, you get this. What was the original number?</description>
+          <pg-code>
+            Context("Fraction");
+            $s = Fraction(random(1,9,2),2);
+            $r = random(-9,-1,1);
+            $B = -($r + $s);
+            $C = $r*$s;
+            $a = lcm(($B->value)[1],($C->value)[1]);
+            $b = $a*$B;
+            $c = $a*$C;
+            Context()->noreduce('(-x)-y','(-x)+y');
+            $f = Formula("$a x^2+$b x+$c")->reduce;
+            $negb = -$b;
+            $bsquared = ($b)**2;
+            $discriminant = ($b)**2 - 4*$a*$c;
+            $sqrtdisc = Fraction(sqrt($discriminant));
+            $a2 = 2*$a;
+            Context("FiniteSolutionSets");
+            $solutions = Formula("{$r,$s}");
+            $add = $b/2;
+            $product = -$c;
+          </pg-code>
+          <statement>
+            <p>
+              If you double a certain positive number, then also add  <m><var name="$add"/></m> to that same number,
+              and multiply the results, you get <m><var name="$product"/></m>.
+              What was the original number?
+            </p>
+            <p>
+              <var name="$s" width="20"/>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Let <m>x</m> be the mystery number.
+              We are told that <m>(2x)\left(x+<var name="$add"/>\right)=<var name="$product"/></m>.
+              So
+              <md>
+                <mrow>2x^2 + <var name="$b"/>x \amp=<var name="$product"/></mrow>
+                <mrow><var name="$f"/>\amp=0</mrow>
+              </md>
+              Now we can apply the quadratic formula:
+              <md>
+                <mrow>x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$bsquared"/>-4(<var name="$a"/>)(<var name="$c"/>)}}{2(<var name="$a"/>)}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm\sqrt{<var name="$discriminant"/>}}{<var name="$a2"/>}</mrow>
+                <mrow>\amp=\frac{<var name="$negb"/>\pm<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\amp=\frac{<var name="$negb"/>-<var name="$sqrtdisc"/>}{<var name="$a2"/>}\quad\text{or}\quad x=\frac{<var name="$negb"/>+<var name="$sqrtdisc"/>}{<var name="$a2"/>}</mrow>
+                <mrow>x\amp=<var name="$r"/>\quad\text{or}\quad x=<var name="$s"/></mrow>
+              </md>
+              Both <m><var name="$r"/></m> and <m><var name="$s"/></m> solve the equation,
+              but we were asked to find a positive number.
+              So the mystery number is <m><var name="$s"/></m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+    </subexercises>
+
+    <subexercises>
+      <title>Challenge</title>
+
+      <exercise permid="VvF">
+        <!-- Kara's challenge problem -->
+        <webwork>
+          <pg-code>
+            Context()->variables->are(m=>'Real',n=>'Real',p=>'Real');
+            $answer = Compute("(-n-sqrt(n^2-4mp))/(2m),(-n+sqrt(n^2-4mp))/(2m)");
+          </pg-code>
+          <statement>
+            <p permid="bzm">
+              Solve for <m>x</m> in the equation <m>mx^{2}+nx+p=0</m>, assuming <m>m\neq0</m>.
+            </p>
+            <instruction>
+              Enter the two solutions as a comma-separated list.  Be mindful of how you use parentheses in typing up the answers.
+            </instruction>
+            <p permid="HGv">
+              <var name = "$answer" width="40"/>
+            </p>
+          </statement>
+          <solution permid="XkS">
+            <p permid="oSX">
+              To solve a quadratic equation of the form <m>ax^{2}+bx+c=0</m>,
+              we can use the quadratic formula.
+              In this case, <m>a=m</m>, <m>b=n</m>, and <m>c=p</m>.
+              Therefore the solutions are <m>\frac{-n + \sqrt{n^{2}-4mp}}{2m}, \frac{-n - \sqrt{n^{2}-4mp}}{2m}</m>,
+              or <m>\frac{-n \pm \sqrt{n^{2}-4mp}}{2m}</m>.
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+    </subexercises>
   </exercises>
 </section>
 
