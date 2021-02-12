@@ -981,7 +981,6 @@
 
   <exercises permid="SNp">
     <exercisegroup cols="2" permid="yUy">
-
       <exercise permid="Yhc">
         <statement>
           <p permid="OGm">
@@ -992,327 +991,283 @@
           </p>
         </statement>
         <answer permid="XLD">
-          <sidebyside permid="iGh">
-
-            <image permid="azf">
-              <description>a Cartesian graph with the points plotted;(8,2) is 8 units to the right and up 2;(5,5) is 5 to the right and up 5;(-3,0) is down 3 units on the y-axis;(0,14/3)is 14/3 or 4 2/3 units up on the y-axis;(3,-2.5) is 3 units to the right and down 2.5;(-5,7) is left 5 units and up 7</description>
-
+          <image permid="azf">
+            <description>a Cartesian graph with the points plotted;(8,2) is 8 units to the right and up 2;(5,5) is 5 to the right and up 5;(-3,0) is down 3 units on the y-axis;(0,14/3)is 14/3 or 4 2/3 units up on the y-axis;(3,-2.5) is 3 units to the right and down 2.5;(-5,7) is left 5 units and up 7</description>
             <latex-image>
-            <![CDATA[\begin{tikzpicture}
+              \begin{tikzpicture}
                 \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                    \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (0,-4.66666) (3,-2.5) (-5,7)};
+                    ymin=-10,ymax=10,
+                    xtick={-8,-6,...,8},
+                    ytick={-8,-6,...,8},
+                    minor xtick={-9,-8,...,9},
+                    minor ytick={-9,-8,...,9}]
+                  \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (0,-4.66666) (3,-2.5) (-5,7)};
                 \end{axis}
-            \end{tikzpicture}]]>
+              \end{tikzpicture}
             </latex-image>
-            </image>
-
-          </sidebyside>
+          </image>
         </answer>
       </exercise>
-
       <exercise permid="Eol">
         <webwork>
-            <pg-code>
-                @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
-                @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
-                $px[2]=0;
-                $py[3]=0 unless ($px[3]==0);
-                $xmin = -10;$xmax = 10;
-                $ymin = -10;$ymax = 10;
-                $xmark = 2;
-                $ymark = 2;
-                $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                   axes=>[0,0],
-                   grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
-                   size=>[240,240]
-                );
-                $gr->lb('reset');
-                for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
-                for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
-                for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
-                  if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
-                  elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
-                  elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom','large'));}
-                  elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom','large'));}
-                  elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top','large'));}
-                  elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top','large'));}
-                };
-                Context("Point");
-                @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
-            </pg-code>
-            <statement>
-              <p permid="uNv">
-                Locate each point in the graph:
-              </p>
-
-              <sidebyside widths="40%" permid="ONq">
-                <image permid="jSR" pg-name="$gr"/>
-              </sidebyside>
-
-              <p permid="aUE">
-                Write each point's position as an ordered pair, like <m>(1,2)</m>.
-              </p>
-
-              <sidebyside permid="uUz">
-
-                <tabular permid="rxq">
-                  <row>
-                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
-                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
-                  </row>
-                  <row>
-                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
-                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
-                  </row>
-                </tabular>
-
-              </sidebyside>
-            </statement>
+          <pg-code>
+            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+            $px[2]=0;
+            $py[3]=0 unless ($px[3]==0);
+            $xmin = -10;$xmax = 10;
+            $ymin = -10;$ymax = 10;
+            $xmark = 2;
+            $ymark = 2;
+            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+               axes=>[0,0],
+               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+               size=>[240,240]
+            );
+            $gr->lb('reset');
+            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
+            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
+            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
+              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
+              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom','large'));}
+              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom','large'));}
+              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top','large'));}
+              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top','large'));}
+            };
+            Context("Point");
+            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+          </pg-code>
+          <statement>
+            <p permid="uNv">
+              Locate each point in the graph:
+            </p>
+            <image permid="jSR" pg-name="$gr" width="40%"/>
+            <p permid="aUE">
+              Write each point's position as an ordered pair, like <m>(1,2)</m>.
+            </p>
+            <tabular permid="rxq">
+              <row>
+                <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+              </row>
+              <row>
+                <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+              </row>
+            </tabular>
+          </statement>
         </webwork>
       </exercise>
-
       <exercise permid="kvu">
         <webwork source="Contrib/PCC/BasicAlgebra/EquationsAndInequalitiesInTwoVariables/PointOnLineOrNot150.pg" />
       </exercise>
-
       <exercise permid="QCD">
         <webwork source="Contrib/PCC/BasicAlgebra/EquationsAndInequalitiesInTwoVariables/PointOnLineOrNot150.pg" />
       </exercise>
-
       <exercise permid="wJM">
         <webwork seed="10">
-            <pg-code>
-                @x=(0..3);
-                $m = random(2,5,1);
-                $b = random(-10,-1,1);
-                $f=Formula("$b+$m*x");
-                @y=map{$f->eval(x=>$_)}@x;
-                Context("Numeric")->variables->add(y=>'Real');
-                parser::Assignment->Allow;
-                $eq=Formula("y=$f")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="HbN">
-                Write an equation in the form
-                <m>y=\ldots</m> suggested by the pattern in the table.
-              </p>
-
-              <sidebyside permid="bbI">
-                <tabular  permid="XEz">
-                <row bottom="medium">
-                  <cell><m>x</m></cell>
-                  <cell><m>y</m></cell>
-                </row>
-                <row>
-                  <cell><m><var name="$x[0]" /></m></cell>
-                  <cell><m><var name="$y[0]" /></m></cell>
-                </row>
-                <row>
-                  <cell><m><var name="$x[1]" /></m></cell>
-                  <cell><m><var name="$y[1]" /></m></cell>
-                </row>
-                <row>
-                  <cell><m><var name="$x[2]" /></m></cell>
-                  <cell><m><var name="$y[2]" /></m></cell>
-                </row>
-                <row>
-                  <cell><m><var name="$x[3]" /></m></cell>
-                  <cell><m><var name="$y[3]" /></m></cell>
-                </row>
-                </tabular>
-
-              </sidebyside>
-
-              <p permid="niW">
-                <var name="$eq" width="20" />
-              </p>
-            </statement>
-            <solution permid="DSM">
-              <p permid="LbM">
-                The relationship between <m>x</m> and <m>y</m> in each row is not as clear here.
-                Another popular approach for finding patterns:
-                in each column,
-                consider how the values change from one row to the next.
-                From row to row, the <m>x</m>-value increases by <m>1</m>.
-                Also, the <m>y</m>-value increases by <m><var name="$m" /></m> from row to row.
-              </p>
-
-              <sidebyside permid="HiR">
-                <tabular  permid="OkN">
-                <row bottom="medium">
-                  <cell />
-                  <cell><m>x</m></cell>
-                  <cell><m>y</m></cell>
-                  <cell />
-                </row>
-                <row>
-                  <cell />
-                  <cell><m><var name="$x[0]" /></m></cell>
-                  <cell><m><var name="$y[0]" /></m></cell>
-                  <cell />
-                </row>
-                <row>
-                  <cell><m>{}+1\rightarrow</m></cell>
-                  <cell><m><var name="$x[1]" /></m></cell>
-                  <cell><m><var name="$y[1]" /></m></cell>
-                  <cell><m>\leftarrow{}+<var name="$m" /></m></cell>
-                </row>
-                <row>
-                  <cell><m>{}+1\rightarrow</m></cell>
-                  <cell><m><var name="$x[2]" /></m></cell>
-                  <cell><m><var name="$y[2]" /></m></cell>
-                  <cell><m>\leftarrow{}+<var name="$m" /></m></cell>
-                </row>
-                <row>
-                  <cell><m>{}+1\rightarrow</m></cell>
-                  <cell><m><var name="$x[3]" /></m></cell>
-                  <cell><m><var name="$y[3]" /></m></cell>
-                  <cell><m>\leftarrow{}+<var name="$m" /></m></cell>
-                </row>
-                </tabular>
-
-              </sidebyside>
-
-              <p permid="riV">
-                Since row-to-row change is always <m>1</m> for <m>x</m> and is always <m><var name="$m" /></m> for <m>y</m>,
-                the rate of change from one row to another row is always the same:
-                <m><var name="$m" /></m> units of <m>y</m> for every <m>1</m> unit of <m>x</m>.
-              </p>
-
-              <p permid="Xqe">
-                We know that the output for <m>x = 0</m> is <m>y = <var name="$b" /></m>.
-                And our observation about the constant rate of change tells us that if we increase the input by <m>x</m> units from <m>0</m>,
-                the output should increase by <m>\overbrace{(<var name="$m" />)+(<var name="$m" />)+\cdots+(<var name="$m" />)}^{x\text{ times}}</m>,
-                which is <m><var name="$m" />x</m>.
-                So the output would be <m><var name="$f" /></m>.
-              </p>
-
-              <p permid="Dxn">
-                So the equation is <m><var name="$eq" /></m>.
-              </p>
-            </solution>
+          <pg-code>
+            @x=(0..3);
+            $m = random(2,5,1);
+            $b = random(-10,-1,1);
+            $f=Formula("$b+$m*x");
+            @y=map{$f->eval(x=>$_)}@x;
+            Context("Numeric")->variables->add(y=>'Real');
+            parser::Assignment->Allow;
+            $eq=Formula("y=$f")->reduce;
+          </pg-code>
+          <statement>
+            <p permid="HbN">
+              Write an equation in the form
+              <m>y=\ldots</m> suggested by the pattern in the table.
+            </p>
+            <tabular  permid="XEz">
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>y</m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[0]" /></m></cell>
+                <cell><m><var name="$y[0]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[1]" /></m></cell>
+                <cell><m><var name="$y[1]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[2]" /></m></cell>
+                <cell><m><var name="$y[2]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[3]" /></m></cell>
+                <cell><m><var name="$y[3]" /></m></cell>
+              </row>
+            </tabular>
+            <p permid="niW">
+              <var name="$eq" width="20" />
+            </p>
+          </statement>
+          <solution permid="DSM">
+            <p permid="LbM">
+              The relationship between <m>x</m> and <m>y</m> in each row is not as clear here.
+              Another popular approach for finding patterns:
+              in each column,
+              consider how the values change from one row to the next.
+              From row to row, the <m>x</m>-value increases by <m>1</m>.
+              Also, the <m>y</m>-value increases by <m><var name="$m" /></m> from row to row.
+            </p>
+            <tabular  permid="OkN">
+              <row bottom="medium">
+                <cell />
+                <cell><m>x</m></cell>
+                <cell><m>y</m></cell>
+                <cell />
+              </row>
+              <row>
+                <cell />
+                <cell><m><var name="$x[0]" /></m></cell>
+                <cell><m><var name="$y[0]" /></m></cell>
+                <cell />
+              </row>
+              <row>
+                <cell><m>{}+1\rightarrow</m></cell>
+                <cell><m><var name="$x[1]" /></m></cell>
+                <cell><m><var name="$y[1]" /></m></cell>
+                <cell><m>\leftarrow{}+<var name="$m" /></m></cell>
+              </row>
+              <row>
+                <cell><m>{}+1\rightarrow</m></cell>
+                <cell><m><var name="$x[2]" /></m></cell>
+                <cell><m><var name="$y[2]" /></m></cell>
+                <cell><m>\leftarrow{}+<var name="$m" /></m></cell>
+              </row>
+              <row>
+                <cell><m>{}+1\rightarrow</m></cell>
+                <cell><m><var name="$x[3]" /></m></cell>
+                <cell><m><var name="$y[3]" /></m></cell>
+                <cell><m>\leftarrow{}+<var name="$m" /></m></cell>
+              </row>
+            </tabular>
+            <p permid="riV">
+              Since row-to-row change is always <m>1</m> for <m>x</m> and is always <m><var name="$m" /></m> for <m>y</m>,
+              the rate of change from one row to another row is always the same:
+              <m><var name="$m" /></m> units of <m>y</m> for every <m>1</m> unit of <m>x</m>.
+            </p>
+            <p permid="Xqe">
+              We know that the output for <m>x = 0</m> is <m>y = <var name="$b" /></m>.
+              And our observation about the constant rate of change tells us that if we increase the input by <m>x</m> units from <m>0</m>,
+              the output should increase by <m>\overbrace{(<var name="$m" />)+(<var name="$m" />)+\cdots+(<var name="$m" />)}^{x\text{ times}}</m>,
+              which is <m><var name="$m" />x</m>.
+              So the output would be <m><var name="$f" /></m>.
+            </p>
+            <p permid="Dxn">
+              So the equation is <m><var name="$eq" /></m>.
+            </p>
+          </solution>
         </webwork>
       </exercise>
-
       <exercise permid="cQV">
         <webwork seed="11">
-            <pg-code>
-                @x=(0..3);
-                $m = random(-5,-2,1);
-                $mN = -$m;
-                $b = random(1,10,1);
-                $f=Formula("$b-$mN*x");
-                @y=map{$f->eval(x=>$_)}@x;
-                Context("Numeric")->variables->add(y=>'Real');
-                parser::Assignment->Allow;
-                $eq=Formula("y=$f")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="Tqf">
-                Write an equation in the form
-                <m>y=\ldots</m> suggested by the pattern in the table.
-              </p>
-
-              <sidebyside permid="nqa">
-
-                <tabular permid="DLI">
-                  <row bottom="medium">
-                    <cell><m>x</m></cell>
-                    <cell><m>y</m></cell>
-                  </row>
-                  <row>
-                    <cell><m><var name="$x[0]" /></m></cell>
-                    <cell><m><var name="$y[0]" /></m></cell>
-                  </row>
-                  <row>
-                    <cell><m><var name="$x[1]" /></m></cell>
-                    <cell><m><var name="$y[1]" /></m></cell>
-                  </row>
-                  <row>
-                    <cell><m><var name="$x[2]" /></m></cell>
-                    <cell><m><var name="$y[2]" /></m></cell>
-                  </row>
-                  <row>
-                    <cell><m><var name="$x[3]" /></m></cell>
-                    <cell><m><var name="$y[3]" /></m></cell>
-                  </row>
-                </tabular>
-
-              </sidebyside>
-
-              <p permid="zxo">
-                <var name="$eq" width="20" />
-              </p>
-            </statement>
-            <solution permid="jZV">
-              <p permid="PLF">
-                The relationship between <m>x</m> and <m>y</m> in each row is not as clear here.
-                Another popular approach for finding patterns:
-                in each column,
-                consider how the values change from one row to the next.
-                From row to row, the <m>x</m>-value increases by <m>1</m>.
-                Also, the <m>y</m>-value decreases by <m><var name="$mN" /></m> from row to row.
-              </p>
-
-              <sidebyside permid="Txj">
-                <tabular  permid="urW">
-                <row bottom="medium">
-                  <cell />
-                  <cell><m>x</m></cell>
-                  <cell><m>y</m></cell>
-                  <cell />
-                </row>
-                <row>
-                  <cell />
-                  <cell><m><var name="$x[0]" /></m></cell>
-                  <cell><m><var name="$y[0]" /></m></cell>
-                  <cell />
-                </row>
-                <row>
-                  <cell><m>{}+1\rightarrow</m></cell>
-                  <cell><m><var name="$x[1]" /></m></cell>
-                  <cell><m><var name="$y[1]" /></m></cell>
-                  <cell><m>\leftarrow{}-<var name="$mN" /></m></cell>
-                </row>
-                <row>
-                  <cell><m>{}+1\rightarrow</m></cell>
-                  <cell><m><var name="$x[2]" /></m></cell>
-                  <cell><m><var name="$y[2]" /></m></cell>
-                  <cell><m>\leftarrow{}-<var name="$mN" /></m></cell>
-                </row>
-                <row>
-                  <cell><m>{}+1\rightarrow</m></cell>
-                  <cell><m><var name="$x[3]" /></m></cell>
-                  <cell><m><var name="$y[3]" /></m></cell>
-                  <cell><m>\leftarrow{}-<var name="$mN" /></m></cell>
-                </row>
-                </tabular>
-
-              </sidebyside>
-
-              <p permid="vSO">
-                Since row-to-row change is always <m>1</m> for <m>x</m> and is always <m><var name="$m" /></m> for <m>y</m>,
-                the rate of change from one row to another row is always the same:
-                <m><var name="$m" /></m> units of <m>y</m> for every <m>1</m> unit of <m>x</m>.
-              </p>
-
-              <p permid="bZX">
-                We know that the output for <m>x = 0</m> is <m>y = <var name="$b" /></m>.
-                And our observation about the constant rate of change tells us that if we increase the input by <m>x</m> units from <m>0</m>,
-                the output should increase by <m>\overbrace{(<var name="$m" />)+(<var name="$m" />)+\cdots+(<var name="$m" />)}^{x\text{ times}}</m>,
-                which is <m><var name="$m" />x</m>.
-                So the output would be <m><var name="$f" /></m>.
-              </p>
-
-              <p permid="Ihg">
-                So the equation is <m><var name="$eq" /></m>.
-              </p>
-            </solution>
+          <pg-code>
+            @x=(0..3);
+            $m = random(-5,-2,1);
+            $mN = -$m;
+            $b = random(1,10,1);
+            $f=Formula("$b-$mN*x");
+            @y=map{$f->eval(x=>$_)}@x;
+            Context("Numeric")->variables->add(y=>'Real');
+            parser::Assignment->Allow;
+            $eq=Formula("y=$f")->reduce;
+          </pg-code>
+          <statement>
+            <p permid="Tqf">
+              Write an equation in the form
+              <m>y=\ldots</m> suggested by the pattern in the table.
+            </p>
+            <tabular permid="DLI">
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>y</m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[0]" /></m></cell>
+                <cell><m><var name="$y[0]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[1]" /></m></cell>
+                <cell><m><var name="$y[1]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[2]" /></m></cell>
+                <cell><m><var name="$y[2]" /></m></cell>
+              </row>
+              <row>
+                <cell><m><var name="$x[3]" /></m></cell>
+                <cell><m><var name="$y[3]" /></m></cell>
+              </row>
+            </tabular>
+            <p permid="zxo">
+              <var name="$eq" width="20" />
+            </p>
+          </statement>
+          <solution permid="jZV">
+            <p permid="PLF">
+              The relationship between <m>x</m> and <m>y</m> in each row is not as clear here.
+              Another popular approach for finding patterns:
+              in each column,
+              consider how the values change from one row to the next.
+              From row to row, the <m>x</m>-value increases by <m>1</m>.
+              Also, the <m>y</m>-value decreases by <m><var name="$mN" /></m> from row to row.
+            </p>
+            <tabular  permid="urW">
+              <row bottom="medium">
+                <cell />
+                <cell><m>x</m></cell>
+                <cell><m>y</m></cell>
+                <cell />
+              </row>
+              <row>
+                <cell />
+                <cell><m><var name="$x[0]" /></m></cell>
+                <cell><m><var name="$y[0]" /></m></cell>
+                <cell />
+              </row>
+              <row>
+                <cell><m>{}+1\rightarrow</m></cell>
+                <cell><m><var name="$x[1]" /></m></cell>
+                <cell><m><var name="$y[1]" /></m></cell>
+                <cell><m>\leftarrow{}-<var name="$mN" /></m></cell>
+              </row>
+              <row>
+                <cell><m>{}+1\rightarrow</m></cell>
+                <cell><m><var name="$x[2]" /></m></cell>
+                <cell><m><var name="$y[2]" /></m></cell>
+                <cell><m>\leftarrow{}-<var name="$mN" /></m></cell>
+              </row>
+              <row>
+                <cell><m>{}+1\rightarrow</m></cell>
+                <cell><m><var name="$x[3]" /></m></cell>
+                <cell><m><var name="$y[3]" /></m></cell>
+                <cell><m>\leftarrow{}-<var name="$mN" /></m></cell>
+              </row>
+            </tabular>
+            <p permid="vSO">
+              Since row-to-row change is always <m>1</m> for <m>x</m> and is always <m><var name="$m" /></m> for <m>y</m>,
+              the rate of change from one row to another row is always the same:
+              <m><var name="$m" /></m> units of <m>y</m> for every <m>1</m> unit of <m>x</m>.
+            </p>
+            <p permid="bZX">
+              We know that the output for <m>x = 0</m> is <m>y = <var name="$b" /></m>.
+              And our observation about the constant rate of change tells us that if we increase the input by <m>x</m> units from <m>0</m>,
+              the output should increase by <m>\overbrace{(<var name="$m" />)+(<var name="$m" />)+\cdots+(<var name="$m" />)}^{x\text{ times}}</m>,
+              which is <m><var name="$m" />x</m>.
+              So the output would be <m><var name="$f" /></m>.
+            </p>
+            <p permid="Ihg">
+              So the equation is <m><var name="$eq" /></m>.
+            </p>
+          </solution>
         </webwork>
       </exercise>
     </exercisegroup>
@@ -1321,74 +1276,57 @@
       <exercise permid="IYe">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
       </exercise>
-
       <exercise permid="pfn">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
       </exercise>
-
       <exercise permid="Vmw">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph30.pg" />
       </exercise>
-
       <exercise permid="BtF">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
       </exercise>
-
       <exercise>
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
       </exercise>
-
       <exercise>
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindSlopeByGraph40.pg" />
       </exercise>
     </exercisegroup>
 
     <exercisegroup cols="2">
-
       <exercise permid="hAO">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
       </exercise>
-
       <exercise permid="NHX">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula70.pg" />
       </exercise>
-
       <exercise permid="tPg">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
       </exercise>
-
       <exercise permid="ZWp">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula80.pg" />
       </exercise>
-
       <exercise permid="Gdy">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
       </exercise>
-
       <exercise permid="mkH">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/SlopeFormula90.pg" />
       </exercise>
-
       <exercise permid="SrQ">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph40.pg" />
       </exercise>
-
       <exercise permid="yyZ">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph40.pg" />
       </exercise>
-
       <exercise permid="eGi">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept170.pg" />
       </exercise>
-
       <exercise permid="KNr">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept170.pg" />
       </exercise>
-
       <exercise permid="qUA">
         <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA30.pg" />
       </exercise>
-
       <exercise permid="XbJ">
         <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA30.pg" />
       </exercise>
@@ -1397,69 +1335,53 @@
     <exercise permid="DiS">
       <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindLineEquationApplication80.pg" />
     </exercise>
-
     <exercise permid="jqb">
       <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindLineEquationApplication80.pg" />
     </exercise>
-
     <exercise permid="Pxk">
       <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts70.pg" />
     </exercise>
-
     <exercise permid="vEt">
       <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/FindXYIntercepts70.pg" />
     </exercise>
 
     <exercisegroup cols="2" permid="LiQ">
-
       <exercise permid="bLC">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept110.pg" />
       </exercise>
-
       <exercise permid="HSL">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept120.pg" />
       </exercise>
-
       <exercise permid="nZU">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept200.pg" />
       </exercise>
-
       <exercise permid="Uhd">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/FindSlopeYIntercept200.pg" />
       </exercise>
-
       <exercise permid="Aom">
         <webwork source="Contrib/PCC/BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
       </exercise>
-
       <exercise permid="gvv">
         <webwork source="Contrib/PCC/BasicAlgebra/EquationsAndInequalitiesInTwoVariables/TableForLine80.pg" />
       </exercise>
-
       <exercise permid="MCE">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph50.pg" />
       </exercise>
-
       <exercise permid="sJN">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/WriteEquationByGraph50.pg" />
       </exercise>
-
       <exercise permid="YQW">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelPerpendicular140.pg" />
       </exercise>
-
       <exercise permid="EYf">
         <webwork source="Contrib/PCC/BasicAlgebra/SlopeAndY-InterceptCalculations/ParallelPerpendicular140.pg" />
       </exercise>
-
       <exercise permid="lfo">
         <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/ParallelPerpendicularORCCA200.pg" />
       </exercise>
-
       <exercise permid="Rmx">
         <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/ParallelPerpendicularORCCA200.pg" />
       </exercise>
-
       <exercise permid="xtG">
         <statement>
           <p permid="fEx">
@@ -1467,27 +1389,18 @@
           </p>
         </statement>
         <answer permid="Qhe">
-          <sidebyside permid="zEs">
-
-            <image permid="GGo">
-
+          <image permid="GGo">
             <latex-image>
-                <![CDATA[
-                    \begin{tikzpicture}
-                        \begin{axis}[]
-                            \addplot+[dashed,domain=-6:4.5] {4/3*x+1};
-                            \addplot[white,fill=firstcolor,fill opacity=0.2]
-                                coordinates{(-9,-11) (-9,13) (9,13)};
-                        \end{axis}
-                    \end{tikzpicture}
-                ]]>
+              \begin{tikzpicture}
+                \begin{axis}[]
+                  \addplot+[dashed,domain=-6:4.5] {4/3*x+1};
+                  \addplot[white,fill=firstcolor,fill opacity=0.2] coordinates{(-9,-11) (-9,13) (9,13)};
+                \end{axis}
+              \end{tikzpicture}
             </latex-image>
-            </image>
-
-          </sidebyside>
+          </image>
         </answer>
       </exercise>
-
       <exercise permid="dAP">
         <statement>
           <p permid="LLG">
@@ -1495,27 +1408,18 @@
           </p>
         </statement>
         <answer permid="won">
-          <sidebyside permid="fLB">
-
-            <image permid="mNx">
-
+          <image permid="mNx">
             <latex-image>
-                <![CDATA[
-                    \begin{tikzpicture}
-                        \begin{axis}[]
-                            \addplot+[domain=-7:7] {-1/2*x-3};
-                            \addplot[white,fill=firstcolor,fill opacity=0.2]
-                                coordinates{(-8,1) (-8,-8) (8,-8) (8,-7)};
-                        \end{axis}
-                    \end{tikzpicture}
-                ]]>
+              \begin{tikzpicture}
+                \begin{axis}[]
+                  \addplot+[domain=-7:7] {-1/2*x-3};
+                  \addplot[white,fill=firstcolor,fill opacity=0.2] coordinates{(-8,1) (-8,-8) (8,-8) (8,-7)};
+                \end{axis}
+              \end{tikzpicture}
             </latex-image>
-            </image>
-
-          </sidebyside>
+          </image>
         </answer>
       </exercise>
-
       <exercise permid="JHY">
         <statement>
           <p permid="rSP">
@@ -1523,27 +1427,18 @@
           </p>
         </statement>
         <answer permid="cvw">
-          <sidebyside permid="LSK">
-
-            <image permid="SUG">
-
+          <image permid="SUG">
             <latex-image>
-                <![CDATA[
-                    \begin{tikzpicture}
-                        \begin{axis}[]
-                            \addplot+[domain=-7:7] {3};
-                            \addplot[white,fill=firstcolor,fill opacity=0.2]
-                                coordinates{(-8,3) (-8,8) (8,8) (8,3)};
-                        \end{axis}
-                    \end{tikzpicture}
-                ]]>
+              \begin{tikzpicture}
+                \begin{axis}[]
+                  \addplot+[domain=-7:7] {3};
+                  \addplot[white,fill=firstcolor,fill opacity=0.2] coordinates{(-8,3) (-8,8) (8,8) (8,3)};
+                \end{axis}
+              \end{tikzpicture}
             </latex-image>
-            </image>
-
-          </sidebyside>
+          </image>
         </answer>
       </exercise>
-
       <exercise permid="pPh">
         <statement>
           <p permid="XZY">
@@ -1551,27 +1446,18 @@
           </p>
         </statement>
         <answer permid="ICF">
-          <sidebyside permid="rZT">
-
-            <image permid="zbP">
-
+          <image permid="zbP">
             <latex-image>
-                <![CDATA[
-                    \begin{tikzpicture}
-                        \begin{axis}[]
-                            \addplot+[dashed,domain=-6.667:2.667] {-3/2*x-3};
-                            \addplot[white,fill=firstcolor,fill opacity=0.2]
-                                coordinates{(-8,9) (-8,-11) (8,-15) };
-                        \end{axis}
-                    \end{tikzpicture}
-                ]]>
+              \begin{tikzpicture}
+                \begin{axis}[]
+                  \addplot+[dashed,domain=-6.667:2.667] {-3/2*x-3};
+                  \addplot[white,fill=firstcolor,fill opacity=0.2] coordinates{(-8,9) (-8,-11) (8,-15) };
+                \end{axis}
+              \end{tikzpicture}
             </latex-image>
-            </image>
-
-          </sidebyside>
+          </image>
         </answer>
       </exercise>
-
     </exercisegroup>
   </exercises>
 </section>

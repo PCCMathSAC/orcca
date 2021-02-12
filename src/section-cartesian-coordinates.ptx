@@ -519,126 +519,108 @@
       <exercise permid="kcI">
         <!-- seed set to prevent crowding on points -->
         <webwork seed="1697">
-            <pg-code>
-                @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
-                @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
-                $px[2]=0;
-                $py[3]=0 unless ($px[3]==0);
-                $xmin = -10;$xmax = 10;
-                $ymin = -10;$ymax = 10;
-                $xmark = 2;
-                $ymark = 2;
-                $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                   axes=>[0,0],
-                   grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
-                   size=>[240,240]
-                );
-                $gr->lb('reset');
-                for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
-                for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
-                for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
-                  if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
-                  elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
-                  elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom','large'));}
-                  elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom','large'));}
-                  elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top','large'));}
-                  elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top','large'));}
-                };
-                Context("Point");
-                @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
-            </pg-code>
-            <statement>
-              <p permid="qgp">
-                Locate each point in the graph:
-              </p>
-
-              <sidebyside widths="40%" permid="pRU">
-                <image permid="VRZ" pg-name="$gr"/>
-              </sidebyside>
-
-              <p permid="Wny">
-                Write each point's position as an ordered pair, like <m>(1,2)</m>.
-              </p>
-
-              <sidebyside permid="VZd">
-
-                <tabular permid="JDH">
-                  <row>
-                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
-                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
-                  </row>
-                  <row>
-                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
-                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
-                  </row>
-                </tabular>
-
-              </sidebyside>
-            </statement>
+          <pg-code>
+            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+            $px[2]=0;
+            $py[3]=0 unless ($px[3]==0);
+            $xmin = -10;$xmax = 10;
+            $ymin = -10;$ymax = 10;
+            $xmark = 2;
+            $ymark = 2;
+            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+               axes=>[0,0],
+               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+               size=>[240,240]
+            );
+            $gr->lb('reset');
+            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
+            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
+            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
+              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
+              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom','large'));}
+              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom','large'));}
+              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top','large'));}
+              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top','large'));}
+            };
+            Context("Point");
+            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+          </pg-code>
+          <statement>
+            <p permid="qgp">
+              Locate each point in the graph:
+            </p>
+            <image permid="VRZ" pg-name="$gr" width="40%"/>
+            <p permid="Wny">
+              Write each point's position as an ordered pair, like <m>(1,2)</m>.
+            </p>
+            <tabular permid="JDH">
+              <row>
+                <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+              </row>
+              <row>
+                <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+              </row>
+            </tabular>
+          </statement>
         </webwork>
       </exercise>
-
       <exercise permid="QjR">
         <webwork>
-            <pg-code>
-                @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
-                @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
-                $px[2]=0;
-                $py[3]=0 unless ($px[3]==0);
-                $xmin = -10;$xmax = 10;
-                $ymin = -10;$ymax = 10;
-                $xmark = 2;
-                $ymark = 2;
-                $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                   axes=>[0,0],
-                   grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
-                   size=>[240,240]
-                );
-                $gr->lb('reset');
-                for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
-                for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
-                for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
-                  if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
-                  elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
-                  elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom','large'));}
-                  elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom','large'));}
-                  elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top','large'));}
-                  elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top','large'));}
-                };
-                Context("Point");
-                @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
-            </pg-code>
-            <statement>
-              <p permid="CuH">
-                Locate each point in the graph:
-              </p>
-
-              <sidebyside widths="40%" permid="Cgm">
-                <image pg-name="$gr" />
-              </sidebyside>
-
-              <p permid="iBQ">
-                Write each point's position as an ordered pair, like <m>(1,2)</m>.
-              </p>
-
-              <sidebyside permid="inv">
-
-                <tabular permid="pKQ">
-                  <row>
-                    <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
-                    <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
-                  </row>
-                  <row>
-                    <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
-                    <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
-                  </row>
-                </tabular>
-
-              </sidebyside>
-            </statement>
+          <pg-code>
+            @px=map{($_==0)?8:$_-8}(NchooseK(16,4));
+            @py=map{($_==0)?8:$_-8}(NchooseK(16,4));
+            $px[2]=0;
+            $py[3]=0 unless ($px[3]==0);
+            $xmin = -10;$xmax = 10;
+            $ymin = -10;$ymax = 10;
+            $xmark = 2;
+            $ymark = 2;
+            $gr = init_graph($xmin,$ymin,$xmax,$ymax,
+               axes=>[0,0],
+               grid=>[($xmax-$xmin)/$xmark,($ymax-$ymin)/$ymark],
+               size=>[240,240]
+            );
+            $gr->lb('reset');
+            for($j=-$xmax+$xmark;$j&lt;$xmax;$j=$j+$xmark){if(Real($j)==0){$gr->lb(new Label(0,-0.1,' '.$j,'black','left','top'));}else{$gr->lb(new Label($j,-0.1,$j,'black','center','top','large'));}};
+            for($j=$ymin+$ymark;$j&lt;$ymax;$j=$j+$ymark){if(Real($j)==0){next;}$gr->lb(new Label(0, $j,' '.$j,'black','left','middle','large'));};
+            for my$i(0..3){$gr->stamps(closed_circle($px[$i],$py[$i],'blue'));
+              if ($px[$i]==0) {$gr->lb(new Label($px[$i]-0.3,$py[$i],$ALPHABET[$i],'blue','right','middle','large'));}
+              elsif ($py[$i]==0) {$gr->lb(new Label($px[$i],$py[$i]+0.3,$ALPHABET[$i],'blue','center','bottom','large'));}
+              elsif ($px[$i]>0 and $py[$i]>0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','left','bottom','large'));}
+              elsif ($px[$i]&lt;0 and $py[$i]>0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]+0.3,$ALPHABET[$i],'blue','right','bottom','large'));}
+              elsif ($px[$i]&lt;0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]-0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','right','top','large'));}
+              elsif ($px[$i]>0 and $py[$i]&lt;0) {$gr->lb(new Label($px[$i]+0.3,$py[$i]-0.3,$ALPHABET[$i],'blue','left','top','large'));}
+            };
+            Context("Point");
+            @ans=map{Compute("($px[$_],$py[$_])")}(0..3);
+          </pg-code>
+          <statement>
+            <p permid="CuH">
+              Locate each point in the graph:
+            </p>
+            <image pg-name="$gr" width="40%"/>
+            <p permid="iBQ">
+              Write each point's position as an ordered pair, like <m>(1,2)</m>.
+            </p>
+            <tabular permid="pKQ">
+              <row>
+                <cell><m>A=</m><var name="$ans[0]" width="3" /></cell>
+                <cell><m>B=</m><var name="$ans[1]" width="3" /></cell>
+              </row>
+              <row>
+                <cell><m>C=</m><var name="$ans[2]" width="3" /></cell>
+                <cell><m>D=</m><var name="$ans[3]" width="3" /></cell>
+              </row>
+            </tabular>
+          </statement>
         </webwork>
       </exercise>
     </exercisegroup>
+
     <exercisegroup cols="2" permid="Rpk">
       <title>Creating Sketches of Graphs</title>
       <exercise permid="wra">
@@ -650,28 +632,24 @@
         </statement>
         <answer permid="EFt">
           <sidebyside permid="OuE">
-
             <image permid="AjV">
               <description>a Cartesian plot with the points labeled;(8,2) is right 8, up 2;(5,5) is right 5, up 5;(-3,0) is left 3, up 0;(2,-6) is right 2, down 6</description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                    \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (-2,-6)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                  \begin{axis}[xmin=-10,xmax=10,
+                              ymin=-10,ymax=10,
+                              xtick={-8,-6,...,8},
+                              ytick={-8,-6,...,8},
+                              minor xtick={-9,-8,...,9},
+                              minor ytick={-9,-8,...,9}]
+                      \addplot[soliddot] coordinates {(8, 2) (5,5) (-3,0) (-2,-6)};
+                  \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="cyj">
         <statement>
           <p permid="uQi">
@@ -681,28 +659,24 @@
         </statement>
         <answer permid="kMC">
           <sidebyside permid="uBN">
-
             <image permid="gre">
               <description>a Cartesian plot with the points labeled;(1,-4) is right 1, down 4;(-3,5) is left 3, up 5;(0,4) up 4 on the y-axis;(-2,-6) is left 2, down 6</description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                    \addplot[soliddot] coordinates {(1, -4) (-3,5) (0,4) (-2,-6)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                        \addplot[soliddot] coordinates {(1, -4) (-3,5) (0,4) (-2,-6)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="IFs">
         <statement>
           <p permid="aXr">
@@ -712,29 +686,25 @@
         </statement>
         <answer permid="QTL">
           <sidebyside permid="aIW">
-
             <image permid="Myn">
               <description>a Cartesian plot with the points labeled;(208,-50) is right 208, down 50;(97,112) is right 97, up 112;(-29,103) is left 29, up 103;(-80,-172) is left 80, down 172</description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-250,xmax=250,
-                            ymin=-250,ymax=250,
-                            xtick={-200,-150,...,200},
-                            ytick={-200,-150,...,200},
-                            minor xtick={-240,-230,...,240},
-                            minor ytick={-240,-230,...,240},
-                            grid=major]
-                    \addplot[soliddot] coordinates {(208, -50) (97,112) (-29,103) (-80,-172)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-250,xmax=250,
+                                ymin=-250,ymax=250,
+                                xtick={-200,-150,...,200},
+                                ytick={-200,-150,...,200},
+                                minor xtick={-240,-230,...,240},
+                                minor ytick={-240,-230,...,240},
+                                grid=major]
+                        \addplot[soliddot] coordinates {(208, -50) (97,112) (-29,103) (-80,-172)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="oMB">
         <statement>
           <p permid="HeA">
@@ -744,29 +714,25 @@
         </statement>
         <answer permid="xaU">
           <sidebyside permid="GQf">
-
             <image permid="sFw">
               <description>a Cartesian plot with the points labeled;(110,38) is right 110, up 38;(-205,52) is left 205, up 52;(-52,125) is left 52, up 125;(-172,-80) is left 172, down 80</description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-250,xmax=250,
-                            ymin=-250,ymax=250,
-                            xtick={-200,-150,...,200},
-                            ytick={-200,-150,...,200},
-                            minor xtick={-240,-230,...,240},
-                            minor ytick={-240,-230,...,240},
-                            grid=major]
-                    \addplot[soliddot] coordinates {(110,38) (-205,52) (-52,125) (-172,-80)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-250,xmax=250,
+                                ymin=-250,ymax=250,
+                                xtick={-200,-150,...,200},
+                                ytick={-200,-150,...,200},
+                                minor xtick={-240,-230,...,240},
+                                minor ytick={-240,-230,...,240},
+                                grid=major]
+                        \addplot[soliddot] coordinates {(110,38) (-205,52) (-52,125) (-172,-80)};
+                    \end{axis}
+              \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="UTK">
         <statement>
           <p permid="nlJ">
@@ -777,28 +743,24 @@
         </statement>
         <answer permid="did">
           <sidebyside permid="mXo">
-
             <image permid="YMF">
               <description>a Cartesian plot with the points labeled;(5.5,2.7) is right 5.5, up 2.7;(-7.3,2.75) is left 7.3, up 2.75;(-10/3,1/2) is left 10/3, up 1/2;(-28/5,-29/4) is left 28/5, down 29/4</description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                    \addplot[soliddot] coordinates {(5.5, 2.7) (-7.3,2.75) (-3.333,0.5) (-5.8,-7.25)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                        \addplot[soliddot] coordinates {(5.5, 2.7) (-7.3,2.75) (-3.333,0.5) (-5.8,-7.25)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="BaT">
         <statement>
           <p permid="TsS">
@@ -809,24 +771,21 @@
         </statement>
         <answer permid="Jpm">
           <sidebyside permid="Tex">
-
             <image permid="ETO">
               <description>a Cartesian plot with the points labeled;(1.9,-3.3) is right 1.9, down 3.3;(-5.2,-8.11) is left 5.2, down 8.11;(7/11,15/2) is right 7/11, up 15/2;(-16/3,19/5) is left 16/3, up 19/5</description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                    \addplot[soliddot] coordinates {(1.9,-3.3) (-5.2,-8.11) (0.6363,7.5) (-5.333,3.8)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                        \addplot[soliddot] coordinates {(1.9,-3.3) (-5.2,-8.11) (0.6363,7.5) (-5.333,3.8)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
@@ -839,29 +798,25 @@
         </statement>
         <answer permid="pwv">
           <sidebyside permid="zlG">
-
             <image permid="laX">
               <description></description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                \addplot[white,fill=firstcolor,fill opacity=0.2]
-                    coordinates{(-10,-10) (0,-10) (0,10) (-10,10)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                    \addplot[white,fill=firstcolor,fill opacity=0.2]
+                        coordinates{(-10,-10) (0,-10) (0,10) (-10,10)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="Npl">
         <statement>
           <p permid="fHk">
@@ -870,29 +825,25 @@
         </statement>
         <answer permid="VDE">
           <sidebyside permid="fsP">
-
             <image permid="Rig">
               <description></description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                \addplot[white,fill=firstcolor,fill opacity=0.2]
-                    coordinates{(-10,0) (10,0) (10,10) (-10,10)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                    \addplot[white,fill=firstcolor,fill opacity=0.2]
+                        coordinates{(-10,0) (10,0) (10,10) (-10,10)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="twu">
         <statement>
           <p permid="LOt">
@@ -901,31 +852,27 @@
         </statement>
         <answer permid="BKN">
           <sidebyside permid="LzY">
-
             <image permid="xpp">
               <description></description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                \addplot[white,fill=firstcolor,fill opacity=0.2]
-                    coordinates{(0,10) (0,0) (10,0) (10,10)};
-                \addplot[white,fill=firstcolor,fill opacity=0.2]
-                    coordinates{(0,-10) (0,0) (-10,0) (-10,-10)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                    \addplot[white,fill=firstcolor,fill opacity=0.2]
+                        coordinates{(0,10) (0,0) (10,0) (10,10)};
+                    \addplot[white,fill=firstcolor,fill opacity=0.2]
+                        coordinates{(0,-10) (0,0) (-10,0) (-10,-10)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
       <exercise permid="ZDD">
         <statement>
           <p permid="rVC">
@@ -934,200 +881,183 @@
         </statement>
         <answer permid="hRW">
           <sidebyside permid="rHh">
-
             <image permid="dwy">
               <description></description>
-
-            <latex-image>
-            <![CDATA[\begin{tikzpicture}
-                \begin{axis}[xmin=-10,xmax=10,
-                            ymin=-10,ymax=10,
-                            xtick={-8,-6,...,8},
-                            ytick={-8,-6,...,8},
-                            minor xtick={-9,-8,...,9},
-                            minor ytick={-9,-8,...,9}]
-                \addplot[white,fill=firstcolor,fill opacity=0.2]
-                    coordinates{(-10,0) (0,0) (0,10) (-10,10)};
-                \addplot[white,fill=firstcolor,fill opacity=0.2]
-                    coordinates{(0,-10) (0,0) (10,0) (10,-10)};
-                \end{axis}
-            \end{tikzpicture}]]>
-            </latex-image>
+              <latex-image>
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-10,xmax=10,
+                                ymin=-10,ymax=10,
+                                xtick={-8,-6,...,8},
+                                ytick={-8,-6,...,8},
+                                minor xtick={-9,-8,...,9},
+                                minor ytick={-9,-8,...,9}]
+                    \addplot[white,fill=firstcolor,fill opacity=0.2]
+                        coordinates{(-10,0) (0,0) (0,10) (-10,10)};
+                    \addplot[white,fill=firstcolor,fill opacity=0.2]
+                        coordinates{(0,-10) (0,0) (10,0) (10,-10)};
+                    \end{axis}
+                \end{tikzpicture}
+              </latex-image>
             </image>
-
           </sidebyside>
         </answer>
       </exercise>
-
     </exercisegroup>
+
     <exercisegroup cols="2" permid="xwt">
       <title>Cartesian Plots in Context</title>
       <exercise permid="FKM">
         <webwork>
-            <pg-code>
-                @x=(2008..2015);
-                @y=(5,14,19,35,51,52,68,90);
-                %f=map{$x[$_]=>$y[$_]}(0..7);
-                $year=list_random(2008..2014);
-                if($envir{problemSeed}==1){$year=2008;};
-                Context("Point");
-                Context()->flags->set(tolType=>'absolute',tolerance=>1.1);
-                $point=Point("($year,$f{$year})");
-                $next=$year+1;
-                $change=$f{$next}-$f{$year};
-                $list=List(Point(2008,$f{2008}),Point(2010,$f{2010}),Point(2012,$f{2012}));
-                $listeval=$list->cmp(list_checker=>sub{
-                  my($correct,$student,$ansHash,$value)=@_;
-                  my$n=scalar(@$student);
-                  my$score=0;
-                  my@errors=();
-                  my$i,$j;
-                  for($i=0;$i&lt;$n;$i++){
-                    my$ith=Value::List->NameForNumber($i+1);
-                    my$p=$student->[$i];
-                    if($p->type ne"Point"){push(@errors,"Your $ith entry is not a point");next;}
-                    for($j=0,$used=0;$j&lt;$i;$j++){
-                      if($student->[$j]->type eq"Point"and($student->[$j]->value)[0]*10==($p->value)[0]*10and($student->[$j]->value)[1]==($p->value)[1]){
-                        push(@errors,"Your $ith point is the same as a previous one")unless$ansHash->{isPreview};
-                        $used=1;last;}
-                      }
-                    if(!$used){my($a,$b)=$p->value;if($f{$a}==$b){$score++}else{
-                      push(@errors,"Your $ith point is not correct")unless$ansHash->{isPreview}}
-                    }
+          <pg-code>
+            @x=(2008..2015);
+            @y=(5,14,19,35,51,52,68,90);
+            %f=map{$x[$_]=>$y[$_]}(0..7);
+            $year=list_random(2008..2014);
+            if($envir{problemSeed}==1){$year=2008;};
+            Context("Point");
+            Context()->flags->set(tolType=>'absolute',tolerance=>1.1);
+            $point=Point("($year,$f{$year})");
+            $next=$year+1;
+            $change=$f{$next}-$f{$year};
+            $list=List(Point(2008,$f{2008}),Point(2010,$f{2010}),Point(2012,$f{2012}));
+            $listeval=$list->cmp(list_checker=>sub{
+              my($correct,$student,$ansHash,$value)=@_;
+              my$n=scalar(@$student);
+              my$score=0;
+              my@errors=();
+              my$i,$j;
+              for($i=0;$i&lt;$n;$i++){
+                my$ith=Value::List->NameForNumber($i+1);
+                my$p=$student->[$i];
+                if($p->type ne"Point"){push(@errors,"Your $ith entry is not a point");next;}
+                for($j=0,$used=0;$j&lt;$i;$j++){
+                  if($student->[$j]->type eq"Point"and($student->[$j]->value)[0]*10==($p->value)[0]*10and($student->[$j]->value)[1]==($p->value)[1]){
+                    push(@errors,"Your $ith point is the same as a previous one")unless$ansHash->{isPreview};
+                    $used=1;last;}
                   }
-                  if(!$ansHash->{isPreview}){push(@errors,"You need to provide more points")if$i&lt;3;}
-                  return($score,@errors);
-                });
-                $gr=init_graph(2005,-10,2020,100,axes=>[2008,0],grid=>[15,11],size=>[240,200]);
-                $gr->lb('reset');
-                for my$i(2010,2015){$gr->lb(new Label($i,-2,"$i",'black','center','top','large'));
-                    $gr->moveTo($i,-1);$gr->lineTo($i,2,'black',2);};
-                for my$i(1..9){$gr->lb(new Label(2008-0.2,$i*10,$i*10,'black','right','middle','large'));
-                    $gr->moveTo(2008-0.1,$i*10);$gr->lineTo(2008+0.2,$i*10,'black',2);}
-                $gr->lb(new Label(2019,2,"year",'black','center','bottom','large'));
-                $gr->lb(new Label(2008.2,95,"population",'black','left','middle','large'));
-                for my$i(@x){$gr->stamps(closed_circle($i,$f{$i},'blue'));};
-            </pg-code>
-            <statement>
-              <p permid="YcL">
-                This graph gives the minimum estimates of the wolf population in Washington from 2008 through 2015.<!--  (Source:
-                <url href="http://wdfw.wa.gov/publications/01793/wdfw01793.pdf" />) -->
-              </p>
-
-              <sidebyside widths="40%" permid="XOq">
-                <image pg-name="$gr" />
-              </sidebyside>
-
-              <p permid="EjU">
-                What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" />
-              </p>
-
-              <p permid="krd">
-                Between <var name="$year"/> and <var name="$next"/>,
-                the wolf population grew by <var name="$change" width="2" /> wolves.
-              </p>
-
-              <p permid="Qym">
-                List at least three ordered pairs in the graph.
-              </p>
-              <instruction>
-                (Use commas to separate the ordered pairs.)
-              </instruction>
-              <p permid="wFv">
-                <var name="$list" evaluator="$listeval" width="30" />
-              </p>
-            </statement>
+                if(!$used){my($a,$b)=$p->value;if($f{$a}==$b){$score++}else{
+                  push(@errors,"Your $ith point is not correct")unless$ansHash->{isPreview}}
+                }
+              }
+              if(!$ansHash->{isPreview}){push(@errors,"You need to provide more points")if$i&lt;3;}
+              return($score,@errors);
+            });
+            $gr=init_graph(2005,-10,2020,100,axes=>[2008,0],grid=>[15,11],size=>[240,200]);
+            $gr->lb('reset');
+            for my$i(2010,2015){$gr->lb(new Label($i,-2,"$i",'black','center','top','large'));
+                $gr->moveTo($i,-1);$gr->lineTo($i,2,'black',2);};
+            for my$i(1..9){$gr->lb(new Label(2008-0.2,$i*10,$i*10,'black','right','middle','large'));
+                $gr->moveTo(2008-0.1,$i*10);$gr->lineTo(2008+0.2,$i*10,'black',2);}
+            $gr->lb(new Label(2019,2,"year",'black','center','bottom','large'));
+            $gr->lb(new Label(2008.2,95,"population",'black','left','middle','large'));
+            for my$i(@x){$gr->stamps(closed_circle($i,$f{$i},'blue'));};
+          </pg-code>
+          <statement>
+            <p permid="YcL">
+              This graph gives the minimum estimates of the wolf population in Washington from 2008 through 2015.<!--  (Source:
+              <url href="http://wdfw.wa.gov/publications/01793/wdfw01793.pdf" />) -->
+            </p>
+            <image pg-name="$gr" width="40%"/>
+            <p permid="EjU">
+              What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" />
+            </p>
+            <p permid="krd">
+              Between <var name="$year"/> and <var name="$next"/>,
+              the wolf population grew by <var name="$change" width="2" /> wolves.
+            </p>
+            <p permid="Qym">
+              List at least three ordered pairs in the graph.
+            </p>
+            <instruction>
+              (Use commas to separate the ordered pairs.)
+            </instruction>
+            <p permid="wFv">
+              <var name="$list" evaluator="$listeval" width="30" />
+            </p>
+          </statement>
         </webwork>
       </exercise>
 
       <exercise permid="lRV">
         <webwork>
-            <pg-macros><macro-file>contextPercent.pl</macro-file></pg-macros>
-            <pg-code>
-                @x=(1960,1970,1980,1990,2000,2010);
-                @y=(9.7,9.6,14.1,19.8,31.1,39.9,);
-                %f=map{$x[$_]=>$y[$_]}(0..5);
-                $year=$x[random(0,3,1)];
-                if($envir{problemSeed}==1){$year=1980;};
-                $later=$year+20;
-                Context("Point");
-                Context()->flags->set(tolType=>'absolute',tolerance=>2);
-                $point=Point("($year,$f{$year})");
-                $list=List(Point(1960,$f{1960}),Point(1980,$f{1980}),Point(2000,$f{2000}));
-                $listeval=$list->cmp(list_checker=>sub{
-                  my($correct,$student,$ansHash,$value)=@_;
-                  my$n=scalar(@$student);
-                  my$score=0;
-                  my@errors=();
-                  my$i,$j;
-                  for($i=0;$i&lt;$n;$i++){
-                    my$ith=Value::List->NameForNumber($i+1);
-                    my$p=$student->[$i];
-                    if($p->type ne"Point"){push(@errors,"Your $ith entry is not a point");next;}
-                    for($j=0,$used=0;$j&lt;$i;$j++){
-                      if($student->[$j]->type eq"Point"and($student->[$j]->value)[0]*10==($p->value)[0]*10and($student->[$j]->value)[1]==($p->value)[1]){
-                        push(@errors,"Your $ith point is the same as a previous one")unless$ansHash->{isPreview};
-                        $used=1;last;}
-                      }
-                    if(!$used){my($a,$b)=$p->value;if($f{$a}==$b){$score++}else{
-                      push(@errors,"Your $ith point is not correct")unless$ansHash->{isPreview}}
-                    }
+          <pg-code>
+            @x=(1960,1970,1980,1990,2000,2010);
+            @y=(9.7,9.6,14.1,19.8,31.1,39.9,);
+            %f=map{$x[$_]=>$y[$_]}(0..5);
+            $year=$x[random(0,3,1)];
+            if($envir{problemSeed}==1){$year=1980;};
+            $later=$year+20;
+            Context("Point");
+            Context()->flags->set(tolType=>'absolute',tolerance=>2);
+            $point=Point("($year,$f{$year})");
+            $list=List(Point(1960,$f{1960}),Point(1980,$f{1980}),Point(2000,$f{2000}));
+            $listeval=$list->cmp(list_checker=>sub{
+              my($correct,$student,$ansHash,$value)=@_;
+              my$n=scalar(@$student);
+              my$score=0;
+              my@errors=();
+              my$i,$j;
+              for($i=0;$i&lt;$n;$i++){
+                my$ith=Value::List->NameForNumber($i+1);
+                my$p=$student->[$i];
+                if($p->type ne"Point"){push(@errors,"Your $ith entry is not a point");next;}
+                for($j=0,$used=0;$j&lt;$i;$j++){
+                  if($student->[$j]->type eq"Point"and($student->[$j]->value)[0]*10==($p->value)[0]*10and($student->[$j]->value)[1]==($p->value)[1]){
+                    push(@errors,"Your $ith point is the same as a previous one")unless$ansHash->{isPreview};
+                    $used=1;last;}
                   }
-                  if(!$ansHash->{isPreview}){push(@errors,"You need to provide more points")if$i&lt;3;}
-                  return($score,@errors);
-                });
-                $change=Real($f{$later}-$f{$year});
-                $gr=init_graph(1950,-10,2020,50,axes=>[1960,0],grid=>[7,6],size=>[240,200]);
-                $gr->lb('reset');
-                for my$i(197..201){$gr->lb(new Label($i*10,-3,$i*10,'black','center','top','large'));
-                    $gr->moveTo($i*10,-1);$gr->lineTo($i*10,1,'black',2);};
-                for my$i(1..4){$gr->lb(new Label(1960-2,$i*10,$i*10,'black','right','middle','large'));
-                    $gr->moveTo(1960-1,$i*10);$gr->lineTo(1960+1,$i*10,'black',2);}
-                $gr->lb(new Label(2019,1,"year",'black','right','bottom','large'));
-                $gr->lb(new Label(1962,48,'million people','black','left','middle','large'));
-                for my$i(@x){$gr->stamps(closed_circle($i,$f{$i},'blue','large'));};
-            </pg-code>
-            <statement>
-              <p permid="cME">
-                Here is a graph of the foreign-born US population
-                (in millions)
-                during Census years 1960 to 2010.<!--  (Source:
-                <url href="http://www.pewhispanic.org/2015/09/28/chapter-5-u-s-foreign-born-population-trends/" />.) -->
-              </p>
-
-              <sidebyside widths="40%" permid="DVz">
-                <image pg-name="$gr" />
-              </sidebyside>
-
-              <p permid="ITN">
-                What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" />
-              </p>
-
-              <p permid="paW">
-                Between <var name="$year"/> and <var name="$later"/>,
-                the US population that is foreign-born increased by <var name="$change" width="2" /> million people.
-              </p>
-
-              <p permid="Vif">
-                List at least three ordered pairs in the graph.
-              </p>
-              <instruction>
-                (Use commas to separate the ordered pairs.)
-              </instruction>
-              <p permid="Bpo">
-                <var name="$list" evaluator="$listeval" width="30" />
-              </p>
-            </statement>
+                if(!$used){my($a,$b)=$p->value;if($f{$a}==$b){$score++}else{
+                  push(@errors,"Your $ith point is not correct")unless$ansHash->{isPreview}}
+                }
+              }
+              if(!$ansHash->{isPreview}){push(@errors,"You need to provide more points")if$i&lt;3;}
+              return($score,@errors);
+            });
+            $change=Real($f{$later}-$f{$year});
+            $gr=init_graph(1950,-10,2020,50,axes=>[1960,0],grid=>[7,6],size=>[240,200]);
+            $gr->lb('reset');
+            for my$i(197..201){$gr->lb(new Label($i*10,-3,$i*10,'black','center','top','large'));
+                $gr->moveTo($i*10,-1);$gr->lineTo($i*10,1,'black',2);};
+            for my$i(1..4){$gr->lb(new Label(1960-2,$i*10,$i*10,'black','right','middle','large'));
+                $gr->moveTo(1960-1,$i*10);$gr->lineTo(1960+1,$i*10,'black',2);}
+            $gr->lb(new Label(2019,1,"year",'black','right','bottom','large'));
+            $gr->lb(new Label(1962,48,'million people','black','left','middle','large'));
+            for my$i(@x){$gr->stamps(closed_circle($i,$f{$i},'blue','large'));};
+          </pg-code>
+          <statement>
+            <p permid="cME">
+              Here is a graph of the foreign-born US population
+              (in millions)
+              during Census years 1960 to 2010.<!--  (Source:
+              <url href="http://www.pewhispanic.org/2015/09/28/chapter-5-u-s-foreign-born-population-trends/" />.) -->
+            </p>
+            <image pg-name="$gr" width="40%"/>
+            <p permid="ITN">
+              What are the Cartesian coordinates for the point representing the year <var name="$year"/>? <var name="$point" width="10" />
+            </p>
+            <p permid="paW">
+              Between <var name="$year"/> and <var name="$later"/>,
+              the US population that is foreign-born increased by <var name="$change" width="2" /> million people.
+            </p>
+            <p permid="Vif">
+              List at least three ordered pairs in the graph.
+            </p>
+            <instruction>
+              (Use commas to separate the ordered pairs.)
+            </instruction>
+            <p permid="Bpo">
+              <var name="$list" evaluator="$listeval" width="30" />
+            </p>
+          </statement>
         </webwork>
       </exercise>
-
     </exercisegroup>
+
     <exercisegroup permid="dDC">
       <title>Regions in the Cartesian Plane</title>
       <exercise permid="RZe">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant10.pg" />
       </exercise>
-
       <exercise permid="ygn">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant10.pg" />
       </exercise>
@@ -1135,64 +1065,57 @@
       <exercise permid="enw">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant30.pg" seed="3"/>
       </exercise>
-
       <exercise permid="KuF">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant30.pg" seed="7"/>
       </exercise>
-
       <exercise permid="qBO">
         <webwork source="Contrib/PCC/BasicAlgebra/GraphingPointsAndLines/Quadrant20.pg" />
       </exercise>
-
     </exercisegroup>
 
     <exercisegroup permid="JKL">
       <title>Plotting Points and Choosing a Scale</title>
       <exercise permid="WIX">
         <webwork>
-            <statement>
-              <p permid="hwx">
-                What would be the difficulty with trying to plot <m>(12,4)</m>,
-                <m>(13,5)</m>, and <m>(310,208)</m> all on the same graph?
-              </p>
-
-              <p permid="NDG">
-                <var form="essay" />
-              </p>
-            </statement>
-            <solution permid="NZf">
-              <p permid="POs">
-                Answers will vary,
-                but the issue is that once you set the scale on both axes so that both <m>(12,4)</m> and <m>(310,208)</m> will appear,
-                then <m>(13,5)</m> will appear to be so close to <m>(12,4)</m> that it will be challenging to draw them both and make it clear they are two different points.
-              </p>
-            </solution>
+          <statement>
+            <p permid="hwx">
+              What would be the difficulty with trying to plot <m>(12,4)</m>,
+              <m>(13,5)</m>, and <m>(310,208)</m> all on the same graph?
+            </p>
+            <p permid="NDG">
+              <var form="essay" />
+            </p>
+          </statement>
+          <solution permid="NZf">
+            <p permid="POs">
+              Answers will vary,
+              but the issue is that once you set the scale on both axes so that both <m>(12,4)</m> and <m>(310,208)</m> will appear,
+              then <m>(13,5)</m> will appear to be so close to <m>(12,4)</m> that it will be challenging to draw them both and make it clear they are two different points.
+            </p>
+          </solution>
         </webwork>
       </exercise>
-
       <exercise permid="CQg">
         <webwork>
-            <statement>
-              <p permid="tKP">
-                The points <m>(3,5)</m>, <m>(5,6)</m>,
-                <m>(7,7)</m>, and <m>(9,8)</m> all lie on a straight line.
-                What can go wrong if you make a plot of a Cartesian plane with these points marked,
-                and you don't have tick marks that are evenly spaced apart?
-              </p>
-
-              <p permid="ZRY">
-                <var form="essay" />
-              </p>
-            </statement>
-            <solution permid="ugo">
-              <p permid="vVB">
-                Answers will vary,
-                but the issue is that having irregularly spaced tick marks can make it so that points that are actually in a straight line do not appear to be in a straight line.
-              </p>
-            </solution>
+          <statement>
+            <p permid="tKP">
+              The points <m>(3,5)</m>, <m>(5,6)</m>,
+              <m>(7,7)</m>, and <m>(9,8)</m> all lie on a straight line.
+              What can go wrong if you make a plot of a Cartesian plane with these points marked,
+              and you don't have tick marks that are evenly spaced apart?
+            </p>
+            <p permid="ZRY">
+              <var form="essay" />
+            </p>
+          </statement>
+          <solution permid="ugo">
+            <p permid="vVB">
+              Answers will vary,
+              but the issue is that having irregularly spaced tick marks can make it so that points that are actually in a straight line do not appear to be in a straight line.
+            </p>
+          </solution>
         </webwork>
       </exercise>
-
     </exercisegroup>
   </exercises>
 </section>
