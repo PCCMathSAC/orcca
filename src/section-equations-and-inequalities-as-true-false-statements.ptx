@@ -823,7 +823,7 @@
       <exercisegroup cols="2" permid="mZo">
         <title>Identifying Linear Equations and Inequalities</title>
         <exercise permid="nJi">
-          <webwork>
+          <webwork xml:id="webwork-identify-linear-equations">
             <pg-code>
               Context("Numeric");
               Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
@@ -952,138 +952,11 @@
             </solution>
           </webwork>
         </exercise>
-        <exercise permid="TQr">
-          <webwork>
-            <pg-code>
-              Context("Numeric");
-              Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
-              Context()->noreduce('(-x)-y');
-              $yes=PopUp(['?','is','is not'],1);
-              $no=PopUp(['?','is','is not'],2);
-              @allvars=('x','y','z','r','q','p','V');
-              @var=(
-                  list_random(@allvars),
-                  (@allvars)[NchooseK(7,2)],
-                  list_random(@allvars),
-                  list_random(@allvars),
-                  list_random(@allvars),
-                  'r',
-              );
-              @left=(
-                  Formula(non_zero_random(-9,9,1).$var[0].'+'.non_zero_random(-19,19,1))->reduce,
-                  Formula(non_zero_random(-9,9,1).$var[1].'^2+'.non_zero_random(-9,9,1).$var[2])->reduce,
-                  Formula(non_zero_random(-9,9,1).'+'.non_zero_random(-9,9,1).$var[3].'^2')->reduce,
-                  Formula(non_zero_random(-9,9,0.01).$var[4])->reduce,
-                  Formula('sqrt('.non_zero_random(-9,9,0.1).$var[5].'+'.non_zero_random(-9,9,1).')')->reduce,
-                  Formula("2 pi r")->reduce
-              );
-              @right=(
-                  Compute(random(-9,9,1)),
-                  Compute(random(-29,29,1)),
-                  Compute(random(-29,29,1)),
-                  Compute(random(-9,9,1)),
-                  Compute(random(0,9,1)),
-                  Formula(random(1,20,1).'pi')->reduce
-              );
-              @eq = map{$left[$_]->TeX.'='.$right[$_]->TeX}(0..5);
-              @answer = (
-                  $yes,
-                  $no,
-                  $no,
-                  $yes,
-                  $no,
-                  $yes
-              );
-              @sol = (
-                  "The equation is a linear equation in one variable.",
-                  "The equation is not a linear equation in one variable since it contains two variables.",
-                  "The equation is not a linear equation in one variable since it contains the square of a variable.",
-                  "The equation is a linear equation in one variable.",
-                  "The equation is not a linear equation in one variable since there is a variable within a square root.",
-                  "The equation is a linear equation in one variable.",
-              );
-              @mix = NchooseK(6,6);
-              @mixeq = (@eq)[@mix];
-              @mixanswer = (@answer)[@mix];
-              @mixsol = (@sol)[@mix];
-            </pg-code>
-            <statement>
-              <p permid="XCi">
-                Are the equations below linear equations in one variable?
-                <ol label="a." permid="cOE">
-                  <li permid="HQu">
-                    <p permid="hMS">
-                      <m><var name="$mixeq[0]" /></m> <var name="$mixanswer[0]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="nXD">
-                    <p permid="NUb">
-                      <m><var name="$mixeq[1]" /></m> <var name="$mixanswer[1]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="UeM">
-                    <p permid="ubk">
-                      <m><var name="$mixeq[2]" /></m> <var name="$mixanswer[2]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="AlV">
-                    <p permid="ait">
-                      <m><var name="$mixeq[3]" /></m> <var name="$mixanswer[3]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="gte">
-                    <p permid="GpC">
-                      <m><var name="$mixeq[4]" /></m> <var name="$mixanswer[4]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="MAn">
-                    <p permid="mwL">
-                      <m><var name="$mixeq[5]" /></m> <var name="$mixanswer[5]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </statement>
-            <solution permid="CwH">
-              <p permid="ypE">
-                <ol label="a." permid="zCb">
-                  <li permid="sHw">
-                    <p permid="SDU">
-                      <var name="$mixsol[0]" />
-                    </p>
-                  </li>
-                  <li permid="YOF">
-                    <p permid="yLd">
-                      <var name="$mixsol[1]" />
-                    </p>
-                  </li>
-                  <li permid="EVO">
-                    <p permid="eSm">
-                      <var name="$mixsol[2]" />
-                    </p>
-                  </li>
-                  <li permid="lcX">
-                    <p permid="KZv">
-                      <var name="$mixsol[3]" />
-                    </p>
-                  </li>
-                  <li permid="Rkg">
-                    <p permid="rgE">
-                      <var name="$mixsol[4]" />
-                    </p>
-                  </li>
-                  <li permid="xrp">
-                    <p permid="XnN">
-                      <var name="$mixsol[5]" />
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </solution>
-          </webwork>
+        <exercise>
+          <webwork copy="webwork-identify-linear-equations"/>
         </exercise>
         <exercise permid="zXA">
-          <webwork>
+          <webwork xml:id="webwork-identify-linear-equations-2">
             <pg-code>
               Context("Numeric");
               Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
@@ -1104,7 +977,7 @@
                   Formula(non_zero_random(-9,9,1).$var[0].$var[1].$var[2])->reduce,
                   Formula($var[3].'^2+'.$var[4].'^2')->reduce,
                   Formula(non_zero_random(-19,19,1).$var[5].'+'.non_zero_random(-9,9,1))->reduce,
-                  Formula($var[6].'sqrt('.list_random(2,3,5..8,10..15,17..24,26..35).')'),
+                  Formula($var[6].' sqrt('.list_random(2,3,5..8,10..15,17..24,26..35).')'),
                   Formula("pi r^2")->reduce,
                   Formula(non_zero_random(-9,9,0.01).$var[8])->reduce
               );
@@ -1213,142 +1086,14 @@
             </solution>
           </webwork>
         </exercise>
-        <exercise permid="geJ">
-          <webwork>
-            <pg-code>
-              Context("Numeric");
-              Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
-              Context()->noreduce('(-x)-y');
-              Context()->flags->set(reduceConstantFunctions=>0);
-              $yes=PopUp(['?','is','is not'],1);
-              $no=PopUp(['?','is','is not'],2);
-              @allvars=('x','y','z','r','q','p','V');
-              @var=(
-                  (@allvars)[NchooseK(7,3)],
-                  (@allvars)[NchooseK(7,2)],
-                  list_random(@allvars),
-                  list_random(@allvars),
-                  'r',
-                  list_random(@allvars),
-              );
-              @left=(
-                  Formula(non_zero_random(-9,9,1).$var[0].$var[1].$var[2])->reduce,
-                  Formula($var[3].'^2+'.$var[4].'^2')->reduce,
-                  Formula(non_zero_random(-19,19,1).$var[5].'+'.non_zero_random(-9,9,1))->reduce,
-                  Formula($var[6].' sqrt('.list_random(2,3,5..8,10..15,17..24,26..35).')'),
-                  Formula("pi r^2")->reduce,
-                  Formula(non_zero_random(-9,9,0.01).$var[8])->reduce
-              );
-              @right=(
-                  Compute(random(-99,99,1)),
-                  Compute(random(-99,99,1)),
-                  Compute(random(-99,99,1)),
-                  Compute(random(-99,99,1)),
-                  Formula(random(1,99,1).'pi')->reduce,
-                  Compute(random(-99,99,1))
-              );
-              @eq = map{$left[$_]->TeX.'='.$right[$_]->TeX}(0..5);
-              @answer = (
-                  $no,
-                  $no,
-                  $yes,
-                  $yes,
-                  $no,
-                  $yes
-              );
-              @sol = (
-                  "The equation is not a linear equation in one variable since it contains three variables.",
-                  "The equation is not a linear equation in one variable since it contains two variables and variables are squared.",
-                  "The equation is a linear equation in one variable.",
-                  "The equation is a linear equation in one variable. Note that there is no variable inside the square root.",
-                  "The equation is not a linear equation in one variable since it contains the square of a variable.",
-                  "The equation is a linear equation in one variable.",
-              );
-              @mix = NchooseK(6,6);
-              @mixeq = (@eq)[@mix];
-              @mixanswer = (@answer)[@mix];
-              @mixsol = (@sol)[@mix];
-            </pg-code>
-            <statement>
-              <p permid="jQA">
-                Are the equations below linear equations in one variable?
-                <ol label="a." permid="pcW">
-                  <li permid="zgC">
-                    <p permid="Zda">
-                      <m><var name="$mixeq[0]" /></m> <var name="$mixanswer[0]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="fnL">
-                    <p permid="Fkj">
-                      <m><var name="$mixeq[1]" /></m> <var name="$mixanswer[1]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="LuU">
-                    <p permid="lrs">
-                      <m><var name="$mixeq[2]" /></m> <var name="$mixanswer[2]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="rCd">
-                    <p permid="RyB">
-                      <m><var name="$mixeq[3]" /></m> <var name="$mixanswer[3]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="XJm">
-                    <p permid="xFK">
-                      <m><var name="$mixeq[4]" /></m> <var name="$mixanswer[4]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                  <li permid="DQv">
-                    <p permid="dMT">
-                      <m><var name="$mixeq[5]" /></m> <var name="$mixanswer[5]" form="popup" /> a linear equation in one variable.
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </statement>
-            <solution permid="OKZ">
-              <p permid="KDW">
-                <ol label="a." permid="LQt">
-                  <li permid="jXE">
-                    <p permid="JUc">
-                      <var name="$mixsol[0]" />
-                    </p>
-                  </li>
-                  <li permid="QeN">
-                    <p permid="qbl">
-                      <var name="$mixsol[1]" />
-                    </p>
-                  </li>
-                  <li permid="wlW">
-                    <p permid="Wiu">
-                      <var name="$mixsol[2]" />
-                    </p>
-                  </li>
-                  <li permid="ctf">
-                    <p permid="CpD">
-                      <var name="$mixsol[3]" />
-                    </p>
-                  </li>
-                  <li permid="IAo">
-                    <p permid="iwM">
-                      <var name="$mixsol[4]" />
-                    </p>
-                  </li>
-                  <li permid="oHx">
-                    <p permid="ODV">
-                      <var name="$mixsol[5]" />
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </solution>
-          </webwork>
+        <exercise>
+          <webwork copy="webwork-identify-linear-equations-2"/>
         </exercise>
       </exercisegroup>
 
       <exercisegroup cols="2">
         <exercise permid="MlS">
-          <webwork>
+          <webwork xml:id="webwork-identify-linear-inequalities">
             <pg-code>
               Context("Numeric");
               Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
@@ -1432,93 +1177,11 @@
             </solution>
           </webwork>
         </exercise>
-        <exercise permid="stb">
-          <webwork>
-            <pg-code>
-              Context("Numeric");
-              Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
-              Context()->noreduce('(-x)-y');
-              $yes=PopUp(['?','is','is not'],1);
-              $no=PopUp(['?','is','is not'],2);
-              @allvars=('x','y','z','r','q','p','V');
-              @var=(
-                  (@allvars)[NchooseK(7,2)],
-                  list_random(@allvars),
-                  (@allvars)[NchooseK(7,2)],
-              );
-              @left=(
-                  Formula(non_zero_random(-9,9,1).$var[0].'^2+'.non_zero_random(-9,9,1).$var[1])->reduce,
-                  Formula(random(-5,5,1))->reduce,
-                  Formula(non_zero_random(-9,9,1).$var[3].'^2+'.non_zero_random(-9,9,1).$var[4].'^2')->reduce
-              );
-              @right=(
-                  Compute(random(-99,99,1)),
-                  Formula(non_zero_random(-9,9,1).'+'.non_zero_random(-19,19,1).$var[2])->reduce,
-                  Compute(1),
-              );
-              @eq = map{$left[$_]->TeX.list_random('\lt','\gt','\leq','\geq').$right[$_]->TeX}(0..2);
-              @answer = (
-                  $no,
-                  $yes,
-                  $no,
-              );
-              @sol = (
-                  "The inequality is not a linear inequality in one variable since it contains two variables and one of them is squared.",
-                  "The inequality is a linear inequality in one variable.",
-                  "The inequality is not a linear inequality in one variable since it contains two variables and both of them are squared.",
-              );
-              @mix = NchooseK(3,3);
-              @mixeq = (@eq)[@mix];
-              @mixanswer = (@answer)[@mix];
-              @mixsol = (@sol)[@mix];
-            </pg-code>
-            <statement>
-              <p permid="weS">
-                Are the inequalities below linear inequalities in one variable?
-                <ol label="a." permid="Bro">
-                  <li permid="FFI">
-                    <p permid="fCg">
-                      <m><var name="$mixeq[0]" /></m> <var name="$mixanswer[0]" form="popup" /> a linear inequality in one variable.
-                    </p>
-                  </li>
-                  <li permid="lMR">
-                    <p permid="LJp">
-                      <m><var name="$mixeq[1]" /></m> <var name="$mixanswer[1]" form="popup" /> a linear inequality in one variable.
-                    </p>
-                  </li>
-                  <li permid="RUa">
-                    <p permid="rQy">
-                      <m><var name="$mixeq[2]" /></m> <var name="$mixanswer[2]" form="popup" /> a linear inequality in one variable.
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </statement>
-            <solution permid="aZr">
-              <p permid="WSo">
-                <ol label="a." permid="YeL">
-                  <li permid="ybj">
-                    <p permid="XXH">
-                      <var name="$mixsol[0]" />
-                    </p>
-                  </li>
-                  <li permid="eis">
-                    <p permid="EeQ">
-                      <var name="$mixsol[1]" />
-                    </p>
-                  </li>
-                  <li permid="KpB">
-                    <p permid="klZ">
-                      <var name="$mixsol[2]" />
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </solution>
-          </webwork>
+        <exercise>
+          <webwork copy="webwork-identify-linear-inequalities"/>
         </exercise>
         <exercise permid="YAk">
-          <webwork>
+          <webwork xml:id="webwork-identify-linear-inequalities-2">
             <pg-code>
               Context("Numeric");
               Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',t=>'Real',);
@@ -1602,90 +1265,8 @@
             </solution>
           </webwork>
         </exercise>
-        <exercise permid="EHt">
-          <webwork>
-            <pg-code>
-              Context("Numeric");
-              Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',t=>'Real',);
-              Context()->noreduce('(-x)-y');
-              $yes=PopUp(['?','is','is not'],1);
-              $no=PopUp(['?','is','is not'],2);
-              @allvars=('x','y','z','r','q','p','t');
-              @var=(
-                  list_random(@allvars),
-                  (@allvars)[NchooseK(7,2)],
-                  list_random(@allvars),
-              );
-              @left=(
-                  Formula(non_zero_random(-9,9,0.1).$var[0])->reduce,
-                  Formula(random(-200,200,1))->reduce,
-                  Formula('sqrt('.random(2,9,1).$var[3].')+'.non_zero_random(-19,19,1))->reduce,
-              );
-              @right=(
-                  Compute(random(-99,99,1)),
-                  Formula(non_zero_random(-9999,9999,1).$var[1].'+'.non_zero_random(-9999,9999,1).$var[2])->reduce,
-                  Compute(non_zero_random(-9,9,1)),
-              );
-              @eq = map{$left[$_]->TeX.list_random('\lt','\gt','\leq','\geq').$right[$_]->TeX}(0..2);
-              @answer = (
-                  $yes,
-                  $yes,
-                  $no,
-              );
-              @sol = (
-                  "The inequality is a linear inequality in one variable.",
-                  "The inequality is not a linear inequality in one variable since it has two variables.",
-                  "The inequality is not a linear inequality in one variable since there is a variable inside a square root.",
-              );
-              @mix = NchooseK(3,3);
-              @mixeq = (@eq)[@mix];
-              @mixanswer = (@answer)[@mix];
-              @mixsol = (@sol)[@mix];
-            </pg-code>
-            <statement>
-              <p permid="Itk">
-                Are the inequalities below linear inequalities in one variable?
-                <ol label="a." permid="NFG">
-                  <li permid="bnM">
-                    <p permid="Bkk">
-                      <m><var name="$mixeq[0]" /></m> <var name="$mixanswer[0]" form="popup" /> a linear inequality in one variable.
-                    </p>
-                  </li>
-                  <li permid="HuV">
-                    <p permid="hrt">
-                      <m><var name="$mixeq[1]" /></m> <var name="$mixanswer[1]" form="popup" /> a linear inequality in one variable.
-                    </p>
-                  </li>
-                  <li permid="nCe">
-                    <p permid="NyC">
-                      <m><var name="$mixeq[2]" /></m> <var name="$mixanswer[2]" form="popup" /> a linear inequality in one variable.
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </statement>
-            <solution permid="nnJ">
-              <p permid="jgG">
-                <ol label="a." permid="ktd">
-                  <li permid="TJn">
-                    <p permid="tFL">
-                      <var name="$mixsol[0]" />
-                    </p>
-                  </li>
-                  <li permid="zQw">
-                    <p permid="ZMU">
-                      <var name="$mixsol[1]" />
-                    </p>
-                  </li>
-                  <li permid="fXF">
-                    <p permid="FUd">
-                      <var name="$mixsol[2]" />
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </solution>
-          </webwork>
+        <exercise>
+          <webwork copy="webwork-identify-linear-inequalities-2"/>
         </exercise>
       </exercisegroup>
 

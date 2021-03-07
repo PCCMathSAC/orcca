@@ -1570,7 +1570,7 @@
         </webwork>
       </exercise>
       <exercise permid="yiA">
-        <webwork>
+        <webwork xml:id="webwork-convert-table-to-linear-equation">
           <pg-code>
             $x[0]=random(1,8,1);
             $b=random(4,9,1);
@@ -1627,65 +1627,10 @@
         </webwork>
       </exercise>
       <exercise permid="epJ">
-        <webwork>
-          <pg-code>
-            $x[0]=random(1,8,1);
-            $b=random(4,9,1);
-            @x=map{$x[0]+$_}(0..4);
-            $f=Formula("x+$b");
-            @y=map{$f->eval(x=>$_)}@x;
-            Context("Numeric")->variables->add(y=>'Real');
-            parser::Assignment->Allow;
-            $eq=Formula("y=$f");
-          </pg-code>
-          <statement>
-            <p permid="EAC">
-              Write an equation in the form
-              <m>y=\ldots</m> suggested by the pattern in the table.
-            </p>
-            <tabular  permid="BUr">
-              <col halign="right" />
-              <col halign="left" />
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-            </tabular>
-            <p permid="kHL">
-              <var name="$eq" width="20" />
-            </p>
-          </statement>
-          <solution permid="rnV">
-            <p permid="vCp">
-              Each <m>y</m>-value is <m><var name="$b" /></m> more than the corresponding <m>x</m>-value.
-              So the equation is <m><var name="$eq" /></m>.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-convert-table-to-linear-equation"/>
       </exercise>
-
       <exercise permid="KwS">
-        <webwork>
+        <webwork xml:id="webwork-convert-table-to-linear-equation-2">
           <pg-code>
             @x=NchooseK(20,5);
             $b=non_zero_random(-9,9,1);
@@ -1742,64 +1687,8 @@
           </solution>
         </webwork>
       </exercise>
-
       <exercise permid="qEb">
-        <webwork>
-          <pg-code>
-            @x=NchooseK(20,5);
-            $b=non_zero_random(-9,9,1);
-            $f=Formula("x+$b")->reduce;
-            @y=map{$f->eval(x=>$_)}@x;
-            Context("Numeric")->variables->add(y=>'Real');
-            parser::Assignment->Allow;
-            $eq=Formula("y=$f");
-            $absb=abs($b);
-            $compstring=($b>0)?'more':'less';
-          </pg-code>
-          <statement>
-            <p permid="ddm">
-              Write an equation in the form
-              <m>y=\ldots</m> suggested by the pattern in the table.
-            </p>
-            <tabular permid="OiJ">
-              <col halign="right" />
-              <col halign="left" />
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-            </tabular>
-            <p permid="Jkv">
-              <var name="$eq" width="20" />
-            </p>
-          </statement>
-          <solution permid="DCn">
-            <p permid="HQH">
-              Each <m>y</m>-value is <m><var name="$absb" /></m> <var name="$compstring" /> than the corresponding <m>x</m>-value.
-              So the equation is <m><var name="$eq" /></m>.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-convert-table-to-linear-equation-2"/>
       </exercise>
       <exercise permid="WLk">
         <webwork>
@@ -1913,7 +1802,7 @@
         </webwork>
       </exercise>
       <exercise permid="iZC">
-        <webwork>
+        <webwork xml:id="webwork-convert-table-to-quadratic-equation">
           <pg-code>
             $t=random(0,2,1);
             $x[0]=random(0,7,1)/10**$t;
@@ -1971,65 +1860,10 @@
         </webwork>
       </exercise>
       <exercise permid="PgL">
-        <webwork>
-          <pg-code>
-            $t=random(0,2,1);
-            $x[0]=random(0,7,1)/10**$t;
-            $h=random(1,3,1)/10**$t;
-            @x=map{$x[0]+$h*$_}(0..4);
-            $f=Formula("x^2");
-            @y=map{$f->eval(x=>$_)}@x;
-            Context("Numeric")->variables->add(y=>'Real');
-            parser::Assignment->Allow;
-            $eq=Formula("y=$f");
-          </pg-code>
-          <statement>
-            <p permid="aiG">
-              Write an equation in the form
-              <m>y=\ldots</m> suggested by the pattern in the table.
-            </p>
-            <tabular  permid="mLt">
-              <col halign="right" />
-              <col halign="left" />
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-            </tabular>
-            <p permid="GpP">
-              <var name="$eq" width="20" />
-            </p>
-          </statement>
-          <solution permid="ceX">
-            <p permid="gtr">
-              Each <m>y</m>-value is the square of the corresponding <m>x</m>-value.
-              So the equation is <m><var name="$eq" /></m>.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-convert-table-to-quadratic-equation"/>
       </exercise>
       <exercise permid="vnU">
-        <webwork>
+        <webwork xml:id="webwork-convert-table-to-reciprocal-equation">
           <pg-code>
             @x=map{$_+1}NchooseK(99,5);
             $f=Formula("1/x");
@@ -2084,69 +1918,15 @@
           </solution>
         </webwork>
       </exercise>
-
       <exercise permid="bvd">
-        <webwork>
-          <pg-code>
-            @x=map{$_+1}NchooseK(99,5);
-            $f=Formula("1/x");
-            Context("Fraction");
-            @y=map{Fraction($f->eval(x=>$_))}@x;
-            Context("Numeric")->variables->add(y=>'Real');
-            parser::Assignment->Allow;
-            $eq=Formula("y=$f");
-          </pg-code>
-          <statement>
-            <p permid="yLq">
-              Write an equation in the form
-              <m>y=\ldots</m> suggested by the pattern in the table.
-            </p>
-            <tabular  permid="yZL">
-              <col halign="right" />
-              <col halign="left" />
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-            </tabular>
-            <p permid="eSz">
-              <var name="$eq" width="20" />
-            </p>
-          </statement>
-          <solution permid="otp">
-            <p permid="sHJ">
-              Each <m>y</m>-value is the reciprocal of the corresponding <m>x</m>-value.
-              So the equation is <m><var name="$eq" /></m>.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-convert-table-to-reciprocal-equation"/>
       </exercise>
     </exercisegroup>
 
     <exercisegroup cols="6" permid="mpH">
       <title>Linear Relationships</title>
       <exercise permid="HCm">
-        <webwork>
+        <webwork xml:id="webwork-determine-if-table-data-is-linear">
           <pg-code>
             $m = random(2,9,1);
             $b = random(10,100,1);
@@ -2201,62 +1981,10 @@
         </webwork>
       </exercise>
       <exercise permid="nJv">
-        <webwork>
-          <pg-code>
-            $m = random(2,9,1);
-            $b = random(10,100,1);
-            $f = Formula("$m x + $b");
-            @x = (0..5);
-            @y = map{$f->eval(x=>$_)}(@x);
-            $yes = PopUp(['?','yes','no'],1);
-            $no = PopUp(['?','yes','no'],2);
-          </pg-code>
-          <statement>
-            <p permid="rgR">
-              Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" />
-            </p>
-            <tabular permid="Lod">
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[5]" /></m></cell>
-                <cell><m><var name="$y[5]" /></m></cell>
-              </row>
-            </tabular>
-          </statement>
-          <solution permid="AHH">
-            <p permid="EWb">
-              As each <m>x</m>-value increases by <m>1</m>,
-              the <m>y</m>-value increases by <m><var name="$m" /></m>.
-              So this table does show that <m>x</m> and <m>y</m> have a linear relationship.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-determine-if-table-data-is-linear"/>
       </exercise>
       <exercise permid="TQE">
-        <webwork>
+        <webwork xml:id="webwork-determine-if-table-data-is-linear-2">
           <pg-code>
             $m = random(-9,-2,1);
             $absm = abs($m);
@@ -2313,64 +2041,10 @@
         </webwork>
       </exercise>
       <exercise permid="zXN">
-        <webwork>
-          <pg-code>
-            $m = random(-9,-2,1);
-            $absm = abs($m);
-            $b = random(50,100,1);
-            $f = Formula("$m x + $b");
-            $start = random(0,10,1);
-            @x = map{$_+$start}(0..5);
-            @y = map{$f->eval(x=>$_)}(@x);
-            $yes = PopUp(['?','yes','no'],1);
-            $no = PopUp(['?','yes','no'],2);
-          </pg-code>
-          <statement>
-            <p permid="Dvj">
-              Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" />
-            </p>
-            <tabular permid="XCv">
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[5]" /></m></cell>
-                <cell><m><var name="$y[5]" /></m></cell>
-              </row>
-            </tabular>
-          </statement>
-          <solution permid="MVZ">
-            <p permid="Rkt">
-              As each <m>x</m>-value increases by <m>1</m>,
-              the <m>y</m>-value decreases by <m><var name="$absm" /></m>.
-              So this table does show that <m>x</m> and <m>y</m> have a linear relationship.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-determine-if-table-data-is-linear-2"/>
       </exercise>
       <exercise permid="geW">
-        <webwork>
+        <webwork xml:id="webwork-determine-if-table-data-is-linear-3">
           <pg-code>
             $a = random(2,5,1);
             $b = random(1,20,1);
@@ -2382,7 +2056,7 @@
                 $diff[$i] = $y[$i+1]-$y[$i];
             };
             $yes = PopUp(['?','yes','no'],1);
-              $no = PopUp(['?','yes','no'],2);
+            $no = PopUp(['?','yes','no'],2);
           </pg-code>
           <statement>
             <p permid="jCs">
@@ -2433,70 +2107,10 @@
         </webwork>
       </exercise>
       <exercise permid="Mmf">
-        <webwork>
-          <pg-code>
-            $a = random(2,5,1);
-            $b = random(1,20,1);
-            $f = Formula("$a^x + $b");
-            $start = random(0,10,1);
-            @x = map{$_+$start}(0..5);
-            @y = map{$f->eval(x=>$_)}(@x);
-            for my $i (0..4) {
-                $diff[$i] = $y[$i+1]-$y[$i];
-            };
-            $yes = PopUp(['?','yes','no'],1);
-            $no = PopUp(['?','yes','no'],2);
-          </pg-code>
-          <statement>
-            <p permid="PJB">
-              Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$no" form="popup" />
-            </p>
-            <tabular permid="jQN">
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[5]" /></m></cell>
-                <cell><m><var name="$y[5]" /></m></cell>
-              </row>
-            </tabular>
-          </statement>
-          <solution permid="Zkr">
-            <p permid="dyL">
-              As each <m>x</m>-value increases by <m>1</m>,
-              the <m>y</m>-values increases by <m><var name="$diff[0]" /></m>,
-              then <m><var name="$diff[1]" /></m>,
-              then <m><var name="$diff[2]" /></m>,
-              then <m><var name="$diff[3]" /></m>,
-              then <m><var name="$diff[4]" /></m>.
-              So this table shows that <m>x</m> and <m>y</m> do not have a linear relationship.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-determine-if-table-data-is-linear-3"/>
       </exercise>
       <exercise permid="sto">
-        <webwork>
+        <webwork xml:id="webwork-determine-if-table-data-is-linear-4">
           <pg-code>
             $a = random(2,5,1);
             $b = random(1,20,1);
@@ -2559,70 +2173,10 @@
         </webwork>
       </exercise>
       <exercise permid="YAx">
-        <webwork>
-          <pg-code>
-            $a = random(2,5,1);
-            $b = random(1,20,1);
-            $f = Formula("x^$a + $b");
-            $start = random(0,2,1);
-            @x = map{$_+$start}(0..5);
-            @y = map{$f->eval(x=>$_)}(@x);
-            for my $i (0..4) {
-                $diff[$i] = $y[$i+1]-$y[$i];
-            };
-            $yes = PopUp(['?','yes','no'],1);
-            $no = PopUp(['?','yes','no'],2);
-          </pg-code>
-          <statement>
-            <p permid="bXT">
-              Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$no" form="popup" />
-            </p>
-            <tabular permid="wff">
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[5]" /></m></cell>
-                <cell><m><var name="$y[5]" /></m></cell>
-              </row>
-            </tabular>
-          </statement>
-          <solution permid="lyJ">
-            <p permid="pNd">
-              As each <m>x</m>-value increases by <m>1</m>,
-              the <m>y</m>-values increases by <m><var name="$diff[0]" /></m>,
-              then <m><var name="$diff[1]" /></m>,
-              then <m><var name="$diff[2]" /></m>,
-              then <m><var name="$diff[3]" /></m>,
-              then <m><var name="$diff[4]" /></m>.
-              So this table shows that <m>x</m> and <m>y</m> do not have a linear relationship.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-determine-if-table-data-is-linear-4"/>
       </exercise>
       <exercise permid="EHG">
-        <webwork>
+        <webwork xml:id="webwork-determine-if-table-data-is-linear-5">
           <pg-code>
             $m = non_zero_random(-5,5,0.01);
             $absm = abs($m);
@@ -2680,65 +2234,10 @@
         </webwork>
       </exercise>
       <exercise permid="kOP">
-        <webwork>
-          <pg-code>
-            $m = non_zero_random(-5,5,0.01);
-            $absm = abs($m);
-            $incdec = ($m>0) ? 'increases' : 'decreases';
-            $b = random(30,100,0.01);
-            $f = Formula("$m*x + $b");
-            $start = random(-10,10,1);
-            @x = map{$_+$start}(0..5);
-            @y = map{$f->eval(x=>$_)}(@x);
-            $yes = PopUp(['?','yes','no'],1);
-            $no = PopUp(['?','yes','no'],2);
-          </pg-code>
-          <statement>
-            <p permid="oml">
-              Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" />
-            </p>
-            <tabular permid="Itx">
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[5]" /></m></cell>
-                <cell><m><var name="$y[5]" /></m></cell>
-              </row>
-            </tabular>
-          </statement>
-          <solution permid="xNb">
-            <p permid="Cbv">
-              As each <m>x</m>-value increases by <m>1</m>,
-              the <m>y</m>-value <var name="$incdec" /> by <m><var name="$absm" /></m>.
-              So this table does show that <m>x</m> and <m>y</m> have a linear relationship.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-determine-if-table-data-is-linear-5"/>
       </exercise>
       <exercise permid="QVY">
-        <webwork>
+        <webwork xml:id="webwork-determine-if-table-data-is-linear-6">
           <pg-code>
             $m = non_zero_random(2,9,1);
             $b = random(1,100,1);
@@ -2800,66 +2299,7 @@
         </webwork>
       </exercise>
       <exercise permid="xdh">
-        <webwork>
-          <pg-code>
-            $m = non_zero_random(2,9,1);
-            $b = random(1,100,1);
-            $f = Formula("$m*x + $b");
-            @x = num_sort(NchooseK(20,6));
-            @y = map{$f->eval(x=>$_)}(@x);
-            $yes = PopUp(['?','yes','no'],1);
-            $no = PopUp(['?','yes','no'],2);
-            $ydiff = $y[1]-$y[0];
-            $xdiff = $x[1]-$x[0];
-          </pg-code>
-          <statement>
-            <p permid="AAD">
-              Does the following table show that <m>x</m> and <m>y</m> have a linear relationship? <var name="$yes" form="popup" />
-            </p>
-            <tabular permid="UHP">
-              <row bottom="medium">
-                <cell><m>x</m></cell>
-                <cell><m>y</m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[0]" /></m></cell>
-                <cell><m><var name="$y[0]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[1]" /></m></cell>
-                <cell><m><var name="$y[1]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[2]" /></m></cell>
-                <cell><m><var name="$y[2]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[3]" /></m></cell>
-                <cell><m><var name="$y[3]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[4]" /></m></cell>
-                <cell><m><var name="$y[4]" /></m></cell>
-              </row>
-              <row>
-                <cell><m><var name="$x[5]" /></m></cell>
-                <cell><m><var name="$y[5]" /></m></cell>
-              </row>
-            </tabular>
-          </statement>
-          <solution permid="Kbt">
-            <p permid="OpN">
-              The <m>x</m>-values in this table jump erratically.
-              However, if we compute the rate of change between consecutive rows in the table,
-              the result is always <var name="$m" />.
-              For example,
-              the rate of change between the first and second rows is
-              <me permid="NyP">
-                \frac{<var name="$y[1]" />-<var name="$y[0]" />}{<var name="$x[1]" />-<var name="$x[0]" />}=\frac{<var name="$ydiff" />}{<var name="$xdiff" />}=<var name="$m" />
-              </me>.
-            </p>
-          </solution>
-        </webwork>
+        <webwork copy="webwork-determine-if-table-data-is-linear-6"/>
       </exercise>
     </exercisegroup>
 

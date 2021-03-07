@@ -1883,101 +1883,86 @@
       </exercise>
 
       <exercise permid="iIq">
-        <webwork>
-            <pg-macros><macro-file>PCCgraphMacros.pl</macro-file></pg-macros>
-            <pg-code>
-                Context("Numeric");
-                Context()->variables->add(t => 'Real');
-                Context()->flags->set(showExtraParens=>0, reduceConstants=>0);
-                Context()->noreduce("(-x)-y","(-x)+y");
-                Context()->flags->set(
-                  tolerance => 0.005,
-                  tolType => "absolute",
-                );
-
-                $a = random(2,9,1);
-                do {$b = random(4,9,1);} until ($a!=$b);
-
-                $func = Compute("($a*t)/(t**2+$b)")->reduce;
-                $funcX = Compute("($a*x)/(x**2+$b)")->reduce;
-
-                $tMax = sqrt($b);
-                $fMax = $func->eval(t=>$tMax);
-                $tMaxR = int($tMax*100+0.5)/100;
-                $fMaxR = int($fMax*100+0.5)/100;
-
-                $alt="This picture shows the graph of a rational function C(t)=$func. The point with the maximum y-value, ($tMax,$fMax), is labeled.";
-
-                ($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters([0,$tMax*2.5],[$fMax,0,0.5]);
-
-                @xticks = @$xticks_ref;
-                @yticks = @$yticks_ref;
-
-                $gr = init_graph($min[0],$min[1],$max[0],$max[1],
-                   axes=>[0,0],
-                   grid=>[$ticknum[0],$ticknum[1]],
-                   size=>[xPixels(),yPixels()]
-                );
-                $gr->lb('reset');
-                for my $j (@xticks) {
-                    if (abs($j) &lt; 10**(-10)) {next;}
-                    $gr->lb( new Label($j, -$marksep[1]/8, $j,'black','center','top'));
-                }
-                $gr->lb( new Label($max[0]-$marksep[0]/2, $marksep[1]/8, t,'black','center','bottom'));
-                $gr->lb( new Label($marksep[0]/8, $max[1]-$marksep[1]/2, C,'black','left','middle'));
-
-                for my $j (@yticks) {
-                    if (Real($j) == 0) {next;}
-                    $gr->lb( new Label(-$marksep[0]/8, $j, $j,'black','right','middle'));
-                }
-
-                add_functions($gr, "$funcX for x in &lt; 0,$max[0]> using color:red and weight:1");
-
-                $hx = ($tMax+$max[0])/2;
-                $hy = $func->eval(t=>$hx);
-                $gr->lb( new Label($hx-$marksep[0]/8, $hy, "C(t)",'red','right','middle'));
-
-                $gr->stamps( closed_circle($tMax,$fMax,'red') );
-                $gr->lb( new Label($tMax-$marksep[0]/8, $fMax+$marksep[1]/8, "($tMaxR,$fMaxR)",'red','center','bottom'));
-            </pg-code>
-            <statement>
-              <p permid="uPE">
-                The concentration of a drug in a patient's blood stream,
-                in milligrams per liter,
-                can be modeled by the function <m>C(t)=<var name="$func"/></m>,
-                where <m>t</m> is the number of hours since the drug is injected.
-                Answer the following question with technology.
-              </p>
-              <instruction>Round your answer to two decimal places if needed.</instruction>
-
-              <p permid="aWN">
-                <var name="$tMaxR" width="10" /> hours since injection,
-                the drug's concentration is at the maximum value of <var name="$fMaxR" width="10"/> milligrams per liter.
-              </p>
-            </statement>
-            <solution permid="Yjl">
-              <p permid="hRs">
-                To locate the points on <m>C(t)</m> where the <m>y</m>-value is maximum,
-                we use technology to graph the function <m>C(t)=<var name="$func"/></m>,
-                and then locate its maximum value.
-              </p>
-
-              <sidebyside permid="hYw">
-
-                <image pg-name="$gr" permid="Ajr">
-                  <description><var name="$alt" /></description>
-                </image>
-
-              </sidebyside>
-
-              <p permid="NYB">
-                The point with the maximum <m>y</m>-value is <m>(<var name="$tMaxR"/>,<var name="$fMaxR"/>)</m>.
-                It implies the drug concentration in the blood stream will reach the maximum value of <m><var name="$fMaxR"/></m> milligrams per liter approximately <m><var name="$tMaxR"/></m> hours since injection.
-              </p>
-            </solution>
+        <webwork xml:id="webwork-drug-concentration-rational-function">
+          <pg-macros>
+            <macro-file>PCCgraphMacros.pl</macro-file>
+          </pg-macros>
+          <pg-code>
+            Context("Numeric");
+            Context()->variables->add(t => 'Real');
+            Context()->flags->set(showExtraParens=>0, reduceConstants=>0);
+            Context()->noreduce("(-x)-y","(-x)+y");
+            Context()->flags->set(
+              tolerance => 0.005,
+              tolType => "absolute",
+            );
+            $a = random(2,9,1);
+            do {$b = random(4,9,1);} until ($a!=$b);
+            $func = Compute("($a*t)/(t**2+$b)")->reduce;
+            $funcX = Compute("($a*x)/(x**2+$b)")->reduce;
+            $tMax = sqrt($b);
+            $fMax = $func->eval(t=>$tMax);
+            $tMaxR = int($tMax*100+0.5)/100;
+            $fMaxR = int($fMax*100+0.5)/100;
+            $alt="This picture shows the graph of a rational function C(t)=$func. The point with the maximum y-value, ($tMax,$fMax), is labeled.";
+            ($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters([0,$tMax*2.5],[$fMax,0,0.5]);
+            @xticks = @$xticks_ref;
+            @yticks = @$yticks_ref;
+            $gr = init_graph($min[0],$min[1],$max[0],$max[1],
+               axes=>[0,0],
+               grid=>[$ticknum[0],$ticknum[1]],
+               size=>[xPixels(),yPixels()]
+            );
+            $gr->lb('reset');
+            for my $j (@xticks) {
+                if (abs($j) &lt; 10**(-10)) {next;}
+                $gr->lb( new Label($j, -$marksep[1]/8, $j,'black','center','top'));
+            }
+            $gr->lb( new Label($max[0]-$marksep[0]/2, $marksep[1]/8, t,'black','center','bottom'));
+            $gr->lb( new Label($marksep[0]/8, $max[1]-$marksep[1]/2, C,'black','left','middle'));
+            for my $j (@yticks) {
+                if (Real($j) == 0) {next;}
+                $gr->lb( new Label(-$marksep[0]/8, $j, $j,'black','right','middle'));
+            }
+            add_functions($gr, "$funcX for x in &lt; 0,$max[0]> using color:red and weight:1");
+            $hx = ($tMax+$max[0])/2;
+            $hy = $func->eval(t=>$hx);
+            $gr->lb( new Label($hx-$marksep[0]/8, $hy, "C(t)",'red','right','middle'));
+            $gr->stamps( closed_circle($tMax,$fMax,'red') );
+            $gr->lb( new Label($tMax-$marksep[0]/8, $fMax+$marksep[1]/8, "($tMaxR,$fMaxR)",'red','center','bottom'));
+          </pg-code>
+          <statement>
+            <p permid="uPE">
+              The concentration of a drug in a patient's blood stream,
+              in milligrams per liter,
+              can be modeled by the function <m>C(t)=<var name="$func"/></m>,
+              where <m>t</m> is the number of hours since the drug is injected.
+              Answer the following question with technology.
+            </p>
+            <instruction>
+              Round your answer to two decimal places if needed.
+            </instruction>
+            <p permid="aWN">
+              <var name="$tMaxR" width="10" /> hours since injection,
+              the drug's concentration is at the maximum value of <var name="$fMaxR" width="10"/> milligrams per liter.
+            </p>
+          </statement>
+          <solution permid="Yjl">
+            <p permid="hRs">
+              To locate the points on <m>C(t)</m> where the <m>y</m>-value is maximum,
+              we use technology to graph the function <m>C(t)=<var name="$func"/></m>,
+              and then locate its maximum value.
+            </p>
+            <image pg-name="$gr" permid="Ajr">
+              <description><var name="$alt" /></description>
+            </image>
+            <p permid="NYB">
+              The point with the maximum <m>y</m>-value is <m>(<var name="$tMaxR"/>,<var name="$fMaxR"/>)</m>.
+              It implies the drug concentration in the blood stream will reach the maximum value of <m><var name="$fMaxR"/></m> milligrams per liter approximately <m><var name="$tMaxR"/></m> hours since injection.
+            </p>
+          </solution>
         </webwork>
       </exercise>
-
       <exercise permid="OPz">
         <webwork>
             <pg-code>

@@ -465,7 +465,7 @@
 
       <exercisegroup cols="3" permid="VRv">
         <exercise permid="JhE">
-          <webwork>
+          <webwork xml:id="webwork-solve-standard-linear-equation-for-y">
             <pg-code>
               $B = non_zero_random(2,5,1)*list_random(-1,1);
               $A = $B*non_zero_random(-9,9,1);
@@ -475,7 +475,7 @@
               $m = Fraction(-$A,$B);
               Context()->flags->set(reduceConstants=>0);
               Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
+              Context()->noreduce('(-x)-y','(-x)+y');
               parser::Assignment->Allow;
               $left = Formula("$A x+$B y")->reduce;
               $right = Formula("$C")->reduce;
@@ -514,154 +514,16 @@
           </webwork>
         </exercise>
         <exercise permid="poN">
-          <webwork>
-            <pg-code>
-              $B = non_zero_random(2,5,1)*list_random(-1,1);
-              $A = $B*non_zero_random(-9,9,1);
-              $C = $B*non_zero_random(-19,19,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="SfR">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="yna">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="bVc">
-              <p permid="uIA">
-                <md permid="XzE">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y"/>
         </exercise>
         <exercise permid="VvW">
-          <webwork>
-            <pg-code>
-              $B = non_zero_random(2,5,1)*list_random(-1,1);
-              $A = $B*non_zero_random(-9,9,1);
-              $C = $B*non_zero_random(-19,19,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="euj">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="KBs">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="Icl">
-              <p permid="aPJ">
-                <md permid="jNW">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y"/>
         </exercise>
         <exercise permid="BDf">
-          <webwork>
-            <pg-code>
-              $B = non_zero_random(2,5,1)*list_random(-1,1);
-              $A = $B*non_zero_random(-9,9,1);
-              $C = $B*non_zero_random(-19,19,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="qIB">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="WPK">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="oju">
-              <p permid="GWS">
-                <md permid="wco">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y"/>
         </exercise>
         <exercise permid="hKo">
-          <webwork>
+          <webwork xml:id="webwork-solve-standard-linear-equation-for-y-2">
             <pg-code>
               $B = -1;
               $A = $B*non_zero_random(-9,9,1);
@@ -671,7 +533,7 @@
               $m = Fraction(-$A,$B);
               Context()->flags->set(reduceConstants=>0);
               Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
+              Context()->noreduce('(-x)-y','(-x)+y');
               parser::Assignment->Allow;
               $left = Formula("$A x+$B y")->reduce;
               $right = Formula("$C")->reduce;
@@ -710,56 +572,10 @@
           </webwork>
         </exercise>
         <exercise permid="NRx">
-          <webwork>
-            <pg-code>
-              $B = -1;
-              $A = $B*non_zero_random(-9,9,1);
-              $C = $B*non_zero_random(-19,19,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="Pll">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="vsu">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="AxM">
-              <p permid="Tlk">
-                <md permid="UEY">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y-2"/>
         </exercise>
         <exercise permid="tYG">
-          <webwork>
+          <webwork xml:id="webwork-solve-standard-linear-equation-for-y-3">
             <pg-code>
               $B = non_zero_random(2,9,1)*list_random(-1,1);
               $A = non_zero_random(2,9,1)*list_random(-1,1);
@@ -769,7 +585,7 @@
               $m = Fraction(-$A,$B);
               Context()->flags->set(reduceConstants=>0);
               Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
+              Context()->noreduce('(-x)-y','(-x)+y');
               parser::Assignment->Allow;
               $left = Formula("$A x+$B y")->reduce;
               $right = Formula("$C")->reduce;
@@ -808,56 +624,10 @@
           </webwork>
         </exercise>
         <exercise permid="afP">
-          <webwork>
-            <pg-code>
-              $B = non_zero_random(2,9,1)*list_random(-1,1);
-              $A = non_zero_random(2,9,1)*list_random(-1,1);
-              $C = $B*non_zero_random(-19,19,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="nNV">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="TVe">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="MMe">
-              <p permid="fzC">
-                <md permid="thI">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y-3"/>
         </exercise>
         <exercise permid="GmY">
-          <webwork>
+          <webwork xml:id="webwork-solve-standard-linear-equation-for-y-4">
             <pg-code>
               $B = non_zero_random(2,9,1)*list_random(-1,1);
               $A = non_zero_random(2,9,1)*list_random(-1,1);
@@ -867,7 +637,7 @@
               $m = Fraction(-$A,$B);
               Context()->flags->set(reduceConstants=>0);
               Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
+              Context()->noreduce('(-x)-y','(-x)+y');
               parser::Assignment->Allow;
               $left = Formula("$A x+$B y")->reduce;
               $right = Formula("$C")->reduce;
@@ -906,56 +676,10 @@
           </webwork>
         </exercise>
         <exercise permid="muh">
-          <webwork>
-            <pg-code>
-              $B = non_zero_random(2,9,1)*list_random(-1,1);
-              $A = non_zero_random(2,9,1)*list_random(-1,1);
-              $C = non_zero_random(-19,19,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="MqF">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="sxO">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="Zaw">
-              <p permid="rNU">
-                <md permid="RKs">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y-4"/>
         </exercise>
         <exercise permid="SBq">
-          <webwork>
+          <webwork xml:id="webwork-solve-standard-linear-equation-for-y-5">
             <pg-code>
               $B = non_zero_random(20,90,1)*list_random(-1,1);
               $A = non_zero_random(20,90,1)*list_random(-1,1);
@@ -965,7 +689,7 @@
               $m = Fraction(-$A,$B);
               Context()->flags->set(reduceConstants=>0);
               Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
+              Context()->noreduce('(-x)-y','(-x)+y');
               parser::Assignment->Allow;
               $left = Formula("$A x+$B y")->reduce;
               $right = Formula("$C")->reduce;
@@ -1004,53 +728,7 @@
           </webwork>
         </exercise>
         <exercise permid="yIz">
-          <webwork>
-            <pg-code>
-              $B = non_zero_random(20,90,1)*list_random(-1,1);
-              $A = non_zero_random(20,90,1)*list_random(-1,1);
-              $C = non_zero_random(-500,500,1);
-              Context("Fraction");
-              $b = Fraction($C,$B);
-              $m = Fraction(-$A,$B);
-              Context()->flags->set(reduceConstants=>0);
-              Context()->variables->are(x=>'Real',y=>'Real');
-              Context()->noreduce('(-x)-y');
-              parser::Assignment->Allow;
-              $left = Formula("$A x+$B y")->reduce;
-              $right = Formula("$C")->reduce;
-              $answer = Formula("y=$m x + $b")->reduce->reduce;
-              $leftsteps[0] = Formula("$left-$A x")->reduce;
-              $leftsteps[1] = Formula("$B y")->reduce;
-              $leftsteps[2] = $leftsteps[1]/Formula("$B");
-              $leftsteps[3] = Formula("y");
-              $rightsteps[0] = Formula("$right-$A x")->reduce;
-              $rightsteps[1] = $rightsteps[0];
-              $rightsteps[2] = $rightsteps[1]/Formula("$B");
-              $rightsteps[3] = Formula("$m x + $b")->reduce;
-            </pg-code>
-            <statement>
-              <p permid="kTp">
-                Solve the linear equation for <m>y</m>.
-              </p>
-              <p>
-                <m><var name="$left"/>=<var name="$right"/></m>
-              </p>
-              <p permid="Ray">
-                <var name="$answer" width="20"/>
-              </p>
-            </statement>
-            <solution permid="loO">
-              <p permid="Ecm">
-                <md permid="qnc">
-                  <mrow><var name="$left" /> \amp = <var name="$right" /></mrow>
-                  <mrow><var name="$leftsteps[0]" /> \amp = <var name="$rightsteps[0]" /></mrow>
-                  <mrow><var name="$leftsteps[1]" /> \amp = <var name="$rightsteps[1]" /></mrow>
-                  <mrow><var name="$leftsteps[2]" /> \amp = <var name="$rightsteps[2]" /></mrow>
-                  <mrow><var name="$leftsteps[3]" /> \amp = <var name="$rightsteps[3]" /></mrow>
-                </md>
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-solve-standard-linear-equation-for-y-5"/>
         </exercise>
       </exercisegroup>
     </subexercises>

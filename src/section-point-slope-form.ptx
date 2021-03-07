@@ -1111,7 +1111,7 @@
       <exercisegroup cols="3" permid="sUN">
         <title>Point-Slope Form and Graphs</title>
         <exercise permid="LmM">
-          <webwork>
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph">
             <pg-code>
               Context("Fraction");
               Context()->flags->set(tolType=>absolute);
@@ -1221,117 +1221,10 @@
           </webwork>
         </exercise>
         <exercise permid="rtV">
-          <webwork>
-            <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              $xmin = -2;
-              $xmax = 12;
-              $ymin = -2;
-              $ymax = 12;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
-              do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-6,6,1);
-                  $m = Fraction($rise,$run);
-                  $h = random(1,$xmax-2,1);
-                  $k = random(1,$ymax-2,1);
-                  $f = Formula("$m*(x-$h)+$k");
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+1 &lt; $kback and $kback &lt; $ymax-1)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+1 &lt; $kforw and $kforw &lt; $ymax-1)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',-1,1..$xmax-1);
-              $gr->h_grid('gray',-1,1..$ymax-1);
-              #xticks
-              for my $i (5,10) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (5,10) {
-                  $gr->lb( new Label(0,$i,$i,'black','right','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/($m**2+1)),
-                  Real($f->eval(x=>$start+1/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/($m**2+1)),
-                  Real($f->eval(x=>$stop-1/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p permid="Gaq">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="mhz">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="Esh">
-              <p permid="GvP">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph"/>
         </exercise>
         <exercise permid="XBe">
-          <webwork>
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-2">
             <pg-code>
               Context("Fraction");
               Context()->flags->set(tolType=>absolute);
@@ -1442,118 +1335,10 @@
           </webwork>
         </exercise>
         <exercise permid="DIn">
-          <webwork>
-            <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -7;
-              $xmax = 7;
-              $ymin = -7;
-              $ymax = 7;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
-              do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-6,6,1);
-                  $m = Fraction($rise,$run);
-                  $h = list_random(-5..-1,1..5);
-                  $k = list_random(-5..-1,1..5);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+1 &lt; $kback and $kback &lt; $ymax-1)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+1 &lt; $kforw and $kforw &lt; $ymax-1)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',$xmin+1..-1,1..$xmax-1);
-              $gr->h_grid('gray',$ymin+1..-1,1..$ymax-1);
-              #xticks
-              for my $i (-5,5) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (-5,5) {
-                  $gr->lb( new Label(0,$i,$i,'black','right','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/($m**2+1)),
-                  Real($f->eval(x=>$start+1/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/($m**2+1)),
-                  Real($f->eval(x=>$stop-1/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p permid="eDa">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="KKj">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="QGz">
-              <p permid="SKh">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph-2"/>
         </exercise>
         <exercise permid="jPw">
-          <webwork>
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-3">
             <pg-code>
               Context("Fraction");
               Context()->flags->set(tolType=>absolute);
@@ -1665,119 +1450,10 @@
           </webwork>
         </exercise>
         <exercise permid="PWF">
-          <webwork>
-            <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -7;
-              $xmax = 7;
-              $ymin = -700;
-              $ymax = 700;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
-              do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-600,600,100);
-                  $m = Fraction($rise,$run);
-                  $h = list_random(-5..-1,1..5);
-                  $k = 100*list_random(-5..-1,1..5);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',$xmin+1..-1,1..$xmax-1);
-              $gr->h_grid('gray',map{$_*100}($ymin/100+1..-1,1..$ymax/100-1));
-              #xticks
-              for my $i (-5,5) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (-500,500) {
-                  $gr->lb( new Label(0,$i,$i,'black','right','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$start+1/(($m/100)**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$stop-1/(($m/100)**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              Context()->variables->set(x=>{limits=>[$h-1,$h+1]});
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p permid="DfK">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="jmT">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="cUR">
-              <p permid="eYz">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph-3"/>
         </exercise>
         <exercise permid="wdO">
-          <webwork>
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-4">
             <pg-code>
               Context("Fraction");
               Context()->flags->set(tolType=>absolute);
@@ -1889,7 +1565,10 @@
           </webwork>
         </exercise>
         <exercise permid="ckX">
-          <webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph-4"/>
+        </exercise>
+        <exercise permid="Isg">
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-5">
             <pg-code>
               Context("Fraction");
               Context()->flags->set(tolType=>absolute);
@@ -1898,17 +1577,16 @@
                 '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
               );
               Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -1;
-              $xmax = 13;
+              $xmin = -100;
+              $xmax = 1300;
               $ymin = -100;
               $ymax = 1300;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
               do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-600,600,100);
+                  $run = non_zero_random(200,600,1);
+                  $rise = non_zero_random(60,600,1)*list_random(-1,1);
                   $m = Fraction($rise,$run);
-                  $h = list_random(1..11);
-                  $k = 100*list_random(1..11);
+                  $h = random(100,1200,1);
+                  $k = random(100,1200,1);
                   $f = Formula("$m*(x-$h)+$k")->reduce;
                   $y0 = Fraction($f->eval(x=>0));
                   $hback = $h-$run;
@@ -1918,11 +1596,17 @@
               } until (
                   ($y0->value)[1] != 1
                   and (
-                    ($hback > $xmin+1 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
+                    ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
                      or
-                    ($hforw &lt; $xmax-1 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
+                    ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
                   )
               );
+              if ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100) {
+                  $h2 = $hback; $k2 = $kback;
+              }
+              if ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100) {
+                  $h2 = $hforw; $k2 = $kforw;
+              }
               $top = Real(($ymax-$k)/$m+$h);
               $bottom = Real(($ymin-$k)/$m+$h);
               $left = $xmin;
@@ -1931,10 +1615,10 @@
               $gr = init_graph($xmin,$ymin,$xmax,$ymax,
                   size=>[240,240]);
               $gr->lb('reset');
-              $gr->v_grid('gray',1..$xmax-1);
+              $gr->v_grid('gray',map{$_*100}(1..$xmax/100-1));
               $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
               #xticks
-              for my $i (5,10) {
+              for my $i (500,1000) {
                   $gr->lb( new Label($i,0,$i,'black','center','top','large'));
                   $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
               }
@@ -1953,19 +1637,28 @@
               $gr->arrowTo(0,$ymax,'black',1);
               $gr->moveTo($h,$k);
               $gr->arrowTo(
-                  Real($start+1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$start+1/(($m/100)**2+1))),
+                  Real($start+100/($m**2+1)),
+                  Real($f->eval(x=>$start+100/($m**2+1))),
                   'blue',1);
               $gr->moveTo($h,$k);
               $gr->arrowTo(
-                  Real($stop-1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$stop-1/(($m/100)**2+1))),
+                  Real($stop-100/($m**2+1)),
+                  Real($f->eval(x=>$stop-100/($m**2+1))),
                   'blue',1);
               $gr->stamps( closed_circle($h,$k,'blue') );
+              $gr->stamps( closed_circle($h2,$k2,'blue') );
+              if ($m > 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','bottom','large'));};
+              if ($m > 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','top','large'));};
+              if ($m &lt; 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','top','large'));};
+              if ($m &lt; 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','bottom','large'));};
+              if ($m > 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','bottom','large'));};
+              if ($m > 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','top','large'));};
+              if ($m &lt; 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','top','large'));};
+              if ($m &lt; 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','bottom','large'));};
+              Context()->variables->set(x=>{limits=>[min($h,$h2),max($h,$h2)]});
               parser::Assignment->Allow;
               Context()->variables->add(y=>'Real');
-              Context()->variables->set(x=>{limits=>[$h-1,$h+1]});
-              $answer = Formula("y = $f");
+              $answer = OneOf(Formula("y = $f"),Formula("y = $m(x-$h2)+$k2"));
               $evaluator = $answer -> cmp(
                  checker=>sub{
                     my ( $correct, $student, $ansHash ) = @_;
@@ -1982,132 +1675,6 @@
                     Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
                     return $OK;
               });
-            </pg-code>
-            <statement>
-              <p permid="bIu">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="HPD">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="pjj">
-              <p permid="rmR">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
-        </exercise>
-        <exercise permid="Isg">
-          <webwork>
-            <pg-code>
-               Context("Fraction");
-               Context()->flags->set(tolType=>absolute);
-               Context()->operators->set(
-                 '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                 '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-               );
-               Context()->noreduce('(-x)+y','(-x)-y');
-               $xmin = -100;
-               $xmax = 1300;
-               $ymin = -100;
-               $ymax = 1300;
-               do {
-                   $run = non_zero_random(200,600,1);
-                   $rise = non_zero_random(60,600,1)*list_random(-1,1);
-                   $m = Fraction($rise,$run);
-                   $h = random(100,1200,1);
-                   $k = random(100,1200,1);
-                   $f = Formula("$m*(x-$h)+$k")->reduce;
-                   $y0 = Fraction($f->eval(x=>0));
-                   $hback = $h-$run;
-                   $kback = $k-$rise;
-                   $hforw = $h+$run;
-                   $kforw = $k+$rise;
-               } until (
-                   ($y0->value)[1] != 1
-                   and (
-                     ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                      or
-                     ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                   )
-               );
-               if ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100) {
-                   $h2 = $hback; $k2 = $kback;
-               }
-               if ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100) {
-                   $h2 = $hforw; $k2 = $kforw;
-               }
-               $top = Real(($ymax-$k)/$m+$h);
-               $bottom = Real(($ymin-$k)/$m+$h);
-               $left = $xmin;
-               $right = $xmax;
-               ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-               $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                   size=>[240,240]);
-               $gr->lb('reset');
-               $gr->v_grid('gray',map{$_*100}(1..$xmax/100-1));
-               $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
-               #xticks
-               for my $i (500,1000) {
-                   $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                   $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-               }
-               #yticks
-               for my $i (500,1000) {
-                   $gr->lb( new Label(0,$i,$i,'black','left','middle','large'));
-                   $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-               }
-               $gr->moveTo(0,0);
-               $gr->arrowTo($xmin,0,'black',1);
-               $gr->moveTo(0,0);
-               $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-               $gr->moveTo(0,0);
-               $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-               $gr->moveTo(0,0);
-               $gr->arrowTo(0,$ymax,'black',1);
-               $gr->moveTo($h,$k);
-               $gr->arrowTo(
-                   Real($start+100/($m**2+1)),
-                   Real($f->eval(x=>$start+100/($m**2+1))),
-                   'blue',1);
-               $gr->moveTo($h,$k);
-               $gr->arrowTo(
-                   Real($stop-100/($m**2+1)),
-                   Real($f->eval(x=>$stop-100/($m**2+1))),
-                   'blue',1);
-               $gr->stamps( closed_circle($h,$k,'blue') );
-               $gr->stamps( closed_circle($h2,$k2,'blue') );
-               if ($m > 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','bottom','large'));};
-               if ($m > 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','top','large'));};
-               if ($m &lt; 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','top','large'));};
-               if ($m &lt; 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','bottom','large'));};
-               if ($m > 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','bottom','large'));};
-               if ($m > 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','top','large'));};
-               if ($m &lt; 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','top','large'));};
-               if ($m &lt; 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','bottom','large'));};
-               Context()->variables->set(x=>{limits=>[min($h,$h2),max($h,$h2)]});
-               parser::Assignment->Allow;
-               Context()->variables->add(y=>'Real');
-               $answer = OneOf(Formula("y = $f"),Formula("y = $m(x-$h2)+$k2"));
-               $evaluator = $answer -> cmp(
-                  checker=>sub{
-                     my ( $correct, $student, $ansHash ) = @_;
-                     return 0 if $ansHash->{isPreview};
-                     $student = $ansHash->{student_formula};
-                     $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                     $student = Formula("$student"); $correct = Formula("$correct");
-                     return 0 unless ($correct == $student);
-                     Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                     delete $correct->{test_values};
-                     delete $student->{test_values};
-                     my $OK = (($correct == $student) or ($student == $correct));
-                     Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                     Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                     return $OK;
-               });
             </pg-code>
             <statement>
               <p permid="nWM">
@@ -2127,382 +1694,13 @@
           </webwork>
         </exercise>
         <exercise permid="ozp">
-          <webwork>
-            <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -100;
-              $xmax = 1300;
-              $ymin = -100;
-              $ymax = 1300;
-              do {
-                  $run = non_zero_random(200,600,1);
-                  $rise = non_zero_random(60,600,1)*list_random(-1,1);
-                  $m = Fraction($rise,$run);
-                  $h = random(100,1200,1);
-                  $k = random(100,1200,1);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              if ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100) {
-                  $h2 = $hback; $k2 = $kback;
-              }
-              if ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100) {
-                  $h2 = $hforw; $k2 = $kforw;
-              }
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',map{$_*100}(1..$xmax/100-1));
-              $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
-              #xticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label(0,$i,$i,'black','left','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+100/($m**2+1)),
-                  Real($f->eval(x=>$start+100/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-100/($m**2+1)),
-                  Real($f->eval(x=>$stop-100/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              $gr->stamps( closed_circle($h2,$k2,'blue') );
-              if ($m > 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','bottom','large'));};
-              if ($m > 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','bottom','large'));};
-              if ($m > 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','bottom','large'));};
-              if ($m > 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','bottom','large'));};
-              Context()->variables->set(x=>{limits=>[min($h,$h2),max($h,$h2)]});
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = OneOf(Formula("y = $f"),Formula("y = $m(x-$h2)+$k2"));
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p permid="Ale">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="gsn">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="BxB">
-              <p permid="DBj">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph-5"/>
         </exercise>
         <exercise permid="UGy">
-          <webwork>
-            <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -100;
-              $xmax = 1300;
-              $ymin = -100;
-              $ymax = 1300;
-              do {
-                  $run = non_zero_random(200,600,1);
-                  $rise = non_zero_random(60,600,1)*list_random(-1,1);
-                  $m = Fraction($rise,$run);
-                  $h = random(100,1200,1);
-                  $k = random(100,1200,1);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              if ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100) {
-                  $h2 = $hback; $k2 = $kback;
-              }
-              if ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100) {
-                  $h2 = $hforw; $k2 = $kforw;
-              }
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',map{$_*100}(1..$xmax/100-1));
-              $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
-              #xticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label(0,$i,$i,'black','left','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+100/($m**2+1)),
-                  Real($f->eval(x=>$start+100/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-100/($m**2+1)),
-                  Real($f->eval(x=>$stop-100/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              $gr->stamps( closed_circle($h2,$k2,'blue') );
-              if ($m > 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','bottom','large'));};
-              if ($m > 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','bottom','large'));};
-              if ($m > 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','bottom','large'));};
-              if ($m > 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','bottom','large'));};
-              Context()->variables->set(x=>{limits=>[min($h,$h2),max($h,$h2)]});
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = OneOf(Formula("y = $f"),Formula("y = $m(x-$h2)+$k2"));
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p permid="Mzw">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="sGF">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="hEK">
-              <p permid="jIs">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph-5"/>
         </exercise>
         <exercise permid="ANH">
-          <webwork>
-            <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -100;
-              $xmax = 1300;
-              $ymin = -100;
-              $ymax = 1300;
-              do {
-                  $run = non_zero_random(200,600,1);
-                  $rise = non_zero_random(60,600,1)*list_random(-1,1);
-                  $m = Fraction($rise,$run);
-                  $h = random(100,1200,1);
-                  $k = random(100,1200,1);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              if ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100) {
-                  $h2 = $hback; $k2 = $kback;
-              }
-              if ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100) {
-                  $h2 = $hforw; $k2 = $kforw;
-              }
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',map{$_*100}(1..$xmax/100-1));
-              $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
-              #xticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label(0,$i,$i,'black','left','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+100/($m**2+1)),
-                  Real($f->eval(x=>$start+100/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-100/($m**2+1)),
-                  Real($f->eval(x=>$stop-100/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              $gr->stamps( closed_circle($h2,$k2,'blue') );
-              if ($m > 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','bottom','large'));};
-              if ($m > 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','bottom','large'));};
-              if ($m > 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','bottom','large'));};
-              if ($m > 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','bottom','large'));};
-              Context()->variables->set(x=>{limits=>[min($h,$h2),max($h,$h2)]});
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = OneOf(Formula("y = $f"),Formula("y = $m(x-$h2)+$k2"));
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p permid="YNO">
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p permid="EUX">
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution permid="NLT">
-              <p permid="PPB">
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
+          <webwork copy="webwork-determine-point-slope-form-from-graph-5"/>
         </exercise>
       </exercisegroup>
 
