@@ -924,6 +924,39 @@
         <exercise permid="ZKh">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract20.pg" />
         </exercise>
+        <exercise>
+          <webwork xml:id="webwork-add-binomials-with-fraction-coefficients">
+            <pg-code>
+              $var = list_random('x','y','r','t');
+              Context("Fraction");
+              Context()->variables->are($var=>'Real');
+              for my $i (0..3) {
+                $c[$i] = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
+              }
+              $poly1 = Formula("$c[0] $var + $c[1]")->reduce;
+              $poly2 = Formula("$c[2] $var + $c[3]")->reduce;
+              $m[0] = $c[0] + $c[2];
+              $m[1] = $c[1] + $c[3];
+              Context("LimitedPolynomial-Strict");
+              Context()->variables->are($var=>'Real');
+              $answer = Formula("$m[0] $var + $m[1]")->reduce;
+            </pg-code>
+            <statement>
+              <p>
+                Add the polynomials.
+              </p>
+              <p>
+                <m>\left(<var name="$poly1"/>\right)+\left(<var name="$poly2"/>\right)</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise>
+          <webwork copy="webwork-add-binomials-with-fraction-coefficients"/>
+        </exercise>
         <exercise permid="FRq">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract25.pg" />
         </exercise>
@@ -941,6 +974,41 @@
         </exercise>
         <exercise permid="KBj">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract40.pg" />
+        </exercise>
+        <exercise>
+          <webwork xml:id="webwork-add-trinomials-with-fraction-coefficients">
+            <pg-code>
+              $var = list_random('x','y','r','t');
+              Context("Fraction");
+              Context()->variables->are($var=>'Real');
+              for my $i (0..5) {
+                $c[$i] = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
+              }
+              @exp = num_sort(NchooseK(4,3));
+              $poly1 = Formula("$c[0] $var^($exp[2]) + $c[1] $var^($exp[1]) + $c[2] $var^($exp[0])")->reduce;
+              $poly2 = Formula("$c[3] $var^($exp[2]) + $c[4] $var^($exp[1]) + $c[5] $var^($exp[0])")->reduce;
+              $m[0] = $c[0] + $c[3];
+              $m[1] = $c[1] + $c[4];
+              $m[2] = $c[2] + $c[5];
+              Context("LimitedPolynomial-Strict");
+              Context()->variables->are($var=>'Real');
+              $aswer = Formula("$m[0] $var^($exp[2]) + $m[1] $var^($exp[1]) + $m[2] $var^($exp[0])")->reduce;
+            </pg-code>
+            <statement>
+              <p>
+                Add the polynomials.
+              </p>
+              <p>
+                <m>\left(<var name="$poly1"/>\right)+\left(<var name="$poly2"/>\right)</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise>
+          <webwork copy="webwork-add-trinomials-with-fraction-coefficients"/>
         </exercise>
         <exercise permid="qIs">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract45.pg" />
@@ -970,6 +1038,39 @@
         <exercise permid="HGD">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract80.pg" />
         </exercise>
+        <exercise>
+          <webwork xml:id="webwork-subtract-binomials-with-fraction-coefficients">
+            <pg-code>
+              $var = list_random('x','y','r','t');
+              Context("Fraction");
+              Context()->variables->are($var=>'Real');
+              for my $i (0..3) {
+                $c[$i] = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
+              }
+              $poly1 = Formula("$c[0] $var + $c[1]")->reduce;
+              $poly2 = Formula("$c[2] $var + $c[3]")->reduce;
+              $m[0] = $c[0] - $c[2];
+              $m[1] = $c[1] - $c[3];
+              Context("LimitedPolynomial-Strict");
+              Context()->variables->are($var=>'Real');
+              $answer = Formula("$m[0] $var + $m[1]")->reduce;
+            </pg-code>
+            <statement>
+              <p>
+                Subtract the polynomials.
+              </p>
+              <p>
+                <m>\left(<var name="$poly1"/>\right)-\left(<var name="$poly2"/>\right)</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise>
+          <webwork copy="webwork-subtract-binomials-with-fraction-coefficients"/>
+        </exercise>
         <exercise permid="nNM">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract85.pg" />
         </exercise>
@@ -993,6 +1094,41 @@
         </exercise>
         <exercise permid="Rap">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract105.pg" />
+        </exercise>
+        <exercise>
+          <webwork xml:id="webwork-subtract-trinomials-with-fraction-coefficients">
+            <pg-code>
+              $var = list_random('x','y','r','t');
+              Context("Fraction");
+              Context()->variables->are($var=>'Real');
+              for my $i (0..5) {
+                $c[$i] = Fraction(non_zero_random(-9,9,1),non_zero_random(-9,9,1));
+              }
+              @exp = num_sort(NchooseK(4,3));
+              $poly1 = Formula("$c[0] $var^($exp[2]) + $c[1] $var^($exp[1]) + $c[2] $var^($exp[0])")->reduce;
+              $poly2 = Formula("$c[3] $var^($exp[2]) + $c[4] $var^($exp[1]) + $c[5] $var^($exp[0])")->reduce;
+              $m[0] = $c[0] - $c[3];
+              $m[1] = $c[1] - $c[4];
+              $m[2] = $c[2] - $c[5];
+              Context("LimitedPolynomial-Strict");
+              Context()->variables->are($var=>'Real');
+              $aswer = Formula("$m[0] $var^($exp[2]) + $m[1] $var^($exp[1]) + $m[2] $var^($exp[0])")->reduce;
+            </pg-code>
+            <statement>
+              <p>
+                Subtract the polynomials.
+              </p>
+              <p>
+                <m>\left(<var name="$poly1"/>\right)-\left(<var name="$poly2"/>\right)</m>
+              </p>
+              <p>
+                <var name="$answer" width="20"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise>
+          <webwork copy="webwork-subtract-trinomials-with-fraction-coefficients"/>
         </exercise>
         <exercise permid="Mqw">
           <webwork source="Contrib/PCC/BasicAlgebra/PolynomialBasics/PolyAddSubtract95.pg" />
