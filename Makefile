@@ -546,7 +546,9 @@ html:
 	cp -a $(SRC)/favicon $(HTMLOUT) || :
 	cp -r $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer yes --stringparam exercise.divisional.solution yes --stringparam html.css.extra 'css/orcca.css' --stringparam webwork.divisional.static yes $(XSL)/orcca-html.xsl $(MAINFILE); \
+	date; \
+	xsltproc --xinclude --stringparam watermark.text "DRAFT Apr-22-2021" --stringparam publisher $(PUBFILE) --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.css.extra 'css/orcca.css' --stringparam webwork.divisional.static yes $(XSL)/orcca-html.xsl $(MAINFILE); \
+	date; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' *.html; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' knowl/*.html; \
 	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_gray.css/' index.html orcca.html frontmatter.html colophon-1.html acknowledgement-1.html preface-to-all.html preface-pedagogical-decisions.html preface-entering-webwork-answers.html; \
