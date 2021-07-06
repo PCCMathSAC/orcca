@@ -178,33 +178,32 @@
 
     <exercise permid="PPb">
       <webwork>
-            <pg-code>
-                Context("LimitedNumeric");
-            </pg-code>
-          <statement>
-            <p permid="Zqe">
-              Calculate the value of <m>30-((2+3)\cdot2)</m>,
-              respecting the order that the grouping symbols are telling you to execute the arithmetic operations.
-            </p>
-
-            <p permid="Fxn">
-              <var name="20" width="10"/>
-            </p>
-          </statement>
-          <solution permid="HtE">
-            <p permid="uoo">
-              The grouping symbols tell us what to work on first.
-              In this exercise,
-              we have grouping symbols within grouping symbols, so any operation in there
-              (the addition)
-              should be executed first:
-              <md permid="Xfs">
-                <mrow>30-\left((2+3)\cdot2\right)\amp=30-\left(\highlight{5}\cdot2\right)</mrow>
-                <mrow>\amp=30-\highlight{10}</mrow>
-                <mrow>\amp=\highlight{20}</mrow>
-              </md>
-            </p>
-          </solution>
+        <pg-code>
+            Context("LimitedNumeric");
+        </pg-code>
+        <statement>
+          <p permid="Zqe">
+            Calculate the value of <m>30-((2+3)\cdot2)</m>,
+            respecting the order that the grouping symbols are telling you to execute the arithmetic operations.
+          </p>
+          <p permid="Fxn">
+            <var name="20" width="10"/>
+          </p>
+        </statement>
+        <solution permid="HtE">
+          <p permid="uoo">
+            The grouping symbols tell us what to work on first.
+            In this exercise,
+            we have grouping symbols within grouping symbols, so any operation in there
+            (the addition)
+            should be executed first:
+            <md permid="Xfs">
+              <mrow>30-\left((2+3)\cdot2\right)\amp=30-\left(\highlight{5}\cdot2\right)</mrow>
+              <mrow>\amp=30-\highlight{10}</mrow>
+              <mrow>\amp=\highlight{20}</mrow>
+            </md>
+          </p>
+        </solution>
       </webwork>
     </exercise>
   </subsection>
@@ -406,102 +405,132 @@
     <exercise permid="orL">
       <title>Practice with order of operations</title>
       <webwork>
-            <pg-code>
-                Context()->operators->set(
-                    '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                    '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-                    '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
-                    ' *' => {class => 'bizarro::BOP::multiply', isCommand => 1},
-                    '* ' => {class => 'bizarro::BOP::multiply', isCommand => 1},
-                    '/' => {class => 'bizarro::BOP::divide', isCommand => 1},
-                    ' /' => {class => 'bizarro::BOP::divide', isCommand => 1},
-                    '/ ' => {class => 'bizarro::BOP::divide', isCommand => 1},
-                    '//' => {class => 'bizarro::BOP::divide', isCommand => 1},
-                    '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
-                    '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
-                );
-                Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
-                $step[0]=Formula("5-3(3)^2");
-                $step[1]=Formula("5-3(9)");
-                $step[2]=Formula("5-27");
-                $msg = "Just apply one step at a time from the order of operations";
-                $ev[0]=$step[0]->cmp(checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview} || $correct != $student;
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroSub=>1,bizarroPow=>1);
-                    delete $correct->{test_values}, $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroSub=>0,bizarroPow=>0);
-                    Value::Error("$msg") unless $OK;
-                    return $OK;
-                });
-                $ev[1]=$step[1]->cmp(checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview} || $correct != $student;
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroMul=>1,bizarroPow=>1);
-                    delete $correct->{test_values}, $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroMul=>0,bizarroPow=>0);
-                    Value::Error("$msg") unless $OK;
-                    return $OK;
-                });
-                $ev[2]=$step[2]->cmp(checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview} || $correct != $student;
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroMul=>1,bizarroSub=>1);
-                    delete $correct->{test_values}, $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroMul=>0,bizarroSub=>0);
-                    Value::Error("$msg") unless $OK;
-                    return $OK;
-                });
-                Context("LimitedNumeric");
-                $step[3]=Formula("-22");
-            </pg-code>
+        <pg-code>
+          Context()->operators->set(
+            '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+            '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+            '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+            ' *' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+            '* ' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+            '/' => {class => 'bizarro::BOP::divide', isCommand => 1},
+            ' /' => {class => 'bizarro::BOP::divide', isCommand => 1},
+            '/ ' => {class => 'bizarro::BOP::divide', isCommand => 1},
+            '//' => {class => 'bizarro::BOP::divide', isCommand => 1},
+            '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+            '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+          );
+          Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+          $step[0]=Formula("5-3(3)^2");
+          $step[1]=Formula("5-3(9)");
+          $step[2]=Formula("5-27");
+          $msg = "Just apply one step at a time from the order of operations";
+          $ev[0]=$step[0]->cmp(checker=>sub{
+            my ( $correct, $student, $ansHash ) = @_;
+            return 0 if $ansHash->{isPreview} || $correct != $student;
+            $student = $ansHash->{student_formula};
+            $correct = $correct->{original_formula} if defined $correct->{original_formula};
+            $student = Formula("$student"); $correct = Formula("$correct");
+            return 0 unless ($correct == $student);
+            Context()->flags->set(bizarroSub=>1,bizarroPow=>1);
+            delete $correct->{test_values}, $student->{test_values};
+            my $OK = (($correct == $student) or ($student == $correct));
+            Context()->flags->set(bizarroSub=>0,bizarroPow=>0);
+            Value::Error("$msg") unless $OK;
+            return $OK;
+          });
+          $ev[1]=$step[1]->cmp(checker=>sub{
+            my ( $correct, $student, $ansHash ) = @_;
+            return 0 if $ansHash->{isPreview} || $correct != $student;
+            $student = $ansHash->{student_formula};
+            $correct = $correct->{original_formula} if defined $correct->{original_formula};
+            $student = Formula("$student"); $correct = Formula("$correct");
+            return 0 unless ($correct == $student);
+            Context()->flags->set(bizarroMul=>1,bizarroPow=>1);
+            delete $correct->{test_values}, $student->{test_values};
+            my $OK = (($correct == $student) or ($student == $correct));
+            Context()->flags->set(bizarroMul=>0,bizarroPow=>0);
+            Value::Error("$msg") unless $OK;
+            return $OK;
+          });
+          $ev[2]=$step[2]->cmp(checker=>sub{
+            my ( $correct, $student, $ansHash ) = @_;
+            return 0 if $ansHash->{isPreview} || $correct != $student;
+            $student = $ansHash->{student_formula};
+            $correct = $correct->{original_formula} if defined $correct->{original_formula};
+            $student = Formula("$student"); $correct = Formula("$correct");
+            return 0 unless ($correct == $student);
+            Context()->flags->set(bizarroMul=>1,bizarroSub=>1);
+            delete $correct->{test_values}, $student->{test_values};
+            my $OK = (($correct == $student) or ($student == $correct));
+            Context()->flags->set(bizarroMul=>0,bizarroSub=>0);
+            Value::Error("$msg") unless $OK;
+              return $OK;
+          });
+          Context("LimitedNumeric");
+          $step[3]=Formula("-22");
+        </pg-code>
+        <introduction>
+          <p permid="lEw">
+            Simplify this expression one step at a time,
+            using the order of operations.
+          </p>
+        </introduction>
+        <task>
           <statement>
-            <p permid="lEw">
-              Simplify this expression one step at a time,
-              using the order of operations.
-            </p>
-
             <p permid="RLF">
               <m>5-3(7-4)^2={}</m><var name="$step[0]" evaluator="$ev[0]" width="15" />
             </p>
-
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>5-3(\nextoperation{7-4})^2\amp=5-3\nextoperation{(3)^2}</mrow>
+              </md>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
             <p permid="xSO">
               <m>\phantom{5-3(7-4)^2}={}</m><var name="$step[1]" evaluator="$ev[1]" width="15" />
             </p>
-
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>\amp=5-\nextoperation{3(9)}</mrow>
+              </md>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
             <p permid="dZX">
               <m>\phantom{5-3(7-4)^2}={}</m><var name="$step[2]" evaluator="$ev[2]" width="15" />
             </p>
-
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>\amp=5-27</mrow>
+              </md>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
             <p permid="Khg">
               <m>\phantom{5-3(7-4)^2}={}</m><var name="$step[3]" width="15" />
             </p>
           </statement>
-          <solution permid="nAN">
-            <p permid="avx">
-              <md permid="odD">
-                <mrow>5-3(\nextoperation{7-4})^2\amp=5-3\nextoperation{(3)^2}</mrow>
-                <mrow>\amp=5-\nextoperation{3(9)}</mrow>
-                <mrow>\amp=5-27</mrow>
+          <solution>
+            <p>
+              <md>
                 <mrow>\amp=-22</mrow>
               </md>
             </p>
           </solution>
+        </task>
       </webwork>
     </exercise>
   </subsection>
@@ -638,31 +667,30 @@
     <exercise permid="AGd">
       <title>More Practice with Order of Operations</title>
       <webwork>
-          <statement>
-            <p permid="qop">
-              Use the order of operations to evaluate
-              <me permid="MGn">
-                \dfrac{6+3\abs{9-10}}{\sqrt{3+18\div3}}
-              </me>.
-            </p>
-
-            <p permid="Wvy">
-              <var name="3" width="15"/>
-            </p>
-          </statement>
-          <solution permid="THW">
-            <p permid="GCG">
-              We start by identifying the innermost,
-              highest priority operations:
-              <md permid="sNw">
-                <mrow>\frac{6+3\abs{9-10}}{\sqrt{3+18\div3}}\amp=\frac{6+3\abs{\nextoperation{9-10}}}{\sqrt{3+\nextoperation{18\div3}}}</mrow>
-                <mrow>\amp=\frac{6+3\nextoperation{\abs{\highlight{-1}}}}{\sqrt{\nextoperation{3+\highlight{6}}}}</mrow>
-                <mrow>\amp=\frac{6+\nextoperation{3(\highlight{1})}}{\nextoperation{\sqrt{\highlight{9}}}}</mrow>
-                <mrow>\amp=\frac{\nextoperation{6+\highlight{3}}}{\highlight{3}}</mrow>
-                <mrow>\amp=\frac{\highlight{9}}{3}=\highlight{3}</mrow>
-              </md>
-            </p>
-          </solution>
+        <statement>
+          <p permid="qop">
+            Use the order of operations to evaluate
+            <me permid="MGn">
+              \dfrac{6+3\abs{9-10}}{\sqrt{3+18\div3}}
+            </me>.
+          </p>
+          <p permid="Wvy">
+            <var name="3" width="15"/>
+          </p>
+        </statement>
+        <solution permid="THW">
+          <p permid="GCG">
+            We start by identifying the innermost,
+            highest priority operations:
+            <md permid="sNw">
+              <mrow>\frac{6+3\abs{9-10}}{\sqrt{3+18\div3}}\amp=\frac{6+3\abs{\nextoperation{9-10}}}{\sqrt{3+\nextoperation{18\div3}}}</mrow>
+              <mrow>\amp=\frac{6+3\nextoperation{\abs{\highlight{-1}}}}{\sqrt{\nextoperation{3+\highlight{6}}}}</mrow>
+              <mrow>\amp=\frac{6+\nextoperation{3(\highlight{1})}}{\nextoperation{\sqrt{\highlight{9}}}}</mrow>
+              <mrow>\amp=\frac{\nextoperation{6+\highlight{3}}}{\highlight{3}}</mrow>
+              <mrow>\amp=\frac{\highlight{9}}{3}=\highlight{3}</mrow>
+            </md>
+          </p>
+        </solution>
       </webwork>
     </exercise>
   </subsection>
@@ -743,63 +771,53 @@
     <exercise permid="MUv">
       <title>Negating and Raising to Powers</title>
       <webwork>
-            <pg-code>
-                Context("LimitedNumeric");
-            </pg-code>
+        <pg-code>
+          Context("LimitedNumeric");
+        </pg-code>
+        <introduction>
+          <p permid="CCH">
+            Compute the following. In each part,
+            the first expression asks you to exponentiate and then negate the result.
+            The second expression has a negative number raised to a power.
+          </p>
+        </introduction>
+        <task>
           <statement>
-            <p permid="CCH">
-              Compute the following:
-
-              <ol label="a." permid="hLB">
-                <li permid="AyZ">
-                  <p permid="qJO">
-                    <m>-3^4=</m><var name="-81" width="10" /> and <m>(-3)^4=</m><var name="81" width="10" />
-                  </p>
-                </li>
-
-                <li permid="gGi">
-                  <p permid="WQX">
-                    <m>-4^3=</m><var name="-64" width="10" /> and <m>(-4)^3=</m><var name="-64" width="10" />
-                  </p>
-                </li>
-
-                <li permid="MNr">
-                  <p permid="CYg">
-                    <m>-1.1^2=</m><var name="-1.21" width="10" /> and
-                    <m>(-1.1)^2=</m><var name="1.21" width="10" />
-                  </p>
-                </li>
-              </ol>
+            <p permid="qJO">
+              <m>-3^4=</m><var name="-81" width="10" /> and <m>(-3)^4=</m><var name="81" width="10" />
             </p>
           </statement>
-          <solution permid="zPf">
-            <p permid="mJP">
-              In each part,
-              the first expression asks you to exponentiate and then negate the result.
-              The second expression has a negative number raised to a power.
-              So the answers are:
-
-              <ol permid="kGh">
-                <li permid="sUA">
-                  <p permid="jfp">
-                    <m>-3^4=-81</m> and <m>(-3)^4=81</m>
-                  </p>
-                </li>
-
-                <li permid="ZbJ">
-                  <p permid="Pmy">
-                    <m>-4^3=-64</m> and <m>(-4)^3=-64</m>
-                  </p>
-                </li>
-
-                <li permid="FiS">
-                  <p permid="vtH">
-                    <m>-1.1^2=-1.21</m> and <m>(-1.1)^2=1.21</m>
-                  </p>
-                </li>
-              </ol>
+          <solution>
+            <p permid="jfp">
+              <m>-3^4=-81</m> and <m>(-3)^4=81</m>
             </p>
           </solution>
+        </task>
+        <task>
+          <statement>
+            <p permid="WQX">
+              <m>-4^3=</m><var name="-64" width="10" /> and <m>(-4)^3=</m><var name="-64" width="10" />
+            </p>
+          </statement>
+          <solution>
+            <p permid="Pmy">
+              <m>-4^3=-64</m> and <m>(-4)^3=-64</m>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p permid="CYg">
+              <m>-1.1^2=</m><var name="-1.21" width="10" /> and
+              <m>(-1.1)^2=</m><var name="1.21" width="10" />
+            </p>
+          </statement>
+          <solution>
+            <p permid="vtH">
+              <m>-1.1^2=-1.21</m> and <m>(-1.1)^2=1.21</m>
+            </p>
+          </solution>
+        </task>
       </webwork>
     </exercise>
 
@@ -831,12 +849,10 @@
     </p>
 
     <example permid="tbE">
-            <!-- <webwork> --> <!-- when toggling whether or not a ww, also toggle exercise vs example -->
       <statement>
         <p permid="wdB">
           Simplify <m>10-4(5-7)^3</m>.
         </p>
-            <!-- <p><var name="42" width="10" /></p> -->
       </statement>
       <solution permid="vfm">
         <p permid="SQY">
@@ -854,44 +870,40 @@
           </md>
         </p>
       </solution>
-            <!-- </webwork> -->
     </example>
 
     <exercise permid="FpW">
       <webwork>
-          <statement>
-            <p permid="iJQ">
-              Simplify <m>24\div(15\div 3+1)+2</m>.
-            </p>
-
-            <p permid="OQZ">
-              <var name="6" width="10" />
-            </p>
-          </statement>
-          <solution permid="fWo">
-            <p permid="yYh">
-              With the expression <m>24\div(15\div 3+1) +2</m>,
-              we'll simplify what's inside the parentheses according to the order of operations,
-              and then take <m>24</m> divided by that expression as our last step:
-              <md permid="Rqg">
-                <mrow>24\div(15\div 3+1) +2\amp= 24\div(\nextoperation{15\div 3}+1) +2</mrow>
-                <mrow>\amp=24\div(\nextoperation{\highlight{5}+1}) +2</mrow>
-                <mrow>\amp=\nextoperation{24\div \highlight{6}}+2</mrow>
-                <mrow>\amp=\highlight{4}+2</mrow>
-                <mrow>\amp=\highlight{6}</mrow>
-              </md>
-            </p>
-          </solution>
+        <statement>
+          <p permid="iJQ">
+            Simplify <m>24\div(15\div 3+1)+2</m>.
+          </p>
+          <p permid="OQZ">
+            <var name="6" width="10" />
+          </p>
+        </statement>
+        <solution permid="fWo">
+          <p permid="yYh">
+            With the expression <m>24\div(15\div 3+1) +2</m>,
+            we'll simplify what's inside the parentheses according to the order of operations,
+            and then take <m>24</m> divided by that expression as our last step:
+            <md permid="Rqg">
+              <mrow>24\div(15\div 3+1) +2\amp= 24\div(\nextoperation{15\div 3}+1) +2</mrow>
+              <mrow>\amp=24\div(\nextoperation{\highlight{5}+1}) +2</mrow>
+              <mrow>\amp=\nextoperation{24\div \highlight{6}}+2</mrow>
+              <mrow>\amp=\highlight{4}+2</mrow>
+              <mrow>\amp=\highlight{6}</mrow>
+            </md>
+          </p>
+        </solution>
       </webwork>
     </exercise>
 
     <example permid="ZiN">
-            <!-- <webwork> --> <!-- when toggling whether or not a ww, also toggle exercise vs example -->
       <statement>
         <p permid="ckK">
           Simplify <m>6-(-8)^2\div 4+1</m>.
         </p>
-            <!-- <p><var name="42" width="10" /></p> -->
       </statement>
       <solution permid="bmv">
         <p permid="ffq">
@@ -910,72 +922,69 @@
           </md>
         </p>
       </solution>
-            <!-- </webwork> -->
     </example>
 
     <exercise permid="lxf">
       <webwork>
-            <pg-code>
-                Context("LimitedFraction");
-                $ans=Fraction(-1,2);
-            </pg-code>
-          <statement>
-            <p permid="uYi">
-              Simplify <m>(20-4^2)\div(4-6)^3</m>.
-            </p>
-
-            <p permid="bfr">
-              <var name="$ans" width="10" />
-            </p>
-          </statement>
-          <solution permid="Mdx">
-            <p permid="Lmz">
-              The expression <m>(20-4^2)\div(4-6)^3</m> has two sets of parentheses,
-              so our first step will be to simplify what's inside each of those first according to the order of operations.
-              Once we've done that, we'll apply the exponent and then finally divide:
-              <md permid="dEy">
-                <mrow>(20-4^2)\div(4-6)^3 \amp= (20-\nextoperation{4^2})\div(4-6)^3</mrow>
-                <mrow>\amp= (\nextoperation{20-\highlight{16}})\div(4-6)^3</mrow>
-                <mrow>\amp= \highlight{4}\div(\nextoperation{4-6})^3</mrow>
-                <mrow>\amp= 4\div\nextoperation{(\highlight{-2})^3}</mrow>
-                <mrow>\amp= 4\div(\highlight{-8})</mrow>
-                <mrow>\amp= \frac{4}{-8}</mrow>
-                <mrow>\amp= \frac{1}{-2}</mrow>
-                <mrow>\amp= -\frac{1}{2}</mrow>
-              </md>
-            </p>
-          </solution>
+        <pg-code>
+          Context("LimitedFraction");
+          $ans=Fraction(-1,2);
+        </pg-code>
+        <statement>
+          <p permid="uYi">
+            Simplify <m>(20-4^2)\div(4-6)^3</m>.
+          </p>
+          <p permid="bfr">
+            <var name="$ans" width="10" />
+          </p>
+        </statement>
+        <solution permid="Mdx">
+          <p permid="Lmz">
+            The expression <m>(20-4^2)\div(4-6)^3</m> has two sets of parentheses,
+            so our first step will be to simplify what's inside each of those first according to the order of operations.
+            Once we've done that, we'll apply the exponent and then finally divide:
+            <md permid="dEy">
+              <mrow>(20-4^2)\div(4-6)^3 \amp= (20-\nextoperation{4^2})\div(4-6)^3</mrow>
+              <mrow>\amp= (\nextoperation{20-\highlight{16}})\div(4-6)^3</mrow>
+              <mrow>\amp= \highlight{4}\div(\nextoperation{4-6})^3</mrow>
+              <mrow>\amp= 4\div\nextoperation{(\highlight{-2})^3}</mrow>
+              <mrow>\amp= 4\div(\highlight{-8})</mrow>
+              <mrow>\amp= \frac{4}{-8}</mrow>
+              <mrow>\amp= \frac{1}{-2}</mrow>
+              <mrow>\amp= -\frac{1}{2}</mrow>
+            </md>
+          </p>
+        </solution>
       </webwork>
     </exercise>
 
     <exercise permid="REo">
       <webwork>
-          <statement>
-            <p permid="HmA">
-              Simplify <m>\dfrac{2\abs{9-15}+1}{\sqrt{(-5)^2+12^2}}</m>.
-            </p>
-
-            <p permid="ntJ">
-              <var name="1" width="10" />
-            </p>
-          </statement>
-          <solution permid="skG">
-            <p permid="rtI">
-              To simplify this expression,
-              the first thing we want to recognize is the role of the main fraction bar,
-              which groups the numerator and denominator.
-              This implies we'll simplify the numerator and denominator separately according to the order of operations,
-              and then reduce the fraction that results:
-              <md permid="JLH">
-                <mrow>\frac{2\abs{9-15}+1}{\sqrt{(-5)^2+12^2}}\amp=\frac{2\abs{\nextoperation{9-15}}+1}{\sqrt{\nextoperation{(-5)^2}+12^2}}</mrow>
-                <mrow>\amp=\frac{2\nextoperation{\abs{\highlight{-6}}}+1}{\sqrt{\highlight{25}+\nextoperation{12^2}}}</mrow>
-                <mrow>\amp=\frac{\nextoperation{2(\highlight{6})}+1}{\sqrt{\nextoperation{25+\highlight{144}}}}</mrow>
-                <mrow>\amp=\frac{\nextoperation{\highlight{12}+1}}{\nextoperation{\sqrt{\highlight{169}}}}</mrow>
-                <mrow>\amp=\frac{\highlight{13}}{\highlight{13}}</mrow>
-                <mrow>\amp=\highlight{1}</mrow>
-              </md>
-            </p>
-          </solution>
+        <statement>
+          <p permid="HmA">
+            Simplify <m>\dfrac{2\abs{9-15}+1}{\sqrt{(-5)^2+12^2}}</m>.
+          </p>
+          <p permid="ntJ">
+            <var name="1" width="10" />
+          </p>
+        </statement>
+        <solution permid="skG">
+          <p permid="rtI">
+            To simplify this expression,
+            the first thing we want to recognize is the role of the main fraction bar,
+            which groups the numerator and denominator.
+            This implies we'll simplify the numerator and denominator separately according to the order of operations,
+            and then reduce the fraction that results:
+            <md permid="JLH">
+              <mrow>\frac{2\abs{9-15}+1}{\sqrt{(-5)^2+12^2}}\amp=\frac{2\abs{\nextoperation{9-15}}+1}{\sqrt{\nextoperation{(-5)^2}+12^2}}</mrow>
+              <mrow>\amp=\frac{2\nextoperation{\abs{\highlight{-6}}}+1}{\sqrt{\highlight{25}+\nextoperation{12^2}}}</mrow>
+              <mrow>\amp=\frac{\nextoperation{2(\highlight{6})}+1}{\sqrt{\nextoperation{25+\highlight{144}}}}</mrow>
+              <mrow>\amp=\frac{\nextoperation{\highlight{12}+1}}{\nextoperation{\sqrt{\highlight{169}}}}</mrow>
+              <mrow>\amp=\frac{\highlight{13}}{\highlight{13}}</mrow>
+              <mrow>\amp=\highlight{1}</mrow>
+            </md>
+          </p>
+        </solution>
       </webwork>
     </exercise>
   </subsection>
@@ -998,7 +1007,7 @@
       <exercise permid="qgY">
         <webwork source="Contrib/PCC/BasicAlgebra/SignedNumbersArithemtic/MultiplyWithNegativeIntegers20.pg"  />
       </exercise>
-            <!-- The following two exercises need solutions -->
+      <!-- The following two exercises need solutions -->
       <exercise permid="Woh">
         <webwork xml:id="webwork-negative-bases-and-powers">
           <pg-code>
@@ -1059,18 +1068,7 @@
     </exercisegroup>
     <exercisegroup cols="3" permid="XtA">
       <title>Order of Operations Skills</title>
-<!--             <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations21.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations21.pg" />
-            </exercise> -->
-<!--             <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations22.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations22.pg" />
-            </exercise> -->
+
       <exercise permid="iCz">
         <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations23.pg" />
       </exercise>
@@ -1086,12 +1084,7 @@
       <exercise permid="aYa">
         <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations24.pg" />
       </exercise>
-<!--             <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations25.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations25.pg" />
-            </exercise> -->
+
       <exercise permid="Hfj">
         <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations26.pg" />
       </exercise>
@@ -1139,19 +1132,7 @@
       <exercise permid="wGe">
         <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations40.pg" />
       </exercise>
-<!--             <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations46.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations46.pg" />
-            </exercise> -->
-<!--             <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations49.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations49.pg" />
-            </exercise>
- -->
+
       <exercise permid="cNn">
         <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations50.pg" />
       </exercise>
@@ -1439,131 +1420,11 @@
       <exercise permid="WCC">
         <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations160.pg" />
       </exercise>
-<!--             <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations09.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations09.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations10.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations20.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations47.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations47.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations48.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations48.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations60.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations70.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations80.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations82.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations82.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations90.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations90.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations100.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations100.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations110.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations110.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations200.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations200.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations230.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations230.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations285.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations285.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations286.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations286.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations290.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperations290.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperationsSquareRoot30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicAlgebra/OrderOfOperations/orderOfOperationsSquareRoot30.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations163.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations163.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations164.pg" />
-            </exercise>
-            <exercise>
-                <webwork source="Contrib/PCC/BasicMath/OrderOfOperations_More/orderOfOperations164.pg" />
-            </exercise> -->
     </exercisegroup>
     <exercisegroup permid="DAJ">
       <title>Challenge</title>
       <exercise permid="CJL">
-<!-- Kara's challenge problem -->
+      <!-- Kara's challenge problem -->
         <webwork>
             <statement>
               <p permid="fPk">
@@ -1613,7 +1474,6 @@
             </solution>
         </webwork>
       </exercise>
-
     </exercisegroup>
   </exercises>
 </section>
