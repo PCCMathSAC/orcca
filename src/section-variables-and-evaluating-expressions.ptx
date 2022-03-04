@@ -54,16 +54,9 @@
 
   <introduction>
     <p permid="hhU">
-      Algebra helps people solve mathematical problems that are just a bit too complicated to solve in your head.
-      This book is meant to cover basic principles and skills that people need to become successful with algebra.
-      The first things to learn about are <em>variables</em>, <em>algebraic expressions</em>,
-      <em>equations</em>, and <em>inequalities</em>.
-      In this section, we'll focus on variables and expressions.
-      In the remainder of this chapter,
-      we'll focus on <em>equations</em>
-      and <em>inequalities</em>.
+      Variables and expressions are the basic building blocks for writing algebra.
+      In this section, we become familar with how to use them.
     </p>
-
     <figure permid="twm" xml:id="video-variables-and-evaluating-expressions">
       <caption>Alternative Video Lesson</caption>
       <video youtubeplaylist="PLmuZCPhWPt-cOp0ZMJHO6zy0bhdu2gKjQ" />
@@ -73,20 +66,22 @@
   <subsection permid="poW">
     <title>Introduction to Variables</title>
     <p permid="HzR">
-      When we want to represent an unknown or changing numerical quantity,
+      When we want to represent an unknown quantity or a quantity that can change its value,
       we use a <term>variable</term>.
           <idx><h>variable</h></idx>
       For example,
-      if you'd like to discuss the gas mileage of various cars,
+      if you'd like to discuss the gas mileage of different cars,
       you could use the symbol <q><m>g</m></q> as a variable
       to represent a car's gas mileage.
-      The mileage might be
+      The gas mileage <m>g</m> might be
       <quantity>
         <mag>25</mag><unit base="milepergallon" />
       </quantity>,
+      for one car,
       <quantity>
         <mag>30</mag><unit base="milepergallon" />
-      </quantity>, or something else.
+      </quantity>,
+      for some other car, and many other values for other cars.
       (<q><quantity>
         <unit base="milepergallon" />
       </quantity></q>
@@ -96,14 +91,13 @@
         <unit base="milepergallon" />
       </quantity>
       for the units of measure,
-      <m>g</m> might be a place holder for <m>25</m>,
+      <m>g</m> might be a placeholder for <m>25</m>,
       <m>30</m>, or some other number.
       Since we are using a variable and not a specific number,
       we can discuss gas mileage for Honda Civics, Ford Explorers,
       and all other makes and models at the same time,
       even though these makes and models have different gas mileages.
     </p>
-
     <p permid="nHa">
       When variables stand for actual physical quantities,
       it's good to use letters that clearly represent those quantities.
@@ -111,10 +105,8 @@
       it's wise to use <m>g</m> to represent <em>g</em>as mileage.
       This helps the people who might read your work to understand it better.
     </p>
-
     <p permid="TOj">
-      It is also important to identify what unit of measurement goes along with each variable you use,
-      and clearly tell your reader this.
+      It is also important to clearly identify what unit of measurement goes along with each variable you use.
       For example, suppose you are working with <m>g=25</m>.
       A car whose gas mileage is
       <quantity>
@@ -128,117 +120,126 @@
       So it would be important to tell readers that <m>g</m> represents gas mileage
       <em>in miles per gallon</em>.
     </p>
-
     <exercise permid="rej">
-      <webwork reseed="1">
-            <pg-code>
-                Context()->variables->are();
-                for my $i (1..26) {
-                    Context()->variables->add($ALPHABET[$i-1]=>'Real');
-                    Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
-                    };
-                Context()->strings->add('years'=>{});
-                Context()->strings->add('year'=>{alias=>'years'}, 'yrs'=>{alias=>'years'}, 'yr'=>{alias=>'years'}, 'y'=>{alias=>'years'}, 'yrs.'=>{alias=>'years'}, 'yr.'=>{alias=>'years'}, 'y.'=>{alias=>'years'});
-
-                Context()->strings->add('hours'=>{});
-                Context()->strings->add('hour'=>{alias=>'hours'}, 'hrs'=>{alias=>'hours'}, 'hr'=>{alias=>'hours'}, 'h'=>{alias=>'hours'}, 'hrs.'=>{alias=>'hours'}, 'hr.'=>{alias=>'hours'}, 'h.'=>{alias=>'hours'});
-
-                Context()->strings->add('miles'=>{});
-                Context()->strings->add('mile'=>{alias=>'miles'}, 'mis'=>{alias=>'miles'}, 'mi'=>{alias=>'miles'}, 'm'=>{alias=>'miles'}, 'mis.'=>{alias=>'hours'}, 'mi.'=>{alias=>'miles'}, 'm.'=>{alias=>'miles'});
-
-                Context()->strings->add('square feet'=>{});
-                Context()->strings->add('ft^2'=>{alias=>'square feet'}, 'feet squared'=>{alias=>'square feet'}, 'feet square'=>{alias=>'square feet'}, 'sq ft'=>{alias=>'square feet'}, 'sqft'=>{alias=>'square feet'}, 'sq. ft.'=>{alias=>'square feet'}, 'ft.^2'=>{alias=>'square feet'});
-                $a=OneOf('a','A','x','y','z');
-                $t=OneOf('t','T','x','y','z');
-            </pg-code>
+      <title>Naming Variables</title>
+      <webwork>
+        <pg-code>
+          Context()->variables->are();
+          for my $i (1..26) {
+              Context()->variables->add($ALPHABET[$i-1]=>'Real');
+              Context()->variables->add(lc($ALPHABET[$i-1])=>'Real');
+              };
+          Context()->strings->add('years'=>{});
+          Context()->strings->add(
+            'year'=>{alias=>'years'},
+            'yrs'=>{alias=>'years'},
+            'yr'=>{alias=>'years'},
+            'yrs.'=>{alias=>'years'},
+            'yr.'=>{alias=>'years'},
+            'y.'=>{alias=>'years'}
+          );
+          Context()->strings->add('hours'=>{});
+          Context()->strings->add(
+            'hour'=>{alias=>'hours'},
+            'hrs'=>{alias=>'hours'},
+            'hr'=>{alias=>'hours'},
+            'h'=>{alias=>'hours'},
+            'hrs.'=>{alias=>'hours'},
+            'hr.'=>{alias=>'hours'},
+            'h.'=>{alias=>'hours'}
+          );
+          Context()->strings->add('miles'=>{});
+          Context()->strings->add(
+            'mile'=>{alias=>'miles'},
+            'mis'=>{alias=>'miles'},
+            'mi'=>{alias=>'miles'},
+            'm'=>{alias=>'miles'},
+            'mis.'=>{alias=>'hours'},
+            'mi.'=>{alias=>'miles'},
+            'm.'=>{alias=>'miles'}
+          );
+          Context()->strings->add('square feet'=>{});
+          Context()->strings->add(
+            'ft^2'=>{alias=>'square feet'},
+            'feet squared'=>{alias=>'square feet'},
+            'feet square'=>{alias=>'square feet'},
+            'sq ft'=>{alias=>'square feet'},
+            'sqft'=>{alias=>'square feet'},
+            'sq. ft.'=>{alias=>'square feet'},
+            'ft.^2'=>{alias=>'square feet'}
+          );
+          $a=OneOf('a','A','x','y','z');
+          $t=OneOf('t','T','x','y','z');
+        </pg-code>
+        <introduction>
+          <p permid="FKE">
+            Identify a variable you might use to represent each quantity.
+            Then identify what units would be most appropriate.
+          </p>
+        </introduction>
+        <task>
           <statement>
-            <p permid="FKE">
-              Identify a variable you might use to represent each quantity.
-              Then identify what units would be most appropriate.
-
-              <ol label="a." permid="cjG">
-                <li permid="Fwj">
-                  <p permid="Vpb">
-                    Let <var name="$a" width="2" /> be the age of a student,
-                    measured in <var name="'years'" width="10" />.
-                  </p>
-                </li>
-
-                <li permid="lDs">
-                  <p permid="Bwk">
-                    Let <var name="$t" width="2" /> be the amount of time passed since a driver left Portland, Oregon,
-                    bound for Boise, Idaho, measured in <var name="'hours'" width="10" />.
-                  </p>
-                </li>
-
-                <li permid="RKB">
-                  <p permid="hDt">
-                    Let <var name="$a" width="2" /> be the area of a two-bedroom apartment,
-                    measured in <var name="'square feet'" width="10" />.
-                  </p>
-                </li>
-              </ol>
+            <p permid="Vpb">
+              Let <var name="$a" width="2" /> be the age of a student,
+              measured in <var name="'years'" width="10" />.
             </p>
           </statement>
-          <solution permid="BRJ">
-            <p permid="Ouw">
-              <ol label="a." permid="fem">
-                <li permid="xRK">
-                  <p permid="NKC">
-                    The unknown quantity is age, which we generally measure in years.
-                    So we could say:
-                  </p>
-
-                  <p permid="tRL">
-                    <q>Let <m>a</m> be the age of a student, measured in years.</q>
-                  </p>
-                </li>
-
-                <li permid="dYT">
-                  <p permid="ZYU">
-                    The amount of time passed is the unknown quantity.
-                    Since this is a drive from Portland to Boise,
-                    it would make sense to measure this in hours.
-                    So we could say:
-                  </p>
-
-                  <p permid="Ggd">
-                    <q>Let <m>t</m> be the amount of time passed since a driver left Portland, Oregon,
-                    bound for Boise, Idaho, measured in hours.</q>
-                  </p>
-                </li>
-
-                <li permid="Kgc">
-                  <p permid="mnm">
-                    The unknown quantity is area.
-                    Apartment area is usually measured in square feet.
-                    So we'll say:
-                  </p>
-
-                  <p permid="Suv">
-                    <q>Let <m>A</m> be the area of a two-bedroom apartment,
-                    measured in <m>\text{ft}^2</m>.</q>
-                  </p>
-                </li>
-              </ol>
+          <solution>
+            <p permid="NKC">
+              The unknown quantity is age, which we generally measure in years.
+              So we could say <q>Let <m>a</m> be the age of a student, measured in years.</q>
             </p>
           </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Let <var name="$t" width="2" /> be the amount of time passed since a driver left Portland, Oregon,
+              bound for Boise, Idaho, measured in <var name="'hours'" width="10" />.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              The amount of time passed is the unknown quantity.
+              Since this is a drive from Portland to Boise,
+              it would make sense to measure this in hours.
+              So we could say
+              <q>Let <m>t</m> be the amount of time passed since a driver left Portland, Oregon,
+              bound for Boise, Idaho, measured in hours.</q>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p permid="hDt">
+              Let <var name="$a" width="2" /> be the area of a two-bedroom apartment,
+              measured in <var name="'square feet'" width="10" />.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              The unknown quantity is area.
+              Apartment area is usually measured in square feet.
+              So we'll say:
+              <q>Let <m>A</m> be the area of a two-bedroom apartment,
+              measured in <m>\text{ft}^2</m>.</q>
+            </p>
+          </solution>
+        </task>
       </webwork>
     </exercise>
-
     <p permid="zVs">
       Unless an algebra problem specifies which letter(s) to use,
-      we may <em>choose</em> which letter(s) to use for our variable(s).
-      However <em>without</em> any context to a problem, <m>x</m>,
+      <em>we may choose</em> which letter(s) to use for our variable(s).
+      Without any context to a problem, <m>x</m>,
       <m>y</m>,
-      and <m>z</m> are the most common letters used as variables,
-      and you may see these variables
+      and <m>z</m> are the most common letters used as variables.
+      You may see these variables
       (especially <m>x</m>)
       a lot.
     </p>
-
     <p permid="gcB">
-      Also note that the units we use are often determined indirectly by other information given in an algebra problem.
+      Also note that the units we use are often suggested by the information given in an algebra problem.
       For example,
       if we're told that a car has used so many <em>gallons</em> of gas after traveling so many <em>miles</em>,
       then this suggests we should measure gas mileage in
@@ -251,18 +252,17 @@
   <subsection permid="Vwf">
     <title>Algebraic Expressions</title>
     <p permid="MjK">
-      An <term>algebraic expression</term>
+      Any combination of variables and numbers using arithmetic operations
+      is an <term>algebraic expression</term>.
           <idx><h>expression</h><h>algebraic</h></idx>
           <idx><h>algebraic expression</h></idx>
-      is any combination of variables and numbers using arithmetic operations.
-      The following are all examples of algebraic expressions:
+      The following are examples of algebraic expressions:
       <me permid="EFl">
         x+1\qquad 2\ell+2w\qquad\frac{\sqrt{x}}{y+1}\qquad nRT
       </me>
       Note that this definition of <q>algebraic expression</q> does <em>not</em>
-      include anything with an equals sign in it.
+      include anything with an equals sign (<m>=</m>) in it.
     </p>
-
     <example xml:id="example-evaluate-temperature" permid="Xls">
       <statement>
         <p permid="kcA">
@@ -270,15 +270,14 @@
           <me permid="kMu">
             \frac{5}{9}(F - 32)
           </me>
-          can be used to convert a temperature in degrees Fahrenheit to degrees Celsius.
+          converts a temperature in degrees Fahrenheit to degrees Celsius.
           To do this, we need a Fahrenheit temperature, <m>F</m>.
           Then we can <term>evaluate</term>
               <idx><h>evaluate</h></idx>
           the expression.
-          This means replacing its variable(s) (in this case, <m>F</m>) with specific numbers and finding the result as a single,
+          This means replacing its variable(s) with specific numbers and finding the result as a single,
           simplified number.
         </p>
-
         <p oldpermid="QjJ">
           Let's convert the temperature
           <quantity>
@@ -294,36 +293,33 @@
           <quantity>
             <mag>89</mag><unit base="fahrenheit" />
           </quantity>
-          is equivalent to approximately
+          is approximately the same temperature as
           <quantity>
             <mag>31.67</mag><unit base="celsius" />
           </quantity>.
         </p>
       </statement>
     </example>
-
     <warning permid="SPU">
       <title>Correct Vocabulary</title>
       <p permid="XOi">
         The steps in <xref ref="example-evaluate-temperature">Example</xref>
         are not considered <q>solving</q> anything. <q>Solving</q>
-        is a word you might be tempted to use,
+        is a word you might want to use,
         because in everyday English you are <q>finding an answer.</q>
         In algebra, there is a special meaning for <q>solving</q> something,
         and that will come soon in <xref ref="section-solving-one-step-equations">Section</xref>.
         When we substitute values in for variables and then compute the result,
-        the technical thing to say is we are <q>evaluating an expression.</q>
+        we are <q>evaluating an expression,</q> not solving anything.
       </p>
     </warning>
-
     <exercise permid="PGT">
-
+      <title>Convert Temperature</title>
       <introduction permid="jzK">
         <p permid="ZDv">
           Try evaluating the temperature expression for yourself.
         </p>
       </introduction>
-
       <webwork>
             <pg-code>
                 Context("Numeric");
