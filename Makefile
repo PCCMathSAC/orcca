@@ -93,7 +93,13 @@ PRVOUT     = $(OUTPUT)/preview
 #SERVER = "(https://webwork.runestone.academy,anonymous,anonymous,anonymous,anonymous)"
 #SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
 SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
+#SERVER = "(https://webwork.pcc.edu,anonymous,anonymous,open,open)"
+
+#SERVER = "(https://webwork-dev.pcc.edu,anonymous,anonymous,anonymous,anonymous)"
 #SERVER = http://localhost
+
+pg-macros:
+	$(PTX)/pretext/pretext -c pg-macros $(MAINFILE)
 
 webwork-representations:
 	-rm -r $(WWOUT) || :
@@ -114,6 +120,7 @@ print-pretext:
 	install -d $(IMGOUT)
 	install -d $(IMGSRC)
 	cp -a $(WWOUT)/*.png $(PRINTOUT)/images || :
+	cp -a $(WWOUT)/*.pdf $(PRINTOUT)/images || :
 	cp -a $(PRVOUT)/*.png $(PRINTOUT)/images || :
 	cp -a $(IMGSRC) $(PRINTOUT) || :
 	cd $(PRINTOUT); \
@@ -129,6 +136,7 @@ pdf-nopost:
 	install -d $(IMGOUT)
 	install -d $(IMGSRC)
 	cp -a $(WWOUT)/*.png $(PRINTOUT)/images || :
+	cp -a $(WWOUT)/*.pdf $(PRINTOUT)/images || :
 	cp -a $(PRVOUT)/*.png $(PRINTOUT)/images || :
 	cp -a $(IMGSRC) $(PRINTOUT) || :
 	cd $(PRINTOUT); \
@@ -543,11 +551,14 @@ html:
 	cp -a $(IMGOUT) $(HTMLOUT) || :
 	cp -a $(IMGSRC) $(HTMLOUT) || :
 	cp -a $(WWOUT)/*.png $(HTMLOUT)/images || :
+	cp -a $(WWOUT)/*.svg $(HTMLOUT)/images || :
+	cp -a $(WWOUT)/*.pdf $(HTMLOUT)/images || :
+	cp -a $(WWOUT)/*.tex $(HTMLOUT)/images || :
 	cp -a $(SRC)/favicon $(HTMLOUT) || :
 	cp -r $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
 	date; \
-	xsltproc --xinclude --stringparam watermark.text "DRAFT Apr-22-2021" --stringparam publisher $(PUBFILE) --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer no --stringparam exercise.divisional.solution no --stringparam html.css.extra 'css/orcca.css' --stringparam webwork.divisional.static yes $(XSL)/orcca-html.xsl $(MAINFILE); \
+	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer yes --stringparam exercise.divisional.solution no --stringparam html.css.extra 'css/orcca.css' --stringparam webwork.divisional.static no $(XSL)/orcca-html.xsl $(MAINFILE); \
 	date; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' *.html; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' knowl/*.html; \
