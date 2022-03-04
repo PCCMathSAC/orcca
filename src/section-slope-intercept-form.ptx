@@ -1812,12 +1812,61 @@
           </p>
         </introduction>
         <exercise permid="suk">
-          <statement>
-            <p permid="kXc">
-              <m>y=4x</m>
-            </p>
-          </statement>
-          <answer permid="NGP">
+          <webwork>
+            <pg-macros>
+              <macro-file>parserGraphTool.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              $m = list_random(2..5);
+              Context("Numeric")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $equation = Formula("y = $m x");
+              $gt = GraphTool("{line, solid, (0, 0), (1, $m)}")->with(
+                bBox => [-11, 11, 11, -11],
+                cmpOptions => {
+                  list_checker => sub {
+                    my ($correct, $student, $ans, $value) = @_;
+                    return 0 if $ans->{isPreview};
+                    my $score = 0;
+                    my @errors;
+                    my $count = 1;
+                    # Get the points that define the correct line and compute the coefficients
+                    # a, b, and c in ax+by+c=0.
+                    my ($p1x, $p1y) = $correct->[0]->extract(3)->value;
+                    my ($p2x, $p2y) = $correct->[0]->extract(4)->value;
+                    my @stdform = ($p1y - $p2y, $p2x - $p1x, $p1x * $p2y - $p2x * $p1y);
+                    my $pointOnLine = sub {
+                      my $point = shift;
+                      my ($x, $y) = $point->value;
+                      return $stdform[0] * $x + $stdform[1] * $y + $stdform[2] == 0;
+                    };
+                    for (@$student) {
+                      my $nth = Value::List->NameForNumber($count++);
+                      $score += 1, next
+                      if ($_->extract(1) eq $correct->[0]->extract(1) &amp;&amp;
+                        $_->extract(2) eq $correct->[0]->extract(2) &amp;&amp;
+                        $pointOnLine->($_->extract(3)) &amp;&amp; $pointOnLine->($_->extract(4)));
+                      push(@errors, "The $nth object graphed is not a " . $correct->[0]->extract(1)),
+                      next if ($_->extract(1) ne $correct->[0]->extract(1));
+                      push(@errors, "The $nth object graphed should be a " . $correct->[0]->extract(2) . " line."),
+                      next if ($_->extract(2) ne $correct->[0]->extract(2));
+                      push(@errors, "The $nth object graphed is incorrect.");
+                    }
+                    return ($score, @errors);
+                  }
+                }
+              );
+            </pg-code>
+            <statement>
+              <p permid="kXc">
+                <m><var name="$equation"/></m>
+              </p>
+              <p>
+                <var name="$gt" width="1"/>
+              </p>
+            </statement>
+          </webwork>
+          <!-- <answer permid="NGP">
             <sidebyside permid="GTo">
               <image permid="plw">
                 <latex-image>
@@ -1830,7 +1879,7 @@
                 </latex-image>
               </image>
             </sidebyside>
-          </answer>
+          </answer> -->
         </exercise>
         <exercise permid="YBt">
           <statement>

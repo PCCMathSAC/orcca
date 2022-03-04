@@ -95,68 +95,49 @@
 
     <exercise permid="DVZ">
       <webwork>
-            <pg-code>
-                package context::Ordering::BOP::ordering;
-                *isOrdering = sub {
-                    my $self = shift; my $obj = shift; my $class = $obj->class;
-                    return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                };
-                package main;
-                Context("Ordering");
-                Context()->strings->add('age'=>{isLetter => 1,TeX=>'\text{age}'});
-                Context()->strings->add('a'=>{isLetter => 1,TeX=>'\text{a}'});
-                Context()->strings->add('x'=>{isLetter => 1,TeX=>'\text{x}'});
-                $overage=OneOf(Compute("age>20"),Compute("a>20"),Compute("x>20"));
-            </pg-code>
-      <statement>
-        <p permid="lpS">
-          <ol label="a." permid="IUn">
-            <li permid="mgQ">
-              <p permid="XHM">
-                Use mathematical notation to write
-                <q><m>11.5</m> is greater than <m>4.2</m>.</q>
-              </p>
-
-              <p permid="DOV">
-                <var name="'11.5>4.2'" width="15" />
-              </p>
-            </li>
-
-            <li permid="SnZ">
-              <p permid="jWe">
-                Use mathematical notation to write
-                <q>age is greater than <m>20</m>.</q>
-              </p>
-
-              <p permid="Qdn">
-                <var name="$overage" width="15" />
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-      <solution permid="rWc">
-        <p permid="yJD">
-          <ol label="a." permid="QyM">
-            <li permid="yvi">
-              <p permid="wkw">
-                <m>11.5\gt4.2</m>
-              </p>
-            </li>
-
-            <li permid="eCr">
-              <p permid="crF">
-                We can just write the word <c>age</c> to represent age,
-                and write <m>\text{age}\gt20</m>.
-                Or we could use an abbreviation like <m>a</m> for age,
-                and write <m>a\gt20</m>.
-                Or, it is common to use <m>x</m> as a generic abbreviation,
-                and we could write <m>x\gt20</m>.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </solution>
+        <pg-code>
+          package context::Ordering::BOP::ordering;
+          *isOrdering = sub {
+            my $self = shift; my $obj = shift; my $class = $obj->class;
+            return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+          };
+          package main;
+          Context("Ordering");
+          Context()->strings->add('age'=>{isLetter => 1,TeX=>'\text{age}'});
+          Context()->strings->add('a'=>{isLetter => 1,TeX=>'\text{a}'});
+          Context()->strings->add('x'=>{isLetter => 1,TeX=>'\text{x}'});
+          $overage=OneOf(Compute("age>20"),Compute("a>20"),Compute("x>20"));
+        </pg-code>
+        <task>
+          <statement>
+            <p permid="XHM">
+              Use mathematical notation to write <q><m>11.5</m> is greater than <m>4.2</m>.</q>
+            </p>
+            <p permid="DOV">
+              <var name="'11.5>4.2'" width="15" />
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p permid="jWe">
+              Use mathematical notation to write <q>age is greater than <m>20</m>.</q>
+            </p>
+            <p permid="Qdn">
+              <var name="$overage" width="15" />
+            </p>
+          </statement>
+          <solution>
+            <p permid="crF">
+              We can just write the word <c>age</c> to represent age,
+              and write <m>\text{age}\gt20</m>.
+              Or we could use an abbreviation like <m>a</m> for age,
+              and write <m>a\gt20</m>.
+              Or, it is common to use <m>x</m> as a generic abbreviation,
+              and we could write <m>x\gt20</m>.
+            </p>
+          </solution>
+        </task>
       </webwork>
     </exercise>
 
@@ -219,9 +200,6 @@
 
     <exercise permid="kdi">
       <webwork seed="1">
-        <pg-macros>
-          <macro-file>PGtikz.pl</macro-file>
-        </pg-macros>
         <pg-code>
           @a=(-7.6,6,-6,9.5,8);
           $as='{'.join('}\quad{',@a).'}';
@@ -250,32 +228,6 @@
                   class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
           );
           $comparison=Compute("$bs");
-          $numberline = createTikZImage();
-          $numberline->ext('png');
-          $numberline->texPackages([ pgfplots => "" ]);
-          $numberline->BEGIN_TIKZ
-          \begin{axis}
-            [
-              xmin=-12,
-              xmax=12,
-              ymin=-1,
-              ymax=1,
-              axis y line=none,
-              xlabel={},
-              xtick={-10,-5,...,10},
-              minor xtick={-10,-9,...,10},
-              axis lines=middle,
-              axis equal image,
-              clip=false,
-            ]
-            \node[pin=90:{\($b[0]\)}] at (axis cs:$b[0],0) {};
-            \node[pin={[pin distance=5]90:{\($b[1]\)}}] at (axis cs:$b[1],0) {};
-            \node[pin=90:{\($b[2]\)}] at (axis cs:$b[2],0) {};
-            \node[pin={[pin distance=5]90:{\($b[3]\)}}] at (axis cs:$b[3],0) {};
-            \node[pin=90:{\($b[4]\)}] at (axis cs:$b[4],0) {};
-            \path (axis cs:0,0) node [anchor=north,yshift=-0.075cm] {0};
-          \end{axis}
-          END_TIKZ
         </pg-code>
         <statement>
           <p permid="Rxb">
@@ -296,7 +248,25 @@
           <p permid="eQM">
             We can order these numbers by placing these numbers on a number line.
           </p>
-          <image permid="IrK" pg-name="$numberline" width="60%"/>
+          <image permid="IrK" width="60%">
+            <latex-image syntax="PGtikz">
+              \begin{axis}
+                [
+                  numberline,
+                  xmin=-12,
+                  xmax=12,
+                  xlabel={},
+                  xtick={-10,-5,...,10},
+                  minor xtick={-10,-9,...,10},
+                ]
+                \node[pin=90:{\($b[0]\)}] at (axis cs:$b[0],0) {};
+                \node[pin={[pin distance=5]90:{\($b[1]\)}}] at (axis cs:$b[1],0) {};
+                \node[pin=90:{\($b[2]\)}] at (axis cs:$b[2],0) {};
+                \node[pin={[pin distance=5]90:{\($b[3]\)}}] at (axis cs:$b[3],0) {};
+                \node[pin=90:{\($b[4]\)}] at (axis cs:$b[4],0) {};
+              \end{axis}
+            </latex-image>
+          </image>
           <p permid="KXV">
             And so we see the answer is <m><var name="$comparison" /></m>.
           </p>
@@ -306,82 +276,89 @@
 
     <exercise permid="Qkr">
       <webwork>
-            <pg-code>
-                Context("Fraction");
-                Context()->flags->set(reduceConstants=>0);
-                @a=(-5.2,Formula("pi"),Fraction(10,3),4.6,8);
-                Context()->texStrings;
-                $as='{'.join('}\quad{',@a).'}';
-                Context()->normalStrings;
-                @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
-                $bs=join('>',@b);
-                @c=map{Real("$_")}(@b);
-                package context::Ordering::BOP::ordering;
-                *isOrdering = sub {
-                    my $self = shift; my $obj = shift; my $class = $obj->class;
-                    return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
-                };
-                package main;
-                Context("Ordering");
-                Context()->flags->set(reduceConstants=>0);
-                Context()->operators->add(
-                '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
-                        class => 'Parser::BOP::subtract', rightparens => 'same'},
-                '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                        class => 'Parser::BOP::divide', space => ' /',
-                        rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                ' /' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                        class => 'Parser::BOP::divide', space => ' /',
-                        rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                '/ ' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
-                        class => 'Parser::BOP::divide', space => ' /',
-                        rightparens => 'all', leftparens => 'extra', fullparens => 1},
-                'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
-                        class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
-                );
-                Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
-                $comparison=Compute("$bs");
-                $numberline=init_graph(-12,-1,12,1,size=>[240,60]);
-                $numberline->moveTo(-12,0);
-                $numberline->lineTo(12,0,'black');
-                for my$i(-12..12){$numberline->moveTo($i,-0.1);$numberline->lineTo($i,0.1,'black');};
-                $numberline->lb(new Label(0,-0.2,"0",'black','center','top','large'));
-                for my$i(0,2,4){$numberline->lb(new Label($c[$i],-0.4,"$b[$i]",'blue','center','top','large'));$numberline->moveTo($c[$i],0);$numberline->lineTo($c[$i],-0.4);};
-                $numberline->lb(new Label($c[1],0.4,"$b[1]",'blue','center','bottom','large'));$numberline->moveTo($c[1],0);$numberline->lineTo($c[1],0.4);
-                $numberline->lb(new Label($c[3],0.4,"$b[3]",'blue','right','bottom','large'));$numberline->moveTo($c[3],0);$numberline->lineTo($c[3],0.4);
-            </pg-code>
-      <statement>
-        <p permid="JSC">
-          Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least.
-          For example,
-          your answer might look like <c>4 &gt; 3 &gt; 2 &gt; 1 &gt; 0</c>.
-        </p>
-        <instruction>
-          If you need to enter <m>pi</m>, type <c>pi</c>.
-        </instruction>
-        <p permid="pZL">
-          <me permid="ENk">
-            <var name="$as" />
-          </me>
-        </p>
-
-        <p permid="WgU">
-          <var name="$comparison" width="30" />
-        </p>
-      </statement>
-      <solution permid="Eku">
-        <p permid="rfe">
-          We can order these numbers by placing these numbers on a number line.
-          Knowing or computing their decimals helps with this:
-          <m>\pi\approx3.141\ldots</m> and <m>\frac{10}{3}\approx3.333\ldots</m>.
-        </p>
-
-        <image pg-name="$numberline" width="40%"/>
-
-        <p permid="Xmn">
-          And so we see the answer is <m><var name="$comparison" /></m>.
-        </p>
-      </solution>
+        <pg-code>
+          Context("Fraction");
+          Context()->flags->set(reduceConstants=>0);
+          @a=(-5.2,Formula("pi"),Fraction(10,3),4.6,8);
+          Context()->texStrings;
+          $as='{'.join('}\quad{',@a).'}';
+          Context()->normalStrings;
+          @b=PGsort(sub{Real("$_[0]")&gt;Real("$_[1]")},@a);
+          $bs=join('>',@b);
+          @c=map{Real("$_")}(@b);
+          package context::Ordering::BOP::ordering;
+          *isOrdering = sub {
+              my $self = shift; my $obj = shift; my $class = $obj->class;
+              return $class;# eq 'Ordering' || $class eq 'Number' || $obj->{def}{isLetter};
+          };
+          package main;
+          Context("Ordering");
+          Context()->flags->set(reduceConstants=>0);
+          Context()->operators->add(
+          '-' => {precedence => 1, associativity => 'left', type => 'both', string => '-',
+                  class => 'Parser::BOP::subtract', rightparens => 'same'},
+          '/' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                  class => 'Parser::BOP::divide', space => ' /',
+                  rightparens => 'all', leftparens => 'extra', fullparens => 1},
+          ' /' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                  class => 'Parser::BOP::divide', space => ' /',
+                  rightparens => 'all', leftparens => 'extra', fullparens => 1},
+          '/ ' => {precedence => 3, associativity => 'left', type => 'bin', string => '/',
+                  class => 'Parser::BOP::divide', space => ' /',
+                  rightparens => 'all', leftparens => 'extra', fullparens => 1},
+          'u-'=> {precedence => 6, associativity => 'left', type => 'unary', string => '-',
+                  class => 'Parser::UOP::minus', hidden => 1, allowInfinite => 1, nofractionparens => 1},
+          );
+          Context()->constants->add('pi' => {value => 4*atan2(1,1), TeX => '\pi ', perl => "pi"});
+          $comparison=Compute("$bs");
+        </pg-code>
+        <statement>
+          <p permid="JSC">
+            Use the <m>\gt</m> symbol to arrange the following numbers in order from greatest to least.
+            For example,
+            your answer might look like <c>4 &gt; 3 &gt; 2 &gt; 1 &gt; 0</c>.
+          </p>
+          <instruction>
+            If you need to enter <m>pi</m>, type <c>pi</c>.
+          </instruction>
+          <p permid="pZL">
+            <me permid="ENk">
+              <var name="$as" />
+            </me>
+          </p>
+          <p permid="WgU">
+            <var name="$comparison" width="30" />
+          </p>
+        </statement>
+        <solution permid="Eku">
+          <p permid="rfe">
+            We can order these numbers by placing these numbers on a number line.
+            Knowing or computing their decimals helps with this:
+            <m>\pi\approx3.141\ldots</m> and <m>\frac{10}{3}\approx3.333\ldots</m>.
+          </p>
+          <image width="60%">
+            <latex-image syntax="PGtikz">
+              \begin{axis}
+                [
+                  numberline,
+                  xmin=-12,
+                  xmax=12,
+                  xlabel={},
+                  xtick={-10,-5,...,10},
+                  minor xtick={-10,-9,...,10},
+                ]
+                \node[pin=90:{\(-5.2\)}] at (axis cs:-5.2,0) {};
+                \node[pin={[pin distance=5]90:{\(\pi\)}}] at (axis cs:3.1415926,0) {};
+                \node[pin=90:{\(\frac{10}{3}\)}] at (axis cs:3.333333,0) {};
+                \node[pin={[pin distance=5]90:{\(4.6\)}}] at (axis cs:4.6,0) {};
+                \node[pin=90:{\(8\)}] at (axis cs:8,0) {};
+              \end{axis}
+            </latex-image>
+          </image>
+          <p permid="Xmn">
+            And so we see the answer is <m><var name="$comparison" /></m>.
+          </p>
+        </solution>
       </webwork>
     </exercise>
 
@@ -710,62 +687,20 @@
 
     <exercise permid="ZEd">
       <title>Interval and Set-Builder Notation from Number Lines</title>
-      <webwork>
+      <webwork>s
         <pg-code>
-          ($a[0],$b[0])=(0,2);#num_sort(map{$_-4}NchooseK(9,2));
-          ($a[1],$b[1])=(0,2);#num_sort(map{$_-4}NchooseK(9,2));
-          ($a[2],$b[2])=(2,4);#num_sort(map{$_-4}NchooseK(9,2));
-          %left=(oi=>'(',ci=>'[',io=>'(',ic=>'(');
-          %right=(oi=>')',ci=>')',io=>')',ic=>']');
-          @type=('ic','io','ci');#('oi','ci','io','ic')[NchooseK(4,3)];
-          @ticks = ();
-          for my $j (-5..5) {push(@ticks,$j);};
-          for my$i(0,1,2){
-          $nl[$i]=init_graph(-6,-1,6,1,size=>[240,32]);
-          $nl[$i]->moveTo(0,0);
-          $nl[$i]->arrowTo(5.5,0,'black',1);
-          $nl[$i]->moveTo(0,0);
-          $nl[$i]->arrowTo(-5.5,0,'black',1);
-          $nl[$i]->lb(new Label(6,10,'x','black','right','middle','large'));
-          for my$j(@ticks){$nl[$i]->lb(new Label($j,-0.2,$j,'black','center','top','large'));};
-          $nl[$i]->h_ticks(0,'black',@ticks);
-          };
-          $shadingoffset = 0.5;
-          for my$i(0..2){
-          if($type[$i]eq'oi' or $type[$i]eq'ci'){
-            $nl[$i]->moveTo($a[$i],$shadingoffset);
-            $nl[$i]->lineTo(5.25,$shadingoffset,'blue',1);
-            $nl[$i]->moveTo($a[$i],$shadingoffset);
-            $nl[$i]->arrowTo(5.5,$shadingoffset,'blue',1);
-          }else{
-            $nl[$i]->moveTo($b[$i],$shadingoffset);
-            $nl[$i]->lineTo(-5.25,$shadingoffset,'blue',1);
-            $nl[$i]->moveTo($b[$i],$shadingoffset);
-            $nl[$i]->arrowTo(-5.5,$shadingoffset,'blue',1);
-          };
-          if($type[$i]eq'oi'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));}
-            elsif($type[$i]eq'ci'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));}
-            elsif($type[$i]eq'io'){$nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));}
-            else{$nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));}
-          };
           InequalitySetBuilder::UseVerticalSuchThat();
           Context("InequalitySetBuilder-Only");
-          for my$i(0..2){
-          if($type[$i]eq'oi'){$sb[$i]=Compute("{ x | x>$a[$i]}");}
-          elsif($type[$i]eq'ci'){$sb[$i]=Compute("{ x | x>=$a[$i]}");}
-          elsif($type[$i]eq'io'){$sb[$i]=Compute("{ x | x&lt;$b[$i]}");}
-          else{$sb[$i]=Compute("{ x | x&lt;=$b[$i]}");}
-          };
+          $sb[0] = Compute("{ x | x &lt;= 2}");
+          $sb[1] = Compute("{ x | x &lt;  2}");
+          $sb[2] = Compute("{ x | x >=    2}");
           Context("Interval");
           Context()->flags->set("formatStudentAnswer"=>'parsed');
-          for my$i(0..2){
-          if($type[$i]eq'oi'){$in[$i]=Compute("($a[$i],inf)");}
-          elsif($type[$i]eq'ci'){$in[$i]=Compute("[$a[$i],inf)");}
-          elsif($type[$i]eq'io'){$in[$i]=Compute("(-inf,$b[$i])");}
-          else{$in[$i]=Compute("(-inf,$b[$i]]");}
-          };
+          $in[0] = Compute("(-inf, 2]");
+          $in[1] = Compute("(-inf, 2)");
+          $in[2] = Compute("[2,  inf)");
         </pg-code>
-        <statement>
+        <introduction>
           <p permid="Cod">
             For each interval expressed in the number lines,
             give the interval notation and set-builder notation.
@@ -773,74 +708,124 @@
           <instruction>
             Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.
           </instruction>
-          <p permid="ivm">
-            <ol label="a." cols="3" permid="pbw">
-              <li permid="KJA">
-                <image pg-name="$nl[0]" width="40%"/>
-                <p permid="IyO">
-                  In set-builder notation: <var name="$sb[0]" width="20" />
-                </p>
-                <p permid="oFX">
-                  In interval notation: <var name="$in[0]" width="20" />
-                </p>
-              </li>
-              <li permid="qQJ">
-                <image pg-name="$nl[1]" width="40%"/>
-                <p permid="UNg">
-                  In set-builder notation: <var name="$sb[1]" width="20" />
-                </p>
-                <p permid="AUp">
-                  In interval notation: <var name="$in[1]" width="20" />
-                </p>
-              </li>
-              <li permid="WXS">
-                <image pg-name="$nl[2]" width="40%"/>
-                <p permid="hby">
-                  In set-builder notation: <var name="$sb[2]" width="20" />
-                </p>
-                <p permid="NiH">
-                  In interval notation: <var name="$in[2]" width="20" />
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
-        <solution permid="krD">
-          <p permid="Dtw">
-            <ol label="a." permid="wFV">
-              <li permid="Dfb">
-                <p permid="tpQ">
-                  Since all numbers less than or equal to <m>2</m> are shaded,
-                  the set-builder notation is <m><var name="$sb[0]" /></m>.
-                  The shaded interval <q>starts</q>
-                  at <m>-\infty</m> and ends at <m>2</m>
-                  (including <m>2</m>)
-                  so the interval notation is <m><var name="$in[0]"/></m>.
-                </p>
-              </li>
-              <li permid="jmk">
-                <p permid="ZwZ">
-                  Since all numbers less than to <m>2</m> are shaded,
-                  the set-builder notation is <m><var name="$sb[1]" /></m>.
-                  The shaded interval <q>starts</q>
-                  at <m>-\infty</m> and ends at <m>2</m>
-                  (excluding <m>2</m>)
-                  so the interval notation is <m><var name="$in[1]"/></m>.
-                </p>
-              </li>
-              <li permid="Ptt">
-                <p permid="FEi">
-                  Since all numbers greater than or equal to <m>2</m> are shaded,
-                  the set-builder notation is <m><var name="$sb[2]" /></m>.
-                  The shaded interval starts at <m>2</m>
-                  (including <m>2</m>)
-                  and <q>ends</q> at <m>\infty</m>,
-                  so the interval notation is <m><var name="$in[2]"/></m>.
-                </p>
-              </li>
-            </ol>
-          </p>
-        </solution>
+        </introduction>
+        <task>
+          <statement>
+            <image width="40%">
+              <latex-image syntax="PGtikz">
+                \begin{axis}
+                  [
+                    numberline,
+                    xmin=-6,
+                    xmax=6,
+                    xlabel={\(x\)},
+                  ]
+                  \addplot[infiniteclosedinterval] coordinates {(-6,0) (2,0)};
+                \end{axis}
+              </latex-image>
+            </image>
+            <instruction>
+              Enter the answer in set-builder notation.
+            </instruction>
+            <p>
+              <var name="$sb[0]" width="20" />
+            </p>
+            <instruction>
+              Enter the answer in interval notation.
+            </instruction>
+            <p>
+              <var name="$in[0]" width="20" />
+            </p>
+          </statement>
+          <solution>
+            <p permid="tpQ">
+              Since all numbers less than or equal to <m>2</m> are shaded,
+              the set-builder notation is <m><var name="$sb[0]" /></m>.
+              The shaded interval <q>starts</q>
+              at <m>-\infty</m> and ends at <m>2</m>
+              (including <m>2</m>)
+              so the interval notation is <m><var name="$in[0]"/></m>.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <image width="40%">
+              <latex-image syntax="PGtikz">
+                \begin{axis}
+                  [
+                    numberline,
+                    xmin=-6,
+                    xmax=6,
+                    xlabel={\(x\)},
+                  ]
+                  \addplot[infiniteopeninterval] coordinates {(-6,0) (2,0)};
+                \end{axis}
+              </latex-image>
+            </image>
+            <instruction>
+              Enter the answer in set-builder notation.
+            </instruction>
+            <p>
+              <var name="$sb[1]" width="20" />
+            </p>
+            <instruction>
+              Enter the answer in interval notation.
+            </instruction>
+            <p>
+              <var name="$in[1]" width="20" />
+            </p>
+          </statement>
+          <solution>
+            <p permid="ZwZ">
+              Since all numbers less than to <m>2</m> are shaded,
+              the set-builder notation is <m><var name="$sb[1]" /></m>.
+              The shaded interval <q>starts</q>
+              at <m>-\infty</m> and ends at <m>2</m>
+              (excluding <m>2</m>)
+              so the interval notation is <m><var name="$in[1]"/></m>.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <image width="40%">
+              <latex-image syntax="PGtikz">
+                \begin{axis}
+                  [
+                    numberline,
+                    xmin=-6,
+                    xmax=6,
+                    xlabel={\(x\)},
+                  ]
+                  \addplot[closedinfiniteinterval] coordinates {(2,0) (6,0)};
+                \end{axis}
+              </latex-image>
+            </image>
+            <instruction>
+              Enter the answer in set-builder notation.
+            </instruction>
+            <p>
+              <var name="$sb[2]" width="20" />
+            </p>
+            <instruction>
+              Enter the answer in interval notation.
+            </instruction>
+            <p>
+              <var name="$in[2]" width="20" />
+            </p>
+          </statement>
+          <solution>
+            <p permid="FEi">
+              Since all numbers greater than or equal to <m>2</m> are shaded,
+              the set-builder notation is <m><var name="$sb[2]" /></m>.
+              The shaded interval starts at <m>2</m>
+              (including <m>2</m>)
+              and <q>ends</q> at <m>\infty</m>,
+              so the interval notation is <m><var name="$in[2]"/></m>.
+            </p>
+          </solution>
+        </task>
       </webwork>
     </exercise>
 
@@ -1275,43 +1260,53 @@
               for my$i(10..11){$tf[$i]=($left[$i]!=$right[$i])?$True:$False;};
               for my$i(0..11){$TF[$i]=$tf[$j[$i]];};
             </pg-code>
-            <statement>
+            <introduction>
               <p permid="yoe">
                 Decide if each comparison is true or false.
-                <ol permid="hwX">
-                  <li permid="RiG">
-                    <p permid="Htv">
-                      <m><var name="$statement[0]" /></m> <var name="$TF[0]" form="popup"/>
-                    </p>
-                  </li>
-                  <li permid="xpP">
-                    <p permid="nAE">
-                      <m><var name="$statement[1]" /></m> <var name="$TF[1]" form="popup"/>
-                    </p>
-                  </li>
-                  <li permid="dwY">
-                    <p permid="THN">
-                      <m><var name="$statement[2]" /></m> <var name="$TF[2]" form="popup"/>
-                    </p>
-                  </li>
-                  <li permid="JEh">
-                    <p permid="zOW">
-                      <m><var name="$statement[3]" /></m> <var name="$TF[3]" form="popup"/>
-                    </p>
-                  </li>
-                  <li permid="pLq">
-                    <p permid="fWf">
-                      <m><var name="$statement[4]" /></m> <var name="$TF[4]" form="popup"/>
-                    </p>
-                  </li>
-                  <li permid="VSz">
-                    <p permid="Mdo">
-                      <m><var name="$statement[5]" /></m> <var name="$TF[5]" form="popup"/>
-                    </p>
-                  </li>
-                </ol>
               </p>
-            </statement>
+            </introduction>
+            <task>
+              <statement>
+                <p permid="Htv">
+                  <m><var name="$statement[0]" /></m> <var name="$TF[0]" form="popup"/>
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <p permid="nAE">
+                  <m><var name="$statement[1]" /></m> <var name="$TF[1]" form="popup"/>
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <p permid="THN">
+                  <m><var name="$statement[2]" /></m> <var name="$TF[2]" form="popup"/>
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <p permid="zOW">
+                  <m><var name="$statement[3]" /></m> <var name="$TF[3]" form="popup"/>
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <p permid="fWf">
+                  <m><var name="$statement[4]" /></m> <var name="$TF[4]" form="popup"/>
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <p permid="Mdo">
+                  <m><var name="$statement[5]" /></m> <var name="$TF[5]" form="popup"/>
+                </p>
+              </statement>
+            </task>
           </webwork>
         </exercise>
         <exercise>
@@ -1417,7 +1412,7 @@
               else{$in[$i]=Compute("(-inf,$b[$i]]");}
               };
             </pg-code>
-            <statement>
+            <introduction>
               <p permid="KCw">
                 For each interval expressed in the number lines,
                 give the interval notation and set-builder notation.
@@ -1425,38 +1420,40 @@
               <instruction>
                 Type <c>inf</c> or <c>infinity</c> for <m>\infty</m>,  <c>&gt;=</c> for <m>\geq</m>, and <c>&lt;=</c> for <m>\leq</m>.
               </instruction>
-              <p permid="qJF">
-                <ol label="a." cols="3" permid="tLp">
-                  <li permid="mQK">
-                    <image pg-name="$nl[0]" width="40%"/>
-                    <p permid="dbz">
-                      In set-builder notation: <var name="$sb[0]" width="20" />
-                    </p>
-                    <p permid="JiI">
-                      In interval notation: <var name="$in[0]" width="20" />
-                    </p>
-                  </li>
-                  <li permid="SXT">
-                    <image pg-name="$nl[1]" width="40%"/>
-                    <p permid="ppR">
-                      In set-builder notation: <var name="$sb[1]" width="20" />
-                    </p>
-                    <p permid="Vxa">
-                      In interval notation: <var name="$in[1]" width="20" />
-                    </p>
-                  </li>
-                  <li permid="zfc">
-                    <image pg-name="$nl[2]" width="40%"/>
-                    <p permid="BEj">
-                      In set-builder notation: <var name="$sb[2]" width="20" />
-                    </p>
-                    <p permid="hLs">
-                      In interval notation: <var name="$in[2]" width="20" />
-                    </p>
-                  </li>
-                </ol>
-              </p>
-            </statement>
+            </introduction>
+            <task>
+              <statement>
+                <image pg-name="$nl[0]" width="40%"/>
+                <p permid="dbz">
+                  In set-builder notation: <var name="$sb[0]" width="20" />
+                </p>
+                <p permid="JiI">
+                  In interval notation: <var name="$in[0]" width="20" />
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <image pg-name="$nl[1]" width="40%"/>
+                <p permid="ppR">
+                  In set-builder notation: <var name="$sb[1]" width="20" />
+                </p>
+                <p permid="Vxa">
+                  In interval notation: <var name="$in[1]" width="20" />
+                </p>
+              </statement>
+            </task>
+            <task>
+              <statement>
+                <image pg-name="$nl[2]" width="40%"/>
+                <p permid="BEj">
+                  In set-builder notation: <var name="$sb[2]" width="20" />
+                </p>
+                <p permid="hLs">
+                  In interval notation: <var name="$in[2]" width="20" />
+                </p>
+              </statement>
+            </task>
           </webwork>
         </exercise>
         <exercise>
