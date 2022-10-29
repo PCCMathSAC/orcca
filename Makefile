@@ -102,9 +102,7 @@ pg-macros:
 	$(PTX)/pretext/pretext -c pg-macros $(MAINFILE)
 
 webwork-representations:
-	-rm -r $(WWOUT) || :
-	install -d $(WWOUT)
-	$(PTX)/pretext/pretext -vv -a -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
+	$(PTX)/pretext/pretext -vv -a -c webwork -p $(PUBFILE) -s $(SERVER) $(MAINFILE)
 
 pg:
 	-rm -r $(PGOUT) || :
@@ -557,9 +555,7 @@ html:
 	cp -a $(SRC)/favicon $(HTMLOUT) || :
 	cp -r $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	date; \
-	xsltproc --xinclude --stringparam publisher $(PUBFILE) --stringparam exercise.inline.hint no --stringparam exercise.inline.answer no --stringparam exercise.inline.solution yes --stringparam exercise.divisional.hint no --stringparam exercise.divisional.answer yes --stringparam exercise.divisional.solution no --stringparam html.css.extra 'css/orcca.css' --stringparam webwork.divisional.static no $(XSL)/orcca-html.xsl $(MAINFILE); \
-	date; \
+	$(PTX)/pretext/pretext -p $(PUBFILE) -x html.css.extra 'css/orcca.css' webwork.divisional.static no -f html -c all $(MAINFILE); \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' *.html; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' knowl/*.html; \
 	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_gray.css/' index.html orcca.html frontmatter.html colophon-1.html acknowledgement-1.html preface-to-all.html preface-pedagogical-decisions.html preface-entering-webwork-answers.html; \
@@ -604,7 +600,7 @@ images:
 	-rm -r $(OUTPUT)/preview || :
 	install -d $(IMGOUT)
 	install -d $(OUTPUT)/preview
-	$(PTX)/pretext/pretext -c latex-image -p $(PUBFILE) -f all -d $(IMGOUT) $(MAINFILE)
+	$(PTX)/pretext/pretext -vv -c latex-image -p $(PUBFILE) -f all -d $(IMGOUT) $(MAINFILE)
 #	$(PTX)/pretext/pretext -c youtube -p $(PUBFILE) -d $(IMGOUT) $(MAINFILE)
 #	cd $(OUTPUT)/preview; \
 #	$(PTX)/pretext/pretext -c preview -p $(PUBFILE) -d $(OUTPUT)/preview $(MAINFILE)
@@ -627,16 +623,12 @@ check:
 	install -d $(OUTPUT)
 	-rm $(OUTPUT)/jingreport.txt
 	-java -classpath ~/jing-trang/build -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar ~/jing-trang/build/jing.jar $(PTX)/schema/pretext.rng $(MAINFILE) > $(OUTPUT)/jingreport.txt
-	perl -pi -e 's/^.*permid.*\n//g' $(OUTPUT)/jingreport.txt
-	perl -pi -e 's/^.*reseed.*\n//g' $(OUTPUT)/jingreport.txt
-	perl -pi -e 's/^.*reading-questions.*\n//g' $(OUTPUT)/jingreport.txt
 	perl -pi -e 's/^.*document-id.*\n//g' $(OUTPUT)/jingreport.txt
 	perl -pi -e 's/^.*element .html.*\n//g' $(OUTPUT)/jingreport.txt
-	perl -pi -e 's/^.*element .instruction.*\n//g' $(OUTPUT)/jingreport.txt
-	perl -pi -e 's/^.*element .image. incomplete.*\n//g' $(OUTPUT)/jingreport.txt
-	perl -pi -e 's/^.*attribute .pg-name.*\n//g' $(OUTPUT)/jingreport.txt
-	perl -p0i -e 's/.*? .tabular. not allowed here.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt
-	perl -p0i -e 's/.*? .interactive. not allowed anywhere.*?\n.*? .figure. incomplete.*?\n//g' $(OUTPUT)/jingreport.txt; \
+	perl -pi -e 's/^.*attribute .syntax.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .webwork. incomplete.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*element .worksheet.*\n//g' $(OUTPUT)/jingreport.txt
+	perl -pi -e 's/^.*attribute .workspace.*\n//g' $(OUTPUT)/jingreport.txt
 	less $(OUTPUT)/jingreport.txt
 
 gource:
