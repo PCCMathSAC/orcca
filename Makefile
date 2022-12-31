@@ -89,20 +89,12 @@ IMGOUT     = $(OUTPUT)/images
 PGOUT      = $(OUTPUT)/pg
 PRVOUT     = $(OUTPUT)/preview
 
-# The WeBWorK server we use
-#SERVER = "(https://webwork.runestone.academy,anonymous,anonymous,anonymous,anonymous)"
-#SERVER = "(https://webwork-dev.aimath.org,anonymous,anonymous,anonymous,anonymous)"
-SERVER = "(https://webwork.pcc.edu,orcca,orcca,anonymous,orcca)"
-#SERVER = "(https://webwork.pcc.edu,anonymous,anonymous,open,open)"
-
-#SERVER = "(https://webwork-dev.pcc.edu,anonymous,anonymous,anonymous,anonymous)"
-#SERVER = http://localhost
 
 pg-macros:
 	$(PTX)/pretext/pretext -c pg-macros $(MAINFILE)
 
 webwork-representations:
-	$(PTX)/pretext/pretext -vv -a -c webwork -p $(PUBFILE) -s $(SERVER) $(MAINFILE)
+	$(PTX)/pretext/pretext -r section-variables-and-evaluating-expressions -a -c webwork -p $(PUBFILE) $(MAINFILE)
 
 pg:
 	-rm -r $(PGOUT) || :
@@ -555,7 +547,7 @@ html:
 	cp -a $(SRC)/favicon $(HTMLOUT) || :
 	cp -r $(CSS) $(HTMLOUT) || :
 	cd $(HTMLOUT); \
-	$(PTX)/pretext/pretext -p $(PUBFILE) -x html.css.extra 'css/orcca.css' webwork.divisional.static no -f html -c all $(MAINFILE); \
+	$(PTX)/pretext/pretext -p $(PUBFILE) -r section-variables-and-evaluating-expressions -x html.css.extra 'css/orcca.css' webwork.divisional.static no -f html -c all $(MAINFILE); \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' *.html; \
 	perl -pi -e 's/(\\require{cancel})/\1\\require{color}/' knowl/*.html; \
 	perl -pi -e 's/https:\/\/pretextbook\.org\/css\/[\d\.]*\/colors_default\.css/css\/colors_sapphire_gray.css/' index.html orcca.html frontmatter.html colophon-1.html acknowledgement-1.html preface-to-all.html preface-pedagogical-decisions.html preface-entering-webwork-answers.html; \
