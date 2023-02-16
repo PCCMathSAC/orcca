@@ -1404,22 +1404,34 @@
               $nl[$i]->h_ticks(0,'black',@ticks);
               };
               $shadingoffset = 0.5;
+              @alt = ();
               for my$i(0..2){
               if($type[$i]eq'oi' or $type[$i]eq'ci'){
                 $nl[$i]->moveTo($a[$i],$shadingoffset);
                 $nl[$i]->lineTo(5.25,$shadingoffset,'blue',1);
                 $nl[$i]->moveTo($a[$i],$shadingoffset);
                 $nl[$i]->arrowTo(5.5,$shadingoffset,'blue',1);
+                $alt[$i] = "A number line with a shaded part where an arrow extends forever to the right.";
               }else{
                 $nl[$i]->moveTo($b[$i],$shadingoffset);
                 $nl[$i]->lineTo(-5.25,$shadingoffset,'blue',1);
                 $nl[$i]->moveTo($b[$i],$shadingoffset);
                 $nl[$i]->arrowTo(-5.5,$shadingoffset,'blue',1);
+                $alt[$i] = "A number line with a shaded part where an arrow extends forever to the left.";
               };
-              if($type[$i]eq'oi'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));}
-                elsif($type[$i]eq'ci'){$nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));}
-                elsif($type[$i]eq'io'){$nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));}
-                else{$nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));}
+              if($type[$i]eq'oi') {
+                      $nl[$i]->lb(new Label($a[$i],$shadingoffset,'(','blue','center','middle','giant'));
+                      $alt[$i] .= " The shaded part is capped at $a[$i] on the number line with a left parenthesis.";
+              } elsif($type[$i]eq'ci') {
+                      $nl[$i]->lb(new Label($a[$i],$shadingoffset,'[','blue','center','middle','giant'));
+                      $alt[$i] .= " The shaded part is capped at $a[$i] on the number line with a left bracket.";
+              } elsif($type[$i]eq'io') {
+                      $nl[$i]->lb(new Label($b[$i],$shadingoffset,')','blue','center','middle','giant'));
+                      $alt[$i] .= " The shaded part is capped at $b[$i] on the number line with a right parenthesis.";
+              } else {
+                      $nl[$i]->lb(new Label($b[$i],$shadingoffset,']','blue','center','middle','giant'));
+                      $alt[$i] .= " The shaded part is capped at $b[$i] on the number line with a right bracket.";
+              }
               };
               InequalitySetBuilder::UseVerticalSuchThat();
               Context("InequalitySetBuilder-Only");
@@ -1440,7 +1452,9 @@
             </pg-code>
             <task>
               <statement>
-                <image pg-name="$nl[0]" width="40%"/>
+                <image pg-name="$nl[0]" width="40%">
+                  <description><var name="$alt[0]"/></description>
+                </image>
                 <p>
                   In set-builder notation: <var name="$sb[0]" width="20" />
                 </p>
@@ -1451,7 +1465,9 @@
             </task>
             <task>
               <statement>
-                <image pg-name="$nl[1]" width="40%"/>
+                <image pg-name="$nl[1]" width="40%">
+                  <description><var name="$alt[1]"/></description>
+                </image>
                 <p>
                   In set-builder notation: <var name="$sb[1]" width="20" />
                 </p>
@@ -1462,7 +1478,9 @@
             </task>
             <task>
               <statement>
-                <image pg-name="$nl[2]" width="40%"/>
+                <image pg-name="$nl[2]" width="40%">
+                  <description><var name="$alt[2]"/></description>
+                </image>
                 <p>
                   In set-builder notation: <var name="$sb[2]" width="20" />
                 </p>
