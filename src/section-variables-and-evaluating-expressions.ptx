@@ -120,7 +120,7 @@
         <unit base="kilometerpergallon"/>
       </quantity>.
     </p>
-    <exercise>
+    <exercise label="naming-variables">
       <title>Naming Variables</title>
       <webwork>
         <pg-code>
@@ -129,21 +129,26 @@
             Context()->variables->add($ALPHABET[$i-1] => 'Real');
             Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
           };
-          Context()->strings->add('years' => {});
-          for my $alias ('year', 'yrs', 'yr', 'y', 'yrs.', 'yr.', 'y.') {
-            Context()->strings->add($alias => {alias => 'years'});
-          }
-          Context()->strings->add('hours' => {});
-          for my $alias ('hour', 'hrs', 'hr', 'h', 'hrs.', 'hr.', 'h.') {
-            Context()->strings->add($alias => {alias => 'hours'});
-          }
-          Context()->strings->add('miles' => {});
-          for my $alias ('mile', 'mis', 'mi', 'm', 'mis.', 'mi.', 'm.') {
-            Context()->strings->add($alias => {alias => 'miles'});
-          }
           $a = OneOf('a', 'A', 'x', 'y', 'z');
           $t = OneOf('t', 'T', 'x', 'y', 'z');
-          $x = OneOf('x', 'y', 'z');
+          $x = OneOf('i', 'j', 'k', 'm', 'n', 'x', 'y', 'z');
+          Context("ArbitraryString");
+          $years = Compute("years")->cmp(
+            mathQuillOpts => 'disabled',
+            checker => sub {
+              my ( $correct, $student, $ansHash ) = @_;
+              return 1 if ($student =~ /^(years|yrs|yr|y|yrs~~.|yr~~.|y~~.)$/);
+              return 0;
+            }
+          );
+          $hours = Compute("hours")->cmp(
+            mathQuillOpts => 'disabled',
+            checker => sub {
+              my ( $correct, $student, $ansHash ) = @_;
+              return 1 if ($student =~ /^(hours|hour|hrs|hr|h|hrs~~.|hr~~.|h~~.)$/);
+              return 0;
+            }
+          );
         </pg-code>
         <introduction>
           <p>
@@ -155,8 +160,8 @@
           <statement>
             <p>
               Remi is studying college student demographics, including their ages.
-              Let <var name="$a" width="2"/> be the age of a student,
-              measured in <var name="'years'" width="10"/>.
+              Let <var name="$a" width="3"/> be the age of a student,
+              measured in <var name="$years" width="10"/>.
             </p>
           </statement>
           <solution>
@@ -171,8 +176,8 @@
           <statement>
             <p>
               Luka needs to drive from Portland, OR to Boise, ID.
-              Let <var name="$t" width="2"/> be the amount of time passed since Luka
-              left Portland, measured in <var name="'hours'" width="10"/>.
+              Let <var name="$t" width="3"/> be the amount of time passed since Luka
+              left Portland, measured in <var name="$hours" width="10"/>.
             </p>
           </statement>
           <solution>
@@ -191,7 +196,7 @@
             <p>
               There is a number that you will triple, then add five to,
               and then take the square root.
-              Let <var name="$x" width="2"/> be this number.
+              Let <var name="$x" width="3"/> be this number.
             </p>
           </statement>
           <solution>
@@ -238,13 +243,13 @@
             <mag>89</mag><unit base="fahrenheit"/>
           </quantity>
           to the Celsius scale by evaluating the expression.
+          To do this, we <term>substitute</term> the number <m>89</m> in place of the variable <m>F</m>.      <idx><h>substitute</h></idx>
           <md>
-            <mrow>\frac{5}{9}(F - 32)
-                \amp=\frac{5}{9}(\substitute{89} - 32)
+            <mrow>\frac{5}{9}(\substitute{89} - 32)\amp=\frac{5}{9}(57)
                 \amp\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/>\text{.}</mrow>
-            <mrow>\amp=\frac{5}{9}(57)
+            <mrow>\amp=\frac{285}{9}
                 \amp\amp\text{Review fraction multiplication in }<xref ref="section-fractions-and-fraction-arithmetic"/>\text{.}</mrow>
-            <mrow>\amp=\frac{285}{9}\approx 31.67</mrow>
+            <mrow>\amp\approx 31.67</mrow>
           </md>
           This shows us that <m>89℉</m> is approximately the same as <m>31.67℃</m>.
         </p>
@@ -253,17 +258,17 @@
     <warning>
       <title>Vocabulary</title>
       <p>
-        The steps in <xref ref="example-evaluate-temperature">Example</xref>
+        The steps in <xref ref="example-evaluate-temperature" text="type-hybrid"/>
         are not <q>solving</q> when using algebra vocabulary.
         <q>Solving</q> is a word you might want to use
         because in everyday English you are <q>finding an answer.</q>
         However in algebra, there is a special meaning for the term <q>solving</q>
-        that is discussed in <xref ref="section-solving-one-step-equations">Section</xref>.
+        that is discussed in <xref ref="section-solving-one-step-equations"/>.
         Here, when we substitute in values for variables and then compute the result,
         we are <q>evaluating an expression</q>, not solving anything.
       </p>
     </warning>
-    <exercise>
+    <exercise label="convert-temperatures">
       <title>Convert Temperature</title>
       <introduction>
         <p>
@@ -291,10 +296,8 @@
             <p>
               <m>
                 \begin{aligned}[t]
-                \frac{5}{9}(F - 32)\amp=\frac{5}{9}(\substitute{50} - 32)\\
-                \amp=\frac{5}{9}(18)\\
-                \amp=\frac{5}{1}(2)\\
-                \amp=10
+                \frac{5}{9}(\substitute{50} - 32)\amp=\frac{5}{9}(18)\\
+                \amp=\frac{5}{1}(2)=10
               \end{aligned}
               </m>
             </p>
@@ -319,10 +322,8 @@
             <p>
               <m>
                 \begin{aligned}[t]
-                \frac{5}{9}(F - 32)\amp=\frac{5}{9}(\substitute{-20} - 32)\\
-                \amp=\frac{5}{9}(-52)\\
-                \amp=-\frac{260}{9}\\
-                \amp\approx-28.89
+                \frac{5}{9}(\substitute{-20} - 32)\amp=\frac{5}{9}(-52)\\
+                \amp=-\frac{260}{9}\approx-28.89
                 \end{aligned}
               </m>
             </p>
@@ -379,7 +380,7 @@
           When building a staircase,
           you want the rise and run to be consistent from one step to the next.
         </p>
-        <image xml:id="image-stair-rise-run" decorative="yes" width="47%">
+        <image label="stair-rise-run" width="47%">
           <description>diagram of a staircase with one stair's height labeled as 'rise' and its width labeled as 'run'</description>
           <latex-image>
             \begin{tikzpicture}[x=0.7mm,y=0.7mm]
@@ -408,10 +409,9 @@
         </statement>
         <solution>
           <p>
-            We evaluate
+            We substitute <m>7</m> for <m>h</m>:
             <md>
-              <mrow>17.5-h\amp=17.5-\substitute{7}</mrow>
-              <mrow>\amp=10.5</mrow>
+              <mrow>17.5-\substitute{7}\amp=10.5</mrow>
             </md>.
             So the run is
             <quantity>
@@ -439,10 +439,9 @@
             <quantity>
               <mag>9</mag><unit base="inch"/>
             </quantity>.
-            And that mean the run of each step is found by evaluating
+            And that mean the run of each step is found by substituting <m>9</m> for <m>h</m>:
             <md>
-              <mrow>17.5-h\amp=17.5-\substitute{9}</mrow>
-              <mrow>\amp=8.5</mrow>
+              <mrow>17.5-\substitute{9}\amp=8.5</mrow>
             </md>.
             So each step would have a run of
             <quantity>
@@ -452,7 +451,7 @@
         </solution>
       </task>
     </example>
-    <exercise>
+    <exercise label="stair-rise-and-run">
       <title>Stair Rise and Run</title>
       <webwork>
         <pg-code>
@@ -473,10 +472,9 @@
         </statement>
         <solution>
           <p>
-            We evaluate
+            We substitute <m>7.75</m> for <m>h</m>:
             <md>
-              <mrow>17.5-h\amp=17.5-\substitute{7.75}</mrow>
-              <mrow>\amp=9.75</mrow>
+              <mrow>17.5-\substitute{7.75}\amp=9.75</mrow>
             </md>.
             So the run is
             <quantity>
@@ -486,7 +484,7 @@
         </solution>
       </webwork>
     </exercise>
-    <exercise>
+    <exercise label="rising-rents">
       <title>Rising Rents</title>
       <webwork>
         <pg-code>
@@ -522,8 +520,7 @@
               This model uses <m>x</m> as the number of years since 2000.
               So for the year 2010, <m>x</m> is <m>10</m>:
               <md>
-                <mrow>620+32.35x \amp=620+32.35(\substitute{10})</mrow>
-                <mrow>\amp = 943.50</mrow>
+                <mrow>620+32.35(\substitute{10})\amp = 943.50</mrow>
               </md>
               According to this model, the median monthly rent
               for a living unit in Oregon in 2010 was <m>\$943.50</m>.
@@ -545,8 +542,7 @@
               This model uses <m>x</m> as the number of years since 2000.
               So for the year 2020, <m>x</m> is <m>20</m>:
               <md>
-                <mrow>620+32.35x \amp=620+32.35(\substitute{20})</mrow>
-                <mrow>\amp = 1267</mrow>
+                <mrow>620+32.35(\substitute{20})\amp = 1267</mrow>
               </md>
               According to this model, the median monthly rent
               for a living unit in Oregon in 2020 was <m>\$1267</m>.
@@ -568,8 +564,7 @@
               This model uses <m>x</m> as the number of years since 2000.
               So for the year 2030, <m>x</m> is <m>30</m>:
               <md>
-                <mrow>620+32.35x \amp=620+32.35(\substitute{30})</mrow>
-                <mrow>\amp = 1590.50</mrow>
+                <mrow>620+32.35(\substitute{30})\amp = 1590.50</mrow>
               </md>
               According to this model, the median monthly rent
               for a living unit in Oregon in 2030 will be <m>\$1590.50</m>.
@@ -585,7 +580,7 @@
       Algebraic expressions might have exponents, absolute value bars, and radicals.
       This does not change the basic approach to evaluating them.
     </p>
-    <example>
+    <example xml:id="example-tsunami-speed">
       <title>Tsunami Speed</title>
       <statement>
         <p>
@@ -602,9 +597,8 @@
         <p>
           Using <m>d=30</m>, we find:
           <md>
-            <mrow>\sqrt{9.8d}\amp=\sqrt{9.8(\substitute{30})}\amp\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/>\text{.}</mrow>
-            <mrow>\amp=\sqrt{294}\amp\amp\text{Review square root in }<xref ref="section-absolute-value-and-square-root"/>\text{.}</mrow>
-            <mrow>\amp\approx \overbrace{17.14}^{\text{four}}6428\ldots</mrow>
+            <mrow>\sqrt{9.8(\substitute{30})}\amp=\sqrt{294}\amp\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/>\text{.}</mrow>
+            <mrow>\amp\approx \overbrace{17.14}^{\text{four}}6428\ldots\amp\amp\text{Review square root in }<xref ref="section-absolute-value-and-square-root"/>\text{.}</mrow>
           </md>
           The speed of tsunami with a depth of
           <quantity>
@@ -619,12 +613,13 @@
     </example>
     <p>
       We have been evaluating expressions, but we can evaluate formulas in the same way.
-      A <term>formula</term> has one variable that represents the result of an expression,                    <idx><h>formula</h></idx>
-      then an equals sign, then an expression to the right of the equals sign.
-      For example, a formula for a person's maximum heart rate in beats per minute
-      is <m>H=220-a</m> where <m>a</m> is their age.
+      A <term>formula</term> has an equals sign with an expression to the right.                              <idx><h>formula</h></idx>
+      On the left of the equals sign, there is a variable that represents the result.
+      one variable that represents the result of an expression.
+      For example, we could write the formula <m>s=\sqrt{9.8d}</m>
+      for the speed of a tsunami from <xref ref="example-tsunami-speed" text="type-hybrid"/>.
     </p>
-    <exercise>
+    <exercise label="tent-height-static">
       <title>Tent Height</title>
       <webwork>
         <pg-code>
@@ -636,7 +631,7 @@
             The height inside a tent when you are <m>d</m> feet from the west wall
             of the tent is given by the formula <m>h=-2\abs{d-3}+6</m>, where <m>h</m> is in feet.
           </p>
-          <image xml:id="image-a-frame-tent" width="47%">
+          <image width="47%">
             <description>an A-frame tent with guidelines indicating that d feet inward from one side, the height to the ceiling at that point is d feet</description>
             <latex-image>
               \begin{tikzpicture}
@@ -668,11 +663,10 @@
               When <m>d=5</m>, we have:
               <md>
                 <mrow>h\amp= -2\abs{d-3}+6</mrow>
-                <mrow>\amp= -2\abs{\substitute{5}-3}+6\amp\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/>\text{.}</mrow>
+                <mrow>h\amp= -2\abs{\substitute{5}-3}+6\amp\amp\text{Review order of operations in }<xref ref="section-order-of-operations"/>\text{.}</mrow>
                 <mrow>\amp= -2\abs{2}+6\amp\amp\text{Review absolute value in }<xref ref="section-absolute-value-and-square-root"/>\text{.}</mrow>
                 <mrow>\amp= -2(2)+6</mrow>
-                <mrow>\amp= -4+6</mrow>
-                <mrow>\amp=2</mrow>
+                <mrow>\amp= -4+6=2</mrow>
               </md>
               So when you are <m>5</m><nbsp/><quantity>
                 <unit base="foot"/>
@@ -698,11 +692,10 @@
               When <m>d=2.5</m>, we have:
               <md>
                 <mrow>h\amp= -2\abs{d-3}+6</mrow>
-                <mrow>\amp= -2\abs{\substitute{2.5}-3}+6</mrow>
+                <mrow>h\amp= -2\abs{\substitute{2.5}-3}+6</mrow>
                 <mrow>\amp= -2\abs{-0.5}+6</mrow>
                 <mrow>\amp= -2(0.5)+6</mrow>
-                <mrow>\amp=-1+6</mrow>
-                <mrow>\amp=5</mrow>
+                <mrow>\amp=-1+6=5</mrow>
               </md>
               So when you are <m>2.5</m><nbsp/><quantity>
                 <unit base="foot"/>
@@ -715,7 +708,7 @@
         </task>
       </webwork>
     </exercise>
-    <exercise xml:id="exercise-mortgage-payments">
+    <exercise xml:id="exercise-mortgage-payments" label="mortgage-payments">
       <title>Mortgage Payments</title>
       <webwork>
         <pg-code>
@@ -756,11 +749,10 @@
             Therefore we take <m>n=360</m>.
             <md>
               <mrow>M=\frac{rL\left(1+\frac{r}{12}\right)^{n}}{12\left(\left(1+\frac{r}{12}\right)^{n}-1\right)} \amp=\frac{(\substitute{0.06})(\substitute{200000})\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}}{12\left(\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}-1\right)}</mrow>
-              <mrow>\amp=\frac{(0.06)(200000)(1+0.005)^{360}}{12\left((1+0.005)^{360}-1\right)}</mrow>
+              <mrow>M\amp=\frac{(0.06)(200000)(1+0.005)^{360}}{12\left((1+0.005)^{360}-1\right)}</mrow>
               <mrow>\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12\left(6.022575\ldots-1\right)}</mrow>
               <mrow>\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12(5.022575\ldots)}</mrow>
-              <mrow>\amp\approx\frac{72270.90\ldots}{60.2709\ldots}</mrow>
-              <mrow>\amp\approx1199.10</mrow>
+              <mrow>\amp\approx\frac{72270.90\ldots}{60.2709\ldots}\approx1199.10</mrow>
             </md>
             Our monthly payment should be <m><var name="$payment"/></m>.
           </p>
@@ -771,9 +763,9 @@
       <title>Rounding Too Much</title>
       <p>
         You might have noticed in the explanation to
-        <xref ref="exercise-mortgage-payments">Exercise</xref>
+        <xref ref="exercise-mortgage-payments" text="type-hybrid"/>
         that during the computations, many decimal places were recorded at each step.
-        Tracking lots of decimal places might be very important in some computations.
+        Tracking lots of decimal places might be important, depending on what you are working toward.
         If you round in the middle of your work,
         you have changed the numbers a little bit from what they <em>really</em> should be.
         As computation continues, this little error can become larger and larger,
@@ -815,27 +807,29 @@
         So it's wise to always use parentheses when substituting in a negative number.
       </p>
     </example>
-    <exercise>
+    <exercise label="multivariable-expressions">
       <title>Multivariable Expressions</title>
       <webwork>
         <introduction>
           <p>
             Evaluate the following expressions for <m>x=-2</m> and <m>y=-5</m>.
             You may review multiplying negative numbers in
-            <xref ref="section-arithmetic-with-negative-numbers">Section</xref>.
+            <xref ref="section-arithmetic-with-negative-numbers"/>.
           </p>
         </introduction>
         <task>
           <statement>
             <p>
-              <m>x^3y^2=</m><var name="-500" width="5"/>
+              <m>x^3y^2</m>
+            </p>
+            <p>
+              <var name="-500" width="5"/>
             </p>
           </statement>
           <solution>
             <p>
               <m>\begin{aligned}[t]
-              x^3y^2 \amp= (\substitute{-2})^3(\substitute{-5})^2\\
-              \amp=(-8)(25)\\
+              (\substitute{-2})^3(\substitute{-5})^2\amp=(-8)(25)\\
               \amp=-200
               \end{aligned}
               </m>
@@ -845,14 +839,16 @@
         <task>
           <statement>
             <p>
-              <m>(-2x)^3=</m><var name="1000" width="5"/>
+              <m>(-2x)^3</m>
+            </p>
+            <p>
+              <var name="1000" width="5"/>
             </p>
           </statement>
           <solution>
             <p>
               <m>\begin{aligned}[t]
-              (-2x)^3\amp= (-2(\substitute{-2}))^3\\
-              \amp=(4)^3\\
+              (-2(\substitute{-2}))^3\amp=(4)^3\\
               \amp=64
               \end{aligned}
               </m>
@@ -862,14 +858,16 @@
         <task>
           <statement>
             <p>
-              <m>-3x^2y=</m><var name="150" width="5"/>
+              <m>-3x^2y</m>
+            </p>
+            <p>
+              <var name="150" width="5"/>
             </p>
           </statement>
           <solution>
             <p>
               <m>\begin{aligned}[t]
-              -3x^2y\amp=-3(\substitute{-2})^2(\substitute{-5})\\
-              \amp=-3(4)(-5)\\
+              -3(\substitute{-2})^2(\substitute{-5})\amp=-3(4)(-5)\\
               \amp=60
               \end{aligned}
               </m>
@@ -916,7 +914,7 @@
   <exercises>
     <subexercises>
       <title>Skills Practice</title>
-      <exercise>
+      <exercise label="naming-variables-depth-weight">
         <webwork>
           <pg-code>
             Context()->variables->are();
@@ -925,25 +923,24 @@
               Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
             };
             $d = OneOf('d', 'D', 'x', 'y');
-            Context()->strings->add('feet' => {});
-            for my $alias ('foot', 'ft', 'ft.') {
-              Context()->strings->add($alias => {alias => 'feet'});
-            }
-            Context()->strings->add('meters' => {});
-            for my $alias ('meter', 'm', 'm.') {
-              Context()->strings->add($alias => {alias => 'meters'});
-            }
-            $ftorm = OneOf("feet, meters");
             $w = OneOf('w', 'W', 'x', 'y');
-            Context()->strings->add('pounds' => {});
-            for my $alias ('pound', 'lb', 'lbs', 'lb.', 'lbs.') {
-              Context()->strings->add($alias => {alias => 'pounds'});
-            }
-            Context()->strings->add('kilograms' => {});
-            for my $alias ('kilogram', 'kg', 'kgs', 'kg.', 'kgs.') {
-              Context()->strings->add($alias => {alias => 'kilograms'});
-            }
-            $lborkg = OneOf("pounds, kilograms");
+            Context("ArbitraryString");
+            $ftorm = Compute("feet")->cmp(
+              mathQuillOpts => 'disabled',
+              checker => sub {
+                my ( $correct, $student, $ansHash ) = @_;
+                return 1 if ($student =~ /^(feet|foot|ft|ft~~.|meters|meter|m|m~~.)$/);
+                return 0;
+              }
+            );
+            $lborkg = Compute("pounds")->cmp(
+              mathQuillOpts => 'disabled',
+              checker => sub {
+                my ( $correct, $student, $ansHash ) = @_;
+                return 1 if ($student =~ /^(pounds|pound|lb|lbs|lb~~.|lbs~~.|kilograms|kilogram|kg|kgs|kg~~.|kgs~~.)$/);
+                return 0;
+              }
+            );
           </pg-code>
           <introduction>
             <p>
@@ -954,8 +951,8 @@
           <task>
             <statement>
               <p>
-                Let <var name="$d" width="2"/> be the depth of a swimming pool,
-                measured in <var name="$ftorm" width="12"/>.
+                Let <var name="$d" width="3"/> be the depth of a swimming pool,
+                measured in <var name="$ftorm" width="5"/>.
               </p>
             </statement>
             <solution>
@@ -973,8 +970,8 @@
           <task>
             <statement>
               <p>
-                Let <var name="$w" width="2"/> be the weight of a dog,
-                measured in <var name="$lborkg" width="12"/>.
+                Let <var name="$w" width="3"/> be the weight of a dog,
+                measured in <var name="$lborkg" width="5"/>.
               </p>
             </statement>
             <solution>
@@ -991,7 +988,7 @@
           </task>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="naming-variables-time-area">
         <webwork>
           <pg-code>
             Context()->variables->are();
@@ -1000,21 +997,24 @@
               Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
             };
             $t = OneOf('t','T','x','y');
-            Context()->strings->add('hours' => {});
-            for my $alias ('hour', 'hrs', 'hr', 'h', 'hrs.', 'hr.', 'h.') {
-              Context()->strings->add($alias => {alias => 'hours'});
-            }
-            $hours = String("hours");
             $a = OneOf('a', 'A', 's', 'S', 'x', 'y');
-            Context()->strings->add('ft^2' => {});
-            for my $alias ('square feet', 'feet squared', 'feet square', 'sq ft', 'sqft', 'sq. ft.', 'ft.^2') {
-              Context()->strings->add($alias => {alias => 'hours'});
-            }
-            Context()->strings->add('m^2' => {});
-            for my $alias ('square meters', 'meters squared', 'meters square', 'sq m', 'sqm', 'sq. m.', 'm.^2') {
-              Context()->strings->add($alias => {alias => 'hours'});
-            }
-            $sqftorsqm = OneOf("ft^2, m^2");
+            Context("ArbitraryString");
+            $hormin = Compute("hours or minutes")->cmp(
+              mathQuillOpts => 'disabled',
+              checker => sub {
+                my ( $correct, $student, $ansHash ) = @_;
+                return 1 if ($student =~ /^(hours|hour|hrs|hr|h|hrs~~.|hr~~.|h~~.|minutes|minute|mins|min|mins~~.|min~~.)$/);
+                return 0;
+              }
+            );
+            $sqftorsqm = Compute("ft^2 or m^2")->cmp(
+              mathQuillOpts => 'disabled',
+              checker => sub {
+                my ( $correct, $student, $ansHash ) = @_;
+                return 1 if ($student =~ /^(ft~~^2|square feet|feet squared|feet square|sq ft|sqft|sq~~. ft~~.|ft~~.~~^2|m~~^2|square meters|meters squared|meters square|sq m|sqm|sq~~. m~~.|m~~.~~^2)$/);
+                return 0;
+              }
+            );
           </pg-code>
           <introduction>
             <p>
@@ -1025,8 +1025,8 @@
           <task>
             <statement>
               <p>
-                Let <var name="$t" width="2"/> be the amount of time a person sleeps each night,
-                measured in <var name="$hours" width="12"/>.
+                Let <var name="$t" width="3"/> be the amount of time a person sleeps each night,
+                measured in <var name="$hormin" width="5"/>.
               </p>
             </statement>
             <solution>
@@ -1044,8 +1044,8 @@
           <task>
             <statement>
               <p>
-                Let <var name="$a" width="2"/> be the surface area of a patio,
-                measured in <var name="$sqftorsqm" width="12"/>.
+                Let <var name="$a" width="3"/> be the surface area of a patio,
+                measured in <var name="$sqftorsqm" width="5"/>.
               </p>
             </statement>
             <solution>
@@ -1069,7 +1069,7 @@
             Evaluate the expression for the given value of the variable.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="evaluate-xplusm-positive">
           <webwork xml:id="webwork-evaluate-xplusm-positive">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1092,7 +1092,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-xplusm-positive"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-xminusm-positive">
           <webwork xml:id="webwork-evaluate-xminusm-positive">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1115,7 +1115,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-xminusm-positive"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-xplusm-negative">
           <webwork xml:id="webwork-evaluate-xplusm-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1139,7 +1139,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-xplusm-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-xminusm-negative">
           <webwork xml:id="webwork-evaluate-xminusm-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1163,8 +1163,8 @@
         <exercise>
           <webwork copy="webwork-evaluate-xminusm-negative"/>
         </exercise>
-        <exercise>
-          <webwork xml:id="webwork-evaluate-mminusx-negative">
+        <exercise label="evaluate-minusx-negative">
+          <webwork xml:id="webwork-evaluate-minusx-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
               Context()->variables->are($x => 'Real');
@@ -1185,9 +1185,9 @@
           </webwork>
         </exercise>
         <exercise>
-          <webwork copy="webwork-evaluate-mminusx-negative"/>
+          <webwork copy="webwork-evaluate-minusx-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-mxplusb-positive">
           <webwork xml:id="webwork-evaluate-mxplusb-positive">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1210,7 +1210,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-mxplusb-positive"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-mxplusb-negative">
           <webwork xml:id="webwork-evaluate-mxplusb-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1234,7 +1234,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-mxplusb-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-xsquared-positive-negative">
           <webwork xml:id="webwork-evaluate-xsquared-positive-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1271,7 +1271,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-xsquared-positive-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-minusxsquared-positive-negative">
           <webwork xml:id="webwork-evaluate-minusxsquared-positive-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1308,7 +1308,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-minusxsquared-positive-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-xcubed-positive-negative">
           <webwork xml:id="webwork-evaluate-xcubed-positive-negative">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1345,7 +1345,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-xcubed-positive-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-mxsquared">
           <webwork xml:id="webwork-evaluate-mxsquared">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1382,7 +1382,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-mxsquared"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-mgroupxplusb-positive">
           <webwork xml:id="webwork-evaluate-mgroupxplusb-positive">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1405,7 +1405,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-mgroupxplusb-positive"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-mgroupxminushplusk-positive">
           <webwork xml:id="webwork-evaluate-mgroupxminushplusk-positive">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1429,7 +1429,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-mgroupxminushplusk-positive"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-monomialdenominator">
           <webwork xml:id="webwork-evaluate-monomialdenominator">
             <pg-code>
               $x = list_random('a'..'n', 'p'..'z');
@@ -1453,7 +1453,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-monomialdenominator"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-linearcombination">
           <webwork xml:id="webwork-evaluate-linearcombination">
             <pg-code>
               ($x,$y) = ('a'..'n', 'p'..'z')[NchooseK(25, 2)];
@@ -1477,7 +1477,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-linearcombination"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-addfractions">
           <webwork xml:id="webwork-evaluate-addfractions">
             <pg-code>
               ($x, $y) = ('a'..'n', 'p'..'z')[NchooseK(25, 2)];
@@ -1502,7 +1502,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-addfractions"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-vertex-form">
           <webwork xml:id="webwork-evaluate-vertex-form">
             <pg-code>
               Context("Fraction");
@@ -1531,7 +1531,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-vertex-form"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-quadratic">
           <webwork xml:id="webwork-evaluate-quadratic">
             <pg-code>
               $var = RandomVariableName();
@@ -1560,7 +1560,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-quadratic"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-power-expression-at-negative">
           <webwork xml:id="webwork-evaluate-power-expression-at-negative">
             <pg-code>
               $var = RandomVariableName();
@@ -1587,7 +1587,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-power-expression-at-negative"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-power-expression-at-positive">
           <webwork xml:id="webwork-evaluate-power-expression-at-positive">
             <pg-code>
               $var = RandomVariableName();
@@ -1614,7 +1614,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-power-expression-at-positive"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-sqrt-expression">
           <webwork xml:id="webwork-evaluate-sqrt-expression">
             <pg-code>
               $var = RandomVariableName();
@@ -1642,7 +1642,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-sqrt-expression"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-sqrt-expression-2">
           <webwork xml:id="webwork-evaluate-sqrt-expression-2">
             <pg-code>
               $var = RandomVariableName();
@@ -1671,7 +1671,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-sqrt-expression-2"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-absolute-value-expression">
           <webwork xml:id="webwork-evaluate-absolute-value-expression">
             <pg-code>
               $var = RandomVariableName();
@@ -1698,7 +1698,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-absolute-value-expression"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-absolute-value-expression-2">
           <webwork xml:id="webwork-evaluate-absolute-value-expression-2">
             <pg-code>
               $var = RandomVariableName();
@@ -1727,7 +1727,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-absolute-value-expression-2"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-slope-formula">
           <webwork xml:id="webwork-evaluate-slope-formula">
             <pg-code>
               Context("LimitedFraction");
@@ -1750,7 +1750,7 @@
         <exercise>
           <webwork copy="webwork-evaluate-slope-formula"/>
         </exercise>
-        <exercise>
+        <exercise label="evaluate-distance-formula">
           <webwork xml:id="webwork-evaluate-distance-formula">
             <pg-code>
               @m = (1..3)[NchooseK(3, 2)];
@@ -1792,7 +1792,7 @@
             there is a formula <m>K = C + 273</m>.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="celsius-to-kelvin">
           <webwork xml:id="webwork-celsius-to-kelvin">
             <pg-code>
               $C = random(0, 40, 1);
@@ -1823,7 +1823,7 @@
             there is a formula <m>A = Y - 1776</m>.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="age-of-united-states">
           <webwork xml:id="webwork-age-of-united-states">
             <pg-code>
               $Y = random(1900, 2020, 1);
@@ -1858,17 +1858,12 @@
             you have <m>431 - x</m> miles left to go.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="portland-to-boise">
           <webwork xml:id="webwork-portland-to-boise">
             <pg-code>
               $x = random(100, 300, 1);
               $distance = 431 - $x;
-              $newUnits = [
-                {name => 'miles', conversion => {factor => 1, mi => 1}},
-                {name => 'mile',  conversion => {factor => 1, mi => 1}},
-                {name => 'mi.',   conversion => {factor => 1, mi => 1}},
-              ];
-              $L = NumberWithUnits("$distance miles",{newUnit => $newUnits});
+              $L = NumberWithUnits("$distance mi");
             </pg-code>
             <statement>
               <p>
@@ -1893,13 +1888,13 @@
             <m>s=3600h</m>.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="hours-to-seconds">
           <webwork xml:id="webwork-hours-to-seconds">
             <pg-code>
               $h = random(2, 24, 1);
               $s = NumberWithUnits(3600*$h, 'seconds');
               # Make units parser require seconds, not allow hours
-              $evaluator = $s->cmp->withPostFilter(sub {
+              $evaluator = $s->cmp(mathQuillOpts => 'disabled')->withPostFilter(sub {
                 my $ans = shift;
                 if ($ans->{score}) {
                   my $correct = $ans->{correct_value};
@@ -1918,7 +1913,7 @@
                 How much time is <m><var name="$h"/></m> hours in seconds?
               </p>
               <p>
-                <var name="$evaluator" width="10"/>
+                <var name="$evaluator" width="12"/>
               </p>
             </statement>
           </webwork>
@@ -1935,7 +1930,7 @@
             there is a formula <m>F = \frac95C + 32</m>.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="celsius-to-fahrenheit">
           <webwork xml:id="webwork-celsius-to-fahrenheit">
             <pg-code>
               $C = random(0, 40, 1);
@@ -1943,7 +1938,7 @@
             </pg-code>
             <statement>
               <p>
-                What Fahrenheit temperature is <var name="$C"/>ºC?
+                What Fahrenheit temperature is <m><var name="$C"/>ºC</m>?
               </p>
               <instruction>
                 Use <c>degF</c> for degrees Fahrenheit.
@@ -1968,7 +1963,7 @@
             in beats per minute (bpm).
           </p>
         </introduction>
-        <exercise>
+        <exercise label="target-heart-rate">
           <webwork xml:id="webwork-target-heart-rate">
             <pg-code>
               $a = random(20, 70, 1);
@@ -2001,7 +1996,7 @@
             where <m>n</m> is the year.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="wealth-distribution">
           <webwork xml:id="webwork-wealth-distribution">
             <pg-code>
               $n = random(2011, 2021, 1);
@@ -2031,7 +2026,7 @@
             the height of the ball <m>t</m> seconds later is given by <m>-16t^2+vt+6</m>.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="throw-baseball">
           <webwork xml:id="webwork-throw-baseball">
             <pg-code>
               $v = random(45, 90, 1);
@@ -2062,7 +2057,7 @@
             the highest that it reaches is <m>v^2/64+6</m> feet above the ground.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="high-point">
           <webwork xml:id="webwork-high-point">
             <pg-code>
               $v = random(45, 90, 1);
@@ -2091,7 +2086,7 @@
             it will land after <m>\frac{v+\sqrt{v^2+384}}{32}</m> seconds.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="ball-lands">
           <webwork xml:id="webwork-ball-lands">
             <pg-code>
               $v = random(45, 90, 1);
@@ -2121,7 +2116,7 @@
             where <m>x</m> is the number of years since 2010.
           </p>
         </introduction>
-        <exercise>
+        <exercise label="cesarean-delivery">
           <webwork xml:id="webwork-cesarean-delivery">
             <pg-code>
               $x = random(1, 10, 1);
@@ -2150,7 +2145,10 @@
           <p>
             The diagonal length <m>D</m> of a rectangle with side lengths <m>L</m> and <m>W</m> is given by <m>D=\sqrt{L^2+W^2}</m>.
           </p>
-          <image xml:id="image-diagonal-of-rectangle" width="47%" decorative="yes">
+          <image label="rectangle-with-diagonal" width="47%">
+            <description>
+              A rectangle with sides labeled L and W, and diagonal labeled D
+            </description>
             <latex-image>
               \begin{tikzpicture}
                 \draw (0,0) -&#45;++ (4,0) node[below,pos=0.5] {\(L\)} -&#45;++ (0,3) node[right,pos=0.5] {\(W\)} -&#45;++ (-4,-3) node[above,sloped,pos=0.5] {\(D\)} -&#45;++ (0,3) -&#45;++ (4,0);
@@ -2158,7 +2156,7 @@
             </latex-image>
           </image>
         </introduction>
-        <exercise>
+        <exercise label="diagonal-of-rectangle">
           <webwork xml:id="webwork-diagonal-of-rectangle">
             <pg-code>
               $WL = list_random([3, 4], [6, 8], [5, 12], [9, 12], [8, 15], [12, 16], [15, 20], [7, 24], [10, 24], [20, 21], [18, 24], [16, 30], [21, 28]);
@@ -2187,7 +2185,7 @@
             from the west side of the tent is given by the formula <m>h=-2\abs{d-3}+6</m>,
             where <m>h</m> is in feet.
           </p>
-          <image width="47%">
+          <image label="a-frame-tent" width="47%">
             <description>an A-frame tent with guidelines indicating that d feet inward from one side, the height to the ceiling at that point is d feet</description>
             <latex-image>
               \begin{tikzpicture}
@@ -2204,7 +2202,7 @@
             </latex-image>
           </image>
         </introduction>
-        <exercise>
+        <exercise label="tent-height">
           <webwork xml:id="webwork-tent-height">
             <pg-code>
               $a = random(0.5, 2.5, 0.1);
@@ -2244,7 +2242,7 @@
           <webwork copy="webwork-tent-height"/>
         </exercise>
       </exercisegroup>
-      <exercise>
+      <exercise label="time-conversion-expression">
         <webwork>
           <pg-code>
             $set = list_random(
@@ -2268,7 +2266,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="distance-conversion-expression">
         <webwork>
           <pg-code>
             $set = list_random(
@@ -2292,7 +2290,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="fish-population-expression">
         <webwork>
           <pg-code>
             $p = random(50, 150, 10);
@@ -2311,7 +2309,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="evaporation-expression">
         <webwork>
           <pg-code>
             $p = random(5, 20, 1);
@@ -2331,7 +2329,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="cousins-expression">
         <webwork>
           <pg-code>
             Context()->variables->are(n => 'Real');
@@ -2351,7 +2349,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="eggs-expression">
         <webwork>
           <pg-code>
             Context()->variables->are(n => 'Real');
@@ -2370,7 +2368,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="rental-fee-expression">
         <webwork>
           <pg-code>
             Context()->variables->are(n => 'Real');
@@ -2394,7 +2392,7 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise>
+      <exercise label="classroom-area-expression">
         <webwork>
           <pg-code>
             Context()->variables->are(n => 'Real');
@@ -2407,7 +2405,7 @@
               An elementary school classroom needs a minimum of <m><var name="$b"/></m>
               square feet for the teacher
               plus a minimum of <m><var name="$r"/></m> square feet per student.
-              Write an expression for the minimum suqare footage of a classroom with <m>n</m> students.
+              Write an expression for the minimum square footage of a classroom with <m>n</m> students.
             </p>
             <p>
               <var name="$expression" width="20"/>
@@ -2417,14 +2415,9 @@
       </exercise>
     </subexercises>
   </exercises>
+
   <worksheet>
-    <author>Ann Cary</author>
-    <introduction>
-      <p>
-        This worksheet has the exercises from
-        <xref ref="video-variables-and-evaluating-expressions">Video Playlist</xref>.
-      </p>
-    </introduction>
+    <title>Lecture Note Outlines from <xref ref="video-variables-and-evaluating-expressions">Video Playlist</xref></title>
     <page>
       <exercise>
         <task workspace="1.2in">
@@ -2542,8 +2535,8 @@
       </exercise>
     </page>
   </worksheet>
-  <worksheet>
-    <author>Alex Jordan</author>
+
+  <!-- <worksheet>
     <page>
       <exercise>
         <introduction>
@@ -2553,15 +2546,14 @@
         </introduction>
         <task workspace="0.9in">
           <p>
-            What would be a good variable for the number of hours the babysitter works?
+            Name a variable to represent the number of hours the babysitter works.
             (There are many good answers for this.)
           </p>
         </task>
         <task workspace="0.9in">
           <p>
-            Use the variable you settled on to write a mathematical <em>expression</em> that represents
-            how much the family owes the babysitter. The answer uses the given numbers <m>16</m>, <m>8</m>,
-            and the variable you settled on.
+            Use that variable to write an expression that represents how much the family owes the babysitter.
+            The answer uses the given numbers <m>16</m>, <m>8</m>, and the variable you settled on.
           </p>
         </task>
         <task workspace="0.9in">
@@ -2579,8 +2571,8 @@
         </introduction>
         <task workspace="0.9in">
           <p>
-            What would be good variables for <em>how many</em> one-point shots, <em>how many</em> two-point
-            shots, and <em>how many</em> three-point shots a team makes during a game?
+            Name some variables for <em>how many</em> one-point shots, <em>how many</em> two-point
+            shots, and <em>how many</em> three-point shots a team makes during a game.
           </p>
         </task>
         <task workspace="0.9in">
@@ -2591,8 +2583,8 @@
         </task>
         <task workspace="0.9in">
           <p>
-            Evaluate your expression for a game where one team had seven one-point shots, thirty-two
-            two-point shots, and eight three-point shots.
+            Evaluate your expression for a game where one team had seven one-point shots,
+            <m>32</m> two-point shots, and eight three-point shots.
           </p>
         </task>
       </exercise>
@@ -2643,7 +2635,7 @@
             <m>b</m> are the lengths of the two parallel sides, and <m>h</m> is the <q>height</q> of the
             trapezoid (the distance between the two parallel sides).
           </p>
-          <image xml:id="image-trapezoid" width="30%">
+          <image label="trapezoid" width="30%">
             <description>a trapezoid with horizontal parallel sides where the bottom side is longer</description>
             <latex-image>
               \begin{tikzpicture}
@@ -2659,28 +2651,27 @@
         </task>
         <task workspace="0.5in">
           <p>
-            What would be some appropriate units for <m>a</m>, <m>b</m>, and <m>h</m>?
+            What are some appropriate units for <m>a</m>, <m>b</m>, and <m>h</m>?
             (Units are things like <q>pounds</q>, <q>gallons</q>, <q>dollars</q>, etc.)
           </p>
         </task>
         <task workspace="0.5in">
           <p>
-            Based on your answer to the last question,
-            what would be appropriate units for the area of a trapezoid?
+            What are appropriate units for the area of a trapezoid?
           </p>
         </task>
         <task workspace="1in">
           <p>
-            This is the Kuwaiti flag. Note the three stripes are equal width.
+            This is the Kuwaiti flag. The three stripes have the same width.
           </p>
           <sidebyside widths="64% 30%">
             <p>
-              If one Kuwaiti flag is a total of <quantity><mag>6</mag><unit base="foot"/></quantity>
+              One particular Kuwaiti flag is a total of <quantity><mag>6</mag><unit base="foot"/></quantity>
               by <quantity><mag>12</mag><unit base="foot"/></quantity>, and the black region
-              (the trapezoid on the left) is half as wide as it is tall,
-              what would <m>a</m>, <m>b</m>, and <m>h</m> be in order to use the trapezoid area formula?
+              (the trapezoid on the left) is three <quantity><mag>3</mag><unit base="foot"/></quantity> wide.
+              Calculate the area of the black trapezoid in the flag.
             </p>
-            <image xml:id="image-kuwaiti-flag">
+            <image label="kuwaiti-flag">
               <description>
                 the Kuwaiti flag has three horizontal stripes of equal width, green, white and red;
                 a sidewhays black trapezoid overlays the stripes on the right edge;
@@ -2702,17 +2693,10 @@
         </task>
         <task workspace="1in">
           <p>
-            Calculate the area of the black trapezoid in the flag.
-          </p>
-        </task>
-        <task workspace="1in">
-          <p>
             Calculate the area of the green trapezoid (the top stripe) in the flag.
           </p>
         </task>
       </exercise>
-    </page>
-    <page>
       <exercise workspace="1in">
         <statement>
           <p>
@@ -2723,6 +2707,8 @@
           </p>
         </statement>
       </exercise>
+    </page>
+    <page>
       <exercise>
         <introduction>
           <p>
@@ -2740,18 +2726,18 @@
         <task workspace="1in">
           <p>
             Determine a reasonable value for <m>L</m> given the local housing market.
+            (Look up what houses cost on the internet if you are not familiar with that already.)
           </p>
         </task>
         <task workspace="1in">
           <p>
             Determine an annual interest rate that a typical home-buyer in your area might have on their
-            mortgage. If you aren't sure, do some internet searching for <q>home mortgage interest rate</q>.
+            mortgage. (Search for <q>home mortgage interest rate</q> on the internet if you are not familiar with that already.)
           </p>
         </task>
         <task workspace="1in">
           <p>
-            Most mortgages are for <m>30</m> years. How many <em>months</em> would it take someone to pay
-            off their mortgage?
+            Most mortgages are for <m>30</m> years. How many <em>months</em> is that?
           </p>
         </task>
         <task workspace="1in">
@@ -2762,8 +2748,9 @@
         </task>
       </exercise>
     </page>
-  </worksheet>
-  <worksheet>
+  </worksheet> -->
+
+  <!-- <worksheet>
     <author>Cara Lee</author>
     <page>
       <exercisegroup cols="3">
@@ -2851,5 +2838,5 @@
         </statement>
       </exercise>
     </page>
-  </worksheet>
+  </worksheet> -->
 </section>
