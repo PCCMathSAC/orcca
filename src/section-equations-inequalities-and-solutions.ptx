@@ -1249,6 +1249,7 @@
               $left = Formula("$a x^2 + $c")->reduce;
               $right = Formula("$b x");
               $right += $left->eval(x => $actual_solution) - $right->eval(x => $actual_solution);
+              $right = $right->reduce;
               $proposed_solution = random(0,1) ? $actual_solution : $actual_solution + non_zero_random(-3,3);
               Context("LimitedNumeric");
               $lefteval = Real($left->eval(x => $proposed_solution));
@@ -3033,7 +3034,7 @@
               Context()->variables->are(b => 'Real');
               $proposed_solution = (random(0,1)) ? $b : $b + non_zero_random(-1, 1);
               Context()->flags->set(reduceConstants => 0);
-              $left = Formula("$a^2 + b^2 + sqrt($a^2 + b^2)");
+              $left = Formula("$a + b + sqrt($a^2 + b^2)");
               $right = Formula("$p");
               Context("LimitedNumeric");
               $lefteval = Real($left->eval(b => $proposed_solution));
