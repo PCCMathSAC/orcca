@@ -1659,28 +1659,26 @@
           </statement>
         </webwork>
       </exercise>
-      <exercise label="propane-tank-pressure">
+      <exercise label="retiring coworker">
         <webwork>
           <pg-macros>
             <macro-file>parserGraphTool.pl</macro-file>
           </pg-macros>
           <pg-code>
             $a = random(960,2400,120);
+            $ymax = (int($a/1000) + 1)*1000;
             $f = Formula("$a / x");
+            @pts = map {"{point,($_," . $f->eval(x => $_) . ')}'} (1..6);
             Context("Currency");
             $ac = Currency($a);
-            $gt = GraphTool("{line,solid,(0,$b),(60,0)}")->with(
-              bBox => [-10,75000,60,-5000],
-              availableTools => [ "LineTool" ],
-              gridX => 12,
-              gridY => 2000,
-              ticksDistanceX => 6,
-              ticksDistanceY => 8000,
-              minorTicksX => 5,
-              snapSizeY => 2000,
-              showCoordinateHints => 0,
+            $gt = GraphTool(join(',', @pts))->with(
+              bBox => [-1, $ymax, 6.5, -100],
+              availableTools => [ "PointTool" ],
+              gridY => 100,
+              ticksDistanceY => 200,
+              snapSizeY => $a/120,
               showInStatic => 0,
-              xAxisLabel => 'x\\text{ (months)}',
+              xAxisLabel => 'x\\text{ (people)}',
               yAxisLabel => 'y\\text{ (dollars)}'
             );
           </pg-code>
