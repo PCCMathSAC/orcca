@@ -1,5 +1,6 @@
 \documentclass{standalone}
 \usepackage[svgnames]{xcolor}
+\usepackage{tikz}
 \usepackage{pgfplots}
 \usetikzlibrary{arrows,arrows.meta}                         %needed for open/closed intervals
 \definecolor{ruby}{HTML}{9e0c0f}
@@ -129,15 +130,21 @@
 
 \begin{document}
 \begin{tikzpicture}
-\begin{axis}[xmin=0,xmax=15,ymin=0,ymax=20,xtick={0,5,10,15},ytick={0,5,...,20},minor xtick={0,1,...,15},minor ytick={0,1,...,20},xlabel={\(t\)}]
-\addplot[firstcurve,domain=0:15]{16-0.8*x} node[pos=1,sloped,below left] {\(y=16-0.8t\)};
-\addplot[secondcurve,domain=0:15]{2+0.6*x} node[pos=1,sloped,above left] {\(y=2+0.6t\)};
-\addplot[guideline,->] coordinates {(0,16) (5,16) (5,12)};
-\addplot[guideline,->] coordinates {(0,2) (5,2) (5,5)};
-\addplot[soliddot,color=firstcolor] coordinates {(0,16) (5,12)};
-\addplot[soliddot,color=secondcolor] coordinates {(0,2) (5,5)};
+\begin{axis}
+  [
+    width = 0.47\linewidth,
+    xmin = -2,
+    ymin = -8,
+    xmax = 8,
+    ymax = 16,
+    xtick = {},
+    ytick = {},
+    minor xtick = {-2,-1,...,8},
+    minor ytick = {-8,-7,...,16},
+    grid=both,
+  ]
+  \addplot+[domain = -2:8] {2.25*x+-3};
+  \addplot[soliddot] coordinates {(0,-3) (4,6)};
 \end{axis}
 \end{tikzpicture}
-
-
 \end{document}

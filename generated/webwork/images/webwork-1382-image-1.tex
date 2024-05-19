@@ -1,5 +1,6 @@
 \documentclass{standalone}
 \usepackage[svgnames]{xcolor}
+\usepackage{tikz}
 \usepackage{pgfplots}
 \usetikzlibrary{arrows,arrows.meta}                         %needed for open/closed intervals
 \definecolor{ruby}{HTML}{9e0c0f}
@@ -129,11 +130,21 @@
 
 \begin{document}
 \begin{tikzpicture}
-  \begin{axis}[]
-    \addplot[firstcurve, domain=-3:7]{5/8*x-5.05} node[pos=1,sloped,above left] {\(5x-8y=40\)};
-    \addplot[secondcurve, domain=-3:7]{5/8*x-4.95} node[pos=0.9,sloped,below right] {\(y=\frac{5}{8}(x+8)-10\)};
-  \end{axis}
+\begin{axis}
+  [
+    width = 0.47\linewidth,
+    xmin = -6,
+    ymin = -2,
+    xmax = 14,
+    ymax = 12,
+    xtick = {},
+    ytick = {},
+    minor xtick = {-6,-5,...,14},
+    minor ytick = {-2,-1,...,12},
+    grid=both,
+  ]
+  \addplot+[domain = -6:14] {0.428571428571429*x+4};
+  \addplot[soliddot] coordinates {(0,4) (7,7)};
+\end{axis}
 \end{tikzpicture}
-
-
 \end{document}
