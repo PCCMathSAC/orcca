@@ -67,7 +67,7 @@
 
     <figure>
       <caption>Alternative Video Lesson</caption>
-      <video youtubeplaylist="PLmuZCPhWPt-eTTovr5Y8TossT7tMqR43W" />
+      <video youtubeplaylist="PLmuZCPhWPt-eTTovr5Y8TossT7tMqR43W"/>
     </figure>
   </introduction>
 
@@ -76,7 +76,8 @@
     <p>
       Since 1990, the population of the United States has been growing by about <m>2.865</m> million
       people per year. Also, back in 1990, the population was <m>253</m> million. Since the rate of
-      growth has been roughly constant, a linear model is appropriate. Let's write an equation tomodel this.
+      growth has been roughly constant, a linear model is appropriate. Let's write an equation to
+      model this.
     </p>
     <p>
       We consider using
@@ -103,8 +104,8 @@
 
         <li>
           <p>
-            One point on the line is <m>(1990,253)</m>, because in <em>1990</em>, the population was
-            <m>253</m> million.
+            One point on the line is <m>(x_1,y_1)=(1990,253)</m>, because in <em>1990</em>, the
+            population was <m>253</m> million.
           </p>
         </li>
       </ol>
@@ -153,6 +154,7 @@
       <me>
         y=2.865(x-1990)+253
       </me>
+      and we purposely do not distribute the slope.
     </p>
     <definition xml:id="definition-point-slope-form">
       <title>Point-Slope Form</title>                                                                         <idx><h>point-slope form</h></idx>
@@ -166,8 +168,8 @@
             y=m\left(x-x_0\right)+y_0
           </men>
           and this equation is called the <term>point-slope form</term> of the line. It is called
-          this because the slope and one point on the line are immediately discernible from the
-          numbers in the equation.
+          this because two important features are immediately visible from the numbers in the
+          equation: the slope and one point on the line.
         </p>
         <figure>
           <caption></caption>
@@ -229,15 +231,35 @@
     <exercise xml:id="exercise-point-slope">
       <webwork>
         <pg-code>
+          package my::OneOf;
+          our @ISA = ('parser::OneOf');
+          sub cmp_compare {
+            my ($self,$other,$ans) = @_;
+            foreach $answer (@{$self->{data}}) {
+              if ($answer->typeMatch($other)) {
+                my $result = $answer->cmp->evaluate($other);
+                if ($result->{score}) {
+                  $ans->score($result->{score});
+                  $ans->{ans_message} = $result->{ans_message};
+                  return $ans->{score};
+                }
+                if ($result->{ans_message}) {
+                  $ans->{ans_message} = $result->{ans_message}
+                    if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                }
+              }
+            }
+            return 0;
+          }
+          package main;
+          sub OneOfForm {my::OneOf->new(@_)}
+          
           $slope=3;
           Context("Point");
-          $point=OneOf(Point(2,-1), Point(3,2), Point(4,5), Point(5,8));
-          Context("Numeric")->variables->add(y=>'Real');
+          $point=OneOf(Point(2,-1), Point(3,2), Point(4,5));
+          Context("Form")->variables->add(y=>'Real');
           parser::Assignment->Allow;
-          Context()->flags->set(reduceConstants=>0);
-          Context()->operators->undefine("/");
-          Parser::Number::NoDecimals();
-          $eq=Formula("y=3*(x-3)+2");
+          $eq=OneOfForm(Formula("y=3*(x-2)-1"), Formula("y=3*(x-3)+2"), Formula("y=3*(x-4)+5"));
         </pg-code>
         <statement>
           <p>
@@ -248,17 +270,16 @@
               \begin{tikzpicture}
                 \begin{axis}[
                     xmin=-1,
-                    xmax=9,
+                    xmax=7,
                     width=0.47\linewidth,
                     ymin=-1,
-                    ymax=9,
+                    ymax=7,
                     xticks={2,4,6,8},
                     minor xticks={1,...,9},
                     yticks={2,4,6,8},
                     minor yticks={1,...,9},
-                    grid=none
                   ]
-                  \addplot+[domain = 2:5.333]{3*(x-3)+2};
+                  \addplot+[domain = 2:4.666]{3*(x-3)+2};
                 \end{axis}
               \end{tikzpicture}
             </latex-image>
@@ -271,7 +292,7 @@
                   as an ordered pair.
                 </p>
                 <p>
-                  <var name="$point" width="10" />
+                  <var name="$point" width="10"/>
                 </p>
               </li>
               <li>
@@ -279,7 +300,7 @@
                   What is the slope of the line?
                 </p>
                 <p>
-                  <var name="$slope" width="10" />
+                  <var name="$slope" width="10"/>
                 </p>
               </li>
               <li>
@@ -288,7 +309,7 @@
                   with integer coordinates.
                 </p>
                 <p>
-                  <var name="$eq" width="20" />
+                  <var name="$eq" width="20"/>
                 </p>
               </li>
             </ol>
@@ -299,8 +320,8 @@
             <ol marker="a.">
               <li>
                 <p>
-                  The visible points with integer coordinates are <m>(2,-1)</m>, <m>(3,2)</m>,
-                  <m>(4,5)</m>, and <m>(5,8)</m>.
+                  The visible points with integer coordinates are <m>(2,-1)</m>, <m>(3,2)</m>, and
+                  <m>(4,5)</m>.
                 </p>
               </li>
               <li>
@@ -341,51 +362,89 @@
     </p>
     <p>
       Point-slope form is preferable when we know a line's slope and a point on it, but we don't
-      know the <m>y</m>-intercept. We recognie that distributing the slope and combining like terms
+      know the <m>y</m>-intercept. We recognize that distributing the slope and combining like terms
       can always be used to find the line's slope-intercept form.
     </p>
 
+    <exercise label="make-a-plot-using-point-slope">
+      <webwork>
+        <pg-macros>
+          <macro-file>parserGraphTool.pl</macro-file>
+        </pg-macros>
+        <pg-code>
+          $gt = GraphTool("{line, solid, (1, 4), (6, 6)}")->with(
+            bBox => [-7, 7, 7, -7],
+            showInStatic => 0,
+          );
+        </pg-code>
+        <statement>
+          <p>
+            Plot the line with equation <m>y=\frac{2}{5}(x-1)+4</m>.
+          </p>
+          <p>
+            <var name="$gt" width="1"/>
+          </p>
+        </statement>
+        <solution>
+          <p>
+            We can see from the equation that <m>(1,4)</m> is a point on the line. The first step in
+            making a plot is to go to that point on the graph. We also see the slope is
+            <m>\frac{2}{5}</m>, so from our launch point of <m>(1,4)</m>, we can move forward
+            <m>5</m> and up <m>2</m> to find a second point on the line.
+          </p>
+          <image width="47%">
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}
+                  \addplot[soliddot] coordinates {(1,4)};
+                  \addplot {2/5*(x-1)+4};
+                  \addplot[guideline] coordinates {(1,4) (6,4) (6,6)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </solution>
+      </webwork>
+    </exercise>
+
     <example>
       <p>
-        A spa chain has been losing customers at a roughly constant rate since the year 2010. In
-        2013, it had <m>2975</m> customers; in 2016, it had <m>2585</m> customers. Management
+        A spa chain has been losing customers at a roughly constant rate since the year 2018. In
+        2021, it had <m>2975</m> customers; in 2024, it had <m>2585</m> customers. Management
         estimated that the company will go out of business once its customer base decreases to
         <m>1800</m>. If this trend continues, when will the company close?
       </p>
       <p>
-        The given information tells us two points on the line: <m>(2013,2975)</m> and
-        <m>(2016,2585)</m>. The
+        The given information tells us two points on the line: <m>(2021,2975)</m> and
+        <m>(2024,2585)</m>. The
         <xref ref="equation-slope-formula" text="custom">slope formula</xref> will give us the
         slope. After labeling those two points as
-        <m>(\overset{x_1}{2013},\overset{y_1}{2975})</m> and <m>(\overset{x_2}{2016},\overset{y_2}{2585})</m>,
+        <m>(\overset{x_1}{2021},\overset{y_1}{2975})</m> and <m>(\overset{x_2}{2024},\overset{y_2}{2585})</m>,
         we have:
         <md>
           <mrow>\text{slope}\amp=\frac{y_2-y_1}{x_2-x_1}</mrow>
-          <mrow>\amp=\frac{2585-2975}{2016-2013}</mrow>
+          <mrow>\amp=\frac{2585-2975}{2024-2021}</mrow>
           <mrow>\amp=\frac{-390}{3}</mrow>
           <mrow>\amp=-130</mrow>
         </md>
         And considering units, this means they are losing <m>130</m> customers per year.
       </p>
-
       <p>
-        Let's note that we could try to make an equation for this line in slope-intercept form, but
-        then we would need to calculate the <m>y</m>-intercept, which in context would correspond to
-        the number of customers in year <m>0</m>. We could do it, but we'd be working with numbers
-        that have no real-world meaning in this context.
+        We <em>could</em> make an equation for this line using slope-intercept form, but then we
+        would need to calculate the <m>y</m>-intercept, which would correspond to the number of
+        customers in year <m>0</m>. We'd be working with numbers that have no real-world meaning.
       </p>
-
       <p>
         For point-slope form, since we calculated the slope, we know at least this much:
         <me>
           y=-130(x-x_0)+y_0
         </me>.
-        Now we can pick one of those two given points, say <m>(2013,2975)</m>, and get the equation
+        Now we can pick one of those two given points, say <m>(2021,2975)</m>, and get the equation
         <me>
-          y=-130(x-2013)+2975
+          y=-130(x-2021)+2975
         </me>.
         Note that all three numbers in this equation have meaning in the context of the spa chain.
-        The <m>-130</m> tells us how many customers are leaving per year, the <m>2013</m> represents
+        The <m>-130</m> tells us how many customers are leaving per year, the <m>2021</m> represents
         a year, and the <m>2975</m> tells us the number of customers in that year.
       </p>
 
@@ -408,24 +467,24 @@
             After substituting <m>y</m> in the equation with <m>1800</m>, we will solve for
             <m>x</m>, and find the answer we seek.
             <md>
-              <mrow>y\amp=-130(x-2013)+2975</mrow>
-              <mrow>\substitute{1800}\amp=-130(x-2013)+2975</mrow>
-              <mrow>1800\subtractright{2975}\amp=-130(x-2013)</mrow>
-              <mrow>-1175\amp=-130(x-2013)</mrow>
-              <mrow>\divideunder{-1175}{-130}\amp=\divideunder{-130(x-2013)}{-130}</mrow>
-              <mrow>9.038\amp\approx x-2013</mrow>
-              <mrow>9.038\addright{2013}\amp\approx x</mrow>
-              <mrow>2022\amp\approx x</mrow>
+              <mrow>y\amp=-130(x-2021)+2975</mrow>
+              <mrow>\substitute{1800}\amp=-130(x-2021)+2975</mrow>
+              <mrow>1800\subtractright{2975}\amp=-130(x-2021)</mrow>
+              <mrow>-1175\amp=-130(x-2021)</mrow>
+              <mrow>\divideunder{-1175}{-130}\amp=\divideunder{-130(x-2021)}{-130}</mrow>
+              <mrow>9.038\amp\approx x-2021</mrow>
+              <mrow>9.038\addright{2021}\amp\approx x</mrow>
+              <mrow>2030\amp\approx x</mrow>
             </md>
-            We find that at this rate the company is headed toward a collapse in 2022.
+            We find that at this rate the company is headed toward a collapse in 2030.
           </p>
         </stack>
 
         <figure xml:id="figure-spa-collapse">
-          <caption><m>y=-130(x-2013)+2975</m></caption>
+          <caption><m>y=-130(x-2021)+2975</m></caption>
           <image>
             <shortdescription></shortdescription>
-            <latex-image label="point-slope-yequals-130groupx-2013+2975">
+            <latex-image label="point-slope-yequals-130groupx-2021+2975">
               \begin{tikzpicture}
                 \begin{axis}[
                     xmin=-10,
@@ -438,10 +497,10 @@
                     minor xtick=,
                     minor ytick=
                   ]
-                  \addplot[firstcurve, domain=-2.577:40]{-130*(x-13)+2975};
+                  \addplot[firstcurve, domain=5.423:40]{-130*(x-21)+2975};
                   \addplot[secondcurve, domain=-10:40]{1800} node[pos=0.35,above] {$y=1800$};
-                  \addplot[soliddot, color=fifthcolor] coordinates {(13,2975)} node[above right] {$(2013,2975)$};
-                  \addplot[soliddot, color=fourthcolor] coordinates {(22,1800)} node[below left] {$(2022,1800)$};
+                  \addplot[soliddot, color=fifthcolor] coordinates {(21,2975)} node[above right] {$(2021,2975)$};
+                  \addplot[soliddot, color=fourthcolor] coordinates {(30,1800)} node[below left] {$(2030,1800)$};
                 \end{axis}
               \end{tikzpicture}
             </latex-image>
@@ -451,7 +510,7 @@
       <p>
         <xref ref="figure-spa-collapse"/> illustrates one line representing the spa's customer base,
         and another line representing the customer level that would cause the business to close. To
-        make a graph of <m>y=-130(x-2013)+2975</m>, we first marked the point <m>(2013,2975)</m> and
+        make a graph of <m>y=-130(x-2021)+2975</m>, we first marked the point <m>(2021,2975)</m> and
         from there used the slope of <m>-130</m>.
       </p>
     </example>
@@ -464,23 +523,11 @@
           @ys=(62.89,52.89,49.64,60.59,33.25,44.80,41.73,41.92,49.06,51.20,29.44,59.32,39.41,57.12,51.21,57.22,62.54,58.09,45.16,34.79,33.52,47.60,44.95,58.32,56.88,56.52,60.33,45.53,47.25,42.03,40.05,36.84,49.90,62.95,52.06,65.33,39.49,48.84,39.46,54.90,61.53,61.06,52.43,46.80,32.64,44.68,38.17,68.65,47.87,67.40);
           %x=map{$st[$_]=>$xs[$_]}(0..49);
           %y=map{$st[$_]=>$ys[$_]}(0..49);
-          $gr=init_graph(-5,-5,75,75,axes=>[0,0],grid=>[16,16],size=>[240,200]);
-          $gr->lb('reset');
-          $gr->lb(new Label(75,-5,'2012 percentage','black','right','bottom', 'small'));
-          $gr->lb(new Label(0,75,'2016 percentage','black','left','top', 'small'));
-          for my$i(1..7){$gr->lb(new Label($i*10,0,$i*10,'black','center','bottom','small'));$gr->lb(new Label(0,$i*10,$i*10,'black','right','middle','small'));};
-          my $px = 80/240;
-          for my$s(@st){
-          $gr->moveTo($x{$s}-$px,$y{$s});
-          $gr->lineTo($x{$s}+$px,$y{$s});
-          $gr->moveTo($x{$s},$y{$s}-$px);
-          $gr->lineTo($x{$s},$y{$s}+$px);
-          };
-          add_functions($gr, "0.8775*x+5.849 for x in &lt;25,75> using color:blue and weight:1");
           Context("Numeric")->variables->add(y=>'Real');
           Context()->flags->set(tolType=>'absolute',tolerance=>1.5,limits=>[25,80]);
           parser::Assignment->Allow;
           $eq=Formula("y=0.8775(x-50)+50");
+          $points = join(' ', map {"($xs[$_],$ys[$_])"} (0..49));
         </pg-code>
         <statement>
           <p>
@@ -489,14 +536,34 @@
             we get the following graph (called a <q>scatterplot</q>, used in statistics) where a
             trendline has been superimposed.
           </p>
-          <image pg-name="$gr" width="40%"/>
+          <image width="47%">
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    xmin=-5,
+                    xmax=75,
+                    ymin=-5,
+                    ymax=75,
+                    xtick={10,20,...,70},
+                    minor xtick={5,10,...,75},
+                    xlabel={2012 Republican vote share},
+                    ytick={10,20,...,70},
+                    minor ytick={5,10,...,75},
+                    ylabel={2016 Republican vote share},
+                  ]
+                  \addplot+[domain=25:75] {0.877*(x-50)+50};
+                  \addplot[soliddot] coordinates {$points};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
           <p>
             Find a point-slope equation for this line. (Note that a slope-intercept equation would
             use the <m>y</m>-intercept coordinate <m>b</m>, and that would not be meaningful in
             context, since no state had anywhere near zero percent Republican vote.)
           </p>
           <p>
-            <var name="$eq" width="20" />
+            <var name="$eq" width="20"/>
           </p>
         </statement>
         <solution>
@@ -574,45 +641,33 @@
     <exercise>
       <webwork>
         <pg-code>
-          Context("Numeric")->variables->add(y=>'Real');
-          Context()->flags->set(tolType=>'absolute',tolerance=>1.5,limits=>[25,80]);
-          Context()->flags->set(reduceConstants=>0);
+          package my::OneOf;
+          our @ISA = ('parser::OneOf');
+          sub cmp_compare {
+            my ($self,$other,$ans) = @_;
+            foreach $answer (@{$self->{data}}) {
+              if ($answer->typeMatch($other)) {
+                my $result = $answer->cmp->evaluate($other);
+                if ($result->{score}) {
+                  $ans->score($result->{score});
+                  $ans->{ans_message} = $result->{ans_message};
+                  return $ans->{score};
+                }
+                if ($result->{ans_message}) {
+                  $ans->{ans_message} = $result->{ans_message}
+                    if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                }
+              }
+            }
+            return 0;
+          }
+          package main;
+          sub OneOfForm {my::OneOf->new(@_)}
+
+          Context("Form")->variables->add(y=>'Real');
           parser::Assignment->Allow;
-          Context()->operators->set(
-          '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-          '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-          );
-          $ps[0]=Formula("y=25/12(x-37)+40");
-          $ps[1]=Formula("y=25/12(x+11)-60");
-          $evps=$ps[0]-> cmp(
-          checker=>sub{
-          my ( $correct, $student, $ansHash ) = @_;
-          return 0 if $ansHash->{isPreview} || ($correct != $student and $ps[1] != $student);
-          $student = $ansHash->{student_formula};
-          $correct = $correct->{original_formula} if defined $correct->{original_formula};
-          $student = Formula("$student"); $correct = Formula("$correct");
-          return 0 unless ($correct == $student or $ps[1] == $student);
-          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-          delete $correct->{test_values}, $student->{test_values};
-          Value->Error("Your answer is a valid equation for this line, but it's not in point-slope form using one of the two given points") unless (($correct == $student) or ($ps[1] == $student));
-          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-          return 1;
-          });
-          $si=Formula("y=25/12*x-445/12");
-          $evsi=$si-> cmp(
-          checker=>sub{
-          my ( $correct, $student, $ansHash ) = @_;
-          return 0 if $ansHash->{isPreview} || $correct != $student;
-          $student = $ansHash->{student_formula};
-          $correct = $correct->{original_formula} if defined $correct->{original_formula};
-          $student = Formula("$student"); $correct = Formula("$correct");
-          return 0 unless $correct == $student;
-          Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-          delete $correct->{test_values}, $student->{test_values};
-          Value->Error("Your answer is a valid equation for this line, but it's not in slope-intercept form") unless ($correct == $student);
-          Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-          return 1;
-          });
+          $ps = OneOfForm(Formula("y=25/12*(x-37)+40"), Formula("y=25/12*(x+11)-60"));
+          $si = Formula("y=25/12-445/12");
         </pg-code>
         <statement>
           <p>
@@ -621,11 +676,11 @@
           </p>
           <p>
             An equation for this line in point-slope form is
-            <var name="$ps[0]" width="20" evaluator="$evps"/>.
+            <var name="$ps" width="16"/>.
           </p>
           <p>
             An equation for this line in slope-intercept form is
-            <var name="$si" width="20" evaluator="$evsi"/>
+            <var name="$si" width="16"/>
           </p>
         </statement>
         <solution>
@@ -640,7 +695,7 @@
           <p>
             The generic point-slope equation is <m>y=m(x-x_0)+y_0</m>. We have found the slope,
             <m>m</m>, and we may use <m>(37,40)</m> for <m>(x_0,y_0)</m>. So an equation in
-            point-slope form is <m><var name="$ps[0]" /></m>.
+            point-slope form is <m><var name="$ps[0]"/></m>.
           </p>
 
           <p>
@@ -658,7 +713,7 @@
               <mrow>\divideunder{-445}{12}\amp=\divideunder{12b}{12}</mrow>
               <mrow>b\amp=-\frac{445}{12}</mrow>
             </md>.
-            So the slope-intercept equation is <m><var name="$si" /></m>. Note that the
+            So the slope-intercept equation is <m><var name="$si"/></m>. Note that the
             slope-intercept equation has an unfriendly fraction, and the fact that this can happen
             is another reason to use the point-slope form whenever it is reasonable to do so.
           </p>
@@ -668,7 +723,7 @@
   </subsection>
 
   <subsection>
-    <title>More on Point-Slope Form</title>
+    <title>Recognizing Point-Slope Form</title>
     <p>
       We can tell a lot about a linear equation now that we have learned both
       <xref ref="equation-slope-intercept-form" text="custom">slope-intercept form</xref> and
@@ -715,30 +770,30 @@
           <ol marker="a.">
             <li>
               <p>
-                The equation <m>y=-3x+2</m> is in slope-intercept form. The slope is <m>-3</m> and
-                the vertical intercept is <m>(0,2)</m>.
+                The equation <m>y=-3x+2</m> is in <em>slope-intercept</em> form. The slope is
+                <m>-3</m> and the vertical intercept is <m>(0,2)</m>.
               </p>
             </li>
 
             <li>
               <p>
-                The equation <m>y=9(x+1)-6</m> is in point-slope form. The slope is <m>9</m> and the
-                line passes through the point <m>(-1,-6)</m>.
+                The equation <m>y=9(x+1)-6</m> is in <em>point-slope</em> form. The slope is
+                <m>9</m> and the line passes through the point <m>(-1,-6)</m>.
               </p>
             </li>
 
             <li>
               <p>
-                The equation <m>y=5-x</m> is almost in slope-intercept form. If we rearrange the
-                right hand side to be <m>y=-x+5</m>, we can see that the slope is <m>-1</m> and the
-                vertical intercept is <m>(0,5)</m>.
+                The equation <m>y=5-x</m> is almost in <em>slope-intercept</em> form. If we
+                rearrange the right hand side to be <m>y=-x+5</m>, we can see that the slope is
+                <m>-1</m> and the vertical intercept is <m>(0,5)</m>.
               </p>
             </li>
 
             <li>
               <p>
-                The equation <m>y=-\frac{12}{5}(x-9)+1</m> is in point-slope form. The slope is
-                <m>-\frac{12}{5}</m> and the line passes through the point <m>(9,1)</m>.
+                The equation <m>y=-\frac{12}{5}(x-9)+1</m> is in <em>point-slope</em> form. The
+                slope is <m>-\frac{12}{5}</m> and the line passes through the point <m>(9,1)</m>.
               </p>
             </li>
           </ol>
@@ -851,10 +906,6 @@
         </p>
       </solution>
     </example>
-        <!-- TODO: add problems like this:
-        graph with point (482,19) and (486,23) find the ptslope form.
-        Make a graph from point slope form without converting to slope intercept (and make it a terrible intercept)
-        Make a graph and interpreting it given an application -->
   </subsection>
 
   <reading-questions>
@@ -865,1138 +916,1207 @@
           slope-intercept form.
         </p>
       </statement>
+      <response/>
     </exercise>
 
     <exercise>
       <statement>
         <p>
-          There are basically two steps to convert a point-slope form line equation into a
-          slope-intercept form line equation. What are they?
+          There are basically two steps to convert a point-slope line equation into a
+          slope-intercept line equation. What are they?
         </p>
       </statement>
+      <response/>
     </exercise>
+
     <exercise>
       <statement>
         <p>
-          If a line has equation <m>y=2(x+5)+6</m>, we can see that the line passes through a
-          certain point. To find the <m>x</m>-coordinate of that point, you might look at the
-          <m>5</m> and have memorized that you should negate that. Instead, you could train yourself
-          to look at the <m>x</m> and realize the important number is <m>-5</m> because that is what
-          it takes to <fillin characters="20"/>.
+          If a line has equation <m>y=2(x+5)+6</m>, we can see the line passes through a certain
+          point. To find the <m>x</m>-coordinate of that point, you might look at the <m>5</m> and
+          know that you should negate that. Instead, you could train yourself to look at the
+          <m>x</m> and realize the important number is <m>-5</m> because that is what it takes to
+          <fillin characters="20"/>.
         </p>
       </statement>
+      <response/>
     </exercise>
   </reading-questions>
 
   <exercises>
     <subexercises>
-      <title>Review and Warmup</title>
-      <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/EvaluateExpressions/evaluate50.pg" />
-      </exercise>
-      <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/EvaluateExpressions/evaluate50.pg" />
-      </exercise>
-      <exercise>
-        <webwork source="Library/Mizzou/College_Algebra/Real_Numbers/Simplifying_Expressions/Algebraic_Expns_Slope.pg" />
-      </exercise>
-      <exercise>
-        <webwork source="Library/Mizzou/College_Algebra/Real_Numbers/Simplifying_Expressions/Algebraic_Expns_Slope.pg" />
-      </exercise>
-    </subexercises>
-
-    <subexercises>
       <title>Skills Practice</title>
       <exercisegroup cols="2">
-        <title>Point-Slope Form</title>
-        <!-- seeds set to guarantee distinct versions -->
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA10.pg" seed="70"/>
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA10.pg" seed="73"/>
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA20.pg" seed="74"/>
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA20.pg" seed="75"/>
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA40.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeBasicsORCCA40.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA10.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA10.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA20.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA20.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/TwoPointsFindPointSlopeEquationORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA10.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA10.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA20.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA20.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA40.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA40.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA50.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA50.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA60.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/FindLineEquationORCCA60.pg" />
-        </exercise>
-      </exercisegroup>
-
-      <exercisegroup cols="2">
-        <title>Point-Slope and Slope-Intercept</title>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA10.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA10.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA20.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA20.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA30.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA40.pg" />
-        </exercise>
-        <exercise>
-          <webwork source="Contrib/PCC/BasicAlgebra/PointSlopeForm/PointSlopeToSlopeInterceptORCCA40.pg" />
-        </exercise>
-      </exercisegroup>
-
-      <exercisegroup cols="3">
-        <title>Point-Slope Form and Graphs</title>
-        <exercise>
-          <webwork xml:id="webwork-determine-point-slope-form-from-graph">
+        <title>Identify Point and Slope</title>
+        <introduction>
+          <p>
+            A line's equation is given in point-slope form. Identify the slope and the point on the
+            line that is being singled out.
+          </p>
+        </introduction>
+        <exercise label="identify-slope-and-point-pos-int">
+          <webwork xml:id="webwork-identify-slope-and-point-pos-int">
             <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              $xmin = -2;
-              $xmax = 12;
-              $ymin = -2;
-              $ymax = 12;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
-              do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-6,6,1);
-                  $m = Fraction($rise,$run);
-                  $h = random(1,$xmax-2,1);
-                  $k = random(1,$ymax-2,1);
-                  $f = Formula("$m*(x-$h)+$k");
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+1 &lt; $kback and $kback &lt; $ymax-1)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+1 &lt; $kforw and $kforw &lt; $ymax-1)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',-1,1..$xmax-1);
-              $gr->h_grid('gray',-1,1..$ymax-1);
-              #xticks
-              for my $i (5,10) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (5,10) {
-                  $gr->lb( new Label(0,$i,$i,'black','right','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/($m**2+1)),
-                  Real($f->eval(x=>$start+1/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/($m**2+1)),
-                  Real($f->eval(x=>$stop-1/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
+              ($m,$h,$k) = random_subset(3,2..9);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              Context("Point");
+              Context()->parens->set("[" => {type => "Interval", close => "]"});
+              Context()->parens->set("{" => {type => "Set", close => "}"});
+              Context()->parens->set("&lt;" => {type => "Vector", close => ">"});
+              $p = Point("($h,$k)");
             </pg-code>
             <statement>
               <p>
-                Determine the point-slope form of the linear equation from its graph.
+                <m><var name="$f"/></m>
               </p>
-              <image pg-name="$gr" width="40%"/>
+              <instruction>Enter the slope here.</instruction>
               <p>
-                <var name="$answer" evaluator="$evaluator" width="20" />
+                <var name="$m" width="5"/>
+              </p>
+              <instruction>Enter the point here.</instruction>
+              <p>
+                <var name="$p" width="5"/>
               </p>
             </statement>
-            <solution>
-              <p>
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
           </webwork>
         </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph"/>
+        <exercise label="identify-slope-and-point-pos-int-copy">
+          <webwork copy="webwork-identify-slope-and-point-pos-int"/>
         </exercise>
-        <exercise>
-          <webwork xml:id="webwork-determine-point-slope-form-from-graph-2">
+        <exercise label="identify-slope-and-point-neg-h-int">
+          <webwork xml:id="webwork-identify-slope-and-point-neg-h-int">
             <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
+              ($m,$h,$k) = random_subset(3,2..9);
+              $h = -$h;
+              $m = list_random($m,-$m);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              Context("Point");
+              Context()->parens->set("[" => {type => "Interval", close => "]"});
+              Context()->parens->set("{" => {type => "Set", close => "}"});
+              Context()->parens->set("&lt;" => {type => "Vector", close => ">"});
+              $p = Point("($h,$k)");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/></m>
+              </p>
+              <instruction>Enter the slope here.</instruction>
+              <p>
+                <var name="$m" width="5"/>
+              </p>
+              <instruction>Enter the point here.</instruction>
+              <p>
+                <var name="$p" width="5"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="identify-slope-and-point-neg-h-int-copy">
+          <webwork copy="webwork-identify-slope-and-point-neg-h-int"/>
+        </exercise>
+        <exercise label="identify-slope-and-point-neg-int">
+          <webwork xml:id="webwork-identify-slope-and-point-neg-int">
+            <pg-code>
+              ($m,$h,$k) = random_subset(3,2..9);
+              $h = -$h;
+              $k = -$k;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              Context("Point");
+              Context()->parens->set("[" => {type => "Interval", close => "]"});
+              Context()->parens->set("{" => {type => "Set", close => "}"});
+              Context()->parens->set("&lt;" => {type => "Vector", close => ">"});
+              $p = Point("($h,$k)");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/></m>
+              </p>
+              <instruction>Enter the slope here.</instruction>
+              <p>
+                <var name="$m" width="5"/>
+              </p>
+              <instruction>Enter the point here.</instruction>
+              <p>
+                <var name="$p" width="5"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="identify-slope-and-point-neg-int-copy">
+          <webwork copy="webwork-identify-slope-and-point-neg-int"/>
+        </exercise>
+        <exercise label="identify-slope-and-point-neg-k-int">
+          <webwork xml:id="webwork-identify-slope-and-point-neg-k-int">
+            <pg-code>
+              ($m,$h,$k) = random_subset(3,2..9);
+              $k = -$k;
+              $m = list_random($m,-$m);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              Context("Point");
+              Context()->parens->set("[" => {type => "Interval", close => "]"});
+              Context()->parens->set("{" => {type => "Set", close => "}"});
+              Context()->parens->set("&lt;" => {type => "Vector", close => ">"});
+              $p = Point("($h,$k)");
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$f"/></m>
+              </p>
+              <instruction>Enter the slope here.</instruction>
+              <p>
+                <var name="$m" width="5"/>
+              </p>
+              <instruction>Enter the point here.</instruction>
+              <p>
+                <var name="$p" width="5"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="identify-slope-and-point-neg-k-int-copy">
+          <webwork copy="webwork-identify-slope-and-point-neg-k-int"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <title>Construct Point-Slope Form</title>
+        <introduction>
+          <p>
+            A line passes through the given points with the given slope. Find an equation for the
+            line in point-slope form using the given point.
+          </p>
+        </introduction>
+        <exercise label="write-point-slope-pos-int">
+          <webwork xml:id="webwork-write-point-slope-pos-int">
+            <pg-code>
+              ($m,$h,$k) = random_subset(3, 2..9);
+              Context("Form")->variables->add(y=>'Real');
               Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $eq = Formula("y=$m(x - $h) + $k")->reduce;
+              $p = Point($h,$k);
+            </pg-code>
+            <statement>
+              <p>
+                through <m><var name="$p"/></m> with slope <m><var name="$m"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="write-point-slope-pos-int-copy">
+          <webwork copy="webwork-write-point-slope-pos-int"/>
+        </exercise>
+        <exercise label="write-point-slope-neg-int">
+          <webwork xml:id="webwork-write-point-slope-neg-int">
+            <pg-code>
+              ($m,$h,$k) = random_subset(3, 2..9);
+              $h = -$h;
+              $k = -$k;
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $eq = Formula("y=$m(x - $h) + $k")->reduce;
+              $p = Point($h,$k);
+            </pg-code>
+            <statement>
+              <p>
+                through <m><var name="$p"/></m> with slope <m><var name="$m"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="write-point-slope-neg-int-copy">
+          <webwork copy="webwork-write-point-slope-neg-int"/>
+        </exercise>
+        <exercise label="write-point-slope-mixed-int-decimal-slope">
+          <webwork xml:id="webwork-write-point-slope-mixed-int-decimal-slope">
+            <pg-code>
+              $m = random(-9,9) + random(0.1,0.9,0.1);
+              ($h,$k) = random_subset(2, 2..9);
+              if (random(0,1)) {
+                $h = -$h;
+              } else {
+                $k = -$k;
+              }
+              Context("Form")->variables->add(y => 'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              Context()->flags->remove("NumberCheck");
+              parser::Assignment->Allow;
+              $eq = Formula("y=$m(x - $h) + $k")->reduce;
+              $p = Point($h,$k);
+            </pg-code>
+            <statement>
+              <p>
+                through <m><var name="$p"/></m> with slope <m><var name="$m"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="write-point-slope-mixed-int-decimal-slope-copy">
+          <webwork copy="webwork-write-point-slope-mixed-int-decimal-slope"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <title>Point-Slope Given Two Points</title>
+        <introduction>
+          <p>
+            A line passes through two given points. Find an equation for the line in point-slope
+            form using one of the given points.
+          </p>
+        </introduction>
+        <exercise label="find-point-slope-two-points-pos-int">
+          <webwork xml:id="webwork-find-point-slope-two-points-pos-int">
+            <pg-code>
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
+              }
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              do {
+                ($m,$h,$k,$x1) = random_subset(4, 2..9);
+                Context()->noreduce('(-x)+y','(-x)-y');
+                $f = Formula("$m*(x - $h) + $k")->reduce;
+                $y1 = $f->eval(x => $x1);
+              } until ($y1 != 0);
+              $g = Formula("$m*(x - $x1) + $y1")->reduce;
+              Context("Point");
+              $p0 = Point("($h,$k)");
+              $p1 = Point("($x1,$y1)");
+
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $eq=OneOfForm(Formula("y=$f"), Formula("y=$g"));
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$p0"/></m> and <m><var name="$p1"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="find-point-slope-two-points-pos-int-copy">
+          <webwork copy="webwork-find-point-slope-two-points-pos-int"/>
+        </exercise>
+        <exercise label="find-point-slope-two-points-neg-int">
+          <webwork xml:id="webwork-find-point-slope-two-points-neg-int">
+            <pg-code>
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
+              }
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              do {
+                ($m,$h,$k,$x1) = random_subset(4, -9..-2, 2..9);
+                $m = -abs($m);
+                Context()->noreduce('(-x)+y','(-x)-y');
+                $f = Formula("$m*(x - $h) + $k")->reduce;
+                $y1 = $f->eval(x => $x1);
+              } until ($y1 != 0);
+              $g = Formula("$m*(x - $x1) + $y1")->reduce;
+              Context("Point");
+              $p0 = Point("($h,$k)");
+              $p1 = Point("($x1,$y1)");
+
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $eq=OneOfForm(Formula("y=$f"), Formula("y=$g"));
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$p0"/></m> and <m><var name="$p1"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="find-point-slope-two-points-neg-int-copy">
+          <webwork copy="webwork-find-point-slope-two-points-neg-int"/>
+        </exercise>
+        <exercise label="find-point-slope-two-points-neg-frac">
+          <webwork xml:id="webwork-find-point-slope-two-points-neg-frac">
+            <pg-code>
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
+              }
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              Context("Fraction");
+              Context()->noreduce('(-x)+y','(-x)-y');
+              do {
+                ($h,$k) = random_subset(2, -9..-1, 1..9);
+                ($n,$d) = random_coprime([-9..-1],[2..9]);
+                $m = Fraction($n/$d);
+                $f = Formula("$m*(x - $h) + $k")->reduce;
+                $x1 = $h + non_zero_random(-9,9)*$d;
+                $y1 = $f->eval(x => $x1);
+              } until ($y1 != 0);
+              $g = Formula("$m*(x - $x1) + $y1")->reduce;
+              $p0 = Point($h,$k);
+              $p1 = Point($x1,$y1);
+
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $eq=OneOfForm(Formula("y=$f"), Formula("y=$g"));
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$p0"/></m> and <m><var name="$p1"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="find-point-slope-two-points-neg-frac-copy">
+          <webwork copy="webwork-find-point-slope-two-points-neg-frac"/>
+        </exercise>
+        <exercise label="find-point-slope-two-points-pos-frac">
+          <webwork xml:id="webwork-find-point-slope-two-points-pos-frac">
+            <pg-code>
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
+              }
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              Context("Fraction");
+              Context()->noreduce('(-x)+y','(-x)-y');
+              do {
+                ($h,$k) = random_subset(2, -9..-1, 1..9);
+                ($n,$d) = random_coprime([1..9],[2..9]);
+                $m = Fraction($n/$d);
+                $f = Formula("$m*(x - $h) + $k")->reduce;
+                $x1 = $h + non_zero_random(-9,9)*$d;
+                $y1 = $f->eval(x => $x1);
+              } until ($y1 != 0);
+              $g = Formula("$m*(x - $x1) + $y1")->reduce;
+              $p0 = Point($h,$k);
+              $p1 = Point($x1,$y1);
+
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $eq=OneOfForm(Formula("y=$f"), Formula("y=$g"));
+            </pg-code>
+            <statement>
+              <p>
+                <m><var name="$p0"/></m> and <m><var name="$p1"/></m>
+              </p>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="find-point-slope-two-points-pos-frac-copy">
+          <webwork copy="webwork-find-point-slope-two-points-pos-frac"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <title>Converting Point-Slope to Slope-Intercept</title>
+        <introduction>
+          <p>
+            Change the given point-slope equation to slope-intercept form.
+          </p>
+        </introduction>
+        <exercise label="convert-point-slope-to-slope-intercept-pos-int">
+          <webwork xml:id="webwork-convert-point-slope-to-slope-intercept-pos-int">
+            <pg-code>
+              ($m,$h,$k) = random_subset(3,2..9);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              $b = $f->eval(x => 0);
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $si = Formula("y=$m x + $b")->reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$si" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-pos-int-copy">
+          <webwork copy="webwork-convert-point-slope-to-slope-intercept-pos-int"/>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-neg-int">
+          <webwork xml:id="webwork-convert-point-slope-to-slope-intercept-neg-int">
+            <pg-code>
+              ($m,$h,$k) = random_subset(3,2..9);
+              $m = -$m;
+              $h = -$h;
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              $b = $f->eval(x => 0);
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $si = Formula("y=$m x + $b")->reduce;
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$si" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-neg-int-copy">
+          <webwork copy="webwork-convert-point-slope-to-slope-intercept-neg-int"/>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-pos-frac">
+          <webwork xml:id="webwork-convert-point-slope-to-slope-intercept-pos-frac">
+            <pg-code>
+              ($h,$k) = random_subset(2,2..9);
+              ($n,$d) = random_coprime([1..9],[2..9]);
+              Context("Fraction");
+              $m = Fraction($n/$d);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              $b = $f->eval(x => 0);
+              Context("Form")->variables->add(y=>'Real');
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants => 0);
+              $absb = abs($b);
+              $sign = ($b > 0) ? '+' : '-';
+              $si = Formula("y = $m x $sign $absb");
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$si" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-pos-frac-copy">
+          <webwork copy="webwork-convert-point-slope-to-slope-intercept-pos-frac"/>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-decimal">
+          <webwork xml:id="webwork-convert-point-slope-to-slope-intercept-decimal">
+            <pg-code>
+              $h = random(-9,9) + random(0.1,0.9,0.1);
+              $k = random(-9,9) + random(0.1,0.9,0.1);
+              $m = random(-9,9) + random(0.1,0.9,0.1);
+              Context()->noreduce('(-x)-y','(-x)+y');
+              $f = Formula("$m(x-$h)+$k")->reduce;
+              $b = $f->eval(x => 0);
+              Context("Form")->variables->add(y=>'Real');
+              Context()->flags->remove("NumberCheck");
+              Context()->noreduce('(-x)+y','(-x)-y');
+              parser::Assignment->Allow;
+              $si = Formula("y = $m x + $b");
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$si" width="16"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="convert-point-slope-to-slope-intercept-decimal-copy">
+          <webwork copy="webwork-convert-point-slope-to-slope-intercept-decimal"/>
+        </exercise>
+      </exercisegroup>
+
+      <exercisegroup cols="2">
+        <title>Point-Slope Form from a Graph</title>
+        <introduction>
+          <p>
+            Determine a point-slope form line equation for the given line.
+          </p>
+        </introduction>
+        <exercise label="determine-point-slope-form-from-graph">
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph">
+            <pg-code>
               $xmin = -7;
               $xmax = 7;
               $ymin = -7;
               $ymax = 7;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
+              Context("Fraction");
               do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-6,6,1);
-                  $m = Fraction($rise,$run);
-                  $h = list_random(-5..-1,1..5);
-                  $k = list_random(-5..-1,1..5);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+1 &lt; $kback and $kback &lt; $ymax-1)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+1 &lt; $kforw and $kforw &lt; $ymax-1)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',$xmin+1..-1,1..$xmax-1);
-              $gr->h_grid('gray',$ymin+1..-1,1..$ymax-1);
-              #xticks
-              for my $i (-5,5) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
+                do {
+                  ($n,$d) = random_coprime([2..9],[2..9]);
+                  $m = Fraction($n/$d);
+                  ($h,$k) = random_subset(2,-5..-1,1..5);
+                  $f = Formula("$m(x - $h) + $k")->reduce;
+                  $b = $f->eval(x => 0);
+                } until ($b != 0);
+                $xtop = ($ymax - $k)/$m + $h;
+                $xbot = ($ymin - $k)/$m + $h;
+                ($start, $stop) = (num_sort($xmin,$xmax,$xtop,$xbot))[1,2];
+                @x = ();
+                @y = ();
+                $a = ($start &lt; 0) ? int(Real($start)) : int(Real($start)) + 1;
+                $b = ($stop &lt; 0) ? int(Real($stop)) - 1 : int(Real($stop));
+                for ($a .. $b) {
+                  if ($f->eval(x => $_) == int($f->eval(x => $_))) {
+                    push @x, $_;
+                    push @y, $f->eval(x => $_);
+                  }
+                }
+              } until (scalar @x >= 2);
+              @fs = map {Formula("$m*(x - $x[$_]) + $y[$_]")->reduce} (0..$#x);
+
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
               }
-              #yticks
-              for my $i (-5,5) {
-                  $gr->lb( new Label(0,$i,$i,'black','right','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/($m**2+1)),
-                  Real($f->eval(x=>$start+1/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/($m**2+1)),
-                  Real($f->eval(x=>$stop-1/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              Context("Form")->variables->add(y=>'Real');
               parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
+              Context()->noreduce('(-x)+y','(-x)-y');
+              Context()->flags->set(reduceConstants => 0);
+              $eq = OneOfForm(map {Formula("y=$_")} @fs);
             </pg-code>
             <statement>
+              <image>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[]
+                      \addplot[firstcurve, domain=$start:$stop]{$f};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
               <p>
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p>
-                <var name="$answer" evaluator="$evaluator" width="20" />
+                <var name="$eq" width="16"/>
               </p>
             </statement>
             <solution>
               <p>
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
+                The slope is <m><var name="$m"/></m> and the point
+                <m>(<var name="$h"/>,<var name="$k"/>)</m> is on the graph of this line, so one
+                point-slope form equation for this line is <m>y=<var name="$f"/></m>.
               </p>
             </solution>
           </webwork>
         </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph-2"/>
+        <exercise label="determine-point-slope-form-from-graph-copy">
+          <webwork copy="webwork-determine-point-slope-form-from-graph"/>
         </exercise>
-        <exercise>
-          <webwork xml:id="webwork-determine-point-slope-form-from-graph-3">
+        <exercise label="determine-point-slope-form-from-graph-neg">
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-neg">
             <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
               $xmin = -7;
               $xmax = 7;
-              $ymin = -700;
-              $ymax = 700;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
+              $ymin = -7;
+              $ymax = 7;
+              Context("Fraction");
               do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-600,600,100);
-                  $m = Fraction($rise,$run);
-                  $h = list_random(-5..-1,1..5);
-                  $k = 100*list_random(-5..-1,1..5);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',$xmin+1..-1,1..$xmax-1);
-              $gr->h_grid('gray',map{$_*100}($ymin/100+1..-1,1..$ymax/100-1));
-              #xticks
-              for my $i (-5,5) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
+                do {
+                  ($n,$d) = random_coprime([-9..-2],[2..9]);
+                  $m = Fraction($n/$d);
+                  ($h,$k) = random_subset(2,-5..-1,1..5);
+                  $f = Formula("$m(x - $h) + $k")->reduce;
+                  $b = $f->eval(x => 0);
+                } until ($b != 0);
+                $xtop = ($ymax - $k)/$m + $h;
+                $xbot = ($ymin - $k)/$m + $h;
+                ($start, $stop) = (num_sort($xmin,$xmax,$xtop,$xbot))[1,2];
+                @x = ();
+                @y = ();
+                $a = ($start &lt; 0) ? int(Real($start)) : int(Real($start)) + 1;
+                $b = ($stop &lt; 0) ? int(Real($stop)) - 1 : int(Real($stop));
+                for ($a .. $b) {
+                  if ($f->eval(x => $_) == int($f->eval(x => $_))) {
+                    push @x, $_;
+                    push @y, $f->eval(x => $_);
+                  }
+                }
+              } until (scalar @x >= 2);
+              @fs = map {Formula("$m*(x - $x[$_]) + $y[$_]")->reduce} (0..$#x);
+
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
               }
-              #yticks
-              for my $i (-500,500) {
-                  $gr->lb( new Label(0,$i,$i,'black','right','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$start+1/(($m/100)**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$stop-1/(($m/100)**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              Context("Form")->variables->add(y=>'Real');
               parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              Context()->variables->set(x=>{limits=>[$h-1,$h+1]});
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
+              Context()->noreduce('(-x)+y','(-x)-y');
+              Context()->flags->set(reduceConstants => 0);
+              $eq = OneOfForm(map {Formula("y=$_")} @fs);
             </pg-code>
             <statement>
+              <image>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[]
+                      \addplot[firstcurve, domain=$start:$stop]{$f};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
               <p>
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p>
-                <var name="$answer" evaluator="$evaluator" width="20" />
+                <var name="$eq" width="16"/>
               </p>
             </statement>
             <solution>
               <p>
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
+                The slope is <m><var name="$m"/></m> and the point
+                <m>(<var name="$h"/>,<var name="$k"/>)</m> is on the graph of this line, so one
+                point-slope form equation for this line is <m>y=<var name="$f"/></m>.
               </p>
             </solution>
           </webwork>
         </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph-3"/>
+        <exercise label="determine-point-slope-form-from-graph-neg-copy">
+          <webwork copy="webwork-determine-point-slope-form-from-graph-neg"/>
         </exercise>
-        <exercise>
-          <webwork xml:id="webwork-determine-point-slope-form-from-graph-4">
+        <exercise label="determine-point-slope-form-from-graph-q1-large-y">
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-q1-large-y">
             <pg-code>
-              Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
               $xmin = -1;
-              $xmax = 13;
-              $ymin = -100;
-              $ymax = 1300;
-              Context()->variables->set(x=>{limits=>[$xmin,$xmax]});
-              do {
-                  $run = non_zero_random(2,6,1);
-                  $rise = non_zero_random(-600,600,100);
-                  $m = Fraction($rise,$run);
-                  $h = list_random(1..11);
-                  $k = 100*list_random(1..11);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+1 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-1 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',1..$xmax-1);
-              $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
-              #xticks
-              for my $i (5,10) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label(0,$i,$i,'black','left','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$start+1/(($m/100)**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-1/(($m/100)**2+1)),
-                  Real($f->eval(x=>$stop-1/(($m/100)**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              Context()->variables->set(x=>{limits=>[$h-1,$h+1]});
-              $answer = Formula("y = $f");
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
-            </pg-code>
-            <statement>
-              <p>
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p>
-                <var name="$answer" evaluator="$evaluator" width="20" />
-              </p>
-            </statement>
-            <solution>
-              <p>
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
-              </p>
-            </solution>
-          </webwork>
-        </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph-4"/>
-        </exercise>
-        <exercise>
-          <webwork xml:id="webwork-determine-point-slope-form-from-graph-5">
-            <pg-code>
+              $xmax = 11;
+              $ymin = -50;
+              $ymax = 600;
               Context("Fraction");
-              Context()->flags->set(tolType=>absolute);
-              Context()->operators->set(
-                '+' => {class => 'bizarro::BOP::add', isCommand => 1},
-                '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
-              );
-              Context()->noreduce('(-x)+y','(-x)-y');
-              $xmin = -100;
-              $xmax = 1300;
-              $ymin = -100;
-              $ymax = 1300;
               do {
-                  $run = non_zero_random(200,600,1);
-                  $rise = non_zero_random(60,600,1)*list_random(-1,1);
-                  $m = Fraction($rise,$run);
-                  $h = random(100,1200,1);
-                  $k = random(100,1200,1);
-                  $f = Formula("$m*(x-$h)+$k")->reduce;
-                  $y0 = Fraction($f->eval(x=>0));
-                  $hback = $h-$run;
-                  $kback = $k-$rise;
-                  $hforw = $h+$run;
-                  $kforw = $k+$rise;
-              } until (
-                  ($y0->value)[1] != 1
-                  and (
-                    ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100)
-                     or
-                    ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100)
-                  )
-              );
-              if ($hback > $xmin+100 and $ymin+100 &lt; $kback and $kback &lt; $ymax-100) {
-                  $h2 = $hback; $k2 = $kback;
+                do {
+                  ($n,$d) = random_coprime([2..6],[2..6]);
+                  $n = $n*50;
+                  $n = list_random($n,-$n);
+                  $m = Fraction($n/$d);
+                  ($h,$k) = random_subset(2,1..10);
+                  $k = $k*50;
+                  $f = Formula("$m(x - $h) + $k")->reduce;
+                  $b = $f->eval(x => 0);
+                } until ($b != 0);
+                $xtop = ($ymax - $k)/$m + $h;
+                $xbot = ($ymin - $k)/$m + $h;
+                ($start, $stop) = (num_sort($xmin,$xmax,$xtop,$xbot))[1,2];
+                @x = ();
+                @y = ();
+                $a = ($start &lt; 0) ? int(Real($start)) : int(Real($start)) + 1;
+                $b = ($stop &lt; 0) ? int(Real($stop)) - 1 : int(Real($stop));
+                for ($a .. $b) {
+                  if ($f->eval(x => $_) == int($f->eval(x => $_)) &amp;&amp; Real($f->eval(x => $_)) % 50 == 0) {
+                    push @x, $_;
+                    push @y, $f->eval(x => $_);
+                  }
+                }
+              } until (scalar @x >= 2);
+              @fs = map {Formula("$m*(x - $x[$_]) + $y[$_]")->reduce} (0..$#x);
+
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
               }
-              if ($hforw &lt; $xmax-100 and $ymin+100 &lt; $kforw and $kforw &lt; $ymax-100) {
-                  $h2 = $hforw; $k2 = $kforw;
-              }
-              $top = Real(($ymax-$k)/$m+$h);
-              $bottom = Real(($ymin-$k)/$m+$h);
-              $left = $xmin;
-              $right = $xmax;
-              ($start,$stop) = (num_sort($top,$bottom,$left,$right))[1,2];
-              $gr = init_graph($xmin,$ymin,$xmax,$ymax,
-                  size=>[240,240]);
-              $gr->lb('reset');
-              $gr->v_grid('gray',map{$_*100}(1..$xmax/100-1));
-              $gr->h_grid('gray',map{$_*100}(1..$ymax/100-1));
-              #xticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label($i,0,$i,'black','center','top','large'));
-                  $gr->lb( new Label($xmax,0,'x','black','right','top','large'));
-              }
-              #yticks
-              for my $i (500,1000) {
-                  $gr->lb( new Label(0,$i,$i,'black','left','middle','large'));
-                  $gr->lb( new Label(0,$ymax,'y ','black','center','right','large'));
-              }
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmin,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo($xmax-($xmax-$xmin)/240,0,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymin+($ymax-$ymin)/240,'black',1);
-              $gr->moveTo(0,0);
-              $gr->arrowTo(0,$ymax,'black',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($start+100/($m**2+1)),
-                  Real($f->eval(x=>$start+100/($m**2+1))),
-                  'blue',1);
-              $gr->moveTo($h,$k);
-              $gr->arrowTo(
-                  Real($stop-100/($m**2+1)),
-                  Real($f->eval(x=>$stop-100/($m**2+1))),
-                  'blue',1);
-              $gr->stamps( closed_circle($h,$k,'blue') );
-              $gr->stamps( closed_circle($h2,$k2,'blue') );
-              if ($m > 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','bottom','large'));};
-              if ($m > 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h > 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h &lt; 600) {$gr->lb( new Label($h,$k,"($h,$k)",'black','left','bottom','large'));};
-              if ($m > 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','bottom','large'));};
-              if ($m > 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','top','large'));};
-              if ($m &lt; 0 and $h2 > 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','right','top','large'));};
-              if ($m &lt; 0 and $h2 &lt; 600) {$gr->lb( new Label($h2,$k2,"($h2,$k2)",'black','left','bottom','large'));};
-              Context()->variables->set(x=>{limits=>[min($h,$h2),max($h,$h2)]});
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              Context("Form")->variables->add(y=>'Real');
               parser::Assignment->Allow;
-              Context()->variables->add(y=>'Real');
-              $answer = OneOf(Formula("y = $f"),Formula("y = $m(x-$h2)+$k2"));
-              $evaluator = $answer -> cmp(
-                 checker=>sub{
-                    my ( $correct, $student, $ansHash ) = @_;
-                    return 0 if $ansHash->{isPreview};
-                    $student = $ansHash->{student_formula};
-                    $correct = $correct->{original_formula} if defined $correct->{original_formula};
-                    $student = Formula("$student"); $correct = Formula("$correct");
-                    return 0 unless ($correct == $student);
-                    Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
-                    delete $correct->{test_values};
-                    delete $student->{test_values};
-                    my $OK = (($correct == $student) or ($student == $correct));
-                    Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
-                    Value::Error("Your answer is an equation for the line, but it is not in point-slope form using the indicated point.") unless $OK;
-                    return $OK;
-              });
+              Context()->noreduce('(-x)+y','(-x)-y');
+              Context()->flags->set(reduceConstants => 0);
+              $eq = OneOfForm(map {Formula("y=$_")} @fs);
             </pg-code>
             <statement>
+              <image>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                        xmin = $xmin,
+                        xmax = $xmax,
+                        ymin = $ymin,
+                        ymax = $ymax,
+                        xtick = {2,4,...,$xmax},
+                        minor xtick = {1,...,$xmax},
+                        ytick = {100,200,...,$ymax},
+                        minor ytick = {50,100,...,$ymax},
+                      ]
+                      \addplot[firstcurve, domain=$start:$stop]{$f};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
               <p>
-                Determine the point-slope form of the linear equation from its graph.
-              </p>
-              <image pg-name="$gr" width="40%"/>
-              <p>
-                <var name="$answer" evaluator="$evaluator" width="20" />
+                <var name="$eq" width="16"/>
               </p>
             </statement>
             <solution>
               <p>
-                The slope is <m><var name="$m" /></m> and the point <m>(<var name="$h" />,<var name="$k" />)</m> is on the graph of this line,
-                so its equation can be written in point-slope form as <m><var name="$answer" /></m>.
+                The slope is <m><var name="$m"/></m> and the point
+                <m>(<var name="$h"/>,<var name="$k"/>)</m> is on the graph of this line, so one
+                point-slope form equation for this line is <m>y=<var name="$f"/></m>.
               </p>
             </solution>
           </webwork>
         </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph-5"/>
+        <exercise label="determine-point-slope-form-from-graph-q1-large-y-copy">
+          <webwork copy="webwork-determine-point-slope-form-from-graph-q1-large-y"/>
         </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph-5"/>
+        <exercise label="determine-point-slope-form-from-graph-q1-large-y-precise">
+          <webwork xml:id="webwork-determine-point-slope-form-from-graph-q1-large-y-precise">
+            <pg-code>
+              $xmin = -1;
+              $xmax = 11;
+              $ymin = -50;
+              $ymax = 600;
+              Context("Fraction");
+              do {
+                ($h,$x1) = random_subset(2,1..9);
+                ($k,$y1) = random_subset(2,100..599);
+                $m = Fraction(($y1 - $k)/($x1 - $h));
+                $f = Formula("$m(x - $h) + $k")->reduce;
+                $b = $f->eval(x => 0);
+              } until ($b != 0 &amp;&amp; abs($h - $x1) >= 3);
+              $g = Formula("$m(x - $x1) + $y1")->reduce;
+              $xtop = ($ymax - $k)/$m + $h;
+              $xbot = ($ymin - $k)/$m + $h;
+              ($start, $stop) = (num_sort($xmin,$xmax,$xtop,$xbot))[1,2];
+
+              package my::OneOf;
+              our @ISA = ('parser::OneOf');
+              sub cmp_compare {
+                my ($self,$other,$ans) = @_;
+                foreach $answer (@{$self->{data}}) {
+                  if ($answer->typeMatch($other)) {
+                    my $result = $answer->cmp->evaluate($other);
+                    if ($result->{score}) {
+                      $ans->score($result->{score});
+                      $ans->{ans_message} = $result->{ans_message};
+                      return $ans->{score};
+                    }
+                    if ($result->{ans_message}) {
+                      $ans->{ans_message} = $result->{ans_message}
+                        if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+                    }
+                  }
+                }
+                return 0;
+              }
+              package main;
+              sub OneOfForm {my::OneOf->new(@_)}
+
+              Context("Form")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->noreduce('(-x)+y','(-x)-y');
+              Context()->flags->set(reduceConstants => 0);
+              $eq = OneOfForm(Formula("y = $f"), Formula("y = $g"));
+              $leftright = ($m > 0) ? 'right' : 'left';
+            </pg-code>
+            <statement>
+              <image>
+                <latex-image>
+                  \begin{tikzpicture}
+                    \begin{axis}[
+                        xmin = $xmin,
+                        xmax = $xmax,
+                        ymin = $ymin,
+                        ymax = $ymax,
+                        xtick = {2,4,...,$xmax},
+                        minor xtick = {1,...,$xmax},
+                        ytick = {100,200,...,$ymax},
+                        minor ytick = {50,100,...,$ymax},
+                      ]
+                      \addplot[firstcurve, domain=$start:$stop]{$f};
+                      \addplot[soliddot] coordinates {($h,$k)} node[below $leftright] {\(($h,$k)\)};
+                      \addplot[soliddot] coordinates {($x1,$y1)} node[below $leftright] {\(($x1,$y1)\)};
+                    \end{axis}
+                  \end{tikzpicture}
+                </latex-image>
+              </image>
+              <p>
+                <var name="$eq" width="16"/>
+              </p>
+            </statement>
+            <solution>
+              <p>
+                The slope is <m><var name="$m"/></m> and the point
+                <m>(<var name="$h"/>,<var name="$k"/>)</m> is on the graph of this line, so one
+                point-slope form equation for this line is <m>y=<var name="$f"/></m>.
+              </p>
+            </solution>
+          </webwork>
         </exercise>
-        <exercise>
-          <webwork copy="webwork-determine-point-slope-form-from-graph-5"/>
+        <exercise label="determine-point-slope-form-from-graph-q1-large-y-precise-copy">
+          <webwork copy="webwork-determine-point-slope-form-from-graph-q1-large-y-precise"/>
         </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
+      <exercisegroup>
         <title>Make Graphs</title>
         <introduction>
           <p>
             Graph the linear equation by identifying the slope and one point on this line.
           </p>
         </introduction>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=-\frac{8}{3}(x-4)-5</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[]
-                    \addplot[firstcurve, domain=-0.5:4.75]{-8/3*(x-4)-5};
-                    \addplot[soliddot] coordinates {(4,-5)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>-\frac{8}{3}</m> and the point <m>(4,-5)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[]
-                      \addplot[firstcurve, domain=-0.5:4.75]{-8/3*(x-4)-5};
-                      \addplot[soliddot] coordinates {(4,-5)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-pos-int">
+          <webwork xml:id="webwork-graph-point-slope-pos-int">
+            <pg-macros>
+              <macro-file>parserGraphTool.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Fraction");
+              Context()->noreduce('(-x)-y','(-x)+y');
+              ($h,$k,$m) = random_subset(3, 2..5);
+              $f = Formula("$m(x - $h) + $k");
+              $x1 = $h + 1;
+              $y1 = $k + $m;
+              $gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+                bBox => [-11, 11, 11, -11],
+                showInStatic => 0,
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$gt" width="1"/>
+              </p>
+            </statement>
+          </webwork>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=\frac{5}{7}(x+3)+2</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[]
-                    \addplot[firstcurve, domain=-7:4]{5/7*(x+3)+2};
-                    \addplot[soliddot] coordinates {(-3,2)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>\frac{5}{7}</m> and the point <m>(-3,2)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[]
-                      \addplot[firstcurve, domain=-7:4]{5/7*(x+3)+2};
-                      \addplot[soliddot] coordinates {(-3,2)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-pos-int-copy">
+          <webwork copy="webwork-graph-point-slope-pos-int"/>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=\frac{3}{4}(x+2)+1</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[]
-                    \addplot[firstcurve, domain=-7:6]{3/4*(x+2)+1};
-                    \addplot[soliddot] coordinates {(-2,1)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>\frac{3}{4}</m> and the point <m>(-2,1)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[]
-                      \addplot[firstcurve, domain=-7:6]{3/4*(x+2)+1};
-                      \addplot[soliddot] coordinates {(-2,1)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-pos-int-neg-k">
+          <webwork xml:id="webwork-graph-point-slope-pos-int-neg-k">
+            <pg-macros>
+              <macro-file>parserGraphTool.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Fraction");
+              Context()->noreduce('(-x)-y','(-x)+y');
+              ($h,$k,$m) = random_subset(3, 2..5);
+              $k = -$k;
+              $f = Formula("$m(x - $h) + $k")->reduce;
+              $x1 = $h + 1;
+              $y1 = $k + $m;
+              $gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+                bBox => [-11, 11, 11, -11],
+                showInStatic => 0,
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$gt" width="1"/>
+              </p>
+            </statement>
+          </webwork>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=-\frac{5}{2}(x-1)-5</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[]
-                    \addplot[firstcurve, domain=-3:2.6]{-5/2*(x-1)-3};
-                    \addplot[soliddot] coordinates {(1,-3)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>-\frac{5}{2}</m> and the point <m>(1,-3)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[]
-                      \addplot[firstcurve, domain=-3:2.6]{-5/2*(x-1)-3};
-                      \addplot[soliddot] coordinates {(1,-3)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-pos-int-neg-k-copy">
+          <webwork copy="webwork-graph-point-slope-pos-int-neg-k"/>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=-3(x-9)+4</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[xmin=-50,xmax=50,
-                      ymin=-50,ymax=50,
-                      xtick={-40,-30,...,40},
-                      ytick={-40,-30,...,40},
-                      minor xtick={},
-                      minor ytick={},
-                      ]
-                    \addplot[firstcurve, domain=-6.333:27]{-3*(x-9)+4};
-                    \addplot[soliddot] coordinates {(9,4)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>-3</m> and the point <m>(9,4)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[xmin=-50,xmax=50,
-                        ymin=-50,ymax=50,
-                        xtick={-40,-30,...,40},
-                        ytick={-40,-30,...,40},
-                        minor xtick={},
-                        minor ytick={},
-                        ]
-                      \addplot[firstcurve, domain=-6.333:27]{-3*(x-9)+4};
-                      \addplot[soliddot] coordinates {(9,4)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-pos-frac">
+          <webwork xml:id="webwork-graph-point-slope-pos-frac">
+            <pg-macros>
+              <macro-file>parserGraphTool.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Fraction");
+              Context()->noreduce('(-x)-y','(-x)+y');
+              do {
+                ($n,$d) = random_coprime([1..9],[2..9]);
+                $m = Fraction($n/$d);
+                ($h,$k) = random_subset(2, 2..9);
+                if (random(0,1)) {
+                  $h = -$h;
+                  $k = -$k;
+                }
+                $f = Formula("$m(x - $h) + $k")->reduce;
+                $b = $f->eval(x => 0);
+              } until ($b != int(Real($b)));
+              $x1 = $h + $d;
+              $y1 = $k + $n;
+              $gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+                bBox => [-11, 11, 11, -11],
+                showInStatic => 0,
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$gt" width="1"/>
+              </p>
+            </statement>
+          </webwork>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=7(x+3)-10</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[xmin=-50,xmax=50,
-                      ymin=-50,ymax=50,
-                      xtick={-40,-30,...,40},
-                      ytick={-40,-30,...,40},
-                      minor xtick={},
-                      minor ytick={},
-                      ]
-                    \addplot[firstcurve, domain=-8.714:5.571]{7*(x+3)-10};
-                    \addplot[soliddot] coordinates {(-3,-10)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>7</m> and the point
-              <m>(-3,-10)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[xmin=-50,xmax=50,
-                        ymin=-50,ymax=50,
-                        xtick={-40,-30,...,40},
-                        ytick={-40,-30,...,40},
-                        minor xtick={},
-                        minor ytick={},
-                        ]
-                      \addplot[firstcurve, domain=-8.714:5.571]{7*(x+3)-10};
-                      \addplot[soliddot] coordinates {(-3,-10)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-pos-frac-copy">
+          <webwork copy="webwork-graph-point-slope-pos-frac"/>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=8(x+12)-20</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[xmin=-100,xmax=100,
-                      ymin=-100,ymax=100,
-                      xtick={-80,-60,...,80},
-                      ytick={-80,-60,...,80},
-                      minor xtick={},
-                      minor ytick={},
-                      ]
-                    \addplot[firstcurve, domain=-22:3]{8*(x+12)-20};
-                    \addplot[soliddot] coordinates {(-12,-20)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>8</m> and the point
-              <m>(-12,-20)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[xmin=-100,xmax=100,
-                        ymin=-100,ymax=100,
-                        xtick={-80,-60,...,80},
-                        ytick={-80,-60,...,80},
-                        minor xtick={},
-                        minor ytick={},
-                        ]
-                      \addplot[firstcurve, domain=-22:3]{8*(x+12)-20};
-                      \addplot[soliddot] coordinates {(-12,-20)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-neg-frac">
+          <webwork xml:id="webwork-graph-point-slope-neg-frac">
+            <pg-macros>
+              <macro-file>parserGraphTool.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Fraction");
+              Context()->noreduce('(-x)-y','(-x)+y');
+              do {
+                ($n,$d) = random_coprime([-9..-1],[2..9]);
+                $m = Fraction($n/$d);
+                ($h,$k) = random_subset(2, 2..9);
+                if (random(0,1)) {
+                  $h = -$h;
+                } else {
+                  $k = -$k;
+                }
+                $f = Formula("$m(x - $h) + $k")->reduce;
+                $b = $f->eval(x => 0);
+              } until ($b != int(Real($b)));
+              $x1 = $h + $d;
+              $y1 = $k + $n;
+              $gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+                bBox => [-11, 11, 11, -11],
+                showInStatic => 0,
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$gt" width="1"/>
+              </p>
+            </statement>
+          </webwork>
         </exercise>
-        <exercise>
-          <statement>
-            <p>
-              <m>y=-5(x-20)-70</m>
-            </p>
-          </statement>
-          <answer>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[xmin=-100,xmax=100,
-                      ymin=-100,ymax=100,
-                      xtick={-80,-60,...,80},
-                      ytick={-80,-60,...,80},
-                      minor xtick={},
-                      minor ytick={},
-                      ]
-                    \addplot[firstcurve, domain=-14:26]{-5*(x-20)-70};
-                    \addplot[soliddot] coordinates {(20,-70)};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </answer>
-          <solution>
-            <p>
-              The slope is <m>-5</m> and the point
-              <m>(20,-70)</m> is on the graph of this line.
-            </p>
-            <figure>
-              <caption>A graph of a line.</caption>
-              <image>
-                <latex-image>
-                  \begin{tikzpicture}
-                    \begin{axis}[xmin=-100,xmax=100,
-                        ymin=-100,ymax=100,
-                        xtick={-80,-60,...,80},
-                        ytick={-80,-60,...,80},
-                        minor xtick={},
-                        minor ytick={},
-                        ]
-                      \addplot[firstcurve, domain=-14:26]{-5*(x-20)-70};
-                      \addplot[soliddot] coordinates {(20,-70)};
-                    \end{axis}
-                  \end{tikzpicture}
-                </latex-image>
-              </image>
-            </figure>
-          </solution>
+        <exercise label="graph-point-slope-neg-frac-copy">
+          <webwork copy="webwork-graph-point-slope-neg-frac"/>
+        </exercise>
+        <exercise label="graph-point-slope-decimal">
+          <webwork xml:id="webwork-graph-point-slope-decimal">
+            <pg-macros>
+              <macro-file>parserGraphTool.pl</macro-file>
+            </pg-macros>
+            <pg-code>
+              Context("Numeric");
+              Context()->noreduce('(-x)-y','(-x)+y');
+              do {
+                $m = non_zero_random(-0.9,0.9,0.1);
+                ($h,$k) = random_subset(2, 2..9);
+                if ($m > 0) {
+                  if (random(0,1)) {
+                    $h = -$h;
+                    $k = -$k;
+                  }
+                } else {
+                  if (random(0,1)) {
+                    $h = -$h;
+                  } else {
+                    $k = -$k;
+                  }
+                }
+                $f = Formula("$m(x - $h) + $k")->reduce;
+                $b = $f->eval(x => 0);
+              } until ($b != int(Real($b)));
+              $x1 = $h + 10;
+              $y1 = $k + $m*10;
+              $gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+                bBox => [-11, 11, 11, -11],
+                showInStatic => 0,
+              );
+            </pg-code>
+            <statement>
+              <p>
+                <m>y=<var name="$f"/></m>
+              </p>
+              <p>
+                <var name="$gt" width="1"/>
+              </p>
+            </statement>
+          </webwork>
+        </exercise>
+        <exercise label="graph-point-slope-decimal-copy">
+          <webwork copy="webwork-graph-point-slope-decimal"/>
         </exercise>
       </exercisegroup>
     </subexercises>
 
     <subexercises>
       <title>Applications</title>
-      <!-- ordering intentional -->
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication50.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication50.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication60.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication60.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication70.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication70.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication80.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication80.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication20.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication20.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication10.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication10.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication40.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication40.pg"/>
       </exercise>
       <exercise>
-        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication30.pg" />
+        <webwork source="Contrib/PCC/BasicAlgebra/LinearEquationApplications/FindPSEquationApplication30.pg"/>
       </exercise>
     </subexercises>
   </exercises>
