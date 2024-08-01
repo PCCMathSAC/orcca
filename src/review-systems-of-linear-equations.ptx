@@ -86,11 +86,77 @@
   <exercise label="see-solution-from-graph-slope-intercept-copy2">
     <introduction>
       <p>
-        The graph of two lines represents a system of two linear equations.
-        Use the graph to identify the solution to the system.
+        The graph of two lines represents a system of two linear equations. Use the graph to
+        identify the solution to the system.
       </p>
     </introduction>
-    <webwork copy="webwork-see-solution-from-graph-slope-intercept"/>
+    <!-- not an actual copy so that the graph is sized better -->
+    <webwork>
+      <pg-code>
+        ($x,$y) = (-5..-1,1..5)[NchooseK(10,2)];
+        @b = (-6..$y-1,$y+1..6)[NchooseK(12,2)];
+        Context("Fraction");
+        Context()->noreduce('(-x)+y', '(-x)-y');
+        @m = map{Fraction(($y - $_)/$x)} (@b);
+        @f = map{Formula("$m[$_] x + $b[$_]")->reduce} (0,1);
+        @high = map{(7 - $b[$_])/$m[$_]} (0,1);
+        @low = map{(-7 - $b[$_])/$m[$_]} (0,1);
+        @start = map{(num_sort(-7,7,$high[$_],$low[$_]))[1]} (0,1);
+        @stop = map{(num_sort(-7,7,$high[$_],$low[$_]))[2]} (0,1);
+        Context("Point");
+        Context()->strings->remove("NONE");
+        Context()->strings->add(
+          "no solutions" => {},
+        );
+        for (
+          "no solution",
+          "none",
+          "there are no solutions",
+          "the solution set is empty",
+          "solution set is empty",
+          "empty set",
+          "∅",
+          "{}",
+          "{ }",
+          "{  }",
+          "{   }"
+        ) {
+          Context()->strings->add($_ => {alias => "no solutions"});
+        }
+        $sol = Point($x,$y);
+        $solution = $sol->cmp(
+          mathQuillOpts => 'disabled'
+        );
+      </pg-code>
+      <statement>
+        <image width="47%">
+          <shortdescription>
+            a coordinate plot of two lines that cross at (<var name="$x"/>, <var name="$y"/>)
+          </shortdescription>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.47\orccaprintwidth
+                ]
+                \addplot[firstcurve,domain=$start[0]:$stop[0]]{$f[0]};
+                \addplot[secondcurve,domain=$start[1]:$stop[1]]{$f[1]};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <instruction>
+          Enter the solution here. If there are no solutions, enter <c>no solutions</c>.
+        </instruction>
+        <p>
+          <var name="$solution" width="16"/>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The lines cross at the point <m><var name="$sol"/></m>, so that is the solution.
+        </p>
+      </solution>
+    </webwork>
   </exercise>
 
   <exercise label="solve-system-graphically-point-slope-copy2">
@@ -114,13 +180,14 @@
   <assemblage>
     <title>Substitution</title>
     <p>
-      One alternative technique to solve a system of two linear equations in two variables is called
+      One technique to solve a system of two linear equations in two variables is called
       <term>substitution</term>. With this technique, you choose one of the variables from one of
-      the equations and isolate that variable. Then <q>substitute</q> that expression in for this
-      variable in the <em>other</em> equation. Most of the time this leaves you with one equation
-      in only one variable, so you can use skills from
+      the equations and isolate that variable. Then <q>substitute</q> that expression into the
+      <em>other</em> equation, replacing that variable. Most of the time this leaves you with one
+      equation in only one variable, so you can use skills from
       <xref ref="chapter-linear-equations-and-inequalities"/> to solve for that one remaining
-      variable. With one of the variables solved for, it's not much more work to solve for the other.
+      variable. With one of the variables solved for, it's not much more work to solve for the
+      other.
     </p>
     <p>
       If either of the equations can be simplified (for example by distributing, by combining like
@@ -226,51 +293,39 @@
           <webwork copy="webwork-check-solution-linear-system-slope-intercept-not-to-second"/>
         </exercise>
       </exercisegroup> -->
-      <!-- <exercisegroup cols="2">
+      <exercisegroup cols="2">
         <title>Identify Solution from Graph</title>
         <introduction>
           <p>
             The graph of two lines represents a system of two linear equations.
             Use the graph to identify the solution to the system.
           </p>
-        </introduction> -->
+        </introduction>
         <exercise label="see-solution-from-graph-point-slope-copy2">
-          <introduction>
-            <p>
-              The graph of two lines represents a system of two linear equations.
-              Use the graph to identify the solution to the system.
-            </p>
-          </introduction>
           <webwork copy="webwork-see-solution-from-graph-point-slope"/>
         </exercise>
-        <!-- <exercise label="see-solution-from-graph-point-slope-parallel-copy2">
+        <exercise label="see-solution-from-graph-point-slope-parallel-copy2">
           <webwork copy="webwork-see-solution-from-graph-point-slope-parallel"/>
         </exercise>
-      </exercisegroup> -->
-      <!-- <exercisegroup cols="2">
+      </exercisegroup>
+      <exercisegroup cols="2">
         <title>See How Many Solutions</title>
         <introduction>
           <p>
             Simply by looking closely at the linear equations, determine how many solutions the
-            system will have. And state whether the system is dependeent, inconsistent, or neither.
+            system will have. And state whether the system is dependent, inconsistent, or neither.
           </p>
         </introduction>
         <exercise label="see-one-solution-copy2">
           <webwork copy="webwork-see-one-solution"/>
-        </exercise> -->
+        </exercise>
         <exercise label="see-infinite-solutions-copy2">
-          <introduction>
-            <p>
-              Simply by looking closely at the linear equations, determine how many solutions the
-              system will have. And state whether the system is dependeent, inconsistent, or neither.
-            </p>
-          </introduction>
           <webwork copy="webwork-see-infinite-solutions"/>
         </exercise>
         <!-- <exercise label="see-no-solutions-copy2">
           <webwork copy="webwork-see-no-solutions"/>
-        </exercise>
-      </exercisegroup> -->
+        </exercise> -->
+      </exercisegroup>
       <exercisegroup cols="2">
         <title>Solve a System</title>
         <introduction>

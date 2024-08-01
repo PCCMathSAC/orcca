@@ -80,26 +80,25 @@
             number <m>y_0</m> tells you a place on the <m>y</m>-axis. If you move up/down from that
             place on the <m>x</m>-axis, while also moving right/left from that place on the
             <m>y</m>-axis, there is one point where the two paths cross. And this is the point
-            labeled with <m>(x_0,y_0)</m>.
+            labeled with <m>(x_0,y_0)</m>. Here are some example points with their coordinates.
           </p>
+          <image width="47%">
+            <latex-image label="review-of-coordinates">
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.47\orccaprintwidth,
+                  ]
+                  \addplot[soliddot] coordinates {( 3,  2)} node[above] {$(3,2)$};
+                  \addplot[soliddot] coordinates {(-5, -1)} node[below] {$(-5,-1)$};
+                  \addplot[soliddot] coordinates {( 0, -3)} node[right] {$(0,-3)$};
+                  \addplot[soliddot] coordinates {( 4,  0)} node[above] {$(4,0)$};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
         </li>
       </ul>
-      <xref ref="figure-cartesian-overview"/> visualizes all of this.
     </p>
-    <figure xml:id="figure-cartesian-overview">
-      <image>
-        <latex-image>
-          \begin{tikzpicture}
-            \begin{axis}[width=0.47\linewidth]
-              \addplot[soliddot] coordinates {(3, 2)} node[above] {$(3,2)$};
-              \addplot[soliddot] coordinates {(-5, -1)} node[below] {$(-5,-1)$};
-              \addplot[soliddot] coordinates {(0, -3)} node[right] {$(0,-3)$};
-              \addplot[soliddot] coordinates {(4, 0)} node[above] {$(4,0)$};
-            \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
   </assemblage>
 
   <exercise label="identify-cartesian-coordinates-copy2">
@@ -108,7 +107,85 @@
         Identify the coordinates of each point in the graph.
       </p>
     </introduction>
-    <webwork copy="webwork-identify-cartesian-coordinates"/>
+    <!-- not an actual copy so that the graph is sized better -->
+    <webwork xml:id="webwork-identify-cartesian-coordinates-copy2">
+      <pg-code>
+        @xy = random_subset(8, -4..-1, 1..4);
+        @x = (@xy)[0..3];
+        @y = (@xy)[4..7];
+        @z = random_subset(2,0..3);
+        $x[$z[0]] = 0;
+        $y[$z[1]] = 0;
+        Context("Point");
+        @p = map {Point($x[$_], $y[$_])} (0..3);
+        @absx = map {abs($_)} @x;
+        @absy = map {abs($_)} @y;
+        @dirx = map {($_ >= 0) ? 'to the right' : 'to the left'} @x;
+        @diry = map {($_ >= 0) ? 'up' : 'down'} @y;
+      </pg-code>
+      <statement>
+        <image width="47%">
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.47\orccaprintwidth,
+                ]
+                \addplot[soliddot] coordinates {$p[0]} node[pin=60:{A}] {};
+                \addplot[soliddot] coordinates {$p[1]} node[pin=60:{B}] {};
+                \addplot[soliddot] coordinates {$p[2]} node[pin=60:{C}] {};
+                \addplot[soliddot] coordinates {$p[3]} node[pin=60:{D}] {};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <instruction>
+          The coordinates of <m>A</m> are:
+        </instruction>
+        <p>
+          <var name="$p[0]" width="3" />
+        </p>
+        <instruction>
+          The coordinates of <m>B</m> are:
+        </instruction>
+        <p>
+          <var name="$p[1]" width="3" />
+        </p>
+        <instruction>
+          The coordinates of <m>C</m> are:
+        </instruction>
+        <p>
+          <var name="$p[2]" width="3" />
+        </p>
+        <instruction>
+          The coordinates of <m>D</m> are:
+        </instruction>
+        <p>
+          <var name="$p[3]" width="3" />
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Point <m>A</m> is <m><var name="$absx[0]"/></m> <var name="$dirx[0]"/> and
+          <m><var name="$absy[0]"/></m> <var name="$diry[0]"/> from the origin, so its coordinates
+          are <m><var name="$p[0]"/></m>.
+        </p>
+        <p>
+          Point <m>B</m> is <m><var name="$absx[1]"/></m> <var name="$dirx[1]"/> and
+          <m><var name="$absy[1]"/></m> <var name="$diry[1]"/> from the origin, so its coordinates
+          are <m><var name="$p[1]"/></m>.
+        </p>
+        <p>
+          Point <m>C</m> is <m><var name="$absx[2]"/></m> <var name="$dirx[2]"/> and
+          <m><var name="$absy[2]"/></m> <var name="$diry[2]"/> from the origin, so its coordinates
+          are <m><var name="$p[2]"/></m>.
+        </p>
+        <p>
+          Point <m>D</m> is <m><var name="$absx[3]"/></m> <var name="$dirx[3]"/> and
+          <m><var name="$absy[3]"/></m> <var name="$diry[3]"/> from the origin, so its coordinates
+          are <m><var name="$p[3]"/></m>.
+        </p>
+      </solution>
+    </webwork>
   </exercise>
   <exercise label="mark-two-points-at-fractional-coordinates-copy2">
     <introduction>
@@ -234,7 +311,60 @@
         Find the rate of change between the two given points.
       </p>
     </introduction>
-    <webwork copy="webwork-rate-of-change-graph-neg"/>
+    <!-- not an actual copy so that the graph is sized better -->
+    <webwork xml:id="webwork-rate-of-change-graph-neg-copy2">
+      <pg-code>
+        Context("Point");
+        do {
+          @a = random_subset(4, -5 .. 5)
+        } until (min(@a) &lt; 0 &amp;&amp; max(@a) > 0);
+        $A = Point((@a)[0,1]);
+        $B = Point((@a)[2,3]);
+        Context("Fraction");
+        $m = Fraction($a[3] - $a[1], $a[2] - $a[0]);
+        Context()->flags->set(reduceConstants => 0);
+        $top = Formula("x - $a[1]");
+        $top = $top->substitute(x => $a[3]);
+        $bottom = Formula("x - $a[0]");
+        $bottom = $bottom->substitute(x => $a[2]);
+      </pg-code>
+      <statement>
+        <image width="47%">
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-6,
+                  ymin=-6,
+                  xmax=6,
+                  ymax=6,
+                  xtick=,
+                  ytick=,
+                  minor xtick=,
+                  minor ytick=,
+                  width=0.47\orccaprintwidth,
+                ]
+                \addplot[soliddot] coordinates {$A $B};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <p>
+          <var name="$m" width="5"/>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The coordinates of the points are <m><var name="$A"/></m> and <m><var name="$B"/></m>.
+          We apply the rate of change formula:
+          <md>
+            <mrow>\amp\frac{y_2-y_1}{x_2-x_1}</mrow>
+            <mrow>\amp= \frac{<var name="$top"/>}{<var name="$bottom"/>}</mrow>
+            <mrow>\amp= \frac{<var name="$top->reduce"/>}{<var name="$bottom->reduce"/>}</mrow>
+          </md>
+          So the rate of change is <m><var name="$m"/></m>.
+        </p>
+      </solution>
+    </webwork>
   </exercise>
   <exercise label="determine-if-table-data-is-linear-4-copy2">
     <introduction>
@@ -249,7 +379,7 @@
     <title>Slope</title>
     <p>
       When you take any two points on a straight (non-vertical) line, the rate of change is always
-      the same no matter which two points you chose. We call this common rate of change the
+      the same no matter which two points you choose. We call this common rate of change the
       <term>slope</term> of the line. It is usually represented by the symbol <m>m</m>.
     </p>
     <p>
@@ -260,8 +390,8 @@
       where <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m> can be <em>any</em> two points on the line.
     </p>
     <p>
-      A useful matra for slope is <q>rise over run</q>, because graphically as you move from
-      <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>, the amout you <q>rise</q> by is <m>y_2-y_1</m>, and the
+      A useful mantra for slope is <q>rise over run</q>, because graphically as you move from
+      <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>, the amount you <q>rise</q> by is <m>y_2-y_1</m>, and the
       amount you <q>run</q> by is <m>x_2-x_1</m>. However, it is recommended that you get in the
       habit of thinking about the <q>run</q> as coming logically first, and the <q>rise</q> being a
       consequence of the run.
@@ -312,7 +442,60 @@
         Find the slope of the line given its graph.
       </p>
     </introduction>
-    <webwork copy="webwork-slope-from-graph-fraction"/>
+    <!-- not an actual copy so that the graph is sized better -->
+    <webwork xml:id="webwork-slope-from-graph-fraction-copy2">
+      <pg-code>
+        Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
+        @x = random_subset(2, 1 .. 9);
+        @y = random_subset(2, 1 .. 9);
+        $m = Fraction($y[1] - $y[0], $x[1] - $x[0]);
+        Context("Numeric");
+        $f = Formula("$m (x - $x[0]) + $y[0]");
+        Context()->flags->set(reduceConstants => 0);
+        $top = Formula("x - $y[0]");
+        $top = $top->substitute(x => $y[1]);
+        $bottom = Formula("x - $x[0]");
+        $bottom = $bottom->substitute(x => $x[1]);
+      </pg-code>
+      <statement>
+        <image width="47%">
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin=-1,
+                  xmax=10,
+                  ymin=-1,
+                  ymax=10,
+                  xtick={2,4,...,8},
+                  minor xtick={1,...,9},
+                  ytick={5,10},
+                  minor ytick={1,...,9},
+                  width=0.47\orccaprintwidth
+                ]
+                \addplot+[domain=-1:10,samples=2] {$f};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <p>
+          <var name="$m" width="10"/>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          First we use the graph to identify two points. We find
+          <m>(<var name="$x[0]"/>, <var name="$y[0]"/>)</m> and
+          <m>(<var name="$x[1]"/>, <var name="$y[1]"/>)</m>, but you might find another pair of
+          points and the slope will work out to be the same. Using the slope formula:
+          <md>
+            <mrow>m \amp= \frac{y_2 - y_1}{x_2 - x_1}</mrow>
+            <mrow>\amp= \frac{<var name="$top"/>}{<var name="$bottom"/>}</mrow>
+            <mrow>\amp= \frac{<var name="$top->reduce"/>}{<var name="$bottom->reduce"/>}</mrow>
+          </md>
+          So the slope is <m><var name="$m"/></m>.
+        </p>
+      </solution>
+    </webwork>
   </exercise>
   <exercise label="skiing-copy">
     <webwork copy="webwork-skiing"/>
@@ -337,7 +520,7 @@
       have a way to determine the slope and the <m>y</m>-intercept, then all you need to do is
       write down <m>y=mx+b</m> with the appropriate values for <m>m</m> and <m>b</m>. For example if
       you have a graph of a line, you can see the value of <m>b</m> where the line crosses the
-      <m>y</m>-axis. And you can use a slope triangle to dermine the slope <m>m</m>. Then writing
+      <m>y</m>-axis. And you can use a slope triangle to determine the slope <m>m</m>. Then writing
       <m>y=mx+b</m> gives you an equation for the line.
     </p>
     <p>
@@ -359,7 +542,60 @@
         In the given graph, what is the line's slope-intercept equation?
       </p>
     </introduction>
-    <webwork copy="webwork-slope-intercept-from-graph-pos-reciprocal"/>
+    <webwork xml:id="webwork-slope-intercept-from-graph-pos-reciprocal-copy2">
+      <pg-code>
+        $b = non_zero_random(-4,4);
+        Context("Fraction");
+        $m = Fraction(1/random(2,9));
+        $x1 = 0;
+        $y1 = $b;
+        $x2 = 1/$m;
+        $y2 = $b+1;
+        $rise = $y2-$y1;
+        $run = $x2-$x1;
+        Context()->variables->add(y=>'Real');
+        Context()->noreduce('(-x)-y','(-x)+y');
+        parser::Assignment->Allow;
+        $ansSI = Formula("y = $m*x+$b")->reduce;
+        $xmax = max(5, 1/$m + 1);
+        $xmin = -$xmax;
+        $ymin = -7;
+        $ymax = 7;
+        ($start,$stop) = (num_sort($xmin,$xmax,($ymin-$b)/$m,($ymax-$b)/$m))[1,2];
+      </pg-code>
+      <statement>
+        <image width="47%">
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  xmin = $xmin,
+                  xmax = $xmax,
+                  ymin = $ymin,
+                  ymax = $ymax,
+                  xtick =,
+                  ytick =,
+                  minor xtick = {$xmin,...,$xmax},
+                  minor ytick = {$ymin,...,$ymax},
+                  grid = minor,
+                  width=0.47\orccaprintwidth,
+                ]
+                \addplot+[domain=$start:$stop] {$m*x+$b};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <p>
+          <var name="$ansSI" width="16"/>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We can see the <m>y</m>-intercept is at <m>(0,<var name="$b"/>)</m>. Using <q>rise over
+          run</q>, we also see that the slope is <m><var name="$m"/></m>. So the line's
+          slope-intercept equation is <m><var name="$ansSI"/></m>.
+        </p>
+      </solution>
+    </webwork>
   </exercise>
   <exercise label="plot-slope-intercept-neg-int-copy6">
     <introduction>
@@ -399,7 +635,7 @@
     </p>
     <p>
       Graphing a line equation that is in point slope form is straightforward. First, identify the
-      spectial point that is being used, <m>(x_0,y_0)</m>, and mark that point. Then use slope
+      special point that is being used, <m>(x_0,y_0)</m>, and mark that point. Then use slope
       triangles based on the slope <m>m</m> to extend the line.
     </p>
     <p>
@@ -445,7 +681,7 @@
     </p>
     <p>
       Unlike slope-intercept and point-slope forms, there is no direct meaning to the numbers in a
-      standard form equation. The <m>A</m>, <m>B</m>, and <m>C</m> don't direclty tell you anything
+      standard form equation. The <m>A</m>, <m>B</m>, and <m>C</m> don't directly tell you anything
       about the line's graph. However:
       <ul>
         <li>
@@ -481,8 +717,7 @@
   <exercise label="standard-form-find-slope-and-intercepts-integers-one-neg-copy2">
     <introduction>
       <p>
-        Find both intecepts and the slope of the line (whose equation is written in standard
-        form).
+        Find both intercepts and the slope of the line.
       </p>
     </introduction>
     <webwork copy="webwork-standard-form-find-slope-and-intercepts-integers-one-neg"/>
@@ -515,7 +750,7 @@
       lines do not have slope at all (not to be confused with having slope <m>0</m>).
     </p>
     <p>
-      Two vvertical lines are parallel. If neither line is vertical, the two lines are parallel if
+      Two vertical lines are parallel. If neither line is vertical, the two lines are parallel if
       and only if they have the same slope. If you have two lines and need to determine whether or
       not they are parallel, find each line's slope. Only when they have the exact same slope will
       the two lines be parallel.
@@ -524,7 +759,7 @@
       Two lines are perpendicular when one is horizontal and the other is vertical. But if neither
       line is vertical, then they are perpendicular if and only if when you multiply their slopes
       together, the result is <m>-1</m>. In other words, the two slopes are negative reciprocals of
-      eachother.
+      each other.
     </p>
   </assemblage>
 
@@ -534,12 +769,41 @@
         Write an equation for the given line.
       </p>
     </introduction>
-    <webwork copy="webwork-identify-vertical-line-equation"/>
+    <!-- not an actual copy so that the graph is sized better -->
+    <webwork xml:id="webwork-identify-vertical-line-equation-copy2">
+      <pg-code>
+        $h = non_zero_random(-6,6);
+        Context("ImplicitPlane")->variables->are(x => 'Real', y => 'Real');
+        $line=ImplicitPlane("x=$h");
+      </pg-code>
+      <statement>
+        <image width="47%">
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.47\orccaprintwidth
+                ]
+                \addplot+ coordinates {($h,-7) ($h,7)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+        <p>
+          <var name="$line" width="16"/>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          This is a vertical line, so it has an equation in the form <m>x=\text{number}</m>. The
+          graph shows us which number. The equation is <m><var name="$line"/></m>.
+        </p>
+      </solution>
+    </webwork>
   </exercise>
   <exercise label="given-points-determine-two-lines-parallel-perpendicular-copy2">
     <introduction>
       <p>
-        Determine if the two lines are the same line, distict parallel lines, perpendicular
+        Determine if the two lines are the same line, distinct parallel lines, perpendicular
         lines, or none of the above.
       </p>
     </introduction>
@@ -568,6 +832,9 @@
         <exercise label="identify-cartesian-coordinates-copy3">
           <webwork copy="webwork-identify-cartesian-coordinates"/>
         </exercise>
+        <exercise label="identify-cartesian-coordinates-copy4">
+          <webwork copy="webwork-identify-cartesian-coordinates"/>
+        </exercise>
       </exercisegroup>
   
       <exercisegroup>
@@ -577,10 +844,10 @@
             Make a Cartesian plot with the indicated points marked.
           </p>
         </introduction>
-        <!-- <exercise label="mark-four-points-at-coordinates-copy2">
+        <exercise label="mark-four-points-at-coordinates-copy2">
           <webwork copy="webwork-mark-four-points-at-coordinates"/>
         </exercise>
-        <exercise label="mark-two-points-at-fractional-coordinates-copy2">
+        <!-- <exercise label="mark-two-points-at-fractional-coordinates-copy2">
           <webwork copy="webwork-mark-two-points-at-fractional-coordinates"/>
         </exercise> -->
         <exercise label="mark-two-points-at-decimal-coordinates-copy2">
@@ -611,23 +878,28 @@
         <webwork copy="webwork-stable-isotopes"/>
       </exercise> -->
   
-      <exercisegroup cols="4">
+      <!-- <exercisegroup cols="4"> -->
         <!-- <title>Quadrants</title> -->
-        <introduction>
+        <!-- <introduction>
           <p>
             Which quadrant is the point in?
           </p>
-        </introduction>
+        </introduction> -->
         <!-- <exercise label="which-quadrant-copy4">
           <webwork copy="webwork-which-quadrant"/>
         </exercise> -->
         <exercise label="which-quadrant-copy5">
+          <introduction>
+            <p>
+              Which quadrant is the point in?
+            </p>
+          </introduction>
           <webwork copy="webwork-which-quadrant"/>
         </exercise>
         <!-- <exercise label="which-quadrant-copy6">
           <webwork copy="webwork-which-quadrant"/>
         </exercise> -->
-      </exercisegroup>
+      <!-- </exercisegroup> -->
     </subexercises>
 
     <subexercises>
@@ -640,9 +912,9 @@
             one correct answer.
           </p>
         </introduction>
-        <!-- <exercise label="test-integer-solutions-to-line-equation-copy2">
+        <exercise label="test-integer-solutions-to-line-equation-copy3">
           <webwork copy="webwork-test-integer-solutions-to-line-equation"/>
-        </exercise> -->
+        </exercise>
         <exercise label="test-decimal-solutions-to-line-equation-copy2">
           <webwork copy="webwork-test-decimal-solutions-to-line-equation"/>
         </exercise>
@@ -654,7 +926,7 @@
         </exercise> -->
       </exercisegroup>
 
-      <exercisegroup>
+      <exercisegroup cols="2">
         <introduction>
           <p>
             Make a table and then plot the equation.
@@ -741,10 +1013,10 @@
         </exercise>
         <!-- <exercise label="rate-of-change-point-coordinates-decimals-copy2">
           <webwork copy="webwork-rate-of-change-point-coordinates-decimals"/>
-        </exercise>
+        </exercise> -->
         <exercise label="rate-of-change-point-coordinates-fractions-copy2">
           <webwork copy="webwork-rate-of-change-point-coordinates-fractions"/>
-        </exercise> -->
+        </exercise>
         <exercise label="rate-of-change-graph-copy2">
           <webwork copy="webwork-rate-of-change-graph"/>
         </exercise>
@@ -762,7 +1034,7 @@
         </exercise> -->
       </exercisegroup>
 
-      <exercisegroup cols="4">
+      <exercisegroup cols="2">
         <!-- <title>Linear Relationships</title> -->
         <introduction>
           <p>
@@ -862,13 +1134,13 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
+      <!-- <exercisegroup cols="2"> -->
         <!-- <title>Find the Steepest</title> -->
-        <introduction>
+        <!-- <introduction>
           <p>
             Determine the steepest slope for a line connecting two points from the list.
           </p>
-        </introduction>
+        </introduction> -->
         <!-- <exercise label="find-the-steepest-copy2">
           <webwork copy="webwork-find-the-steepest"/>
         </exercise>
@@ -876,9 +1148,14 @@
           <webwork copy="webwork-find-the-steepest-large"/>
         </exercise> -->
         <exercise label="find-the-steepest-decimal-copy2">
+          <introduction>
+            <p>
+              Determine the steepest slope for a line connecting two points from the list.
+            </p>
+          </introduction>
           <webwork copy="webwork-find-the-steepest-decimal"/>
         </exercise>
-      </exercisegroup>
+      <!-- </exercisegroup> -->
 
       <!-- <exercisegroup> -->
         <!-- <title>Plot Slope Through a Point</title> -->
@@ -895,7 +1172,7 @@
         </exercise>
       </exercisegroup> -->
 
-      <exercisegroup>
+      <exercisegroup cols="2">
         <!-- <title>Plot Slope</title> -->
         <introduction>
           <p>
@@ -904,6 +1181,9 @@
         </introduction>
         <exercise label="plot-slopes-copy2">
           <webwork copy="webwork-plot-slopes"/>
+        </exercise>
+        <exercise label="plot-slopes-negative-copy2">
+          <webwork copy="webwork-plot-slopes-negative"/>
         </exercise>
       </exercisegroup>
 
@@ -983,7 +1263,7 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup>
+      <exercisegroup cols="3">
         <!-- <title>Graph Equations</title> -->
         <introduction>
           <p>
@@ -1099,7 +1379,7 @@
 
     <subexercises>
       <title><xref ref="section-point-slope-form"/>: <xref ref="section-point-slope-form" text="title"/></title>
-      <exercisegroup>
+      <exercisegroup cols="2">
         <!-- <title>Identify Point and Slope</title> -->
         <introduction>
           <p>
@@ -1107,18 +1387,18 @@
             line that is being singled out.
           </p>
         </introduction>
-        <!-- <exercise label="identify-slope-and-point-pos-int-copy">
+        <exercise label="identify-slope-and-point-pos-int-copy3">
           <webwork copy="webwork-identify-slope-and-point-pos-int"/>
-        </exercise> -->
-        <exercise label="identify-slope-and-point-neg-h-int-copy2">
+        </exercise>
+        <!-- <exercise label="identify-slope-and-point-neg-h-int-copy2">
           <webwork copy="webwork-identify-slope-and-point-neg-h-int"/>
         </exercise>
-        <!-- <exercise label="identify-slope-and-point-neg-int-copy">
+        <exercise label="identify-slope-and-point-neg-int-copy">
           <webwork copy="webwork-identify-slope-and-point-neg-int"/>
-        </exercise>
-        <exercise label="identify-slope-and-point-neg-k-int-copy">
-          <webwork copy="webwork-identify-slope-and-point-neg-k-int"/>
         </exercise> -->
+        <exercise label="identify-slope-and-point-neg-k-int-copy2">
+          <webwork copy="webwork-identify-slope-and-point-neg-k-int"/>
+        </exercise>
       </exercisegroup>
 
       <exercisegroup>
@@ -1132,12 +1412,12 @@
         <exercise label="write-point-slope-pos-int-copy2">
           <webwork copy="webwork-write-point-slope-pos-int"/>
         </exercise>
-        <!-- <exercise label="write-point-slope-neg-int-copy">
+        <!-- <exercise label="write-point-slope-neg-int-copy3">
           <webwork copy="webwork-write-point-slope-neg-int"/>
-        </exercise>
-        <exercise label="write-point-slope-mixed-int-decimal-slope-copy">
-          <webwork copy="webwork-write-point-slope-mixed-int-decimal-slope"/>
         </exercise> -->
+        <exercise label="write-point-slope-mixed-int-decimal-slope-copy2">
+          <webwork copy="webwork-write-point-slope-mixed-int-decimal-slope"/>
+        </exercise>
       </exercisegroup>
 
       <exercisegroup cols="2">
@@ -1162,7 +1442,7 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup>
+      <exercisegroup cols="2">
         <!-- <title>Converting Point-Slope to Slope-Intercept</title> -->
         <introduction>
           <p>
@@ -1171,10 +1451,10 @@
         </introduction>
         <!-- <exercise label="convert-point-slope-to-slope-intercept-pos-int-copy">
           <webwork copy="webwork-convert-point-slope-to-slope-intercept-pos-int"/>
-        </exercise>
-        <exercise label="convert-point-slope-to-slope-intercept-neg-int-copy">
-          <webwork copy="webwork-convert-point-slope-to-slope-intercept-neg-int"/>
         </exercise> -->
+        <exercise label="convert-point-slope-to-slope-intercept-neg-int-copy2">
+          <webwork copy="webwork-convert-point-slope-to-slope-intercept-neg-int"/>
+        </exercise>
         <exercise label="convert-point-slope-to-slope-intercept-pos-frac-copy2">
           <webwork copy="webwork-convert-point-slope-to-slope-intercept-pos-frac"/>
         </exercise>
@@ -1183,7 +1463,7 @@
         </exercise> -->
       </exercisegroup>
 
-      <exercisegroup>
+      <exercisegroup cols="2">
         <!-- <title>Point-Slope Form from a Graph</title> -->
         <introduction>
           <p>
@@ -1198,13 +1478,13 @@
         </exercise>
         <!-- <exercise label="determine-point-slope-form-from-graph-q1-large-y-copy">
           <webwork copy="webwork-determine-point-slope-form-from-graph-q1-large-y"/>
-        </exercise>
-        <exercise label="determine-point-slope-form-from-graph-q1-large-y-precise-copy">
-          <webwork copy="webwork-determine-point-slope-form-from-graph-q1-large-y-precise"/>
         </exercise> -->
+        <exercise label="determine-point-slope-form-from-graph-q1-large-y-precise-copy2">
+          <webwork copy="webwork-determine-point-slope-form-from-graph-q1-large-y-precise"/>
+        </exercise>
       </exercisegroup>
 
-      <exercisegroup>
+      <exercisegroup cols="2">
         <!-- <title>Make Graphs</title> -->
         <introduction>
           <p>
@@ -1260,7 +1540,7 @@
         <!-- <title>Slope and Intercepts</title> -->
         <introduction>
           <p>
-            Find both intecepts and the slope of the line (whose equation is written in standard
+            Find both intercepts and the slope of the line (whose equation is written in standard
             form).
           </p>
         </introduction>
@@ -1291,10 +1571,10 @@
             Write the linear equation in standard form.
           </p>
         </introduction>
-        <!-- <exercise label="write-slope-intercept-form-in-standard-form-copy2">
+        <exercise label="write-slope-intercept-form-in-standard-form-copy3">
           <webwork copy="webwork-write-slope-intercept-form-in-standard-form"/>
         </exercise>
-        <exercise label="write-slope-intercept-form-in-standard-form-fraction-copy">
+        <!-- <exercise label="write-slope-intercept-form-in-standard-form-fraction-copy">
           <webwork copy="webwork-write-slope-intercept-form-in-standard-form-fraction"/>
         </exercise> -->
         <exercise label="write-slope-intercept-form-in-standard-form-fraction2-copy">
@@ -1302,17 +1582,17 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup>
+      <exercisegroup cols="2">
         <!-- <title>Graphs and Standard Form</title> -->
         <introduction>
           <p>
             Plot the given standard form linear equation.
           </p>
         </introduction>
-        <!-- <exercise label="standard-form-plot-positive-integers-copy">
+        <exercise label="standard-form-plot-positive-integers-copy5">
           <webwork copy="webwork-standard-form-plot-positive-integers"/>
         </exercise>
-        <exercise label="standard-form-plot-positive-integers-one-neg-copy">
+        <!-- <exercise label="standard-form-plot-positive-integers-one-neg-copy">
           <webwork copy="webwork-standard-form-plot-positive-integers-one-neg"/>
         </exercise> -->
         <exercise label="standard-form-plot-positive-integers-both-neg-copy4">
@@ -1336,28 +1616,33 @@
 
     <subexercises>
       <title><xref ref="section-geometry-of-lines"/>: <xref ref="section-geometry-of-lines" text="title"/></title>
-      <exercisegroup>
+      <!-- <exercisegroup> -->
         <!-- <title>Tables for Horizontal and Vertical Lines</title> -->
-        <introduction>
+        <!-- <introduction>
           <p>
             Make a table for the equation, and then plot it.
           </p>
-        </introduction>
+        </introduction> -->
         <!-- <exercise label="plot-vertical-linear-equation-copy">
           <webwork copy="webwork-plot-vertical-linear-equation"/>
         </exercise> -->
         <exercise label="plot-horizontal-linear-equation-copy4">
+          <introduction>
+            <p>
+              Make a table for the equation, and then plot it.
+            </p>
+          </introduction>
           <webwork copy="webwork-plot-horizontal-linear-equation"/>
         </exercise>
-      </exercisegroup>
+      <!-- </exercisegroup> -->
 
-      <exercisegroup cols="2">
+      <!-- <exercisegroup cols="2"> -->
         <!-- <title>Identify the Line Equation</title> -->
-        <introduction>
+        <!-- <introduction>
           <p>
             Write an equation for the given line.
           </p>
-        </introduction>
+        </introduction> -->
         <!-- <exercise label="identify-horizontal-line-equation-copy">
           <webwork copy="webwork-identify-horizontal-line-equation"/>
         </exercise>
@@ -1365,12 +1650,17 @@
           <webwork copy="webwork-identify-vertical-line-equation"/>
         </exercise> -->
         <exercise label="identify-vertical-line-equation-given-two-points-copy2">
+          <introduction>
+            <p>
+              Write an equation for the given line.
+            </p>
+          </introduction>
           <webwork copy="webwork-identify-vertical-line-equation-given-two-points"/>
         </exercise>
         <!-- <exercise label="identify-horizontal-line-equation-given-two-points-copy">
           <webwork copy="webwork-identify-horizontal-line-equation-given-two-points"/>
         </exercise> -->
-      </exercisegroup>
+      <!-- </exercisegroup> -->
 
       <exercisegroup cols="2">
         <!-- <title>Intercepts</title> -->
@@ -1379,22 +1669,22 @@
             Find the <m>x</m>- and <m>y</m>-intercepts of each line.
           </p>
         </introduction>
-        <!-- <exercise label="find-intercepts-horizontal-line-copy">
+        <exercise label="find-intercepts-horizontal-line-copy2">
           <webwork copy="webwork-find-intercepts-horizontal-line"/>
-        </exercise> -->
+        </exercise>
         <exercise label="find-intercepts-vertical-line-copy2">
           <webwork copy="webwork-find-intercepts-vertical-line"/>
         </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
+      <!-- <exercisegroup cols="2"> -->
         <!-- <title>Parallel or Perpendicular</title> -->
-        <introduction>
+        <!-- <introduction>
           <p>
-            Determine if the two lines are the same line, distict parallel lines, perpendicular
+            Determine if the two lines are the same line, distinct parallel lines, perpendicular
             lines, or none of the above.
           </p>
-        </introduction>
+        </introduction> -->
         <!-- <exercise label="given-points-determine-two-lines-parallel-perpendicular-copy">
           <webwork copy="webwork-given-points-determine-two-lines-parallel-perpendicular"/>
         </exercise>
@@ -1402,24 +1692,35 @@
           <webwork copy="webwork-given-points-determine-two-lines-parallel-perpendicular2"/>
         </exercise> -->
         <exercise label="given-points-determine-two-lines-parallel-perpendicular3-copy2">
+          <introduction>
+            <p>
+              Determine if the two lines are the same line, distinct parallel lines, perpendicular
+              lines, or none of the above.
+            </p>
+          </introduction>
           <webwork copy="webwork-given-points-determine-two-lines-parallel-perpendicular3"/>
         </exercise>
         <!-- <exercise label="given-points-determine-two-lines-parallel-perpendicular4-copy">
           <webwork copy="webwork-given-points-determine-two-lines-parallel-perpendicular4"/>
         </exercise> -->
-      </exercisegroup>
+      <!-- </exercisegroup> -->
 
-      <exercisegroup>
+      <!-- <exercisegroup> -->
         <!-- <title>Constructing Parallel and Perpendicular Lines</title> -->
-        <introduction>
+        <!-- <introduction>
           <p>
             Write an equation for the line that is described. Then plot that line.
           </p>
-        </introduction>
+        </introduction> -->
         <!-- <exercise label="equation-and-plot-parallel-line-copy">
           <webwork copy="webwork-equation-and-plot-parallel-line"/>
         </exercise> -->
         <exercise label="equation-and-plot-perpendicular-line-copy2">
+          <introduction>
+            <p>
+              Write an equation for the line that is described. Then plot that line.
+            </p>
+          </introduction>
           <webwork copy="webwork-equation-and-plot-perpendicular-line"/>
         </exercise>
         <!-- <exercise label="equation-and-plot-perpendicular-to-horizontal-line-copy">
@@ -1428,7 +1729,7 @@
         <exercise label="equation-and-plot-parallel-to-horizontal-line-copy">
           <webwork copy="webwork-equation-and-plot-parallel-to-horizontal-line"/>
         </exercise> -->
-      </exercisegroup>
+      <!-- </exercisegroup> -->
     </subexercises>
   </exercises>
 </section>

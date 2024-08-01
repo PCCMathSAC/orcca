@@ -6,7 +6,11 @@
 % Math font
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{euler}
-
+\usepackage{xcoffins}
+\NewCoffin\Framex
+\NewCoffin\Theox
+\usepackage{changepage}
+\strictpagecheck
 ]]>
 </latex-preamble-early>
 
@@ -15,7 +19,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main font
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setmainfont{Palatino}[SmallCapsFont={Palatino SC}]
+\setmainfont{AvantGarde Bk BT}[
+  ItalicFont = {AvantGarde Italic}
+]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Asides
@@ -35,23 +41,25 @@
    width=\dimexpr1.2in+0.6in\relax,
    enlarge right by=-0.6in,
    coltitle=black, fonttitle=\bfseries, title={\footnotesize#1}, detach title, before upper={\tcbtitle\ \ }}
-\renewenvironment{aside}[2]{
-\begin{floatingfigure}{1.2in}%\vspace{\dimexpr-\topskip}
-\checkoddpage
-\ifoddpage
-\begin{asideinsideright}{#1}{#2}
-\else
-\begin{asideinsideleft}{#1}{#2}
-\fi
-\footnotesize\quad}
-{
-\ifoddpage
-\end{asideinsideright}
-\else
-\end{asideinsideleft}
-\fi
-\end{floatingfigure}
-}
+%\renewenvironment{aside}[2]{
+%  \begin{floatingfigure}{1.2in}%
+%  \vspace{\dimexpr-\topskip}
+%  \checkoddpage
+%  \ifoddpage
+%    \begin{asideinsideright}{#1}{#2}
+%  \else
+%    \begin{asideinsideleft}{#1}{#2}
+%  \fi
+%  \footnotesize\quad}
+%  {
+%    \ifoddpage
+%  \end{asideinsideright}
+%    \else
+%  \end{asideinsideleft}
+%    \fi
+%  \end{floatingfigure}
+%}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CC icon at bottom of each page
@@ -79,8 +87,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Basic paragraph parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\setlength{\parindent}{0pt}
-%\setlength{\parskip}{0.5pc}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5pc}
+\setlength{\marginparsep}{2em}
+\usepackage[hang,flushmargin]{footmisc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Greg's L
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -108,18 +118,21 @@
 %    skipabove=1.2\baselineskip,]\begin{mdexploration}[#1]}
 %  {\end{mdexploration}\end{mdframed}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Apples, etc
+% Unicode characters that might not be in the font
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set up the emoji for the three fruit we use&#xa;</xsl:text>
-\newfontfamily{\emojifont}{Symbola}
+\newfontfamily{\symbola}{Symbola}
 \usepackage{newunicodechar}
-\newunicodechar{🍎}{\emojifont{🍎}}%
-\newunicodechar{🍐}{\emojifont{🍐}}%
-\newunicodechar{🍌}{\emojifont{🍌}}%
-\newunicodechar{🐱}{\emojifont{🐱}}%
-\newunicodechar{🐶}{\emojifont{🐶}}%
+\newunicodechar{🍎}{{\symbola{🍎}}}%
+\newunicodechar{🍐}{{\symbola{🍐}}}%
+\newunicodechar{🍌}{{\symbola{🍌}}}%
+\newunicodechar{🐱}{{\symbola{🐱}}}%
+\newunicodechar{🐶}{{\symbola{🐶}}}%
+\newunicodechar{℃}{\,^{\circ}\mathrm{C}}%
+\newunicodechar{℉}{\,^{\circ}\mathrm{F}}%
+\newunicodechar{⚖}{{\symbola{⚖}}}%
 
 \tcbset{ examplestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, enhanced,
+    before upper app={\setlength{\parindent}{\normalparindent}\setlength{\parskip}{\normalparskip}},
      overlay unbroken = {\draw[sixthcolor,line width=1pt]
        ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
      overlay first = {\draw[sixthcolor,line width=1pt]
@@ -131,12 +144,13 @@
 } }%
 
 \tcbset{ inlineexercisestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, enhanced,
+    before upper app={\setlength{\parindent}{\normalparindent}\setlength{\parskip}{\normalparskip}},
      overlay unbroken = {\draw[sixthcolor,line width=1pt]
        ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=-15pt, xshift=-1.5em]frame.north west);
-       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{images/webwork-logo.eps}};},
+       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{external/images/webwork-logo-bw.pdf}};},
      overlay first = {\draw[sixthcolor,line width=1pt]
        ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=-15pt, xshift=-1.5em]frame.north west);
-       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{images/webwork-logo.eps}};},
+       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{external/images/webwork-logo-bw.pdf}};},
      overlay middle = {\draw[sixthcolor,line width=1pt]
        ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
      overlay last = {\draw[sixthcolor,line width=1pt]
@@ -146,7 +160,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Used for certain systems of equations to align better
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{nccmath}
+%\usepackage{nccmath}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Index page numbering and edge index
@@ -159,6 +173,62 @@
 % Used with inserting edge indexing on parts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xpatch}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figures in the
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{breaklinks=true}
+\newlength{\Textw} % save textwidth outside the boxes
+\setlength{\Textw}{\textwidth}
+\newlength{\Hshift}
+\newlength{\Mshift}
+\newcommand*{\calculateMshift}{%
+  \checkoddpage
+  \ifoddpage
+    \setlength{\Mshift}{\marginparsep}
+  \else
+    \setlength{\Mshift}{\dimexpr-\marginparsep-\textwidth-\marginparwidth\relax}
+  \fi
+}
+
+\newcommand*{\calculateHshift}{%
+  \checkoddpage
+  \ifoddpage
+    \setlength{\Hshift}{\dimexpr\Textw/2-\tcbtextwidth/2\relax}
+  \else
+    \setlength{\Hshift}{\dimexpr-\Textw/2+\tcbtextwidth/2\relax}
+  \fi
+}
+\newcommand{\tcbmarginbox}[2]{%
+  \par %start a new line
+  \calculateMshift
+  \calculateHshift
+  \SetHorizontalCoffin\Framex{} %clear box Framex
+  \SetVerticalCoffin\Theox{\marginparwidth}{#1}% fill box \Theox
+  \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)%join boxes
+  \noindent\TypesetCoffin\Framex(\Hshift,0pt)\\[-2\baselineskip] %typset assembly
+}
+\newcommand{\listmarginbox}[2]{%
+  \par %start a new line
+  \calculateMshift
+  \calculateHshift
+  \SetHorizontalCoffin\Framex{\color{black}\rule{\tcbtextwidth}{0pt}} %clear box Framex
+  \SetVerticalCoffin\Theox{\marginparwidth}{#1}% fill box \Theox
+  \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\Hshift-9mm\relax,#2)%join boxes
+  \noindent\TypesetCoffin\Framex\\[-2\baselineskip] %typeset assembly
+}
+\newcommand{\parmarginbox}[2]{%
+  \par %start a new line
+  \calculateMshift
+  \SetHorizontalCoffin\Framex{}
+  \SetVerticalCoffin\Theox{\marginparwidth}{#1}
+  \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)
+  \noindent\TypesetCoffin\Framex(0mm,0pt)\\[-2\baselineskip]
+}
+\newtcolorbox[use counter from=block]{qrptx}{width=3cm, lower separated=false, unbreakable, figureptxstyle, halign lower=flush center}
+%\usepackage{ucharclasses}
+%\setTransitionTo{LetterlikeSymbols}{TeX Gyre Termes}
+
 
 ]]>
 </latex-preamble-late>

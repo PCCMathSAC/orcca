@@ -72,12 +72,6 @@
     \newcommand{\point}[2]{\left(#1,#2\right)}
     %
     %
-    \definecolor{sapphire}{RGB}{59,90,125}
-    \definecolor{lightsapphire}{RGB}{110,154,187}% (lightened to contrast ratio just above 7 with black)
-    \definecolor{emerald}{RGB}{20,97,75}
-    \definecolor{lightemerald}{RGB}{18,168,131}% (lightened to contrast ratio just above 7 with black)
-    %
-    %
     %  highlight (draw attention to something in math mode)
     %  Usage: \highlight{x}
     \newcommand{\highlight}[1]{\mathchoice{\colorbox{lightsapphire}{$\displaystyle #1$}}{\colorbox{lightsapphire}{$\textstyle #1$}}{\colorbox{lightsapphire}{$\scriptstyle #1$}}{\colorbox{lightsapphire}{$\scriptscriptstyle #1$}}}%
@@ -126,46 +120,46 @@
     %
     %  addright (add to the right)
     %  Usage: x-1\addright{1}\amp=1\addright{1}
-    \newcommand{\addright}[1]{{\color{blue}{{{}+#1}}}}
+    \newcommand{\addright}[1]{{\highlight{{{}+#1}}}}
     %
     %
     %  addleft (add to the left)
     %  Usage: \addleft{1}x-1\amp=\addleft{1}1
-    \newcommand{\addleft}[1]{{\color{blue}{{#1+{}}}}}
+    \newcommand{\addleft}[1]{{\highlight{{#1+{}}}}}
     %
     %
     %  subtractright (subtract to the right)
     %  Usage: x+1\subtractright{1}\amp=1\subtractright{1}
-    \newcommand{\subtractright}[1]{{\color{blue}{{{}-#1}}}}
+    \newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}
     %
     %
     %  multiplyright (multiply to the right)
     %  Usage: \frac{x}{2}\multiplyright{2}\amp=1\multiplyright{2}
     %  Usage: \frac{x}{2}\multiplyright[\times]{2}\amp=1\multiplyright[\times]{2}
     %  Usage: \frac{x}{2}\multiplyright[]{2}\amp=1\multiplyright[]{2}
-    \newcommand{\multiplyright}[2][\cdot]{{\color{blue}{{{}#1#2}}}}
+    \newcommand{\multiplyright}[2][\cdot]{{\highlight{{{}#1#2}}}}
     %
     %
     %  multiplyleft (multiply to the left)
     %  Usage: \frac{x}{2}\multiplyleft{2}\amp=\multiplyleft{2}1
     %  Usage: \frac{x}{2}\multiplyleft[\times]{2}\amp=\multiplyleft[\times]{2}1
     %  Usage: \frac{x}{2}\multiplyleft[]{2}\amp=\multiplyleft[]{2}1
-    \newcommand{\multiplyleft}[2][\cdot]{{\color{blue}{{#2#1{}}}}}
+    \newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}
     %
     %
     %  divideunder (divide with a fraction bar)
     %  Usage: \divideunder{2y}{2}\amp=\divideunder{x+2}{2}
-    \newcommand{\divideunder}[2]{\frac{#1}{{\color{blue}{{#2}}}}}
+    \newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}
     %
     %
     %  divideright (divide with division symbol)
     %  Usage: 2x\divideright{2}\amp=2\divideright{2}
-    \newcommand{\divideright}[1]{{\color{blue}{{{}\div#1}}}}
+    \newcommand{\divideright}[1]{{\highlight{{{}\div#1}}}}
     %
     %
     %  negate
     %  Usage: \negate(-2x)
-    \newcommand{\negate}[1]{{\color{blue}{{-}}}\left(#1\right)}
+    \newcommand{\negate}[1]{{\highlight{{-}}}\left(#1\right)}
     %
     %
     %  cancelhighlight (draw attention to when a factor is canceled)
@@ -207,7 +201,10 @@
   </macros>
   <latex-image-preamble>
     <![CDATA[
+    \newlength{\orccaprintwidth}
+    \setlength{\orccaprintwidth}{350pt}
     \usepackage{pgfplots}
+    \pgfplotsset{compat=1.18}
     \usepackage{pifont}                                         %needed for symbols, s.a. airplane symbol
     \usetikzlibrary{positioning,fit,backgrounds}                %needed for nested diagrams
     \usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}   %needed for set diagrams
@@ -224,9 +221,11 @@
     \definecolor{ruby}{HTML}{9e0c0f}
     \definecolor{turquoise}{HTML}{008099}
     \definecolor{emerald}{HTML}{1c8464}
+    \definecolor{lightemerald}{HTML}{12A983} %(lightened to contrast ratio just above 7 with black)
+    \definecolor{sapphire}{HTML}{3b5a7d}
+    \definecolor{lightsapphire}{HTML}{7898bf} %(lightened to contrast ratio just above 7 with black)
     \definecolor{amber}{HTML}{c7502a}
     \definecolor{amethyst}{HTML}{70485b}
-    \definecolor{sapphire}{HTML}{263c53}
     \colorlet{firstcolor}{ruby}
     \colorlet{secondcolor}{turquoise}
     \colorlet{thirdcolor}{emerald}
@@ -289,7 +288,7 @@
                                             y=1cm,
                                             ymin = -1,ymax = 1,
                                             axis background/.style={},
-                                            width=4.75in,
+                                            width=\orccaprintwidth,
                                             after end axis/.code={
                                               \path (axis cs:0,0)
                                               node [anchor=north,yshift=-0.075cm] {\footnotesize 0};

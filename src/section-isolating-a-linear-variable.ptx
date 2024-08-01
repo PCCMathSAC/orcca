@@ -48,8 +48,8 @@
 
   <introduction>
     <p>
-      In this section, we solve for a variable in a linear equation even when there are other
-      variables present. The process is not really new, but there is a little more abstraction as
+      In this section, we solve for a variable in a linear equation even when there are other                 <idx><h>Variable</h><h>isolating</h></idx>
+      variables present. The process is not really new, but there is a little more abstraction as             <idx><h>Variable</h><h>solving for in a formula</h></idx>
       we track those other variables through each step.
     </p>
 
@@ -119,7 +119,7 @@
     </p>
 
     <p>
-      Now we have an equation where <m>w</m> is islated. For example if we want to find the width
+      Now we have an equation where <m>w</m> is isolated. For example if we want to find the width
       when <m>A=12</m> and <m>\ell=4</m>, we have a formula: <m>w=\frac{A}{\ell}=\frac{12}{4}=3</m>.
       This formula can be used again: what if <m>A=100</m> and <m>\ell=20</m>?  Or if <m>A=23.47</m>
       and <m>\ell=2.71</m>?  This formula, <m>w=\frac{A}{\ell}</m>, is a handy alternative to the
@@ -579,6 +579,12 @@
               $right = Formula("$x[3]")->reduce;
               parser::Assignment->Allow;
               $ans = Assignment("$x[0] = ($x[3] - $x[2])/$x[1]");
+              $leftsol[0] = Formula("$x[1] $x[0] + $x[2] - $x[2]")->reduce;
+              $rightsol[0] = Formula("$x[3] - $x[2]")->reduce;
+              $leftsol[1] = Formula("$x[1] $x[0]")->reduce;
+              $rightsol[1] = Formula("$x[3] - $x[2]")->reduce;
+              $leftsol[2] = Formula("$x[0]")->reduce;
+              $rightsol[2] = Formula("($x[3] - $x[2])/$x[1]")->reduce;
             </pg-code>
             <statement>
               <p>
@@ -588,6 +594,18 @@
                 <var name="$ans" width="16"/>
               </p>
             </statement>
+            <solution>
+              <p>
+                We need to keep our focus on <m><var name="$x[0]"/></m> and take algebra steps that
+                bring us closer to isolating <m><var name="$x[0]"/></m>.
+                <md>
+                  <mrow><var name="$left"/> \amp= <var name="$right"/></mrow>
+                  <mrow><var name="$leftsol[0]"/> \amp= <var name="$rightsol[0]"/></mrow>
+                  <mrow><var name="$leftsol[1]"/> \amp= <var name="$rightsol[1]"/></mrow>
+                  <mrow><var name="$leftsol[2]"/> \amp= <var name="$rightsol[2]"/></mrow>
+                </md>
+              </p>
+            </solution>
           </webwork>
         </exercise>
         <exercise label="isolate-axplusbequalsc-copy">
@@ -679,6 +697,18 @@
                 <var name="$ans" width="16"/>
               </p>
             </statement>
+            <solution>
+              <p>
+                We need to keep our focus on <m>b</m> and take algebra steps that bring us closer to
+                isolating <m>b</m>.
+                <md>
+                  <mrow>A \amp= \frac12bh</mrow>
+                  <mrow>2A \amp= bh</mrow>
+                  <mrow>\frac{2A}{h} \amp= b</mrow>
+                  <mrow>b \amp= \frac{2A}{h}</mrow>
+                </md>
+              </p>
+            </solution>
           </webwork>
         </exercise>
         <exercise label="isolate-triangleareaforheight">
@@ -705,10 +735,19 @@
           <p>
             The equation for a line in <q>slope-intercept form</q> is <m>y=mx+b</m>.
           </p>
-          <image width="50%">
+          <image width="47%">
             <latex-image>
               \begin{tikzpicture}
-                \begin{axis}[xtick={0}, ytick={0}, minor xtick=, minor ytick=,ymin=-1,ymax=5,height=100pt, width=240pt]
+                \begin{axis}[
+                    xtick={0},
+                    ytick={0},
+                    minor xtick=,
+                    minor ytick=,
+                    ymin=-1,
+                    ymax=5,
+                    width=0.47\orccaprintwidth,
+                    height=0.2\orccaprintwidth,
+                  ]
                   \addplot+ {1/3*x + 2};
                   \draw[guideline] (axis cs:0,0) -- (axis cs:0.2,0) -- node[pos=0.5, right]{\(b\)} (axis cs:0.2,2) -- (axis cs:0,2);
                   \draw[guideline] (axis cs:0,2) -- node[pos=0.5, below]{\(1\)} (axis cs:3,2) -- node[pos=0.5, right]{\(m\)} (axis cs:3,3);

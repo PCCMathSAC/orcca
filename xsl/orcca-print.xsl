@@ -1,8 +1,17 @@
 <?xml version='1.0'?> <!-- As XML file -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:exsl="http://exslt.org/common"
+    xmlns:date="http://exslt.org/dates-and-times"
+    xmlns:str="http://exslt.org/strings"
+    xmlns:pi="http://pretextbook.org/2020/pretext/internal"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    extension-element-prefixes="exsl date str"
+    exclude-result-prefixes="pi"
+>
 
 <!-- Thin layer on MathBook XML -->
-<xsl:import href="../../mathbook/xsl/pretext-latex.xsl" />
+<xsl:import href="../../pretext/xsl/pretext-latex.xsl" />
 
 <!-- Intend output for rendering by xelatex -->
 <xsl:output method="text" />
@@ -14,7 +23,22 @@
 
 <!-- Omit alternative video lessons; important to increment counter -->
 <xsl:template match="figure[contains(child::caption,'Alternative Video Lesson')]">
-    <xsl:text>\stepcounter{cthm}&#xa;&#xa;</xsl:text>
+    <xsl:text>&#xa;\noindent\hskip0pt\begin{minipage}{360pt}</xsl:text>
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:text>\parmarginbox{\begin{qrptx}</xsl:text>
+    <xsl:text>\begin{image}</xsl:text>
+    <xsl:text>{0</xsl:text>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{1</xsl:text>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{0</xsl:text>
+    <xsl:text>}{}%&#xa;</xsl:text>
+    <xsl:apply-templates select=".//image[contains(@pi:generated,'qrcode')]" mode="image-inclusion" />
+    <xsl:text>\end{image}\tcblower&#xa;</xsl:text>
+    <xsl:text>\scshape Video Lessons\end{qrptx}%&#xa;</xsl:text>
+    <xsl:text>}{0pt}&#xa;</xsl:text>
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:text>\end{minipage}&#xa;&#xa;</xsl:text>
 </xsl:template>
 
 <!-- Omit solutions/answers -->
@@ -24,29 +48,8 @@
 <xsl:param name="latex.preamble.early" select="concat(document('latex-preamble/latex.preamble.xml')//latex-preamble-early, document('latex-preamble/print.preamble.xml')//latex-preamble-early)" />
 <xsl:param name="latex.preamble.late" select="concat(document('latex-preamble/latex.preamble.xml')//latex-preamble-late, document('latex-preamble/print.preamble.xml')//latex-preamble-late)" />
 
-<!-- set toc level -->
-<xsl:param name="toc.level" select="'3'"/>
-
-<!-- print options -->
-<xsl:param name="latex.print" select="'yes'"/>
-<xsl:param name="latex.pageref" select="'no'"/>
-<xsl:param name="latex.sides" select="'two'"/>
-
-<!-- geometry of the page -->
-<!-- the extra bit is for thumb indexing to bleed; the cut size is still 8x11 -->
-<xsl:param name="latex.geometry" select="'papersize={8.625in,11.25in},total={6.5in,8in},inner=1in'"/>
-
 <!-- boxes for answer blanks -->
 <xsl:param name="latex.fillin.style" select="'box'"/>
-
-<!-- hints, answers, solutions -->
-<xsl:param name="exercise.inline.hint" select="'no'"/>
-<xsl:param name="exercise.inline.answer" select="'no'"/>
-<xsl:param name="exercise.inline.solution" select="'yes'"/>
-<xsl:param name="exercise.divisional.hint" select="'no'"/>
-<xsl:param name="exercise.divisional.answer" select="'no'"/>
-<xsl:param name="exercise.divisional.solution" select="'no'"/>
-
 
 <!--<xsl:template match="exercise" mode="backmatter">
     <xsl:variable name="serial">
@@ -346,6 +349,499 @@
     </xsl:if>
 </xsl:template>
 
+<xsl:template match="image[
+        not(ancestor::sidebyside)
+        and (descendant::latex-image or descendant::asymptote)
+        and not(ancestor::exercises)
+        and not(ancestor::remark)
+        and not(ancestor::figure)
+        and not(ancestor::assemblage)
+    ]">
+  <!-- <xsl:choose> -->
+    <!-- <xsl:when test="ancestor::figure/@vshift"> -->
+      <xsl:text>\begin{image}</xsl:text>
+      <xsl:text>{0</xsl:text>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{1</xsl:text>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{0</xsl:text>
+      <xsl:text>}{}%&#xa;</xsl:text>
+      <xsl:apply-templates select="." mode="image-inclusion" />
+      <xsl:text>\end{image}%&#xa;</xsl:text>
+    <!-- </xsl:when> -->
+    <!-- <xsl:otherwise>
+      <xsl:variable name="rtf-layout">
+        <xsl:apply-templates select="." mode="layout-parameters" />
+      </xsl:variable>
+      <xsl:variable name="layout" select="exsl:node-set($rtf-layout)" />
+      <xsl:text>\begin{image}</xsl:text>
+      <xsl:text>{</xsl:text>
+      <xsl:value-of select="$layout/left-margin div 100"/>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{</xsl:text>
+      <xsl:value-of select="$layout/width div 100"/>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{</xsl:text>
+      <xsl:value-of select="$layout/right-margin div 100"/>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{</xsl:text>
+      <xsl:apply-templates select="." mode="vertical-adjustment"/>
+      <xsl:text>}%&#xa;</xsl:text>
+      <xsl:apply-templates select="." mode="image-inclusion" />
+      <xsl:text>\end{image}%&#xa;</xsl:text>
+    </xsl:otherwise> -->
+  <!-- </xsl:choose>  -->
+</xsl:template>
+
+<!-- move vshift figures/images to the margin -->
+<!-- <xsl:template match="figure">
+  <xsl:if test="(@hskip) and ($b-latex-two-sides)">
+      <xsl:text>&#xa;\noindent\hskip-</xsl:text>
+      <xsl:value-of select="@hskip"/>
+      <xsl:text>pt\begin{minipage}{</xsl:text>
+      <xsl:value-of select="@minisize"/>
+      <xsl:text>pt}</xsl:text>
+    </xsl:if>
+    <xsl:if test="@vshift">
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:choose>
+        <xsl:when test="ancestor::example and not(ancestor::ul or ancestor::ol)">
+          <xsl:text>\tcbmarginbox{%&#xa;</xsl:text>
+        </xsl:when>
+        <xsl:when test="(ancestor::example or ancestor::theorem) and (ancestor::ul or ancestor::ol)">
+          <xsl:text>\listmarginbox{%&#xa;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>\parmarginbox{%&#xa;</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+    <xsl:if test="@hstretch">
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:text>{\tcbset{text width=</xsl:text>
+        <xsl:value-of select="@hstretch"/>
+      <xsl:text>pt}&#xa;</xsl:text>  
+    </xsl:if>
+    <xsl:apply-imports/>
+    <xsl:if test="@vshift">
+      <xsl:text>}{</xsl:text><xsl:value-of select="@vshift"/><xsl:text>cm}&#xa;</xsl:text>
+      <xsl:text>&#xa;</xsl:text>
+    </xsl:if>
+    <xsl:if test="@hstretch">
+      <xsl:text>}&#xa;</xsl:text>
+    </xsl:if>
+    <xsl:if test="@hskip">
+    <xsl:text>\end{minipage}&#xa;&#xa;</xsl:text>
+  </xsl:if>
+</xsl:template> -->
+<xsl:template match="image[
+        (ancestor::exercise)
+        and (parent::statement or parent::introduction or parent::solution)
+        and (@width != '100%')
+        and (not(ancestor::exercises) or ancestor::introduction)
+    ]
+    |image[
+        not(parent::figure)
+        and ancestor::example
+        and (@width != '100%')
+        and not(ancestor::sidebyside)
+    ]
+    |image[
+        (parent::introduction/parent::exercisegroup)
+        and (@width != '100%')
+    ]">
+    <xsl:text>&#xa;&#xa;\noindent\hskip-30pt\begin{minipage}{400pt}</xsl:text>
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:text>\parmarginbox{%&#xa;</xsl:text>
+    <xsl:text>\begin{image}</xsl:text>
+    <xsl:text>{0</xsl:text>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{1</xsl:text>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{0</xsl:text>
+    <xsl:text>}{}%&#xa;</xsl:text>
+    <xsl:apply-templates select="." mode="image-inclusion" />
+    <xsl:text>\end{image}%&#xa;</xsl:text>
+    <xsl:text>}{0pt}&#xa;</xsl:text>
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:text>\end{minipage}&#xa;&#xa;</xsl:text>
+</xsl:template>
+
+<!-- Kill tabulars that are from "is 5 a solution to ___" exericses -->
+<xsl:template match="tabular[descendant::fillin and contains(.,'wonder')]"/>
+<xsl:template match="tabular[ancestor::exercisegroup and (count(descendant::fillin) &gt; 4) and preceding-sibling::p]"/>
+
+<!-- Shift certain tabulars up and kill centering -->
+<xsl:template match="tabular[
+        not(ancestor::sidebyside)
+        and not(@margins)
+        and not(@width)
+        and not(parent::table)
+        and not(preceding-sibling::*)
+        and parent::statement
+    ]">
+    <xsl:apply-templates select="." mode="tabular-inclusion"/>
+    <xsl:text>\par%&#xa;</xsl:text>
+</xsl:template>
+
+<!-- this only differs from pretext-latex version by match criterion and [t] on tabular-->
+<xsl:template match="tabular[
+        not(ancestor::sidebyside)
+        and not(@margins)
+        and not(@width)
+        and not(parent::table)
+        and not(preceding-sibling::*)
+        and parent::statement
+    ]" mode="tabular-inclusion">
+    <!-- Abort if tabular's cols have widths summing to over 100% -->
+    <xsl:call-template name="cap-width-at-one-hundred-percent">
+        <xsl:with-param name="nodeset" select="col/@width" />
+    </xsl:call-template>
+    <!-- Determine global, table-wide properties -->
+    <!-- set defaults here if values not given   -->
+    <xsl:variable name="table-top">
+        <xsl:choose>
+            <xsl:when test="@top">
+                <xsl:value-of select="@top" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>none</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="table-left">
+        <xsl:choose>
+            <xsl:when test="@left">
+                <xsl:value-of select="@left" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>none</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="table-bottom">
+        <xsl:choose>
+            <xsl:when test="@bottom">
+                <xsl:value-of select="@bottom" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>none</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="table-right">
+        <xsl:choose>
+            <xsl:when test="@right">
+                <xsl:value-of select="@right" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>none</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="table-halign">
+        <xsl:choose>
+            <xsl:when test="@halign">
+                <xsl:value-of select="@halign" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>left</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="table-valign">
+        <xsl:choose>
+            <xsl:when test="@valign">
+                <xsl:value-of select="@valign" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>middle</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <!-- set environment based on breakability -->
+    <xsl:variable name="tabular-environment">
+        <xsl:choose>
+            <xsl:when test="@break = 'yes'">
+                <xsl:text>longtable</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>tabular</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <!-- get a newline if inside a "stack" -->
+    <xsl:if test="parent::stack and preceding-sibling::*">
+        <xsl:text>\par&#xa;</xsl:text>
+    </xsl:if>
+    <!-- center within a sidebyside if by itself       -->
+    <!-- \centering needs a closing \par within a      -->
+    <!-- defensive group if it is to be effective      -->
+    <!-- https://tex.stackexchange.com/questions/23650 -->
+    <!-- Necessary for both sidebyside/tabular AND sidebyside/table/tabular -->
+    <!-- Does latter get a double-nested centering?                         -->
+    <!-- Maybe this goes away with tcolorbox?                               -->
+    <!-- NB: paired conditional way below!                                  -->
+    <xsl:if test="ancestor::sidebyside">
+        <xsl:text>{\centering%&#xa;</xsl:text>
+    </xsl:if>
+    <!-- Build latex column specification                         -->
+    <!--   vertical borders (left side, right side, three widths) -->
+    <!--   horizontal alignment (left, center, right)             -->
+    <xsl:text>{\tabularfont%&#xa;</xsl:text>
+    <xsl:text>\begin{</xsl:text>
+    <xsl:value-of select="$tabular-environment"/>
+    <xsl:text>}[t]{</xsl:text>
+    <!-- start with left vertical border -->
+    <xsl:call-template name="vrule-specification">
+        <xsl:with-param name="width" select="$table-left" />
+    </xsl:call-template>
+    <xsl:choose>
+        <!-- Potential for individual column overrides    -->
+        <!--   Deduce number of columns from col elements -->
+        <!--   Employ individual column overrides,        -->
+        <!--   or use global table-wide values            -->
+        <!--   write alignment (mandatory)                -->
+        <!--   follow with right border (optional)        -->
+        <xsl:when test="col">
+            <xsl:for-each select="col">
+                <xsl:call-template name="halign-specification">
+                    <xsl:with-param name="align">
+                        <xsl:choose>
+                            <xsl:when test="@halign">
+                                <xsl:value-of select="@halign" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$table-halign" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="vrule-specification">
+                    <xsl:with-param name="width">
+                        <xsl:choose>
+                            <xsl:when test="@right">
+                                <xsl:value-of select="@right" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$table-right" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:when>
+        <!-- No col specifiaction                                  -->
+        <!--   so default identically to global, table-wide values -->
+        <!--   first row determines the  number of columns         -->
+        <!--   write the alignment (mandatory)                     -->
+        <!--   follow with right border (optional)                 -->
+        <!-- TODO: error check each row for correct number of columns -->
+        <xsl:otherwise>
+            <xsl:variable name="ncols" select="count(row[1]/cell) + sum(row[1]/cell[@colspan]/@colspan) - count(row[1]/cell[@colspan])" />
+            <xsl:call-template name="duplicate-string">
+                <xsl:with-param name="count" select="$ncols" />
+                <xsl:with-param name="text">
+                    <xsl:call-template name="halign-specification">
+                        <xsl:with-param name="align" select="$table-halign" />
+                    </xsl:call-template>
+                    <xsl:call-template name="vrule-specification">
+                        <xsl:with-param name="width" select="$table-right" />
+                    </xsl:call-template>
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>}</xsl:text>
+    <!-- column specification done -->
+    <!-- top horizontal rule is specified after column specification -->
+    <xsl:choose>
+        <!-- A col element might indicate top border customizations   -->
+        <!-- so we walk the cols to build a cline-style specification -->
+        <!-- $clines accumulates the specification when complicated   -->
+        <!-- For convenience, recursion passes along the $table-top   -->
+        <xsl:when test="col/@top">
+            <xsl:apply-templates select="col[1]" mode="column-cols">
+                <xsl:with-param name="col-number" select="1" />
+                <xsl:with-param name="clines" select="''" />
+                <xsl:with-param name="table-top" select="$table-top"/>
+                <xsl:with-param name="start-run" select="1" />
+            </xsl:apply-templates>
+        </xsl:when>
+        <!-- with no customization, we have one continuous rule (if at all) -->
+        <!-- use global, table-wide value of top specification              -->
+        <xsl:otherwise>
+            <xsl:call-template name="hrule-specification">
+                <xsl:with-param name="width" select="$table-top" />
+            </xsl:call-template>
+        </xsl:otherwise>
+    </xsl:choose>
+    <!-- now ready to build rows -->
+    <xsl:text>&#xa;</xsl:text>
+    <!-- table-wide values are needed to reconstruct/determine overrides -->
+    <!-- We *actively* enforce header rows being (a) initial, and        -->
+    <!-- (b) contiguous.  So following two-part match will do no harm    -->
+    <!-- to correct source, but will definitely harm incorrect source.   -->
+    <xsl:apply-templates select="row[@header]">
+        <xsl:with-param name="table-left" select="$table-left" />
+        <xsl:with-param name="table-bottom" select="$table-bottom" />
+        <xsl:with-param name="table-right" select="$table-right" />
+        <xsl:with-param name="table-halign" select="$table-halign" />
+        <xsl:with-param name="table-valign" select="$table-valign" />
+    </xsl:apply-templates>
+    <xsl:apply-templates select="row[not(@header)]">
+        <xsl:with-param name="table-left" select="$table-left" />
+        <xsl:with-param name="table-bottom" select="$table-bottom" />
+        <xsl:with-param name="table-right" select="$table-right" />
+        <xsl:with-param name="table-halign" select="$table-halign" />
+        <xsl:with-param name="table-valign" select="$table-valign" />
+    </xsl:apply-templates>
+    <!-- mandatory finish, exclusive of any final row specifications -->
+    <xsl:text>\end{</xsl:text>
+    <xsl:value-of select="$tabular-environment"/>
+    <xsl:text>}&#xa;</xsl:text>
+    <!-- finish grouping for tabular font -->
+    <xsl:text>}%&#xa;</xsl:text>
+    <xsl:apply-templates select="." mode="pop-footnote-text"/>
+    <xsl:if test="ancestor::sidebyside">
+        <xsl:text>\par}&#xa;</xsl:text>
+    </xsl:if>
+</xsl:template>
+
+
+
+<!-- Shift certain images up -->
+<xsl:template match="image[
+        parent::statement
+        and ancestor::exercisegroup
+        and not(preceding-sibling::*)
+        and contains(@pi:generated, 'webwork')
+    ]">
+      <xsl:text>\begin{image}</xsl:text>
+      <xsl:text>{0</xsl:text>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{1</xsl:text>
+      <xsl:text>}</xsl:text>
+      <xsl:text>{0</xsl:text>
+      <xsl:text>}{}%&#xa;</xsl:text>
+      <xsl:apply-templates select="." mode="image-inclusion" />
+      <xsl:text>\end{image}%&#xa;</xsl:text>
+</xsl:template>
+
+<xsl:template match="fillin[choice]">
+    <xsl:apply-templates select="choice"/>
+</xsl:template>
+
+<xsl:template match="choice">
+    <xsl:apply-templates/>
+    <xsl:if test="following-sibling::choice">
+        <xsl:text>/</xsl:text>
+    </xsl:if>
+</xsl:template>
+
+<xsl:template match="aside">
+    <xsl:text>\marginpar{</xsl:text>
+        <xsl:text>\textbf{</xsl:text>
+        <xsl:apply-templates select="." mode="title-full"/>
+        <xsl:text>} </xsl:text>
+        <xsl:apply-templates select="*[not(self::title)]"/>
+    <xsl:text>}</xsl:text>
+</xsl:template>
+
+
+<!-- Copied from pretext-latex; ONLY the edge indexing is added -->
+<xsl:template match="part|chapter|appendix|section|subsection|subsubsection|acknowledgement|foreword|preface|exercises|solutions|reading-questions|glossary|references|worksheet" mode="latex-division-heading">
+    <!-- NB: could be obsoleted, see single use -->
+    <xsl:variable name="b-is-specialized" select="boolean(self::exercises|self::solutions[not(parent::backmatter)]|self::reading-questions|self::glossary|self::references|self::worksheet)"/>
+
+    <!-- change geometry if worksheet should be formatted -->
+    <xsl:if test="self::worksheet and $b-latex-worksheet-formatted">
+        <!-- \newgeometry includes a \clearpage -->
+        <xsl:apply-templates select="." mode="new-geometry"/>
+    </xsl:if>
+    <xsl:if test="self::part">
+        <!-- Edge indexing -->
+        <!-- <xsl:text>\xpatchcmd{\part}{\thispagestyle{plain}}{</xsl:text>
+        <xsl:text>\begin{tikzpicture}[remember picture,overlay]%&#xa;</xsl:text>
+        <xsl:text>\draw [color=emerald, fill=emerald] ([xshift=-0.625in]current page.north east) rectangle (current page.south east);%&#xa;</xsl:text>
+        <xsl:text>\end{tikzpicture}\break\pagenumbering{arabic}\thispagestyle{plain}}{}{}%&#xa;</xsl:text>
+        <xsl:text>\xpatchcmd{\@endpart}{\vfil\newpage}{\vfil\newpage}{}{}%&#xa;</xsl:text> -->
+    </xsl:if>
+    <xsl:text>\begin{</xsl:text>
+    <xsl:apply-templates select="." mode="division-environment-name" />
+    <!-- possibly numberless -->
+    <xsl:apply-templates select="." mode="division-environment-name-suffix" />
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="." mode="type-name"/>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="." mode="title-full"/>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <!-- subtitle here -->
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="." mode="title-short"/>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <!-- author here -->
+    <!-- historical, could be relaxed -->
+    <xsl:if test="not($b-is-specialized)">
+        <xsl:apply-templates select="author" mode="name-list"/>
+    </xsl:if>
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <!-- epigraph here -->
+    <!-- <xsl:text>An epigraph here\\with two lines\\-Rob</xsl:text> -->
+    <xsl:text>}</xsl:text>
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="." mode="unique-id" />
+    <xsl:text>}</xsl:text>
+    <xsl:text>&#xa;</xsl:text>
+    <!-- Various LaTeX classes and packages define various names, see   -->
+    <!-- two links below.  The ones redefined here seem critical for    -->
+    <!-- how the "titleps" package makes heads and foots, in concert    -->
+    <!-- with the "titlesec" package.  We want these to change to the   -->
+    <!-- right language when a division indicates a different language. -->
+    <!-- NB: not clear if this should be after, or before, the \begin{} -->
+    <!-- of the environment.  In other words, when is the head/foot     -->
+    <!-- manufactured?                                                  -->
+    <!-- https://texfaq.org/FAQ-fixnam -->
+    <!-- http://tex.stackexchange.com/questions/62020/how-to-change-the-word-proof-in-the-proof-environment -->
+    <!-- https://tex.stackexchange.com/questions/82993/how-to-change-the-name-of-document-elements-like-figure-contents-bibliogr -->
+    <xsl:if test="self::part">
+        <xsl:text>\renewcommand*{\partname}{</xsl:text>
+        <xsl:apply-templates select="." mode="type-name"/>
+        <xsl:text>}&#xa;</xsl:text>
+    </xsl:if>
+    <xsl:if test="self::chapter">
+        <!-- Edge indexing -->
+        <xsl:variable name="chapter-number">
+            <xsl:apply-templates select="." mode="serial-number"/>
+        </xsl:variable>
+        <xsl:text>\begin{tikzpicture}[remember picture,overlay]&#xa;</xsl:text>
+        <xsl:text>\node (A) at ( $ (current page.north east) - (0,0.125) $ ) {};&#xa;</xsl:text>
+        <xsl:text>\node (B) at ( $ (current page.south east) + (0,0.125) $ ) {};&#xa;</xsl:text>
+        <xsl:text>\draw [color=emerald, fill=emerald] ([xshift=-0.625in] $ (A)!</xsl:text>
+        <xsl:value-of select="$chapter-number"/>
+        <xsl:text>/13-1/13!(B) $ ) rectangle ( $ (A)!</xsl:text>
+        <xsl:value-of select="$chapter-number"/>
+        <xsl:text>/13!(B) $ );&#xa;</xsl:text>
+        <xsl:text>\end{tikzpicture}&#xa;</xsl:text>
+        <xsl:text>\renewcommand*{\chaptername}{</xsl:text>
+        <xsl:apply-templates select="." mode="type-name"/>
+        <xsl:text>}&#xa;</xsl:text>
+    </xsl:if>
+    <xsl:if test="self::appendix">
+        <xsl:text>\begin{tikzpicture}[remember picture,overlay]&#xa;</xsl:text>
+        <xsl:text>\draw [color=ruby, fill=ruby] ([xshift=-0.625in]current page.north east) rectangle (current page.south east);&#xa;</xsl:text>
+        <xsl:text>\end{tikzpicture}&#xa;</xsl:text>
+        <xsl:text>\renewcommand*{\appendixname}{</xsl:text>
+        <xsl:apply-templates select="." mode="type-name"/>
+        <xsl:text>}&#xa;</xsl:text>
+    </xsl:if>
+</xsl:template>
 
 
 </xsl:stylesheet>

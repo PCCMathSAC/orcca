@@ -87,13 +87,13 @@
       where <em>no real number</em> is a solution.
     </p>
 
-    <example>
+    <example>                                                                                                 <idx><h>Linear equations</h><h>with no solution</h></idx>
       <p>
         Solve for <m>x</m> in <m>3x=3x+4</m>.
       </p>
       <p>
         To solve this equation, we need to move all terms containing <m>x</m> to one side of the
-        equals sign. We set out to remove the <m>3x</m> from the right side of the equation, by
+        equal sign. We set out to remove the <m>3x</m> from the right side of the equation, by
         subtracting <m>3x</m> from each side:
         <md>
           <mrow>3x\amp=3x+4</mrow>
@@ -102,7 +102,7 @@
         </md>
       </p>
       <p>
-        But now <m>x</m> is no longer present in the equation. Our effort to remove <m>3x</m> from            <idx><h>empty set</h></idx>
+        But now <m>x</m> is no longer present in the equation. Our effort to remove <m>3x</m> from            <idx><h>Empty set</h></idx>
         the <em>right</em> side coincidentally removed it from the <em>left</em> side too. What
         value can we substitute in for <m>x</m> to make <m>0=4</m> become true? That's a trick
         question; you could never make <m>0=4</m> become true. We say this equation has <q>no
@@ -116,12 +116,12 @@
       </p>
     </example>
 
-    <example xml:id="example-solving-linear-equation-identity-intro">
+    <example xml:id="example-solving-linear-equation-identity-intro">                                         <idx><h>Linear equations</h><h>with infinitely many solutions</h></idx>
       <p>
         Solve for <m>x</m> in <m>2x+1=2x+1</m>.
       </p>
       <p>
-        We will move all terms containing <m>x</m> to one side of the equals sign:
+        We will move all terms containing <m>x</m> to one side of the equal sign:
         <md>
           <mrow>2x+1\amp=2x+1</mrow>
           <mrow>2x+1\subtractright{2x}\amp=2x+1\subtractright{2x}</mrow>
@@ -166,11 +166,10 @@
       </p>
     </warning>
 
-    <example>
+    <example>                                                                                                 <idx><h>Inequalities</h><h>with infinitely many solutions</h></idx>
       <p>
         Solve for <m>t</m> in the inequality <m>4t+5\gt 4t+2</m>.
       </p>
-
       <p>
         To solve for <m>t</m>, we aim to eliminate that <m>4t</m> on the right side by subtracting
         <m>4t</m> from each side:
@@ -187,7 +186,7 @@
       </p>
     </example>
 
-    <example xml:id="example-solving-linear-inequality-false-statment-intro">
+    <example xml:id="example-solving-linear-inequality-false-statement-intro">                                <idx><h>Inequalities</h><h>with no solutions</h></idx>
       <p>
         Solve for <m>x</m> in the inequality <m>-5x+1\le -5x</m>.
       </p>
@@ -497,9 +496,13 @@
               Context()->noreduce('(-x)+y', '(-x)-y');
               $left = Formula("$m $x + $d + $n $x")->reduce;
               $right = Formula("$b + $p $x + $c")->reduce;
-              Context("FiniteSolutionSets");
+              Context("FiniteSolutionSets")->variables->are($x => 'Real');
               #$solution = String("no real solutions")->cmp(typeMatch => Formula("{1}"));
               $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"));
+              $leftsol[0] = Formula("($m+$n) $x + $d")->reduce;
+              $rightsol[0] = Formula("$p $x + ($b + $c)")->reduce;
+              $leftsol[1] = Formula("$d")->reduce;
+              $rightsol[1] = Formula("($b + $c)")->reduce;
             </pg-code>
             <statement>
               <p>
@@ -509,6 +512,18 @@
                 <var name="$solution" width="16"/>
               </p>
             </statement>
+            <solution>
+              <p>
+                We try to use the standard steps for solving an equation:
+                <md>
+                  <mrow><var name="$left"/> \amp= <var name="$right"/></mrow>
+                  <mrow><var name="$leftsol[0]"/> \amp= <var name="$rightsol[0]"/></mrow>
+                  <mrow><var name="$leftsol[1]"/> \amp= <var name="$rightsol[1]"/></mrow>
+                </md>
+                This is an outright true equation, so all real numbers are solutions. The solution
+                set is <m>(-\infty,\infty)</m>, which we can write as <m>\mathbb{R}</m>.
+              </p>
+            </solution>
           </webwork>
         </exercise>
         <exercise label="solve-special-with-like-terms-copy">
@@ -655,6 +670,17 @@
                 <var name="$solution" width="16"/>
               </p>
             </statement>
+            <solution>
+              <p>
+                We try to use the standard steps for solving an equation:
+                <md>
+                  <mrow><var name="$left"/> \amp= <var name="$right"/></mrow>
+                  <mrow>0 \amp= <var name="$b"/></mrow>
+                </md>
+                This is an outright false equation, so there are no solutions. We could write the
+                solution set as <m>\{\}</m> or <m>\emptyset</m>.
+              </p>
+            </solution>
           </webwork>
         </exercise>
         <exercise label="solve-mxequalsmxplusb-fraction-copy">
@@ -758,7 +784,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -793,7 +819,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -832,7 +858,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -870,7 +896,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -905,7 +931,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -944,10 +970,24 @@
                 elsif ($s eq '\geq') {return ($a >= $b)}
               }
               Context("FiniteSolutionSets");
-              $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
-                : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
-            </pg-code>
+              if (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol)) {
+                $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"));
+                $truefalse = 'true';
+                $conclusion = 'So all real numbers are solutions.';
+              } else {
+                $solution = String("no real solutions")->cmp(typeMatch => Formula("{1}"));
+                $truefalse = 'false';
+                $conclusion = 'So there are no solutions.';
+              }
+              Context("Fraction")->variables->are($x => 'Real', solvar => 'Real');
+              $leftsol[0] = Formula("$b + solvar + ($m*$n) $x")->reduce;
+              $leftsol[0] = $leftsol[0]->substitute(solvar => Formula($m*$c));
+              $rightsol[0] = Formula("$p $x - $d - $q $x")->reduce;
+              $leftsol[1] = Formula("($b + $m*$c) + ($m*$n) $x")->reduce;
+              $rightsol[1] = Formula("($p - $q) $x - $d")->reduce;
+              $leftsol[2] = Formula("$b + $m*$c")->reduce;
+              $rightsol[2] = Formula("-$d")->reduce;
+              </pg-code>
             <statement>
               <p>
                 <m><var name="$left"/><var name="$symbol"/><var name="$right"/></m>
@@ -956,6 +996,18 @@
                 <var name="$solution" width="16"/>
               </p>
             </statement>
+            <solution>
+              <p>
+                We try to use the standard steps for solving an inequality:
+                <md>
+                  <mrow><var name="$left"/> \amp<var name="$symbol"/> <var name="$right"/></mrow>
+                  <mrow><var name="$leftsol[0]"/> \amp<var name="$symbol"/> <var name="$rightsol[0]"/></mrow>
+                  <mrow><var name="$leftsol[1]"/> \amp<var name="$symbol"/> <var name="$rightsol[1]"/></mrow>
+                  <mrow><var name="$leftsol[2]"/> \amp<var name="$symbol"/> <var name="$rightsol[2]"/></mrow>
+                </md>
+                This is an outright <var name="$truefalse"/> inequality. <var name="$conclusion"/>
+              </p>
+            </solution>
           </webwork>
         </exercise>
         <exercise label="solve-special-with-simplification2-inequality-copy">
@@ -981,7 +1033,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -1024,7 +1076,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
@@ -1068,7 +1120,7 @@
               }
               Context("FiniteSolutionSets");
               $solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
-                ? $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+                ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
                 : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
             </pg-code>
             <statement>
