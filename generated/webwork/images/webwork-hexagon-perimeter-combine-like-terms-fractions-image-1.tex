@@ -1,7 +1,22 @@
 \documentclass{standalone}
 \usepackage[svgnames]{xcolor}
+\newlength{\orccaprintwidth}
+\setlength{\orccaprintwidth}{350pt}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pifont}                                         %needed for symbols, s.a. airplane symbol
+\usetikzlibrary{positioning,fit,backgrounds}                %needed for nested diagrams
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}   %needed for set diagrams
+\usetikzlibrary{decorations.text}                           %needed for text following a curve
 \usetikzlibrary{arrows,arrows.meta}                         %needed for open/closed intervals
+\usetikzlibrary{positioning,3d,shapes.geometric}            %needed for 3d number sets tower
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}                                    %needed for triangle diagrams
+\usepgfplotslibrary{fillbetween}                            %shade regions of a plot
+\usetikzlibrary{shadows}                                    %function diagrams
+\usetikzlibrary{positioning}                                %function diagrams
+\usetikzlibrary{shapes}                                     %function diagrams
+%%% global colors from https://www.pcc.edu/web-services/style-guide/basics/color/ %%%
 \definecolor{ruby}{HTML}{9e0c0f}
 \definecolor{turquoise}{HTML}{008099}
 \definecolor{emerald}{HTML}{1c8464}
@@ -70,7 +85,7 @@
                                         y=1cm,
                                         ymin = -1,ymax = 1,
                                         axis background/.style={},
-                                        width=4.75in,
+                                        width=\orccaprintwidth,
                                         after end axis/.code={
                                           \path (axis cs:0,0)
                                           node [anchor=north,yshift=-0.075cm] {\footnotesize 0};
@@ -127,15 +142,43 @@
 %\tikzset{axisnode/.style={font=\scriptsize,text=black}}
 \tikzset{>=stealth}
 
+\colorlet{chaptercolor}{black}
+\colorlet{ruby}{black}
+\colorlet{turquoise}{black}
+\colorlet{emerald}{black}
+\colorlet{amber}{black}
+\colorlet{amethyst}{black}
+\colorlet{sapphire}{black}
+\colorlet{firstcolor}{black}
+\colorlet{secondcolor}{black!70!white}
+\colorlet{thirdcolor}{gray}
+\colorlet{fourthcolor}{gray}
+\colorlet{fifthcolor}{gray}
+\colorlet{sixthcolor}{gray}
+\colorlet{highlightcolor}{gray}
+\colorlet{yellow}{white}
+\colorlet{graphbackground}{white}
+\colorlet{wood}{gray!60!white}
+\colorlet{blue}{black}
+\colorlet{red}{black}
+\colorlet{cyan}{black}
+\colorlet{green}{black!15!white}
+\colorlet{orange}{black!25!white}
+\colorlet{brown}{black!35!white}
+\colorlet{magenta}{gray}
+\definecolor{lightgray}{HTML}{959594}
+\colorlet{lightsapphire}{lightgray!50}
+\colorlet{lightemerald}{lightgray}
+
 \begin{document}
 \begin{tikzpicture}
   \draw[fill=wood] (0,0)
-  -- node[pos=0.5,below]{\({\frac{1}{2}}T\)} (2,0)
-  -- node[pos=0.5,below right]{\({\frac{3}{5}}h\)} (4,1)
-  -- node[pos=0.5,above right]{\({\frac{2}{3}}T\)} (2,3)
-  -- node[pos=0.5,above left]{\({\frac{3}{4}}h\)} (-1,2)
-  -- node[pos=0.5,left]{\({\frac{1}{7}}Y\)} (-1,1)
-  -- node[pos=0.5,below left]{\({\frac{1}{2}}Y\)} cycle;   
+  -- node[pos=0.5,below]{\({\frac{1}{2}}c\)} (1,0)
+  -- node[pos=0.5,below right]{\({\frac{3}{2}}z\)} (3,1)
+  -- node[pos=0.5,above right]{\({\frac{5}{3}}z\)} (2,3)
+  -- node[pos=0.5,above left]{\(4n\)} (-1,3)
+  -- node[pos=0.5,left]{\({\frac{3}{2}}c\)} (-1,1)
+  -- node[pos=0.5,below left]{\({\frac{5}{8}}n\)} cycle;   
 \end{tikzpicture}
 
 

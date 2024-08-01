@@ -1,7 +1,22 @@
 \documentclass{standalone}
 \usepackage[svgnames]{xcolor}
+\newlength{\orccaprintwidth}
+\setlength{\orccaprintwidth}{350pt}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pifont}                                         %needed for symbols, s.a. airplane symbol
+\usetikzlibrary{positioning,fit,backgrounds}                %needed for nested diagrams
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}   %needed for set diagrams
+\usetikzlibrary{decorations.text}                           %needed for text following a curve
 \usetikzlibrary{arrows,arrows.meta}                         %needed for open/closed intervals
+\usetikzlibrary{positioning,3d,shapes.geometric}            %needed for 3d number sets tower
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}                                    %needed for triangle diagrams
+\usepgfplotslibrary{fillbetween}                            %shade regions of a plot
+\usetikzlibrary{shadows}                                    %function diagrams
+\usetikzlibrary{positioning}                                %function diagrams
+\usetikzlibrary{shapes}                                     %function diagrams
+%%% global colors from https://www.pcc.edu/web-services/style-guide/basics/color/ %%%
 \definecolor{ruby}{HTML}{9e0c0f}
 \definecolor{turquoise}{HTML}{008099}
 \definecolor{emerald}{HTML}{1c8464}
@@ -70,7 +85,7 @@
                                         y=1cm,
                                         ymin = -1,ymax = 1,
                                         axis background/.style={},
-                                        width=4.75in,
+                                        width=\orccaprintwidth,
                                         after end axis/.code={
                                           \path (axis cs:0,0)
                                           node [anchor=north,yshift=-0.075cm] {\footnotesize 0};
@@ -127,12 +142,56 @@
 %\tikzset{axisnode/.style={font=\scriptsize,text=black}}
 \tikzset{>=stealth}
 
+\colorlet{chaptercolor}{black}
+\colorlet{ruby}{black}
+\colorlet{turquoise}{black}
+\colorlet{emerald}{black}
+\colorlet{amber}{black}
+\colorlet{amethyst}{black}
+\colorlet{sapphire}{black}
+\colorlet{firstcolor}{black}
+\colorlet{secondcolor}{black!70!white}
+\colorlet{thirdcolor}{gray}
+\colorlet{fourthcolor}{gray}
+\colorlet{fifthcolor}{gray}
+\colorlet{sixthcolor}{gray}
+\colorlet{highlightcolor}{gray}
+\colorlet{yellow}{white}
+\colorlet{graphbackground}{white}
+\colorlet{wood}{gray!60!white}
+\colorlet{blue}{black}
+\colorlet{red}{black}
+\colorlet{cyan}{black}
+\colorlet{green}{black!15!white}
+\colorlet{orange}{black!25!white}
+\colorlet{brown}{black!35!white}
+\colorlet{magenta}{gray}
+\definecolor{lightgray}{HTML}{959594}
+\colorlet{lightsapphire}{lightgray!50}
+\colorlet{lightemerald}{lightgray}
+
 \begin{document}
 \begin{tikzpicture}
-\begin{axis}[xmin=0,xmax=12,ymin=0,ymax=300,xtick={0,4,8,12},ytick={0,50,...,200},minor xtick={0,1,...,12},minor ytick={0,10,...,200},xlabel={\(t\)},ylabel={\(d\)}]
-\addplot[firstcurve,-{Kite},domain=0:12]{(3*x)};
-\addplot[secondcurve,-{Kite},domain=0:12]{(110+(-8)*x)};
-\end{axis}
+  \begin{axis}[
+      xmin=0,
+      xmax=15,
+      ymin=0,
+      ymax=20,
+      xtick={0,5,10,15},
+      ytick={0,5,...,20},
+      minor xtick={0,1,...,15},
+      minor ytick={0,1,...,20},
+      xlabel={\(t\)},
+      width=0.47\orccaprintwidth,
+      axis line style={->}
+    ]
+    \addplot+[-{Kite},domain=0:15]{16-0.8*x} node[pos=0.25,sloped,below] {\(y=16-0.8t\)};
+    \addplot+[-{Kite},domain=0:15]{2+0.6*x} node[pos=1,sloped,above left] {\(y=2+0.6t\)};
+    \addplot[guideline,->] coordinates {(0,16) (5,16) (5,12)};
+    \addplot[guideline,->] coordinates {(0,2) (5,2) (5,5)};
+    \addplot[soliddot,color=firstcolor] coordinates {(0,16) (5,12)};
+    \addplot[soliddot,color=secondcolor] coordinates {(0,2) (5,5)};
+  \end{axis}
 \end{tikzpicture}
 
 
