@@ -1,0 +1,81 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.54)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$name = randomPerson();
+$initial = random(4000,5000,5);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$start = Currency($initial);
+$rate = random(1.5,2.5,0.01);
+$speed = Currency($rate);
+$final = $initial + random(400,1000,5);
+$end = Currency($final);
+Context("LinearRelation")->variables->are(A => 'Real');
+$equation = LinearRelation("$initial + $rate A = $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+[$name]'s annual property tax had been [`[$start]\text{.}`] But [$name->subject] did some renovation to [$name->possessive] house that added more square footage, and now the annual property tax is [`[$end]\text{.}`] The county assesses property tax at a rate of [`[$speed]`] per square foot. How much area did [$name] add to [$name->possessive] home? Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|A|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

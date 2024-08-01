@@ -1,0 +1,107 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.6.5.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserAssignment.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+package my::OneOf;
+our @ISA = ('parser::OneOf');
+sub cmp_compare {
+  my ($self,$other,$ans) = @_;
+  foreach $answer (@{$self->{data}}) {
+    if ($answer->typeMatch($other)) {
+      my $result = $answer->cmp->evaluate($other);
+      if ($result->{score}) {
+        $ans->score($result->{score});
+        $ans->{ans_message} = $result->{ans_message};
+        return $ans->{score};
+      }
+      if ($result->{ans_message}) {
+        $ans->{ans_message} = $result->{ans_message}
+          if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+      }
+    }
+  }
+  return 0;
+}
+package main;
+sub OneOfForm {my::OneOf->new(@_)}
+
+do {
+  ($m,$h,$k,$x1) = random_subset(4, -9..-2, 2..9);
+  $m = -abs($m);
+  Context()->noreduce('(-x)+y','(-x)-y');
+  $f = Formula("$m*(x - $h) + $k")->reduce;
+  $y1 = $f->eval(x => $x1);
+} until ($y1 != 0);
+$g = Formula("$m*(x - $x1) + $y1")->reduce;
+Context("Point");
+$p0 = Point("($h,$k)");
+$p1 = Point("($x1,$y1)");
+
+Context("Form")->variables->add(y=>'Real');
+Context()->noreduce('(-x)+y','(-x)-y');
+parser::Assignment->Allow;
+$eq=OneOfForm(Formula("y=$f"), Formula("y=$g"));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.
+
+[`[$p0]`] and [`[$p1]`]
+
+[_]{$eq}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

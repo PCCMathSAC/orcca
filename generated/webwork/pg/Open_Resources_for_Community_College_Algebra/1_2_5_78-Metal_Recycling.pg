@@ -1,0 +1,119 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.78)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@vars = ('A','A','S','S','T','T');
+Context()->variables->are(A => 'Real', S => 'Real', T => 'Real');
+
+@coefs = map {$_/100} ((201..400)[NchooseK(200,6)]);
+@terms = ();
+for my $i (1..6) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]")->reduce);
+}
+$one = Formula("$coefs[0] A + $coefs[2] S + $coefs[4] T");
+$two = Formula("$coefs[1] A + $coefs[3] S + $coefs[5] T");
+$ans = Formula("($coefs[0] + $coefs[1]) A + ($coefs[2] + $coefs[3]) S +  ($coefs[4] + $coefs[5]) T");
+
+Context("Form");
+Context()->flags->remove("NumberCheck");
+Context()->variables->are(A => 'Real', S => 'Real', T => 'Real');
+
+$ans = Formula("$ans");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A metals recycling plant makes its revenue from selling aluminum at [`A`] dollars per ton, steel at [`S`] dollars per ton, and tin at [`T`] dollars per ton. One week, they processed [`[$coefs[0]]`] tons of aluminum, [`[$coefs[2]]`] tons of steel, and [`[$coefs[4]]`] tons of tin. So they generated [`[$one]`] dollars in revenue.
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+The next week, they processed [`[$coefs[1]]`] tons of aluminum, [`[$coefs[3]]`] tons of steel, and [`[$coefs[5]]`] tons of tin. How much revenue (in dollars) did this generate that week?
+
+[_]{$two}{20}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+How much revenue (in dollars) was that in total those two weeks?
+
+[_]{$ans}{20}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

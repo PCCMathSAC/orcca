@@ -1,0 +1,91 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.70)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$item = list_random(
+  'A bicycle',
+  'A dishwasher',
+  'A cell phone',
+  'A television',
+  'A car stereo',
+  'A formal suit',
+  'A designer dress',
+  'A tool shed',
+  'A tablet',
+  'An annual wine subscription',
+);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 400 + random(-100,100);
+$current = Currency($final);
+Context("Percent");
+$decimal = random(0.05,0.25,0.01);
+$percent = Percent($decimal);
+Context("LinearRelation")->variables->are(p => 'Real');
+$equation = LinearRelation("p - $decimal p >= $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an inequality to model the scenario. There is no need to solve the inequality.
+
+[$item] is on sale where all items have at least a [`[$percent]`] discount. The final price is [`[$current]\text{.}`] What might the original price have been before the discount was applied? Set up an inequality to answer this question. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|p|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

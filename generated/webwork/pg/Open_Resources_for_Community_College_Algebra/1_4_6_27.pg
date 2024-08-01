@@ -1,0 +1,98 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.27)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$actual_solution = random(1,9,1);
+@square = map{$_**2} ((1..10)[NchooseK(9,2)]);
+@m = map{int($_ / $actual_solution) + 1} (@square);
+@b = map{$_ % $actual_solution - $actual_solution} (@square);
+$left = Formula("sqrt($m[0] x + $b[0])")->reduce;
+$right = Formula("sqrt($m[1] x + $b[1])")->reduce;
+$right += ($left->eval(x => $actual_solution) - $right->eval(x => $actual_solution) + (random(0,1) ? 0 : non_zero_random(-3,3)));
+$right = $right->reduce;
+$proposed_solution = $actual_solution;
+($left, $right) = ($left, $right)[NchooseK(2,2)];
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(x => $proposed_solution));
+$righteval = Real($right->eval(x => $proposed_solution));
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], ($lefteval == $righteval) ? 0 : 1, showInStatic => 0);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Check if the given number is a solution to the given equation.
+
+Is [`[$proposed_solution]`] a solution to [`[$left]=[$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[_]{$righteval}{3}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',
+);@]* <<
+
+[_]{$dropdown}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

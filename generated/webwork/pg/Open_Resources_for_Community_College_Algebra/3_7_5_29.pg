@@ -1,0 +1,112 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.7.5.29)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserImplicitPlane.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("ImplicitPlane");
+Context()->flags->set(reduceConstants=>0);
+Context()->flags->set(reduceConstantFormulas=>0);
+Context()->flags->set(showExtraParens=>0);
+Context()->variables->are(x=>'Real', y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+do {
+  $A = random(20,75,5);
+  $B = random(10,50,5);
+} until ($A != $B);
+$C = $A*random(100,200);
+$a = $A/100;
+$b = $B/100;
+$c = $C/100;
+$ansSTstring = "$a*x+$b*y=$c";
+$left1 = Compute("$a*x+$b*y")->reduce;
+$ansSTstringTeX = $left1->TeX."=$c";
+$ansST = ImplicitPlane($ansSTstring);
+$evaluator=$ansST->cmp(correct_ans_latex_string => $ansSTstringTeX)->withPostFilter(sub{
+  my $ansHash = shift;
+  my $student = $ansHash->{original_student_ans};
+  my @sides = split('=',"$student");
+  #if it's an implicit plane object, reset how student's answer is displayed:
+  if (defined $ansHash->{student_formula}) {
+    if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+      $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+      my $leftTex = Formula("$sides[0]")->TeX;
+      my $rightTex = Formula("$sides[1]")->TeX;
+      $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+      $ansHash->{student_ans} = $ansHash->{original_student_ans};
+    }
+  };
+  # if they have it correct, then check each side to see
+  # whether x and y are on the same side of =
+  if ($ansHash->{score}) {
+    if ((($sides[0] =~ /x/) && ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) && ($sides[0] =~ /y/))) {
+      $ansHash->{score} = 0;
+      $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form.";
+     }
+  }
+  return $ansHash;
+});
+$p = randomPerson();
+Context("Currency");
+$Cd = Currency($C/100);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$p] is buying tea bags and sugar packets. Each tea bag costs [$A] cents, and each sugar bag costs [$B] cents. [$p->they] can spend a total of [$Cd]. Assume [$p] will spend the full amount. Write a linear equation in standard form that models the number of tea bags and sugar packets [$p->they] can purchase.
+
+[_]{$evaluator}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

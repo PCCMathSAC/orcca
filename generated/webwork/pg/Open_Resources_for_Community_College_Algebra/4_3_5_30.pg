@@ -1,0 +1,190 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.3.5.30)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+($x, $y) = (-7..-1, 1..7)[NchooseK(14,2)];
+do {
+  @A = (-5..-1, 1..5)[NchooseK(10,2)];
+  @B = (-5..-1, 1..5)[NchooseK(10,2)];
+  $roll = random(0,3);
+  $k = random(2,5);
+  if ($roll == 0) {$A[0] = $A[1]*$k};
+  if ($roll == 1) {$A[1] = $A[0]*$k};
+  if ($roll == 2) {$B[0] = $B[1]*$k};
+  if ($roll == 3) {$B[1] = $B[0]*$k};
+} until ($A[0]*$B[1] != $A[1]*$B[0]);
+@C = map{$A[$_]*$x + $B[$_]*$y} (0,1);
+$f[0] = Formula("$A[0] $X + $C[1] $Y = $C[0] + ($C[1]- $B[0]) $Y ")->reduce;
+$f[1] = Formula("($A[1] + $A[0]) $X + $B[1] $Y = $A[0] $X + $C[1]")->reduce;
+$f[2] = Formula("$A[0] $X + $B[0] $Y = $C[0]")->reduce;
+$f[3] = Formula("$A[1] $X + $B[1] $Y = $C[1]")->reduce;
+$xis = Formula("$X = $x");
+$yis = Formula("$Y = $y");
+$solution = List($xis,$yis);
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$answer = $solution->cmp(
+  mathQuillOpts => 'disabled'
+);
+
+$left[0] = Formula("$A[0] $X + $C[1] $Y")->reduce;
+$right[0] = Formula("$C[0] + ($C[1]- $B[0]) $Y ")->reduce;
+$f[0] = Formula("$left[0] = $right[0]");
+$left[1] = Formula("($A[1] + $A[0]) $X + $B[1] $Y")->reduce;
+$right[1] = Formula("$A[0] $X + $C[1]")->reduce;
+$f[1] = Formula("$left[1] = $right[1]");
+
+if ($roll == 0) {
+  $nth = 'second';
+  $eliminated = $X;
+  $sol[0] = Formula("($B[0]+$k*$B[1])*$Y")->reduce;
+  $sol[1] = Formula("$C[0]+$k*$C[1]")->reduce;
+  $sol[2] = Formula("$Y=$y");
+  $sol[3] = Formula("$X=$x");
+} elsif ($roll == 1) {
+  $nth = 'first';
+  $eliminated = $Y;
+  $sol[0] = Formula("($k*$B[0]+$B[1])*$Y")->reduce;
+  $sol[1] = Formula("$k*$C[0]+$C[1]")->reduce;
+  $sol[2] = Formula("$Y=$y");
+  $sol[3] = Formula("$X=$x");
+} elsif ($roll == 2) {
+  $nth = 'second';
+  $eliminated = $X;
+  $sol[0] = Formula("($A[0]+$k*$A[1])*$X")->reduce;
+  $sol[1] = Formula("$C[0]+$k*$C[1]")->reduce;
+  $sol[2] = Formula("$Y=$y");
+  $sol[3] = Formula("$X=$x");
+} elsif ($roll == 3) {
+  $nth = 'first';
+  $eliminated = $Y;
+  $sol[0] = Formula("($k*$A[0]+$A[1])*$X")->reduce;
+  $sol[1] = Formula("$k*$C[0]+$C[1]")->reduce;
+  $sol[2] = Formula("$Y=$y");
+  $sol[3] = Formula("$X=$x");
+}
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the system of equations using elimination.
+
+[`\newcommand{\amp}{&}\left\{
+                  \begin{alignedat}{4}
+                  \amp [$f[0]] \\
+                  \amp [$f[1]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+[@KeyboardInstructions('Write the solution in the format [| = number,  = number|]*. If there is no solution, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$answer}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+First simplify each equation and add/subtract terms so that each equation is in standard form. This gives
+
+[`\newcommand{\amp}{&}\left\{
+                  \begin{alignedat}{4}
+                  \amp [$f[2]] \\
+                  \amp [$f[3]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+We can multiply the [$nth] equation by [`-[$k]\text{,}`] and then add the sides of each equation to eliminate [`[$eliminated]\text{.}`] This leaves the equation [`[$sol[0]]=[$sol[1]]`] which allows us to find [`[$sol[2]]\text{.}`] From here, substitute this into any of the previous equations that still have both variables to find [`[$sol[2]]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

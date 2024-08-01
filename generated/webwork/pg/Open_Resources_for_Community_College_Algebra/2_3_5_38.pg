@@ -1,0 +1,83 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.38)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserFormulaWithUnits.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$name = randomPerson();
+$initial = random(12, 18);
+$start = NumberWithUnits("$initial gal");
+Context("Fraction");
+@rates = map {Fraction(2/(2*$_-1))} (20..25);
+push @rates, map {Fraction(3/(3*$_-1))} (20..25);
+push @rates, map {Fraction(3/(3*$_+1))} (20..25);
+push @rates, map {Fraction(4/(4*$_-1))} (20..25);
+push @rates, map {Fraction(4/(4*$_+1))} (20..25);
+$rate = list_random(@rates);
+$speed = FormulaWithUnits("$rate gal");
+$final = 1;
+$end = NumberWithUnits("$final gal");
+$solution = ($initial - $final)/$rate;
+$distance = FormulaWithUnits("$solution mi");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$name] filled the gas tank in [$name->possessive] car to [`[$start]\text{.}`] When the tank reaches [`[$end]\text{,}`] the low gas light will come on. On average, [$name]'s car uses [`[$speed]`] per mile driven. How many miles will [$name]'s car be able to drive before the low gas light comes on?
+
+[_]{$distance}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

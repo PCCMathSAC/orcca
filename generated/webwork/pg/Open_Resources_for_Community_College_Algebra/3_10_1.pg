@@ -1,0 +1,105 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:16-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.1)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@xy = random_subset(8, -4..-1, 1..4);
+@x = (@xy)[0..3];
+@y = (@xy)[4..7];
+@z = random_subset(2,0..3);
+$x[$z[0]] = 0;
+$y[$z[1]] = 0;
+Context("Point");
+@p = map {Point($x[$_], $y[$_])} (0..3);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[soliddot] coordinates {$p[0]} node[pin=60:{A}] {};
+    \addplot[soliddot] coordinates {$p[1]} node[pin=60:{B}] {};
+    \addplot[soliddot] coordinates {$p[2]} node[pin=60:{C}] {};
+    \addplot[soliddot] coordinates {$p[3]} node[pin=60:{D}] {};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Identify the coordinates of each point in the graph.
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[@KeyboardInstructions('The coordinates of [`A`] are:')@]**
+
+[_]{$p[0]}{3}
+
+[@KeyboardInstructions('The coordinates of [`B`] are:')@]**
+
+[_]{$p[1]}{3}
+
+[@KeyboardInstructions('The coordinates of [`C`] are:')@]**
+
+[_]{$p[2]}{3}
+
+[@KeyboardInstructions('The coordinates of [`D`] are:')@]**
+
+[_]{$p[3]}{3}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

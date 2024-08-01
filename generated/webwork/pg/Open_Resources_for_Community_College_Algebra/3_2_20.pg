@@ -1,0 +1,146 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:14-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.2.20)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$b = random(42000,60000,6000);
+$r = $b/60;
+$f = Formula("$b - $r x");
+Context("Currency")->flags->set(trimTrailingZeros=>1);
+$bc = Currency($b);
+$rc = Currency($r);
+$gt = GraphTool("{line,solid,(0,$b),(60,0)}")->with(
+  bBox => [-10,75000,60,-5000],
+  availableTools => [ "LineTool" ],
+  gridX => 12,
+  gridY => 2000,
+  ticksDistanceX => 6,
+  ticksDistanceY => 8000,
+  minorTicksX => 5,
+  snapSizeY => 2000,
+  showCoordinateHints => 0,
+  showInStatic => 0,
+  xAxisLabel => 'x\\text{ (months)}',
+  yAxisLabel => 'y\\text{ (dollars)}',
+);
+@x = (0,15,30,45,60);
+@y = map {$f->eval(x => $_)} @x;
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      axis line style={->},
+      xmin=0,
+      xmax=75,
+      ymin=0,
+      ymax=80000,
+      xtick = {0,15,...,60},
+      ytick = {0,20000,...,60000},
+      minor xtick = {0,3,...,75},
+      minor ytick = {0,2000,...,80000},
+      xlabel = {\(x\) (months)},
+      ylabel = {\(y\) (dollars)},
+      width=0.47\orccaprintwidth
+    ]
+    \addplot[domain=0:60] {$f};
+    \addplot[soliddot] coordinates {($x[0],$y[0]) ($x[1],$y[1]) ($x[2],$y[2]) ($x[3],$y[3]) ($x[4],$y[4])};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+You bought a new car for [`[$bc]`] with a zero interest loan over a five-year period. That means you'll have to pay [`[$rc]`] each month for the next five years ([`60`] months) to pay it off. According to this information, the equation [`y=[$f]`] models the loan balance after [`x`] months, where [`y`] is in dollars. Make a graph of this equation.
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# Hint
+############################################################
+#Set value of $showHint in PGcourse.pl for course-wide attempt threshhold for revealing hints
+
+BEGIN_PGML_HINT
+Two relevant [`x`]-values to use are [`0`] and [`60\text{.}`] (Why?)
+
+
+END_PGML_HINT
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Time [`x`] is measured in months, and this loan will take [`60`] months to pay off. So we will make a table where the [`x`]-values run from [`0`] to [`60\text{.}`]
+
+[#
+    [.
+        [@DataTable([[[PGML('[`x`]'),rowbottom=>'3',midrule=>'1',],PGML('[`y=[$f]`]'),],[PGML('[`0`]'),PGML('[`[$y[0]]`]'),],[PGML('[`15`]'),PGML('[`[$y[1]]`]'),],[PGML('[`30`]'),PGML('[`[$y[2]]`]'),],[PGML('[`45`]'),PGML('[`[$y[3]]`]'),],[PGML('[`60`]'),PGML('[`[$y[4]]`]'),],],align=>'cc',valign=>'middle',
+);@]*
+    .]
+    [.
+        [@image(insertGraph($image_1), width=>240)@]* 
+    .]*
+#]*{align => 'p{40%}p{57%}',}
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

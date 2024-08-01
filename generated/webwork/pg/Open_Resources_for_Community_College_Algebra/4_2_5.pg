@@ -1,0 +1,280 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserAssignment.pl",
+  "parserMultiAnswer.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction")->variables->are(x=>'Real',y=>'Real');
+parser::Assignment->Allow;
+@isolations = (
+  Formula("x = 3y + 1"),
+  Formula("y = (x - 1)/3"),
+  Formula("x = (-y - 3)/2"),
+  Formula("y = -2x - 3")
+);
+$isolate = OneOf(@isolations);
+$x = Fraction(-8,7);
+$y = Fraction(-5,7);
+$xis = Formula("x = $x");
+$yis = Formula("y = $y");
+$onesolved = OneOf($yis, $xis);
+$othersolved = OneOf($xis, $yis);
+Context("LinearRelation")->variables->are(x=>'Real',y=>'Real');;
+@substitutions = (
+  Formula("2(3y+1)+y=-3"),
+  Formula("2x+(x - 1)/3=-3"),
+  Formula("(-y - 3)/2-3y=1"),
+  Formula("x-3(-2x - 3)=1")
+);
+$substituted = OneOf(@substitutions);
+$m = MultiAnswer($isolate, $substituted, $onesolved, $othersolved)->with(
+  singleResult => 0,
+  allowBlankAnswers => 1,
+  checker => sub {
+      my ($correct, $student, $self) = @_;
+      my ($correct_isolate, $correct_substituted, $correct_onesolved, $correct_othersolved) = @$correct;
+      my ($student_isolate, $student_substituted, $student_onesolved, $student_othersolved) = @$student;
+      my $isolate_result = $correct_isolate->cmp->evaluate($student_isolate->string);
+      $self->setMessage(1,$isolate_result->{message}) if $isolate_result->{message};
+      if (!$isolate_result->{score}) {
+        $self->setMessage(2,"Cannot assess this until there is a correct answer to the first part");
+        $self->setMessage(3,"Cannot assess this until there is a correct answer to the first part");
+        $self->setMessage(4,"Cannot assess this until there is a correct answer to the first part");
+        return [0,0,0,0];
+      }
+      my $index;
+      for (0..3) {
+        $index = $_ if ($student_isolate == $isolations[$_]);
+      }
+      my $substituted_result = $substitutions[$index]->cmp->evaluate($student_substituted->string);
+      $self->setMessage(2,$substituted_result->{message}) if $substituted_result->{message};
+      if (!$substituted_result->{score}) {
+        $self->setMessage(3,"Cannot assess this until there is a correct answer to the second part");
+        $self->setMessage(4,"Cannot assess this until there is a correct answer to the second part");
+        return [1,0,0,0];
+      }
+      my $onesolved_result = ($index % 2 == 0) ? $yis->cmp->evaluate($student_onesolved->string) : $xis->cmp->evaluate($student_onesolved->string);
+      $self->setMessage(3,$onesolved_result->{message}) if $onesolved_result->{message};
+      if (!$onesolved_result->{score}) {
+        $self->setMessage(4,"Cannot assess this until there is a correct answer to the third part");
+        return [1,1,0,0];
+      }
+      my $othersolved_result = ($index % 2 == 0) ? $xis->cmp->evaluate($student_othersolved->string) : $yis->cmp->evaluate($student_othersolved->string);
+      $self->setMessage(4,$othersolved_result->{message}) if $othersolved_result->{message};
+      if (!$othersolved_result->{score}) {
+        return [1,1,1,0];
+      }
+      return [1,1,1,1];
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Use substitution to solve the system.
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+\left\{
+              \begin{alignedat}{4}
+              x\amp-{}\amp 3y \amp={}\amp 1 \\
+              2x\amp+{}\amp y \amp={}\amp -3
+              \end{alignedat}
+              \right.
+\end{aligned}
+```]
+
+
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Isolate one of the variables in one of the equations.
+
+[_]{$m}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We choose to isolate [`x`] in the first equation. All we need to do is add [`3y`] to each side, and then [`x=3y+1\text{.}`]
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Substitute the isolated expression into the other equation.
+
+[_]{$m}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Making the substitution: [`2\left(3y+1\right)+y=-3\text{.}`]
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Solve for the one variable that remains.
+
+[@KeyboardInstructions('Write the solution in [|variable = number|]* format.')@]**
+
+[_]{$m}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+2\left(3y+1\right)+y \amp= -3\\
+6y+2+y\amp=-3\\
+7y+2\amp=-3\\
+7y\amp=-5\\
+y\amp=-\frac{5}{7}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Solve for the other variable.
+
+[@KeyboardInstructions('Write the solution in [|variable = number|]* format.')@]**
+
+[_]{$m}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+x \amp= 3y+1\\
+x \amp= 3\left(-\frac{5}{7}\right)+1\\
+x\amp=-\frac{15}{7}+\frac{7}{7}\\
+x\amp=-\frac{8}{7}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

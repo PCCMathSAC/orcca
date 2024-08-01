@@ -1,0 +1,86 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.49)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+do {
+  ($a, $b) = random_coprime([1..10], [2..10,12]);
+  ($c, $d) = random_coprime([1..10], [2..10,12]);
+} until ($b != $d);
+$A = Fraction($a, $b);
+$B = Fraction($c, $d);
+$B = random(0,1) ? $B : -$B;
+$left = Formula("$a*$var/$b")->reduce;
+$right = Formula("$B")->reduce;
+($left, $right) = ($left, $right)[NchooseK(2,2)];
+$solution = $B/$A;
+Context("FiniteSolutionSets");
+Context()->variables->are($var => 'Real');
+$solset = Formula("{$solution}");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the equation.
+
+[`[$left]=[$right]`]
+
+[_]{$solset}{10}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

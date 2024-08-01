@@ -1,0 +1,165 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:16-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.1.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$gt = GraphTool(
+  "{line, solid, (0, -5), (3, -3)}",
+  "{line, solid, (0, 2), (2, 1)}"
+)->with(
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+  cmpOptions => {
+    list_checker => sub {
+      my ($correct, $student, $ans, $value) = @_;
+      return 0 if $ans->{isPreview};
+      my $score = 0; my @errors; my $count = 1;
+      my ($p1x, $p1y) = $correct->[0]->extract(3)->value;
+      my ($p2x, $p2y) = $correct->[0]->extract(4)->value;
+      my ($p3x, $p3y) = $correct->[1]->extract(3)->value;
+      my ($p4x, $p4y) = $correct->[1]->extract(4)->value;
+      my @stdform = (
+        $p1y - $p2y, $p2x - $p1x, $p1x * $p2y - $p2x * $p1y,
+        $p3y - $p4y, $p4x - $p3x, $p3x * $p4y - $p4x * $p3y
+      );
+      my $pointOnLine = sub {
+        my ($a, $b, $c, $point) = @_;  my ($x, $y) = $point->value;
+        return $a * $x + $b * $y + $c == 0;
+      };
+      my @line = (0, 0);
+      for (@$student) {
+        my $nth = Value::List->NameForNumber($count++);
+        if ($pointOnLine->(@stdform[0..2],$_->extract(3)) && $pointOnLine->(@stdform[0..2],$_->extract(4))) {
+          $line[0] = 1; $score += 1; next
+        }
+        if ($pointOnLine->(@stdform[3..5],$_->extract(3)) && $pointOnLine->(@stdform[3..5],$_->extract(4))) {
+          $line[1] = 1; $score += 1; next
+        }
+        push(@errors, "The $nth line graphed is incorrect.");
+      }
+      return (($line[0] && $line[1]) ? $score : 0, @errors);
+    }
+  }
+);
+Context("Point");
+$solution = Point(6,-1);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth
+    ]
+    \addplot[firstcurve, domain=-3:7]{2/3*x-5} node[pos=0.52,sloped,above] {\(y=\frac{2}{3}x-5\)};
+    \addplot[secondcurve, domain=-7:7]{-1/2*x+2} node[pos=0,sloped,above right] {\(y=-\frac{1}{2}x+2\)};
+    \addplot[guideline,->] coordinates {(0,-5) (3,-5) (3,-3)};
+    \addplot[guideline,->] coordinates {(0,-5) (-3,-5) (-3,-7)};
+    \addplot[guideline,->] coordinates {(0,2) (2,2) (2,1)};
+    \addplot[guideline,->] coordinates {(0,2) (-2,2) (-2,3)};
+    \addplot[soliddot,color=firstcolor] coordinates {(0,-5) (3,-3) (-3,-7)};
+    \addplot[soliddot,color=secondcolor] coordinates {(0,2) (2,1) (-2,3)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the following system of equations by graphing.
+
+[```\newcommand{\amp}{&}
+              \left\{
+                \begin{alignedat}{4}
+                  y \amp {}={} \amp \tfrac{2}{3}x \amp {}-{} \amp 5 \\
+                  y \amp {}={} \amp {-\tfrac12x} \amp {}+{} \amp 2
+                \end{alignedat}
+              \right.
+            ```]
+
+
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('Enter the solution here.')@]**
+
+[_]{$solution}{5}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Both equations are written in slope-intercept form. The first equation, [`y=\frac{2}{3}x-5\text{,}`] has slope [`\frac{2}{3}`] and [`y`]-intercept [`(0,-5)\text{.}`] The second equation, [`y=-\frac{1}{2}x+2\text{,}`] has slope [`-\frac{1}{2}`] and [`y`]-intercept [`(0,2)\text{.}`] We can use this information to graph both lines.
+
+>> [@image(insertGraph($image_1), width=>282, alt=>qq"a Cartesian grid with two intersecting lines; one line has a y-intercept of -5 and a slope of 2/3; the other line has a y-intercept of 2 and a slope of -1/2")@]*  <<
+
+It appears that the two lines intersect where [`x=6`] and [`y=-1\text{,}`] so the solution to the system of equations would be the point [`(6,-1)\text{.}`] However we should check that [`(6,-1)`] actually works as a solution to each of the original equations.
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\amp}{&}
+\begin{aligned}
+y\amp=\frac{2}{3}x-5\amp y\amp=-\frac{1}{2}x+2\\
+\substitute{-1}\amp\wonder{=}\frac{2}{3}(\substitute{6})-5\amp \substitute{-1}\amp\wonder{=}-\frac{1}{2}(\substitute{6})+2\\
+-1\amp\confirm{=}4-5\amp -1\amp\confirm{=}-3+2
+\end{aligned}
+```]
+
+This verifies that [`(6,-1)`] is the solution.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

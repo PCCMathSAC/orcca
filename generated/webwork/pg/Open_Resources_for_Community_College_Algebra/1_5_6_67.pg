@@ -1,0 +1,85 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.67)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserFormulaWithUnits.pl",
+  "parserImplicitEquation.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$unit = list_random('m', 'cm', 'in', 'ft');
+$dinteger = random(2,20);
+$d = NumberWithUnits("$dinteger $unit");
+$c = FormulaWithUnits("$dinteger pi $unit");
+Context("ImplicitEquation");
+Context()->variables->are(d => 'Real');
+Context()->variables->set(d => {limits=>[$dinteger - 10, $dinteger + 10]});
+$equation = ImplicitEquation("$dinteger pi = pi d");
+$answer = $d;
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The formula for a circle's circumference is [`c=\pi d\text{,}`] where [`c`] represents circumference, [`d`] represents diameter, and [`\pi`] is a constant with the value of [`3.1415926\ldots\text{.}`] Use the given circumference to write an equation that could be used to find that circle's diameter. Then find the diameter.
+
+The circumference is [`[$c]\text{.}`]
+
+[@KeyboardInstructions('Write the equation here.')@]**
+
+[_]{$equation}{15}
+
+[@KeyboardInstructions('Write the diameter here.')@]**
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,93 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:16-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.1.5.3)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+do {
+  ($x,$y) = (-8..8)[NchooseK(17,2)];
+  @h = (-9..$x-1,$x+1..9)[NchooseK(18,2)];
+  @k = (-9..$y-1,$y+1..9)[NchooseK(18,2)];
+  Context("Fraction");
+  Context()->noreduce('(-x)+y', '(-x)-y');
+  @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
+} until ($m[0] != 1 && $m[1] != 1);
+@n = map{($_->value)[0]} (@m);
+@d = map{($_->value)[1]} (@m);
+@f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
+Context("Point");
+$solution = Point($x,$y);
+$proposed_solution = $solution;
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], 0, showInStatic => 0);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Check if the given point is a solution to the given system of two linear equations.
+
+Is [`[$proposed_solution]`] a solution?
+
+[`\newcommand{\amp}{&}
+                  \left\{
+                    \begin{alignedat}{3}
+                      y \amp= [$f[0]]\\
+                      y \amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$dropdown}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

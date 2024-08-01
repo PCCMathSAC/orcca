@@ -1,0 +1,104 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T16:43:18-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.25)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("FiniteSolutionSets");
+Context()->variables->are(H=>'Real');
+$answer = Formula("{8/7}");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the equation [`\frac{7H}{12}=\frac{2}{3}`] for [`H\text{.}`]
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The left side is effectively the same thing as [`\frac{7}{12}H\text{,}`] so multiplying by [`\frac{12}{7}`] will isolate [`H\text{.}`]
+
+
+
+[```\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+\frac{7H}{12}\amp=\frac{2}{3}\\
+\multiplyleft{\left(\frac{12}{7}\right)}\left(\frac{7H}{12}\right)\amp=\multiplyleft{\left(\frac{12}{7}\right)}\frac{2}{3}\\
+\left(\frac{\cancel{12}}{\bcancel{7}}\right)\left(\frac{\bcancel{7}H}{\cancel{12}}\right)\amp=\left(\frac{\cancelto{4}{12}}{7}\right)\frac{2}{\cancel{3}}\\
+H\amp=\frac{8}{7}
+\end{aligned}
+```]
+
+
+
+We should check the solution by substituting [`\frac{8}{7}`]in for [`H`] in the original equation:
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\amp}{&}
+\begin{aligned}
+\frac{7H}{12}\amp=\frac{2}{3}\\
+\frac{7\left(\substitute{\frac{8}{7}}\right)}{12}\amp\wonder{=}\frac{2}{3}\\
+\frac{8}{12}\amp\wonder{=}\frac{2}{3}\\
+\frac{2}{3}\amp\confirm{=}\frac{2}{3}
+\end{aligned}
+```]
+
+The solution [`\frac{8}{7}`] is checked, and the solution set is [`\left\{\frac{8}{7}\right\}\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,156 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:12-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.5)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Interval");
+$interval = Interval("(-inf,-1)");
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$setbuilder = Compute("{ x | x<-1}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => 'x',
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[numberline]
+    \addplot[infiniteopeninterval] coordinates {(-10,0) (-1,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the inequality [`\newcommand{\gt}{>}-2-2(2x+1)\gt4-(3-x)\text{.}`] Graph the solution set on a number line. State the solution set using both interval notation and set-builder notation.
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation.')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{,}`] [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We start by simplifying the two sides.
+
+[```\newcommand{\gt}{>}\newcommand{\amp}{&}
+\begin{aligned}
+-2-2(2x+1)\amp\gt4-(3-x)\\
+-2-4x-2\amp\gt4-3+x\\
+-4x-4\amp\gt1+x
+\end{aligned}
+```]
+
+And now add/subtract terms to separate the variable terms and the constant terms.
+
+[```\newcommand{\addright}[1]{{\highlight{{{}+#1}}}}\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\gt}{>}\newcommand{\amp}{&}
+\begin{aligned}
+-4x-4\addright{4}\subtractright{x}\amp\gt1+x\addright{4}\subtractright{x}\\
+-5x\amp\gt5
+\end{aligned}
+```]
+
+And now divide each side by [`-5\text{.}`] Since we are dividing by a negative number, the inequality sign will change direction.
+
+[```\newcommand{\lt}{<}x\lt-1```]
+
+
+
+Graphically, we represent this solution set as:
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+Using interval notation, we write the solution set as [`(-\infty,-1)\text{.}`] Using set-builder notation, we write it as [`\newcommand{\lt}{<}\{x \mid x \lt -1\}\text{.}`]
+
+We should check that some number less than [`-11`] _is_ a solution, that [`-1`] itself is _not_ a solution, and that some number greater than [`-1`] is _not_ a solution.
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\reject}[1]{\stackrel{\text{no}}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\gt}{>}\newcommand{\amp}{&}
+\begin{aligned}
+\amp\amp -2-2(2x+1)\amp\gt4-(3-x)\amp\amp\\
+-2-2(2(\substitute{-2})+1)\amp\wonder{\gt}4-(3-(\substitute{-2}))\amp -2-2(2(\substitute{-1})+1)\amp\wonder{\gt}4-(3-(\substitute{-1})) \amp -2-2(2(\substitute{0})+1)\amp\wonder{\gt}4-(3-(\substitute{0}))\\
+-2-2(-4+1)\amp\wonder{\gt}4-5\amp -2-2(-2+1)\amp\wonder{\gt}4-4 \amp -2-2(0+1)\amp\wonder{\gt}4-3\\
+-2-2(-3)\amp\wonder{\gt}-1\amp -2-2(-1)\amp\wonder{\gt}0 \amp -2-2(1)\amp\wonder{\gt}1\\
+-2+6\amp\wonder{\gt}-1\amp -2+2\amp\wonder{\gt}0 \amp -2-2\amp\wonder{\gt}1\\
+4\amp\confirm{\gt}-1\amp 0\amp\reject{\gt}0 \amp -4\amp\reject{\gt}1
+\end{aligned}
+```]
+
+Everything worked out as expected, so our solution is reasonably checked.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,127 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.76)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$p1 = randomPerson();
+do {
+    $p2 = randomPerson();
+} until ($p1->name ne $p2->name);
+
+@vars = ('p','p','c','c');
+Context()->variables->are(p => 'Real', c => 'Real');
+
+@coefs = num_sort((16..24)[NchooseK(9,4)]);
+@coefs = ($coefs[0],$coefs[3],$coefs[2],$coefs[1]);
+@terms = ();
+for my $i (1..4) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]")->reduce);
+}
+$one = Formula("$coefs[0] p + $coefs[2] c");
+$two = Formula("$coefs[1] p + $coefs[3] c");
+$ans = Formula("($coefs[0] + $coefs[1]) p + ($coefs[2] + $coefs[3]) c");
+
+Context("Form");
+Context()->variables->are(p => 'Real', c => 'Real');
+
+$ans = Formula("$ans");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$p1] and [$p2] are co-owners of a  pastry shop. [$p1] bakes pies and [$p2] bakes cakes. [$p1] is able to bake [`p`] pies each day [$p1->they] [$p1->verb('work')] and [$p2] is able to bake [`c`] cakes each day [$p2->they] [$p2->verb('work')].
+
+One month, [$p1] worked [`[$coefs[0]]`] days and [$p2] worked [`[$coefs[2]]`] days. That month they produced [`[$one]`] baked goods in total.
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+The next month, [$p1] worked [`[$coefs[1]]`] days and [$p2] worked [`[$coefs[3]]`] days. How many baked goods did they produce that month?
+
+[_]{$two}{20}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+How many baked goods was that in total for those two months?
+
+[_]{$ans}{20}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

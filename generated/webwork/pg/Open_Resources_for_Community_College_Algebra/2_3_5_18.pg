@@ -1,0 +1,92 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+@den = random_pairwise_coprime([2..7],[2..7],[2..7]);
+$lcd = lcm(@den);
+@den = map {$lcd/$_} (@den);
+@num = (
+  (random_coprime([1..8],[$den[0]]))[0],
+  (random_coprime([1..8],[$den[1]]))[0],
+  (random_coprime([1..8],[$den[2]]))[0]
+);
+$m = Fraction($num[0]/$den[0]);
+$b = list_random(-1,1)*Fraction($num[1]/$den[1]);
+$c = Fraction($num[2]/$den[2]);
+$left = Formula("$m x + $b")->reduce;
+$right = Formula("$c");
+$sol = ($c - $b)/$m;
+Context("FiniteSolutionSets");
+$solution = Formula("{$sol}");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the given equation. Practice clearing the denominator(s) as a first step.
+
+[`[$left] = [$right]`]
+
+[@KeyboardInstructions('What LCD will you use?')@]**
+
+[_]{$lcd}{4}
+
+[@KeyboardInstructions('Solve the equation.')@]**
+
+[_]{$solution}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,99 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.16)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$var = list_random('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z');
+Context("Fraction")->variables->are($var => 'Real');
+Context()->flags->set(reduceConstants => 0, showExtraParens => 0);
+Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+Context()->parens->set("(" => {removable => 0,type => "AbsoluteValue",close => ")"});
+$c = Fraction(random_coprime([1..10],[2..10]));
+@terms = ($var, "$var^2", $c)[NchooseK(3, 3)];
+$given = Compute("$terms[0] + ($terms[1] + $terms[2])")->reduce;
+$ambig = Compute("$terms[0] + $terms[1] + $terms[2]")->reduce;
+$ans = Compute("($terms[0] + $terms[1]) + $terms[2]")->reduce;
+$evaluator = $ans->cmp(checker=>sub{
+  my ($correct, $student, $ans) = @_;
+  $student = Formula("$student")->reduce;
+  for $x ($given, $ambig, $student, $correct) {
+    $x->{test_at} = [[-$c - 0.5], [-$c + 0.5], [-$c**2 - 0.5], [-$c**2 + 0.5], [-$c - sqrt($c)], [-$c + sqrt($c)], [-$c**2 - sqrt($c)], [-$c**2 + sqrt($c)]];
+  }
+  Value->Error("This expression is what was originally given") if ($student eq $given);
+  Value->Error("This expression is technically correct, but please try again with explicit parentheses") if ($student == $ambig && $student eq $ambig);
+  Value->Error("This expression is algebraically equivalent to the given expression, but using associativity would give you something else") if (($student == $given) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.
+
+Apply associativity to [`[$given]\text{.}`]
+
+[_]{$evaluator}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us [`[$ans]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

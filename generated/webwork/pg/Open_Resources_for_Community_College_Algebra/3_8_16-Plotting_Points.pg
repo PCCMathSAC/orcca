@@ -1,0 +1,179 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.16)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserMultiAnswer.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+@x=(3.14)x5;
+@y=(-2..2);
+$pts=MultiAnswer(map{($_%2==0)?$x[$_/2]:$y[($_-1)/2]}(0..9))->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+    my ($correct,$student,$self) = @_;
+    my @sx = @{$student}[0,2,4,6,8];
+    my @sy = @{$student}[1,3,5,7,9];
+    my $OK=1;
+    if ($sx[0]!=3.14) {
+        $self->setMessage(1,"This point is not on the line.");
+        $self->setMessage(2,"This point is not on the line.");
+        $OK=0;
+      }
+    for my $i(1..4){
+      if ($sx[$i]!=3.14) {
+        $self->setMessage(2*$i+1,"This point is not on the line.");
+        $self->setMessage(2*$i+2,"This point is not on the line.");
+        $OK=0;
+      }
+      for my $j(0..$i-1){
+        if ($sx[$i]==3.14 and $sy[$i]==$sy[$j]) {
+          $self->setMessage(2*$i+1,"This point was already used.");
+          $self->setMessage(2*$i+2,"This point was already used.");
+          $OK=0;
+        }
+      }
+    }
+    return $OK;
+  }
+);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot+ coordinates {(3.14,-7) (3.14,7)};
+    \addplot[soliddot] coordinates {(3.14,-2) (3.14,-1) (3.14,0) (3.14,1) (3.14,2)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Suppose you need to plot the equation [`x=3.14\text{.}`] You decide to try making a table of points. Fill out some points for this table.
+
+>> [@DataTable(
+  [
+    [[PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+  ],
+      align => 'cc',
+      valign => 'middle',
+);@]* <<
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Since the equation says [`x`] is always the number [`3.14\text{,}`] we have to use this for the [`x`] value in all the points. This is different from how we would plot a "[`y=`]" equation, where we would use several different [`x`]-values. We can use whatever values for [`y`] that we like, as long as they are all different.
+
+>> [@DataTable(
+  [
+    [[PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [PGML('[`3.14`]'),
+     PGML('[`-2`]'),
+    ],
+    [PGML('[`3.14`]'),
+     PGML('[`-1`]'),
+    ],
+    [PGML('[`3.14`]'),
+     PGML('[`0`]'),
+    ],
+    [PGML('[`3.14`]'),
+     PGML('[`1`]'),
+    ],
+    [PGML('[`3.14`]'),
+     PGML('[`2`]'),
+    ],
+  ],
+      align => 'cc',
+      valign => 'middle',
+);@]* <<
+
+The reason we made a table was to help with plotting the line.
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

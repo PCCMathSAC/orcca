@@ -1,0 +1,95 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-29T19:11:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.2.7.2)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserPopUp.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+$a=Fraction(random(15,31,4),4);
+$xmin = -max(int(Real($a)*1.6), 10);
+$xmax = -$xmin;
+@decoys = (Real(-$a-2), -Real($a), int(Real($a)/2), Real($a), );
+$popup=PopUp(['?', 'A', 'B', 'C', 'D'],'D');
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xmin=$xmin,
+      xmax=$xmax,
+      xlabel={\(x\)},
+      width=\orccaprintwidth
+    ]
+    \node[pin=90:{\(A\)}] at (axis cs:$decoys[0],0) {};
+    \node[pin=90:{\(B\)}] at (axis cs:$decoys[1],0) {};
+    \node[pin=90:{\(C\)}] at (axis cs:$decoys[2],0) {};
+    \node[pin=90:{\(D\)}] at (axis cs:$decoys[3],0) {};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Which letter is [`[$a]`]m on the number line?
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[_]{$popup}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

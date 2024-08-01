@@ -1,0 +1,129 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-26T13:44:39-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.9)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@st=('AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY');
+@xs=(60.55,54.80,53.65,60.57,37.12,46.13,40.73,39.98,49.13,53.30,27.84,64.53,40.73,54.13,46.18,59.71,60.49,57.78,40.98,35.90,37.51,44.71,44.96,55.29,53.76,55.35,59.80,45.68,46.40,40.59,42.84,35.17,50.39,58.32,47.69,66.77,42.15,46.59,35.24,54.56,57.89,59.48,57.17,72.79,30.97,47.28,41.29,62.30,45.89,68.64);
+@ys=(62.89,52.89,49.64,60.59,33.25,44.80,41.73,41.92,49.06,51.20,29.44,59.32,39.41,57.12,51.21,57.22,62.54,58.09,45.16,34.79,33.52,47.60,44.95,58.32,56.88,56.52,60.33,45.53,47.25,42.03,40.05,36.84,49.90,62.95,52.06,65.33,39.49,48.84,39.46,54.90,61.53,61.06,52.43,46.80,32.64,44.68,38.17,68.65,47.87,67.40);
+%x=map{$st[$_]=>$xs[$_]}(0..49);
+%y=map{$st[$_]=>$ys[$_]}(0..49);
+Context("Numeric")->variables->add(y=>'Real');
+Context()->flags->set(tolType=>'absolute',tolerance=>1.5,limits=>[25,80]);
+parser::Assignment->Allow;
+$eq=Formula("y=0.8775(x-50)+50");
+$points = join(' ', map {"($xs[$_],$ys[$_])"} (0..49));
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=0,
+      xmax=75,
+      ymin=0,
+      ymax=75,
+      xtick={10,20,...,70},
+      minor xtick={5,10,...,75},
+      xlabel={2012 Republican vote share},
+      ytick={10,20,...,70},
+      minor ytick={5,10,...,75},
+      ylabel={2016 Republican vote share},
+      width=0.47\orccaprintwidth,
+      axis line style={->},
+    ]
+    \addplot+[domain=25:75] {0.877*(x-50)+50};
+    \addplot[soliddot] coordinates {$points};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+If we go state by state and compare the Republican presidential candidate's 2012 vote share ([`x`]) to the Republican presidential candidate's 2016 vote share ([`y`]), we get the following graph (called a "scatterplot", used in statistics) where a trendline has been superimposed.
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+Find a point-slope equation for this line. (Note that a slope-intercept equation would use the [`y`]-intercept coordinate [`b\text{,}`] and that would not be meaningful in context, since no state had anywhere near zero percent Republican vote.)
+
+[_]{$eq}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We need to calculate slope first. And for that, we need to identify two points on the line. conveniently, the line appears to pass right through [`(50,50)\text{.}`] We have to take a second point somewhere, and [`(75,72)`] seems like a reasonable roughly accurate choice. The slope equation gives us that
+
+[```
+              m=\frac{72-50}{75-50}=\frac{22}{25}=0.88
+            \text{.}```]
+
+
+
+Using [`(50,50)`] as the point, the point-slope equation would then be
+
+[```
+              y=0.88(x-50)+50
+            \text{.}```]
+
+
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,126 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:14-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.4.5.45)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+$p = randomPerson();
+$newUnits = [
+  {name=>'feet',conversion=>{factor=>12*2.54/100,m=>1}},
+  {name=>'foot',conversion=>{factor=>12*2.54/100,m=>1}},
+  {name=>'ft',conversion=>{factor=>12*2.54/100,m=>1}},
+  {name=>'hour',conversion=>{factor=>60*60,s=>1}},
+  {name=>'hours',conversion=>{factor=>60*60,s=>1}},
+  {name=>'hr',conversion=>{factor=>60*60,s=>1}},
+  {name=>'hrs',conversion=>{factor=>60*60,s=>1}},
+  {name=>'h',conversion=>{factor=>60*60,s=>1}},
+];
+@s=(
+  NumberWithUnits("375 ft/h",{newUnit=>$newUnits}),
+  NumberWithUnits("125 ft/h",{newUnit=>$newUnits}),
+  NumberWithUnits("0 ft/h",{newUnit=>$newUnits}),
+  NumberWithUnits("-500 ft/h",{newUnit=>$newUnits})
+);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+        xlabel={time (h)},
+        ylabel={elevation (ft)},
+        xmin=0,
+        xmax=30,
+        ymin=0,
+        ymax=4000,
+        minor xtick={0,...,30},
+        xtick=,
+        ytick={0,500,...,3500},
+        minor ytick=,
+        width=\orccaprintwidth,
+        height=0.33\orccaprintwidth,
+        axis line style={->},
+      ]
+    \addplot[firstcurve,-] coordinates {(0,0) (8,3000) (12,3500) (21, 3500) (28,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$p] is training for a race up the slope of Mt.[$NBSP]*Hood, from Sandy to Government Camp, and then back. The graph below models [$p->their] elevation from their starting point as time passes. Find the slopes of the four line segments, and interpret their meanings in this context.
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[@KeyboardInstructions(q"Enter the first segment's slope here.")@]**
+
+[_]{$s[0]}{5}
+
+[@KeyboardInstructions(q"Enter the second segment's slope here.")@]**
+
+[_]{$s[1]}{5}
+
+[@KeyboardInstructions(q"Enter the third segment's slope here.")@]**
+
+[_]{$s[2]}{5}
+
+[@KeyboardInstructions(q"Enter the fourth segment's slope here.")@]**
+
+[_]{$s[3]}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

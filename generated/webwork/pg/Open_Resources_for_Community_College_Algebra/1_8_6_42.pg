@@ -1,0 +1,80 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.42)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$name = randomPerson();
+$initial = random(12, 18);
+$start = NumberWithUnits("$initial gal");
+$rate = random(0.04,0.05,0.001);
+$speed = NumberWithUnits("$rate gal/mi");
+$final = 1;
+$end = NumberWithUnits("$final gal");
+Context("LinearRelation")->variables->are(d => 'Real');
+$equation = LinearRelation("$initial - $rate d = $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+[$name] filled the gas tank in [$name->possessive] car to [`[$start]\text{.}`] When the tank reaches [`[$end]\text{,}`] the low gas light will come on. On average, [$name]'s car uses [`[$speed]`] per mile driven. How many miles will [$name]'s car be able to drive before the low gas light comes on? Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|d|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

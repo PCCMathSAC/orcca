@@ -1,0 +1,106 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.55)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "parserNumberWithUnits.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$aflat = random(30.95,40.95,2);
+$bflat = $aflat + random(5,10);
+$brate = random(3,4,0.05);
+$arate = random(4.05,5,0.05);
+Context("LinearRelation")->variables->are(D => 'Real', B => 'Real');
+@eq = (LinearRelation("B = $aflat + $arate D"), LinearRelation("B = $bflat + $brate D"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+Context("Numeric");
+$d = ($aflat - $bflat)/($brate - $arate);
+$b = $aflat + $arate*$d;
+$D = NumberWithUnits("$d GB", {newUnit => [{name=>'GB'}]});
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$Aflat = Currency("$aflat");
+$Arate = Currency("$arate");
+$Bflat = Currency("$bflat");
+$Brate = Currency("$brate");
+$B = Currency($b);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+One telecom company charges a monthly fee of [`[$Aflat]`] and [`[$Arate]`] for each Gigabyte (GB) of data transmitted. A rival telecom company charges a monthly fee of [`[$Bflat]`] and [`[$Brate]`] for each GB of data transmitted. How many GB of data would you have to use for the monthly bill to be the same for the two providers? And what would that monthly bill be?
+
+[@KeyboardInstructions('Using [|D|]* (amount data, in GB) and [|B|]* (bill) as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the amount of data here.')@]**
+
+[_]{$D}{16}
+
+[@KeyboardInstructions('Enter the monthly bill here.')@]**
+
+[_]{$B}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

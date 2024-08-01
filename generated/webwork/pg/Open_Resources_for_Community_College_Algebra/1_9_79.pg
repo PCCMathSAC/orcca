@@ -1,0 +1,80 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:12-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.79)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$name = randomPerson();
+$final = random(0.4, 0.8, 0.1);
+$end = NumberWithUnits("$final L");
+$rate = random(0.5,0.9,0.1);
+$speed = NumberWithUnits("$rate L/s");
+$initial = random(7, 8, 0.1);
+$start = NumberWithUnits("$initial L");
+Context("LinearRelation")->variables->are(t => 'Real');
+$inequality = LinearRelation("$initial - $rate t >= $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an inequality to model the scenario. There is no need to solve the inequality.
+
+[$name]'s maximum lung capacity is [`[$start]\text{.}`] If [$name->possessive] lungs are full and [$name->subject] [$name->verb('exhale')] at a rate of [`[$speed]\text{,}`] write an inequality where the solution set is the possible times when [$name->subject] still [$name->have] at least [`[$end]`] of air left in [$name->possessive] lungs. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$inequality}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

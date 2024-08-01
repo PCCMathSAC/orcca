@@ -1,0 +1,130 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.16)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+($x, $y) = (-7..-1, 1..7)[NchooseK(14,2)];
+do {
+  @A = (-5..-2, 2..5)[NchooseK(10,2)];
+  @B = (-5..-1, 1..5)[NchooseK(10,2)];
+  $B[1] = 1;
+} until ($A[0]*$B[1] != $A[1]*$B[0]);
+@C = map{$A[$_]*$x + $B[$_]*$y} (0,1);
+$left[0] = Formula("$A[0] $X + $B[0] $Y")->reduce;
+$f[0] = Formula("$left[0] = $C[0]")->reduce;
+$h[1] = non_zero_random(-5, 5);
+$k[1] = $C[1] - $A[1]*$h[1];
+$right[1] = Formula("-$A[1] ($X - $h[1]) + $k[1]")->reduce;
+$f[1] = Formula("$Y = $right[1]");
+$xis = Formula("$X = $x");
+$yis = Formula("$Y = $y");
+$solution = List($xis,$yis);
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$answer = $solution->cmp(
+  mathQuillOpts => 'disabled'
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the system of equations using substitution.
+
+[`\newcommand{\amp}{&}\left\{
+                  \begin{alignedat}{4}
+                  \amp [$f[0]] \\
+                  \amp [$f[1]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+[@KeyboardInstructions('Write the solution in the format [| = number,  = number|]*. If there is no solution, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$answer}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

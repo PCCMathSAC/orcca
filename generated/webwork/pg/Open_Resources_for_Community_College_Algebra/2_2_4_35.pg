@@ -1,0 +1,128 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:12-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.4.35)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$b = random(40,60);
+$m = random(20,30);
+$sol = (212 - $b)/$m;
+$time = NumberWithUnits($sol, 'min');
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = Interval("[$sol,inf)");
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("$b+$m x >= 212");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Water straight out of the tap is [`[$b]`] degrees Fahrenheit, and you fill a tea kettle. You place the tea kettle on an old stove burner and turn on the burner, but the heating element is old and not working well. At _best_, it begins raising the temperature inside the kettle at a rate of [`[$m]`] degrees Fahrenheit per minute. How long will it take to boil the water? (Water boils at [`212`] degrees Fahrenheit.)
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent how many minutes it will take for the water to boil.
+
+[_]{$relation}{16}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. At best, how long will it take for the water to boil?
+
+[_]{$time}{16}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express the number of minutes it might take for the water to boil.
+
+[_]{$interval}{16}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,79 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.4)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@xy = random_subset(8, -8..-1,1..8);
+@x = (@xy)[0..3];
+@y = (@xy)[4..7];
+@z = random_subset(2,0..3);
+$x[$z[0]] = 0;
+$y[$z[1]] = 0;
+Context("Point");
+@p = map {Point($x[$_], $y[$_])} (0..3);
+$gt = GraphTool("{point,$p[0]}", "{point,$p[1]}", "{point,$p[2]}", "{point,$p[3]}")->with(
+  availableTools => ['PointTool'],
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Make a Cartesian plot with the indicated points marked.
+
+[`[$p[0]], [$p[1]], [$p[2]], [$p[3]]`]
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

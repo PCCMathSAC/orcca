@@ -1,0 +1,214 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.3.6)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserAssignment.pl",
+  "parserMultiAnswer.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$k = Compute(-3);
+Context("Fraction")->variables->are(x=>'Real',y=>'Real');
+parser::Assignment->Allow;
+$xis = Formula("x = -6");
+$yis = Formula("y = -2");
+$m = MultiAnswer(Real(5), Real(-3))->with(
+  singleResult => 1,
+  checker => sub {
+    my ($c, $s, $self) = @_;
+    return 1 if (
+      $c->[0] == $s->[0] && $c->[1] == $s->[1] ||
+      $c->[1] == $s->[0] && $c->[0] == $s->[1] ||
+      Real(5) == $s->[0] && Real(-4) == $s->[1] ||
+      Real(-5) == $s->[0] && Real(4) == $s->[1]
+    );
+    return 0;
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Use elimination to solve the system.
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+\left\{
+              \begin{alignedat}{4}
+              3x\amp+{}\amp 4y \amp={}\amp {-26} \\
+              5x\amp+{}\amp 5y \amp={}\amp {-40}
+              \end{alignedat}
+              \right.
+\end{aligned}
+```]
+
+
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+What numbers could you multiply each term in the first and second equations by that would be helpful?
+
+[@KeyboardInstructions('What could you multiply the terms in the first equation by?')@]**
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('What could you multiply the terms in the second equation by?')@]**
+
+[_]{$m}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+If we multiply the first equation through by [`5`] and the second equation through by [`-3`] then the [`x`]-terms will be [`15x`] and [`-15x\text{,}`] and adding will eliminate [`x\text{.}`]
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+After multiplying the terms in the first by [`5`] and the terms in the second equation by [`-3\text{,}`] and adding the two equations together, solve for [`y\text{.}`]
+
+[@KeyboardInstructions('Enter the answer in the form [|y = number|]*.')@]**
+
+[_]{$yis}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+\amp\left\{\begin{alignedat}{4}\multiplyleft{5}(3x\amp+{}\amp 4y) \amp={}\amp \multiplyleft{5}(-26) \\\multiplyleft{-3}(5x\amp+{}\amp 5y) \amp={}\amp\multiplyleft{-3}(-40)\end{alignedat}\right.\\
+\\
+\amp\left\{\underline{\begin{alignedat}{4}15x\amp+{}\amp 20y \amp={}\amp {-130} \\-15x\amp-{}\amp 15y \amp={}\amp 120\end{alignedat}}\right.\\
+\amp\phantom{\Bigg\{}\begin{alignedat}{4}\phantom{-15x-{}}\amp\amp\phantom{1}5y\amp=-10\\\amp\amp y\amp =-2\end{alignedat}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Now solve for [`x`] as well, by substituting [`-2`] in for [`y`] in one of the original equations.
+
+[@KeyboardInstructions('Enter the answer in the form [|x = number|]*.')@]**
+
+[_]{$xis}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\amp}{&}
+\begin{aligned}
+3x + 4y \amp= -26\\
+3x + 4(\substitute{-2}) \amp= -26\\
+3x - 8 \amp= -26\\
+3x \amp= -18\\
+x \amp= -6
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

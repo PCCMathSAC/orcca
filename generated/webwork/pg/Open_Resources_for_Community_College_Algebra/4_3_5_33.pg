@@ -1,0 +1,102 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.3.5.33)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+do {
+  $sa = random(6,8);
+  $S = random(7,10);
+  $mcM = 100 - $sa*$S;
+} until ($mcM % 2 == 0 || $mcM % 3 == 0 || $mcM % 4 == 0 || $mcM % 5 == 0);
+@pool;
+for (2..5) {
+  push(@pool, $_) if ($mcM % $_ == 0);
+}
+$mc = list_random(@pool);
+$M = $mcM/$mc;
+$total = $S + $M;
+Context("LinearRelation")->variables->are(M => 'Real', S => 'Real');
+@eq = (LinearRelation("M + S = $total"), LinearRelation("$mc M + $sa S = 100"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+An algebra exam has [`[$total]`] questions worth a total of 100 points. There are two types of question on the exam. There are multiple-choice questions each worth [`[$mc]`] points, and short-answer questions, each worth [`[$sa]`] points. How many questions are there of each type?
+
+[@KeyboardInstructions('Using [|M|]* and [|S|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the number of multiple choice questions here.')@]**
+
+[_]{$M}{16}
+
+[@KeyboardInstructions('Enter the number of short answer questions here.')@]**
+
+[_]{$S}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

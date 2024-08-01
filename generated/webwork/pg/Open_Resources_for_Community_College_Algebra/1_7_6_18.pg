@@ -1,0 +1,83 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@var = ('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z')[NchooseK(49, 2)];
+Context("Numeric")->variables->are($var[0] => 'Real', $var[1] => 'Real');
+Context()->flags->set(reduceConstants => 0);
+Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+Context()->parens->set("(" => {removable => 0,type => "AbsoluteValue",close => ")"});
+$c = random(2, 20);
+$given = Formula("($c $var[0]) $var[1]");
+$ambig = Formula("$c $var[0] $var[1]");
+$ans = Formula("$c($var[0] $var[1])");
+$evaluator = $ans->cmp(checker=>sub{
+  my ($correct, $student, $ans) = @_;
+  $student->{test_at} = [[1, 1], [1, -1], [-1, 1] ,[-1, -1]];
+  $correct->{test_at} = [[1, 1], [1, -1], [-1, 1] ,[-1, -1]];
+  Value->Error("This is algebraically equivalent to the given expression, but using associativity would give you something else") if (($student == $given) || ($student == $ambig) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.
+
+Apply associativity to [`[$given]\text{.}`]
+
+[_]{$evaluator}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,97 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.24)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+$actual_solution = Fraction(random_coprime([1..9],[2..9]));
+$a = ($actual_solution->value)[1];
+$b = non_zero_random(-9,9);
+$left = Formula("$a x^2 + $b x");
+$left -= Fraction($left->eval(x => $actual_solution));
+$left = $left->reduce;
+$right = Fraction($left->eval(x => $actual_solution));
+$proposed_solution = random(0,1) ? $actual_solution : $actual_solution + non_zero_random(-3,3)/($actual_solution->value)[1];
+Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+$lefteval = Fraction($left->eval(x => $proposed_solution));
+$righteval = Fraction($right->eval(x => $proposed_solution));
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], ($lefteval == $righteval) ? 0 : 1, showInStatic => 0);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Check if the given number is a solution to the given equation.
+
+Is [`[$proposed_solution]`] a solution to [`[$left]=[$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',
+);@]* <<
+
+[_]{$dropdown}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

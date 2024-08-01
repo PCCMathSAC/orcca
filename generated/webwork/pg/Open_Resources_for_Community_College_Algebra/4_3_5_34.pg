@@ -1,0 +1,101 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.3.5.34)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$C = random(40,60);
+$A = random(2*$C - 10, 2*$C + 40);
+$tickets = $A + $C;
+$c = random(1,2.5,0.5);
+$a = random(5,7.5,0.5);
+$r = $c*$C + $a*$A;
+Context("LinearRelation")->variables->are(A => 'Real', C => 'Real');
+@eq = (LinearRelation("A + C = $tickets"), LinearRelation("$a A + $c C = $r"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$revenue = Currency("$r");
+$adult = Currency("$a");
+$child = Currency("$c");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A school fundraising event sold a total of [`[$tickets]`] tickets and generated a total revenue of [`[$revenue]\text{.}`] Each adult ticket cost [`[$adult]\text{,}`] and each child ticket cost [`[$child]\text{.}`] How many adult tickets and how many child tickets were sold?
+
+[@KeyboardInstructions('Using [|A|]* and [|C|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the cost of an adult ticket here.')@]**
+
+[_]{$A}{16}
+
+[@KeyboardInstructions('Enter the cost of a child ticket here.')@]**
+
+[_]{$C}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

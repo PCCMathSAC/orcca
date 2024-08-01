@@ -1,0 +1,140 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:12-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.1)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextArbitraryString.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->variables->are();
+for my $i (1..26) {
+  Context()->variables->add($ALPHABET[$i-1] => 'Real');
+  Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
+};
+$t = OneOf('t','T','x','y');
+$a = OneOf('a', 'A', 's', 'S', 'x', 'y');
+Context("ArbitraryString");
+$hormin = Compute("hours or minutes")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(hours|hour|hrs|hr|h|hrs~~.|hr~~.|h~~.|minutes|minute|mins|min|mins~~.|min~~.)$/);
+    return 0;
+  }
+);
+$sqftorsqm = Compute("ft^2 or m^2")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(ft~~^2|square feet|feet squared|feet square|sq ft|sqft|sq~~. ft~~.|ft~~.~~^2|m~~^2|square meters|meters squared|meters square|sq m|sqm|sq~~. m~~.|m~~.~~^2)$/);
+    return 0;
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$t}{3} be the amount of time a person sleeps each night, measured in [_]{$hormin}{5}.
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The unknown quantity is time, and "time" starts with a "t". The amount of time a person sleeps would typically be measured in hours. So we could define this variable as:
+
+"Let [`t`] be the amount of time a person sleeps each night, measured in hours."
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$a}{3} be the surface area of a patio, measured in [_]{$sqftorsqm}{5}.
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The unknown quantity is area, and "area" starts with an "a". Patio area is usually measured in square feet. (Square meters is another reasonable unit.) So we could define this variable as:
+
+"Let [`A`] be the area of a patio, measured in [`\text{ft}^2\text{.}`]"
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

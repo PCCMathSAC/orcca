@@ -1,0 +1,161 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:14-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.5.15)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "bizarroArithmetic.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->flags->set(tolType => 'absolute', tolerance => 3, limits => [0,6]);
+$f = Formula("12.8*x + 91.38");
+Context()->operators->set(
+  '+'=>{class => 'bizarro::BOP::add', isCommand => 1},
+  '-'=>{class => 'bizarro::BOP::subtract', isCommand => 1},
+);
+parser::Assignment->Allow;
+Context()->variables->add(y => 'Real');
+$eq = Formula("y = $f");
+$ev = $eq->cmp()->withPostFilter(
+  sub{
+    my $ans = shift;
+    $ans->{ans_message} = "An equation for a line in slope-intercept form should start with 'y='"
+      if $ans->{ans_message} eq "The left side of an assignment must be a variable or function";
+    return $ans;
+  }
+);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=0,
+      xmax=6,
+      ymin=0,
+      ymax=200,
+      ytick=,
+      minor ytick={10,20,...,200},
+      xlabel = {pressure (bara)},
+      ylabel = {temperature (Celsius)},
+      width=0.47\orccaprintwidth,
+      axis line style={->},
+    ]
+    \addplot+[-{Kite}, domain=0:6] {12.8*x + 91.38};
+    \addplot[soliddot] coordinates {(1,99.6) (2,120.2) (3,133.6) (4,143.6) (5,151.9)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+$image_2 = createLaTeXImage();
+$image_2->addToPreamble(latexImagePreamble());
+$image_2->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=0,
+      xmax=6,
+      ymin=0,
+      ymax=200,
+      ytick=,
+      minor ytick={10,20,...,200},
+      xlabel = {pressure (bara)},
+      ylabel = {temperature (Celsius)},
+      width=0.47\orccaprintwidth,
+      axis line style={->},
+    ]
+    \addplot+[-{Kite}, domain=0:6] {12.8*x + 91.38};
+    \addplot[soliddot] coordinates {(1,99.6) (2,120.2) (3,133.6) (4,143.6) (5,151.9)};
+    \addplot[guideline] coordinates {(0,90) (3,90) (3,130)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The boiling temperature of water depends on what the surrounding air pressure is. Scientists measured the boiling point of water under various amounts of pressure and plotted the results below. Then they added a "line of best fit".
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+Write an equation for this line in slope-intercept form.
+
+[_]{$ev}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Do your best to identify two points on the line.
+
+[#
+    [.
+        [@image(insertGraph($image_2), width=>282)@]* 
+    .]
+    [.
+        We identify [`(0,90)`] and[`(3,130)\text{.}`] And then to find the slope:
+
+[```
+                \frac{\Delta y}{\Delta x}=\frac{130-90}{3-0}=\frac{40}{3}\approx13.3
+              ```]
+
+        So the slope is about [`13.3`] degrees Celsius per bara. This is only an estimate since we are not certain the two points we chose are actually on the line.
+    .]*
+#]*{align => 'p{47%}p{47%}',}
+
+Estimating the [`y`]-intercept to be at [`(0,90)\text{,}`] we have [`y=13.3x+90\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

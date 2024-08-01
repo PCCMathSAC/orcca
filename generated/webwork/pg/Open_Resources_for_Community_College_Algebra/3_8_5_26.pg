@@ -1,0 +1,100 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.5.26)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@x = random_subset(2, -9..9);
+@y = random_subset(2, -9..9);
+Context("Fraction");
+$m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
+# construct parallel line points
+do {
+  $x[2] = random(-9,9);
+  $y[2] = random(-9,9);
+} until ($x[2] != $x[0] && ($y[2] - $y[0]) / ($x[2] - $x[0]) != $m[0]);
+$d = ($m[0]->value)[1];
+$x[3] = $x[2] + non_zero_random(-3,3)*$d;
+$y[3] = $y[2] + ($x[3] - $x[2])*$m[0];
+@p = map {Point($x[$_],$y[$_])} (0..3);
+$choices = DropDown(
+  ['same line', 'distinct and parallel', 'perpendicular', 'none of the above'], 1,
+  showInStatic => 0
+);
+Context()->noreduce('(-x)-y', '(-x)+y');
+$f[0] = Formula("$m[0]x + ($y[0] - $m[0]*$x[0])")->reduce;
+$f[1] = Formula("$m[0]x + ($y[2] - $m[0]*$x[2])")->reduce;
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Determine if the two lines are the same line, distinct parallel lines, perpendicular lines, or none of the above.
+
+Line [`\ell_1`] contains the points [`[$p[0]]`] and [`[$p[1]]\text{.}`] Line [`\ell_2`] contains the points [`[$p[2]]`] and [`[$p[3]]\text{.}`]
+
+[_]{$choices}{5}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The first line's slope is [`[$m[0]]`] and the second line's slope is also [`[$m[0]]\text{.}`] So either the two lines are the same line, or they are parallel.
+
+In point-slope form, the first line has an equation [`y=[$m[0]](x-[$x[0]])+[$y[0]]\text{,}`] and the second line has an equation [`y=[$m[0]](x-[$x[2]])+[$y[2]]\text{.}`] In slope-intercept form, these are [`y=[$f[0]]`] and [`y=[$f[1]]\text{.}`] So the two lines have different [`y`]-intercepts and must be distinct lines.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

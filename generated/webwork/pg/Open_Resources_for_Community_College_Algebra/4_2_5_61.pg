@@ -1,0 +1,107 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:17-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.61)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "parserNumberWithUnits.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$p = randomPerson();
+$x = random(300, 400, 25);
+$y = random(100, 200, 10);
+$t = $x + $y;
+$X = NumberWithUnits("$x ml");
+$Y = NumberWithUnits("$y ml");
+$total = NumberWithUnits("$t ml");
+Context("Percent");
+$r1 = random(0.06, 0.12, 0.01);
+$rate1 = Percent($r1);
+$r2 = random(0.15, 0.25, 0.01);
+$rate2 = Percent($r2);
+$r3 = Round(($r1*$x + $r2*$y)/($x+$y),3);
+$rate3 = Percent($r3);
+Context("LinearRelation")->variables->are(x => 'Real', y => 'Real');
+@eq = (LinearRelation("x + y = $t"), LinearRelation("$r1 x + $r2 y = $r3*$t"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$p] poured some [`[$rate1]`] alcohol solution and some [`[$rate2]`] alcohol solution together into a beaker, and then the beaker had [`[$total]`] of [`[$rate3]`] alcohol solution. How much of each solution did [$p] pour into the beaker?
+
+[@KeyboardInstructions('Using [|x|]* (weaker solution) and [|y|]* (stronger solution) as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the amount of the weaker solution here.')@]**
+
+[_]{$X}{16}
+
+[@KeyboardInstructions('Enter the amount of the stronger solution here.')@]**
+
+[_]{$Y}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

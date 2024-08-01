@@ -1,0 +1,211 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.10)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$sb[0] = Compute("{ x | x <= 2}");
+$sb[1] = Compute("{ x | x <  2}");
+$sb[2] = Compute("{ x | x >=    2}");
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xmin=-6,
+      xmax=6,
+      xlabel={\(x\)},
+      width=\orccaprintwidth,
+    ]
+    \addplot[infiniteclosedinterval] coordinates {(-6,0) (2,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+$image_2 = createLaTeXImage();
+$image_2->addToPreamble(latexImagePreamble());
+$image_2->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xmin=-6,
+      xmax=6,
+      xlabel={\(x\)},
+      width=\orccaprintwidth,
+    ]
+    \addplot[infiniteopeninterval] coordinates {(-6,0) (2,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+$image_3 = createLaTeXImage();
+$image_3->addToPreamble(latexImagePreamble());
+$image_3->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xmin=-6,
+      xmax=6,
+      xlabel={\(x\)},
+      width=\orccaprintwidth,
+    ]
+    \addplot[closedinfiniteinterval] coordinates {(2,0) (6,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+For each interval expressed in the number lines, write the interval using set-builder notation.
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[@KeyboardInstructions('If needed, type [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`]')@]**
+
+[_]{$sb[0]}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Since all numbers less than or equal to [`2`] are shaded, the set-builder notation is [`[$sb[0]]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+>> [@image(insertGraph($image_2), width=>600)@]*  <<
+
+[@KeyboardInstructions('If needed, type [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`]')@]**
+
+[_]{$sb[1]}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Since all numbers less than to [`2`] are shaded, the set-builder notation is [`[$sb[1]]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+>> [@image(insertGraph($image_3), width=>600)@]*  <<
+
+[@KeyboardInstructions('If needed, type [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`]')@]**
+
+[_]{$sb[2]}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Since all numbers greater than or equal to [`2`] are shaded, the set-builder notation is [`[$sb[2]]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

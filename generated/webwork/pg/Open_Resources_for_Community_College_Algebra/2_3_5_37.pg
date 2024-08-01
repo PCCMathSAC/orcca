@@ -1,0 +1,84 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.37)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserFormulaWithUnits.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$p = randomPerson();
+$b = random(10,20);
+do {
+  $m = random(5,5.7,0.01);
+  $d = random(3,6);
+  $n = int($m*$d);
+  $m = $n/$d;
+  $c = random(60,100,5);
+  $sol = ($c - $b)/$m;
+  ($n,$d) = map{$_/gcd($n,$d)} ($n,$d);
+} until ($d >= 3 && $m > 4.5 && $sol != int($sol));
+$num = NumberWithUnits("$n m");
+$den = NumberWithUnits("$d s");
+$initial = NumberWithUnits("$b m");
+$final = NumberWithUnits("$c m");
+Context()->flags->set(reduceConstants => 0);
+$answer = FormulaWithUnits("$sol s");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$p] is running on a track. We start the clock as [$p->they] [$p->verb('pass')] the [$initial] mark, and [$p->they] [$p->are] running [$num] every [$den]. How long does it take for [$p] to reach the [$final] mark?
+
+[_]{$answer}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

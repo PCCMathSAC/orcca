@@ -1,0 +1,144 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.9.5.5)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "parserMultiAnswer.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Point");
+$h = non_zero_random(-9,9);
+@y = -2..2;
+@x = ($h)x5;
+@p = map {Point($x[$_],$y[$_])} (0..4);
+$mp = MultiAnswer(map {($x[$_], $y[$_], $p[$_])} (0..4) )->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+    my ($c,$s,$self) = @_;
+    my $return = 1;
+    my %numWord = (
+      0 => 'first', 1 => 'second',  2 => 'third',  3 => 'fourth', 4 => 'fifth'
+    );
+    my $error = '';
+    @usedpoints;
+    for my $i (0..4) {
+      $error .= "Your $numWord{$i} x-value is incorrect.~~n" unless ($s->[3*$i] == $h);
+      $error .= "Your $numWord{$i} point does not match your x- and y-values.~~n" unless ($s->[3*$i+2] == Point($s->[3*$i],$s->[3*$i+1]));
+      for my $j (0 .. $i - 1) {
+        if ($s->[3*$i+2] == $s->[3*$j+2]) {
+          $error .= "Your $numWord{$i} point was already used.~~n" unless (grep( /^$thispoint$/, @usedpoints));
+          last;
+        }
+      }
+    }
+    Value::Error($error) if $error;
+    return 1;
+  }
+);
+$gt = GraphTool("{line,solid,$p[0],$p[1]}")->with(
+  availableTools => [ "PointTool", "LineTool" ],
+  showCoordinateHints => 0,
+  showInStatic => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Make a table and then plot the equation.
+
+[`x=[$h]`]
+
+>> [@DataTable(
+  [
+    [[PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     [PGML('[`y`]'),
+      halign => 'c',],
+     PGML('Point'),
+    ],
+    [[PGML('[_]{$mp}{5}'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [[PGML('[_]{$mp}{5}'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [[PGML('[_]{$mp}{5}'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [[PGML('[_]{$mp}{5}'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+  ],
+      align => 'r|r|c',
+);@]* <<
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

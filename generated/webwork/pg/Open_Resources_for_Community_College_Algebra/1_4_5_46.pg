@@ -1,0 +1,159 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-26T13:44:39-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.5.46)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+$p = randomPerson();
+$newUnits = [
+  {name=>'feet',conversion=>{factor=>12*2.54/100,m=>1}},
+  {name=>'foot',conversion=>{factor=>12*2.54/100,m=>1}},
+  {name=>'ft',conversion=>{factor=>12*2.54/100,m=>1}},
+];
+@s=(
+  NumberWithUnits("0 ft/s",{newUnit=>$newUnits}),
+  NumberWithUnits("-20/3 ft/s",{newUnit=>$newUnits}),
+  NumberWithUnits("0 ft/s",{newUnit=>$newUnits}),
+  NumberWithUnits("1 ft/s",{newUnit=>$newUnits})
+);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xlabel={time (s)},
+      ylabel={elevation (ft)},
+      xmin=0,
+      xmax=300,
+      ymin=0,
+      ymax=250,
+      xtick={0,60,...,260},
+      minor xtick={10,20,...,360},
+      ytick={0,50,...,250},
+      minor ytick=,
+      width=\orccaprintwidth,
+      height=0.33\orccaprintwidth,
+      axis line style={->},
+      clip=false,
+    ]
+    \addplot[firstcurve,-] coordinates {(0,200) (30,200) (60,0) (100,0) (300,200)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+[$p] is learning to ski on the slopes of Mt.[$NBSP]*Hood. The graph below models [$p->their] elevation from the ski park's base as time passes during one ski run on a small hill. Find the slopes of the four line segments, and interpret their meanings in this context.
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[@KeyboardInstructions(q"Enter the first segment's slope here.")@]**
+
+[_]{$s[0]}{5}
+
+[@KeyboardInstructions(q"Enter the second segment's slope here.")@]**
+
+[_]{$s[1]}{5}
+
+[@KeyboardInstructions(q"Enter the third segment's slope here.")@]**
+
+[_]{$s[2]}{5}
+
+[@KeyboardInstructions(q"Enter the fourth segment's slope here.")@]**
+
+[_]{$s[3]}{5}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The first and third segments clearly have slope [`0\text{.}`] For the others, we need to indentify the coordinates of the points that begin and end each line segment: [`(0,200)\text{,}`] [`(30,200)\text{,}`] [`(60,0)\text{,}`] [`(100,0)\text{,}`] and [`(300,200)\text{.}`] For the second and fourth slopes:
+
+[#
+    [.
+        
+
+[```\begin{aligned}
+\amp\frac{0-200}{60-30}\\
+\amp=\frac{-200}{30}\\
+\amp=-6.66\ldots
+\end{aligned}
+```]
+
+
+    .]
+    [.
+        
+
+[```\begin{aligned}
+\amp\frac{200-0}{300-100}\\
+\amp=\frac{200}{200}\\
+\amp=1
+\end{aligned}
+```]
+
+
+    .]*
+#]*
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

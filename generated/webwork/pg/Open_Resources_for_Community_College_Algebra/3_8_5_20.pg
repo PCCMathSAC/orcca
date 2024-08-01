@@ -1,0 +1,71 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.5.20)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserImplicitPlane.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$k = non_zero_random(-9,9);
+Context("ImplicitPlane")->variables->are(x => 'Real', y => 'Real');
+$line=ImplicitPlane("y=$k");
+@x = random_subset(2, -9..9);
+@p = map {Point($_,$k)} (@x);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an equation for the given line.
+
+The line that passes through [`[$p[0]]`] and [`[$p[1]]\text{.}`]
+
+[_]{$line}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

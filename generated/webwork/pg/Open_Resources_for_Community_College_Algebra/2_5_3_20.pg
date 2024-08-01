@@ -1,0 +1,86 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.5.3.20)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction")->variables->are(A => 'Real', b => 'Real', h => 'Real');
+parser::Assignment->Allow;
+$ans = Assignment("h = (2A)/b");
+$introduction_image_1 = createLaTeXImage();
+$introduction_image_1->addToPreamble(latexImagePreamble());
+$introduction_image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \draw[fill=firstcolor!20!white,thick] (0,0) -| (3,2) -- cycle;
+  \node at (1.5,0) [below] {base \(b\)};
+  \draw [rightangle] (3,0.2) -| (2.8,0);
+  \node at (3,1) [right] {height \(h\)};
+  \node at (2,1) [below] {area \(A\)};
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The area of a triangle is given by [`A=\frac12bh\text{,}`] where [`b`] is the base width, and [`h`] is the height.
+
+>> [@image(insertGraph($introduction_image_1), width=>300)@]*  <<
+
+Solve the equation [`A=\frac12bh`] for [`h\text{.}`]
+
+[_]{$ans}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

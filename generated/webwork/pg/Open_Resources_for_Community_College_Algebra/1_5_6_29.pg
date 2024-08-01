@@ -1,0 +1,99 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.29)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+($a, $b) = (2..20)[NchooseK(19,2)];
+$b = random(0,1) ? $b : -$b;
+$left = Formula("$var/$a")->reduce;
+$right = Formula("$b")->reduce;
+($left, $right) = ($left, $right)[NchooseK(2,2)];
+Context("FiniteSolutionSets");
+Context()->variables->are($var => 'Real');
+$solution = $b*$a;
+$solset = Formula("{$solution}");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the equation.
+
+[`[$left]=[$right]`]
+
+[_]{$solset}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The opposite action to division is multiplication.
+
+[```\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+[$left] \amp= [$right]\\
+\multiplyleft{[$a]}[$left] \amp= \multiplyleft{[$a]}[$right]\\
+[$var] \amp= [$solution]
+\end{aligned}
+```]
+
+The solution set is [`[$solset]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

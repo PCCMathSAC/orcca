@@ -1,0 +1,76 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.40)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$final = random(10000,17000,100);
+$volume = NumberWithUnits("$final gal");
+$realrate = round($final/(random(20,30)),-2);
+$rate = NumberWithUnits("$realrate gal/hr");
+Context("LinearRelation")->variables->are(t => 'Real');
+$equation = LinearRelation("$realrate t = $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+A backyard swimming pool contains [`[$volume]`] of water when it's full. If it is filled at a rate of [`[$rate]\text{,}`] how many hours will it take to fill? Write an equation where the solution is the amount of time, in hours, that it will take to fill the pool with water. There is no need to solve the equation.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

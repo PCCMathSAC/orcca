@@ -1,0 +1,78 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T16:43:19-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.66)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$final = random(300, 400, 10);
+$end = NumberWithUnits("$final gal");
+$rate = random(8,12);
+$speed = NumberWithUnits("$rate gal/min");
+$initial = random(100, 150, 10);
+$start = NumberWithUnits("$initial gal");
+Context("LinearRelation")->variables->are(t => 'Real');
+$inequality = LinearRelation("$initial + $rate t <= $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an inequality to model the scenario. There is no need to solve the inequality.
+
+A swimming pool is filling with water from a garden hose at a rate of [`[$speed]\text{.}`] If the pool already has [`[$start]`] of water and can hold up to [`[$end]\text{,}`] set up an inequality modeling how much time can pass without the pool overflowing. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$inequality}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

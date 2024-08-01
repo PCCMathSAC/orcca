@@ -1,0 +1,87 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.5.38)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitPlane.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@x = random_subset(4, -9..9);
+@y = random_subset(4, -9..9);
+$y[1] = $y[0];
+$x[3] = $x[2];
+@p = map {Point($x[$_],$y[$_])} (0..3);
+Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
+$eq = Compute("x = $x[2]");
+$gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
+  staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
+  availableTools => [ "PointTool", "LineTool" ],
+  showCoordinateHints => 0,
+  showInStatic => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an equation for the line that is described. Then plot that line.
+
+A line is perpendicular to the line passing through [`[$p[0]]`] and [`[$p[1]]\text{,}`] and passes through [`[$p[2]]\text{.}`]
+
+[@KeyboardInstructions('Enter an equation for the line here.')@]**
+
+[_]{$eq}{16}
+
+[@KeyboardInstructions('Now plot the line.')@]**
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

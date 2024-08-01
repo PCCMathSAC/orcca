@@ -1,0 +1,104 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T16:43:18-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+$answer = NumberWithUnits("-233 degC");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+To convert a temperature in degrees Celsius to degrees Kelvin, there is a formula [`K = C + 273\text{.}`] The surface tempterature of Pluto is about [`40`] Kelvin. What is the surface temperature of Pluto in degrees Celsius?
+
+[@KeyboardInstructions('You may enter [|degC|]* for ℃.')@]**
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Since we know the Kelvin tempterature is [`40\text{,}`] the formula becomes the equation
+
+[```
+              40 = C + 273
+            ```]
+
+and we need to solve for [`C\text{.}`] With [`273`] being added, we should subtract [`273`] from each side.
+
+[```\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\amp}{&}
+\begin{aligned}
+40\subtractright{273}\amp= C + 273\subtractright{273}\\
+-233\amp=C
+\end{aligned}
+```]
+
+We should check the solution by substituting [`-233`] in for [`C`] in the original equation:
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\amp}{&}
+\begin{aligned}
+40\amp=C + 273\\
+40\amp\wonder{=}\substitute{-233} + 273\\
+40\amp\confirm{=}40
+\end{aligned}
+```]
+
+This checks out, so the surface tempterature of Plute is [`-233`] degrees Celsius.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

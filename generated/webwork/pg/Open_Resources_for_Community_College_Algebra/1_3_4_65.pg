@@ -1,0 +1,89 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.65)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$a = random(-7, 7);
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$set_builder = Compute("{ x | x < $a}");
+Context("Interval");
+$interval = Compute("(-inf, $a)");
+$gt = GraphTool("{interval,$interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => 'x',
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Convert the given interval notation into a number line graph and set-builder notation.
+
+[`[$interval]`]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In set-builder notation:')@]**
+
+[_]{$set_builder}{12}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

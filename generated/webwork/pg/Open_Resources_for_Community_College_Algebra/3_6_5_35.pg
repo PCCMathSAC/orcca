@@ -1,0 +1,161 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.6.5.35)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$xmin = -1;
+$xmax = 11;
+$ymin = -50;
+$ymax = 600;
+Context("Fraction");
+do {
+  do {
+    ($n,$d) = random_coprime([2..6],[2..6]);
+    $n = $n*50;
+    $n = list_random($n,-$n);
+    $m = Fraction($n/$d);
+    ($h,$k) = random_subset(2,1..10);
+    $k = $k*50;
+    $f = Formula("$m(x - $h) + $k")->reduce;
+    $b = $f->eval(x => 0);
+  } until ($b != 0);
+  $xtop = ($ymax - $k)/$m + $h;
+  $xbot = ($ymin - $k)/$m + $h;
+  ($start, $stop) = (num_sort($xmin,$xmax,$xtop,$xbot))[1,2];
+  @x = ();
+  @y = ();
+  $a = ($start < 0) ? int(Real($start)) : int(Real($start)) + 1;
+  $b = ($stop < 0) ? int(Real($stop)) - 1 : int(Real($stop));
+  for ($a .. $b) {
+    if ($f->eval(x => $_) == int($f->eval(x => $_)) && Real($f->eval(x => $_)) % 50 == 0) {
+      push @x, $_;
+      push @y, $f->eval(x => $_);
+    }
+  }
+} until (scalar @x >= 2);
+@fs = map {Formula("$m*(x - $x[$_]) + $y[$_]")->reduce} (0..$#x);
+
+package my::OneOf;
+our @ISA = ('parser::OneOf');
+sub cmp_compare {
+  my ($self,$other,$ans) = @_;
+  foreach $answer (@{$self->{data}}) {
+    if ($answer->typeMatch($other)) {
+      my $result = $answer->cmp->evaluate($other);
+      if ($result->{score}) {
+        $ans->score($result->{score});
+        $ans->{ans_message} = $result->{ans_message};
+        return $ans->{score};
+      }
+      if ($result->{ans_message}) {
+        $ans->{ans_message} = $result->{ans_message}
+          if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+      }
+    }
+  }
+  return 0;
+}
+package main;
+sub OneOfForm {my::OneOf->new(@_)}
+
+Context("Form")->variables->add(y=>'Real');
+parser::Assignment->Allow;
+Context()->noreduce('(-x)+y','(-x)-y');
+Context()->flags->set(reduceConstants => 0);
+$eq = OneOfForm(map {Formula("y=$_")} @fs);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin = $xmin,
+      xmax = $xmax,
+      ymin = $ymin,
+      ymax = $ymax,
+      xtick = {2,4,...,$xmax},
+      minor xtick = {1,...,$xmax},
+      ytick = {100,200,...,$ymax},
+      minor ytick = {50,100,...,$ymax},
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[firstcurve, domain=$start:$stop]{$f};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Determine a point-slope form line equation for the given line.
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[_]{$eq}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The slope is [`[$m]`] and the point [`([$h],[$k])`] is on the graph of this line, so one point-slope form equation for this line is [`y=[$f]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

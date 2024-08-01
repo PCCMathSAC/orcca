@@ -1,0 +1,92 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.7.5.17)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$A = random(1,9) + random(0.1, 0.9, 0.1);
+$B = random(1,9) + random(0.1, 0.9, 0.1);
+$C = random(1,9) + random(0.1, 0.9, 0.1);
+($A, $B) = (random(0,1))
+  ? (-$A, $B)
+  : ($A, -$B);
+$x = $C/$A;
+$y = $C/$B;
+$m = -$x/$y;
+Context()->variables->add(y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$left = Formula("$A x + $B y")->reduce;
+$right = Formula("$C");
+$xi = Point($x,0);
+$yi = Point(0,$y);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Find both intercepts and the slope of the line.
+
+[`[$left]=[$right]`]
+
+[@KeyboardInstructions('Enter the [`x`]-intercept here.')@]**
+
+[_]{$xi}{5}
+
+[@KeyboardInstructions('Enter the [`y`]-intercept here.')@]**
+
+[_]{$yi}{5}
+
+[@KeyboardInstructions('Enter the slope here.')@]**
+
+[_]{$m}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

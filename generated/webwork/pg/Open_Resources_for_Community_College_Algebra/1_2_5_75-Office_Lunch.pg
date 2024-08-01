@@ -1,0 +1,123 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.75)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@vars = ('S','S','B','B');
+Context()->variables->are(S => 'Real', B => 'Real');
+
+$n = random(20,25);
+@coefs = num_sort((5..15)[NchooseK(11,2)]);
+$coefs[2] = $n - $coefs[0] + random(-1,1);
+$coefs[3] = $n - $coefs[1] + random(-1,1);
+@terms = ();
+for my $i (1..4) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]")->reduce);
+}
+$one = Formula("$coefs[0] S + $coefs[2] B");
+$two = Formula("$coefs[1] S + $coefs[3] B");
+$ans = Formula("($coefs[0] + $coefs[1]) S + ($coefs[2] + $coefs[3]) B");
+
+Context("Form");
+Context()->variables->are(S => 'Real', B => 'Real');
+
+$ans = Formula("$ans");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Every Friday, an office supervisor provides catered lunches for everyone working in the office. People can order a sandwich (costs [`S`] dollars) or a burrito (costs [`B`] dollars).
+
+One week, the office ordered [`[$coefs[0]]`] sandwiches and [`[$coefs[2]]`] burritos. So the bill came to [`[$one]`] dollars.
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+The next week, the office ordered [`[$coefs[1]]`] sandwiches and [`[$coefs[3]]`] burritos. How much was the bill that week, in dollars?
+
+[_]{$two}{20}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+What was the combined bill for these two weeks?
+
+[_]{$ans}{20}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

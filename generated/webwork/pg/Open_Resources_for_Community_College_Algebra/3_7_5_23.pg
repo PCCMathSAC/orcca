@@ -1,0 +1,86 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:15-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.7.5.23)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($x, $y) = random_subset(2, 2..9);
+$C = lcm($x,$y);
+$A = $C/$x;
+$B = $C/$y;
+Context()->variables->add(y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$left = Formula("$A x + $B y")->reduce;
+$right = Formula("$C");
+$xi = Point($x,0);
+$yi = Point(0,$y);
+Context("Point");
+Context()->flags->set(reduceConstants=>0);
+$xi=Compute("($x,0)");
+$yi=Compute("(0,$y)");
+$gt = GraphTool("{line, solid, $xi, $yi}, {point, $xi}, {point, $yi}")->with(
+  bBox => [-11, 11, 11, -11],
+  availableTools => [ "PointTool", "LineTool" ],
+  showInStatic => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Plot the given standard form linear equation.
+
+[`[$left]=[$right]`]
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

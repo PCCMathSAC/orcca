@@ -1,0 +1,105 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.64)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->operators->remove("U");
+Context()->noreduce('(-x)+y','(-x)-y');
+@orig_vars = ('a'..'n','p'..'z','A'..'N','P'..'Z')[NchooseK(50,2)];
+@vars = (@orig_vars, @orig_vars);
+@vars = (@vars)[NchooseK(4,4)];
+Context()->variables->are();
+for my $i (1,2) {
+  Context()->variables->add($orig_vars[$i-1] => 'Real');
+}
+
+@ones = (1) x 90;
+@ints = (2..91);
+@decimals = map {$_ / 10} (1..9,11..19,21..29,31..39,41..49,51..59,61..69,71..79,81..89,91..99);
+
+@signs = (1,list_random(-1,1),list_random(-1,1),list_random(-1,1));
+@signs = (@signs)[NchooseK(4,4)];
+@coefs = (@decimals,@ones,@ints)[NchooseK(270,4)];
+@coefs = map {$signs[$_-1]*$coefs[$_-1]} (1..4);
+@terms = ();
+for my $i (1..4) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]"));
+}
+$sum = Formula(join('+', @terms))->reduce;
+
+%combinedcoefs = ();
+$combinedcoefs{$orig_vars[0]} = $sum->eval($orig_vars[0] => 1, $orig_vars[1] => 0);
+$combinedcoefs{$orig_vars[1]} = $sum->eval($orig_vars[0] => 0, $orig_vars[1] => 1);
+$ans = Formula("$combinedcoefs{$orig_vars[0]} $orig_vars[0] + $combinedcoefs{$orig_vars[1]} $orig_vars[1]")->reduce;
+
+Context("Form");
+Context()->operators->remove("U");
+Context()->flags->remove("NumberCheck");
+Context()->variables->are();
+for my $i (1,2) {
+  Context()->variables->add($orig_vars[$i-1] => 'Real');
+}
+
+$ans = Formula("$ans");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Simplify the expression by combining like terms if possible.
+
+[`[$sum]`]
+
+[_]{$ans}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

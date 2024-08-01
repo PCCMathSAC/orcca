@@ -1,0 +1,71 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.44)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+($recipeA, $recipeB) = random_subset(2, 1, 1.25, 1.33, 1.5, 1.67, 1.75, 2, 2.25, 2.33, 2.5, 2.67, 2.75);
+$volA = random(3,4);
+$ans = $recipeB*$volA/$recipeA;
+$tbsp = {name => 'tbsp', conversion => {factor =>1.4787*10**-5, m=>3}};
+$answer = NumberWithUnits("$ans tbsp", {newUnit=>$tbsp});
+$spice = list_random("cumin", "coriander", "cardamom", "black pepper", "cinnamon", "cloves", "nutmeg");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+An internet recipe for [`[$volA]`] tbsp of garam masala calls for [`[$recipeA]`] tbsp of ground [$spice]. You want to use up the last of your ground [$spice] supply, which is [`[$recipeB]`] tbsp. Assuming you have enough of all of the other ingredients, how much garam masala will you make?
+
+[_]{$answer}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

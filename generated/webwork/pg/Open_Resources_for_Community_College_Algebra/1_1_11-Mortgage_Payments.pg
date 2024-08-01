@@ -1,0 +1,102 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:09-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.1.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextCurrency.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$L = 200000;
+$r = 0.06;
+$n = 360;
+Context("Currency");
+Context("Currency")->currency->addSymbol("dollars", "dollar");
+Context()->flags->set(tolerance => 1, trimTrailingZeros => 1);
+$payment = Currency($r*$L*(1 + $r/12)**($n)/(12*((1 + $r/12)**($n)-1)));
+$paymentev = $payment->cmp(cmp_class => "an amount of money");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+If we borrow [`L`] dollars for a home mortgage loan at an annual interest rate [`r\text{,}`] and intend to pay off the loan after [`n`] months, then the amount we should pay each month [`M\text{,}`] in dollars, is given by the formula
+
+[```
+              M=\frac{rL\left(1+\frac{r}{12}\right)^{n}}{12\left(\left(1+\frac{r}{12}\right)^{n}-1\right)}
+            ```]
+
+
+
+If we borrow [`\$200{,}000`] at an interest rate of [`6\%`] with the intent to pay off the loan in [`30`] years, what should our monthly payment be? (Using a calculator is appropriate here.)
+
+[_]{$paymentev}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We must use [`L=200000\text{.}`] The interest rate [`r`] is a percentage, so we write [`r=0.06`] (not [`r=6`]). The variable [`n`] is supposed to be a number of _months_, but we will pay off the loan in [`30`] _years_. Therefore we take [`n=360\text{.}`]
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\amp}{&}
+\begin{aligned}
+M\amp=\frac{(\substitute{0.06})(\substitute{200000})\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}}{12\left(\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}-1\right)}\\
+\amp=\frac{(0.06)(200000)(1+0.005)^{360}}{12\left((1+0.005)^{360}-1\right)}\\
+\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12\left(6.022575\ldots-1\right)}\\
+\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12(5.022575\ldots)}\\
+\amp\approx\frac{72270.90\ldots}{60.2709\ldots}\approx1199.10
+\end{aligned}
+```]
+
+Our monthly payment should be [`[$payment]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

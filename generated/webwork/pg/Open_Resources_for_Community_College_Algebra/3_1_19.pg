@@ -1,0 +1,116 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.19)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+@x = random_subset(2,1..9);
+@p = (Point(@x), -Point(@x), Point($x[0], -$x[1]), Point($x[1], -$x[0]));
+@p = random_subset(4, @p);
+for (0..3) {
+  $ans[$_] = 'I'   if (($p[$_]->value)[0] > 0 && ($p[$_]->value)[1] > 0);
+  $ans[$_] = 'II'  if (($p[$_]->value)[0] < 0 && ($p[$_]->value)[1] > 0);
+  $ans[$_] = 'III' if (($p[$_]->value)[0] < 0 && ($p[$_]->value)[1] < 0);
+  $ans[$_] = 'IV'  if (($p[$_]->value)[0] > 0 && ($p[$_]->value)[1] < 0);
+  $d[$_] = DropDown(['I','II','III','IV'], $ans[$_], showInStatic => 0);
+  $xposneg[$_] = (($p[$_]->value)[0] > 0) ? 'positive' : 'negative';
+  $yposneg[$_] = (($p[$_]->value)[1] > 0) ? 'positive' : 'negative';
+}
+%qwords = (
+  I => 'upper right',
+  II => 'upper left',
+  III => 'lower left',
+  IV => 'lower right',
+);
+@ul = map {$qwords{$_}} @ans;
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Which quadrant is the point in?
+
+a.  [`[$p[0]]`] [_]{$d[0]}{5}
+
+
+a.  [`[$p[1]]`] [_]{$d[1]}{5}
+
+
+a.  [`[$p[2]]`] [_]{$d[2]}{5}
+
+
+a.  [`[$p[3]]`] [_]{$d[3]}{5}
+
+
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+a.  The [`x`]-coordinate is [$xposneg[0]] and the [`y`]-coordinate is [$yposneg[0]], so the point is in the [$ul[0]] quadrant, which is Quadrant [$ans[0]].
+
+
+a.  The [`x`]-coordinate is [$xposneg[1]] and the [`y`]-coordinate is [$yposneg[1]], so the point is in the [$ul[1]] quadrant, which is Quadrant [$ans[1]].
+
+
+a.  The [`x`]-coordinate is [$xposneg[2]] and the [`y`]-coordinate is [$yposneg[2]], so the point is in the [$ul[2]] quadrant, which is Quadrant [$ans[2]].
+
+
+a.  The [`x`]-coordinate is [$xposneg[3]] and the [`y`]-coordinate is [$yposneg[3]], so the point is in the [$ul[3]] quadrant, which is Quadrant [$ans[3]].
+
+
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

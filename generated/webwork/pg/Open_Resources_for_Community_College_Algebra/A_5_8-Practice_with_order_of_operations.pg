@@ -1,0 +1,258 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:18-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.5.8)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "bizarroArithmetic.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->operators->set(
+  '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+  '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+  '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+  ' *' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+  '* ' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+  '/' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  ' /' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  '/ ' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  '//' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+  '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+);
+Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+$step[0]=Formula("5-3(3)^2");
+$step[1]=Formula("5-3(9)");
+$step[2]=Formula("5-27");
+$msg = "Just apply one step at a time from the order of operations";
+$ev[0]=$step[0]->cmp(checker=>sub{
+  my ( $correct, $student, $ansHash ) = @_;
+  return 0 if $ansHash->{isPreview} || $correct != $student;
+  $student = $ansHash->{student_formula};
+  $correct = $correct->{original_formula} if defined $correct->{original_formula};
+  $student = Formula("$student"); $correct = Formula("$correct");
+  return 0 unless ($correct == $student);
+  Context()->flags->set(bizarroSub=>1,bizarroPow=>1);
+  delete $correct->{test_values}, $student->{test_values};
+  my $OK = (($correct == $student) or ($student == $correct));
+  Context()->flags->set(bizarroSub=>0,bizarroPow=>0);
+  Value::Error("$msg") unless $OK;
+  return $OK;
+});
+$ev[1]=$step[1]->cmp(checker=>sub{
+  my ( $correct, $student, $ansHash ) = @_;
+  return 0 if $ansHash->{isPreview} || $correct != $student;
+  $student = $ansHash->{student_formula};
+  $correct = $correct->{original_formula} if defined $correct->{original_formula};
+  $student = Formula("$student"); $correct = Formula("$correct");
+  return 0 unless ($correct == $student);
+  Context()->flags->set(bizarroMul=>1,bizarroPow=>1);
+  delete $correct->{test_values}, $student->{test_values};
+  my $OK = (($correct == $student) or ($student == $correct));
+  Context()->flags->set(bizarroMul=>0,bizarroPow=>0);
+  Value::Error("$msg") unless $OK;
+  return $OK;
+});
+$ev[2]=$step[2]->cmp(checker=>sub{
+  my ( $correct, $student, $ansHash ) = @_;
+  return 0 if $ansHash->{isPreview} || $correct != $student;
+  $student = $ansHash->{student_formula};
+  $correct = $correct->{original_formula} if defined $correct->{original_formula};
+  $student = Formula("$student"); $correct = Formula("$correct");
+  return 0 unless ($correct == $student);
+  Context()->flags->set(bizarroMul=>1,bizarroSub=>1);
+  delete $correct->{test_values}, $student->{test_values};
+  my $OK = (($correct == $student) or ($student == $correct));
+  Context()->flags->set(bizarroMul=>0,bizarroSub=>0);
+  Value::Error("$msg") unless $OK;
+    return $OK;
+});
+Context("LimitedNumeric");
+$step[3]=Formula("-22");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Simplify this expression one step at a time, using the order of operations.
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+[`5-3(7-4)^2={}`][_]{$ev[0]}{15}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\nextoperation}[1]{\mathord{\boxed{#1}}}\newcommand{\amp}{&}
+\begin{aligned}
+5-3(\nextoperation{7-4})^2\amp=5-3\nextoperation{(3)^2}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+[`\phantom{5-3(7-4)^2}={}`][_]{$ev[1]}{15}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\nextoperation}[1]{\mathord{\boxed{#1}}}\newcommand{\amp}{&}
+\begin{aligned}
+\amp=5-\nextoperation{3(9)}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+[`\phantom{5-3(7-4)^2}={}`][_]{$ev[2]}{15}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+\amp=5-27
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+[`\phantom{5-3(7-4)^2}={}`][_]{$step[3]}{15}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+\amp=-22
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

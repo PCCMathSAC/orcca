@@ -1,0 +1,129 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T16:43:18-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.6.61)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@var = ('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z')[NchooseK(49,3)];
+Context("Numeric");
+Context()->variables->are($var[0]=>'Real' ,$var[1]=>'Real', $var[2]=>'Real');
+Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+Context()->parens->set("(" => {removable=>0, type => "AbsoluteValue", close => ")"});
+for my $var (@vars) {
+  Context()->variables->set($var => {limits => [-2,2]});
+}
+$given = Formula("$var[0] + $var[1] + $var[2]");
+$ans1 = Formula("($var[0] + $var[1]) + $var[2]");
+$ans2 = Formula("$var[0] + ($var[1] + $var[2])");
+$evaluator1 = $ans1->cmp(checker => sub {
+  my ($correct, $student, $ans) = @_;
+  for my $x ($studnet, $correct) {
+    $x->{test_at} = [[-1,-1,-1],[-1,-1,1],[-1,1,-1],[-1,1,1],[1,-1,-1],[1,-1,1],[1,1,-1],[1,1,1]];
+  }
+  Value->Error("This expression is algebraically equivalent to the given expression, but it is not what is asked for") if (($student == $given) || ($student == $ans2) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+$evaluator2 = $ans2->cmp(checker => sub {
+  my ($correct, $student, $ans) = @_;
+  for my $x ($studnet, $correct) {
+    $x->{test_at} = [[-1,-1,-1],[-1,-1,1],[-1,1,-1],[-1,1,1],[1,-1,-1],[1,-1,1],[1,1,-1],[1,1,1]];
+  }
+  Value->Error("This expression is algebraically equivalent to the given expression, but it is not what is asked for") if (($student == $given) || ($student == $ans1) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The expression [`[$given]`] would be ambiguous if we did not have a left-to-right reading convention.
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Use grouping symbols to emphasize the order that these additions should be carried out.
+
+[_]{$evaluator1}{16}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Use the associative property of addition to write an equivalent (but different) algebraic expression.
+
+[_]{$evaluator2}{16}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

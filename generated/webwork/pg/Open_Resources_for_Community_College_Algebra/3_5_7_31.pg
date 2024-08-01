@@ -1,0 +1,116 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:14-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.5.7.31)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($m, $b) = random_subset(2, 2..5);
+$b = list_random($b, -$b);
+$m = -$m;
+Context("Numeric")->variables->add(y=>'Real');
+Context()->noreduce('(-x)+y','(-x)-y');
+parser::Assignment->Allow;
+$equation = Formula("y = $m x + $b")->reduce;
+$gt = GraphTool("{line, solid, (0, $b), (1, $b + $m)}")->with(
+  bBox => [-11, 11, 11, -11],
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+);
+@domain = num_sort(-10,10,(10 - $b)/$m,(-10 - $b)/$m);
+($l,$r) = (@domain)[1,2];
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth,
+      xmin=-10,
+      xmax=10,
+      ymin=-10,
+      ymax=10,
+      xtick={-10,-5,5,10},
+      ytick={-10,-5,5,10},
+      minor xtick={-10,...,10},
+      minor ytick={-10,...,10},
+    ]
+    \addplot+[domain=$l:$r] {$m*x + $b};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Graph the equation.
+
+[`[$equation]`]
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Start the plot at the [`y`]-intercept [`(0,[$b])\text{.}`] Then use slope triangles with slope [`[$m]`] to extend a line in two directions.
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

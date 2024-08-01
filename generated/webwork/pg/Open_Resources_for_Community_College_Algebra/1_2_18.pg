@@ -1,0 +1,96 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-26T13:44:38-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "parserCheckboxList.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Numeric");
+Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
+Context()->noreduce('(-x)-y');
+@allvars=('x','y','z','r','q','p','V');
+@var=(
+    list_random(@allvars),
+    (@allvars)[NchooseK(7,2)],
+    list_random(@allvars),
+    list_random(@allvars),
+    list_random(@allvars),
+    'r',
+);
+@left=(
+    Formula(non_zero_random(-9, 9) . " $var[0] + " . non_zero_random(-19, 19) . " $var[1]")->reduce,
+    Formula(random(1, 9) . " $var[1] + " . random(1, 9) . " $var[2]^2")->reduce,
+    Formula(random(1, 9) . " $var[2] + " . non_zero_random(-9, 9) . "|$var[3]|")->reduce,
+    Formula(random(0.1, 9, 0.1) . $var[4])->reduce,
+    Formula("sqrt(" . non_zero_random(-9, 9, 0.1) . "$var[5] + " . non_zero_random(-9, 9) . ")")->reduce,
+    Formula("2 pi r")->reduce
+);
+@right=(
+    Compute(random(-9, 9)),
+    Compute(random(2, 29)),
+    Compute(random(-29, 29)),
+    Formula(random(0.1, 9, 0.1) . $var[5])->reduce,
+    Formula(random(0, 9) . " / $var[0]")->reduce,
+    Formula(random(1, 20).'pi')->reduce
+);
+@eq = map{$BM . $left[$_]->TeX . '=' . $right[$_]->TeX . $EM} (0..5);
+$options = CheckboxList([~~@eq, "None of the above"], [0,3,5]);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Select the equations that are linear in two variables, including any where you must imagine an additional variable with coefficient [`0\text{.}`]
+
+[_]{$options}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,97 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:10-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.76)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+$r = Fraction(random_coprime([1..5],[2..9]));
+$Vbar = Fraction(4, 3) * $r**3;
+Context()->variables->are(r => 'Real');
+$proposed_solution = random(0,1) ? $r : $r + random(1,3)/($r->value)[1];
+$left = Formula("$Vbar pi");
+$right = Formula("4/3 pi r^3");
+$righteval = Formula("($proposed_solution**3) pi")->reduce;
+Context("Form");
+$lefteval = Formula("$left");
+$righteval = Formula("$righteval");
+$dropdown = DropDown(
+  ["Yes, it is a solution.", "No, it is not a solution."],
+  ($lefteval == $righteval) ? 0 : 1, showInStatic => 0
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The formula for a sphere's volume is [`V=\frac{4}{3}\pi r^3\text{,}`] where [`V`] is the volume and [`r`] is the radius. And [`\pi`] is a number that is about [`3.14\text{.}`] If we know the volume of a sphere is [`[$left]`] then we have the equation [`[$left]=[$right]\text{.}`] Is the radius [`[$proposed_solution]\text{?}`]
+
+>> [@DataTable(
+  [
+    [PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [PGML('[`[$lefteval->TeX]`]'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[_]{$righteval}{3}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',
+);@]* <<
+
+[_]{$dropdown}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

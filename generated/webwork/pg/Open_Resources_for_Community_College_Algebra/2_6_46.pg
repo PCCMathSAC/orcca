@@ -1,0 +1,96 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.6.46)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@x = qw(y m x b);
+Context("Fraction")->variables->are(map {$_ => 'Real'} (@x));
+parser::Assignment->Allow;
+$ans = Assignment("b = y - mx");
+$introduction_image_1 = createLaTeXImage();
+$introduction_image_1->addToPreamble(latexImagePreamble());
+$introduction_image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xtick={0},
+      ytick={0},
+      minor xtick=,
+      minor ytick=,
+      ymin=-1,
+      ymax=5,
+      width=0.47\orccaprintwidth,
+      height=0.2\orccaprintwidth,
+    ]
+    \addplot+ {1/3*x + 2};
+    \draw[guideline] (axis cs:0,0) -- (axis cs:0.2,0) -- node[pos=0.5, right]{\(b\)} (axis cs:0.2,2) -- (axis cs:0,2);
+    \draw[guideline] (axis cs:0,2) -- node[pos=0.5, below]{\(1\)} (axis cs:3,2) -- node[pos=0.5, right]{\(m\)} (axis cs:3,3);
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The equation for a line in "slope-intercept form" is [`y=mx+b\text{.}`]
+
+>> [@image(insertGraph($introduction_image_1), width=>282)@]*  <<
+
+Solve the equation for [`b\text{.}`]
+
+[_]{$ans}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

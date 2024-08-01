@@ -1,0 +1,128 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:13-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.4.33)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "parserVectorUtils.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+do {
+  ($m, $n, $q) = random_subset(3,-5..-2,2..5);
+  $p = $m*$n + $q;
+  ($c, $d) = random_subset(2,1..9);
+  $b = -$d - $m*$c + list_random(-3..3,(0)x5);
+} until ($p != 0 && $d != 0);
+$x = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+Context()->variables->are($x => 'Real');
+Context()->noreduce('(-x)+y', '(-x)-y');
+$left = Formula("$b + $m($c + $n $x)")->reduce;
+$right = Formula("$p $x - ($d + $q $x)")->reduce;
+$symbol = list_random('\lt', '\gt', '\leq', '\geq');
+sub weigh {
+  my ($a, $b, $s) = @_;
+  if ($s eq '\lt') {return ($a < $b)}
+  elsif ($s eq '\gt') {return ($a > $b)}
+  elsif ($s eq '\leq') {return ($a <= $b)}
+  elsif ($s eq '\geq') {return ($a >= $b)}
+}
+Context("FiniteSolutionSets");
+if (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol)) {
+  $solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"));
+  $truefalse = 'true';
+  $conclusion = 'So all real numbers are solutions.';
+} else {
+  $solution = String("no real solutions")->cmp(typeMatch => Formula("{1}"));
+  $truefalse = 'false';
+  $conclusion = 'So there are no solutions.';
+}
+Context("Fraction")->variables->are($x => 'Real', solvar => 'Real');
+$leftsol[0] = Formula("$b + solvar + ($m*$n) $x")->reduce;
+$leftsol[0] = $leftsol[0]->substitute(solvar => Formula($m*$c));
+$rightsol[0] = Formula("$p $x - $d - $q $x")->reduce;
+$leftsol[1] = Formula("($b + $m*$c) + ($m*$n) $x")->reduce;
+$rightsol[1] = Formula("($p - $q) $x - $d")->reduce;
+$leftsol[2] = Formula("$b + $m*$c")->reduce;
+$rightsol[2] = Formula("-$d")->reduce;
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the inequality for its variable.
+
+[`[$left][$symbol][$right]`]
+
+[_]{$solution}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We try to use the standard steps for solving an inequality:
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+[$left] \amp[$symbol] [$right]\\
+[$leftsol[0]] \amp[$symbol] [$rightsol[0]]\\
+[$leftsol[1]] \amp[$symbol] [$rightsol[1]]\\
+[$leftsol[2]] \amp[$symbol] [$rightsol[2]]
+\end{aligned}
+```]
+
+This is an outright [$truefalse] inequality. [$conclusion]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,97 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-29T20:41:04-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.1.7.109)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextRationalFunction.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Numeric");
+Context()->variables->are(a=>'Real');
+$p = random(1,9,1);
+$q = list_random(1..4,6..9);
+$numerator = (5*$p-$q);
+$left = Formula("$p/a");
+$right = Formula("$q/(5a)");
+$expression = $left - $right;
+$p5 = 5*$p;
+Context("RationalFunction-Strict");
+Context()->variables->are(a=>'Real');
+$answer = Formula("$numerator/(5a)");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Given that [`a\neq0\text{,}`] simplify [`\displaystyle{}[$expression]\text{.}`]
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Since the fractions don't have the same denominator, we have to make them have like denominators. Multiply the first fraction by [`\frac{5}{5}\text{.}`]
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+[$expression] \amp = [$left]\cdot \frac{5}{5} - [$right]\\
+\amp = \frac{[$p5]}{5a} - [$right]\\
+\amp = [$answer]
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

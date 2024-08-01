@@ -1,0 +1,86 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.47)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Form");
+$var = list_random('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z');
+Context()->variables->are($var => 'Real');
+($a, $b, $c, $d) = (2..9)[NchooseK(8,4)];
+$given = Formula("$d + $a ($b $var - $c)");
+$ab = $a*$b;
+$acd = $d - $a*$c;
+$ans = Formula("$ab $var + $acd");
+$sol[0] = Formula("$d + ($a*$b) $var - ($a*$c)")->reduce;
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Simplify the given expression. Ideally, you are thinking about how the properties of algebra are helping you simplify.
+
+[`[$given]`]
+
+[_]{$ans}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+First, apply the distributive property to get [`[$sol[0]]\text{.}`] Now add the two like terms to get [`[$ans]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

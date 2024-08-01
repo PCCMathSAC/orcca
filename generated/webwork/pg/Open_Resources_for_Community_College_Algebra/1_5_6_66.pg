@@ -1,0 +1,114 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-01T15:35:11-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.66)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitEquation.pl",
+  "contextCurrency.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$m = random(10, 90, 5);
+$mdecimal = $m/100;
+$wdecimal = random(5, 20, 0.05);
+Context("ImplicitEquation");
+Context()->variables->are(s => 'Real');
+$r = 1 - $mdecimal;
+$answerdecimal = Real($wdecimal/$r);
+Context()->variables->set(s => {limits=>[$answerdecimal - 100, $answerdecimal + 100]});
+$equation = ImplicitEquation("s(1 - $mdecimal) = $wdecimal");
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$w = Currency($wdecimal);
+$answer = Currency($answerdecimal);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+In retail, an item has a wholesale price [`w`] that the store pays to obtain the item. The shelf price [`s`] is what a customer pays to buy the item. The "markup factor" [`m`] is a number that explains what proportion of the shelf price is profit. For example if the markup factor is [`0.15\text{,}`] it means that [`15\%`] of the shelf price is profit for the store. These numbers are related by the formula [`s(1-m)=w\text{.}`]
+
+Suppose the markup is [`[$m]\%`] and the wholesale price is [`[$w]\text{.}`] Write an equation that could be used to find the shelf price. Then find the shelf price.
+
+[@KeyboardInstructions('Write the equation here.')@]**
+
+[_]{$equation}{15}
+
+[@KeyboardInstructions('Write the shelf price here.')@]**
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We start with the equation [`s(1-m)=w`] and substitute in what we know. The value for [`m`] should be [`[$mdecimal]`] and the value for [`w`] should be [`[$wdecimal]\text{.}`] So we have the equation
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+s(1-[$mdecimal]) \amp= [$wdecimal]\\
+s([$r]) \amp= [$wdecimal]
+\end{aligned}
+```]
+
+Now to solve for [`s\text{,}`] divide on each side by [`[$r]\text{:}`]
+
+[```\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+\divideunder{s([$r])}{[$r]} \amp= \divideunder{[$wdecimal]}{[$r]}\\
+s \amp= [$answerdecimal]
+\end{aligned}
+```]
+
+So the shelf price is [$answer].
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();
