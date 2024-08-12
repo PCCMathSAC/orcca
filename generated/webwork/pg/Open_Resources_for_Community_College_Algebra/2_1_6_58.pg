@@ -1,0 +1,77 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.58)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "contextCurrency.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$rate = random(60000,200000,5000);
+Context("Currency")->flags->set(
+  trimTrailingZeros => 1, tolType => 'absolute', tolerance => 0.5
+);
+$speed = Currency("$rate");
+$final = random(1000000,2000000,10000);
+$end = Currency("$final");
+$total = $end*list_random(5,10);
+$initial = $final/list_random(2,4,5);
+$start = Currency("$initial");
+$solution = ($final - $initial)/$rate;
+$time = NumberWithUnits("$solution months");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A small town would like to replace its aging water treatment system. This will cost [`[$total]\text{,}`] but the town just needs [`[$end]`] up front for downpayment on a loan that will cover the rest. The town treasury has [`[$start]`] in it already for this need, and the town can gather [`[$speed]`] per month from taxes. How long will it take to reach enough for downpayment on that loan?
+
+[_]{$time}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

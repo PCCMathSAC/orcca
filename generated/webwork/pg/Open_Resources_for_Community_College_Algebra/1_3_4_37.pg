@@ -1,0 +1,76 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:26-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.37)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->operators->redefine('>',using=>',',from=>'Numeric');
+Context()->lists->set('List' => {separator => '>'});
+
+@a = (-10..10)[NchooseK(21,5)];
+@a = map{Real($_)} (@a);
+$as = join('\quad', map{'{' . $_ . '}'} (@a));
+@b = PGsort(sub{$_[0] > $_[1]}, @a);
+$bs = join('>', @b);
+
+$comparison = Compute("$bs")->cmp(ordered => 1);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Use the [`\newcommand{\gt}{>}\gt`] symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like [`\newcommand{\gt}{>}4 \gt 3 \gt 2 \gt 1 \gt 0\text{.}`]
+
+[`[$as]`]
+
+[_]{$comparison}{30}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

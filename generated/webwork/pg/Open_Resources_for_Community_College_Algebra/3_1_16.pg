@@ -1,0 +1,156 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.16)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@data = (
+  1 => 0,
+  1 => 1,
+  2 => 1,
+  2 => 2,
+  3 => 3,
+  3 => 4,
+  4 => 5,
+  5 => 5,
+  5 => 6,
+  6 => 6,
+  6 => 7,
+  7 => 7,
+  7 => 8,
+  8 => 8,
+  8 => 9,
+  8 => 10,
+  9 => 10,
+  10 => 10,
+  10 => 11,
+  10 => 12,
+  11 => 12,
+  12 => 12,
+  12 => 13,
+  12 => 14,
+  13 => 14,
+  14 => 14,
+  14 => 15,
+  14 => 16,
+  15 => 16,
+  16 => 16,
+  16 => 17,
+  16 => 18,
+  16 => 20,
+  17 => 18,
+  17 => 20,
+  18 => 18,
+  18 => 20,
+);
+@elements = qw(Hydrogen Helium Lithium Beryllium Boron Carbon Nitrogen Oxygen Fluorine
+  Neon Sodium Magnesium Aluminum Silicon Phosphorus Sulfur Chlorine Argon);
+$table = "x~~ty~~n";
+for (0..36) {$table .= "$data[2*$_]~~t$data[2*$_ + 1]~~n"};
+$i = random(0,36);
+$x = $data[2*$i];
+$elt = $elements[$x - 1];
+@ans;
+for (0..36) {
+  push(@ans, Point($x, $data[2*$_ + 1])) if $data[2*$_] == $x;
+}
+Context("Point");
+$ans = List(@ans);
+$proton = ($elt eq 'Hydrogen') ? 'proton' : 'protons';
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xlabel={\(z\) (num. protons)},
+      ylabel={\(n\) (num. neutrons)},
+      xmin=0,
+      xmax=18,
+      ymin=0,
+      ymax=20,
+      xtick=,
+      ytick=,
+      minor xtick=,
+      minor ytick=,
+      clip=false,
+      width=\orccaprintwidth,
+      height=0.33\orccaprintwidth,
+      axis line style={->},
+      ]
+    \addplot[soliddot] table [x=x,y=y] {
+      $table
+    };
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+This is a graph representing stable isotopes of atomic elements (Hydrogen, Helium, etc.) up through the first three rows of the periodic table of elements.
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[$elt] has [`[$x]`] [$proton]. List all of the ordered pairs of coordinates on this graph that correspond to [$elt].
+
+[@KeyboardInstructions('If there are more than one pair of coordinates, separate each pair from the others using a comma.')@]**
+
+[_]{$ans}{16}
+
+According to the graph, there is a certain number of neutrons for which there is no stable isotope of any atom. What number of neutrons is this?
+
+[_]{19}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

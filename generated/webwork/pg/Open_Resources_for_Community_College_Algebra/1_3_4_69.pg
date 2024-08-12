@@ -1,0 +1,77 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:26-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.69)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->variables->add(a => 'Real', age => 'Real', A => 'Real', Age => 'Real');
+$set_builder = Compute("{ a | a >= 21}");
+Context("Interval");
+$interval = Compute("[21, inf)");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+In most US states, you must be at least 21 years old to rent a car. Write an interval for the age [`a`] of someone who could legally rent a car.
+
+[@KeyboardInstructions('In set-builder notation:')@]**
+
+[_]{$set_builder}{12}
+
+[@KeyboardInstructions('In interval notation:')@]**
+
+[_]{$interval}{12}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -4930,7 +4930,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "1.7",
   "title": "Algebraic Properties and Simplifying Expressions",
-  "body": " Algebraic Properties and Simplifying Expressions   PCC Course Content and Outcome Guide    MTH 60 CCOG      If we have two apples and then add three more, we have five apples. That result is the same as if we'd started with three apples and then added two more. This is a feature of numbers and arithmetic that we will formalize in this section, along with a few other features. Understanding these well will help us solve more equations later.   Alternative Video Lesson      Identities and Inverses  Identity  We start with some definitions. The number is called the additive identity . It has this name because Additive identity adding to a number does not change that number's identity . Identity additive If you were playing a game where you needed to add something to , but you Addition identity property of didn't want to change the value, then you would add : Identity property of addition  Adding the additive identity to a number does not change that number.  If the sum of two numbers is the additive identity ( ) then those two numbers Addition inverse property of are called additive inverses of each other. Additive inverse Imagine playing a game where you have a number like , and you need to add something Inverse additive to it to get . You would add : Opposite  Inverse property of addition  It works the other way too when starting with a negative number. Now imagine starting with and you need to add something to that to get . You would add : The additive inverse of a number is that same number with the opposite sign. And what makes that pair of numbers special is that they add to .  We also have the special number , which is the multiplicative identity . Multiplicative identity The special feature being highlighted is that when you multiply a number by , Identity multiplicative it does not change that number's identity . Once again, imagine you are playing a game Multiplication identity property of where your job is to multiply by something, but you actually do not want to change the number's value. Then you would multiply by : Identity property of multiplication    If the product of two numbers is the multiplicative identity ( ) then those two numbers Multiplication inverse property of are called multiplicative inverses of each other. Multiplicative inverse Strategically, what would you multiply by to get ? Inverse multiplicative You could use the fraction : Reciprocal  Inverse property of multiplication  Or what if you started with a more complicated number like ? What could you multiply that by to get ? We would use so that the negative signs cancel, and the product would be which reduces to : Notice what happens with the numerator and denominator swapping places. The multiplicative inverse of a number is also called its reciprocal .  Matching Vocabulary  Match each concept with the corresponding vocabulary term.    Add something but not change value  Additive identity    Add something and get  Additive inverse    Multiply by something but not change value  Multiplicative identity    Multiply by something and get  Multiplicative inverse    Matching Identities and Inverses  Match each description of a number on the left with a number on the right.    The additive inverse of     The multiplicative inverse of     The multiplicative inverse of added to the additive identity     The multiplicative identity divided by the additive inverse of       Algebraic Properties   Commutative Property  Commutative property  To find the area of a rectangle, multiply the length by the width. Does the result change if we multiply the width by the length?   Horizontal and Vertical Rectangles   two rectangles; the left rectangle is 3 cm wide by 2 cm high; its area is marked by Area=3*2=6; the right rectangle is 2 cm wide by 3 cm high; its area is marked by Area=2*3=6     We can see that . If we write the length of a rectangle as and the width as , we can write . The fact that we can reverse the order of multiplication is known as the commutative property of multiplication . There is a similar property for addition, which you can see in the equation . It's called the commutative property of addition . Addition commutative property of However, subtraction and division do not have the commutative property, because for example and .    Associative Property  Associative property  Instead of a rectangle, consider a 3D rectangular prism with depth , width , and height . To compute the volume of this prism, we multiply the depth, width, and height together. In the following figure, on the left side, we multiply the width and depth first, and then multiply the height. On the right side, we multiply the width and height first, and then multiply the depth. Either way, the final result is the same.      a rectangular prism; its length is 4 cm, width is 3 cm, and height is 2 cm; one face representing the width and depth is highlighted        a rectangular prism; its length is 4 cm, width is 3 cm, and height is 2 cm; one face representing the width and height is highlighted      What this shows us is . We haven't changed the order that the three variables are written left to right, but we are doing the actual multiplication in a different order. The order of operations requires multiplication inside the parentheses to happen first. This feature of numbers is known as the associative property of multiplication . There is a similar property for addition, which you can see in the equation . Note again that the left-to-right order that the numbers are written is the same on either side. But the grouping symbols get us to actually do the addition in a different order. This property is called the associative property of addition . Addition associative property of Subtraction and division do not have an associative property, because for example and .    Distributive Property  Distributive property  The final property we'll explore is called the distributive property , which involves both multiplication and addition (or subtraction). To understand this property, consider what happens if we take bags, and each bag contains one apple and one pear. We have the same total amount of fruit as if we'd taken a bag with apples and another bag with pears. Algebraically: . It helps to think of this as distributing the to the and the .  The distributive property also works with multiplication on the other side, and with subtraction: although the apples and pears metaphor may be harder to make sense of.  And the distributive property works with division too, when there is only one term in the denominator:     Summary of Algebraic Properties   Algebraic Properties  Addition commutative property of  Commutative property of addition  Addition associative property of  Associative property of addition  Multiplication commutative property of  Commutative property of multiplication  Multiplication associative property of  Associative property of multiplication  Distributive property   Let , , and be real numbers, variables, or algebraic expressions. Then the following properties hold:     Commutative Property of Multiplication       Associative Property of Multiplication       Commutative Property of Addition       Associative Property of Addition       Distributive Property     (The last two versions require .)      Practice these properties in the following exercises.  Matching Vocabulary  Match each concept with the corresponding vocabulary term.    Change the order that addition is written  Commutative Property of Addition    Change the order that multiplication is written  Commutative Property of Multiplication    Change the order that three terms are actually added together  Associative Property of Addition    Change the order that three factors are actually multiplied together  Associative Property of Multiplication    Either add two terms, then multiply; or multiply twice, then add  Distributive Property    Matching Properties to Examples  Match each algebra property with an example.    Commutative Property of Addition     Commutative Property of Multiplication     Associative Property of Addition     Associative Property of Multiplication     Distributive Property       Use the commutative property of multiplication to write an equivalent expression to      To use the commutative property of multiplication, change the order the two factors are multiplied:    Use the associative property of multiplication to write an equivalent expression to      To use the associative property of multiplication, leave factors written in their original order, but change the grouping symbols so that a different multiplication has higher priority:   You may further simplify by multiplying the two numbers:   but that is going a step beyond simply using the associative property.   Use the commutative property of addition to write an equivalent expression to      To use the commutative property of addition, change the order the two terms are added:    Use the associative property of addition to write an equivalent expression to      To use the associative property of addition, leave terms written in their original order, but change the grouping symbols so that a different addition has higher priority:    Use the distributive property to write an equivalent expression to that has no grouping symbols.      To use the distributive property, multiply the number outside the parentheses, with each term inside the parentheses:          Applying the Commutative, Associative, and Distributive Properties  One way we use the commutative, associative, and distributive properties is to simplify Algebraic expressions simplifying algebra expressions.   Combining like terms  Like Terms  For example, how we treat like terms (see ) is actually putting these algebra properties into practice. We combine like terms when we take an expression like and write the result as . The drawn-out formal process actually looks like this: So combining like terms is actually making use of the distributive property. In practice, it's better for you to do this the fast way. But you can grow you understanding and appreciation for algebra if you see how the above steps break things down with one official algebra property at a time.     Where possible, simplify the following expressions by combining like terms.        All three terms are like terms, so they may combined. We combine them two at a time:         The terms and are like terms, so we may combine them. Note we are using one of the subtraction versions of the distributive property.         The terms and are like terms, while the other term is different. Using the associative and commutative properties of addition early in the process allows us to place the two like terms next to each other, and then combine them:   This walkthrough uses the algebra properties cleanly and clearly one step at a time, but if you are combining like terms more quickly, there s nothing at all wrong with that.        The expression cannot be simplified as there are no like terms.        Adding Expressions  Consider adding an expression like to an expression like : Can we simplify this? It's great if you already see that the parentheses in this case can be removed and it would not change the outcome: And then using what you know about like terms, you could conclude that this is .  Several steps that are described above are sweeping things under the rug, taking multiple steps at once without really justifying why that is legal. Why exactly is it OK to just ignore those parentheses? Why is it ok to add and when they are separated with the in between? With the algebra properties, we can cleanly justify why simplifies to , explaining one step at a time. That was a lot to do! So it's worth repeating that it is good if you can more quickly simplify to . The above demonstrates how the algebra properties, one at a time, truly justify and validate that simplification.     Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.                       The Role of the Order of Operations  When simplifying an expression such as , we need to respect the order of operations. Since the terms inside the parentheses are not like terms, there is nothing to simplify inside the parentheses. The next highest priority operation is multiplying the by the . This must be done before anything happens with that at the far left. It is wrong to write , because that would mean we treated the addition as having higher priority than the multiplication. And that just plain violates the standard order of operations.  So the order of operations alone is not enough to simplify this expression. But the algebra properties let us rearrange things so that we can be productive. To simplify , note that there is a place where we can apply the distributive property:   Algebra Steps to Simplify an Expression Simplifying algebraic expressions  Put the steps to simplify in the correct order. Use only one algebra property or arithmetic operation in each step. It's possible you should not use all of the steps provided here as options.                                           Simplify the expressions using the commutative, associative, and distributive properties.        That first subtraction may be tricky. It may help to write that as addition of times the rest:         We start out with the distributive property and proceed from there:         We start out with the distributive property and proceed from there:           Why is the number called the multiplicative identity ?    Consider the expression . According to the order of operations, you should add this from left to right, and start out by adding .  Which property of algebra allows you to view this as equal to ? (Adding them that way is probably easier to do in your head.)    Whenever you combine like terms, which algebraic property of numbers are you using?      Vocabulary    Find the indicated inverse.     Find the additive inverse of        The additive inverse of a number is just the negative of that number. So the additive inverse of is         Find the additive inverse of        The additive inverse of a number is just the negative of that number. So the additive inverse of is         Find the multiplicative inverse of              Find the multiplicative inverse of              Find the additive inverse of              Find the additive inverse of              Find the multiplicative inverse of              Find the multiplicative inverse of              Find the multiplicative inverse of        The multiplicative inverse of a negative number will still be negative. The multiplicative inverse of fraction swaps the numerator and denominator. So here the multiplicative inverse of is         Find the multiplicative inverse of        The multiplicative inverse of a negative number will still be negative. The multiplicative inverse of fraction swaps the numerator and denominator. So here the multiplicative inverse of is          What number is the additive identity?              What number is the multiplicative identity?              Skills Practice   Apply an Algebraic Property   Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.     Apply associativity to              Apply associativity to              Apply associativity to        The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us         Apply associativity to        The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us         Apply associativity to              Apply associativity to              Apply commutativity to              Apply commutativity to              Apply commutativity of addition to              Apply commutativity of addition to              Apply commutativity of multiplication to        There is one place in this expression where there is multiplication. To apply commutativity of multiplication, we just write those two factors in the opposite order. This gives us         Apply commutativity of multiplication to        There is one place in this expression where there is multiplication. To apply commutativity of multiplication, we just write those two factors in the opposite order. This gives us         Apply commutativity of multiplication to              Apply commutativity of multiplication to              Apply commutativity of addition to              Apply commutativity of addition to              Apply the distributive property to              Apply the distributive property to              Apply the distributive property to        The expression has a group of two terms multiplied by To apply the distributive property, we multiply by each of those two terms. This gives us         Apply the distributive property to        The expression has a group of two terms multiplied by To apply the distributive property, we multiply by each of those two terms. This gives us         Apply the distributive property to              Apply the distributive property to              Apply the distributive property to              Apply the distributive property to              Simplify   Simplify the given expression. Ideally, you are thinking about how the properties of algebra are helping you simplify.                                                                                                                                              First, apply the distributive property to get Now add the two like terms to get                First, apply the distributive property to get Now add the two like terms to get                                                                                                                                                                      Critical Thinking    The expression would be ambiguous if we did not have a left-to-right reading convention.   Use grouping symbols to emphasize the order that these additions should be carried out.       Use the associative property of addition to write an equivalent (but different) algebraic expression.             The expression would be ambiguous if we did not have a left-to-right reading convention.   Use grouping symbols to emphasize the order that these multiplications should be carried out.       Use the associative property of multiplication to write an equivalent (but different) algebraic expression.             Challenge    Think of a number. Add four to your number. Now double that. Then add six. Then halve it. Finally, subtract What is the result? Do you always get the same result, regardless of what number you start with? How does this work? Explain using algebra.   Let s start with the number and follow the instructions:  Add four to the number:  Now double that:  Then add six:  Then halve it:  Finally, subtract 7:  This expression can be simplified:   Thus, after following the instructions, you always end up with the original number.          "
+  "body": " Algebraic Properties and Simplifying Expressions   PCC Course Content and Outcome Guide    MTH 60 CCOG      If we have two apples and then add three more, we have five apples. That result is the same as if we'd started with three apples and then added two more. This is a feature of numbers and arithmetic that we will formalize in this section, along with a few other features. Understanding these well will help us solve more equations later.   Alternative Video Lesson      Identities and Inverses  Identity  We start with some definitions. The number is called the additive identity . It has this name because Additive identity adding to a number does not change that number's identity . Identity additive If you were playing a game where you needed to add something to , but you Addition identity property of didn't want to change the value, then you would add : Identity property of addition  Adding the additive identity to a number does not change that number.  If the sum of two numbers is the additive identity ( ) then those two numbers Addition inverse property of are called additive inverses of each other. Additive inverse Imagine playing a game where you have a number like , and you need to add something Inverse additive to it to get . You would add : Opposite  Inverse property of addition  It works the other way too when starting with a negative number. Now imagine starting with and you need to add something to that to get . You would add : The additive inverse of a number is that same number with the opposite sign. And what makes that pair of numbers special is that they add to .  We also have the special number , which is the multiplicative identity . Multiplicative identity The special feature being highlighted is that when you multiply a number by , Identity multiplicative it does not change that number's identity . Once again, imagine you are playing a game Multiplication identity property of where your job is to multiply by something, but you actually do not want to change the number's value. Then you would multiply by : Identity property of multiplication    If the product of two numbers is the multiplicative identity ( ) then those two numbers Multiplication inverse property of are called multiplicative inverses of each other. Multiplicative inverse Strategically, what would you multiply by to get ? Inverse multiplicative You could use the fraction : Reciprocal  Inverse property of multiplication  Or what if you started with a more complicated number like ? What could you multiply that by to get ? We would use so that the negative signs cancel, and the product would be which reduces to : Notice what happens with the numerator and denominator swapping places. The multiplicative inverse of a number is also called its reciprocal .  Matching Vocabulary  Match each concept with the corresponding vocabulary term.    Add something but not change value  Additive identity    Add something and get  Additive inverse    Multiply by something but not change value  Multiplicative identity    Multiply by something and get  Multiplicative inverse    Matching Identities and Inverses  Match each description of a number on the left with a number on the right.    The additive inverse of     The multiplicative inverse of     The multiplicative inverse of added to the additive identity     The multiplicative identity divided by the additive inverse of       Algebraic Properties   Commutative Property  Commutative property  To find the area of a rectangle, multiply the length by the width. Does the result change if we multiply the width by the length?   Horizontal and Vertical Rectangles   two rectangles; the left rectangle is 3 cm wide by 2 cm high; its area is marked by Area=3*2=6; the right rectangle is 2 cm wide by 3 cm high; its area is marked by Area=2*3=6     We can see that . If we write the length of a rectangle as and the width as , we can write . The fact that we can reverse the order of multiplication is known as the commutative property of multiplication . There is a similar property for addition, which you can see in the equation . It's called the commutative property of addition . Addition commutative property of However, subtraction and division do not have the commutative property, because for example and .    Associative Property  Associative property  Instead of a rectangle, consider a 3D rectangular prism with depth , width , and height . To compute the volume of this prism, we multiply the depth, width, and height together. In the following figure, on the left side, we multiply the width and depth first, and then multiply the height. On the right side, we multiply the width and height first, and then multiply the depth. Either way, the final result is the same.      a rectangular prism; its length is 4 cm, width is 3 cm, and height is 2 cm; one face representing the width and depth is highlighted        a rectangular prism; its length is 4 cm, width is 3 cm, and height is 2 cm; one face representing the width and height is highlighted      What this shows us is . We haven't changed the order that the three variables are written left to right, but we are doing the actual multiplication in a different order. The order of operations requires multiplication inside the parentheses to happen first. This feature of numbers is known as the associative property of multiplication . There is a similar property for addition, which you can see in the equation . Note again that the left-to-right order that the numbers are written is the same on either side. But the grouping symbols get us to actually do the addition in a different order. This property is called the associative property of addition . Addition associative property of Subtraction and division do not have an associative property, because for example and .    Distributive Property  Distributive property  The final property we'll explore is called the distributive property , which involves both multiplication and addition (or subtraction). To understand this property, consider what happens if we take bags, and each bag contains one apple and one pear. We have the same total amount of fruit as if we'd taken a bag with apples and another bag with pears. Algebraically: It helps to think of this as distributing the to the and the .  The distributive property also works with multiplication on the other side, and with subtraction: although the apples and pears metaphor may be harder to make sense of.  And the distributive property works with division too, when there is only one term in the denominator:     Summary of Algebraic Properties   Algebraic Properties  Addition commutative property of  Commutative property of addition  Addition associative property of  Associative property of addition  Multiplication commutative property of  Commutative property of multiplication  Multiplication associative property of  Associative property of multiplication  Distributive property   Let , , and be real numbers, variables, or algebraic expressions. Then the following properties hold:     Commutative Property of Multiplication       Associative Property of Multiplication       Commutative Property of Addition       Associative Property of Addition       Distributive Property     (The last two versions require .)      Practice these properties in the following exercises.  Matching Vocabulary  Match each concept with the corresponding vocabulary term.    Change the order that addition is written  Commutative Property of Addition    Change the order that multiplication is written  Commutative Property of Multiplication    Change the order that three terms are actually added together  Associative Property of Addition    Change the order that three factors are actually multiplied together  Associative Property of Multiplication    Either add two terms, then multiply; or multiply twice, then add  Distributive Property    Matching Properties to Examples  Match each algebra property with an example.    Commutative Property of Addition     Commutative Property of Multiplication     Associative Property of Addition     Associative Property of Multiplication     Distributive Property       Use the commutative property of multiplication to write an equivalent expression to      To use the commutative property of multiplication, change the order the two factors are multiplied:    Use the associative property of multiplication to write an equivalent expression to      To use the associative property of multiplication, leave factors written in their original order, but change the grouping symbols so that a different multiplication has higher priority:   You may further simplify by multiplying the two numbers:   but that is going a step beyond simply using the associative property.   Use the commutative property of addition to write an equivalent expression to      To use the commutative property of addition, change the order the two terms are added:    Use the associative property of addition to write an equivalent expression to      To use the associative property of addition, leave terms written in their original order, but change the grouping symbols so that a different addition has higher priority:    Use the distributive property to write an equivalent expression to that has no grouping symbols.      To use the distributive property, multiply the number outside the parentheses, with each term inside the parentheses:          Applying the Commutative, Associative, and Distributive Properties  One way we use the commutative, associative, and distributive properties is to simplify Algebraic expressions simplifying algebra expressions.   Combining like terms  Like Terms  For example, how we treat like terms (see ) is actually putting these algebra properties into practice. We combine like terms when we take an expression like and write the result as . The drawn-out formal process actually looks like this: So combining like terms is actually making use of the distributive property. In practice, it's better for you to do this the fast way. But you can grow you understanding and appreciation for algebra if you see how the above steps break things down with one official algebra property at a time.     Where possible, simplify the following expressions by combining like terms.        All three terms are like terms, so they may combined. We combine them two at a time:         The terms and are like terms, so we may combine them. Note we are using one of the subtraction versions of the distributive property.         The terms and are like terms, while the other term is different. Using the associative and commutative properties of addition early in the process allows us to place the two like terms next to each other, and then combine them:   This walkthrough uses the algebra properties cleanly and clearly one step at a time, but if you are combining like terms more quickly, there s nothing at all wrong with that.        The expression cannot be simplified as there are no like terms.        Adding Expressions  Consider adding an expression like to an expression like : Can we simplify this? It's great if you already see that the parentheses in this case can be removed and it would not change the outcome: And then using what you know about like terms, you could conclude that this is .  Several steps that are described above are sweeping things under the rug, taking multiple steps at once without really justifying why that is legal. Why exactly is it OK to just ignore those parentheses? Why is it ok to add and when they are separated with the in between? With the algebra properties, we can cleanly justify why simplifies to , explaining one step at a time. That was a lot to do! So it's worth repeating that it is good if you can more quickly simplify to . The above demonstrates how the algebra properties, one at a time, truly justify and validate that simplification.     Use the associative, commutative, and distributive properties to simplify the following expressions as much as possible.                       The Role of the Order of Operations  When simplifying an expression such as , we need to respect the order of operations. Since the terms inside the parentheses are not like terms, there is nothing to simplify inside the parentheses. The next highest priority operation is multiplying the by the . This must be done before anything happens with that at the far left. It is wrong to write , because that would mean we treated the addition as having higher priority than the multiplication. And that just plain violates the standard order of operations.  So the order of operations alone is not enough to simplify this expression. But the algebra properties let us rearrange things so that we can be productive. To simplify , note that there is a place where we can apply the distributive property:   Algebra Steps to Simplify an Expression Simplifying algebraic expressions  Put the steps to simplify in the correct order. Use only one algebra property or arithmetic operation in each step. It's possible you should not use all of the steps provided here as options.                                           Simplify the expressions using the commutative, associative, and distributive properties.        That first subtraction may be tricky. It may help to write that as addition of times the rest:         We start out with the distributive property and proceed from there:         We start out with the distributive property and proceed from there:           Why is the number called the multiplicative identity ?    Consider the expression . According to the order of operations, you should add this from left to right, and start out by adding .  Which property of algebra allows you to view this as equal to ? (Adding them that way is probably easier to do in your head.)    Whenever you combine like terms, which algebraic property of numbers are you using?      Vocabulary    Find the indicated inverse.     Find the additive inverse of        The additive inverse of a number is just the negative of that number. So the additive inverse of is         Find the additive inverse of        The additive inverse of a number is just the negative of that number. So the additive inverse of is         Find the multiplicative inverse of              Find the multiplicative inverse of              Find the additive inverse of              Find the additive inverse of              Find the multiplicative inverse of              Find the multiplicative inverse of              Find the multiplicative inverse of        The multiplicative inverse of a negative number will still be negative. The multiplicative inverse of fraction swaps the numerator and denominator. So here the multiplicative inverse of is         Find the multiplicative inverse of        The multiplicative inverse of a negative number will still be negative. The multiplicative inverse of fraction swaps the numerator and denominator. So here the multiplicative inverse of is          What number is the additive identity?              What number is the multiplicative identity?              Skills Practice   Apply an Algebraic Property   Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.     Apply associativity to              Apply associativity to              Apply associativity to        The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us         Apply associativity to        The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us         Apply associativity to              Apply associativity to              Apply commutativity to              Apply commutativity to              Apply commutativity of addition to              Apply commutativity of addition to              Apply commutativity of multiplication to        There is one place in this expression where there is multiplication. To apply commutativity of multiplication, we just write those two factors in the opposite order. This gives us         Apply commutativity of multiplication to        There is one place in this expression where there is multiplication. To apply commutativity of multiplication, we just write those two factors in the opposite order. This gives us         Apply commutativity of multiplication to              Apply commutativity of multiplication to              Apply commutativity of addition to              Apply commutativity of addition to              Apply the distributive property to              Apply the distributive property to              Apply the distributive property to        The expression has a group of two terms multiplied by To apply the distributive property, we multiply by each of those two terms. This gives us         Apply the distributive property to        The expression has a group of two terms multiplied by To apply the distributive property, we multiply by each of those two terms. This gives us         Apply the distributive property to              Apply the distributive property to              Apply the distributive property to              Apply the distributive property to              Simplify   Simplify the given expression. Ideally, you are thinking about how the properties of algebra are helping you simplify.                                                                                                                                              First, apply the distributive property to get Now add the two like terms to get                First, apply the distributive property to get Now add the two like terms to get                                                                                                                                                                      Critical Thinking    The expression would be ambiguous if we did not have a left-to-right reading convention.   Use grouping symbols to emphasize the order that these additions should be carried out.       Use the associative property of addition to write an equivalent (but different) algebraic expression.             The expression would be ambiguous if we did not have a left-to-right reading convention.   Use grouping symbols to emphasize the order that these multiplications should be carried out.       Use the associative property of multiplication to write an equivalent (but different) algebraic expression.             Challenge    Think of a number. Add four to your number. Now double that. Then add six. Then halve it. Finally, subtract What is the result? Do you always get the same result, regardless of what number you start with? How does this work? Explain using algebra.   Let s start with the number and follow the instructions:  Add four to the number:  Now double that:  Then add six:  Then halve it:  Finally, subtract 7:  This expression can be simplified:   Thus, after following the instructions, you always end up with the original number.          "
 },
 {
   "id": "section-algebraic-properties-and-simplifying-expressions-2",
@@ -9079,7 +9079,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "2.3",
   "title": "Equations and Inequalities with Fractions",
-  "body": " Equations and Inequalities with Fractions   PCC Course Content and Outcome Guide    MTH 60 CCOG    MTH 60 CCOG      Imagine an equation with fractions present in the coefficients or terms, for example: Equation(s) with fractions   Fraction linear equations with We could solve this using the same steps from Linear equations with fractions  . We'd have to do some fraction subtraction, followed by some fraction division. In other words, we'd use fraction arithmetic, which is a bit more likely to lead to human error than whole number arithmetic.  An alternative is to multiply each side of the equation by a helpful number that clears  Fraction clearing denominators the denominator(s). In the above example, the helpful number would be : Somehow multiplying by cleared all of the fractions from the equation. We could solve this equation easily now. This section covers this technique, which generally makes it easier to solve linear equations and inequalities when fractions are present.   Alternative Video Lessons      Eliminating Denominators     Deshawn planted a sapling in his yard that was 4 tall. The tree will grow of a foot every year. How many years will it take for his tree to become 10 tall?  We can use a table to help understand the rate of growth and then write a formula that models the tree's growth:       Years Passed  Tree's Height (ft)                             We find that years since the tree was planted, the tree's height is feet. To find when Deshawn's tree will be feet tall, we set up the equation Note that the equation has a fraction present as a coefficient.  To solve the equation, note that the fraction's denominator is . As the very first step, multiplying by on each side of the equation will leave us with no fractions.   Let's check the solution to be sure:   In summary, it will take years for Deshawn's tree to reach feet tall. The point of this example was to demonstrate how clearing denominators can make an equation relatively easier to solve.     In a science lab, a container had ounces of water at 9:00 AM. Water has been evaporating at the rate of ounces every minutes. When will there be ounces of water left?        Since the container has been losing oz of water every minutes, it loses oz every minute. At minutes past 9:00 AM, the container will have lost oz of water. Since the initial amount was oz, the amount of water in the container (in oz) can be modeled by  So to work out when there would be only oz of water left, we write the following equation. Note there is a denominator of which we can clear.   From here it is straightforward to use steps from Section 1 to solve the equation. You can try that on your own and you should find that it will take between and minutes for the container to only have ounces of water left.       The previous examples only had one fraction in the equation. What happens if there are more?    Solve for in .    Once again, we have an equation with fractions present. This time there are multiple denominators: , , and . Is there one number we could use to clear all three denominators? The Least Common Multiple of the denominators (abbreviated as LCM or LCD) would work. Anything that is a multiple of all three of these denominators would work, and using the smallest such number is just a good habit. In this case, the LCD is . So we will multiply each side of the equation by :      Checking the solution :    The solution is therefore and the solution set is .      Solve for in        With fractions present, we decide to identify the LCD. The denominators are and so the LCD is And so our first algebra step is to multiply each side of the equation by   Checking the solution   So the solution is and so the solution set is         Solve for in the equation .    There are two fractions appearing here, and both have the same denominator . We can multiply by on each side and that alone will clear the denominators.      Checking the solution :    The solution is therefore and the solution set is .      Solve for in the equation .    The structure of the equation is a little different from previous examples, but we can still see that there are denominators and , and that their LCM is . Multiplying each side of the equation by will help.      Checking the solution :    The solution is and the solution set is .      Proportional Equations  Proportional equations are used to solve many real-life applications where two quantities vary Proportions together. For example if you have more liquid Tylenol in a medicine cup, then you have more milligrams of the drug itself dissolved in that liquid. The two quantities (volume of liquid and mass of the drug) vary together.   Proportions applications of  Suppose we want to know the total cost for a box of cereal that weighs ounces, assuming it costs the same per ounce as a -ounce box. Letting be this unknown cost (in dollars), we could set up a proportional equation. Whether we are dealing with the smaller box or the larger box, the ratio of cost to weight is supposed to be the same. So below on the left, we enter details for the larger box. And on the right, for the smaller box. We can rewrite this equation without the units: And we have an equation with fractions present. We want to multiply each side by the LCD, but this time the denominators are larger than previous examples. Can we still find the LCD? We could! But it is maybe not worth the time and effort. Having the least common multiple is a nice thing, but any common multiple of denominators will work out for our needs. A simple way to get a common multiple is just to multiply the numbers together. So we choose to multiply each side by instead of whatever the actual LCD is. So assuming the cost is proportional to the cost of the -ounce box, the cost for an -ounce box of cereal would be .     Property taxes for a residential property are proportional to the assessed value of the property. A certain home is assessed at and its annual property taxes are . What are the annual property taxes for the house next door that is assessed at ?    Let be the annual property taxes (in dollars) for a property assessed at . We can write and solve this proportion: The least common denominator of this proportion is rather large, so we will instead multiply each side by and and simplify from there: The property taxes for a property assessed at are .      Infant Tylenol contains 160 mg of acetaminophen in each 5 mL of liquid. If Bao s baby is prescribed 60 mg of acetaminophen, how many milliliters of liquid should he give the baby?        Assume Bao should give milliliters of liquid medicine, so we can set up the following proportion:   So to give 60 mg of acetaminophen to his baby, Bao should measure out 1.875 mL of the liquid medication.         Tagging fish is a means of estimating the size of the population of fish in a lake. A sample of fish is taken, tagged, and then redistributed into the lake. Later when another sample is taken, some of those fish will have tags. The number of tagged fish are assumed to be proportional to the total number of fish. We can look at that relationship from the perspective of the entire lake, or just the second sample, and we get two ratios that should be proportional.   Assume that fish are caught and tagged. Once they are redistributed, a sample of fish is taken. Of these, are tagged. Estimate how many fish total are in the lake.    Let be the number of fish in the lake. We can set up a proportion for this scenario: To solve for , which is in a denominator, we'll need to multiply each side by both and : According to this sample, we can estimate that there are about fish in the lake.      Solving Inequalities with Fractions  The technique of clearing denominators also applies to inequalities, not just equations.    Solve for in the inequality . Write the solution set in both set-builder notation and interval notation.    The LCM of the denominators is , so we start out multiplying each side of the inequality by .   The solution set in set-builder notation is . And in interval notation, it's .      Solve for in the inequality Write the solution set in both set-builder notation and interval notation.             The LCM of the denominators is so we start out by multiplying each side of the inequality by   Note that when we divided each side of the inequality by the inequality symbol reversed direction. The solution set in set-builder notation is The solution set in interval notation is          What does LCD stand for? And using different words, explain what it is.    When you clear denominators from an equation like , you will multiply by . What are the two things that you multiply by ? Hint: it is not the two fractions.    What is a proportional equation?      Review and Warmup    Find the Least Common Multiple of the given integers.     and              and              and              and               and               and               Skills Practice   Linear Equations with Fractions   Solve the given equation. Practice clearing the denominator(s) as a first step.                                                                                                                                                                                                                                                                             This equation has terms with denominators and The least common multiple of these is So the first step in solving this equation can be to multiply on each side by   The solution set is                     This equation has terms with denominators and The least common multiple of these is So the first step in solving this equation can be to multiply on each side by   The solution set is                                                                                 Linear Inequalities with Fractions   Solve the given inequality. Practice clearing the denominator(s) as a first step.                                                                                                                                         This inequality has terms with denominators  and The least common multiple of these is So the first step in solving this inequality can be to multiply on each side by   The solution set is using set-builder notation. In interval notation, we have                                                                                                      Applications    Danica is running on a track. We start the clock as she passes the 11 m mark, and she is running 31 m every 6 s. How long does it take for Danica to reach the 90 m mark?              Everett filled the gas tank in his car to When the tank reaches the low gas light will come on. On average, Everett s car uses per mile driven. How many miles will Everett s car be able to drive before the low gas light comes on?              You planted a young tree in front of your house, and it was feet tall. Ever since, it has been growing by each year. How many years will it take for the tree to grow to be 10 feet tall?              One of the tires on your car looks a little flat. You measure its air pressure and are alarmed to see it so low at You have a portable device that can pump air into the tire increasing the pressure at a rate of How long will it take to fill the tire to the manual s recommended pressure of              In one college math course, the final grade (out of points) is calculated by adding together one-half of the homework average, one-sixth of the midterm score, and one-third of the final exam score.  Makena has 95 for her homework average and 90 for her midterm score. Her goal is to finish the course with a final grade of 90. What must she score on the final exam?              In one college math course, the final grade (out of points) is calculated by adding together one-third of the homework average, one-sixth of the class project score, one-fourth of the midterm score, and one-fourth of the final exam score.  Orlando has 71 for his homework average and 80 for his midterm score. His goal is to finish the course with a final grade of 80. What must he score on the final exam?              An old cookbook has a recipe for soup that uses g of flour for thickener. The recipe makes gal of soup, but you are adjusting it to make only gal. How much flour should you use?        Let be how many grams of flour we should use. The amount of flour is proportional to the amount of soup, so we can compare the ratios of flour to soup for our batch with the original recipe:   These denominators are not whole numbers, and we decide not to try using the least common multiple. Instead, we just multiply on each side by both denominators:   So we should use of flour.         An internet recipe for tbsp of garam masala calls for tbsp of ground nutmeg. You want to use up the last of your ground nutmeg supply, which is tbsp. Assuming you have enough of all of the other ingredients, how much garam masala will you make?              Autumn and Ezra went to the weekend market to buy apples in bulk for a school event, canning lots of applesauce. Autumn bought 63 lb of apples and paid $62.37. Ezra has bagged their apples and has 87 lb of apples ready. How much will it Ezra s bag of apples cost?              Dangelo is an architect and he is making a scale model of a building. The actual building will be ft tall. In the model, the height of the building will be in tall and there will be a little model person standing next to the building. How tall should Dangelo make the model of that person who is meant to represent a ft in tall person?        Let be the height of the person in Dangelo s model, which we ll measure in inches. We ll create a proportional equation that compares the building and person s heights in the model to their heights in real life:   Before we can just eliminate the units, we ll need to convert 5 ft 6 in to feet:   Now we can remove the units and continue solving:   Dangelo should make the model be tall.         To estimate the health of the Rocky Mountain elk population in the Wenaha Wildlife Area, the Oregon Department of Fish and Wildlife caught, tagged, and released Rocky Mountain elk. A month later, they returned and observed Rocky Mountain elk, of which had tags. Approximately how many Rocky Mountain elk are in the Wenaha Wildlife Area?        Let represent how many elk are in the Wenaha Wildlife Area. We set up a proportional equation:   There are approximately elk in the Wenaha Wildlife Area.         To estimate the health of the black-tailed deer population in the Jewell Meadow Wildlife Area, the Oregon Department of Fish and Wildlife caught, tagged, and released black-tailed deer. A month later, they returned and observed black-tailed deer, of which had tags. Approximately how many black-tailed deer are in the Jewell Meadow Wildlife Area?        Let represent how many deer are in the Jewell Meadow Area. We set up a proportional equation:   There are approximately deer in the Jewell Meadow Area.         Challenge    The ratio of girls to boys in a preschool is 4 to 7. If there are 66 kids in the school, how many girls are there in the preschool?        Let be the number of girls in the preschool. We can represent this situation with the following proportion:  Solve this equation for         "
+  "body": " Equations and Inequalities with Fractions   PCC Course Content and Outcome Guide    MTH 60 CCOG    MTH 60 CCOG      Imagine an equation with fractions present in the coefficients or terms, for example: Equation(s) with fractions   Fraction linear equations with We could solve this using the same steps from Linear equations with fractions  . We'd have to do some fraction subtraction, followed by some fraction division. In other words, we'd use fraction arithmetic, which is a bit more likely to lead to human error than whole number arithmetic.  An alternative is to multiply each side of the equation by a helpful number that clears  Fraction clearing denominators the denominator(s). In the above example, the helpful number would be : Somehow multiplying by cleared all of the fractions from the equation. We could solve this equation easily now. This section covers this technique, which generally makes it easier to solve linear equations and inequalities when fractions are present.   Alternative Video Lessons      Eliminating Denominators     Deshawn planted a sapling in his yard that was 4 tall. The tree will grow of a foot every year. How many years will it take for his tree to become 10 tall?  We can use a table to help understand the rate of growth and then write a formula that models the tree's growth:       Years Passed  Tree's Height (ft)                             We find that years since the tree was planted, the tree's height is feet. To find when Deshawn's tree will be feet tall, we set up the equation Note that the equation has a fraction present as a coefficient.  To solve the equation, note that the fraction's denominator is . As the very first step, multiplying by on each side of the equation will leave us with no fractions.   Let's check the solution to be sure:   In summary, it will take years for Deshawn's tree to reach feet tall. The point of this example was to demonstrate how clearing denominators can make an equation relatively easier to solve.     In a science lab, a container had ounces of water at 9:00 AM. Water has been evaporating at the rate of ounces every minutes. When will there be ounces of water left?        Since the container has been losing oz of water every minutes, it loses oz every minute. At minutes past 9:00 AM, the container will have lost oz of water. Since the initial amount was oz, the amount of water in the container (in oz) can be modeled by  So to work out when there would be only oz of water left, we write the following equation. Note there is a denominator of which we can clear.   From here it is straightforward to use steps from Section 1 to solve the equation. You can try that on your own and you should find that it will take between and minutes for the container to only have ounces of water left.       The previous examples only had one fraction in the equation. What happens if there are more?    Solve for in .    Once again, we have an equation with fractions present. This time there are multiple denominators: , , and . Is there one number we could use to clear all three denominators? The Least Common Multiple of the denominators (abbreviated as LCM or LCD) would work. Anything that is a multiple of all three of these denominators would work, and using the smallest such number is just a good habit. In this case, the LCD is . So we will multiply each side of the equation by :      Checking the solution :    The solution is therefore and the solution set is .      Solve for in        With fractions present, we decide to identify the LCD. The denominators are and so the LCD is And so our first algebra step is to multiply each side of the equation by   Checking the solution   So the solution is and so the solution set is         Solve for in the equation .    There are two fractions appearing here, and both have the same denominator . We can multiply by on each side and that alone will clear the denominators.      Checking the solution :    The solution is therefore and the solution set is .      Solve for in the equation .    The structure of the equation is a little different from previous examples, but we can still see that there are denominators and , and that their LCM is . Multiplying each side of the equation by will help.      Checking the solution :    The solution is and the solution set is .      Proportional Equations  Proportional equations are used to solve many real-life applications where two quantities vary Proportions together. For example if you have more liquid Tylenol in a medicine cup, then you have more milligrams of the drug itself dissolved in that liquid. The two quantities (volume of liquid and mass of the drug) vary together.   Proportions applications of  Suppose we want to know the total cost for a box of cereal that weighs ounces, assuming it costs the same per ounce as a -ounce box. Letting be this unknown cost (in dollars), we could set up a proportional equation. Whether we are dealing with the smaller box or the larger box, the ratio of cost to weight is supposed to be the same. So below on the left, we enter details for the larger box. And on the right, for the smaller box. We can rewrite this equation without the units: And we have an equation with fractions present. We want to multiply each side by the LCD, but this time the denominators are larger than previous examples. Can we still find the LCD? We could! But it is maybe not worth the time and effort. Having the least common multiple is a nice thing, but any common multiple of denominators will work out for our needs. A simple way to get a common multiple is just to multiply the numbers together. So we choose to multiply each side by instead of whatever the actual LCD is. So assuming the cost is proportional to the cost of the -ounce box, the cost for an -ounce box of cereal would be .     Property taxes for a residential property are proportional to the assessed value of the property. A certain home is assessed at and its annual property taxes are . What are the annual property taxes for the house next door that is assessed at ?    Let be the annual property taxes (in dollars) for a property assessed at . We can write and solve this proportion: The least common denominator of this proportion is rather large, so we will instead multiply each side by and and simplify from there: The property taxes for a property assessed at are .      Infant Tylenol contains 160 mg of acetaminophen in each 5 mL of liquid. If Bao s baby is prescribed 60 mg of acetaminophen, how many milliliters of liquid should he give the baby?        Assume Bao should give milliliters of liquid medicine, so we can set up the following proportion:   So to give 60 mg of acetaminophen to his baby, Bao should measure out 1.875 mL of the liquid medication.         Tagging fish is a means of estimating the size of the population of fish in a lake. A sample of fish is taken, tagged, and then redistributed into the lake. Later when another sample is taken, some of those fish will have tags. The number of tagged fish are assumed to be proportional to the total number of fish. We can look at that relationship from the perspective of the entire lake, or just the second sample, and we get two ratios that should be proportional.   Assume that fish are caught and tagged. Once they are redistributed, a sample of fish is taken. Of these, are tagged. Estimate how many fish total are in the lake.    Let be the number of fish in the lake. We can set up a proportion for this scenario: To solve for , which is in a denominator, we'll need to multiply each side by both and : According to this sample, we can estimate that there are about fish in the lake.      Solving Inequalities with Fractions  The technique of clearing denominators also applies to inequalities, not just equations.    Solve for in the inequality . Write the solution set in both set-builder notation and interval notation.    The LCM of the denominators is , so we start out multiplying each side of the inequality by .   The solution set in set-builder notation is . And in interval notation, it's .      Solve for in the inequality Write the solution set in both set-builder notation and interval notation.             The LCM of the denominators is so we start out by multiplying each side of the inequality by   Note that when we divided each side of the inequality by the inequality symbol reversed direction. The solution set in set-builder notation is The solution set in interval notation is          What does LCD stand for? And using different words, explain what it is.    When you clear denominators from an equation like , you will multiply by . What are the two things that you multiply by ? Hint: it is not the two fractions.    What is a proportional equation?      Review and Warmup    Find the Least Common Multiple of the given integers.     and              and              and              and               and               and               Skills Practice   Linear Equations with Fractions   Solve the given equation. Practice clearing the denominator(s) as a first step.                                                                                                                                                                                                                                                                             This equation has terms with denominators and The least common multiple of these is So the first step in solving this equation can be to multiply on each side by   The solution set is                     This equation has terms with denominators and The least common multiple of these is So the first step in solving this equation can be to multiply on each side by   The solution set is                                                                                 Linear Inequalities with Fractions   Solve the given inequality. Practice clearing the denominator(s) as a first step.                                                                                                                                         This inequality has terms with denominators  and The least common multiple of these is So the first step in solving this inequality can be to multiply on each side by   The solution set is using set-builder notation. In interval notation, we have                                                                                                      Applications    Danica is running on a track. We start the clock as she passes the 11 m mark, and she is running 31 m every 6 s. How long does it take for Danica to reach the 90 m mark?              Everett filled the gas tank in his car to When the tank reaches the low gas light will come on. On average, Everett s car uses per mile driven. How many miles will Everett s car be able to drive before the low gas light comes on?              You planted a young tree in front of your house, and it was feet tall. Ever since, it has been growing by each year. How many years will it take for the tree to grow to be 10 feet tall?              One of the tires on your car looks a little flat. You measure its air pressure and are alarmed to see it so low at You have a portable device that can pump air into the tire increasing the pressure at a rate of How long will it take to fill the tire to the manual s recommended pressure of              In one college math course, the final grade (out of points) is calculated by adding together one-half of the homework average, one-sixth of the midterm score, and one-third of the final exam score.  Makena has 95 for her homework average and 90 for her midterm score. Her goal is to finish the course with a final grade of 90. What must she score on the final exam?              In one college math course, the final grade (out of points) is calculated by adding together one-third of the homework average, one-sixth of the class project score, one-fourth of the midterm score, and one-fourth of the final exam score.  Orlando has 71 for his homework average, 87 for his class project score, and 80 for his midterm score. His goal is to finish the course with a final grade of 80. What must he score on the final exam?              An old cookbook has a recipe for soup that uses g of flour for thickener. The recipe makes gal of soup, but you are adjusting it to make only gal. How much flour should you use?        Let be how many grams of flour we should use. The amount of flour is proportional to the amount of soup, so we can compare the ratios of flour to soup for our batch with the original recipe:   These denominators are not whole numbers, and we decide not to try using the least common multiple. Instead, we just multiply on each side by both denominators:   So we should use of flour.         An internet recipe for tbsp of garam masala calls for tbsp of ground nutmeg. You want to use up the last of your ground nutmeg supply, which is tbsp. Assuming you have enough of all of the other ingredients, how much garam masala will you make?              Autumn and Ezra went to the weekend market to buy apples in bulk for a school event, canning lots of applesauce. Autumn bought 63 lb of apples and paid $62.37. Ezra has bagged their apples and has 87 lb of apples ready. How much will it Ezra s bag of apples cost?              Dangelo is an architect and he is making a scale model of a building. The actual building will be ft tall. In the model, the height of the building will be in tall and there will be a little model person standing next to the building. How tall should Dangelo make the model of that person who is meant to represent a ft in tall person?        Let be the height of the person in Dangelo s model, which we ll measure in inches. We ll create a proportional equation that compares the building and person s heights in the model to their heights in real life:   Before we can just eliminate the units, we ll need to convert 5 ft 6 in to feet:   Now we can remove the units and continue solving:   Dangelo should make the model be tall.         To estimate the health of the Rocky Mountain elk population in the Wenaha Wildlife Area, the Oregon Department of Fish and Wildlife caught, tagged, and released Rocky Mountain elk. A month later, they returned and observed Rocky Mountain elk, of which had tags. Approximately how many Rocky Mountain elk are in the Wenaha Wildlife Area?        Let represent how many elk are in the Wenaha Wildlife Area. We set up a proportional equation:   There are approximately elk in the Wenaha Wildlife Area.         To estimate the health of the black-tailed deer population in the Jewell Meadow Wildlife Area, the Oregon Department of Fish and Wildlife caught, tagged, and released black-tailed deer. A month later, they returned and observed black-tailed deer, of which had tags. Approximately how many black-tailed deer are in the Jewell Meadow Wildlife Area?        Let represent how many deer are in the Jewell Meadow Area. We set up a proportional equation:   There are approximately deer in the Jewell Meadow Area.         Challenge    The ratio of girls to boys in a preschool is 4 to 7. If there are 66 kids in the school, how many girls are there in the preschool?        Let be the number of girls in the preschool. We can represent this situation with the following proportion:  Solve this equation for         "
 },
 {
   "id": "section-equations-and-inequalities-with-fractions-2",
@@ -9610,7 +9610,7 @@ var ptx_lunr_docs = [
   "type": "Exercise",
   "number": "2.3.5.42",
   "title": "",
-  "body": "  In one college math course, the final grade (out of points) is calculated by adding together one-third of the homework average, one-sixth of the class project score, one-fourth of the midterm score, and one-fourth of the final exam score.  Orlando has 71 for his homework average and 80 for his midterm score. His goal is to finish the course with a final grade of 80. What must he score on the final exam?           "
+  "body": "  In one college math course, the final grade (out of points) is calculated by adding together one-third of the homework average, one-sixth of the class project score, one-fourth of the midterm score, and one-fourth of the final exam score.  Orlando has 71 for his homework average, 87 for his class project score, and 80 for his midterm score. His goal is to finish the course with a final grade of 80. What must he score on the final exam?           "
 },
 {
   "id": "soup-recipe",
@@ -11212,7 +11212,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "3.1",
   "title": "Cartesian Coordinates",
-  "body": " Cartesian Coordinates   PCC Course Content and Outcome Guide    MTH 60 CCOG    MTH 60 CCOG    MTH 60 CCOG     When we visualize a relationship between two variables, we use the Cartesian coordinate system  Cartesian coordinate system . This section covers the basic vocabulary and imagery Rectangular coordinate system of the Cartesian coordinate system.   Alternative Video Lesson    The Cartesian coordinate system gives a numerical location for every point in a plane. It gives every point in a plane its own address in relation to a starting point and some agreed upon directions. We will use a street grid as an analogy. Here is a map with Carl's home at the center. The map also shows some nearby businesses. Assume each unit in the grid represents one city block.   Carl's neighborhood   a Cartesian grid with Carl's home at (0,0); a restaurant at (2, 3); a pet shop at (-3,2); a gas station at (-2,-4), and a bar at (3, -3)      René Descartes  Cartesian coordinate system René Descartes  Several ideas and conventions used in mathematics are named after René Descartes. The Cartesian coordinate system is one of these.   If Carl has an out-of-town guest who asks him how to get to the restaurant, Carl could say: First go blocks east (to the right on the map), then go blocks north (up on the map).   Everyone is in agreement to start at Carl's house. What's less obvious is that we all agree to travel in the east-west (left-right) direction first . And only after that is done will we travel north-south (up-down).   Two numbers are used to locate the restaurant. In the Cartesian coordinate system, these Coordinates of a point numbers are called coordinates and they are written as the Ordered pair  ordered pair  . The first coordinate, , represents distance Rectangular coordinate system finding coordinates of points traveled from Carl's house to the east (or to the right horizontally on the graph). The second coordinate, , represents distance to the north (up vertically on the graph).   Path to the restaurant   a Cartesian grid with Carl's home at (0,0) and the path he travels to the restaurant at (2, 3); a line shows his path going east\/right 2 blocks and north\/up 3 blocks        To travel from Carl's home to the pet shop, he would go blocks west, and then blocks north.  In the Cartesian coordinate system, the positive directions are to the right and up . The negative directions are to the left and down . So the pet shop's Cartesian coordinates are .    Path to the pet shop   a Cartesian grid with Carl's home at (0,0) and the path he travels to the pet shop (-3,2); a line shows his path going west\/left 3 blocks and north\/up 2 blocks       It's important to know that the order of Cartesian coordinates is (horizontal, vertical). The custom to communicate horizontal information before vertical information is fairly consistent even in math beyond this level.     Use Figure 2 to answer the following questions about Carl s neighborhood.   What are the coordinates of the bar?      We have to move units to the right, then units down. So the coordinates are   What are the coordinates of the gas station?      We have to move units to the left, then units down. So the coordinates are   What are the coordinates of Carl s house?      We don t move at all to get to Carl s house. That is, we move units to the left\/right, and then units up\/down. So the coordinates are        Notation Issue: Coordinates or Interval?  Unfortunately, the notation for an ordered pair looks exactly like interval notation for an open interval. Context will help you understand if means the point on a Cartesian plane that is unit right and units up, or if it means the interval of all real numbers between and .    a Cartesian grid a point marked at (1, 3)     a number line with the interval from 1 to 3 shaded      In a Cartesian coordinate system, the map of Carl's neighborhood would look like this:   Carl's Neighborhood in a Cartesian Coordinate System   a Cartesian grid with the points (0,0), (2, 3), (-3,2), (-2,-4), (3, -3), with the horizontal axis labeled x and the vertical axis labeled y      Cartesian Coordinate System  Cartesian coordinate system   The Cartesian coordinate system is a coordinate system that specifies each point uniquely in a plane by a pair of numerical coordinates, which are the signed (positive\/negative) distances to the point from two fixed perpendicular directed lines, measured in the same unit of length. Those two reference lines Axis horizontal are called the horizontal axis and vertical axis , and the point Axis vertical where they meet is the origin . The horizontal and vertical axes are often -axis called the -axis and -axis , because traditionally, -axis the variable represents numbers on the horizontal axis and the variable  Origin represents numbers on the vertical axis. Ordered pair   The plane based on the -axis and -axis is called a coordinate plane . The ordered pair used to locate a point is called the point's Coordinate plane  coordinates , which consists of an -coordinate and a Coordinates  -coordinate . For example, the point , has -coordinate  -coordinate , and -coordinate . The origin has coordinates -coordinate  .  A Cartesian coordinate system is divided into four quadrants , as shown in Quadrant  . The quadrants are traditionally labeled with Roman numerals.   A Cartesian grid with four quadrants marked   a Cartesian grid with Quadrant I marked in the top right section, Quadrant II marked in the top left section, Quadrant III marked in the bottom left section, Quadrant IV marked in the bottom right section.         On paper, sketch a Cartesian coordinate system with units, and then plot the following points: .      a Cartesian grid with arrows drawn to plot each point;(3,2) is right 3, up 2;(-5,-1) is left 5, down 1;(0,-3) is down 3 on the y-axis;(4,0) is right 4 on the x-axis     the previous graph with the points drawn and labeled         Plot the point the origin, some point on the negative -axis, and some point in quadrant IV.        The point is units to the right of the origin and units up. The origin itself, is where the axes cross. A point on the negative -axis can be any point directly to the left of the origin, and not up or down from there. A point in quadrant IV can be anything in the lower right region.           When you read English, you primarily read left to right. Then every once in a while your eyes drop down vertically to the next line. How is this similar to the way that we treat coordinates in the Cartesian coordinate system?    A Cartesian coordinate system has seven places\/regions that have special names. What are these seven places?    How does math notation like potentially mean two very different things, and how will you decide which meaning to use?      Identifying Coordinates   Identify the coordinates of each point in the graph.                                                               Sketching Points   Make a Cartesian plot with the indicated points marked.                                      The first point is to the left and up from the origin. The second point is to the left and down from the origin.                  The first point is to the left and up from the origin. The second point is to the right and up from the origin.                                                                Sketch a Cartesian coordinate plane and then shade the quadrants where the second coordinate is positive.              Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is negative.              Sketch a Cartesian coordinate plane and then shade the quadrants where the coordinates have the same sign.              Sketch a Cartesian coordinate plane and then shade the quadrants where the coordinates have the opposite sign.              Here is a graph of the number of SARS-CoV-2 (COVID) cases confirmed by the CDC within the United States during the month of January, 2020.    What are the coordinates for the data point corresponding to January 20th?  How many additional new cases were there between January 26th and January th?                   This is a graph representing stable isotopes of atomic elements (Hydrogen, Helium, etc.) up through the first three rows of the periodic table of elements.    Carbon has protons. List all of the ordered pairs of coordinates on this graph that correspond to Carbon.  According to the graph, there is a certain number of neutrons for which there is no stable isotope of any atom. What number of neutrons is this?                  Quadrants   Which quadrant is the point in?                                              The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.                                                    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.                                                    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.                                                    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.           Plotting Points and Choosing a Scale   Answer these questions about the practical difficulties that might arise when plotting points and setting the scales on the two axes.     What would be the difficulty with trying to plot  and all on the same graph?   Answers will vary, but the issue is that once you set the scale on both axes so that both and will appear, then will appear to be so close to that it will be challenging to draw them both and make it clear they are two different points.         The points   and all lie on a straight line. What can go wrong if you make a plot of a Cartesian plane with these points marked, and you don t have tick marks that are evenly spaced apart?   Answers will vary, but the issue is that having irregularly spaced tick marks can make it so that points that are actually in a straight line might not appear to be in a straight line.         "
+  "body": " Cartesian Coordinates   PCC Course Content and Outcome Guide    MTH 60 CCOG    MTH 60 CCOG    MTH 60 CCOG     When we visualize a relationship between two variables, we use the Cartesian coordinate system  Cartesian coordinate system . This section covers the basic vocabulary and imagery Rectangular coordinate system of the Cartesian coordinate system.   Alternative Video Lesson    The Cartesian coordinate system gives a numerical location for every point in a plane. It gives every point in a plane its own address in relation to a starting point and some agreed upon directions. We will use a street grid as an analogy. Here is a map with Carl's home at the center. The map also shows some nearby businesses. Assume each unit in the grid represents one city block.   Carl's neighborhood   a Cartesian grid with Carl's home at (0,0); a restaurant at (2, 3); a pet shop at (-3,2); a gas station at (-2,-4), and a bar at (3, -3)      René Descartes  Cartesian coordinate system René Descartes  Several ideas and conventions used in mathematics are named after René Descartes. The Cartesian coordinate system is one of these.   If Carl has an out-of-town guest who asks him how to get to the restaurant, Carl could say: First go blocks east (to the right on the map), then go blocks north (up on the map).   Everyone is in agreement to start at Carl's house. What's less obvious is that we all agree to travel in the east-west (left-right) direction first . And only after that is done will we travel north-south (up-down).   Two numbers are used to locate the restaurant. In the Cartesian coordinate system, these Coordinates of a point numbers are called coordinates and they are written as the Ordered pair  ordered pair  . The first coordinate, , represents distance Rectangular coordinate system finding coordinates of points traveled from Carl's house to the east (or to the right horizontally on the graph). The second coordinate, , represents distance to the north (up vertically on the graph).   Path to the restaurant   a Cartesian grid with Carl's home at (0,0) and the path he travels to the restaurant at (2, 3); a line shows his path going east\/right 2 blocks and north\/up 3 blocks        To travel from Carl's home to the pet shop, he would go blocks west, and then blocks north.  In the Cartesian coordinate system, the positive directions are to the right and up . The negative directions are to the left and down . So the pet shop's Cartesian coordinates are .    Path to the pet shop   a Cartesian grid with Carl's home at (0,0) and the path he travels to the pet shop (-3,2); a line shows his path going west\/left 3 blocks and north\/up 2 blocks       It's important to know that the order of Cartesian coordinates is (horizontal, vertical). The custom to communicate horizontal information before vertical information is fairly consistent even in math beyond this level.     Use Figure 2 to answer the following questions about Carl s neighborhood.   What are the coordinates of the bar?      We have to move units to the right, then units down. So the coordinates are   What are the coordinates of the gas station?      We have to move units to the left, then units down. So the coordinates are   What are the coordinates of Carl s house?      We don t move at all to get to Carl s house. That is, we move units to the left\/right, and then units up\/down. So the coordinates are        Notation Issue: Coordinates or Interval?  Unfortunately, the notation for an ordered pair looks exactly like interval notation for an open interval. Context will help you understand if means the point on a Cartesian plane that is unit right and units up, or if it means the interval of all real numbers between and .    a Cartesian grid a point marked at (1, 3)     a number line with the interval from 1 to 3 shaded      In a Cartesian coordinate system, the map of Carl's neighborhood would look like this:   Carl's Neighborhood in a Cartesian Coordinate System   a Cartesian grid with the points (0,0), (2, 3), (-3,2), (-2,-4), (3, -3), with the horizontal axis labeled x and the vertical axis labeled y      Cartesian Coordinate System  Cartesian coordinate system   The Cartesian coordinate system is a coordinate system that specifies each point uniquely in a plane by a pair of numerical coordinates, which are the signed (positive\/negative) distances to the point from two fixed perpendicular directed lines, measured in the same unit of length. Those two reference lines Axis horizontal are called the horizontal axis and vertical axis , and the point Axis vertical where they meet is the origin . The horizontal and vertical axes are often -axis called the -axis and -axis , because traditionally, -axis the variable represents numbers on the horizontal axis and the variable  Origin represents numbers on the vertical axis. Ordered pair   The plane based on the -axis and -axis is called a coordinate plane . The ordered pair used to locate a point is called the point's Coordinate plane  coordinates , which consists of an -coordinate and a Coordinates  -coordinate . For example, the point , has -coordinate  -coordinate , and -coordinate . The origin has coordinates -coordinate  .  A Cartesian coordinate system is divided into four quadrants , as shown in Quadrant  . The quadrants are traditionally labeled with Roman numerals.   A Cartesian grid with four quadrants marked   a Cartesian grid with Quadrant I marked in the top right section, Quadrant II marked in the top left section, Quadrant III marked in the bottom left section, Quadrant IV marked in the bottom right section.         On paper, sketch a Cartesian coordinate system with units, and then plot the following points: .      a Cartesian grid with arrows drawn to plot each point;(3,2) is right 3, up 2;(-5,-1) is left 5, down 1;(0,-3) is down 3 on the y-axis;(4,0) is right 4 on the x-axis     the previous graph with the points drawn and labeled         Plot the point the origin, some point on the negative -axis, and some point in quadrant IV.        The point is units to the right of the origin and units up. The origin itself, is where the axes cross. A point on the negative -axis can be any point directly to the left of the origin, and not up or down from there. A point in quadrant IV can be anything in the lower right region.           When you read English, you primarily read left to right. Then every once in a while your eyes drop down vertically to the next line. How is this similar to the way that we treat coordinates in the Cartesian coordinate system?    A Cartesian coordinate system has seven places\/regions that have special names. What are these seven places?    How does math notation like potentially mean two very different things, and how will you decide which meaning to use?      Identifying Coordinates   Identify the coordinates of each point in the graph.                                                               Sketching Points   Make a Cartesian plot with the indicated points marked.                                      The first point is to the left and up from the origin. The second point is to the left and down from the origin.                  The first point is to the left and up from the origin. The second point is to the right and up from the origin.                                                                Sketch a Cartesian coordinate plane and then shade the quadrants where the second coordinate is positive.              Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is positive.              Sketch a Cartesian coordinate plane and then shade the quadrants where the coordinates have the same sign.              Sketch a Cartesian coordinate plane and then shade the quadrants where the coordinates have the opposite sign.              Here is a graph of the number of SARS-CoV-2 (COVID) cases confirmed by the CDC within the United States during the month of January, 2020.    What are the coordinates for the data point corresponding to January 20th?  How many additional new cases were there between January 26th and January th?                   This is a graph representing stable isotopes of atomic elements (Hydrogen, Helium, etc.) up through the first three rows of the periodic table of elements.    Carbon has protons. List all of the ordered pairs of coordinates on this graph that correspond to Carbon.  According to the graph, there is a certain number of neutrons for which there is no stable isotope of any atom. What number of neutrons is this?                  Quadrants   Which quadrant is the point in?                                              The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.                                                    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.                                                    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.                                                    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.           Plotting Points and Choosing a Scale   Answer these questions about the practical difficulties that might arise when plotting points and setting the scales on the two axes.     What would be the difficulty with trying to plot  and all on the same graph?   Answers will vary, but the issue is that once you set the scale on both axes so that both and will appear, then will appear to be so close to that it will be challenging to draw them both and make it clear they are two different points.         The points   and all lie on a straight line. What can go wrong if you make a plot of a Cartesian plane with these points marked, and you don t have tick marks that are evenly spaced apart?   Answers will vary, but the issue is that having irregularly spaced tick marks can make it so that points that are actually in a straight line might not appear to be in a straight line.         "
 },
 {
   "id": "section-cartesian-coordinates-2",
@@ -11473,7 +11473,7 @@ var ptx_lunr_docs = [
   "type": "Exercise",
   "number": "3.1.12",
   "title": "",
-  "body": "  Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is negative.           "
+  "body": "  Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is positive.           "
 },
 {
   "id": "fill-same-sign",
@@ -16486,7 +16486,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "3.10",
   "title": "Graphing Lines Chapter Review",
-  "body": " Graphing Lines Chapter Review   Cartesian Coordinates  The Cartesian coordinate system gives us a way to identify exactly where a point is on a two-dimensional plane.   First, a special point called the origin is marked.    Then two axes are drawn. An axis is a straight line that extends forever. One axis is drawn horizontally through the origin, and is known as the horizontal axis , or as the -axis . The other axis is drawn vertically through the origin, and is known as the vertical axis , or the -axis .    Now the plane has been divided into four quadrants . The upper right quadrant is Quadrant I. Then moving counter-clockwise around the origin, the remaining quadrants are numbered II, III, and IV.    Each axis is given a scale . This means marking some numbers on each axis so we know distances. Numbers must be marked in a way such that a numerical distance of (for example from 0 to 1 , or from 1 to 2 ) always corresponds to the same physical distance on the plane. However, it is OK (and common) for the scale on the -axis to be different from the scale on the -axis.    Now each point on the plane can be identified with an ordered pair of numbers, . The number tells you a place on the -axis, and the number tells you a place on the -axis. If you move up\/down from that place on the -axis, while also moving right\/left from that place on the -axis, there is one point where the two paths cross. And this is the point labeled with . Here are some example points with their coordinates.          Identify the coordinates of each point in the graph.                           Point is to the right and down from the origin, so its coordinates are  Point is to the right and up from the origin, so its coordinates are  Point is to the right and up from the origin, so its coordinates are  Point is to the left and down from the origin, so its coordinates are        Make a Cartesian plot with the indicated points marked.           The first point is to the right and down from the origin. The second point is to the right and up from the origin.          Which quadrant is the point in?                                             The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.          Graphing Equations  When an equation has the variables and , for example or , the graph of that equation is the collection of all the points that make the equation true. Typically when you plot all these points on the Cartesian plane, you end up with a line or curve.  Given an equation in and , and a point , you might want to know if that point is on the graph of that equation. To determine this, you can substitute the - and -values from the point into the equation and see if it boils down to a true or false equation.  How do you draw a graph, given an equation with and ? There are many valid methods depending on the equation, but the most fundamental tool you can use is to just make up some -values and then use the equation to solve for the corresponding -values. Then you have so many points you can plot as dots. With enough of these, you hopefully see a pattern and can connect the dots in a smooth way. demonstrates this process.    Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.                         Only the points are solutions. The other points cause the equation to be false when and are substituted.        Make a table and then plot the equation.             Point                                                            Point                                          You bought a new car for with a zero interest loan over a five-year period. That means you ll have to pay each month for the next five years ( months) to pay it off. According to this information, the equation models the loan balance after months, where is in dollars. Make a graph of this equation.   Two relevant -values to use are and (Why?)        Time is measured in months, and this loan will take months to pay off. So we will make a table where the -values run from to                                             Exploring Two-Variable Data and Rate of Change  With a table of - and -values, the rate of change from one row to the next is defined to be Sometimes the numerator is naturally negative, and sometimes the denominator is naturally negative, and we need to be careful with signs.  When given a table of - and -values, it is helpful to look for patterns. Some patterns we look for include:   Is the -value always a certain multiple of the -value?    Is the -value always a certain number added to the -value?    Is the -value always the -value raised to a certain power?    When you move from one row to the next, is the rate of change always the same?    When you move from one row to the next, does the -value always get a certain number added to it, and the -value always gets multiplied by a certain (possibly different) number?   If you see one of these patterns, you can write an equation with and that captures the pattern you found.    Write an equation in the form suggested by the pattern in the table.                                       Each -value is more than the corresponding -value. So the equation is        Find the rate of change between the two given points.            The coordinates of the points are and We apply the rate of change formula:   So the rate of change is        Does the table show that and have a linear relationship?                                           As each -value increases by the -values increases by then then then then So this table shows that and do not have a linear relationship.        Slope  When you take any two points on a straight (non-vertical) line, the rate of change is always the same no matter which two points you choose. We call this common rate of change the slope of the line. It is usually represented by the symbol .  Slope can be calculated using the same formula as for rate of change in general: where and can be any two points on the line.  A useful mantra for slope is rise over run , because graphically as you move from and , the amount you rise by is , and the amount you run by is . However, it is recommended that you get in the habit of thinking about the run as coming logically first, and the rise being a consequence of the run.  Slope triangles can be drawn onto the graph of a line to illustrate a run and its corresponding rise .  The sign of a slope has meaning:   A positive slope means the line tends upward as you follow it from left to right.    A negative slope means the line tends downward as you follow it from left to right.    A slope of means the line is horizontal.   Also the larger a slope is, the more steep the line.  In an application setting, if some quantity is growing at a constant rate over time, that rate that it is growing is the slope of a line that you would have if you were to draw a graph where time is the horizontal axis, and that quantity is the vertical axis.    Find the slope of the line passing through the two given points.    and               Find the slope of the line given its graph.            First we use the graph to identify two points. We find and but you might find another pair of points and the slope will work out to be the same. Using the slope formula:   So the slope is         Ashanti is learning to ski on the slopes of Mt. Hood. The graph below models her elevation from the ski park s base as time passes during one ski run on a small hill. Find the slopes of the four line segments, and interpret their meanings in this context.                         The first and third segments clearly have slope For the others, we need to indentify the coordinates of the points that begin and end each line segment:    and For the second and fourth slopes:                  Slope-Intercept Form  If a line equation is written in the form (where and are numbers, and are variables) then it is said to be in slope-intercept form . The number is the slope of the line, and the point is the -intercept of the line. Slope-intercept form is useful because you can immediately see the slope and the -intercept.  Graphing a line equation that is in slope-intercept form can be done by first marking the -intercept at on the -axis, and then using slope triangles based on the slope .  Conversely, you might need to write down a line's equation in slope-intercept form. If you have a way to determine the slope and the -intercept, then all you need to do is write down with the appropriate values for and . For example if you have a graph of a line, you can see the value of where the line crosses the -axis. And you can use a slope triangle to determine the slope . Then writing gives you an equation for the line.  If , , or , you don't need to write ; you can just write , , or . And if , you don't need to write ; you can just write .  In an application setting, if you know the constant rate at which something is growing over time, that is the slope . And if you know the initial value that the quantity had when the time was , that is the value for . And so models that quantity growing over time.    In the given graph, what is the line's slope-intercept equation?            We can see the -intercept is at Using rise over run , we also see that the slope is So the line s slope-intercept equation is        Graph the equation.           Start the plot at the -intercept Then use slope triangles with slope to extend a line in two directions.           A company set aside a certain amount of money in the year 2000. The company spent exactly from that fund each year on perks for its employees. In , there was still left in the fund.  Let be the number of years since 2000, and let be the amount of money, in dollars, left in the fund that year. Use a linear equation to model the amount of money left in the fund after so many years.   The linear model s slope-intercept equation is .    In the year , there was left in the fund.    In the year , the fund will be empty.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. We have been told that the account decreases by each year, so the slope of the linear model is (dollars per year).  So now we have that . The next step is to find the value of . One way is to substitute a point into . We use the point .   So this line s slope-intercept equation is .    In the year , was . To find the amount remaining in the fund at that time, we substitute in for in the slope-intercept equation from part (a), and we have:   So in the year , the fund had remaining in it.    The fund will be empty when it has left in it. That is, will equal . To find how many years until this happens, we substitute in for in the equation , and we have:   Approximately years after 2000, during the year 2020, the fund will be depleted.          Point-Slope Form  If you know the slope of a line is , and you know one point that the line passes through is , then one equation for that line is , and that is said to be in point-slope form .  Point-slope form is valuable because it allows you to work with an equation for a line and not directly care where the -intercept is. Instead, you can work with any other point on the line, . The -intercept happens where is , and in context, that might be meaningless.  Students need to become used to the subtraction sign in front of and the addition sign in front of . The different signs can cause confusion. But note that if you substitute in for , then the entire block is zeroed out and you are left with only . This might help you remember those signs.  Usually you should resist the temptation to convert a point-slope form line equation into slope-intercept form. One exception is when you want to find the line's -intercept quickly.  Graphing a line equation that is in point slope form is straightforward. First, identify the special point that is being used, , and mark that point. Then use slope triangles based on the slope to extend the line.  In an application setting, if you know the constant rate at which something is growing over time, that is the slope . And if you know some piece of data about one point in time, that tells you a special point . And so models that quantity growing over time.    A line's equation is given in point-slope form. Identify the slope and the point on the line that is being singled out.                This line is in point-slope form, so we can just recognize that the slope is and the line passes through the point        A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.    and        First we must find this line s slope using the slope formula:   So the slope is Using the point and point-slope form, an equation for the line is         A biologist has been observing a tree s height. This type of tree typically grows by feet each month. Fifteen months into the observation, the tree was feet tall.  Let be the number of months passed since the observations started, and let be the tree s height at that time, in feet. Use a linear equation to model the tree s height as the number of months pass.   A point-slope equation to model this is .    months after the observations started, the tree would be feet in height.    months after the observation started, the tree would be feet tall.                      Point-slope form is , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. Since the tree grows at a rate of feet per month, is the slope of the linear model.  So now we have that . We can use to get .    After months, we can find the height of the tree if we substitute in for in the equation , and we have:   So after months, the tree is feet tall.    To find when the tree was feet tall, we substitute in for in the equation , and we have:   So the tree was feet tall after months.          Standard Form  A line can be presented with an equation in the form , and this is called standard form . In standard form, the is not isolated. And and have symmetric roles on the left side of the equation.  Standard form can be useful in an application context where neither the quantity nor the quantity come logically first.  Unlike slope-intercept and point-slope forms, there is no direct meaning to the numbers in a standard form equation. The , , and don't directly tell you anything about the line's graph. However:   The line's slope is .    The line's -intercept is .    The line's -intercept is .     With a line equation in standard form, it is easy to find the - and -intercepts, even if you don't memorize the facts listed above. You can just substitute when looking for the -intercept, and substitute when looking for the -intercept.  For this reason, when trying to plot a line from an equation in standard form, it might be easiest to locate the intercepts and plot them. Then connect those points and extend to make a straight line.    Find both intercepts and the slope of the line.                     Find the -intercept by setting That makes so And the -intercept is at  Find the -intercept by setting That makes so And the -intercept is at  Find the slope by isolating   So the slope is        Write the linear equation in standard form.           Standard form is We need to move - and -terms to the same side of the equal sign.   Note that is already in standard form, but it s preferable to make the leading coefficient positive.        Plot the given standard form linear equation.              We can plot this by finding the -intercept, which is at and the -intercept, which is at After plotting these, we can just connect the dots and extend the line past them. It is highly recommended to do some quality control by checking that a few more points on the line you ve drawn actually satisfy the equation.              Geometry of Lines  Horizontal lines have equations of the form for some fixed number . The slope of a horizontal line is .  Vertical lines have equations of the form for some fixed number . Vertical lines do not have slope at all (not to be confused with having slope ).  Two vertical lines are parallel. If neither line is vertical, the two lines are parallel if and only if they have the same slope. If you have two lines and need to determine whether or not they are parallel, find each line's slope. Only when they have the exact same slope will the two lines be parallel.  Two lines are perpendicular when one is horizontal and the other is vertical. But if neither line is vertical, then they are perpendicular if and only if when you multiply their slopes together, the result is . In other words, the two slopes are negative reciprocals of each other.    Write an equation for the given line.            This is a vertical line, so it has an equation in the form The graph shows us which number. The equation is        Determine if the two lines are the same line, distinct parallel lines, perpendicular lines, or none of the above.    Line contains the points and Line contains the points and        The first line s slope is and the second line s slope is also So either the two lines are the same line, or they are parallel.  In point-slope form, the first line has an equation and the second line has an equation In slope-intercept form, these are and So the two lines have different -intercepts and must be distinct lines.        Write an equation for the line that is described. Then plot that line.    A line is parallel to the line passing through and and passes through             Based on the points and the first line has slope But the lines are parallel, so the second line also has slope The second line passes through so we can use point-slope form to write an equation for it: To plot this, we can start at and use slope triangles.          Review Exercises for   :     Identify the coordinates of each point in the graph.                                                                 Make a Cartesian plot with the indicated points marked.                                   Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is negative.               Here is a graph of the number of SARS-CoV-2 (COVID) cases confirmed by the CDC within the United States during the month of January, 2020.    What are the coordinates for the data point corresponding to January 20th?  How many additional new cases were there between January 2th and January th?                       Which quadrant is the point in?                                             The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.             :     Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.                          Only the points are solutions. The other points cause the equation to be false when and are substituted.                                      Make a table and then plot the equation.              Point                                                                  Point                                                          The pressure in a full propane tank will rise and fall if the ambient temperature rises and falls. The equation models this relationship, where the temperature is measured in °F and the pressure and the pressure is measured in lb\/in^2. Plot a graph of this equation. Make sure to use -values that make sense in context.               :     Write an equation in the form suggested by the pattern in the table.                                         Each -value is times what the corresponding -value is. So the equation is                                             Each -value is the square root of the corresponding -value. So the equation is                                             Each -value is the square of the corresponding -value. So the equation is            Find the rate of change between the two given points.     and               and                                                          From to                 Does the table show that and have a linear relationship?                                             As each -value increases by the -value decreases by So this table does show that and have a linear relationship.                                                 As each -value increases by the -value increases by So this table does show that and have a linear relationship.            This table gives the tide level in Lincoln City, Oregon, over one particular 24-hour period, measured in meters above average sea level.           Hour  Tide Level  Hour  Tide Level  Hour  Tide Level                                                                      Find the rate of change in the tide level between hours 10 and 12.      To find the rate of change between hours 10 and 12, calculate    And what was the rate of change between hours 14 and 20?      To find the rate of change between hours 14 and 20, calculate    List the longest intervals where there is a negative rate of change without any times in between that have positive rates of change.      The rate of change is negative from hour 0 to hour 6, and again from hour 12 to hour 18. So the intervals are [0,6], [12,18].   Over which hour-long interval was the rate of change highest?      The steepest rate of change happens from hour 21 to hour 22. To find this, we can calculate each of the rates of change from one hour to the next, and the largest result happens from hour 21 to hour 22.   What was that rate of change?      Between hour 21 and 22:          :     Find the slope of the line passing through the two given points.      and               and               and                Find the slope of the line given its graph.                                       Determine the steepest slope for a line connecting two points from the list.                        Plot at least three lines that each have slope the given slope.                                 A liquid solution is slowly leaking from a container. This graph shows how many milliliters of solution remains in the container after minutes.    What is the slope of this line, including units?               :     Find the line's slope and -intercept.                                                                In the given graph, what is the line's slope-intercept equation?                                     Graph the equation.                                                  A line passes through the two given points. Find the line's equation in slope-intercept form.      and               and                A gym charges members for a registration fee, and then per month. You became a member some time ago, and now you have paid a total of to the gym. How many months have passed since you joined the gym?  months have passed since you joined the gym.        Let be the number of months since you became a member of the gym.  If you pay per month, you would pay dollars for months. In addition, you paid up front.  Now we can write an equation:   Next, we solve for :   months have passed since you joined the gym.          Dawn hired a face-painter for a birthday party. The painter charged a flat fee of , and then charged per person. In the end, Dawn paid a total of . How many people used the face-painter s service?  people used the face-painter s service.        Let be the number of people who used the face-painter s service.  The charge for each person was , so the charge for people was dollars. There was also a flat fee of .  Now we can write an equation:   Next, we solve for :   So fifteen people used the face-painter s service.          By your cell phone contract, you pay a monthly fee plus for each minute you spend on the phone. In one month, you spent minutes over the phone, and had a bill totaling .  Let be the number of minutes you spend on the phone in a month, and let be your total cell phone bill for that month, in dollars. Use a linear equation to model your monthly bill based on the number of minutes you spend on the phone.   This line s slope-intercept equation is .    If you spend minutes on the phone in a month, you would be billed .    If your bill was one month, you must have spent minutes on the phone in that month.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. The slope of the linear model has been given to us: per minute.  So now we have that . The next step is to find the value of . There are at least two ways.   One way is to substitute a given point into . We have the point .   This line s slope-intercept equation is .   Another way is to use the line s point-slope equation . Again, we use the point .   This is the second way to find , and thus the line s slope-intercept equation is .    In one month, you spent minutes on the phone. To find out the bill, we substitute in for in the equation , and we have:   If you spent minutes over the phone in a month, your bill for that month would be .    In one month, you had a cell phone bill of . To find how many minutes you spent on the phone that month, we substitute in for in the equation , and we have:   If your bill was in one month, you must have spent minutes on the phone.            Scientists are conducting an experiment with a gas in a sealed container. The mass of the gas is measured, and the scientists realize that the gas is leaking over time in a linear way. Each minute, they lose grams. Five minutes since the experiment started, the remaining gas had a mass of grams.  Let be the number of minutes that have passed since the experiment started, and let be the mass of the gas in grams at that moment. Use a linear equation to model the weight of the gas over time.   This line s slope-intercept equation is .    minutes after the experiment started, there would be grams of gas left.    If a linear model continues to be accurate, minutes since the experiment started, all gas in the container will be gone.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. Since the gas is leaking at a rate of grams per minute, we know that the slope of the linear model is .  So now we have that . The next step is to find the value of . There are at least two ways.   One way is to substitute a known point into . We use the point .   This line s slope-intercept equation is .   Another way is to use the line s point-slope equation . Again, we use the point .   This is the second way to find , and thus the line s slope-intercept equation is .    After minutes, we can find the mass of the remaining gas if we substitute in for in the equation . We have:   So after minutes, there are grams of gas remaining.    To find when the gas will be all gone, we need to find when there are grams of gas left. We can substitute in for in the equation , and we have:   So after minutes, the gas will be all gone.            Scientists are conducting an experiment with a gas in a sealed container. The mass of the gas is measured, and the scientists realize that the gas is leaking over time in a linear way.  Eight minutes since the experiment started, the gas had a mass of grams.  Nineteen minutes since the experiment started, the gas had a mass of grams.  Let be the number of minutes that have passed since the experiment started, and let be the mass of the gas in grams at that moment. Use a linear equation to model the weight of the gas over time.   This line s slope-intercept equation is .    minutes after the experiment started, there would be grams of gas left.    If a linear model continues to be accurate, minutes since the experiment started, all gas in the container will be gone.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. We first need to find the line s slope. To find the slope, we need two points on the line. We have been given that and are points on the linear model, so we can use the slope formula:   First, we mark which number corresponds to which variable in the formula:    Now we substitute these numbers into the corresponding variables in the slope formula:   This line s slope is . This implies that the gas is leaking with a rate of grams per minute.  So now we have that . The next step is to find the value of . There are at least two ways.   One way is to substitute one of the given points into . We choose to use .   This line s slope-intercept equation is .   Another way is to use the line s point-slope equation . Again, we choose to use the point .   This is the second way to find , and thus the line s slope-intercept equation is .    After minutes, we can find the mass of the remaining gas if we substitute in for in the equation . We have:   So after minutes, there are grams of gas remaining.    To find when the gas will be all gone, we need to find when there are grams of gas left. We can substitute in for in the equation , and we have:   So after minutes, the gas will be all gone.            :     A line's equation is given in point-slope form. Identify the slope and the point on the line that is being singled out.                 This line is in point-slope form, so we can just recognize that the slope is and the line passes through the point                              A line passes through the given points with the given slope. Find an equation for the line in point-slope form using the given point.     through with slope               through with slope                A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.     and               and                Change the given point-slope equation to slope-intercept form.                                   Determine a point-slope form line equation for the given line.              The slope is and the point is on the graph of this line, so one point-slope form equation for this line is                  The slope is and the point is on the graph of this line, so one point-slope form equation for this line is           Graph the linear equation by identifying the slope and one point on this line.                                   A company set aside a certain amount of money in the year 2000. The company spent exactly from that fund each year on perks for its employees. In , there was still left in the fund.  Let be the number of years since 2000, and let be the amount of money, in dollars, left in the fund that year. Use a linear equation to model the amount of money left in the fund after so many years.   A point-slope equation to model this is .    In the year , there was left in the fund.    In the year , the fund will be empty.                      A line s equation in point-slope form looks like , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. We have been told that the account decreases by each year, so the slope of the linear model is (dollars per year).  So now we have that . We can use to get .    In the year , was . To find the amount remaining in the fund, we substitute in for in the equation , and we have:   So in the year , the fund had remaining in it.    The fund will be empty when it has left in it. That is, will equal . To find how many years until this happens, we substitute in for in the equation , and we have:   Approximately years after 2000, in the year 2016, the fund will be depleted.            A company set aside a certain amount of money in the year 2000. The company spent exactly the same amount from that fund each year on perks for its employees. In , there was still left in the fund. In , there was left.  Let be the number of years since 2000, and let be the amount of money, in dollars, left in the fund that year. Use a linear equation to model the amount of money left in the fund after so many years.   A point-slope equation to model this is .    In the year , there was left in the fund.    In the year , the fund will be empty.                      A line s equation in point-slope form looks like , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. To find the slope, we need two points on the line. We have been given that and are points on the linear model, so we can use the slope formula:   First, we mark which number corresponds to which variable in the formula:    Now we substitute these numbers into the corresponding variables in the slope formula:   This line s slope is . This implies that the company is spending per year on perks for its employees.  So now we have that . We can either use or to get .    In the year , was . To find the amount remaining in the fund, we substitute in for in the equation , and we have:   So in the year , the fund had remaining in it.    The fund will be empty when it has left in it. That is, will equal . To find how many years until this happens, we substitute in for in the equation , and we have:   Approximately years after 2000, in the year 2031, the fund will be depleted.            A biologist has been observing a tree s height. months into the observation, the tree was feet tall. months into the observation, the tree was feet tall.  Let be the number of months passed since the observations started, and let be the tree s height at that time, in feet. Use a linear equation to model the tree s height as the number of months pass.   A point-slope equation to model this is .    months after the observations started, the tree would be feet in height.    months after the observation started, the tree would be feet tall.                      A line s equation in point-slope form looks like , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. To find the slope, we need two points on the line. We have been given that and are points on the linear model, so we can use the slope formula:   First, we mark which number corresponds to which variable in the formula:    Now we substitute these numbers into the corresponding variables in the slope formula:   This line s slope is . This implies that the tree is growing by feet each month.  So now we have that . We can either use or to get .    After months, we can find the height of the tree if we substitute in for in the equation , and we have:   So after months, the tree is feet tall.    To find when the tree was feet tall, we substitute in for in the equation , and we have:   So the tree was feet tall after months.           :     Find both intercepts and the slope of the line (whose equation is written in standard form).                                                       Write the linear equation in standard form.            Standard form is We need to move - and -terms to the same side of the equal sign.   Note that is already in standard form, but it s preferable to make the leading coefficient positive.                 A line s standard form is We need to move and terms to the same side of the equal sign.            Plot the given standard form linear equation.                                  To make fuel for an automobile, you could mix gallons of gasoline with gallons of ethanol. Suppose that gasoline costs $4.97 per gallon and ethanol costs $2.23 per gallon, and you want to mix these types of fuel together to make fuel that costs $4.70 total. Write a linear equation in standard form that models the amounts of gasoline and ethanol you could mix.               :       Make a table for the equation, and then plot it.             Point                                                                 Write an equation for the given line.    The line that passes through and                 Find the - and -intercepts of each line.                                             Determine if the two lines are the same line, distinct parallel lines, perpendicular lines, or none of the above.    Line contains the points and Line contains the points and                   Write an equation for the line that is described. Then plot that line.    A line is perpendicular to the line passing through and and passes through                     "
+  "body": " Graphing Lines Chapter Review   Cartesian Coordinates  The Cartesian coordinate system gives us a way to identify exactly where a point is on a two-dimensional plane.   First, a special point called the origin is marked.    Then two axes are drawn. An axis is a straight line that extends forever. One axis is drawn horizontally through the origin, and is known as the horizontal axis , or as the -axis . The other axis is drawn vertically through the origin, and is known as the vertical axis , or the -axis .    Now the plane has been divided into four quadrants . The upper right quadrant is Quadrant I. Then moving counter-clockwise around the origin, the remaining quadrants are numbered II, III, and IV.    Each axis is given a scale . This means marking some numbers on each axis so we know distances. Numbers must be marked in a way such that a numerical distance of (for example from 0 to 1 , or from 1 to 2 ) always corresponds to the same physical distance on the plane. However, it is OK (and common) for the scale on the -axis to be different from the scale on the -axis.    Now each point on the plane can be identified with an ordered pair of numbers, . The number tells you a place on the -axis, and the number tells you a place on the -axis. If you move up\/down from that place on the -axis, while also moving right\/left from that place on the -axis, there is one point where the two paths cross. And this is the point labeled with . Here are some example points with their coordinates.          Identify the coordinates of each point in the graph.                           Point is to the right and down from the origin, so its coordinates are  Point is to the right and up from the origin, so its coordinates are  Point is to the right and up from the origin, so its coordinates are  Point is to the left and down from the origin, so its coordinates are        Make a Cartesian plot with the indicated points marked.           The first point is to the right and down from the origin. The second point is to the right and up from the origin.          Which quadrant is the point in?                                             The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.          Graphing Equations  When an equation has the variables and , for example or , the graph of that equation is the collection of all the points that make the equation true. Typically when you plot all these points on the Cartesian plane, you end up with a line or curve.  Given an equation in and , and a point , you might want to know if that point is on the graph of that equation. To determine this, you can substitute the - and -values from the point into the equation and see if it boils down to a true or false equation.  How do you draw a graph, given an equation with and ? There are many valid methods depending on the equation, but the most fundamental tool you can use is to just make up some -values and then use the equation to solve for the corresponding -values. Then you have so many points you can plot as dots. With enough of these, you hopefully see a pattern and can connect the dots in a smooth way. demonstrates this process.    Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.                         Only the points are solutions. The other points cause the equation to be false when and are substituted.        Make a table and then plot the equation.             Point                                                            Point                                          You bought a new car for with a zero interest loan over a five-year period. That means you ll have to pay each month for the next five years ( months) to pay it off. According to this information, the equation models the loan balance after months, where is in dollars. Make a graph of this equation.   Two relevant -values to use are and (Why?)        Time is measured in months, and this loan will take months to pay off. So we will make a table where the -values run from to                                             Exploring Two-Variable Data and Rate of Change  With a table of - and -values, the rate of change from one row to the next is defined to be Sometimes the numerator is naturally negative, and sometimes the denominator is naturally negative, and we need to be careful with signs.  When given a table of - and -values, it is helpful to look for patterns. Some patterns we look for include:   Is the -value always a certain multiple of the -value?    Is the -value always a certain number added to the -value?    Is the -value always the -value raised to a certain power?    When you move from one row to the next, is the rate of change always the same?    When you move from one row to the next, does the -value always get a certain number added to it, and the -value always gets multiplied by a certain (possibly different) number?   If you see one of these patterns, you can write an equation with and that captures the pattern you found.    Write an equation in the form suggested by the pattern in the table.                                       Each -value is more than the corresponding -value. So the equation is        Find the rate of change between the two given points.            The coordinates of the points are and We apply the rate of change formula:   So the rate of change is        Does the table show that and have a linear relationship?                                           As each -value increases by the -values increases by then then then then So this table shows that and do not have a linear relationship.        Slope  When you take any two points on a straight (non-vertical) line, the rate of change is always the same no matter which two points you choose. We call this common rate of change the slope of the line. It is usually represented by the symbol .  Slope can be calculated using the same formula as for rate of change in general: where and can be any two points on the line.  A useful mantra for slope is rise over run , because graphically as you move from and , the amount you rise by is , and the amount you run by is . However, it is recommended that you get in the habit of thinking about the run as coming logically first, and the rise being a consequence of the run.  Slope triangles can be drawn onto the graph of a line to illustrate a run and its corresponding rise .  The sign of a slope has meaning:   A positive slope means the line tends upward as you follow it from left to right.    A negative slope means the line tends downward as you follow it from left to right.    A slope of means the line is horizontal.   Also the larger a slope is, the more steep the line.  In an application setting, if some quantity is growing at a constant rate over time, that rate that it is growing is the slope of a line that you would have if you were to draw a graph where time is the horizontal axis, and that quantity is the vertical axis.    Find the slope of the line passing through the two given points.    and               Find the slope of the line given its graph.            First we use the graph to identify two points. We find and but you might find another pair of points and the slope will work out to be the same. Using the slope formula:   So the slope is         Ashanti is learning to ski on the slopes of Mt. Hood. The graph below models her elevation from the ski park s base as time passes during one ski run on a small hill. Find the slopes of the four line segments, and interpret their meanings in this context.                         The first and third segments clearly have slope For the others, we need to indentify the coordinates of the points that begin and end each line segment:    and For the second and fourth slopes:                  Slope-Intercept Form  If a line equation is written in the form (where and are numbers, and are variables) then it is said to be in slope-intercept form . The number is the slope of the line, and the point is the -intercept of the line. Slope-intercept form is useful because you can immediately see the slope and the -intercept.  Graphing a line equation that is in slope-intercept form can be done by first marking the -intercept at on the -axis, and then using slope triangles based on the slope .  Conversely, you might need to write down a line's equation in slope-intercept form. If you have a way to determine the slope and the -intercept, then all you need to do is write down with the appropriate values for and . For example if you have a graph of a line, you can see the value of where the line crosses the -axis. And you can use a slope triangle to determine the slope . Then writing gives you an equation for the line.  If , , or , you don't need to write ; you can just write , , or . And if , you don't need to write ; you can just write .  In an application setting, if you know the constant rate at which something is growing over time, that is the slope . And if you know the initial value that the quantity had when the time was , that is the value for . And so models that quantity growing over time.    In the given graph, what is the line's slope-intercept equation?            We can see the -intercept is at Using rise over run , we also see that the slope is So the line s slope-intercept equation is        Graph the equation.           Start the plot at the -intercept Then use slope triangles with slope to extend a line in two directions.           A company set aside a certain amount of money in the year 2000. The company spent exactly from that fund each year on perks for its employees. In , there was still left in the fund.  Let be the number of years since 2000, and let be the amount of money, in dollars, left in the fund that year. Use a linear equation to model the amount of money left in the fund after so many years.   The linear model s slope-intercept equation is .    In the year , there was left in the fund.    In the year , the fund will be empty.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. We have been told that the account decreases by each year, so the slope of the linear model is (dollars per year).  So now we have that . The next step is to find the value of . One way is to substitute a point into . We use the point .   So this line s slope-intercept equation is .    In the year , was . To find the amount remaining in the fund at that time, we substitute in for in the slope-intercept equation from part (a), and we have:   So in the year , the fund had remaining in it.    The fund will be empty when it has left in it. That is, will equal . To find how many years until this happens, we substitute in for in the equation , and we have:   Approximately years after 2000, during the year 2020, the fund will be depleted.          Point-Slope Form  If you know the slope of a line is , and you know one point that the line passes through is , then one equation for that line is , and that is said to be in point-slope form .  Point-slope form is valuable because it allows you to work with an equation for a line and not directly care where the -intercept is. Instead, you can work with any other point on the line, . The -intercept happens where is , and in context, that might be meaningless.  Students need to become used to the subtraction sign in front of and the addition sign in front of . The different signs can cause confusion. But note that if you substitute in for , then the entire block is zeroed out and you are left with only . This might help you remember those signs.  Usually you should resist the temptation to convert a point-slope form line equation into slope-intercept form. One exception is when you want to find the line's -intercept quickly.  Graphing a line equation that is in point slope form is straightforward. First, identify the special point that is being used, , and mark that point. Then use slope triangles based on the slope to extend the line.  In an application setting, if you know the constant rate at which something is growing over time, that is the slope . And if you know some piece of data about one point in time, that tells you a special point . And so models that quantity growing over time.    A line's equation is given in point-slope form. Identify the slope and the point on the line that is being singled out.                This line is in point-slope form, so we can just recognize that the slope is and the line passes through the point        A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.    and        First we must find this line s slope using the slope formula:   So the slope is Using the point and point-slope form, an equation for the line is         A biologist has been observing a tree s height. This type of tree typically grows by feet each month. Fifteen months into the observation, the tree was feet tall.  Let be the number of months passed since the observations started, and let be the tree s height at that time, in feet. Use a linear equation to model the tree s height as the number of months pass.   A point-slope equation to model this is .    months after the observations started, the tree would be feet in height.    months after the observation started, the tree would be feet tall.                      Point-slope form is , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. Since the tree grows at a rate of feet per month, is the slope of the linear model.  So now we have that . We can use to get .    After months, we can find the height of the tree if we substitute in for in the equation , and we have:   So after months, the tree is feet tall.    To find when the tree was feet tall, we substitute in for in the equation , and we have:   So the tree was feet tall after months.          Standard Form  A line can be presented with an equation in the form , and this is called standard form . In standard form, the is not isolated. And and have symmetric roles on the left side of the equation.  Standard form can be useful in an application context where neither the quantity nor the quantity come logically first.  Unlike slope-intercept and point-slope forms, there is no direct meaning to the numbers in a standard form equation. The , , and don't directly tell you anything about the line's graph. However:   The line's slope is .    The line's -intercept is .    The line's -intercept is .     With a line equation in standard form, it is easy to find the - and -intercepts, even if you don't memorize the facts listed above. You can just substitute when looking for the -intercept, and substitute when looking for the -intercept.  For this reason, when trying to plot a line from an equation in standard form, it might be easiest to locate the intercepts and plot them. Then connect those points and extend to make a straight line.    Find both intercepts and the slope of the line.                     Find the -intercept by setting That makes so And the -intercept is at  Find the -intercept by setting That makes so And the -intercept is at  Find the slope by isolating   So the slope is        Write the linear equation in standard form.           Standard form is We need to move - and -terms to the same side of the equal sign.   Note that is already in standard form, but it s preferable to make the leading coefficient positive.        Plot the given standard form linear equation.              We can plot this by finding the -intercept, which is at and the -intercept, which is at After plotting these, we can just connect the dots and extend the line past them. It is highly recommended to do some quality control by checking that a few more points on the line you ve drawn actually satisfy the equation.              Geometry of Lines  Horizontal lines have equations of the form for some fixed number . The slope of a horizontal line is .  Vertical lines have equations of the form for some fixed number . Vertical lines do not have slope at all (not to be confused with having slope ).  Two vertical lines are parallel. If neither line is vertical, the two lines are parallel if and only if they have the same slope. If you have two lines and need to determine whether or not they are parallel, find each line's slope. Only when they have the exact same slope will the two lines be parallel.  Two lines are perpendicular when one is horizontal and the other is vertical. But if neither line is vertical, then they are perpendicular if and only if when you multiply their slopes together, the result is . In other words, the two slopes are negative reciprocals of each other.    Write an equation for the given line.            This is a vertical line, so it has an equation in the form The graph shows us which number. The equation is        Determine if the two lines are the same line, distinct parallel lines, perpendicular lines, or none of the above.    Line contains the points and Line contains the points and        The first line s slope is and the second line s slope is also So either the two lines are the same line, or they are parallel.  In point-slope form, the first line has an equation and the second line has an equation In slope-intercept form, these are and So the two lines have different -intercepts and must be distinct lines.        Write an equation for the line that is described. Then plot that line.    A line is parallel to the line passing through and and passes through             Based on the points and the first line has slope But the lines are parallel, so the second line also has slope The second line passes through so we can use point-slope form to write an equation for it: To plot this, we can start at and use slope triangles.          Review Exercises for   :     Identify the coordinates of each point in the graph.                                                                 Make a Cartesian plot with the indicated points marked.                                   Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is positive.               Here is a graph of the number of SARS-CoV-2 (COVID) cases confirmed by the CDC within the United States during the month of January, 2020.    What are the coordinates for the data point corresponding to January 20th?  How many additional new cases were there between January 2th and January th?                       Which quadrant is the point in?                                             The -coordinate is negative and the -coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.    The -coordinate is positive and the -coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.             :     Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.                          Only the points are solutions. The other points cause the equation to be false when and are substituted.                                      Make a table and then plot the equation.              Point                                                                  Point                                                          The pressure in a full propane tank will rise and fall if the ambient temperature rises and falls. The equation models this relationship, where the temperature is measured in °F and the pressure and the pressure is measured in lb\/in^2. Plot a graph of this equation. Make sure to use -values that make sense in context.               :     Write an equation in the form suggested by the pattern in the table.                                         Each -value is times what the corresponding -value is. So the equation is                                             Each -value is the square root of the corresponding -value. So the equation is                                             Each -value is the square of the corresponding -value. So the equation is            Find the rate of change between the two given points.     and               and                                                          From to                 Does the table show that and have a linear relationship?                                             As each -value increases by the -value decreases by So this table does show that and have a linear relationship.                                                 As each -value increases by the -value increases by So this table does show that and have a linear relationship.            This table gives the tide level in Lincoln City, Oregon, over one particular 24-hour period, measured in meters above average sea level.           Hour  Tide Level  Hour  Tide Level  Hour  Tide Level                                                                      Find the rate of change in the tide level between hours 10 and 12.      To find the rate of change between hours 10 and 12, calculate    And what was the rate of change between hours 14 and 20?      To find the rate of change between hours 14 and 20, calculate    List the longest intervals where there is a negative rate of change without any times in between that have positive rates of change.      The rate of change is negative from hour 0 to hour 6, and again from hour 12 to hour 18. So the intervals are [0,6], [12,18].   Over which hour-long interval was the rate of change highest?      The steepest rate of change happens from hour 21 to hour 22. To find this, we can calculate each of the rates of change from one hour to the next, and the largest result happens from hour 21 to hour 22.   What was that rate of change?      Between hour 21 and 22:          :     Find the slope of the line passing through the two given points.      and               and               and                Find the slope of the line given its graph.                                       Determine the steepest slope for a line connecting two points from the list.                        Plot at least three lines that each have slope the given slope.                                 A liquid solution is slowly leaking from a container. This graph shows how many milliliters of solution remains in the container after minutes.    What is the slope of this line, including units?               :     Find the line's slope and -intercept.                                                                In the given graph, what is the line's slope-intercept equation?                                     Graph the equation.                                                  A line passes through the two given points. Find the line's equation in slope-intercept form.      and               and                A gym charges members for a registration fee, and then per month. You became a member some time ago, and now you have paid a total of to the gym. How many months have passed since you joined the gym?  months have passed since you joined the gym.        Let be the number of months since you became a member of the gym.  If you pay per month, you would pay dollars for months. In addition, you paid up front.  Now we can write an equation:   Next, we solve for :   months have passed since you joined the gym.          Dawn hired a face-painter for a birthday party. The painter charged a flat fee of , and then charged per person. In the end, Dawn paid a total of . How many people used the face-painter s service?  people used the face-painter s service.        Let be the number of people who used the face-painter s service.  The charge for each person was , so the charge for people was dollars. There was also a flat fee of .  Now we can write an equation:   Next, we solve for :   So fifteen people used the face-painter s service.          By your cell phone contract, you pay a monthly fee plus for each minute you spend on the phone. In one month, you spent minutes over the phone, and had a bill totaling .  Let be the number of minutes you spend on the phone in a month, and let be your total cell phone bill for that month, in dollars. Use a linear equation to model your monthly bill based on the number of minutes you spend on the phone.   This line s slope-intercept equation is .    If you spend minutes on the phone in a month, you would be billed .    If your bill was one month, you must have spent minutes on the phone in that month.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. The slope of the linear model has been given to us: per minute.  So now we have that . The next step is to find the value of . There are at least two ways.   One way is to substitute a given point into . We have the point .   This line s slope-intercept equation is .   Another way is to use the line s point-slope equation . Again, we use the point .   This is the second way to find , and thus the line s slope-intercept equation is .    In one month, you spent minutes on the phone. To find out the bill, we substitute in for in the equation , and we have:   If you spent minutes over the phone in a month, your bill for that month would be .    In one month, you had a cell phone bill of . To find how many minutes you spent on the phone that month, we substitute in for in the equation , and we have:   If your bill was in one month, you must have spent minutes on the phone.            Scientists are conducting an experiment with a gas in a sealed container. The mass of the gas is measured, and the scientists realize that the gas is leaking over time in a linear way. Each minute, they lose grams. Five minutes since the experiment started, the remaining gas had a mass of grams.  Let be the number of minutes that have passed since the experiment started, and let be the mass of the gas in grams at that moment. Use a linear equation to model the weight of the gas over time.   This line s slope-intercept equation is .    minutes after the experiment started, there would be grams of gas left.    If a linear model continues to be accurate, minutes since the experiment started, all gas in the container will be gone.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. Since the gas is leaking at a rate of grams per minute, we know that the slope of the linear model is .  So now we have that . The next step is to find the value of . There are at least two ways.   One way is to substitute a known point into . We use the point .   This line s slope-intercept equation is .   Another way is to use the line s point-slope equation . Again, we use the point .   This is the second way to find , and thus the line s slope-intercept equation is .    After minutes, we can find the mass of the remaining gas if we substitute in for in the equation . We have:   So after minutes, there are grams of gas remaining.    To find when the gas will be all gone, we need to find when there are grams of gas left. We can substitute in for in the equation , and we have:   So after minutes, the gas will be all gone.            Scientists are conducting an experiment with a gas in a sealed container. The mass of the gas is measured, and the scientists realize that the gas is leaking over time in a linear way.  Eight minutes since the experiment started, the gas had a mass of grams.  Nineteen minutes since the experiment started, the gas had a mass of grams.  Let be the number of minutes that have passed since the experiment started, and let be the mass of the gas in grams at that moment. Use a linear equation to model the weight of the gas over time.   This line s slope-intercept equation is .    minutes after the experiment started, there would be grams of gas left.    If a linear model continues to be accurate, minutes since the experiment started, all gas in the container will be gone.                      A line s equation in slope-intercept form looks like , where is the slope, and is the -coordinate of the -intercept. We first need to find the line s slope. To find the slope, we need two points on the line. We have been given that and are points on the linear model, so we can use the slope formula:   First, we mark which number corresponds to which variable in the formula:    Now we substitute these numbers into the corresponding variables in the slope formula:   This line s slope is . This implies that the gas is leaking with a rate of grams per minute.  So now we have that . The next step is to find the value of . There are at least two ways.   One way is to substitute one of the given points into . We choose to use .   This line s slope-intercept equation is .   Another way is to use the line s point-slope equation . Again, we choose to use the point .   This is the second way to find , and thus the line s slope-intercept equation is .    After minutes, we can find the mass of the remaining gas if we substitute in for in the equation . We have:   So after minutes, there are grams of gas remaining.    To find when the gas will be all gone, we need to find when there are grams of gas left. We can substitute in for in the equation , and we have:   So after minutes, the gas will be all gone.            :     A line's equation is given in point-slope form. Identify the slope and the point on the line that is being singled out.                 This line is in point-slope form, so we can just recognize that the slope is and the line passes through the point                              A line passes through the given points with the given slope. Find an equation for the line in point-slope form using the given point.     through with slope               through with slope                A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.     and               and                Change the given point-slope equation to slope-intercept form.                                   Determine a point-slope form line equation for the given line.              The slope is and the point is on the graph of this line, so one point-slope form equation for this line is                  The slope is and the point is on the graph of this line, so one point-slope form equation for this line is           Graph the linear equation by identifying the slope and one point on this line.                                   A company set aside a certain amount of money in the year 2000. The company spent exactly from that fund each year on perks for its employees. In , there was still left in the fund.  Let be the number of years since 2000, and let be the amount of money, in dollars, left in the fund that year. Use a linear equation to model the amount of money left in the fund after so many years.   A point-slope equation to model this is .    In the year , there was left in the fund.    In the year , the fund will be empty.                      A line s equation in point-slope form looks like , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. We have been told that the account decreases by each year, so the slope of the linear model is (dollars per year).  So now we have that . We can use to get .    In the year , was . To find the amount remaining in the fund, we substitute in for in the equation , and we have:   So in the year , the fund had remaining in it.    The fund will be empty when it has left in it. That is, will equal . To find how many years until this happens, we substitute in for in the equation , and we have:   Approximately years after 2000, in the year 2016, the fund will be depleted.            A company set aside a certain amount of money in the year 2000. The company spent exactly the same amount from that fund each year on perks for its employees. In , there was still left in the fund. In , there was left.  Let be the number of years since 2000, and let be the amount of money, in dollars, left in the fund that year. Use a linear equation to model the amount of money left in the fund after so many years.   A point-slope equation to model this is .    In the year , there was left in the fund.    In the year , the fund will be empty.                      A line s equation in point-slope form looks like , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. To find the slope, we need two points on the line. We have been given that and are points on the linear model, so we can use the slope formula:   First, we mark which number corresponds to which variable in the formula:    Now we substitute these numbers into the corresponding variables in the slope formula:   This line s slope is . This implies that the company is spending per year on perks for its employees.  So now we have that . We can either use or to get .    In the year , was . To find the amount remaining in the fund, we substitute in for in the equation , and we have:   So in the year , the fund had remaining in it.    The fund will be empty when it has left in it. That is, will equal . To find how many years until this happens, we substitute in for in the equation , and we have:   Approximately years after 2000, in the year 2031, the fund will be depleted.            A biologist has been observing a tree s height. months into the observation, the tree was feet tall. months into the observation, the tree was feet tall.  Let be the number of months passed since the observations started, and let be the tree s height at that time, in feet. Use a linear equation to model the tree s height as the number of months pass.   A point-slope equation to model this is .    months after the observations started, the tree would be feet in height.    months after the observation started, the tree would be feet tall.                      A line s equation in point-slope form looks like , where is the slope, and is some point we know to be on the line. We first need to find the line s slope. To find the slope, we need two points on the line. We have been given that and are points on the linear model, so we can use the slope formula:   First, we mark which number corresponds to which variable in the formula:    Now we substitute these numbers into the corresponding variables in the slope formula:   This line s slope is . This implies that the tree is growing by feet each month.  So now we have that . We can either use or to get .    After months, we can find the height of the tree if we substitute in for in the equation , and we have:   So after months, the tree is feet tall.    To find when the tree was feet tall, we substitute in for in the equation , and we have:   So the tree was feet tall after months.           :     Find both intercepts and the slope of the line (whose equation is written in standard form).                                                       Write the linear equation in standard form.            Standard form is We need to move - and -terms to the same side of the equal sign.   Note that is already in standard form, but it s preferable to make the leading coefficient positive.                 A line s standard form is We need to move and terms to the same side of the equal sign.            Plot the given standard form linear equation.                                  To make fuel for an automobile, you could mix gallons of gasoline with gallons of ethanol. Suppose that gasoline costs $4.97 per gallon and ethanol costs $2.23 per gallon, and you want to mix these types of fuel together to make fuel that costs $4.70 total. Write a linear equation in standard form that models the amounts of gasoline and ethanol you could mix.               :       Make a table for the equation, and then plot it.             Point                                                                 Write an equation for the given line.    The line that passes through and                 Find the - and -intercepts of each line.                                             Determine if the two lines are the same line, distinct parallel lines, perpendicular lines, or none of the above.    Line contains the points and Line contains the points and                   Write an equation for the line that is described. Then plot that line.    A line is perpendicular to the line passing through and and passes through                     "
 },
 {
   "id": "review-graphing-lines-2-2",
@@ -16810,7 +16810,7 @@ var ptx_lunr_docs = [
   "type": "Exercise",
   "number": "3.10.5",
   "title": "",
-  "body": "  Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is negative.           "
+  "body": "  Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is positive.           "
 },
 {
   "id": "early-covid-counts-copy",
@@ -19726,7 +19726,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "A.1",
   "title": "Arithmetic with Negative Numbers",
-  "body": " Arithmetic with Negative Numbers   There are special things to consider when adding, subtracting, multiplying, dividing, and raising to powers, when negative numbers are involved. This section reviews those arithmetic operations with negative numbers.   Alternative Video Lesson      Signed Numbers  Signed numbers  Is it valid to subtract a large number from a smaller one? It may be hard to imagine what it would mean physically to subtract cars from your garage if you only have car there in there in the first place. But mathematics gives meaning to expressions like using signed numbers .  You've probably seen signed numbers used to describe the temperature of very cold things. Most people on Earth use the Celsius scale for temperature. If you're not familiar with the Celsius temperature scale, think about these examples:   Number line with interesting Celsius temperatures   a number line, with values in degrees Celsius; marks average temperature at North Pole in winter at -40; marks cold winter night at -10; marks water freezes at 0; marks cool autumn day at 13; marks human body temperature at 37      uses a number line to illustrate these Number line positive and negative numbers. A number line is a useful device for visualizing how numbers relate to each other and combine with each other. Values to the right of are called Positive numbers  positive numbers and values to the left of are called Negative numbers  negative numbers .   Subtraction Sign versus Negative Sign  Unfortunately, the symbol we use for subtraction looks just like the symbol we use for marking a negative number. We must be able to identify when a minus sign means to subtract and when it means to negate. Here are some examples.    has one negative sign and no subtraction sign.     has no negative signs and one subtraction sign.     has a negative sign and then a subtraction sign.     has two negative signs and no subtraction sign.      Identify Minus Signs   In each expression, how many negative signs and subtraction signs are there?   has negative signs and subtraction signs.          has zero negative signs and one subtraction sign.   has negative signs and subtraction signs.          has two negative signs and zero subtraction signs.   has negative signs and subtraction signs.          has two negative signs and three subtraction signs.         Adding  Signed numbers adding  To adding two numbers with the same sign you can (at first) ignore their signs, and add the two numbers as if they were positive. Then make sure your result is either positive or negative, depending on what the sign was.   Add Two Negative Numbers  If you needed to add and , note that both are negative. Maybe you have this expression in front of you: That plus minus is awkward, and in this book you are more likely to see this expression: with extra parentheses. Since both terms are negative , we can add and to get but realize that our final result should be negative. So our result is :    This approach works because adding numbers is like having two people tugging on a rope, with strength indicated by each number. In we have two people pulling to the left, one with strength and the other with strength . Their forces combine to pull left with strength , giving us our total of , as illustrated in .  If we are adding two numbers that have opposite signs, then the two people are tugging the rope in opposing directions. If either of them is using more strength than the other, then overall there will be a net pull in the stronger person's direction. And the overall pull on the rope will be the difference of the two strengths. This is illustrated in .   Working together   a number line with Suriya marked at -18 and Kate marked at -7; two thin arrows extend from 0 pointing left, one to Suriya at -18 and one to Kate at -7; a thicker arrow representing Suriya plus Kate points to the left from 0 to -25      Working in opposition   a number line with Suriya marked at -15 and Kate marked at 12; one thin arrow extends from 0 pointing left to Suriya at -15, and another thin arrow extends from 0 pointing right to Kate at 12; a thicker arrow representing Suriya plus Kate points to the left from 0 to -3      Adding One Number of Each Sign  Here are four examples of addition where one number is positive and the other is negative.      We have one number of each sign, with sizes and . Their difference is . But of the two numbers, the negative number is stronger. So the result from adding these is also negative: .       We have one number of each sign, with sizes and . Their difference is . But of the two numbers, the positive number is stronger. So the result from adding these is also positive: .       We have one number of each sign, with sizes and . Their difference is . But of the two numbers, the negative number is stronger. So the result from adding these is also negative: .       We have one number of each sign, both with size . The opposing forces cancel each other, leaving a result of .      Addition with Negative Numbers   Practice adding when at least one negative number is involved. The expectation is that you can do these tasks without a calculator.   Add      The two numbers have opposite sign, so we subtract Of the two numbers being added, the positive is larger, so the result should positive as well:   Add      The two numbers are both negative, so we can add and take the negative of that as the answer:   Add      The two numbers have opposite sign, so we subtract Of the two numbers being added, the negative is larger, so the result should be negative:   Find the sum      The two numbers are both negative, so we can add and take the negative of that as the answer:   Find the sum      The two numbers have opposite sign, so we can subtract Of the two numbers being added, the positive is larger, so the result should be positive:         Subtracting  Signed numbers subtracting  Subtracting a small positive number from a larger number, such as , is a skill you are familiar with. Subtraction can also be done where a small positive number subtracts a larger number, or where one or both numbers are negative. Subtracting with negative numbers can cause confusion, and to avoid that confusion, it may help to think of subtraction as adding the opposite number.        Original  Adding the Opposite    Subtracting a larger positive number:      Subtracting from a negative number:      Subtracting a negative number:      This strategy will reduce subtraction to addition. So if you are already comfortable adding positive and negative numbers, subtraction becomes just as familiar. These examples show how it is done:             Subtraction with Negative Numbers   Practice subtracting when at least one negative number is involved. The expectation is that you can do these tasks without a calculator.   Subtract from      After writing this as we can change to and get   Subtract      We can change this to Two numbers are added, and the larger one is negative. So we find the difference but the final result must be negative:   Subtract      We can rewrite this as and get   Find the difference      We can rewrite this as Now it is the sum of two numbers of opposite sign, so we find the difference We were adding two numbers where the larger one was negative. So the final result should also be negative:   Find the difference      Since we are subtracting a positive number from a negative number, the result should be an even more negative number. We can add to get but our final answer should be the opposite,         Multiplying  Signed numbers multiplying  Multiplication with negative numbers is possible too. We can view multiplication as repeated addition. For example . We can do the same when there is a negative number in the product. represents .   Viewing as repeated addition   a number line with a curved arrow emanating from 0 and landing to the left at -7, then again from -7 to -14, and again from -14 to -21; text above the arrows says adding -7 three times      illustrates that . Notice how a positive number multiplied by a negative number will make a negative result.  What about the product , where both factors are negative? Should the result be positive or negative? If can be seen as adding  three times as in , then it isn't too crazy to interpret as subtracting  three times. Or in other words, as adding  three times. This is illustrated in .   Viewing as repeated subtraction   a number line with a curved arrow emanating from 0 and landing to the right at 7, then again from 7 to 14, and again from 14 to 21; text above the arrows says subtracting -7 three times     This illustrates that , and it seems that a negative number times a negative number gives a positive result.  Positive and negative numbers are not the whole story. The number is neither positive nor negative. What happens with multiplication by ? You can choose to view as adding the number seven times. And you can choose to view as adding the number zero times. Either way, the result is .   Multiplication by   Multiplying any number by results in .    Multiplication with Negative Numbers   Here are some practice exercises with multiplication and signed numbers. The expectation is that you can make these calculations without a calculator.   Multiply      Since and we are multiplying numbers of opposite signs, the answer is negative:   Find the product of and      Since and we are multiplying numbers of opposite signs, the answer is negative:   Compute      Since and we are multiplying numbers of the same sign, the answer is positive:   Find the product      Any number multiplied by is         Powers  Signed numbers raised to powers  Negative numbers can arise as the base of a power. An exponent is shorthand for how many times to multiply the base together. For example, means   Will the result here be positive or negative? Since we can view as repeated multiplication, and since multiplying two negatives gives a positive result, this expression can be thought of this way: and that last unmatched negative number will be responsible for making the final product negative.  More generally, if the base of a power is negative, then whether or not the result is positive or negative depends on if the exponent is even or odd. It depends on whether or not the factors can all be paired up to cancel negative signs, or if there will be a lone negative factor left unpaired.  Once you understand whether the result is positive or negative, for a moment you may forget about signs. Returning to the example, you could calculate that , and then since we separately know that should be negative, you can conclude:    Negative Signs and Exponents  Expressions like may not mean what you think they mean. What base do you see here? The correct answer is . The exponent only applies to the , not to . So this expression, , is actually the same as , which is . Be careful not to treat as having base . That would make it equivalent to , which is positive  .   Exponents with Negative Bases   Here is some practice with natural exponents on negative bases. The expectation is that YOU can make these calculations without a calculator.   Compute      Since is and we are raising a negative number to an even power, the answer is positive:   Calculate the power      Since is and we are raising a negative number to an odd power, the answer is negative:   Find      Since is and we are raising a negative number to an odd power, the answer is negative:   Calculate      Be careful: here we are raising positive  to the second power to get and then negating the result:         Summary     Addition  Add two negative numbers: add their positive counterparts and make the result negative.  Add a positive with a negative: find their difference using subtraction, and keep the sign of the dominant number.    Subtraction  Any subtraction can be converted to addition of the opposite number. For all but the most basic subtractions, this is a useful strategy.    Multiplication  Multiply two negative numbers: multiply their positive counterparts and make the result positive.  Multiply a positive with a negative: multiply their positive counterparts and make the result negative.  Multiply any number by and the result will be .    Division  (Not discussed in this section.) Division by some number is the same as multiplication by its reciprocal. So the multiplication rules can be adopted.  Division of by any nonzero number always results in . Zero division with   Division of any number by is undefined. There is no result at all from dividing by .    Powers  Raise a negative number to an even power: raise the positive counterpart to that power.  Raise a negative number to an odd power: raise the positive counterpart to that power, then make the result negative.  Expressions like mean , not .        Exercises for this section are available in the HTML version of this book.     "
+  "body": " Arithmetic with Negative Numbers   There are special things to consider when adding, subtracting, multiplying, dividing, and raising to powers, when negative numbers are involved. This section reviews those arithmetic operations with negative numbers.   Alternative Video Lesson      Signed Numbers  Signed numbers  Is it valid to subtract a large number from a smaller one? It may be hard to imagine what it would mean physically to subtract cars from your garage if you only have car there in there in the first place. But mathematics gives meaning to expressions like using signed numbers .  You've probably seen signed numbers used to describe the temperature of very cold things. Most people on Earth use the Celsius scale for temperature. If you're not familiar with the Celsius temperature scale, think about these examples:   Number line with interesting Celsius temperatures   a number line, with values in degrees Celsius; marks average temperature at North Pole in winter at -40; marks cold winter night at -10; marks water freezes at 0; marks cool autumn day at 13; marks human body temperature at 37      uses a number line to illustrate these Number line positive and negative numbers. A number line is a useful device for visualizing how numbers relate to each other and combine with each other. Values to the right of are called Positive numbers  positive numbers and values to the left of are called Negative numbers  negative numbers .   Subtraction Sign versus Negative Sign  Unfortunately, the symbol we use for subtraction looks just like the symbol we use for marking a negative number. We must be able to identify when a minus sign means to subtract and when it means to negate. Here are some examples.    has one negative sign and no subtraction sign.     has no negative signs and one subtraction sign.     has a negative sign and then a subtraction sign.     has two negative signs and no subtraction sign.      Identify Minus Signs   In each expression, how many negative signs and subtraction signs are there?   has negative signs and subtraction signs.          has zero negative signs and one subtraction sign.   has negative signs and subtraction signs.          has two negative signs and zero subtraction signs.   has negative signs and subtraction signs.          has two negative signs and three subtraction signs.         Adding  Signed numbers adding  To adding two numbers with the same sign you can (at first) ignore their signs, and add the two numbers as if they were positive. Then make sure your result is either positive or negative, depending on what the sign was.   Add Two Negative Numbers  If you needed to add and , note that both are negative. Maybe you have this expression in front of you: That plus minus is awkward, and in this book you are more likely to see this expression: with extra parentheses. Since both terms are negative , we can add and to get but realize that our final result should be negative. So our result is :    This approach works because adding numbers is like having two people tugging on a rope, with strength indicated by each number. In we have two people pulling to the left, one with strength and the other with strength . Their forces combine to pull left with strength , giving us our total of , as illustrated in .  If we are adding two numbers that have opposite signs, then the two people are tugging the rope in opposing directions. If either of them is using more strength than the other, then overall there will be a net pull in the stronger person's direction. And the overall pull on the rope will be the difference of the two strengths. This is illustrated in .   Working together   a number line with Suriya marked at -18 and Kate marked at -7; two thin arrows extend from 0 pointing left, one to Suriya at -18 and one to Kate at -7; a thicker arrow representing Suriya plus Kate points to the left from 0 to -25      Working in opposition   a number line with Suriya marked at -15 and Kate marked at 12; one thin arrow extends from 0 pointing left to Suriya at -15, and another thin arrow extends from 0 pointing right to Kate at 12; a thicker arrow representing Suriya plus Kate points to the left from 0 to -3      Adding One Number of Each Sign  Here are four examples of addition where one number is positive and the other is negative.      We have one number of each sign, with sizes and . Their difference is . But of the two numbers, the negative number is stronger. So the result from adding these is also negative: .       We have one number of each sign, with sizes and . Their difference is . But of the two numbers, the positive number is stronger. So the result from adding these is also positive: .       We have one number of each sign, with sizes and . Their difference is . But of the two numbers, the negative number is stronger. So the result from adding these is also negative: .       We have one number of each sign, both with size . The opposing forces cancel each other, leaving a result of .      Addition with Negative Numbers   Practice adding when at least one negative number is involved. The expectation is that you can do these tasks without a calculator.   Add      The two numbers have opposite sign, so we subtract Of the two numbers being added, the positive is larger, so the result should positive as well:   Add      The two numbers are both negative, so we can add and take the negative of that as the answer:   Add      The two numbers have opposite sign, so we subtract Of the two numbers being added, the negative is larger, so the result should be negative:   Find the sum      The two numbers are both negative, so we can add and take the negative of that as the answer:   Find the sum      The two numbers have opposite sign, so we can subtract Of the two numbers being added, the positive is larger, so the result should be positive:         Subtracting  Signed numbers subtracting  Subtracting a small positive number from a larger number, such as , is a skill you are familiar with. Subtraction can also be done where a small positive number subtracts a larger number, or where one or both numbers are negative. Subtracting with negative numbers can cause confusion, and to avoid that confusion, it may help to think of subtraction as adding the opposite number.        Original  Adding the Opposite    Subtracting a larger positive number:      Subtracting from a negative number:      Subtracting a negative number:      This strategy will reduce subtraction to addition. So if you are already comfortable adding positive and negative numbers, subtraction becomes just as familiar. These examples show how it is done:             Subtraction with Negative Numbers   Practice subtracting when at least one negative number is involved. The expectation is that you can do these tasks without a calculator.   Subtract from      After writing this as we can change to and get   Subtract      We can change this to Two numbers are added, and the larger one is negative. So we find the difference but the final result must be negative:   Subtract      We can rewrite this as and get   Find the difference      We can rewrite this as Now it is the sum of two numbers of opposite sign, so we find the difference We were adding two numbers where the larger one was negative. So the final result should also be negative:   Find the difference      Since we are subtracting a positive number from a negative number, the result should be an even more negative number. We can add to get but our final answer should be the opposite,         Multiplying  Signed numbers multiplying  Multiplication with negative numbers is possible too. We can view multiplication as repeated addition. For example . We can do the same when there is a negative number in the product. represents .   Viewing as repeated addition   a number line with a curved arrow emanating from 0 and landing to the left at -7, then again from -7 to -14, and again from -14 to -21; text above the arrows says adding -7 three times      illustrates that . Notice how a positive number multiplied by a negative number will make a negative result.  What about the product , where both factors are negative? Should the result be positive or negative? If can be seen as adding  three times as in , then it isn't too crazy to interpret as subtracting  three times. Or in other words, as adding  three times. This is illustrated in .   Viewing as repeated subtraction   a number line with a curved arrow emanating from 0 and landing to the right at 7, then again from 7 to 14, and again from 14 to 21; text above the arrows says subtracting -7 three times     This illustrates that , and it seems that a negative number times a negative number gives a positive result.  Positive and negative numbers are not the whole story. The number is neither positive nor negative. What happens with multiplication by ? You can choose to view as adding the number seven times. And you can choose to view as adding the number zero times. Either way, the result is .   Multiplication by   Multiplying any number by results in .    Multiplication with Negative Numbers   Here are some practice exercises with multiplication and signed numbers. The expectation is that you can make these calculations without a calculator.   Multiply      Since and we are multiplying numbers of opposite signs, the answer is negative:   Find the product of and      Since and we are multiplying numbers of opposite signs, the answer is negative:   Compute      Since and we are multiplying numbers of the same sign, the answer is positive:   Find the product      Any number multiplied by is         Powers  Signed numbers raised to powers  Negative numbers can arise as the base of a power. An exponent is shorthand for how many times to multiply the base together. For example, means   Will the result here be positive or negative? Since we can view as repeated multiplication, and since multiplying two negatives gives a positive result, this expression can be thought of this way: and that last unmatched negative number will be responsible for making the final product negative.  More generally, if the base of a power is negative, then whether or not the result is positive or negative depends on if the exponent is even or odd. It depends on whether or not the factors can all be paired up to cancel negative signs, or if there will be a lone negative factor left unpaired.  Once you understand whether the result is positive or negative, for a moment you may forget about signs. Returning to the example, you could calculate that , and then since we separately know that should be negative, you can conclude:    Negative Signs and Exponents  Expressions like may not mean what you think they mean. What base do you see here? The correct answer is . The exponent only applies to the , not to . So this expression, , is actually the same as , which is . Be careful not to treat as having base . That would make it equivalent to , which is positive  .   Exponents with Negative Bases   Here is some practice with natural exponents on negative bases. The expectation is that YOU can make these calculations without a calculator.   Compute      Since is and we are raising a negative number to an even power, the answer is positive:   Calculate the power      Since is and we are raising a negative number to an odd power, the answer is negative:   Find      Since is and we are raising a negative number to an odd power, the answer is negative:   Calculate      Be careful: here we are raising positive  to the second power to get and then negating the result:         Summary     Addition  Add two negative numbers: add their positive counterparts and make the result negative.  Add a positive with a negative: find their difference using subtraction, and keep the sign of the dominant number.    Subtraction  Any subtraction can be converted to addition of the opposite number. For all but the most basic subtractions, this is a useful strategy.    Multiplication  Multiply two negative numbers: multiply their positive counterparts and make the result positive.  Multiply a positive with a negative: multiply their positive counterparts and make the result negative.  Multiply any number by and the result will be .    Division  (Not discussed in this section.) Division by some number is the same as multiplication by its reciprocal. So the multiplication rules can be adopted.  Division of by any nonzero number always results in . Zero division with   Division of any number by is undefined. There is no result at all from dividing by .    Powers  Raise a negative number to an even power: raise the positive counterpart to that power.  Raise a negative number to an odd power: raise the positive counterpart to that power, then make the result negative.  Expressions like mean , not .           Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars again while gambling in the casino this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost a total of dollars. So the final answer is: .         Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars again while gambling in the casino this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost a total of dollars. So the final answer is: .         Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s positive, it s like you won dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .         Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s positive, it s like you won dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .         Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a positive number, we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s positive, it s like you won dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you lost dollars and then won dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .         Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a positive number, we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s positive, it s like you won dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you lost dollars and then won dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .         Add the following.                                  Add the following.                                    Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s positive, it s like you won dollars at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars in the casino later this afternoon.  Since you lost more money than you won, you ended up losing money overall, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .         Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s positive, it s like you won dollars at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars in the casino later this afternoon.  Since you lost more money than you won, you ended up losing money overall, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .         Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s also negative, it s like you lost dollars more in the casino later this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost the total of and dollars, which is dollars. So the final answer is: .         Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s also negative, it s like you lost dollars more in the casino later this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost the total of and dollars, which is dollars. So the final answer is: .         Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:   Find on a number line. Since we are adding a positive number we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s positive, it s like you won dollars more in the casino later this afternoon.  Since you won more than you lost, you have a net gain overall, implying the answer is positve.  Since you lost dollars and then won dollars, it makes sense that you won the difference between and dollars, which is dollars. So the final answer is: . This is because we can rewrite the subtraction of a negative number in the previous expression as .         Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:   Find on a number line. Since we are adding a positive number we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s positive, it s like you won dollars more in the casino later this afternoon.  Since you won more than you lost, you have a net gain overall, implying the answer is positve.  Since you lost dollars and then won dollars, it makes sense that you won the difference between and dollars, which is dollars. So the final answer is: . This is because we can rewrite the subtraction of a negative number in the previous expression as .           Perform the given addition and subtraction.                    a.   b.          Perform the given addition and subtraction.                    a.   b.          Perform the given addition and subtraction.                    a.   b.          Perform the given addition and subtraction.                    a.   b.            Multiply the following.                                    The rules for multiplying positive and negative numbers are:    ,    ,    ,    .    The solutions are:                       Multiply the following.                                    The rules for multiplying positive and negative numbers are:    ,    ,    ,    .    The solutions are:                       Multiply the following.                            a.   b.   c.   Note that in the last case there is no need to waste time multiplying the first two numbers because any number multiplied by equals .         Multiply the following.                            a.   b.   c.   Note that in the last case there is no need to waste time multiplying the first two numbers because any number multiplied by equals .         Multiply the following.                     In multiplication, each pair of negative signs cancel. If all negative signs are canceled, the product is positive; if there is one negative sign left, the product is negative.  a.   b.          Multiply the following.                     In multiplication, each pair of negative signs cancel. If all negative signs are canceled, the product is positive; if there is one negative sign left, the product is negative.  a.   b.            Evaluate the following.                            The rules for dividing positive numbers are the same as those for multiplication:  ,  ,  ,  .  The solutions are:                    Evaluate the following.                            The rules for dividing positive numbers are the same as those for multiplication:  ,  ,  ,  .  The solutions are:                    Evaluate the following.                                                    The rules for determining the sign of the result when dividing positive and negative numbers are the same as those for multiplication:  ,  ,  ,  .  In addition, divided by any number (except ) is ; any number divided by is undefined.  The solutions are:                is undefined              Evaluate the following.                                                    The rules for determining the sign of the result when dividing positive and negative numbers are the same as those for multiplication:  ,  ,  ,  .  In addition, divided by any number (except ) is ; any number divided by is undefined.  The solutions are:                is undefined              Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The solutions are:     Note that we cannot simply evaluate . Instead, we have to apply the square to the whole quantity inside the parentheses- the result is a positive answer.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .           Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The solutions are:     Note that we cannot simply evaluate . Instead, we have to apply the square to the whole quantity inside the parentheses- the result is a positive answer.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .           Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The quantities evaluate to:     When we multiply three negative numbers, the result is negative. Two negative signs cancelled, but one is left, making the result negative.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .           Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The quantities evaluate to:     When we multiply three negative numbers, the result is negative. Two negative signs cancelled, but one is left, making the result negative.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .           Evaluate the following.                                    The solutions are:                       Evaluate the following.                                    The solutions are:                       Evaluate the following.                                    The solutions are:                When two negative numbers are multiplied together they make a positive number; each pair of negative signs cancel each other out .  When an odd number of negative numbers are multiplied together, each pair of negative signs cancel out but there is still one negative sign left. That s why .  Similarly, when an even number of negative numbers are multiplied together each pair of negative signs cancel out and there are no negative signs left. That s why .         Evaluate the following.                                    The solutions are:                When two negative numbers are multiplied together they make a positive number; each pair of negative signs cancel each other out .  When an odd number of negative numbers are multiplied together, each pair of negative signs cancel out but there is still one negative sign left. That s why .  Similarly, when an even number of negative numbers are multiplied together each pair of negative signs cancel out and there are no negative signs left. That s why .           Simplify without using a calculator.         When we add up two negative numbers, the result will be negative.  We need to find the sum of their absolute value. To add two decimals, make sure to line up the decimal points:   Since the result is negative, we have .         Simplify without using a calculator.         When we add up two negative numbers, the result will be negative.  We need to find the sum of their absolute value. To add two decimals, make sure to line up the decimal points:   Since the result is negative, we have .         Simplify without using a calculator.         To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.         Simplify without using a calculator.         To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.         Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.          Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.          Simplify without using a calculator.         When we see , we first change those two negative symbol to a positive symbol. Now the problem becomes an addition problem:   When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.          Simplify without using a calculator.         When we see , we first change those two negative symbol to a positive symbol. Now the problem becomes an addition problem:   When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.          Simplify without using a calculator.         When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in          Simplify without using a calculator.         When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in          Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in   Next, since the absolute value of is bigger than that of , the result is negative.          Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in   Next, since the absolute value of is bigger than that of , the result is negative.            It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbol between and , which implies multiplication.  Next, since positive times negative is negative, we know the answer must be negative. Now we can focus on calculating , and in the end add back the negative symbol.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .    Again, don t forget to add back the negative symbol.          It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbol between and , which implies multiplication.  Next, since positive times negative is negative, we know the answer must be negative. Now we can focus on calculating , and in the end add back the negative symbol.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .    Again, don t forget to add back the negative symbol.          It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbols between and , which implies multiplication.  Next, since negative times negative is positive, the problem becomes:   We know the answer must be positive.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .            It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbols between and , which implies multiplication.  Next, since negative times negative is positive, the problem becomes:   We know the answer must be positive.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .            Applications    Consider the following situation in which you borrow money from your cousin:    On June 1st, you borrowed dollars from your cousin.    On July 1st, you borrowed more dollars from your cousin.    On August 1st, you paid back dollars to your cousin.    On September 1st, you borrowed another dollars from your cousin.    How much money do you owe your cousin now?        Borrowing money is like adding a negative number. Paying money back is like adding a positive number. To model this situation, we do the following calculation:   Now you owe your cousin .         Consider the following scenario in which you study your bank account.    On Jan. 1, you had a balance of dollars in your bank account.    On Jan. 2, your bank charged dollar overdraft fee.    On Jan. 3, you deposited dollars.    On Jan. 10, you withdrew dollars.    What is your balance on Jan. 11?        Withdrawing money and being charge a fee is like adding a negative number to your bank balance. Depositing money is like adding a positive number to your bank balance. To model this situation, we do the following calculation:   Your balance is on Jan. 11.         A mountain is feet above sea level. A trench is feet below sea level. What is the difference in elevation between the mountain top and the bottom of the trench?        The height of the mountain is simply feet because it is above sea level.  The bottom of the trench is feet in height. Note that it is negative because it is below sea level.  To find the difference in height, we use subtraction:   The difference in elevation from the mountain top to the bottom of the trench is .         A mountain is feet above sea level. A trench is feet below sea level. What is the difference in elevation between the mountain top and the bottom of the trench?        The height of the mountain is simply feet because it is above sea level.  The bottom of the trench is feet in height. Note that it is negative because it is below sea level.  To find the difference in height, we use subtraction:   The difference in elevation from the mountain top to the bottom of the trench is .         Challenge    Select the correct word to make each statement true.   A positive number minus a positive number is  ?   sometimes   always   never  negative.      A positive number minus a positive number is sometimes negative. For example, consider and consider   A negative number plus a negative number is  ?   sometimes   always   never  negative.      A negative number plus a negative number is always negative.   A positive number minus a negative number is  ?   sometimes   always   never  positive.      A positive number minus a negative number is always positive.   A negative number multiplied by a negative number is  ?   sometimes   always   never  negative.      A negative number multiplied by a negative number is never negative. A negative number multiplied by a negative number is always positive.         "
 },
 {
   "id": "section-arithmetic-with-negative-numbers-2-2",
@@ -19891,13 +19891,526 @@ var ptx_lunr_docs = [
   "body": "Exponents with Negative Bases   Here is some practice with natural exponents on negative bases. The expectation is that YOU can make these calculations without a calculator.   Compute      Since is and we are raising a negative number to an even power, the answer is positive:   Calculate the power      Since is and we are raising a negative number to an odd power, the answer is negative:   Find      Since is and we are raising a negative number to an odd power, the answer is negative:   Calculate      Be careful: here we are raising positive  to the second power to get and then negating the result:      "
 },
 {
+  "id": "section-arithmetic-with-negative-numbers-9-1-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-1",
+  "type": "Exercise",
+  "number": "A.1.7.1",
+  "title": "",
+  "body": "  Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars again while gambling in the casino this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost a total of dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-2",
+  "type": "Exercise",
+  "number": "A.1.7.2",
+  "title": "",
+  "body": "  Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars again while gambling in the casino this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost a total of dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-3",
+  "type": "Exercise",
+  "number": "A.1.7.3",
+  "title": "",
+  "body": "  Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s positive, it s like you won dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-4",
+  "type": "Exercise",
+  "number": "A.1.7.4",
+  "title": "",
+  "body": "  Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s positive, it s like you won dollars while gambling at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-5",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-5",
+  "type": "Exercise",
+  "number": "A.1.7.5",
+  "title": "",
+  "body": "  Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a positive number, we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s positive, it s like you won dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you lost dollars and then won dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-6",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-6",
+  "type": "Exercise",
+  "number": "A.1.7.6",
+  "title": "",
+  "body": "  Add the following.                            Here are two different explanations of how two negative numbers can be added together.   METHOD 1  Use a number line. Let s find .  First, find on the number line. Next, since we are adding a positive number, we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So, .  Similarly, , and .   METHOD 2  A second method asks you to think in terms of money. Let s find .  The first number is . Since it s negative, it s like you lost dollars while gambling at the casino this morning.  The second number is . Since it s positive, it s like you won dollars while gambling at the casino this afternoon.  Since you lost more money than you won, overall you have lost, implying the answer is negative.  Since you lost dollars and then won dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-7",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-7",
+  "type": "Exercise",
+  "number": "A.1.7.7",
+  "title": "",
+  "body": "  Add the following.                               "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-1-8",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-1-8",
+  "type": "Exercise",
+  "number": "A.1.7.8",
+  "title": "",
+  "body": "  Add the following.                               "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-2-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-2-1",
+  "type": "Exercise",
+  "number": "A.1.7.9",
+  "title": "",
+  "body": "  Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s positive, it s like you won dollars at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars in the casino later this afternoon.  Since you lost more money than you won, you ended up losing money overall, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-2-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-2-2",
+  "type": "Exercise",
+  "number": "A.1.7.10",
+  "title": "",
+  "body": "  Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s positive, it s like you won dollars at the casino this morning.  The second number is . Since it s negative, it s like you lost dollars in the casino later this afternoon.  Since you lost more money than you won, you ended up losing money overall, implying the answer is negative.  Since you won dollars and then lost dollars, it makes sense that you lost the difference of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-2-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-2-3",
+  "type": "Exercise",
+  "number": "A.1.7.11",
+  "title": "",
+  "body": "  Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s also negative, it s like you lost dollars more in the casino later this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost the total of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-2-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-2-4",
+  "type": "Exercise",
+  "number": "A.1.7.12",
+  "title": "",
+  "body": "  Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite it as   Find on a number line. Since we are adding a negative number, we move left, in the negative direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite it as  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s also negative, it s like you lost dollars more in the casino later this afternoon.  Since you lost twice, you ended up losing a lot, implying the answer is negative.  Since you lost dollars and then lost dollars, it makes sense that you lost the total of and dollars, which is dollars. So the final answer is: .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-2-5",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-2-5",
+  "type": "Exercise",
+  "number": "A.1.7.13",
+  "title": "",
+  "body": "  Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:   Find on a number line. Since we are adding a positive number we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s positive, it s like you won dollars more in the casino later this afternoon.  Since you won more than you lost, you have a net gain overall, implying the answer is positve.  Since you lost dollars and then won dollars, it makes sense that you won the difference between and dollars, which is dollars. So the final answer is: . This is because we can rewrite the subtraction of a negative number in the previous expression as .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-2-6",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-2-6",
+  "type": "Exercise",
+  "number": "A.1.7.14",
+  "title": "",
+  "body": "  Subtract the following.                            It helps to understand that the subtraction sign means that we are adding the opposite. For example, . For many students, it s easier to change minus a number into adding the opposite number . This way of looking at subtraction will help us understand more complicated topics later, like subtracting a negative number.   METHOD 1  One way is to use a number line. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:   Find on a number line. Since we are adding a positive number we move right, in the positive direction, by units. We will reach on the number line, which is the answer.    So .  Similarly, and .   METHOD 2  A second method asks you to think in context; for example when money is involved or the temperature changes. Let s do this for . First, we rewrite the subtraction as addition of the opposite number:  .  The first number is . Since it s negative, it s like you lost dollars at the casino this morning.  The second number is . Since it s positive, it s like you won dollars more in the casino later this afternoon.  Since you won more than you lost, you have a net gain overall, implying the answer is positve.  Since you lost dollars and then won dollars, it makes sense that you won the difference between and dollars, which is dollars. So the final answer is: . This is because we can rewrite the subtraction of a negative number in the previous expression as .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-3-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-3-1",
+  "type": "Exercise",
+  "number": "A.1.7.15",
+  "title": "",
+  "body": "  Perform the given addition and subtraction.                    a.   b.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-3-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-3-2",
+  "type": "Exercise",
+  "number": "A.1.7.16",
+  "title": "",
+  "body": "  Perform the given addition and subtraction.                    a.   b.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-3-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-3-3",
+  "type": "Exercise",
+  "number": "A.1.7.17",
+  "title": "",
+  "body": "  Perform the given addition and subtraction.                    a.   b.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-3-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-3-4",
+  "type": "Exercise",
+  "number": "A.1.7.18",
+  "title": "",
+  "body": "  Perform the given addition and subtraction.                    a.   b.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-4-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-4-1",
+  "type": "Exercise",
+  "number": "A.1.7.19",
+  "title": "",
+  "body": "  Multiply the following.                                    The rules for multiplying positive and negative numbers are:    ,    ,    ,    .    The solutions are:                    "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-4-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-4-2",
+  "type": "Exercise",
+  "number": "A.1.7.20",
+  "title": "",
+  "body": "  Multiply the following.                                    The rules for multiplying positive and negative numbers are:    ,    ,    ,    .    The solutions are:                    "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-4-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-4-3",
+  "type": "Exercise",
+  "number": "A.1.7.21",
+  "title": "",
+  "body": "  Multiply the following.                            a.   b.   c.   Note that in the last case there is no need to waste time multiplying the first two numbers because any number multiplied by equals .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-4-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-4-4",
+  "type": "Exercise",
+  "number": "A.1.7.22",
+  "title": "",
+  "body": "  Multiply the following.                            a.   b.   c.   Note that in the last case there is no need to waste time multiplying the first two numbers because any number multiplied by equals .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-4-5",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-4-5",
+  "type": "Exercise",
+  "number": "A.1.7.23",
+  "title": "",
+  "body": "  Multiply the following.                     In multiplication, each pair of negative signs cancel. If all negative signs are canceled, the product is positive; if there is one negative sign left, the product is negative.  a.   b.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-4-6",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-4-6",
+  "type": "Exercise",
+  "number": "A.1.7.24",
+  "title": "",
+  "body": "  Multiply the following.                     In multiplication, each pair of negative signs cancel. If all negative signs are canceled, the product is positive; if there is one negative sign left, the product is negative.  a.   b.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-1",
+  "type": "Exercise",
+  "number": "A.1.7.25",
+  "title": "",
+  "body": "  Evaluate the following.                            The rules for dividing positive numbers are the same as those for multiplication:  ,  ,  ,  .  The solutions are:                 "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-2",
+  "type": "Exercise",
+  "number": "A.1.7.26",
+  "title": "",
+  "body": "  Evaluate the following.                            The rules for dividing positive numbers are the same as those for multiplication:  ,  ,  ,  .  The solutions are:                 "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-3",
+  "type": "Exercise",
+  "number": "A.1.7.27",
+  "title": "",
+  "body": "  Evaluate the following.                                                    The rules for determining the sign of the result when dividing positive and negative numbers are the same as those for multiplication:  ,  ,  ,  .  In addition, divided by any number (except ) is ; any number divided by is undefined.  The solutions are:                is undefined           "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-4",
+  "type": "Exercise",
+  "number": "A.1.7.28",
+  "title": "",
+  "body": "  Evaluate the following.                                                    The rules for determining the sign of the result when dividing positive and negative numbers are the same as those for multiplication:  ,  ,  ,  .  In addition, divided by any number (except ) is ; any number divided by is undefined.  The solutions are:                is undefined           "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-5",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-5",
+  "type": "Exercise",
+  "number": "A.1.7.29",
+  "title": "",
+  "body": "  Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The solutions are:     Note that we cannot simply evaluate . Instead, we have to apply the square to the whole quantity inside the parentheses- the result is a positive answer.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .        "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-6",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-6",
+  "type": "Exercise",
+  "number": "A.1.7.30",
+  "title": "",
+  "body": "  Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The solutions are:     Note that we cannot simply evaluate . Instead, we have to apply the square to the whole quantity inside the parentheses- the result is a positive answer.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .        "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-7",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-7",
+  "type": "Exercise",
+  "number": "A.1.7.31",
+  "title": "",
+  "body": "  Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The quantities evaluate to:     When we multiply three negative numbers, the result is negative. Two negative signs cancelled, but one is left, making the result negative.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .        "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-8",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-8",
+  "type": "Exercise",
+  "number": "A.1.7.32",
+  "title": "",
+  "body": "  Evaluate the following.                    Remember to use order of operations here: parentheses take priority over exponents, and exponents take priority over multiplication.  The quantities evaluate to:     When we multiply three negative numbers, the result is negative. Two negative signs cancelled, but one is left, making the result negative.     Note that the negative sign is like negative one multiplied by.... . For example:             You can see the pattern. This demonstrates that the negative sign can be viewed as multiplication by .  So, we can change into . Since exponents take priority over multiplication, we evaluate  before multiplying by .        "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-9",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-9",
+  "type": "Exercise",
+  "number": "A.1.7.33",
+  "title": "",
+  "body": "  Evaluate the following.                                    The solutions are:                    "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-10",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-10",
+  "type": "Exercise",
+  "number": "A.1.7.34",
+  "title": "",
+  "body": "  Evaluate the following.                                    The solutions are:                    "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-11",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-11",
+  "type": "Exercise",
+  "number": "A.1.7.35",
+  "title": "",
+  "body": "  Evaluate the following.                                    The solutions are:                When two negative numbers are multiplied together they make a positive number; each pair of negative signs cancel each other out .  When an odd number of negative numbers are multiplied together, each pair of negative signs cancel out but there is still one negative sign left. That s why .  Similarly, when an even number of negative numbers are multiplied together each pair of negative signs cancel out and there are no negative signs left. That s why .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-5-12",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-5-12",
+  "type": "Exercise",
+  "number": "A.1.7.36",
+  "title": "",
+  "body": "  Evaluate the following.                                    The solutions are:                When two negative numbers are multiplied together they make a positive number; each pair of negative signs cancel each other out .  When an odd number of negative numbers are multiplied together, each pair of negative signs cancel out but there is still one negative sign left. That s why .  Similarly, when an even number of negative numbers are multiplied together each pair of negative signs cancel out and there are no negative signs left. That s why .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-1",
+  "type": "Exercise",
+  "number": "A.1.7.37",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we add up two negative numbers, the result will be negative.  We need to find the sum of their absolute value. To add two decimals, make sure to line up the decimal points:   Since the result is negative, we have .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-2",
+  "type": "Exercise",
+  "number": "A.1.7.38",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we add up two negative numbers, the result will be negative.  We need to find the sum of their absolute value. To add two decimals, make sure to line up the decimal points:   Since the result is negative, we have .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-3",
+  "type": "Exercise",
+  "number": "A.1.7.39",
+  "title": "",
+  "body": "  Simplify without using a calculator.         To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-4",
+  "type": "Exercise",
+  "number": "A.1.7.40",
+  "title": "",
+  "body": "  Simplify without using a calculator.         To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-5",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-5",
+  "type": "Exercise",
+  "number": "A.1.7.41",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-6",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-6",
+  "type": "Exercise",
+  "number": "A.1.7.42",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-7",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-7",
+  "type": "Exercise",
+  "number": "A.1.7.43",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we see , we first change those two negative symbol to a positive symbol. Now the problem becomes an addition problem:   When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-8",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-8",
+  "type": "Exercise",
+  "number": "A.1.7.44",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we see , we first change those two negative symbol to a positive symbol. Now the problem becomes an addition problem:   When we add a negative number with a positive number, we need to find the difference of their absolute values. To subtract two decimals, make sure to line up the decimal points:   Note that we added an extra to the end of before doing subtraction.  Finally, since the absolute value of is smaller than the absolute value of , the result is positive.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-9",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-9",
+  "type": "Exercise",
+  "number": "A.1.7.45",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-10",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-10",
+  "type": "Exercise",
+  "number": "A.1.7.46",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-11",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-11",
+  "type": "Exercise",
+  "number": "A.1.7.47",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in   Next, since the absolute value of is bigger than that of , the result is negative.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-6-12",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-6-12",
+  "type": "Exercise",
+  "number": "A.1.7.48",
+  "title": "",
+  "body": "  Simplify without using a calculator.         When we add a negative number with a positive number, we need to find the difference of their absolute values. When doing decimal subtractions, make sure to line up the decimal points. For the integer , the decimal point is at the end of the number, like in   Next, since the absolute value of is bigger than that of , the result is negative.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-7-1",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-7-1",
+  "type": "Exercise",
+  "number": "A.1.7.49",
+  "title": "",
+  "body": "  It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbol between and , which implies multiplication.  Next, since positive times negative is negative, we know the answer must be negative. Now we can focus on calculating , and in the end add back the negative symbol.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .    Again, don t forget to add back the negative symbol.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-7-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-7-2",
+  "type": "Exercise",
+  "number": "A.1.7.50",
+  "title": "",
+  "body": "  It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbol between and , which implies multiplication.  Next, since positive times negative is negative, we know the answer must be negative. Now we can focus on calculating , and in the end add back the negative symbol.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .    Again, don t forget to add back the negative symbol.       "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-7-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-7-3",
+  "type": "Exercise",
+  "number": "A.1.7.51",
+  "title": "",
+  "body": "  It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbols between and , which implies multiplication.  Next, since negative times negative is positive, the problem becomes:   We know the answer must be positive.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .         "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-7-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-7-4",
+  "type": "Exercise",
+  "number": "A.1.7.52",
+  "title": "",
+  "body": "  It s given that . Use this fact to calculate the following without using a calculator.         There is no operation symbols between and , which implies multiplication.  Next, since negative times negative is positive, the problem becomes:   We know the answer must be positive.  It s given that . We need to calculate .  Notice that and , so we can calculate in this way:   Once we understand the math, we can use this shortcut.    To change to , we moved the decimal point to the left by place(s).    To change to , we moved the decimal point to the left by place(s).    We move the decimal point of to the left by places to get .         "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-8-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-8-2",
+  "type": "Exercise",
+  "number": "A.1.7.53",
+  "title": "",
+  "body": "  Consider the following situation in which you borrow money from your cousin:    On June 1st, you borrowed dollars from your cousin.    On July 1st, you borrowed more dollars from your cousin.    On August 1st, you paid back dollars to your cousin.    On September 1st, you borrowed another dollars from your cousin.    How much money do you owe your cousin now?        Borrowing money is like adding a negative number. Paying money back is like adding a positive number. To model this situation, we do the following calculation:   Now you owe your cousin .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-8-3",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-8-3",
+  "type": "Exercise",
+  "number": "A.1.7.54",
+  "title": "",
+  "body": "  Consider the following scenario in which you study your bank account.    On Jan. 1, you had a balance of dollars in your bank account.    On Jan. 2, your bank charged dollar overdraft fee.    On Jan. 3, you deposited dollars.    On Jan. 10, you withdrew dollars.    What is your balance on Jan. 11?        Withdrawing money and being charge a fee is like adding a negative number to your bank balance. Depositing money is like adding a positive number to your bank balance. To model this situation, we do the following calculation:   Your balance is on Jan. 11.      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-8-4",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-8-4",
+  "type": "Exercise",
+  "number": "A.1.7.55",
+  "title": "",
+  "body": "  A mountain is feet above sea level. A trench is feet below sea level. What is the difference in elevation between the mountain top and the bottom of the trench?        The height of the mountain is simply feet because it is above sea level.  The bottom of the trench is feet in height. Note that it is negative because it is below sea level.  To find the difference in height, we use subtraction:   The difference in elevation from the mountain top to the bottom of the trench is .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-8-5",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-8-5",
+  "type": "Exercise",
+  "number": "A.1.7.56",
+  "title": "",
+  "body": "  A mountain is feet above sea level. A trench is feet below sea level. What is the difference in elevation between the mountain top and the bottom of the trench?        The height of the mountain is simply feet because it is above sea level.  The bottom of the trench is feet in height. Note that it is negative because it is below sea level.  To find the difference in height, we use subtraction:   The difference in elevation from the mountain top to the bottom of the trench is .      "
+},
+{
+  "id": "section-arithmetic-with-negative-numbers-9-9-2",
+  "level": "2",
+  "url": "section-arithmetic-with-negative-numbers.html#section-arithmetic-with-negative-numbers-9-9-2",
+  "type": "Exercise",
+  "number": "A.1.7.57",
+  "title": "",
+  "body": "  Select the correct word to make each statement true.   A positive number minus a positive number is  ?   sometimes   always   never  negative.      A positive number minus a positive number is sometimes negative. For example, consider and consider   A negative number plus a negative number is  ?   sometimes   always   never  negative.      A negative number plus a negative number is always negative.   A positive number minus a negative number is  ?   sometimes   always   never  positive.      A positive number minus a negative number is always positive.   A negative number multiplied by a negative number is  ?   sometimes   always   never  negative.      A negative number multiplied by a negative number is never negative. A negative number multiplied by a negative number is always positive.      "
+},
+{
   "id": "section-fractions-and-fraction-arithmetic",
   "level": "1",
   "url": "section-fractions-and-fraction-arithmetic.html",
   "type": "Section",
   "number": "A.2",
   "title": "Fractions and Fraction Arithmetic",
-  "body": " Fractions and Fraction Arithmetic   The word fraction comes from the Latin word fractio , which means break into pieces . For thousands of years, cultures from all over the world have used fractions to understand parts of a whole.   Alternative Video Lesson      Visualizing Fractions   Parts of a Whole  One approach to understanding fractions is to think of them as parts of a whole.   In , we see whole divided into parts. Since Denominator  parts are shaded, we have an illustration of the fraction . The Numerator  denominator  tells us how many parts to cut up the whole; since we Fraction denominator have parts, they're called sevenths . The numerator   Fraction numerator tells us how many sevenths to consider.   Representing as parts of a whole.   a rectangle that is seven times as wide as it is tall; the entire rectangle is shaded; there is a 1 in the center of the rectangle; to its right, it is labeled 'one whole'; another rectangle of the same size is aligned directly below the first rectangle; it is subdivided equally into seven squares; the first three squares are shaded; there is a 1\/7 in the center of each of the first three squares; to its right, it is labeled 'three sevenths'      A Fraction as Parts of a Whole   To visualize the fraction you might cut a rectangle into equal parts, and then count up of them.             You could cut a rectangle into equal pieces, and then of them would represent        We can also locate fractions on number lines. When ticks are equally spread apart, as in , each tick represents a fraction.   Representing on a number line.   a number line with a curved arrow emanating from 0 and landing to the right at 1\/7, then again from 1\/7 to 2\/7, and again from 2\/7 to 3\/7      A Fraction on a Number Line   In the given number line, what fraction is marked?   a number line with -1, 0, and 1 marked; there are evenly spaced ticks, with eight ticks between -1 and 0, eight between 0 and 1, and so on; there is a dot marked at the fifth tick to the right from 0        There are subdivisions between and and the mark is at the fifth subdivision. So the mark is of the way from to and therefore represents the fraction         Division  Fractions can also be understood through division.   For example, we can view the fraction as divided into equal parts, as in . Just one of those parts represents .   Representing on a number line.   a number line with a ruler superimposed over the segment from 0 to 3; the ruler is subdivided into seven pieces; an arrow points down from the first ruler tick to a point on the number line that is marked 3\/7      Seeing a Fraction as Division Arithmetic   The fraction can be thought of as dividing the whole number into equal-sized parts.             Since means the same as it can be thought of as dividing into equal parts.          Equivalent Fractions  It's common to have two fractions that represent the same amount. Consider and represented in various ways in Figures .    and as equal parts of a whole   one rectangle that is five times as wide as it is tall; the entire rectangle is shaded; there is a 1 in the center of the rectangle; a second rectangle that is also five times as wide as it is tall; it is subdivided equally into five squares; the first two squares are shaded; there is a 1\/5 in the center of each of the first two squares; a third rectangle that is also five times as wide as it is tall; it is subdivided equally into fifteen adjacent rectangles; the first six of these smaller rectangles are shaded; there is a 1\/15 in the center of each of the first six smaller rectangles      and as equal on a number line   a number line with a curved arrow emanating from 0 and landing to the right at 1\/5, then again from 1\/5 to 2\/5; there is a number line with a curved arrow emanating from 0 and landing to the right at 1\/15, then again from 1\/15 to 2\/15, then again from 2\/15 to 3\/15, then again from 3\/15 to 4\/15, then again from 4\/15 to 5\/15, and then again from 5\/15 to 6\/15      and as equal quotients   a number line with a ruler superimposed over the segment from 0 to 2; the ruler is subdivided into five pieces; an arrow points down from the first ruler tick to a point on the number line that is marked 2\/5; there is a second number line with a ruler superimposed over the segment from 0 to 6; the ruler is subdivided into fifteen pieces; an arrow points down from the first ruler tick to a point on the number line that is marked 6\/15      Those two fractions, and are equal, as those figures demonstrate. In addition, both fractions are equal to as a decimal. If we must work with this number, the fraction that uses smaller numbers, , is preferable. Working with smaller numbers decreases the likelihood of making a human arithmetic error and it also increases the chances that you might make useful observations about the nature of that number.   So if you are handed a fraction like , it is important to try to Fraction reducing  reduce it to lowest terms . The most important skill you can have to help Reduced fraction you do this is to know the multiplication table well. If you know it well, you know that and , so you can break down the numerator and denominator Reducing a fraction that way. Both the numerator and denominator are divisible by , so they can be Simplifying a fraction  factored out and then as factors, cancel out.      Reducing Fractions   Reduce these fractions into lowest terms.        With we have which reduces to        With we have which reduces to        With we have which reduces to       Sometimes it is useful to do the opposite of reducing a fraction, and build up the fraction to use larger numbers.  Building Up a Fraction   Sayid scored on a recent exam. Build up this fraction so that the denominator is so that Sayid can understand what percent score he earned.        To change the denominator from to it needs to be multiplied by So we calculate   So the fraction is equivalent to (This means Sayid scored an )         Multiplying with Fractions   Suppose a recipe calls for cup of milk, but we'd like to quadruple the recipe (make it four times as big). We'll need four times as much milk, and one way to measure this out is to fill a measuring cup to full, four times:   four measuring cups, each filled two-thirds with liquid    When you count up the shaded thirds, there are eight of them. So multiplying by the whole number , the result is . Mathematically:     Multiplying a Fraction and a Whole Number  When you multiply a whole number by a fraction, you may just multiply the whole number by the numerator and leave the denominator alone. In other words, as long as is not , then a whole number and a fraction multiply this way:     We could also use multiplication to decrease amounts. Suppose we needed to cut the recipe down to just one fifth. Instead of four of the cup milk, we need one fifth of the cup milk. So instead of multiplying by , we multiply by . But how much is of cup?   If we cut the measuring cup into five equal vertical strips along with the three equal horizontal strips, then in total there are subdivisions of the cup. Two of those sections represent of the cup.   a measuring cup divided evenly into three horizontal sections, but also evenly into five vertical sections; in total, there are fifteen sections; the two that correspond to the lower two-thirds and leftmost one-fifth are shaded      In the end, we have of a cup. The denominator came from multiplying and , the denominators of the fractions we had to multiply. The numerator came from multiplying and , the numerators of the fractions we had to multiply.        Multiplication with Fractions  Multiplication of fractions  Fraction multiplication   As long as and are not , then fractions multiply this way:     Fraction Multiplication   Simplify these fraction products.        Multiplying numerators gives and multiplying denominators gives The answer is        Before we multiply fractions, note that reduces to and reduces to So we just have        Multiplying numerators gives and multiplying denominators gives The result should be negative, so the answer is        Before we multiply fractions, note that reduces to So we have Both the numerator of the first fraction and denominator of the second fraction are divisible by so it helps to reduce both fractions accordingly and get Both the denominator of the first fraction and numerator of the second fraction are divisible by so it helps to reduce both fractions accordingly and get Now we are just multiplying by so the result is         Division with Fractions  How does division with fractions work? Are we able to compute\/simplify each of these examples?                        We know that when we divide something by , this is the same as multiplying it by . Conversely, dividing a number or expression by is the same as multiplying by , or just . The more general property is that when we divide a number or expression by , this is equivalent to multiplying by the reciprocal .   Division with Fractions   As long as , and are not , then division with fractions works this way:      With our examples from the beginning of this subsection:                          Fraction Division   Simplify these fraction division expressions.                                     Adding and Subtracting Fractions  With whole numbers and integers, operations of addition and subtraction are relatively straightforward. The situation is almost as straightforward with fractions if the two fractions have the same denominator . Consider In the same way that tacos and tacos make tacos, we have:    Adding\/Subtracting with Fractions Having the Same Denominator  Addition of fractions with the same denominator  Denominator adding and subtracting fractions with the same  Fraction adding and subtracting with the same denominator   To add or subtract two fractions having the same denominator, keep that denominator, and add or subtract the numerators. If it's possible, useful, or required of you, simplify the result by reducing to lowest terms.    Fraction Addition and Subtraction   Add or subtract these fractions.        Since the denominators are both we can add the numerators: The answer is        Since the denominators are both we can subtract the numerators: The answer is but that reduces to       Whenever we'd like to combine fractional amounts that don't represent the same number of parts of a whole (that is, when the denominators are different), finding sums and differences is more complicated.   Quarters and Dimes  Find the sum . Does this seem intimidating? Consider this:    of a dollar is a quarter, and so of a dollar is cents.     of a dollar is a dime, and so of a dollar is cents.     So if you know what to look for, the expression is like adding cents and cents, which gives you cents. As a fraction of one dollar, that is . So we can report . (Although we should probably reduce that last fraction to .)   This example was not something you can apply to other fraction addition situations, because the denominators here worked especially well with money amounts. But there is something we can learn here. The fraction was equivalent to , and the other fraction was equivalent to . These equivalent fractions have the same denominator and are therefore easy to add. What we saw happen was:   This realization gives us a strategy for adding (or subtracting) fractions.   Adding\/Subtracting Fractions with Different Denominators  Addition of fractions with different denominators  Denominator adding and subtracting fractions with different  Fraction adding and subtracting with the different denominators   To add (or subtract) generic fractions together, use their denominators to find a common denominator . This means some whole number that is a whole multiple of Fraction common denominator both of the original denominators. Then rewrite the two fractions as equivalent  Common denominator fractions that use this common denominator. Write the result keeping that Denominator common denominator and adding (or subtracting) the numerators. Reduce the fraction if that is useful or required.  Among all possible common denominators for two fractions, one option will be smaller than Denominator least common all others. This is called the least common denominator . Least common denominator (LCD)      Let's add . The denominators are and , so the number would be a good common denominator.    Using Some Flour   A chef had cups of flour and needed to use cup to thicken a sauce. How much flour is left?        We need to compute The denominators are and One common denominator is so we move to rewrite each fraction using as the denominator:   The numerical result is but a pure number does not answer this question. The amount of flour remaining is  cups .         Mixed Numbers and Improper Fractions  A simple recipe for bread contains only a few ingredients:     tablespoons yeast     tablespoons kosher salt     cups unbleached, all-purpose flour (more for dusting)    Each ingredient is listed as a mixed number that quickly communicates how many Fraction mixed number whole amounts and how many parts are needed. It's useful for quickly communicating a practical Mixed numbers amount of something you are cooking with, measuring on a ruler, purchasing at the grocery store, etc. But it causes trouble in an algebra class. The number means one and one half . So really, The trouble is that with , you have two numbers written right next to each other. Normally with two math expressions written right next to each other, they should be multiplied , not added . But with a mixed number, they should be added.   Fortunately we just reviewed how to add fractions. If we need to do any arithmetic with a mixed number like , we can treat it as and simplify to get a nice fraction instead: . A fraction like is called an improper fraction because it's actually larger Fraction improper than . And a proper fraction would be something small that is only Improper fraction  part of a whole instead of more than a whole.         Exercises for this section are available in the HTML version of this book.     "
+  "body": " Fractions and Fraction Arithmetic   The word fraction comes from the Latin word fractio , which means break into pieces . For thousands of years, cultures from all over the world have used fractions to understand parts of a whole.   Alternative Video Lesson      Visualizing Fractions   Parts of a Whole  One approach to understanding fractions is to think of them as parts of a whole.   In , we see whole divided into parts. Since Denominator  parts are shaded, we have an illustration of the fraction . The Numerator  denominator  tells us how many parts to cut up the whole; since we Fraction denominator have parts, they're called sevenths . The numerator   Fraction numerator tells us how many sevenths to consider.   Representing as parts of a whole.   a rectangle that is seven times as wide as it is tall; the entire rectangle is shaded; there is a 1 in the center of the rectangle; to its right, it is labeled 'one whole'; another rectangle of the same size is aligned directly below the first rectangle; it is subdivided equally into seven squares; the first three squares are shaded; there is a 1\/7 in the center of each of the first three squares; to its right, it is labeled 'three sevenths'      A Fraction as Parts of a Whole   To visualize the fraction you might cut a rectangle into equal parts, and then count up of them.             You could cut a rectangle into equal pieces, and then of them would represent        We can also locate fractions on number lines. When ticks are equally spread apart, as in , each tick represents a fraction.   Representing on a number line.   a number line with a curved arrow emanating from 0 and landing to the right at 1\/7, then again from 1\/7 to 2\/7, and again from 2\/7 to 3\/7      A Fraction on a Number Line   In the given number line, what fraction is marked?   a number line with -1, 0, and 1 marked; there are evenly spaced ticks, with eight ticks between -1 and 0, eight between 0 and 1, and so on; there is a dot marked at the fifth tick to the right from 0        There are subdivisions between and and the mark is at the fifth subdivision. So the mark is of the way from to and therefore represents the fraction         Division  Fractions can also be understood through division.   For example, we can view the fraction as divided into equal parts, as in . Just one of those parts represents .   Representing on a number line.   a number line with a ruler superimposed over the segment from 0 to 3; the ruler is subdivided into seven pieces; an arrow points down from the first ruler tick to a point on the number line that is marked 3\/7      Seeing a Fraction as Division Arithmetic   The fraction can be thought of as dividing the whole number into equal-sized parts.             Since means the same as it can be thought of as dividing into equal parts.          Equivalent Fractions  It's common to have two fractions that represent the same amount. Consider and represented in various ways in Figures .    and as equal parts of a whole   one rectangle that is five times as wide as it is tall; the entire rectangle is shaded; there is a 1 in the center of the rectangle; a second rectangle that is also five times as wide as it is tall; it is subdivided equally into five squares; the first two squares are shaded; there is a 1\/5 in the center of each of the first two squares; a third rectangle that is also five times as wide as it is tall; it is subdivided equally into fifteen adjacent rectangles; the first six of these smaller rectangles are shaded; there is a 1\/15 in the center of each of the first six smaller rectangles      and as equal on a number line   a number line with a curved arrow emanating from 0 and landing to the right at 1\/5, then again from 1\/5 to 2\/5; there is a number line with a curved arrow emanating from 0 and landing to the right at 1\/15, then again from 1\/15 to 2\/15, then again from 2\/15 to 3\/15, then again from 3\/15 to 4\/15, then again from 4\/15 to 5\/15, and then again from 5\/15 to 6\/15      and as equal quotients   a number line with a ruler superimposed over the segment from 0 to 2; the ruler is subdivided into five pieces; an arrow points down from the first ruler tick to a point on the number line that is marked 2\/5; there is a second number line with a ruler superimposed over the segment from 0 to 6; the ruler is subdivided into fifteen pieces; an arrow points down from the first ruler tick to a point on the number line that is marked 6\/15      Those two fractions, and are equal, as those figures demonstrate. In addition, both fractions are equal to as a decimal. If we must work with this number, the fraction that uses smaller numbers, , is preferable. Working with smaller numbers decreases the likelihood of making a human arithmetic error and it also increases the chances that you might make useful observations about the nature of that number.   So if you are handed a fraction like , it is important to try to Fraction reducing  reduce it to lowest terms . The most important skill you can have to help Reduced fraction you do this is to know the multiplication table well. If you know it well, you know that and , so you can break down the numerator and denominator Reducing a fraction that way. Both the numerator and denominator are divisible by , so they can be Simplifying a fraction  factored out and then as factors, cancel out.      Reducing Fractions   Reduce these fractions into lowest terms.        With we have which reduces to        With we have which reduces to        With we have which reduces to       Sometimes it is useful to do the opposite of reducing a fraction, and build up the fraction to use larger numbers.  Building Up a Fraction   Sayid scored on a recent exam. Build up this fraction so that the denominator is so that Sayid can understand what percent score he earned.        To change the denominator from to it needs to be multiplied by So we calculate   So the fraction is equivalent to (This means Sayid scored an )         Multiplying with Fractions   Suppose a recipe calls for cup of milk, but we'd like to quadruple the recipe (make it four times as big). We'll need four times as much milk, and one way to measure this out is to fill a measuring cup to full, four times:   four measuring cups, each filled two-thirds with liquid    When you count up the shaded thirds, there are eight of them. So multiplying by the whole number , the result is . Mathematically:     Multiplying a Fraction and a Whole Number  When you multiply a whole number by a fraction, you may just multiply the whole number by the numerator and leave the denominator alone. In other words, as long as is not , then a whole number and a fraction multiply this way:     We could also use multiplication to decrease amounts. Suppose we needed to cut the recipe down to just one fifth. Instead of four of the cup milk, we need one fifth of the cup milk. So instead of multiplying by , we multiply by . But how much is of cup?   If we cut the measuring cup into five equal vertical strips along with the three equal horizontal strips, then in total there are subdivisions of the cup. Two of those sections represent of the cup.   a measuring cup divided evenly into three horizontal sections, but also evenly into five vertical sections; in total, there are fifteen sections; the two that correspond to the lower two-thirds and leftmost one-fifth are shaded      In the end, we have of a cup. The denominator came from multiplying and , the denominators of the fractions we had to multiply. The numerator came from multiplying and , the numerators of the fractions we had to multiply.        Multiplication with Fractions  Multiplication of fractions  Fraction multiplication   As long as and are not , then fractions multiply this way:     Fraction Multiplication   Simplify these fraction products.        Multiplying numerators gives and multiplying denominators gives The answer is        Before we multiply fractions, note that reduces to and reduces to So we just have        Multiplying numerators gives and multiplying denominators gives The result should be negative, so the answer is        Before we multiply fractions, note that reduces to So we have Both the numerator of the first fraction and denominator of the second fraction are divisible by so it helps to reduce both fractions accordingly and get Both the denominator of the first fraction and numerator of the second fraction are divisible by so it helps to reduce both fractions accordingly and get Now we are just multiplying by so the result is         Division with Fractions  How does division with fractions work? Are we able to compute\/simplify each of these examples?                        We know that when we divide something by , this is the same as multiplying it by . Conversely, dividing a number or expression by is the same as multiplying by , or just . The more general property is that when we divide a number or expression by , this is equivalent to multiplying by the reciprocal .   Division with Fractions   As long as , and are not , then division with fractions works this way:      With our examples from the beginning of this subsection:                          Fraction Division   Simplify these fraction division expressions.                                     Adding and Subtracting Fractions  With whole numbers and integers, operations of addition and subtraction are relatively straightforward. The situation is almost as straightforward with fractions if the two fractions have the same denominator . Consider In the same way that tacos and tacos make tacos, we have:    Adding\/Subtracting with Fractions Having the Same Denominator  Addition of fractions with the same denominator  Denominator adding and subtracting fractions with the same  Fraction adding and subtracting with the same denominator   To add or subtract two fractions having the same denominator, keep that denominator, and add or subtract the numerators. If it's possible, useful, or required of you, simplify the result by reducing to lowest terms.    Fraction Addition and Subtraction   Add or subtract these fractions.        Since the denominators are both we can add the numerators: The answer is        Since the denominators are both we can subtract the numerators: The answer is but that reduces to       Whenever we'd like to combine fractional amounts that don't represent the same number of parts of a whole (that is, when the denominators are different), finding sums and differences is more complicated.   Quarters and Dimes  Find the sum . Does this seem intimidating? Consider this:    of a dollar is a quarter, and so of a dollar is cents.     of a dollar is a dime, and so of a dollar is cents.     So if you know what to look for, the expression is like adding cents and cents, which gives you cents. As a fraction of one dollar, that is . So we can report . (Although we should probably reduce that last fraction to .)   This example was not something you can apply to other fraction addition situations, because the denominators here worked especially well with money amounts. But there is something we can learn here. The fraction was equivalent to , and the other fraction was equivalent to . These equivalent fractions have the same denominator and are therefore easy to add. What we saw happen was:   This realization gives us a strategy for adding (or subtracting) fractions.   Adding\/Subtracting Fractions with Different Denominators  Addition of fractions with different denominators  Denominator adding and subtracting fractions with different  Fraction adding and subtracting with the different denominators   To add (or subtract) generic fractions together, use their denominators to find a common denominator . This means some whole number that is a whole multiple of Fraction common denominator both of the original denominators. Then rewrite the two fractions as equivalent  Common denominator fractions that use this common denominator. Write the result keeping that Denominator common denominator and adding (or subtracting) the numerators. Reduce the fraction if that is useful or required.  Among all possible common denominators for two fractions, one option will be smaller than Denominator least common all others. This is called the least common denominator . Least common denominator (LCD)      Let's add . The denominators are and , so the number would be a good common denominator.    Using Some Flour   A chef had cups of flour and needed to use cup to thicken a sauce. How much flour is left?        We need to compute The denominators are and One common denominator is so we move to rewrite each fraction using as the denominator:   The numerical result is but a pure number does not answer this question. The amount of flour remaining is  cups .         Mixed Numbers and Improper Fractions  A simple recipe for bread contains only a few ingredients:     tablespoons yeast     tablespoons kosher salt     cups unbleached, all-purpose flour (more for dusting)    Each ingredient is listed as a mixed number that quickly communicates how many Fraction mixed number whole amounts and how many parts are needed. It's useful for quickly communicating a practical Mixed numbers amount of something you are cooking with, measuring on a ruler, purchasing at the grocery store, etc. But it causes trouble in an algebra class. The number means one and one half . So really, The trouble is that with , you have two numbers written right next to each other. Normally with two math expressions written right next to each other, they should be multiplied , not added . But with a mixed number, they should be added.   Fortunately we just reviewed how to add fractions. If we need to do any arithmetic with a mixed number like , we can treat it as and simplify to get a nice fraction instead: . A fraction like is called an improper fraction because it's actually larger Fraction improper than . And a proper fraction would be something small that is only Improper fraction  part of a whole instead of more than a whole.          Review and Warmup    Which letter is on the number line?                Which letter is m on the number line?     ?   A   B   C   D               The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the 6th tick from , so it can be represented as , which reduces to .         The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the 6th tick left from , so it can be represented as , which reduces to .         The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the third tick from , so it can be represented as , which reduces to .         The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the third tick to the left of , so it can be represented as .         Reducing Fractions    Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, goes into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers divide into both numbers.  In this case, is the final answer.   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.   Notice that when the numerator s only prime factor, , is canceled, we have to leave a in the numerator.         Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers go into both numbers.  In this case, is the final answer.   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.          Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers go into both numbers. In this case, again goes into both the numerator and denominator for . We divide into both numbers, and we have:   Finally, we have:   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.          Reduce the fraction .         Method 1:  We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one: , until the prime number is greater than or equal to . No prime number goes into both and , so the fraction is not reducible.   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.   Notice that no numbers can be canceled out, so the fraction is not reducible.         Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers divide into both numbers. In this problem, divides into both the numerator and denominator for . We divide into both numbers, and we have:   Finally, we have:   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.          Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers divide into both numbers. In this problem, divides into both the numerator and denominator for . We divide into both numbers, and we have:   Finally, we have:   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.   Note that if the denominator is , the result is simply an integer.         Building Fractions    Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:          Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:          Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:          Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:          Multiplying\/Dividing Fractions    Multiply:        To multiply two fractions, simply multiply both numerators and both denominators. We have:   The answer to this question is .         Multiply:        To multiply two fractions, simply multiply both numerators and both denominators. We have:   The answer to this question is .         Multiply:        To multiply two fractions, usually we simply multiply both numerators and both denominators. However, it s easier to reduce fractions before multiplying:   The answer to this question is .  Note that we divided the first numerator and the second denominator by .         Multiply:        To multiply two fractions, usually we simply multiply both numerators and both denominators. However, it s easier to reduce fractions before multiplying:   The answer to this question is .  Note that we divided the first numerator and the second denominator by .         Multiply:        To multiply an integer with a fraction, first we change the integer into a fraction by rewriting it with a 1 as the denominator:   Next, simply multiply both numerators and both denominators:   The answer to this question is .         Multiply:        To multiply an integer with a fraction, first we change the integer into a fraction by rewriting it with a 1 as the denominator:   Next, simply multiply both numerators and both denominators:   The answer to this question is .         Multiply:        To multiply two fractions, multiply both numerators and both denominators. Don t forget to reduce the fraction if possible.  Remember: a positive number times a negative number is a negative number.  We have:          Multiply:        To multiply two fractions, multiply both numerators and both denominators. Don t forget to reduce the fraction if possible.  Remember: a positive number times a negative number is a negative number.  We have:          Multiply:        To multiply an integer with a fraction, first we rewrite the integer as a fraction by using 1 as the denominator:   Next, do the fraction multiplication. If you reduce numbers before multiplying across, you can avoid dealing with big numbers:          Multiply:        To multiply an integer with a fraction, first we rewrite the integer as a fraction by using 1 as the denominator:   Next, do the fraction multiplication. If you reduce numbers before multiplying across, you can avoid dealing with big numbers:          Multiply:        When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:          Multiply:        When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:          Multiply:        When we multiply fractions, if there is an integer, we change the integer to a fraction by writing as its denominator. For example, .  When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:          Multiply:        When we multiply fractions, if there is an integer, we change the integer to a fraction by writing as its denominator. For example, .  When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:          Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:          Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:          Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time, flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:          Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time, flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:          Divide:        When a negative number is divided by a negative number, the result is positive. We can simply ignore those two negative signs:   When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:          Divide:        When a negative number is divided by a negative number, the result is positive. We can simply ignore those two negative signs:   When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:          Divide:        When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:          Divide:        When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:          Multiply:        In order to multiply two mixed numbers, like   it helps to first change both mixed numbers to improper fractions. In this case, the problem becomes   Then we do fraction multiplication as usual. To avoid dealing with big numbers, we reduce fractions before doing multiplications. The full solution is:   If we like, we may convert this answer to a mixed number since the original factors were mixed numbers. The solution is .         Multiply:        In order to multiply two mixed numbers, like   it helps to first change both mixed numbers to improper fractions. In this case, the problem becomes   Then we do fraction multiplication as usual. To avoid dealing with big numbers, we reduce fractions before doing multiplications. The full solution is:   The solution is .         Adding\/Subtracting Fractions    Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.  The result is:          Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.  The result is:          Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The whole process is:   The answer is .         Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The whole process is:   The answer is .         Add:        To add two fractions with different denominators, we first have to find the common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:          Add:        To add two fractions with different denominators, we first have to find the common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:          Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer is .         Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer is .         Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full solution is:          Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full solution is:          Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:          Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:          Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.   The answer is .         Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.   The answer is .         Add:        To add two fractions with different denominators, we first have to find a common denominator. In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:          Add:        To add two fractions with different denominators, we first have to find a common denominator. In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:          Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer to this question is .         Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer to this question is .         Add:        When doing arithmetic with fractions, it is helpful to rewrite any integers as fractions:   Next, to add two fractions, we need to find a common denominator. In this case, it is simply the second denominator . We will rewrite the first fraction:   Finally, we add the numerators and keep the denominator unchanged. The whole process is:   The answer to this question is .         Add:        When doing arithmetic with fractions, it is helpful to rewrite any integers as fractions:   Next, to add two fractions, we need to find a common denominator. In this case, it is simply the second denominator . We will rewrite the first fraction:   Finally, we add the numerators and keep the denominator unchanged. The whole process is:   The answer to this question is .         Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.         Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.         Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.         Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.         Subtract:        To subtract two fractions with the same denominator, we simply subtract the numerators and keep the denominator unchanged.          Subtract:        To subtract two fractions with the same denominator, we simply subtract the numerators and keep the denominator unchanged.          Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the subtraction. The whole process is:   The answer is .         Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the subtraction. The whole process is:   The answer is .         Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  The first fraction already has the common denominator.  Look at the second fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Finally, we can do the subtraction. The whole process is:          Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  The first fraction already has the common denominator.  Look at the second fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Finally, we can do the subtraction. The whole process is:          Subtract:        To add or subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the denominator of the second fraction to by:   Finally, we add or subtract the numerators and keep the common denominator unchanged. The whole process is:          Subtract:        To add or subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the denominator of the second fraction to by:   Finally, we add or subtract the numerators and keep the common denominator unchanged. The whole process is:          Subtract:        When we subtract a negative number, first we change those two negative signs to addition:   Next, we will do fraction addition. To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions.          Subtract:        When we subtract a negative number, first we change those two negative signs to addition:   Next, we will do fraction addition. To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions.          Subtract:        When doing arithmetic with fractions, it helps to rewrite any integers as fractions:   Next, to subtract a fraction, we need to find a common denominator. In this case, it is simply the second denominator . We will change the first fraction to have the common denominator:   Finally, we subtract the numerators and keep the denominator unchanged.   The answer to this question is .         Subtract:        When doing arithmetic with fractions, it helps to rewrite any integers as fractions:   Next, to subtract a fraction, we need to find a common denominator. In this case, it is simply the second denominator . We will change the first fraction to have the common denominator:   Finally, we subtract the numerators and keep the denominator unchanged.   The answer to this question is .         Applications    Anthony walked of a mile in the morning, and then walked of a mile in the afternoon. How far did Anthony walk altogether?  Anthony walked a total of of a mile.        This is an addition problem.   Anthony walked a total of miles altogether.         Joseph walked of a mile in the morning, and then walked of a mile in the afternoon. How far did Joseph walk altogether?  Joseph walked a total of of a mile.        This is an addition problem.   Joseph walked a total of miles altogether.         Tammy and Hannah are sharing a pizza. Tammy ate of the pizza, and Hannah ate of the pizza. How much of the pizza was eaten in total?  They ate of the pizza.        This is an addition problem.   They ate of the pizza.         A trail s total length is of a mile. It has two legs. The first leg is of a mile long. How long is the second leg?  The second leg is of a mile in length.        This is a subtraction problem.   The second leg is of a mile in length.         A trail s total length is of a mile. It has two legs. The first leg is of a mile long. How long is the second leg?  The second leg is of a mile in length.        This is a subtraction problem.   The second leg is of a mile in length.         Jon is participating in a running event. In the first hour, he completed of the total distance. After another hour, in total he had completed of the total distance.  What fraction of the total distance did Jon complete during the second hour?  Jon completed of the distance during the second hour.        This is a subtraction problem.   Jon completed of the distance during the second hour.         The pie chart represents a school s student population.    Together, white and black students make up of the school s population.        By the pie chart, the school has white students, and black students.  We will use addition to find the total portion of white and black students at this school.   Together, white and black students make up of the school s population.         Each page of a book is inches in height, and consists of a header (a top margin), a footer (a bottom margin), and the middle part (the body). The header is of an inch thick and the middle part is inches from top to bottom.  What is the thickness of the footer?  The footer is of an inch thick.        From a page s total height, we subtract the thickness of the header and the height of the body to find the thickness of the footer:   The footer is inches thick.         Donna and Laney are sharing a pizza. Donna ate of the pizza, and Laney ate of the pizza. How much more pizza did Donna eat than Laney?  Donna ate more of the pizza than Laney ate.        To find the difference of two numbers, we use subtraction:   Donna ate more of the pizza than Laney ate.         Douglas and Katherine are sharing a pizza. Douglas ate of the pizza, and Katherine ate of the pizza. How much more pizza did Douglas eat than Katherine?  Douglas ate more of the pizza than Katherine ate.        To find the difference of two numbers, we use subtraction:   Douglas ate more of the pizza than Katherine ate.         A school had a fund-raising event. The revenue came from three resources: ticket sales, auction sales, and donations. Ticket sales account for of the total revenue; auction sales account for of the total revenue. What fraction of the revenue came from donations?  of the revenue came from donations.        The revenue consists of parts. The total revenue is like a big ; ticket sales account for ; auction sales account for . To find the missing piece (from donations), we use subtraction.  Note that a common denominator of , and is .   So of the revenue came from donations.         A few years back, a car was purchased for . Today it is worth of its original value. What is the car s current value?  The car s current value is .        When we use the word of in situations like of , we can translate of into the multiplication symbol.  In this problem, to find of , we do:   The car is worth now.         A few years back, a car was purchased for . Today it is worth of its original value. What is the car s current value?  The car s current value is .        When we use the word of in situations like of , we can translate of into the multiplication symbol.  In this problem, to find of , we do:   The car is worth now.         The pie chart represents a school s student population.    more of the school is white students than black students.        By the pie chart, the school has white students, and black students.  We will use subtraction to find the difference:          A town has residents in total, of which are Latino Americans. How many Latino Americans reside in this town?  There are Latino Americans residing in this town.        When we use the word of in expressions like of , we can translate of into the multiplication symbol.  In this problem, to find of , we compute:   There are Latino Americans residing in this town.         A company received a grant, and decided to spend of this grant in research and development next year. Out of the money set aside for research and development, will be used to buy new equipment. What fraction of the grant will be used to buy new equipment?  of the grant will be used to buy new equipment.        For this problem, we are trying to find of . The word of implies multiplication:   So of the grant will be used to buy new equipment.         A food bank just received kilograms of emergency food. Each family in need is to receive kilograms of food. How many families can be served with the kilograms of food?  families can be served with the kilograms of food.        We can address this problem as repeatedly taking away kilograms from kilograms, which implies a division problem:   families can be served with the kilograms of food.         A construction team maintains a -mile-long sewage pipe. Each day, the team can cover of a mile. How many days will it take the team to complete the maintenance of the entire sewage pipe?  It will take the team days to complete maintaining the entire sewage pipe.        In this problem, the team maintains miles of sewage pipe every day, until they complete all miles. This is like repeatedly taking away miles from miles, a division problem.   It will take the team days to complete maintaining the entire sewage pipe.         A child is stacking up tiles. Each tile s height is of a centimeter. How many layers of tiles are needed to reach centimeters in total height?  To reach the total height of centimeters, layers of tiles are needed.        In this problem, each layer of tile is centimeters tall. The child will keep stacking up layers until the total height reaches centimeters. This is like asking how many centimeters are there in centimeters, a division problem.   To reach the total height of centimeters, layers of tiles are needed.         A restaurant made cups of pudding for a festival.  Customers at the festival will be served of a cup of pudding per serving. How many customers can the restaurant serve at the festival with the cups of pudding?  The restaurant can serve customers at the festival with the cups of pudding.        There are a total of cups of pudding, with each serving being cup. To find how many servings can be served, we need to find how many cups are there in cups, a division problem:   The restaurant can serve customers at the festival with the cups of pudding.   Shortcut  Since each serving has cup, we know each cup has servings. So cups has servings.         A piece of lumber in your garage is inches long. A second is inches long. If you lay them end to end, what will the total length be?  The total length will be inches.        To find the total length in inches, we add the two lengths together.   So the total length is inches.         A piece of lumber in your garage is inches long. A second is inches long. If you lay them end to end, what will the total length be?  The total length will be inches.        To find the total length in inches, we add the two lengths together.   So the total length is inches.         Each page of a book consists of a header, a footer and the middle part. The header is inches in height; the footer is inches in height; and the middle part is inches in height.  What is the total height of each page in this book? Use mixed number in your answer if needed.  Each page in this book is inches in height.        We add up the height of the header, middle part and footer to find the total height of a page:   Each page in this book is inches in height.         To pave the road on Ellis Street, the crew used tons of cement on the first day, and used tons on the second day. How many tons of cement were used in all?  tons of cement were used in all.        This problem is obviously an addition problem.  To add mixed number, we break each mixed number into an integer and a fraction, and then add up integers and fractions separately.   tons of cement were used in all.         When driving on a high way, noticed a sign saying exit to Johnstown is miles away, while exit to Jerrystown is miles away. How far is Johnstown from Jerrystown?  Johnstown and Jerrystown are miles apart.        To find the distance between Johnstown and Jerrystown, we need to find the difference between their distance. This implies subtraction. We could treat subtraction as adding a negative :   From here, there are two methods to continue.   Method 1  We can split  from the integer, and do :   Note that we changed to .   Method2  We could simply change the whole number into a fraction without splitting  :   ran more miles than .         A cake recipe needs cups of flour. Using this recipe, to bake cakes, how many cups of flour are needed?  To bake cakes, cups of flour are needed.        Each cake needs cups of flour. To find how many cups of flour are needed to bake cakes, we use multiplication:   To bake cakes, cups of flour are needed.         Sketching Fractions   Sketch a number line showing each fraction. (Be sure to carefully indicate the correct number of equal parts of the whole.)                                    Sketch a number line showing each fraction. (Be sure to carefully indicate the correct number of equal parts of the whole.)                                    Sketch a picture of the product , using a number line or rectangles.    Sketch a picture of the sum , using a number line or rectangles.     Challenge    Given that simplify        Since the fractions have the same denominator, we can just add numerators and keep that denominator.          Given that simplify        Since the fractions don t have the same denominator, we have to make them have like denominators. Multiply the first fraction by          Given that simplify        Since the fractions don t have the same denominator, we have to make them have like denominators. Multiply the first fraction by          "
 },
 {
   "id": "section-fractions-and-fraction-arithmetic-2-2",
@@ -20179,13 +20692,994 @@ var ptx_lunr_docs = [
   "body": "improper fraction "
 },
 {
+  "id": "section-fractions-and-fraction-arithmetic-9-1-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-1-2",
+  "type": "Exercise",
+  "number": "A.2.7.1",
+  "title": "",
+  "body": "  Which letter is on the number line?             "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-1-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-1-3",
+  "type": "Exercise",
+  "number": "A.2.7.2",
+  "title": "",
+  "body": "  Which letter is m on the number line?     ?   A   B   C   D            "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-1-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-1-4",
+  "type": "Exercise",
+  "number": "A.2.7.3",
+  "title": "",
+  "body": "  The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the 6th tick from , so it can be represented as , which reduces to .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-1-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-1-5",
+  "type": "Exercise",
+  "number": "A.2.7.4",
+  "title": "",
+  "body": "  The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the 6th tick left from , so it can be represented as , which reduces to .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-1-6",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-1-6",
+  "type": "Exercise",
+  "number": "A.2.7.5",
+  "title": "",
+  "body": "  The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the third tick from , so it can be represented as , which reduces to .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-1-7",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-1-7",
+  "type": "Exercise",
+  "number": "A.2.7.6",
+  "title": "",
+  "body": "  The dot in the graph can be represented by what fraction?          On the number line, the segment between and is cut into pieces. The blue dot is marked at the third tick to the left of , so it can be represented as .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-2-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-2-2",
+  "type": "Exercise",
+  "number": "A.2.7.7",
+  "title": "",
+  "body": "  Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, goes into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers divide into both numbers.  In this case, is the final answer.   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.   Notice that when the numerator s only prime factor, , is canceled, we have to leave a in the numerator.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-2-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-2-3",
+  "type": "Exercise",
+  "number": "A.2.7.8",
+  "title": "",
+  "body": "  Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers go into both numbers.  In this case, is the final answer.   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-2-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-2-4",
+  "type": "Exercise",
+  "number": "A.2.7.9",
+  "title": "",
+  "body": "  Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers go into both numbers. In this case, again goes into both the numerator and denominator for . We divide into both numbers, and we have:   Finally, we have:   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-2-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-2-5",
+  "type": "Exercise",
+  "number": "A.2.7.10",
+  "title": "",
+  "body": "  Reduce the fraction .         Method 1:  We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one: , until the prime number is greater than or equal to . No prime number goes into both and , so the fraction is not reducible.   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.   Notice that no numbers can be canceled out, so the fraction is not reducible.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-2-6",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-2-6",
+  "type": "Exercise",
+  "number": "A.2.7.11",
+  "title": "",
+  "body": "  Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers divide into both numbers. In this problem, divides into both the numerator and denominator for . We divide into both numbers, and we have:   Finally, we have:   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-2-7",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-2-7",
+  "type": "Exercise",
+  "number": "A.2.7.12",
+  "title": "",
+  "body": "  Reduce the fraction .        There are at least two methods to reduce the fraction .   Method 1:We find a number that divides into both the numerator , and the denominator .  Check the first few prime numbers one by one:  In this case, divides into both the numerator and denominator of . We divide into both numbers, and we have:   Next, check again whether any prime number divides into both the numerator and denominator. We need to keep trying until no prime numbers divide into both numbers. In this problem, divides into both the numerator and denominator for . We divide into both numbers, and we have:   Finally, we have:   Method 2:  A second method to reduce fraction is to prime factor both the numerator and the denominator, and then cancel out factors in pairs: one from the numerator and one from the denominator.   Note that if the denominator is , the result is simply an integer.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-3-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-3-2",
+  "type": "Exercise",
+  "number": "A.2.7.13",
+  "title": "",
+  "body": "  Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-3-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-3-3",
+  "type": "Exercise",
+  "number": "A.2.7.14",
+  "title": "",
+  "body": "  Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-3-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-3-4",
+  "type": "Exercise",
+  "number": "A.2.7.15",
+  "title": "",
+  "body": "  Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-3-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-3-5",
+  "type": "Exercise",
+  "number": "A.2.7.16",
+  "title": "",
+  "body": "  Find an equivalent fraction to with denominator .        From to , we multiplied by .  For a fraction, when we multiply the same number in both the numerator and denominator, the fraction s value doesn t change. We have:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-2",
+  "type": "Exercise",
+  "number": "A.2.7.17",
+  "title": "",
+  "body": "  Multiply:        To multiply two fractions, simply multiply both numerators and both denominators. We have:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-3",
+  "type": "Exercise",
+  "number": "A.2.7.18",
+  "title": "",
+  "body": "  Multiply:        To multiply two fractions, simply multiply both numerators and both denominators. We have:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-4",
+  "type": "Exercise",
+  "number": "A.2.7.19",
+  "title": "",
+  "body": "  Multiply:        To multiply two fractions, usually we simply multiply both numerators and both denominators. However, it s easier to reduce fractions before multiplying:   The answer to this question is .  Note that we divided the first numerator and the second denominator by .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-5",
+  "type": "Exercise",
+  "number": "A.2.7.20",
+  "title": "",
+  "body": "  Multiply:        To multiply two fractions, usually we simply multiply both numerators and both denominators. However, it s easier to reduce fractions before multiplying:   The answer to this question is .  Note that we divided the first numerator and the second denominator by .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-6",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-6",
+  "type": "Exercise",
+  "number": "A.2.7.21",
+  "title": "",
+  "body": "  Multiply:        To multiply an integer with a fraction, first we change the integer into a fraction by rewriting it with a 1 as the denominator:   Next, simply multiply both numerators and both denominators:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-7",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-7",
+  "type": "Exercise",
+  "number": "A.2.7.22",
+  "title": "",
+  "body": "  Multiply:        To multiply an integer with a fraction, first we change the integer into a fraction by rewriting it with a 1 as the denominator:   Next, simply multiply both numerators and both denominators:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-8",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-8",
+  "type": "Exercise",
+  "number": "A.2.7.23",
+  "title": "",
+  "body": "  Multiply:        To multiply two fractions, multiply both numerators and both denominators. Don t forget to reduce the fraction if possible.  Remember: a positive number times a negative number is a negative number.  We have:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-9",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-9",
+  "type": "Exercise",
+  "number": "A.2.7.24",
+  "title": "",
+  "body": "  Multiply:        To multiply two fractions, multiply both numerators and both denominators. Don t forget to reduce the fraction if possible.  Remember: a positive number times a negative number is a negative number.  We have:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-10",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-10",
+  "type": "Exercise",
+  "number": "A.2.7.25",
+  "title": "",
+  "body": "  Multiply:        To multiply an integer with a fraction, first we rewrite the integer as a fraction by using 1 as the denominator:   Next, do the fraction multiplication. If you reduce numbers before multiplying across, you can avoid dealing with big numbers:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-11",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-11",
+  "type": "Exercise",
+  "number": "A.2.7.26",
+  "title": "",
+  "body": "  Multiply:        To multiply an integer with a fraction, first we rewrite the integer as a fraction by using 1 as the denominator:   Next, do the fraction multiplication. If you reduce numbers before multiplying across, you can avoid dealing with big numbers:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-12",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-12",
+  "type": "Exercise",
+  "number": "A.2.7.27",
+  "title": "",
+  "body": "  Multiply:        When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-13",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-13",
+  "type": "Exercise",
+  "number": "A.2.7.28",
+  "title": "",
+  "body": "  Multiply:        When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-14",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-14",
+  "type": "Exercise",
+  "number": "A.2.7.29",
+  "title": "",
+  "body": "  Multiply:        When we multiply fractions, if there is an integer, we change the integer to a fraction by writing as its denominator. For example, .  When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-15",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-15",
+  "type": "Exercise",
+  "number": "A.2.7.30",
+  "title": "",
+  "body": "  Multiply:        When we multiply fractions, if there is an integer, we change the integer to a fraction by writing as its denominator. For example, .  When multiplying with fractions, reduce numerators and denominators if possible. This way, we can avoid dealing with big numbers.  The full computation is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-16",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-16",
+  "type": "Exercise",
+  "number": "A.2.7.31",
+  "title": "",
+  "body": "  Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-17",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-17",
+  "type": "Exercise",
+  "number": "A.2.7.32",
+  "title": "",
+  "body": "  Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-18",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-18",
+  "type": "Exercise",
+  "number": "A.2.7.33",
+  "title": "",
+  "body": "  Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time, flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-19",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-19",
+  "type": "Exercise",
+  "number": "A.2.7.34",
+  "title": "",
+  "body": "  Divide:        When we do division with fractions, as with   we first change division to multiplication, and at the same time, flip the second fraction. In this case, we have   Then we do fraction multiplication as usual. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-20",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-20",
+  "type": "Exercise",
+  "number": "A.2.7.35",
+  "title": "",
+  "body": "  Divide:        When a negative number is divided by a negative number, the result is positive. We can simply ignore those two negative signs:   When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-21",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-21",
+  "type": "Exercise",
+  "number": "A.2.7.36",
+  "title": "",
+  "body": "  Divide:        When a negative number is divided by a negative number, the result is positive. We can simply ignore those two negative signs:   When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-22",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-22",
+  "type": "Exercise",
+  "number": "A.2.7.37",
+  "title": "",
+  "body": "  Divide:        When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-23",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-23",
+  "type": "Exercise",
+  "number": "A.2.7.38",
+  "title": "",
+  "body": "  Divide:        When we do fraction multiplication\/division, we need to rewrite any integer as a fraction. In this problem, we will do this with:   Next, we change division to multiplication, and at the same time flip the second fraction. In this case, we have   Next, we do the fraction multiplication. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-24",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-24",
+  "type": "Exercise",
+  "number": "A.2.7.39",
+  "title": "",
+  "body": "  Multiply:        In order to multiply two mixed numbers, like   it helps to first change both mixed numbers to improper fractions. In this case, the problem becomes   Then we do fraction multiplication as usual. To avoid dealing with big numbers, we reduce fractions before doing multiplications. The full solution is:   If we like, we may convert this answer to a mixed number since the original factors were mixed numbers. The solution is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-4-25",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-4-25",
+  "type": "Exercise",
+  "number": "A.2.7.40",
+  "title": "",
+  "body": "  Multiply:        In order to multiply two mixed numbers, like   it helps to first change both mixed numbers to improper fractions. In this case, the problem becomes   Then we do fraction multiplication as usual. To avoid dealing with big numbers, we reduce fractions before doing multiplications. The full solution is:   The solution is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-2",
+  "type": "Exercise",
+  "number": "A.2.7.41",
+  "title": "",
+  "body": "  Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.  The result is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-3",
+  "type": "Exercise",
+  "number": "A.2.7.42",
+  "title": "",
+  "body": "  Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.  The result is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-4",
+  "type": "Exercise",
+  "number": "A.2.7.43",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The whole process is:   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-5",
+  "type": "Exercise",
+  "number": "A.2.7.44",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The whole process is:   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-6",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-6",
+  "type": "Exercise",
+  "number": "A.2.7.45",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find the common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-7",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-7",
+  "type": "Exercise",
+  "number": "A.2.7.46",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find the common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-8",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-8",
+  "type": "Exercise",
+  "number": "A.2.7.47",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-9",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-9",
+  "type": "Exercise",
+  "number": "A.2.7.48",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-10",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-10",
+  "type": "Exercise",
+  "number": "A.2.7.49",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full solution is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-11",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-11",
+  "type": "Exercise",
+  "number": "A.2.7.50",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full solution is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-12",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-12",
+  "type": "Exercise",
+  "number": "A.2.7.51",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-13",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-13",
+  "type": "Exercise",
+  "number": "A.2.7.52",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-14",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-14",
+  "type": "Exercise",
+  "number": "A.2.7.53",
+  "title": "",
+  "body": "  Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-15",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-15",
+  "type": "Exercise",
+  "number": "A.2.7.54",
+  "title": "",
+  "body": "  Add:        To add two fractions with the same denominator, we simply add up the numerators and keep the denominator unchanged.   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-16",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-16",
+  "type": "Exercise",
+  "number": "A.2.7.55",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator. In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-17",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-17",
+  "type": "Exercise",
+  "number": "A.2.7.56",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator. In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the addition. The full process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-18",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-18",
+  "type": "Exercise",
+  "number": "A.2.7.57",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-19",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-19",
+  "type": "Exercise",
+  "number": "A.2.7.58",
+  "title": "",
+  "body": "  Add:        To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions. The full process is:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-20",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-20",
+  "type": "Exercise",
+  "number": "A.2.7.59",
+  "title": "",
+  "body": "  Add:        When doing arithmetic with fractions, it is helpful to rewrite any integers as fractions:   Next, to add two fractions, we need to find a common denominator. In this case, it is simply the second denominator . We will rewrite the first fraction:   Finally, we add the numerators and keep the denominator unchanged. The whole process is:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-21",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-21",
+  "type": "Exercise",
+  "number": "A.2.7.60",
+  "title": "",
+  "body": "  Add:        When doing arithmetic with fractions, it is helpful to rewrite any integers as fractions:   Next, to add two fractions, we need to find a common denominator. In this case, it is simply the second denominator . We will rewrite the first fraction:   Finally, we add the numerators and keep the denominator unchanged. The whole process is:   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-22",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-22",
+  "type": "Exercise",
+  "number": "A.2.7.61",
+  "title": "",
+  "body": "  Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-23",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-23",
+  "type": "Exercise",
+  "number": "A.2.7.62",
+  "title": "",
+  "body": "  Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-24",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-24",
+  "type": "Exercise",
+  "number": "A.2.7.63",
+  "title": "",
+  "body": "  Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-25",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-25",
+  "type": "Exercise",
+  "number": "A.2.7.64",
+  "title": "",
+  "body": "  Add:        To add fractions with different denominators, we need to find the common denominator first. One way is to list the multiples of the largest denominator, until all denominators divide into the multiple.  The largest denominator is . We list its first few multiples:   Note that all denominators, each divide into .  The full computation is:   Don t forget to reduce the fraction by dividing into both the numerator and the denominator.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-26",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-26",
+  "type": "Exercise",
+  "number": "A.2.7.65",
+  "title": "",
+  "body": "  Subtract:        To subtract two fractions with the same denominator, we simply subtract the numerators and keep the denominator unchanged.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-27",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-27",
+  "type": "Exercise",
+  "number": "A.2.7.66",
+  "title": "",
+  "body": "  Subtract:        To subtract two fractions with the same denominator, we simply subtract the numerators and keep the denominator unchanged.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-28",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-28",
+  "type": "Exercise",
+  "number": "A.2.7.67",
+  "title": "",
+  "body": "  Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the subtraction. The whole process is:   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-29",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-29",
+  "type": "Exercise",
+  "number": "A.2.7.68",
+  "title": "",
+  "body": "  Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   The second fraction already has the common denominator.  Finally, we can do the subtraction. The whole process is:   The answer is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-30",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-30",
+  "type": "Exercise",
+  "number": "A.2.7.69",
+  "title": "",
+  "body": "  Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  The first fraction already has the common denominator.  Look at the second fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Finally, we can do the subtraction. The whole process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-31",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-31",
+  "type": "Exercise",
+  "number": "A.2.7.70",
+  "title": "",
+  "body": "  Subtract:        To subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  The first fraction already has the common denominator.  Look at the second fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Finally, we can do the subtraction. The whole process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-32",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-32",
+  "type": "Exercise",
+  "number": "A.2.7.71",
+  "title": "",
+  "body": "  Subtract:        To add or subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the denominator of the second fraction to by:   Finally, we add or subtract the numerators and keep the common denominator unchanged. The whole process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-33",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-33",
+  "type": "Exercise",
+  "number": "A.2.7.72",
+  "title": "",
+  "body": "  Subtract:        To add or subtract two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the denominator of the second fraction to by:   Finally, we add or subtract the numerators and keep the common denominator unchanged. The whole process is:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-34",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-34",
+  "type": "Exercise",
+  "number": "A.2.7.73",
+  "title": "",
+  "body": "  Subtract:        When we subtract a negative number, first we change those two negative signs to addition:   Next, we will do fraction addition. To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-35",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-35",
+  "type": "Exercise",
+  "number": "A.2.7.74",
+  "title": "",
+  "body": "  Subtract:        When we subtract a negative number, first we change those two negative signs to addition:   Next, we will do fraction addition. To add two fractions with different denominators, we first have to find a common denominator.  In this case, the least common multiple of and is .  Look at the first fraction . To change the denominator to , we multiply at both the top and bottom, and we have:   Similarly, we change the second fraction s denominator to :   Now we can add those two fractions.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-36",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-36",
+  "type": "Exercise",
+  "number": "A.2.7.75",
+  "title": "",
+  "body": "  Subtract:        When doing arithmetic with fractions, it helps to rewrite any integers as fractions:   Next, to subtract a fraction, we need to find a common denominator. In this case, it is simply the second denominator . We will change the first fraction to have the common denominator:   Finally, we subtract the numerators and keep the denominator unchanged.   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-5-37",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-5-37",
+  "type": "Exercise",
+  "number": "A.2.7.76",
+  "title": "",
+  "body": "  Subtract:        When doing arithmetic with fractions, it helps to rewrite any integers as fractions:   Next, to subtract a fraction, we need to find a common denominator. In this case, it is simply the second denominator . We will change the first fraction to have the common denominator:   Finally, we subtract the numerators and keep the denominator unchanged.   The answer to this question is .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-2",
+  "type": "Exercise",
+  "number": "A.2.7.77",
+  "title": "",
+  "body": "  Anthony walked of a mile in the morning, and then walked of a mile in the afternoon. How far did Anthony walk altogether?  Anthony walked a total of of a mile.        This is an addition problem.   Anthony walked a total of miles altogether.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-3",
+  "type": "Exercise",
+  "number": "A.2.7.78",
+  "title": "",
+  "body": "  Joseph walked of a mile in the morning, and then walked of a mile in the afternoon. How far did Joseph walk altogether?  Joseph walked a total of of a mile.        This is an addition problem.   Joseph walked a total of miles altogether.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-4",
+  "type": "Exercise",
+  "number": "A.2.7.79",
+  "title": "",
+  "body": "  Tammy and Hannah are sharing a pizza. Tammy ate of the pizza, and Hannah ate of the pizza. How much of the pizza was eaten in total?  They ate of the pizza.        This is an addition problem.   They ate of the pizza.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-5",
+  "type": "Exercise",
+  "number": "A.2.7.80",
+  "title": "",
+  "body": "  A trail s total length is of a mile. It has two legs. The first leg is of a mile long. How long is the second leg?  The second leg is of a mile in length.        This is a subtraction problem.   The second leg is of a mile in length.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-6",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-6",
+  "type": "Exercise",
+  "number": "A.2.7.81",
+  "title": "",
+  "body": "  A trail s total length is of a mile. It has two legs. The first leg is of a mile long. How long is the second leg?  The second leg is of a mile in length.        This is a subtraction problem.   The second leg is of a mile in length.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-7",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-7",
+  "type": "Exercise",
+  "number": "A.2.7.82",
+  "title": "",
+  "body": "  Jon is participating in a running event. In the first hour, he completed of the total distance. After another hour, in total he had completed of the total distance.  What fraction of the total distance did Jon complete during the second hour?  Jon completed of the distance during the second hour.        This is a subtraction problem.   Jon completed of the distance during the second hour.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-8",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-8",
+  "type": "Exercise",
+  "number": "A.2.7.83",
+  "title": "",
+  "body": "  The pie chart represents a school s student population.    Together, white and black students make up of the school s population.        By the pie chart, the school has white students, and black students.  We will use addition to find the total portion of white and black students at this school.   Together, white and black students make up of the school s population.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-9",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-9",
+  "type": "Exercise",
+  "number": "A.2.7.84",
+  "title": "",
+  "body": "  Each page of a book is inches in height, and consists of a header (a top margin), a footer (a bottom margin), and the middle part (the body). The header is of an inch thick and the middle part is inches from top to bottom.  What is the thickness of the footer?  The footer is of an inch thick.        From a page s total height, we subtract the thickness of the header and the height of the body to find the thickness of the footer:   The footer is inches thick.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-10",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-10",
+  "type": "Exercise",
+  "number": "A.2.7.85",
+  "title": "",
+  "body": "  Donna and Laney are sharing a pizza. Donna ate of the pizza, and Laney ate of the pizza. How much more pizza did Donna eat than Laney?  Donna ate more of the pizza than Laney ate.        To find the difference of two numbers, we use subtraction:   Donna ate more of the pizza than Laney ate.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-11",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-11",
+  "type": "Exercise",
+  "number": "A.2.7.86",
+  "title": "",
+  "body": "  Douglas and Katherine are sharing a pizza. Douglas ate of the pizza, and Katherine ate of the pizza. How much more pizza did Douglas eat than Katherine?  Douglas ate more of the pizza than Katherine ate.        To find the difference of two numbers, we use subtraction:   Douglas ate more of the pizza than Katherine ate.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-12",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-12",
+  "type": "Exercise",
+  "number": "A.2.7.87",
+  "title": "",
+  "body": "  A school had a fund-raising event. The revenue came from three resources: ticket sales, auction sales, and donations. Ticket sales account for of the total revenue; auction sales account for of the total revenue. What fraction of the revenue came from donations?  of the revenue came from donations.        The revenue consists of parts. The total revenue is like a big ; ticket sales account for ; auction sales account for . To find the missing piece (from donations), we use subtraction.  Note that a common denominator of , and is .   So of the revenue came from donations.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-13",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-13",
+  "type": "Exercise",
+  "number": "A.2.7.88",
+  "title": "",
+  "body": "  A few years back, a car was purchased for . Today it is worth of its original value. What is the car s current value?  The car s current value is .        When we use the word of in situations like of , we can translate of into the multiplication symbol.  In this problem, to find of , we do:   The car is worth now.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-14",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-14",
+  "type": "Exercise",
+  "number": "A.2.7.89",
+  "title": "",
+  "body": "  A few years back, a car was purchased for . Today it is worth of its original value. What is the car s current value?  The car s current value is .        When we use the word of in situations like of , we can translate of into the multiplication symbol.  In this problem, to find of , we do:   The car is worth now.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-15",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-15",
+  "type": "Exercise",
+  "number": "A.2.7.90",
+  "title": "",
+  "body": "  The pie chart represents a school s student population.    more of the school is white students than black students.        By the pie chart, the school has white students, and black students.  We will use subtraction to find the difference:       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-16",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-16",
+  "type": "Exercise",
+  "number": "A.2.7.91",
+  "title": "",
+  "body": "  A town has residents in total, of which are Latino Americans. How many Latino Americans reside in this town?  There are Latino Americans residing in this town.        When we use the word of in expressions like of , we can translate of into the multiplication symbol.  In this problem, to find of , we compute:   There are Latino Americans residing in this town.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-17",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-17",
+  "type": "Exercise",
+  "number": "A.2.7.92",
+  "title": "",
+  "body": "  A company received a grant, and decided to spend of this grant in research and development next year. Out of the money set aside for research and development, will be used to buy new equipment. What fraction of the grant will be used to buy new equipment?  of the grant will be used to buy new equipment.        For this problem, we are trying to find of . The word of implies multiplication:   So of the grant will be used to buy new equipment.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-18",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-18",
+  "type": "Exercise",
+  "number": "A.2.7.93",
+  "title": "",
+  "body": "  A food bank just received kilograms of emergency food. Each family in need is to receive kilograms of food. How many families can be served with the kilograms of food?  families can be served with the kilograms of food.        We can address this problem as repeatedly taking away kilograms from kilograms, which implies a division problem:   families can be served with the kilograms of food.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-19",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-19",
+  "type": "Exercise",
+  "number": "A.2.7.94",
+  "title": "",
+  "body": "  A construction team maintains a -mile-long sewage pipe. Each day, the team can cover of a mile. How many days will it take the team to complete the maintenance of the entire sewage pipe?  It will take the team days to complete maintaining the entire sewage pipe.        In this problem, the team maintains miles of sewage pipe every day, until they complete all miles. This is like repeatedly taking away miles from miles, a division problem.   It will take the team days to complete maintaining the entire sewage pipe.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-20",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-20",
+  "type": "Exercise",
+  "number": "A.2.7.95",
+  "title": "",
+  "body": "  A child is stacking up tiles. Each tile s height is of a centimeter. How many layers of tiles are needed to reach centimeters in total height?  To reach the total height of centimeters, layers of tiles are needed.        In this problem, each layer of tile is centimeters tall. The child will keep stacking up layers until the total height reaches centimeters. This is like asking how many centimeters are there in centimeters, a division problem.   To reach the total height of centimeters, layers of tiles are needed.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-21",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-21",
+  "type": "Exercise",
+  "number": "A.2.7.96",
+  "title": "",
+  "body": "  A restaurant made cups of pudding for a festival.  Customers at the festival will be served of a cup of pudding per serving. How many customers can the restaurant serve at the festival with the cups of pudding?  The restaurant can serve customers at the festival with the cups of pudding.        There are a total of cups of pudding, with each serving being cup. To find how many servings can be served, we need to find how many cups are there in cups, a division problem:   The restaurant can serve customers at the festival with the cups of pudding.   Shortcut  Since each serving has cup, we know each cup has servings. So cups has servings.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-22",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-22",
+  "type": "Exercise",
+  "number": "A.2.7.97",
+  "title": "",
+  "body": "  A piece of lumber in your garage is inches long. A second is inches long. If you lay them end to end, what will the total length be?  The total length will be inches.        To find the total length in inches, we add the two lengths together.   So the total length is inches.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-23",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-23",
+  "type": "Exercise",
+  "number": "A.2.7.98",
+  "title": "",
+  "body": "  A piece of lumber in your garage is inches long. A second is inches long. If you lay them end to end, what will the total length be?  The total length will be inches.        To find the total length in inches, we add the two lengths together.   So the total length is inches.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-24",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-24",
+  "type": "Exercise",
+  "number": "A.2.7.99",
+  "title": "",
+  "body": "  Each page of a book consists of a header, a footer and the middle part. The header is inches in height; the footer is inches in height; and the middle part is inches in height.  What is the total height of each page in this book? Use mixed number in your answer if needed.  Each page in this book is inches in height.        We add up the height of the header, middle part and footer to find the total height of a page:   Each page in this book is inches in height.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-25",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-25",
+  "type": "Exercise",
+  "number": "A.2.7.100",
+  "title": "",
+  "body": "  To pave the road on Ellis Street, the crew used tons of cement on the first day, and used tons on the second day. How many tons of cement were used in all?  tons of cement were used in all.        This problem is obviously an addition problem.  To add mixed number, we break each mixed number into an integer and a fraction, and then add up integers and fractions separately.   tons of cement were used in all.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-26",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-26",
+  "type": "Exercise",
+  "number": "A.2.7.101",
+  "title": "",
+  "body": "  When driving on a high way, noticed a sign saying exit to Johnstown is miles away, while exit to Jerrystown is miles away. How far is Johnstown from Jerrystown?  Johnstown and Jerrystown are miles apart.        To find the distance between Johnstown and Jerrystown, we need to find the difference between their distance. This implies subtraction. We could treat subtraction as adding a negative :   From here, there are two methods to continue.   Method 1  We can split  from the integer, and do :   Note that we changed to .   Method2  We could simply change the whole number into a fraction without splitting  :   ran more miles than .      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-6-27",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-6-27",
+  "type": "Exercise",
+  "number": "A.2.7.102",
+  "title": "",
+  "body": "  A cake recipe needs cups of flour. Using this recipe, to bake cakes, how many cups of flour are needed?  To bake cakes, cups of flour are needed.        Each cake needs cups of flour. To find how many cups of flour are needed to bake cakes, we use multiplication:   To bake cakes, cups of flour are needed.      "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-7-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-7-2",
+  "type": "Exercise",
+  "number": "A.2.7.103",
+  "title": "",
+  "body": " Sketch a number line showing each fraction. (Be sure to carefully indicate the correct number of equal parts of the whole.)                                  "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-7-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-7-3",
+  "type": "Exercise",
+  "number": "A.2.7.104",
+  "title": "",
+  "body": " Sketch a number line showing each fraction. (Be sure to carefully indicate the correct number of equal parts of the whole.)                                  "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-7-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-7-4",
+  "type": "Exercise",
+  "number": "A.2.7.105",
+  "title": "",
+  "body": " Sketch a picture of the product , using a number line or rectangles.  "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-7-5",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-7-5",
+  "type": "Exercise",
+  "number": "A.2.7.106",
+  "title": "",
+  "body": " Sketch a picture of the sum , using a number line or rectangles.  "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-8-2",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-8-2",
+  "type": "Exercise",
+  "number": "A.2.7.107",
+  "title": "",
+  "body": "  Given that simplify        Since the fractions have the same denominator, we can just add numerators and keep that denominator.       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-8-3",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-8-3",
+  "type": "Exercise",
+  "number": "A.2.7.108",
+  "title": "",
+  "body": "  Given that simplify        Since the fractions don t have the same denominator, we have to make them have like denominators. Multiply the first fraction by       "
+},
+{
+  "id": "section-fractions-and-fraction-arithmetic-9-8-4",
+  "level": "2",
+  "url": "section-fractions-and-fraction-arithmetic.html#section-fractions-and-fraction-arithmetic-9-8-4",
+  "type": "Exercise",
+  "number": "A.2.7.109",
+  "title": "",
+  "body": "  Given that simplify        Since the fractions don t have the same denominator, we have to make them have like denominators. Multiply the first fraction by       "
+},
+{
   "id": "section-absolute-value-and-square-root",
   "level": "1",
   "url": "section-absolute-value-and-square-root.html",
   "type": "Section",
   "number": "A.3",
   "title": "Absolute Value and Square Root",
-  "body": " Absolute Value and Square Root   In this section, we will learn the basics of absolute value and square root . These are actions you can do to a given number, often changing the number into something else.   Alternative Video Lesson      Introduction to Absolute Value   Absolute value formal definition  Real numbers absolute value of      absolute value    The absolute value of a number is the distance between that number and Absolute value symbol  on a number line. For the absolute value of , we write . Absolute value bars     Let's look at and , the absolute value of and the absolute value of .   and   a number line marking the values -2 and 2 as being 2 units from the value 0     Since the distance between and on the number line is units, the absolute value of is . We write .  Since the distance between and on the number line is also units, the absolute value of is also . We write .   Absolute Value  Absolute value   Taking the absolute value of a number results in whatever the positive version of that number is. This is because the real meaning of absolute value is its distance from zero.    Calculating Absolute Value  Try calculating some absolute values.         is units away from on a number line, so Another way to think about this is that the positive version of is        is units away from on a number line, so Another way to think about this is that the positive version of is        is units away from on a number line, so Another way to think about this is that the positive version of is        Absolute Value Does Not Exactly Make Everything Positive  Students may see an expression like and incorrectly think it is OK to make everything positive and write . This is incorrect since works out to be , not , as we are actually taking the absolute value of (the equivalent number inside the absolute value).     Square Root Facts  If you have learned your basic multiplication table, you know:   Multiplication table with squares                                                                                                                                       The numbers along the diagonal are special; they are known as perfect squares . Perfect squares And for working with square roots, it will be helpful if you can memorize these first few perfect square numbers.   Taking a square root is the opposite action of squaring a number. For example, when you Square root square , the result is . So when you take the square root of , the result is . Just knowing that comes about as lets us realize that is the square root of . This is why memorizing the perfect squares from the multiplication table can be so helpful.  The notation we use for taking a square root is the radical , Radical  . For example, the square root of is denoted Radical symbol  . And now we know enough to be able to write . Symbol radical  Square root sign   Tossing in a few extra special square roots, it's advisable to memorize the following:                              Calculating Square Roots with a Calculator  Most square roots are actually numbers with decimal places that go on forever. Take as an example:   Since is between and , then must be somewhere between and . There are no whole numbers between and , so must be some number with decimal places. If the decimal places eventually stopped, then squaring it would give you another number with decimal places that stop further out. But squaring it gives you with no decimal places. So the only possibility is that is a decimal between and that goes on forever. With a calculator, we can see: Actually the decimal will not terminate, and that is why we used the symbol instead of an equal sign. To get we rounded down slightly from the true value of . With a calculator, we can check that , a little shy of .    Square Roots of Fractions  We can calculate the square root of some fractions by hand, such as . The idea is the same: can you think of a number that you would square to get ? Being familiar with fraction multiplication, we know that and so .  Square Roots of Fractions  Try calculating some absolute values.         Since and then        Since and then        Since and then         Square Root of Negative Numbers   Imaginary Numbers  Mathematicians imagined a new type of number, neither positive nor negative, that would square to a negative result. But that is beyond the scope of this section.   Can we find the square root of a negative number, such as ? That would mean that there is some number out there that multiplies by itself to make . Would be positive or negative? Either way, once you square it (multiply it by itself) the result would be positive. So it couldn't possibly square to . So there is no square root of or of any negative number for that matter.  If you are confronted with an expression like , or any other square root of a negative number, you can state that there is no real square root or that the result does not exist (as a real number).     Exercises for this section are available in the HTML version of this book.     "
+  "body": " Absolute Value and Square Root   In this section, we will learn the basics of absolute value and square root . These are actions you can do to a given number, often changing the number into something else.   Alternative Video Lesson      Introduction to Absolute Value   Absolute value formal definition  Real numbers absolute value of      absolute value    The absolute value of a number is the distance between that number and Absolute value symbol  on a number line. For the absolute value of , we write . Absolute value bars     Let's look at and , the absolute value of and the absolute value of .   and   a number line marking the values -2 and 2 as being 2 units from the value 0     Since the distance between and on the number line is units, the absolute value of is . We write .  Since the distance between and on the number line is also units, the absolute value of is also . We write .   Absolute Value  Absolute value   Taking the absolute value of a number results in whatever the positive version of that number is. This is because the real meaning of absolute value is its distance from zero.    Calculating Absolute Value  Try calculating some absolute values.         is units away from on a number line, so Another way to think about this is that the positive version of is        is units away from on a number line, so Another way to think about this is that the positive version of is        is units away from on a number line, so Another way to think about this is that the positive version of is        Absolute Value Does Not Exactly Make Everything Positive  Students may see an expression like and incorrectly think it is OK to make everything positive and write . This is incorrect since works out to be , not , as we are actually taking the absolute value of (the equivalent number inside the absolute value).     Square Root Facts  If you have learned your basic multiplication table, you know:   Multiplication table with squares                                                                                                                                       The numbers along the diagonal are special; they are known as perfect squares . Perfect squares And for working with square roots, it will be helpful if you can memorize these first few perfect square numbers.   Taking a square root is the opposite action of squaring a number. For example, when you Square root square , the result is . So when you take the square root of , the result is . Just knowing that comes about as lets us realize that is the square root of . This is why memorizing the perfect squares from the multiplication table can be so helpful.  The notation we use for taking a square root is the radical , Radical  . For example, the square root of is denoted Radical symbol  . And now we know enough to be able to write . Symbol radical  Square root sign   Tossing in a few extra special square roots, it's advisable to memorize the following:                              Calculating Square Roots with a Calculator  Most square roots are actually numbers with decimal places that go on forever. Take as an example:   Since is between and , then must be somewhere between and . There are no whole numbers between and , so must be some number with decimal places. If the decimal places eventually stopped, then squaring it would give you another number with decimal places that stop further out. But squaring it gives you with no decimal places. So the only possibility is that is a decimal between and that goes on forever. With a calculator, we can see: Actually the decimal will not terminate, and that is why we used the symbol instead of an equal sign. To get we rounded down slightly from the true value of . With a calculator, we can check that , a little shy of .    Square Roots of Fractions  We can calculate the square root of some fractions by hand, such as . The idea is the same: can you think of a number that you would square to get ? Being familiar with fraction multiplication, we know that and so .  Square Roots of Fractions  Try calculating some absolute values.         Since and then        Since and then        Since and then         Square Root of Negative Numbers   Imaginary Numbers  Mathematicians imagined a new type of number, neither positive nor negative, that would square to a negative result. But that is beyond the scope of this section.   Can we find the square root of a negative number, such as ? That would mean that there is some number out there that multiplies by itself to make . Would be positive or negative? Either way, once you square it (multiply it by itself) the result would be positive. So it couldn't possibly square to . So there is no square root of or of any negative number for that matter.  If you are confronted with an expression like , or any other square root of a negative number, you can state that there is no real square root or that the result does not exist (as a real number).      Review and Warmup    Evaluate the expressions.                                                                               Evaluate the expressions.                                                                               Absolute Value    Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .         Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .         Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .         Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .         Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .         Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .         Evaluate the following.                                  Solution:     Solution:     Solution:            Evaluate the following.                                  Solution:     Solution:     Solution:            Evaluate the following.                                           The absolute value of measures how many units are between and on the number line, so .    The absolute value of measures how many units are between and on the number line, so .    The absolute value symbols cannot affect what are outside them, so we have .    Similar to Part c, we have .           Evaluate the following.                                           The absolute value of measures how many units are between and on the number line, so .    The absolute value of measures how many units are between and on the number line, so .    The absolute value symbols cannot affect what are outside them, so we have .    Similar to Part c, we have .           Evaluate the following.                                                    Solution:     Solution:     Solution:     Solution:     Solution:            Evaluate the following.                                                    Solution:     Solution:     Solution:     Solution:     Solution:              Which of the following are square numbers? There may be more than one correct answer.                       You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are BEF.         Which of the following are square numbers? There may be more than one correct answer.                       You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are ADF.         Square Roots    Evaluate the following.    =    =    =                    You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are:                    Evaluate the following.    =    =    =                    You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are:                    Evaluate the following.    =    =               Square root is the opposite operation of square.  Since , we have: .  The answers are:          Note that square root of a negative number does not exist. This is because any number squared is always positive or .         Evaluate the following.    =    =               Square root is the opposite operation of square.  Since , we have: .  The answers are:          Note that square root of a negative number does not exist. This is because any number squared is always positive or .           Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .         Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .         Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .         Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .         Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .         Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .           Evaluate the following.  Use a calculator to approximate with a decimal.         A calcultaor shows that .         Evaluate the following.  Use a calculator to approximate with a decimal.         A calcultaor shows that .           Evaluate the following.  .                Evaluate the following.  .                Evaluate the following.  .                Evaluate the following.  .                Evaluate the following.  .        The square root of a negative number is not a real number .         Evaluate the following.  .        The square root of a negative number is not a real number .         Evaluate the following.  .        The square root of a negative number is not a real number .         Evaluate the following.  .        The square root of a negative number is not a real number .         Evaluate the following.  .                Evaluate the following.  .                Evaluate the following.                                       Evaluate the following.                                       Evaluate the following.  = .        Because the denominator in this problem is a perfect square, we can easily evaluate the square root:          Evaluate the following.  = .        Because the denominator in this problem is a perfect square, we can easily evaluate the square root:          "
 },
 {
   "id": "section-absolute-value-and-square-root-2-1",
@@ -20287,13 +21781,391 @@ var ptx_lunr_docs = [
   "body": "Square Roots of Fractions  Try calculating some absolute values.         Since and then        Since and then        Since and then      "
 },
 {
+  "id": "section-absolute-value-and-square-root-8-1-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-1-2",
+  "type": "Exercise",
+  "number": "A.3.6.1",
+  "title": "",
+  "body": "  Evaluate the expressions.                                                                            "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-1-3",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-1-3",
+  "type": "Exercise",
+  "number": "A.3.6.2",
+  "title": "",
+  "body": "  Evaluate the expressions.                                                                            "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-2",
+  "type": "Exercise",
+  "number": "A.3.6.3",
+  "title": "",
+  "body": "  Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-3",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-3",
+  "type": "Exercise",
+  "number": "A.3.6.4",
+  "title": "",
+  "body": "  Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-4",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-4",
+  "type": "Exercise",
+  "number": "A.3.6.5",
+  "title": "",
+  "body": "  Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-5",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-5",
+  "type": "Exercise",
+  "number": "A.3.6.6",
+  "title": "",
+  "body": "  Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-6",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-6",
+  "type": "Exercise",
+  "number": "A.3.6.7",
+  "title": "",
+  "body": "  Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-7",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-7",
+  "type": "Exercise",
+  "number": "A.3.6.8",
+  "title": "",
+  "body": "  Evaluate the following.          The absolute value of is the distance between and on the number line. In this case, since is units away from 0, the answer is .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-8",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-8",
+  "type": "Exercise",
+  "number": "A.3.6.9",
+  "title": "",
+  "body": "  Evaluate the following.                                  Solution:     Solution:     Solution:         "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-9",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-9",
+  "type": "Exercise",
+  "number": "A.3.6.10",
+  "title": "",
+  "body": "  Evaluate the following.                                  Solution:     Solution:     Solution:         "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-10",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-10",
+  "type": "Exercise",
+  "number": "A.3.6.11",
+  "title": "",
+  "body": "  Evaluate the following.                                           The absolute value of measures how many units are between and on the number line, so .    The absolute value of measures how many units are between and on the number line, so .    The absolute value symbols cannot affect what are outside them, so we have .    Similar to Part c, we have .        "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-11",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-11",
+  "type": "Exercise",
+  "number": "A.3.6.12",
+  "title": "",
+  "body": "  Evaluate the following.                                           The absolute value of measures how many units are between and on the number line, so .    The absolute value of measures how many units are between and on the number line, so .    The absolute value symbols cannot affect what are outside them, so we have .    Similar to Part c, we have .        "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-12",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-12",
+  "type": "Exercise",
+  "number": "A.3.6.13",
+  "title": "",
+  "body": "  Evaluate the following.                                                    Solution:     Solution:     Solution:     Solution:     Solution:         "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-2-13",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-2-13",
+  "type": "Exercise",
+  "number": "A.3.6.14",
+  "title": "",
+  "body": "  Evaluate the following.                                                    Solution:     Solution:     Solution:     Solution:     Solution:         "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-3-1",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-3-1",
+  "type": "Exercise",
+  "number": "A.3.6.15",
+  "title": "",
+  "body": "  Which of the following are square numbers? There may be more than one correct answer.                       You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are BEF.      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-3-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-3-2",
+  "type": "Exercise",
+  "number": "A.3.6.16",
+  "title": "",
+  "body": "  Which of the following are square numbers? There may be more than one correct answer.                       You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are ADF.      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-4-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-4-2",
+  "type": "Exercise",
+  "number": "A.3.6.17",
+  "title": "",
+  "body": "  Evaluate the following.    =    =    =                    You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are:                 "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-4-3",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-4-3",
+  "type": "Exercise",
+  "number": "A.3.6.18",
+  "title": "",
+  "body": "  Evaluate the following.    =    =    =                    You can quickly find the first few square numbers on scratch paper:   It would be very helpful if you can memorize the above 12 square numbers.  So the correct answers are:                 "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-4-4",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-4-4",
+  "type": "Exercise",
+  "number": "A.3.6.19",
+  "title": "",
+  "body": "  Evaluate the following.    =    =               Square root is the opposite operation of square.  Since , we have: .  The answers are:          Note that square root of a negative number does not exist. This is because any number squared is always positive or .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-4-5",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-4-5",
+  "type": "Exercise",
+  "number": "A.3.6.20",
+  "title": "",
+  "body": "  Evaluate the following.    =    =               Square root is the opposite operation of square.  Since , we have: .  The answers are:          Note that square root of a negative number does not exist. This is because any number squared is always positive or .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-5-1",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-5-1",
+  "type": "Exercise",
+  "number": "A.3.6.21",
+  "title": "",
+  "body": "  Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-5-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-5-2",
+  "type": "Exercise",
+  "number": "A.3.6.22",
+  "title": "",
+  "body": "  Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-5-3",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-5-3",
+  "type": "Exercise",
+  "number": "A.3.6.23",
+  "title": "",
+  "body": "  Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-5-4",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-5-4",
+  "type": "Exercise",
+  "number": "A.3.6.24",
+  "title": "",
+  "body": "  Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-5-5",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-5-5",
+  "type": "Exercise",
+  "number": "A.3.6.25",
+  "title": "",
+  "body": "  Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-5-6",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-5-6",
+  "type": "Exercise",
+  "number": "A.3.6.26",
+  "title": "",
+  "body": "  Evaluate the following.  Do not use a calculator.    =    =    =                    First, recognize that is a square number. Since , we have .  Next, since , we have .  Finally, since , we have .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-6-1",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-6-1",
+  "type": "Exercise",
+  "number": "A.3.6.27",
+  "title": "",
+  "body": "  Evaluate the following.  Use a calculator to approximate with a decimal.         A calcultaor shows that .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-6-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-6-2",
+  "type": "Exercise",
+  "number": "A.3.6.28",
+  "title": "",
+  "body": "  Evaluate the following.  Use a calculator to approximate with a decimal.         A calcultaor shows that .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-1",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-1",
+  "type": "Exercise",
+  "number": "A.3.6.29",
+  "title": "",
+  "body": "  Evaluate the following.  .             "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-2",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-2",
+  "type": "Exercise",
+  "number": "A.3.6.30",
+  "title": "",
+  "body": "  Evaluate the following.  .             "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-3",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-3",
+  "type": "Exercise",
+  "number": "A.3.6.31",
+  "title": "",
+  "body": "  Evaluate the following.  .             "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-4",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-4",
+  "type": "Exercise",
+  "number": "A.3.6.32",
+  "title": "",
+  "body": "  Evaluate the following.  .             "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-5",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-5",
+  "type": "Exercise",
+  "number": "A.3.6.33",
+  "title": "",
+  "body": "  Evaluate the following.  .        The square root of a negative number is not a real number .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-6",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-6",
+  "type": "Exercise",
+  "number": "A.3.6.34",
+  "title": "",
+  "body": "  Evaluate the following.  .        The square root of a negative number is not a real number .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-7",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-7",
+  "type": "Exercise",
+  "number": "A.3.6.35",
+  "title": "",
+  "body": "  Evaluate the following.  .        The square root of a negative number is not a real number .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-8",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-8",
+  "type": "Exercise",
+  "number": "A.3.6.36",
+  "title": "",
+  "body": "  Evaluate the following.  .        The square root of a negative number is not a real number .      "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-9",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-9",
+  "type": "Exercise",
+  "number": "A.3.6.37",
+  "title": "",
+  "body": "  Evaluate the following.  .             "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-10",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-10",
+  "type": "Exercise",
+  "number": "A.3.6.38",
+  "title": "",
+  "body": "  Evaluate the following.  .             "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-11",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-11",
+  "type": "Exercise",
+  "number": "A.3.6.39",
+  "title": "",
+  "body": "  Evaluate the following.                                    "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-12",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-12",
+  "type": "Exercise",
+  "number": "A.3.6.40",
+  "title": "",
+  "body": "  Evaluate the following.                                    "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-13",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-13",
+  "type": "Exercise",
+  "number": "A.3.6.41",
+  "title": "",
+  "body": "  Evaluate the following.  = .        Because the denominator in this problem is a perfect square, we can easily evaluate the square root:       "
+},
+{
+  "id": "section-absolute-value-and-square-root-8-7-14",
+  "level": "2",
+  "url": "section-absolute-value-and-square-root.html#section-absolute-value-and-square-root-8-7-14",
+  "type": "Exercise",
+  "number": "A.3.6.42",
+  "title": "",
+  "body": "  Evaluate the following.  = .        Because the denominator in this problem is a perfect square, we can easily evaluate the square root:       "
+},
+{
   "id": "section-percentages",
   "level": "1",
   "url": "section-percentages.html",
   "type": "Section",
   "number": "A.4",
   "title": "Percentages",
-  "body": " Percentages   Percent-related problems arise in everyday life. This section reviews some basic calculations Percent that can be made with percentages.   Alternative Video Lesson      Converting Percents, Decimals, and English  In many situations when translating from English to math, the word of translates as multiplication. Also the word is (and many similar words related to to be ) translates to an equal sign. For example:   Here is another example, this time involving a percentage. We know that is Percent symbol  of , so we can say: Symbol percent      Translate each statement involving percents below into an equation. Define any variables used. (Solving these equations is an exercise).   How much is of ?     is what percent of ?     is of how much money?       Each question can be translated from English into a math equation by reading it slowly and looking for the right signals.   The word is means about the same thing as the equal sign. How much is a question phrase, and we can let be the unknown amount (in dollars). The word of translates to multiplication, as discussed earlier. So we have:     Let be the unknown value. We have: With this setup, is going to be a decimal value ( ) that you Percent as a decimal would translate into a percentage ( ).    Let be the unknown amount (in dollars). We have:         Solve each equation from .    How much is of   is .        is what percent of   is .        is of how much money?   is .              Setting up and Solving Percent Equations  An important skill for solving percent-related problems is to boil down a complicated word problem into a simple form like is of . Let's look at some further examples.     In Fall 2016, Portland Community College had enrolled students. According to , how many Black students were enrolled at PCC in Fall 2016?   Racial breakdown of PCC students in Fall 2016   a pie chart that indicates white students are 68%; Hispanic students are 11%; Asian students are 8%; Black students are 6%; and students of other ethnicities make up 7%        After reading this word problem and the chart, we can translate the problem into what is of ? Let be the number of Black students enrolled at PCC in Fall 2016. We can set up and solve the equation: There was not much solving to do, since the variable we wanted to isolate was already isolated.  As of Fall 2016, Portland Community College had Black students. Note: this is not likely to be perfectly accurate, because the numbers we started with ( enrolled students and ) appear to be rounded.       The bar graph in displays how many students are in each class at a local high school. According to the bar graph, what percentage of the school's student population is freshman?   Number of students at a high school by class   a bar graph indicating there are 134 freshmen, 103 sophomores, 96 juniors, and 86 seniors        The school's total number of students is: With that calculated, we can translate the main question:    What percentage of the school's student population is freshman?    into:    What percent of is ?    Using to represent the unknown quantity, we write and solve the equation:   Approximately of the school's student population is freshman.     When solving equations that do not have context we state the solution set. However, when solving an equation or inequality that arises in an application problem (such as the context of the high school in ), it makes more sense to summarize our result with a sentence, using the context of the application. This allows us to communicate the full result, including appropriate units.     Carlos just received his monthly paycheck. His gross pay (the amount before taxes and related things are deducted) was , and his total tax and other deductions was . The rest was deposited directly into his checking account. What percent of his gross pay went into his checking account?    Train yourself to read the word problem and not try to pick out numbers to substitute into formulas. You may find it helps to read the problem over to yourself three or more times before you attempt to solve it. There are three dollar amounts to discuss in this problem, and many students fall into a trap of using the wrong values in the wrong places. There is the gross pay, the amount that was deducted, and the amount that was deposited. Only two of these have been explicitly written down. We need to use subtraction to find the dollar amount that was deposited:   Now, we can translate the main question:    What percent of his gross pay went into his checking account?    into:    What percent of is ?    Using to represent the unknown quantity, we write and solve the equation:   Approximately of his gross pay went into his checking account.      Alexis sells cars for a living, and earns of the dealership s sales profit as commission. In a certain month, she plans to earn in commissions. How much total sales profit does she need to bring in for the dealership?  Alexis needs to bring in in sales profit.        Be careful that you do not calculate of That might be what a student would do who doesn t thoroughly read the question. If you have ever trained yourself to quickly find numbers in word problems and substitute them into formulas, you must unlearn this. The issue is that is not the dealership s sales profit, and if you mistakenly multiply then makes no sense as an answer to this question. How could Alexis bring in only of sales profit, and earn in commission?  We can translate the problem into is of what? Letting be the sales profit for the dealership (in dollars), we can write and solve the equation:   To earn in commission, Alexis needs to bring in approximately of sales profit for the dealership.          According to e-Literate , the average cost of a new college textbook has been increasing. Find the percentage of increase from 2009 to 2013.   Average New Textbook Price from 2009 to 2013   a plot over time indicating average textbook price was $62.00 in 2009; $65.11 in 2010; $68.87 in 2011; $72.11 in 2012; and $79.00 in 2013        The actual amount of increase from 2009 to 2013 was , dollars. We need to answer the question is what percent of ? Note that we are comparing the to , not to . In these situations where one amount is the earlier amount, the earlier original amount is the one that represents . Let represent the percent of increase. We can set up and solve the equation:   From 2009 to 2013, the average cost of a new textbook increased by approximately .      Last month, a full tank of gas for a car you drive cost you You hear on the news that gas prices have risen by By how much, in dollars, has the cost of a full tank gone up?  A full tank of gas now costs more than it did last month.        Let represent the amount of increase. We can set up and solve the equation:   A full tank now costs more than it did last month.         Enrollment at your neighborhood's elementary school two years ago was children. After a increase last year and a decrease this year, what's the new enrollment?    It is tempting to think that increasing by and then decreasing by would bring the enrollment right back to where it started. But the decrease applies to the enrollment after it had already increased. So that decrease is going to translate to more students lost than were gained.  Using as corresponding to the enrollment from two years ago, the enrollment last year was of that. But then using as corresponding to the enrollment from last year, the enrollment this year was of that. So we can set up and solve the equation   We would round and report that enrollment is now students. (The percentage rise and fall of were probably rounded in the first place, which is why we did not end up with a whole number.)       Exercises for this section are available in the HTML version of this book.     "
+  "body": " Percentages   Percent-related problems arise in everyday life. This section reviews some basic calculations Percent that can be made with percentages.   Alternative Video Lesson      Converting Percents, Decimals, and English  In many situations when translating from English to math, the word of translates as multiplication. Also the word is (and many similar words related to to be ) translates to an equal sign. For example:   Here is another example, this time involving a percentage. We know that is Percent symbol  of , so we can say: Symbol percent      Translate each statement involving percents below into an equation. Define any variables used. (Solving these equations is an exercise).   How much is of ?     is what percent of ?     is of how much money?       Each question can be translated from English into a math equation by reading it slowly and looking for the right signals.   The word is means about the same thing as the equal sign. How much is a question phrase, and we can let be the unknown amount (in dollars). The word of translates to multiplication, as discussed earlier. So we have:     Let be the unknown value. We have: With this setup, is going to be a decimal value ( ) that you Percent as a decimal would translate into a percentage ( ).    Let be the unknown amount (in dollars). We have:         Solve each equation from .    How much is of   is .        is what percent of   is .        is of how much money?   is .              Setting up and Solving Percent Equations  An important skill for solving percent-related problems is to boil down a complicated word problem into a simple form like is of . Let's look at some further examples.     In Fall 2016, Portland Community College had enrolled students. According to , how many Black students were enrolled at PCC in Fall 2016?   Racial breakdown of PCC students in Fall 2016   a pie chart that indicates white students are 68%; Hispanic students are 11%; Asian students are 8%; Black students are 6%; and students of other ethnicities make up 7%        After reading this word problem and the chart, we can translate the problem into what is of ? Let be the number of Black students enrolled at PCC in Fall 2016. We can set up and solve the equation: There was not much solving to do, since the variable we wanted to isolate was already isolated.  As of Fall 2016, Portland Community College had Black students. Note: this is not likely to be perfectly accurate, because the numbers we started with ( enrolled students and ) appear to be rounded.       The bar graph in displays how many students are in each class at a local high school. According to the bar graph, what percentage of the school's student population is freshman?   Number of students at a high school by class   a bar graph indicating there are 134 freshmen, 103 sophomores, 96 juniors, and 86 seniors        The school's total number of students is: With that calculated, we can translate the main question:    What percentage of the school's student population is freshman?    into:    What percent of is ?    Using to represent the unknown quantity, we write and solve the equation:   Approximately of the school's student population is freshman.     When solving equations that do not have context we state the solution set. However, when solving an equation or inequality that arises in an application problem (such as the context of the high school in ), it makes more sense to summarize our result with a sentence, using the context of the application. This allows us to communicate the full result, including appropriate units.     Carlos just received his monthly paycheck. His gross pay (the amount before taxes and related things are deducted) was , and his total tax and other deductions was . The rest was deposited directly into his checking account. What percent of his gross pay went into his checking account?    Train yourself to read the word problem and not try to pick out numbers to substitute into formulas. You may find it helps to read the problem over to yourself three or more times before you attempt to solve it. There are three dollar amounts to discuss in this problem, and many students fall into a trap of using the wrong values in the wrong places. There is the gross pay, the amount that was deducted, and the amount that was deposited. Only two of these have been explicitly written down. We need to use subtraction to find the dollar amount that was deposited:   Now, we can translate the main question:    What percent of his gross pay went into his checking account?    into:    What percent of is ?    Using to represent the unknown quantity, we write and solve the equation:   Approximately of his gross pay went into his checking account.      Alexis sells cars for a living, and earns of the dealership s sales profit as commission. In a certain month, she plans to earn in commissions. How much total sales profit does she need to bring in for the dealership?  Alexis needs to bring in in sales profit.        Be careful that you do not calculate of That might be what a student would do who doesn t thoroughly read the question. If you have ever trained yourself to quickly find numbers in word problems and substitute them into formulas, you must unlearn this. The issue is that is not the dealership s sales profit, and if you mistakenly multiply then makes no sense as an answer to this question. How could Alexis bring in only of sales profit, and earn in commission?  We can translate the problem into is of what? Letting be the sales profit for the dealership (in dollars), we can write and solve the equation:   To earn in commission, Alexis needs to bring in approximately of sales profit for the dealership.          According to e-Literate , the average cost of a new college textbook has been increasing. Find the percentage of increase from 2009 to 2013.   Average New Textbook Price from 2009 to 2013   a plot over time indicating average textbook price was $62.00 in 2009; $65.11 in 2010; $68.87 in 2011; $72.11 in 2012; and $79.00 in 2013        The actual amount of increase from 2009 to 2013 was , dollars. We need to answer the question is what percent of ? Note that we are comparing the to , not to . In these situations where one amount is the earlier amount, the earlier original amount is the one that represents . Let represent the percent of increase. We can set up and solve the equation:   From 2009 to 2013, the average cost of a new textbook increased by approximately .      Last month, a full tank of gas for a car you drive cost you You hear on the news that gas prices have risen by By how much, in dollars, has the cost of a full tank gone up?  A full tank of gas now costs more than it did last month.        Let represent the amount of increase. We can set up and solve the equation:   A full tank now costs more than it did last month.         Enrollment at your neighborhood's elementary school two years ago was children. After a increase last year and a decrease this year, what's the new enrollment?    It is tempting to think that increasing by and then decreasing by would bring the enrollment right back to where it started. But the decrease applies to the enrollment after it had already increased. So that decrease is going to translate to more students lost than were gained.  Using as corresponding to the enrollment from two years ago, the enrollment last year was of that. But then using as corresponding to the enrollment from last year, the enrollment this year was of that. So we can set up and solve the equation   We would round and report that enrollment is now students. (The percentage rise and fall of were probably rounded in the first place, which is why we did not end up with a whole number.)        Review and Warmup    Write the following percentages as decimals.                       To change a percentage to a decimal, we move the decimal point to the left twice.           Write the following percentages as decimals.                       To change a percentage to a decimal, we move the decimal point to the left twice.           Write the following decimals as percentages.                       To change a decimal to a percentage, we move the decimal point to the right twice.           Write the following decimals as percentages.                       To change a decimal to a percentage, we move the decimal point to the right twice.           Write the following percentages as decimals.                                         To change a percentage to a decimal, we move the decimal to the left twice.             Write the following percentages as decimals.                                         To change a percentage to a decimal, we move the decimal to the left twice.               Write the following decimals as percentages.                                         To change a decimal to a percentage, we move the decimal point to the right twice.             Write the following decimals as percentages.                                         To change a decimal to a percentage, we move the decimal point to the right twice.             Write the following decimals as percentages.                                To change a decimal to a percentage, we move the decimal point to the right twice.            Write the following decimals as percentages.                                To change a decimal to a percentage, we move the decimal point to the right twice.            Write the following percentages as decimals.                                To change a percentage to a decimal, we move the decimal to the left twice.            Write the following percentages as decimals.                                To change a percentage to a decimal, we move the decimal to the left twice.            Basic Percentage Calculation    of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence ,    is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence ,    is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .         of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .           Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .         Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .         Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .         Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .         Answer with a percent.  is about of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is approximately of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to math should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is approximately of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is approximately of .         Answer with a percent.  is about of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is approximately of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to math should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is approximately of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is approximately of .         Applications    A town has registered residents. Among them, were Democrats, were Republicans. The rest were Independents. How many registered Independents live in this town?  There are registered Independent residents in this town.        It s given there are Democrats, Republicans, and the rest are Independents. Now we can use subtraction to find the percentage of registered Independent residents:   So there are Independents. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are registered Independent residents in this town.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are registered Independent residents in this town.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are registered Independent residents in this town.         A town has registered residents. Among them, were Democrats, were Republicans. The rest were Independents. How many registered Independents live in this town?  There are registered Independent residents in this town.        It s given there are Democrats, Republicans, and the rest are Independents. Now we can use subtraction to find the percentage of registered Independent residents:   So there are Independents. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are registered Independent residents in this town.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are registered Independent residents in this town.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are registered Independent residents in this town.         Joshua is paying a dinner bill of . Joshua plans to pay in tips. How much tip will Joshua pay?  Joshua will pay in tip.        This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Joshua will pay in tip.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Joshua will pay in tip.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Joshua will pay in tip.         Fabrienne is paying a dinner bill of . Fabrienne plans to pay in tips. How much tip will Fabrienne pay?  Fabrienne will pay in tip.        This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Fabrienne will pay in tip.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Fabrienne will pay in tip.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Fabrienne will pay in tip.         Alyson is paying a dinner bill of . Alyson plans to pay in tips. How much in total (including bill and tip) will Alyson pay?  Alyson will pay in total (including bill and tip).        First, we need to find how much tip Alyson paid. This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Alyson will pay in tip. In total, she will pay .  Alyson will pay in total (including bill and tip).   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Alyson will pay in tip. In total, she will pay .  Alyson will pay in total (including bill and tip).   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Alyson will pay in tip. In total, she will pay .  Alyson will pay in total (including bill and tip).         Parnell is paying a dinner bill of . Parnell plans to pay in tips. How much in total (including bill and tip) will Parnell pay?  Parnell will pay in total (including bill and tip).        First, we need to find how much tip Parnell paid. This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Parnell will pay in tip. In total, he will pay .  Parnell will pay in total (including bill and tip).   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Parnell will pay in tip. In total, he will pay .  Parnell will pay in total (including bill and tip).   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Parnell will pay in tip. In total, he will pay .  Parnell will pay in total (including bill and tip).         A watch s wholesale price was . The retailer marked up the price by . What s the watch s new price (markup price)?  The watch s markup price is .        First, we need to find the amount of increase in price. It s given that the watch s price was marked up by of its original price, .  The problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   The amount of price increase was , so the new price is .  So the watch s markup price is .         A watch s wholesale price was . The retailer marked up the price by . What s the watch s new price (markup price)?  The watch s markup price is .        First, we need to find the amount of increase in price. It s given that the watch s price was marked up by of its original price, .  The problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   The amount of price increase was , so the new price is .  So the watch s markup price is .         In the past few seasons basketball games, Sydney attempted free throws, and made of them. What percent of free throws did Sydney make?  Sydney made of free throws in the past few seasons.        This problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Sydney made of free throws in the past few seasons.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Sydney made of free throws in the past few seasons.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Sydney made of free throws in the past few seasons.         In the past few seasons basketball games, Kurt attempted free throws, and made of them. What percent of free throws did Kurt make?  Kurt made of free throws in the past few seasons.        This problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Kurt made of free throws in the past few seasons.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Kurt made of free throws in the past few seasons.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Kurt made of free throws in the past few seasons.         A painting is on sale at . Its original price was . What percentage is this off its original price?  The painting was off its original price.        The price changed from to , implying the markdown was .  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The painting was off its original price.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   The painting was off its original price.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   The painting was off its original price.         A painting is on sale at . Its original price was . What percentage is this off its original price?  The painting was off its original price.        The price changed from to , implying the markdown was .  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The painting was off its original price.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   The painting was off its original price.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   The painting was off its original price.         The pie chart represents a collector s collection of signatures from various artists.    If the collector has a total of signatures, there are signatures by Sting.        We can use subtraction to find the percent of Sting signatures:   So there are Sting signatures. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are signatures by Sting in this collection.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are signatures by Sting in this collection.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are signatures by Sting in this collection.         The pie chart represents a collector s collection of signatures from various artists.    If the collector has a total of signatures, there are signatures by Sting.        We can use subtraction to find the percent of Sting signatures:   So there are Sting signatures. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are signatures by Sting in this collection.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are signatures by Sting in this collection.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are signatures by Sting in this collection.         In the last election, of a county s residents, or people, turned out to vote. How many residents live in this county?  This county has residents.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   This county has residents.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   This county has residents.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   This county has residents.         In the last election, of a county s residents, or people, turned out to vote. How many residents live in this county?  This county has residents.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   This county has residents.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   This county has residents.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   This county has residents.         grams of pure alcohol was used to produce a bottle of alcohol solution. What is the weight of the solution in grams?  The alcohol solution weighs .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The alcohol solution weighs .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The alcohol solution weighs .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The alcohol solution weighs .         grams of pure alcohol was used to produce a bottle of alcohol solution. What is the weight of the solution in grams?  The alcohol solution weighs .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The alcohol solution weighs .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The alcohol solution weighs .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The alcohol solution weighs .         Carmen paid a dinner and left , or , in tips. How much was the original bill (without counting the tip)?  The original bill (not including the tip) was .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The original bill (not including the tip) was .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The original bill (not including the tip) was .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The original bill (not including the tip) was .         Sean paid a dinner and left , or , in tips. How much was the original bill (without counting the tip)?  The original bill (not including the tip) was .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The original bill (not including the tip) was .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The original bill (not including the tip) was .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The original bill (not including the tip) was .         Olivia sells cars for a living. Each month, she earns of base pay, plus a certain percentage of commission from her sales.  One month, Olivia made in sales, and earned a total of in that month (including base pay and commission). What percent commission did Olivia earn?  Olivia earned in commission.        Olivia s pay is made up of base pay and commission. In that month, Olivia earned a total of , with of base pay. This implies Olivia earned in commission, out of in sales.  Now the problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Olivia earned in commission.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Olivia earned in commission.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Olivia earned in commission.         Phil sells cars for a living. Each month, he earns of base pay, plus a certain percentage of commission from his sales.  One month, Phil made in sales, and earned a total of in that month (including base pay and commission). What percent commission did Phil earn?  Phil earned in commission.        Phil s pay is made up of base pay and commission. In that month, Phil earned a total of , with of base pay. This implies Phil earned in commission, out of in sales.  Now the problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Phil earned in commission.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Phil earned in commission.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Phil earned in commission.         The following is a nutrition fact label from a certain macaroni and cheese box.   The highlighted row means each serving of macaroni and cheese in this box contains of fat, which is of an average person s daily intake of fat. What s the recommended daily intake of fat for an average person?  The recommended daily intake of fat for an average person is .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The recommended daily intake of fat for an average person is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The recommended daily intake of fat for an average person is .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The recommended daily intake of fat for an average person is .         The following is a nutrition fact label from a certain macaroni and cheese box.   The highlighted row means each serving of macaroni and cheese in this box contains of fat, which is of an average person s daily intake of fat. What s the recommended daily intake of fat for an average person?  The recommended daily intake of fat for an average person is .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The recommended daily intake of fat for an average person is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The recommended daily intake of fat for an average person is .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The recommended daily intake of fat for an average person is .         A community college conducted a survey about the number of students riding each bus line available. The following bar graph is the result of the survey.   What percent of students ride Bus #1?  Approximately of students ride Bus #1.        First, we find the total number of students who participated in this survey:   Now, this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Approximately of students ride Bus #1.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Approximately of students ride Bus #1.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Approximately of students ride Bus #1.         A community college conducted a survey about the number of students riding each bus line available. The following bar graph is the result of the survey.   What percent of students ride Bus #1?  Approximately of students ride Bus #1.        First, we find the total number of students who participated in this survey:   Now, this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Approximately of students ride Bus #1.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Approximately of students ride Bus #1.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Approximately of students ride Bus #1.         Nina earned of interest from a mutual fund, which was of his total investment. How much money did Nina invest into this mutual fund?  Nina invested in this mutual fund.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Nina invested in this mutual fund.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   Nina invested in this mutual fund.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   Nina invested in this mutual fund.         Nenia earned of interest from a mutual fund, which was of his total investment. How much money did Nenia invest into this mutual fund?  Nenia invested in this mutual fund.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Nenia invested in this mutual fund.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   Nenia invested in this mutual fund.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   Nenia invested in this mutual fund.         A town has registered residents. Among them, there are Democrats and Republicans. The rest are Independents. What percentage of registered voters in this town are Independents?  In this town, of all registered voters are Independents.        Out of registered voters, there are Democrats and Republicans. This implies there are Independents.  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   In this town, of all registered voters are Independents.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   In this town, of all registered voters are Independents.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   In this town, of all registered voters are Independents.         A town has registered residents. Among them, there are Democrats and Republicans. The rest are Independents. What percentage of registered voters in this town are Independents?  In this town, of all registered voters are Independents.        Out of registered voters, there are Democrats and Republicans. This implies there are Independents.  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   In this town, of all registered voters are Independents.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   In this town, of all registered voters are Independents.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   In this town, of all registered voters are Independents.         Percent Increase\/Decrease    The population of cats in a shelter decreased from to . What is the percentage decrease of the shelter s cat population?  The percentage decrease is .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Next, since we started with cats, we need to ask: is what percent of ?  Assume is of , so out of corresponds to out of .   Method 1  We will use proportion to solve this problem.   The percentage decrease of the shelter s cat population is .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let be the unknown percentage, and let the decrease be (percent) of . That means:   The percentage decrease of the shelter s cat population is .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the shelter s cat population is .         The population of cats in a shelter decreased from to . What is the percentage decrease of the shelter s cat population?  The percentage decrease is .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Next, since we started with cats, we need to ask: is what percent of ?  Assume is of , so out of corresponds to out of .   Method 1  We will use proportion to solve this problem.   The percentage decrease of the shelter s cat population is .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let be the unknown percentage, and let the decrease be (percent) of . That means:   The percentage decrease of the shelter s cat population is .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the shelter s cat population is .         The population of cats in a shelter increased from to . What is the percentage increase of the shelter s cat population?  The percentage increase is approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of increase is , which is .  Next, since we started with cats, we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage increase of the shelter s cat population is approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the increase be (as a percent) of . That means:   The percentage increase of the shelter s cat population is approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage increase is approximately .  The percentage increase of the shelter s cat population is approximately .         The population of cats in a shelter increased from to . What is the percentage increase of the shelter s cat population?  The percentage increase is approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of increase is , which is .  Next, since we started with cats, we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage increase of the shelter s cat population is approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the increase be (as a percent) of . That means:   The percentage increase of the shelter s cat population is approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage increase is approximately .  The percentage increase of the shelter s cat population is approximately .         Last year, a small town s population was . This year, the population decreased to . What is the percentage decrease?  The percentage decrease of the town s population was approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Since the city s population was initially , we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage decrease of the town s population was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the decrease be (as a percent) of . That means:   The percentage decrease of the town s population was approximately .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the town s population was approximately .         Last year, a small town s population was . This year, the population decreased to . What is the percentage decrease?  The percentage decrease of the town s population was approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Since the city s population was initially , we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage decrease of the town s population was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the decrease be (as a percent) of . That means:   The percentage decrease of the town s population was approximately .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the town s population was approximately .         Your salary used to be per year.  You had to take a pay cut. After the cut, your salary was per year.  Then, you earned a raise. After the raise, your salary was per year.              Question 1  Your original salary was per year. The amount of cut was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of increase:   After the cut, your salary became dollars per year.   Question 2  Next, the amount of pay raise was of . Notice that it s incorrect to find of , because the annual salary has changed from to .  We will first use proportion to find the amount of pay cut. Assume the amount of pay cut was dollars. We have:   Or we can use the percentage formula to find the amount of pay cut:   After the raise, your salary became per year.  After a cut and a raise of the same rate, your salary decreased! This is because the rate of cut was based on a bigger salary, while the rate of raise was based on a smaller salary (after the cut).         Your salary used to be per year.  You had to take a pay cut. After the cut, your salary was per year.  Then, you earned a raise. After the raise, your salary was per year.              Question 1  Your original salary was per year. The amount of cut was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of increase:   After the cut, your salary became dollars per year.   Question 2  Next, the amount of pay raise was of . Notice that it s incorrect to find of , because the annual salary has changed from to .  We will first use proportion to find the amount of pay cut. Assume the amount of pay cut was dollars. We have:   Or we can use the percentage formula to find the amount of pay cut:   After the raise, your salary became per year.  After a cut and a raise of the same rate, your salary decreased! This is because the rate of cut was based on a bigger salary, while the rate of raise was based on a smaller salary (after the cut).         A house was bought two years ago at the price of . Each year, the house s value decreased by . What s the house s value this year?  The house s value this year is .        The house s value two years ago was . After one year, the house s value decreased by .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After one year, the house s value became .  After another year, the house s value decreased by another .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After two years, the house s value became .  The house s value this year is .         A house was bought two years ago at the price of . Each year, the house s value decreased by . What s the house s value this year?  The house s value this year is .        The house s value two years ago was . After one year, the house s value decreased by .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After one year, the house s value became .  After another year, the house s value decreased by another .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After two years, the house s value became .  The house s value this year is .         This line graph shows a certain stock's price change over a few days.   From 11\/1 to 11\/5, what is the stock price s percentage change?  From 11\/1 to 11\/5, the stock price s percentage change was approximately .        To calculate the percentage increase\/decrease, first we find the amount of decrease\/decrease, and then we find this increase\/decrease is what percent of the original value.  In this problem, the stock s price was on 11\/1, and the price changed to on 11\/5. Their difference was , so the amount of change was .  Next, we need to find: is what percent of the original value, .   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the change be (as a percent) of . That means:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage change was approximately .  From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .         This line graph shows a certain stock's price change over a few days.   From 11\/1 to 11\/5, what is the stock price s percentage change?  From 11\/1 to 11\/5, the stock price s percentage change was approximately .        To calculate the percentage increase\/decrease, first we find the amount of decrease\/decrease, and then we find this increase\/decrease is what percent of the original value.  In this problem, the stock s price was on 11\/1, and the price changed to on 11\/5. Their difference was , so the amount of change was .  Next, we need to find: is what percent of the original value, .   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the change be (as a percent) of . That means:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage change was approximately .  From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .         "
 },
 {
   "id": "section-percentages-2-2",
@@ -20395,13 +22267,661 @@ var ptx_lunr_docs = [
   "body": "  Enrollment at your neighborhood's elementary school two years ago was children. After a increase last year and a decrease this year, what's the new enrollment?    It is tempting to think that increasing by and then decreasing by would bring the enrollment right back to where it started. But the decrease applies to the enrollment after it had already increased. So that decrease is going to translate to more students lost than were gained.  Using as corresponding to the enrollment from two years ago, the enrollment last year was of that. But then using as corresponding to the enrollment from last year, the enrollment this year was of that. So we can set up and solve the equation   We would round and report that enrollment is now students. (The percentage rise and fall of were probably rounded in the first place, which is why we did not end up with a whole number.)   "
 },
 {
+  "id": "section-percentages-5-1-2",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-1-2",
+  "type": "Exercise",
+  "number": "A.4.3.1",
+  "title": "",
+  "body": "  Write the following percentages as decimals.                       To change a percentage to a decimal, we move the decimal point to the left twice.        "
+},
+{
+  "id": "section-percentages-5-1-3",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-1-3",
+  "type": "Exercise",
+  "number": "A.4.3.2",
+  "title": "",
+  "body": "  Write the following percentages as decimals.                       To change a percentage to a decimal, we move the decimal point to the left twice.        "
+},
+{
+  "id": "section-percentages-5-1-4",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-1-4",
+  "type": "Exercise",
+  "number": "A.4.3.3",
+  "title": "",
+  "body": "  Write the following decimals as percentages.                       To change a decimal to a percentage, we move the decimal point to the right twice.        "
+},
+{
+  "id": "section-percentages-5-1-5",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-1-5",
+  "type": "Exercise",
+  "number": "A.4.3.4",
+  "title": "",
+  "body": "  Write the following decimals as percentages.                       To change a decimal to a percentage, we move the decimal point to the right twice.        "
+},
+{
+  "id": "section-percentages-5-1-6",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-1-6",
+  "type": "Exercise",
+  "number": "A.4.3.5",
+  "title": "",
+  "body": "  Write the following percentages as decimals.                                         To change a percentage to a decimal, we move the decimal to the left twice.          "
+},
+{
+  "id": "section-percentages-5-1-7",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-1-7",
+  "type": "Exercise",
+  "number": "A.4.3.6",
+  "title": "",
+  "body": "  Write the following percentages as decimals.                                         To change a percentage to a decimal, we move the decimal to the left twice.          "
+},
+{
+  "id": "section-percentages-5-2-1",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-2-1",
+  "type": "Exercise",
+  "number": "A.4.3.7",
+  "title": "",
+  "body": "  Write the following decimals as percentages.                                         To change a decimal to a percentage, we move the decimal point to the right twice.          "
+},
+{
+  "id": "section-percentages-5-2-2",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-2-2",
+  "type": "Exercise",
+  "number": "A.4.3.8",
+  "title": "",
+  "body": "  Write the following decimals as percentages.                                         To change a decimal to a percentage, we move the decimal point to the right twice.          "
+},
+{
+  "id": "section-percentages-5-2-3",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-2-3",
+  "type": "Exercise",
+  "number": "A.4.3.9",
+  "title": "",
+  "body": "  Write the following decimals as percentages.                                To change a decimal to a percentage, we move the decimal point to the right twice.         "
+},
+{
+  "id": "section-percentages-5-2-4",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-2-4",
+  "type": "Exercise",
+  "number": "A.4.3.10",
+  "title": "",
+  "body": "  Write the following decimals as percentages.                                To change a decimal to a percentage, we move the decimal point to the right twice.         "
+},
+{
+  "id": "section-percentages-5-2-5",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-2-5",
+  "type": "Exercise",
+  "number": "A.4.3.11",
+  "title": "",
+  "body": "  Write the following percentages as decimals.                                To change a percentage to a decimal, we move the decimal to the left twice.         "
+},
+{
+  "id": "section-percentages-5-2-6",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-2-6",
+  "type": "Exercise",
+  "number": "A.4.3.12",
+  "title": "",
+  "body": "  Write the following percentages as decimals.                                To change a percentage to a decimal, we move the decimal to the left twice.         "
+},
+{
+  "id": "section-percentages-5-3-2",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-2",
+  "type": "Exercise",
+  "number": "A.4.3.13",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-3",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-3",
+  "type": "Exercise",
+  "number": "A.4.3.14",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-4",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-4",
+  "type": "Exercise",
+  "number": "A.4.3.15",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-5",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-5",
+  "type": "Exercise",
+  "number": "A.4.3.16",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-6",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-6",
+  "type": "Exercise",
+  "number": "A.4.3.17",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-7",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-7",
+  "type": "Exercise",
+  "number": "A.4.3.18",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   of is .   Method 3  In the sentence of is what,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-8",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-8",
+  "type": "Exercise",
+  "number": "A.4.3.19",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-9",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-9",
+  "type": "Exercise",
+  "number": "A.4.3.20",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-10",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-10",
+  "type": "Exercise",
+  "number": "A.4.3.21",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence ,    is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-11",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-11",
+  "type": "Exercise",
+  "number": "A.4.3.22",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence ,    is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-12",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-12",
+  "type": "Exercise",
+  "number": "A.4.3.23",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-3-13",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-3-13",
+  "type": "Exercise",
+  "number": "A.4.3.24",
+  "title": "",
+  "body": "  of is .         Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   of is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   of is .   Method 3  In the sentence of what is ,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   of is .      "
+},
+{
+  "id": "section-percentages-5-4-1",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-4-1",
+  "type": "Exercise",
+  "number": "A.4.3.25",
+  "title": "",
+  "body": "  Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .      "
+},
+{
+  "id": "section-percentages-5-4-2",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-4-2",
+  "type": "Exercise",
+  "number": "A.4.3.26",
+  "title": "",
+  "body": "  Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .      "
+},
+{
+  "id": "section-percentages-5-4-3",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-4-3",
+  "type": "Exercise",
+  "number": "A.4.3.27",
+  "title": "",
+  "body": "  Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .      "
+},
+{
+  "id": "section-percentages-5-4-4",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-4-4",
+  "type": "Exercise",
+  "number": "A.4.3.28",
+  "title": "",
+  "body": "  Answer with a percent.  is of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is of .      "
+},
+{
+  "id": "section-percentages-5-4-5",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-4-5",
+  "type": "Exercise",
+  "number": "A.4.3.29",
+  "title": "",
+  "body": "  Answer with a percent.  is about of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is approximately of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to math should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is approximately of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is approximately of .      "
+},
+{
+  "id": "section-percentages-5-4-6",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-4-6",
+  "type": "Exercise",
+  "number": "A.4.3.30",
+  "title": "",
+  "body": "  Answer with a percent.  is about of .         Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   is approximately of .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to math should help you remember the percentage formula.   Assume is (as a percent) of . We have:   is approximately of .   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   is approximately of .      "
+},
+{
+  "id": "section-percentages-5-5-2",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-2",
+  "type": "Exercise",
+  "number": "A.4.3.31",
+  "title": "",
+  "body": "  A town has registered residents. Among them, were Democrats, were Republicans. The rest were Independents. How many registered Independents live in this town?  There are registered Independent residents in this town.        It s given there are Democrats, Republicans, and the rest are Independents. Now we can use subtraction to find the percentage of registered Independent residents:   So there are Independents. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are registered Independent residents in this town.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are registered Independent residents in this town.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are registered Independent residents in this town.      "
+},
+{
+  "id": "section-percentages-5-5-3",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-3",
+  "type": "Exercise",
+  "number": "A.4.3.32",
+  "title": "",
+  "body": "  A town has registered residents. Among them, were Democrats, were Republicans. The rest were Independents. How many registered Independents live in this town?  There are registered Independent residents in this town.        It s given there are Democrats, Republicans, and the rest are Independents. Now we can use subtraction to find the percentage of registered Independent residents:   So there are Independents. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are registered Independent residents in this town.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are registered Independent residents in this town.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are registered Independent residents in this town.      "
+},
+{
+  "id": "section-percentages-5-5-4",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-4",
+  "type": "Exercise",
+  "number": "A.4.3.33",
+  "title": "",
+  "body": "  Joshua is paying a dinner bill of . Joshua plans to pay in tips. How much tip will Joshua pay?  Joshua will pay in tip.        This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Joshua will pay in tip.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Joshua will pay in tip.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Joshua will pay in tip.      "
+},
+{
+  "id": "section-percentages-5-5-5",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-5",
+  "type": "Exercise",
+  "number": "A.4.3.34",
+  "title": "",
+  "body": "  Fabrienne is paying a dinner bill of . Fabrienne plans to pay in tips. How much tip will Fabrienne pay?  Fabrienne will pay in tip.        This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Fabrienne will pay in tip.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Fabrienne will pay in tip.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Fabrienne will pay in tip.      "
+},
+{
+  "id": "section-percentages-5-5-6",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-6",
+  "type": "Exercise",
+  "number": "A.4.3.35",
+  "title": "",
+  "body": "  Alyson is paying a dinner bill of . Alyson plans to pay in tips. How much in total (including bill and tip) will Alyson pay?  Alyson will pay in total (including bill and tip).        First, we need to find how much tip Alyson paid. This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Alyson will pay in tip. In total, she will pay .  Alyson will pay in total (including bill and tip).   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Alyson will pay in tip. In total, she will pay .  Alyson will pay in total (including bill and tip).   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Alyson will pay in tip. In total, she will pay .  Alyson will pay in total (including bill and tip).      "
+},
+{
+  "id": "section-percentages-5-5-7",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-7",
+  "type": "Exercise",
+  "number": "A.4.3.36",
+  "title": "",
+  "body": "  Parnell is paying a dinner bill of . Parnell plans to pay in tips. How much in total (including bill and tip) will Parnell pay?  Parnell will pay in total (including bill and tip).        First, we need to find how much tip Parnell paid. This problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   Parnell will pay in tip. In total, he will pay .  Parnell will pay in total (including bill and tip).   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   Parnell will pay in tip. In total, he will pay .  Parnell will pay in total (including bill and tip).   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   Parnell will pay in tip. In total, he will pay .  Parnell will pay in total (including bill and tip).      "
+},
+{
+  "id": "section-percentages-5-5-8",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-8",
+  "type": "Exercise",
+  "number": "A.4.3.37",
+  "title": "",
+  "body": "  A watch s wholesale price was . The retailer marked up the price by . What s the watch s new price (markup price)?  The watch s markup price is .        First, we need to find the amount of increase in price. It s given that the watch s price was marked up by of its original price, .  The problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   The amount of price increase was , so the new price is .  So the watch s markup price is .      "
+},
+{
+  "id": "section-percentages-5-5-9",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-9",
+  "type": "Exercise",
+  "number": "A.4.3.38",
+  "title": "",
+  "body": "  A watch s wholesale price was . The retailer marked up the price by . What s the watch s new price (markup price)?  The watch s markup price is .        First, we need to find the amount of increase in price. It s given that the watch s price was marked up by of its original price, .  The problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   The amount of price increase was , so the new price is .  So the watch s markup price is .   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   The amount of price increase was , so the new price is .  So the watch s markup price is .      "
+},
+{
+  "id": "section-percentages-5-5-10",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-10",
+  "type": "Exercise",
+  "number": "A.4.3.39",
+  "title": "",
+  "body": "  In the past few seasons basketball games, Sydney attempted free throws, and made of them. What percent of free throws did Sydney make?  Sydney made of free throws in the past few seasons.        This problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Sydney made of free throws in the past few seasons.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Sydney made of free throws in the past few seasons.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Sydney made of free throws in the past few seasons.      "
+},
+{
+  "id": "section-percentages-5-5-11",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-11",
+  "type": "Exercise",
+  "number": "A.4.3.40",
+  "title": "",
+  "body": "  In the past few seasons basketball games, Kurt attempted free throws, and made of them. What percent of free throws did Kurt make?  Kurt made of free throws in the past few seasons.        This problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Kurt made of free throws in the past few seasons.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Kurt made of free throws in the past few seasons.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Kurt made of free throws in the past few seasons.      "
+},
+{
+  "id": "section-percentages-5-5-12",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-12",
+  "type": "Exercise",
+  "number": "A.4.3.41",
+  "title": "",
+  "body": "  A painting is on sale at . Its original price was . What percentage is this off its original price?  The painting was off its original price.        The price changed from to , implying the markdown was .  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The painting was off its original price.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   The painting was off its original price.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   The painting was off its original price.      "
+},
+{
+  "id": "section-percentages-5-5-13",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-13",
+  "type": "Exercise",
+  "number": "A.4.3.42",
+  "title": "",
+  "body": "  A painting is on sale at . Its original price was . What percentage is this off its original price?  The painting was off its original price.        The price changed from to , implying the markdown was .  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The painting was off its original price.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   The painting was off its original price.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   The painting was off its original price.      "
+},
+{
+  "id": "section-percentages-5-5-14",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-14",
+  "type": "Exercise",
+  "number": "A.4.3.43",
+  "title": "",
+  "body": "  The pie chart represents a collector s collection of signatures from various artists.    If the collector has a total of signatures, there are signatures by Sting.        We can use subtraction to find the percent of Sting signatures:   So there are Sting signatures. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are signatures by Sting in this collection.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are signatures by Sting in this collection.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are signatures by Sting in this collection.      "
+},
+{
+  "id": "section-percentages-5-5-15",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-15",
+  "type": "Exercise",
+  "number": "A.4.3.44",
+  "title": "",
+  "body": "  The pie chart represents a collector s collection of signatures from various artists.    If the collector has a total of signatures, there are signatures by Sting.        We can use subtraction to find the percent of Sting signatures:   So there are Sting signatures. Now this problem can be boiled down to this question: What is of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume of is , so out of corresponds to out of .  We will write and solve the proportion:   There are signatures by Sting in this collection.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: What is of ? Assume is of . We have:   There are signatures by Sting in this collection.   Method 3  In the sentence What is of ,    what is the percentage ,    is the rate ,    is the base (following the word of ).    By the formula , we do a multiplication to solve the problem:   There are signatures by Sting in this collection.      "
+},
+{
+  "id": "section-percentages-5-5-16",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-16",
+  "type": "Exercise",
+  "number": "A.4.3.45",
+  "title": "",
+  "body": "  In the last election, of a county s residents, or people, turned out to vote. How many residents live in this county?  This county has residents.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   This county has residents.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   This county has residents.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   This county has residents.      "
+},
+{
+  "id": "section-percentages-5-5-17",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-17",
+  "type": "Exercise",
+  "number": "A.4.3.46",
+  "title": "",
+  "body": "  In the last election, of a county s residents, or people, turned out to vote. How many residents live in this county?  This county has residents.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   This county has residents.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   This county has residents.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   This county has residents.      "
+},
+{
+  "id": "section-percentages-5-5-18",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-18",
+  "type": "Exercise",
+  "number": "A.4.3.47",
+  "title": "",
+  "body": "  grams of pure alcohol was used to produce a bottle of alcohol solution. What is the weight of the solution in grams?  The alcohol solution weighs .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The alcohol solution weighs .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The alcohol solution weighs .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The alcohol solution weighs .      "
+},
+{
+  "id": "section-percentages-5-5-19",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-19",
+  "type": "Exercise",
+  "number": "A.4.3.48",
+  "title": "",
+  "body": "  grams of pure alcohol was used to produce a bottle of alcohol solution. What is the weight of the solution in grams?  The alcohol solution weighs .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The alcohol solution weighs .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The alcohol solution weighs .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The alcohol solution weighs .      "
+},
+{
+  "id": "section-percentages-5-5-20",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-20",
+  "type": "Exercise",
+  "number": "A.4.3.49",
+  "title": "",
+  "body": "  Carmen paid a dinner and left , or , in tips. How much was the original bill (without counting the tip)?  The original bill (not including the tip) was .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The original bill (not including the tip) was .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The original bill (not including the tip) was .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The original bill (not including the tip) was .      "
+},
+{
+  "id": "section-percentages-5-5-21",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-21",
+  "type": "Exercise",
+  "number": "A.4.3.50",
+  "title": "",
+  "body": "  Sean paid a dinner and left , or , in tips. How much was the original bill (without counting the tip)?  The original bill (not including the tip) was .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The original bill (not including the tip) was .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The original bill (not including the tip) was .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The original bill (not including the tip) was .      "
+},
+{
+  "id": "section-percentages-5-5-22",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-22",
+  "type": "Exercise",
+  "number": "A.4.3.51",
+  "title": "",
+  "body": "  Olivia sells cars for a living. Each month, she earns of base pay, plus a certain percentage of commission from her sales.  One month, Olivia made in sales, and earned a total of in that month (including base pay and commission). What percent commission did Olivia earn?  Olivia earned in commission.        Olivia s pay is made up of base pay and commission. In that month, Olivia earned a total of , with of base pay. This implies Olivia earned in commission, out of in sales.  Now the problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Olivia earned in commission.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Olivia earned in commission.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Olivia earned in commission.      "
+},
+{
+  "id": "section-percentages-5-5-23",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-23",
+  "type": "Exercise",
+  "number": "A.4.3.52",
+  "title": "",
+  "body": "  Phil sells cars for a living. Each month, he earns of base pay, plus a certain percentage of commission from his sales.  One month, Phil made in sales, and earned a total of in that month (including base pay and commission). What percent commission did Phil earn?  Phil earned in commission.        Phil s pay is made up of base pay and commission. In that month, Phil earned a total of , with of base pay. This implies Phil earned in commission, out of in sales.  Now the problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Phil earned in commission.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Phil earned in commission.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Phil earned in commission.      "
+},
+{
+  "id": "section-percentages-5-5-24",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-24",
+  "type": "Exercise",
+  "number": "A.4.3.53",
+  "title": "",
+  "body": "  The following is a nutrition fact label from a certain macaroni and cheese box.   The highlighted row means each serving of macaroni and cheese in this box contains of fat, which is of an average person s daily intake of fat. What s the recommended daily intake of fat for an average person?  The recommended daily intake of fat for an average person is .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The recommended daily intake of fat for an average person is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The recommended daily intake of fat for an average person is .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The recommended daily intake of fat for an average person is .      "
+},
+{
+  "id": "section-percentages-5-5-25",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-25",
+  "type": "Exercise",
+  "number": "A.4.3.54",
+  "title": "",
+  "body": "  The following is a nutrition fact label from a certain macaroni and cheese box.   The highlighted row means each serving of macaroni and cheese in this box contains of fat, which is of an average person s daily intake of fat. What s the recommended daily intake of fat for an average person?  The recommended daily intake of fat for an average person is .        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The recommended daily intake of fat for an average person is .   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   The recommended daily intake of fat for an average person is .   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   The recommended daily intake of fat for an average person is .      "
+},
+{
+  "id": "section-percentages-5-5-26",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-26",
+  "type": "Exercise",
+  "number": "A.4.3.55",
+  "title": "",
+  "body": "  A community college conducted a survey about the number of students riding each bus line available. The following bar graph is the result of the survey.   What percent of students ride Bus #1?  Approximately of students ride Bus #1.        First, we find the total number of students who participated in this survey:   Now, this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Approximately of students ride Bus #1.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Approximately of students ride Bus #1.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Approximately of students ride Bus #1.      "
+},
+{
+  "id": "section-percentages-5-5-27",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-27",
+  "type": "Exercise",
+  "number": "A.4.3.56",
+  "title": "",
+  "body": "  A community college conducted a survey about the number of students riding each bus line available. The following bar graph is the result of the survey.   What percent of students ride Bus #1?  Approximately of students ride Bus #1.        First, we find the total number of students who participated in this survey:   Now, this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Approximately of students ride Bus #1.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   Approximately of students ride Bus #1.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   Approximately of students ride Bus #1.      "
+},
+{
+  "id": "section-percentages-5-5-28",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-28",
+  "type": "Exercise",
+  "number": "A.4.3.57",
+  "title": "",
+  "body": "  Nina earned of interest from a mutual fund, which was of his total investment. How much money did Nina invest into this mutual fund?  Nina invested in this mutual fund.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Nina invested in this mutual fund.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   Nina invested in this mutual fund.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   Nina invested in this mutual fund.      "
+},
+{
+  "id": "section-percentages-5-5-29",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-29",
+  "type": "Exercise",
+  "number": "A.4.3.58",
+  "title": "",
+  "body": "  Nenia earned of interest from a mutual fund, which was of his total investment. How much money did Nenia invest into this mutual fund?  Nenia invested in this mutual fund.        This problem can be boiled down to this question: is of what? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem. Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   Nenia invested in this mutual fund.   Method 2  We will use the percentage formula to solve this problem. This translation from English to math may help you remember the percentage formula.   The question is: is of what? Assume is of . We have:   Nenia invested in this mutual fund.   Method 3  In the sentence is of what,    is the percentage ,    is the rate ,    what is the base (following the word of ).    By the formula , we do a division to solve the problem:   Nenia invested in this mutual fund.      "
+},
+{
+  "id": "section-percentages-5-5-30",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-30",
+  "type": "Exercise",
+  "number": "A.4.3.59",
+  "title": "",
+  "body": "  A town has registered residents. Among them, there are Democrats and Republicans. The rest are Independents. What percentage of registered voters in this town are Independents?  In this town, of all registered voters are Independents.        Out of registered voters, there are Democrats and Republicans. This implies there are Independents.  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   In this town, of all registered voters are Independents.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   In this town, of all registered voters are Independents.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   In this town, of all registered voters are Independents.      "
+},
+{
+  "id": "section-percentages-5-5-31",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-5-31",
+  "type": "Exercise",
+  "number": "A.4.3.60",
+  "title": "",
+  "body": "  A town has registered residents. Among them, there are Democrats and Republicans. The rest are Independents. What percentage of registered voters in this town are Independents?  In this town, of all registered voters are Independents.        Out of registered voters, there are Democrats and Republicans. This implies there are Independents.  Now this problem can be boiled down to this question: is what percent of ? We will show multiple methods to solve this problem.   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   In this town, of all registered voters are Independents.   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Assume is (as a percent) of . We have:   In this town, of all registered voters are Independents.   Method 3  In the sentence is what percent of ,    is the percentage ,    what percent is the rate ,    is the base (following the word of ).    By the formula , we do a division to solve the problem:   In this town, of all registered voters are Independents.      "
+},
+{
+  "id": "section-percentages-5-6-2",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-2",
+  "type": "Exercise",
+  "number": "A.4.3.61",
+  "title": "",
+  "body": "  The population of cats in a shelter decreased from to . What is the percentage decrease of the shelter s cat population?  The percentage decrease is .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Next, since we started with cats, we need to ask: is what percent of ?  Assume is of , so out of corresponds to out of .   Method 1  We will use proportion to solve this problem.   The percentage decrease of the shelter s cat population is .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let be the unknown percentage, and let the decrease be (percent) of . That means:   The percentage decrease of the shelter s cat population is .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the shelter s cat population is .      "
+},
+{
+  "id": "section-percentages-5-6-3",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-3",
+  "type": "Exercise",
+  "number": "A.4.3.62",
+  "title": "",
+  "body": "  The population of cats in a shelter decreased from to . What is the percentage decrease of the shelter s cat population?  The percentage decrease is .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Next, since we started with cats, we need to ask: is what percent of ?  Assume is of , so out of corresponds to out of .   Method 1  We will use proportion to solve this problem.   The percentage decrease of the shelter s cat population is .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let be the unknown percentage, and let the decrease be (percent) of . That means:   The percentage decrease of the shelter s cat population is .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the shelter s cat population is .      "
+},
+{
+  "id": "section-percentages-5-6-4",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-4",
+  "type": "Exercise",
+  "number": "A.4.3.63",
+  "title": "",
+  "body": "  The population of cats in a shelter increased from to . What is the percentage increase of the shelter s cat population?  The percentage increase is approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of increase is , which is .  Next, since we started with cats, we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage increase of the shelter s cat population is approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the increase be (as a percent) of . That means:   The percentage increase of the shelter s cat population is approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage increase is approximately .  The percentage increase of the shelter s cat population is approximately .      "
+},
+{
+  "id": "section-percentages-5-6-5",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-5",
+  "type": "Exercise",
+  "number": "A.4.3.64",
+  "title": "",
+  "body": "  The population of cats in a shelter increased from to . What is the percentage increase of the shelter s cat population?  The percentage increase is approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of increase is , which is .  Next, since we started with cats, we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage increase of the shelter s cat population is approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the increase be (as a percent) of . That means:   The percentage increase of the shelter s cat population is approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage increase is approximately .  The percentage increase of the shelter s cat population is approximately .      "
+},
+{
+  "id": "section-percentages-5-6-6",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-6",
+  "type": "Exercise",
+  "number": "A.4.3.65",
+  "title": "",
+  "body": "  Last year, a small town s population was . This year, the population decreased to . What is the percentage decrease?  The percentage decrease of the town s population was approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Since the city s population was initially , we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage decrease of the town s population was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the decrease be (as a percent) of . That means:   The percentage decrease of the town s population was approximately .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the town s population was approximately .      "
+},
+{
+  "id": "section-percentages-5-6-7",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-7",
+  "type": "Exercise",
+  "number": "A.4.3.66",
+  "title": "",
+  "body": "  Last year, a small town s population was . This year, the population decreased to . What is the percentage decrease?  The percentage decrease of the town s population was approximately .        To calculate the percentage increase\/decrease, first we find the amount of increase\/decrease by doing a simple subtraction calculation, and then we find the percentage increase\/decrease.  In this problem, the amount of decrease is .  Since the city s population was initially , we need to ask: is what percent of ?   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   The percentage decrease of the town s population was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the decrease be (as a percent) of . That means:   The percentage decrease of the town s population was approximately .   Method 3  We first divide the new number by the original number :   So the new number is of the original number, implying the percentage decrease is .  The percentage decrease of the town s population was approximately .      "
+},
+{
+  "id": "section-percentages-5-6-8",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-8",
+  "type": "Exercise",
+  "number": "A.4.3.67",
+  "title": "",
+  "body": "  Your salary used to be per year.  You had to take a pay cut. After the cut, your salary was per year.  Then, you earned a raise. After the raise, your salary was per year.              Question 1  Your original salary was per year. The amount of cut was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of increase:   After the cut, your salary became dollars per year.   Question 2  Next, the amount of pay raise was of . Notice that it s incorrect to find of , because the annual salary has changed from to .  We will first use proportion to find the amount of pay cut. Assume the amount of pay cut was dollars. We have:   Or we can use the percentage formula to find the amount of pay cut:   After the raise, your salary became per year.  After a cut and a raise of the same rate, your salary decreased! This is because the rate of cut was based on a bigger salary, while the rate of raise was based on a smaller salary (after the cut).      "
+},
+{
+  "id": "section-percentages-5-6-9",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-9",
+  "type": "Exercise",
+  "number": "A.4.3.68",
+  "title": "",
+  "body": "  Your salary used to be per year.  You had to take a pay cut. After the cut, your salary was per year.  Then, you earned a raise. After the raise, your salary was per year.              Question 1  Your original salary was per year. The amount of cut was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of increase:   After the cut, your salary became dollars per year.   Question 2  Next, the amount of pay raise was of . Notice that it s incorrect to find of , because the annual salary has changed from to .  We will first use proportion to find the amount of pay cut. Assume the amount of pay cut was dollars. We have:   Or we can use the percentage formula to find the amount of pay cut:   After the raise, your salary became per year.  After a cut and a raise of the same rate, your salary decreased! This is because the rate of cut was based on a bigger salary, while the rate of raise was based on a smaller salary (after the cut).      "
+},
+{
+  "id": "section-percentages-5-6-10",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-10",
+  "type": "Exercise",
+  "number": "A.4.3.69",
+  "title": "",
+  "body": "  A house was bought two years ago at the price of . Each year, the house s value decreased by . What s the house s value this year?  The house s value this year is .        The house s value two years ago was . After one year, the house s value decreased by .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After one year, the house s value became .  After another year, the house s value decreased by another .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After two years, the house s value became .  The house s value this year is .      "
+},
+{
+  "id": "section-percentages-5-6-11",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-11",
+  "type": "Exercise",
+  "number": "A.4.3.70",
+  "title": "",
+  "body": "  A house was bought two years ago at the price of . Each year, the house s value decreased by . What s the house s value this year?  The house s value this year is .        The house s value two years ago was . After one year, the house s value decreased by .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After one year, the house s value became .  After another year, the house s value decreased by another .  The amount of decrease was of . There are two methods to find this amount.  We can use proportion. Let dollars be the amount of decrease, then we have:   Or we can use the percentage formula to find the amount of decrease:   After two years, the house s value became .  The house s value this year is .      "
+},
+{
+  "id": "section-percentages-5-6-12",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-12",
+  "type": "Exercise",
+  "number": "A.4.3.71",
+  "title": "",
+  "body": "  This line graph shows a certain stock's price change over a few days.   From 11\/1 to 11\/5, what is the stock price s percentage change?  From 11\/1 to 11\/5, the stock price s percentage change was approximately .        To calculate the percentage increase\/decrease, first we find the amount of decrease\/decrease, and then we find this increase\/decrease is what percent of the original value.  In this problem, the stock s price was on 11\/1, and the price changed to on 11\/5. Their difference was , so the amount of change was .  Next, we need to find: is what percent of the original value, .   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the change be (as a percent) of . That means:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage change was approximately .  From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .      "
+},
+{
+  "id": "section-percentages-5-6-13",
+  "level": "2",
+  "url": "section-percentages.html#section-percentages-5-6-13",
+  "type": "Exercise",
+  "number": "A.4.3.72",
+  "title": "",
+  "body": "  This line graph shows a certain stock's price change over a few days.   From 11\/1 to 11\/5, what is the stock price s percentage change?  From 11\/1 to 11\/5, the stock price s percentage change was approximately .        To calculate the percentage increase\/decrease, first we find the amount of decrease\/decrease, and then we find this increase\/decrease is what percent of the original value.  In this problem, the stock s price was on 11\/1, and the price changed to on 11\/5. Their difference was , so the amount of change was .  Next, we need to find: is what percent of the original value, .   Method 1  We will use proportion to solve this problem.  Assume is of , so out of corresponds to out of .  We will write and solve the proportion:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 2  We will use the percentage formula to solve this problem.  This translation from English to may should help you remember the percentage formula.   Let the change be (as a percent) of . That means:   From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .   Method 3  We first divide the new number by the original number :   So the new number is approximately of the original number, implying the percentage change was approximately .  From 11\/1 to 11\/5, the percentage change in the stock s value was approximately .      "
+},
+{
   "id": "section-order-of-operations",
   "level": "1",
   "url": "section-order-of-operations.html",
   "type": "Section",
   "number": "A.5",
   "title": "Order of Operations",
-  "body": " Order of Operations   When you write something down, it's important that the people who read it will understand what you actually meant. But language can be ambiguous. If we say in English, two times three squared , do we mean that:    is multiplied by , and then the result is squared? That would mean first we have , and then we square to end with .    Or that is multiplied by three squared ? That would mean first we square to get , and then we multiply by to end with .   So it makes a difference, and the English phrase two times three squared is arguably ambiguous.  English is allowed to be ambiguous. But math needs to be unambiguous and mean the same thing for everyone who reads it. So for this reason, there are some rules that we've all agreed to that control what a math expression really means. These rules are called the order of operations , which we review here.   Alternative Video Lesson      Grouping Symbols  Consider the expression . There are two math operations here: at some point two things will be multiplied, and at some point something will be raised to a power. The result depends on which operation you decide to do first: If you multiply , and then square the result, you end with . If you square , and then multiply that result by , you end with . So if we want all people everywhere to interpret in the same way, then only one of these can be correct.  One tool that we have to clearly tell readers which thing to do first is a pair of grouping symbols, like parentheses and brackets. If you intend to do the multiplication first, then writing clearly tells your reader to do that. And if you intend to execute the power first, then writing clearly tells your reader to do that.  To visualize the difference between or , consider these garden plots:   3 is squared, then doubled:   two squares, side by side; each square is labeled as 3 yd wide and 3 yd high, and labeled as having area 9 yd^2     3 is doubled, then squared:   a square whose width is labeled as 2*3 yd = 6 yd wide and whose height is also 6 yd; the square's area is labeled as being area 36 yd^2      If we find , we have the area of one of the small square garden plots on the left. Then if we double that, we have , the area of the entire left garden plot.  But if we find , then first we are doubling . So we are getting the area of a large square garden plot whose sides are twice as long. We end up with the area of the entire garden plot on the right.  The point is that these amounts are different.    Calculate the value of respecting the order that the grouping symbols are telling you to execute the arithmetic operations.        The grouping symbols tell us what to work on first. In this exercise, we have grouping symbols within grouping symbols, so any operation in there (the addition) should be executed first:          Order of Operations  If math expressions used grouping symbols for every arithmetic operation, we wouldn't need order of operations . Some computer systems work that way, requiring the use of grouping symbols all the time. But it is more common to allow math expressions that don't have grouping symbols everywhere, like . Should the addition be done first, or should the multiplication be done first? We have a set of rules the world has agreed to, known as the order of operations . They tell us what to do first.  The order of operations is nothing more than an agreement that we all have made to prioritize doing arithmetic operations in a certain order.   Order of Operations  Order of operations    (P)arentheses and other grouping symbols  Symbol grouping  Grouping symbol  Grouping symbols group the expression inside them, and the arithmetic within that group needs to be done first.    (E)xponentiation  After grouping symbols, exponentiation has the highest priority. Raise things to powers before doing any other arithmetic.    (M)ultiplication, (D)ivision, and Negation  After all exponentiation is done, start doing multiplication, division, and negation. These things all have equal priority. If there are more than one of them in your expression, do these things in order from left to right as you would naturally read the expression.    (A)ddition and (S)ubtraction  After all other arithmetic is done, addition and subtraction are all that is left. They have equal priority. If there are more than one of them in your expression, do these things in order from left to right as you would naturally read the expression.     To help remember the order of operations, consider the acronym PEMDAS . You might use mnemonic devices to help remember this such as Please Excuse My Dear Aunt Sally , People Eat More Donuts After School , etc.  We'll start with a few examples that only invoke a few operations each.   Use the order of operations to simplify the following expressions.    . With this expression, we have addition and multiplication. The order of operations says the multiplication has higher priority, so do that first:      . According to the order of operations, the first thing to do is the division. After that, we'll apply the addition and subtraction working left to right:      . This expression only has subtraction and addition. These operations tie for priority (even though A comes before S in PEMDAS ). So we work left to right to do them:      . This expression has only division and multiplication. Again, we have two operations that tie for priority, so we do them in order from left to right:      . Here we have addition inside parentheses, and an exponent of outside. We must do the arithmetic inside the parentheses first:      . This expression has multiplication and an exponent. There are parentheses, but no operation inside them. Parentheses used this way are just to make it clear that the and are separate numbers, not to be confused with the number . Exponentiation has the higher priority, so we'll do that part first, and then multiply:        There are several different ways to write multiplication. We can use the symbols , , and to mean multiplication. We can also write two things right next to each other with no symbol in between them to mean multiplication. That is what is happening in Item , where the is written right next to the with no symbol in between.  Using a symbol for multiplication is called explicit multiplication and not writing Multiplication explicit any symbol at all is called implicit multiplication . For this textbook, explicit and Multiplication implicit implicit multiplication have the same priority in the order of operations. However there are some conventions out in the real world where implicit multiplication has a higher priority in the order of operations than explicit multiplication. You may have seen memes with expressions like that play on how the real world has more than one convention for the order of operations.    Practice with order of operations   Simplify this expression one step at a time, using the order of operations.                                     Simplify        With the expression we ll simplify what s inside the parentheses according to the order of operations, and then take divided by that expression as our last step:          Simplify        The expression has two sets of parentheses, so our first step will be to simplify what s inside each of those first according to the order of operations. Once we ve done that, we ll apply the exponent and then finally divide:          Absolute Value and Implied Grouping  Grouping symbols are more than just parentheses and brackets. Each of the following operations implies some grouping.     Absolute Value Bars  Absolute value implied grouping  Absolute value bars group the expression inside just like a set of parentheses would. In the expression , the first thing to do is subtract since that is inside the absolute value bars.    Radicals  Radical implied grouping  The same is true with a radical symbol. Everything inside the radical is grouped. For example with , the first arithmetic to do is subtract .    Fraction Bars  Fraction implied grouping  A fraction bar can create two groups, one in the numerator and one in the denominator. With the expression , the first arithmetic to take care of is adding and subtracting . These two groups can be worked on separately in any order.    Exponents  Exponent implied grouping  Content that is inside an exponent is treated as one group, as with . In that example, the first arithmetic to take care of is multiplying .     Each of these implied groupings also ask you to do something once the arithmetic on the inside is completed. Actually taking the absolute value or the square root, perhaps. Doing the division in the case of a fraction. Raising something to a power. But before doing those things, all of the arithmetic inside the groups should be take care of.   Use the order of operations to simplify the following expressions.    . The absolute value bars group the so we must do that subtraction first. Then we take the absolute value and continue: It would be a mistake to subtract first, because that is multiplied by the . So subtracting would violate the order of operations.     . The radical is grouping , which must be simplified first. Then we take the square root and continue:      . We recognize that the fraction bar is creating two groups. We should simplify the numerator and denominator separately according to the order of operations, and proceed from there:       Implied Grouping   Use the order of operations to evaluate         We start by identifying the innermost, highest priority operations:          Simplify        To simplify this expression, the first thing we want to recognize is the role of the main fraction bar, which groups the numerator and denominator. This implies we ll simplify the numerator and denominator separately according to the order of operations, and then reduce the fraction that results:          Understanding versus  We noted in the order of operations that using the minus sign to negate a number has the same priority as multiplication and division.  How would you write a math expression that takes the number and squares it? Is it OK to write ? How about ?  These expressions mean very different things. The second option, is squaring the number . The parentheses make this clear. The result is .  The first expression is different. There are two actions here: a negation and exponentiation. According to the order of operations, the exponentiation has higher priority, so we should do first. and this is not the same as , which is positive  .   Negative Numbers Raised to Powers  You may find yourself needing to raise a negative number to a power, and using a calculator to do the work for you. If you do not understand the issue described above, then you may get incorrect results.   Entering -4^2 into a calculator or computer will result in .    Entering (-4)^2 into a calculator or computer will result in .   Try entering these into your own calculator.   Negating and Raising to Powers   Compute the following. In each part, the first expression asks you to exponentiate and then negate the result. The second expression has a negative number raised to a power.   and          and   and          and   and          and       You might notice in that and each have the same result, . It's true that the results are the same, but the two expressions say different things. With , you raise to a power first, then negate. With , you negate first, then raise to a power. It's like two different roads that happen to lead to the same place, which happens sometimes.     Exercises for this section are available in the HTML version of this book.     "
+  "body": " Order of Operations   When you write something down, it's important that the people who read it will understand what you actually meant. But language can be ambiguous. If we say in English, two times three squared , do we mean that:    is multiplied by , and then the result is squared? That would mean first we have , and then we square to end with .    Or that is multiplied by three squared ? That would mean first we square to get , and then we multiply by to end with .   So it makes a difference, and the English phrase two times three squared is arguably ambiguous.  English is allowed to be ambiguous. But math needs to be unambiguous and mean the same thing for everyone who reads it. So for this reason, there are some rules that we've all agreed to that control what a math expression really means. These rules are called the order of operations , which we review here.   Alternative Video Lesson      Grouping Symbols  Consider the expression . There are two math operations here: at some point two things will be multiplied, and at some point something will be raised to a power. The result depends on which operation you decide to do first: If you multiply , and then square the result, you end with . If you square , and then multiply that result by , you end with . So if we want all people everywhere to interpret in the same way, then only one of these can be correct.  One tool that we have to clearly tell readers which thing to do first is a pair of grouping symbols, like parentheses and brackets. If you intend to do the multiplication first, then writing clearly tells your reader to do that. And if you intend to execute the power first, then writing clearly tells your reader to do that.  To visualize the difference between or , consider these garden plots:   3 is squared, then doubled:   two squares, side by side; each square is labeled as 3 yd wide and 3 yd high, and labeled as having area 9 yd^2     3 is doubled, then squared:   a square whose width is labeled as 2*3 yd = 6 yd wide and whose height is also 6 yd; the square's area is labeled as being area 36 yd^2      If we find , we have the area of one of the small square garden plots on the left. Then if we double that, we have , the area of the entire left garden plot.  But if we find , then first we are doubling . So we are getting the area of a large square garden plot whose sides are twice as long. We end up with the area of the entire garden plot on the right.  The point is that these amounts are different.    Calculate the value of respecting the order that the grouping symbols are telling you to execute the arithmetic operations.        The grouping symbols tell us what to work on first. In this exercise, we have grouping symbols within grouping symbols, so any operation in there (the addition) should be executed first:          Order of Operations  If math expressions used grouping symbols for every arithmetic operation, we wouldn't need order of operations . Some computer systems work that way, requiring the use of grouping symbols all the time. But it is more common to allow math expressions that don't have grouping symbols everywhere, like . Should the addition be done first, or should the multiplication be done first? We have a set of rules the world has agreed to, known as the order of operations . They tell us what to do first.  The order of operations is nothing more than an agreement that we all have made to prioritize doing arithmetic operations in a certain order.   Order of Operations  Order of operations    (P)arentheses and other grouping symbols  Symbol grouping  Grouping symbol  Grouping symbols group the expression inside them, and the arithmetic within that group needs to be done first.    (E)xponentiation  After grouping symbols, exponentiation has the highest priority. Raise things to powers before doing any other arithmetic.    (M)ultiplication, (D)ivision, and Negation  After all exponentiation is done, start doing multiplication, division, and negation. These things all have equal priority. If there are more than one of them in your expression, do these things in order from left to right as you would naturally read the expression.    (A)ddition and (S)ubtraction  After all other arithmetic is done, addition and subtraction are all that is left. They have equal priority. If there are more than one of them in your expression, do these things in order from left to right as you would naturally read the expression.     To help remember the order of operations, consider the acronym PEMDAS . You might use mnemonic devices to help remember this such as Please Excuse My Dear Aunt Sally , People Eat More Donuts After School , etc.  We'll start with a few examples that only invoke a few operations each.   Use the order of operations to simplify the following expressions.    . With this expression, we have addition and multiplication. The order of operations says the multiplication has higher priority, so do that first:      . According to the order of operations, the first thing to do is the division. After that, we'll apply the addition and subtraction working left to right:      . This expression only has subtraction and addition. These operations tie for priority (even though A comes before S in PEMDAS ). So we work left to right to do them:      . This expression has only division and multiplication. Again, we have two operations that tie for priority, so we do them in order from left to right:      . Here we have addition inside parentheses, and an exponent of outside. We must do the arithmetic inside the parentheses first:      . This expression has multiplication and an exponent. There are parentheses, but no operation inside them. Parentheses used this way are just to make it clear that the and are separate numbers, not to be confused with the number . Exponentiation has the higher priority, so we'll do that part first, and then multiply:        There are several different ways to write multiplication. We can use the symbols , , and to mean multiplication. We can also write two things right next to each other with no symbol in between them to mean multiplication. That is what is happening in Item , where the is written right next to the with no symbol in between.  Using a symbol for multiplication is called explicit multiplication and not writing Multiplication explicit any symbol at all is called implicit multiplication . For this textbook, explicit and Multiplication implicit implicit multiplication have the same priority in the order of operations. However there are some conventions out in the real world where implicit multiplication has a higher priority in the order of operations than explicit multiplication. You may have seen memes with expressions like that play on how the real world has more than one convention for the order of operations.    Practice with order of operations   Simplify this expression one step at a time, using the order of operations.                                     Simplify        With the expression we ll simplify what s inside the parentheses according to the order of operations, and then take divided by that expression as our last step:          Simplify        The expression has two sets of parentheses, so our first step will be to simplify what s inside each of those first according to the order of operations. Once we ve done that, we ll apply the exponent and then finally divide:          Absolute Value and Implied Grouping  Grouping symbols are more than just parentheses and brackets. Each of the following operations implies some grouping.     Absolute Value Bars  Absolute value implied grouping  Absolute value bars group the expression inside just like a set of parentheses would. In the expression , the first thing to do is subtract since that is inside the absolute value bars.    Radicals  Radical implied grouping  The same is true with a radical symbol. Everything inside the radical is grouped. For example with , the first arithmetic to do is subtract .    Fraction Bars  Fraction implied grouping  A fraction bar can create two groups, one in the numerator and one in the denominator. With the expression , the first arithmetic to take care of is adding and subtracting . These two groups can be worked on separately in any order.    Exponents  Exponent implied grouping  Content that is inside an exponent is treated as one group, as with . In that example, the first arithmetic to take care of is multiplying .     Each of these implied groupings also ask you to do something once the arithmetic on the inside is completed. Actually taking the absolute value or the square root, perhaps. Doing the division in the case of a fraction. Raising something to a power. But before doing those things, all of the arithmetic inside the groups should be take care of.   Use the order of operations to simplify the following expressions.    . The absolute value bars group the so we must do that subtraction first. Then we take the absolute value and continue: It would be a mistake to subtract first, because that is multiplied by the . So subtracting would violate the order of operations.     . The radical is grouping , which must be simplified first. Then we take the square root and continue:      . We recognize that the fraction bar is creating two groups. We should simplify the numerator and denominator separately according to the order of operations, and proceed from there:       Implied Grouping   Use the order of operations to evaluate         We start by identifying the innermost, highest priority operations:          Simplify        To simplify this expression, the first thing we want to recognize is the role of the main fraction bar, which groups the numerator and denominator. This implies we ll simplify the numerator and denominator separately according to the order of operations, and then reduce the fraction that results:          Understanding versus  We noted in the order of operations that using the minus sign to negate a number has the same priority as multiplication and division.  How would you write a math expression that takes the number and squares it? Is it OK to write ? How about ?  These expressions mean very different things. The second option, is squaring the number . The parentheses make this clear. The result is .  The first expression is different. There are two actions here: a negation and exponentiation. According to the order of operations, the exponentiation has higher priority, so we should do first. and this is not the same as , which is positive  .   Negative Numbers Raised to Powers  You may find yourself needing to raise a negative number to a power, and using a calculator to do the work for you. If you do not understand the issue described above, then you may get incorrect results.   Entering -4^2 into a calculator or computer will result in .    Entering (-4)^2 into a calculator or computer will result in .   Try entering these into your own calculator.   Negating and Raising to Powers   Compute the following. In each part, the first expression asks you to exponentiate and then negate the result. The second expression has a negative number raised to a power.   and          and   and          and   and          and       You might notice in that and each have the same result, . It's true that the results are the same, but the two expressions say different things. With , you raise to a power first, then negate. With , you negate first, then raise to a power. It's like two different roads that happen to lead to the same place, which happens sometimes.      Skills    Use the order of operations to simplify the expression.                                                                                                                                                                                                                      Use the order of operations to simplify the expression that has grouping symbols.                                                                                                                                                                                                                                                                                                                                                        Use the order of operations to simplify the expression that has absolute value or implied grouping.                                                                                                                                                                                                                                                                                                                                                        Challenge    In this challenge, your job is to create expressions, using addition, subtraction, multiplication, and parentheses. You may use the numbers, and in your expression, using each number only once. For example, you could make the expression:    The greatest value that it is possible to create under these conditions is .    The least value that it is possible to create under these conditions is .                 The greatest value is which comes from    The least value is which comes from           "
 },
 {
   "id": "section-order-of-operations-2-3",
@@ -20548,13 +23068,634 @@ var ptx_lunr_docs = [
   "body": "Negating and Raising to Powers   Compute the following. In each part, the first expression asks you to exponentiate and then negate the result. The second expression has a negative number raised to a power.   and          and   and          and   and          and      "
 },
 {
+  "id": "order-of-operations-aminusbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.1",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aplusbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aplusbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.2",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.3",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aplusbc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aplusbc",
+  "type": "Exercise",
+  "number": "A.5.5.4",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusbc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusbc",
+  "type": "Exercise",
+  "number": "A.5.5.5",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aplusbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aplusbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.6",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.7",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aplusbslashc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aplusbslashc",
+  "type": "Exercise",
+  "number": "A.5.5.8",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusbslashc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusbslashc",
+  "type": "Exercise",
+  "number": "A.5.5.9",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivbslashc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivbslashc",
+  "type": "Exercise",
+  "number": "A.5.5.10",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aplusbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aplusbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.11",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.12",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-atimesbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-atimesbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.13",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.14",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aslashbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aslashbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.15",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-atimesbcaretc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-atimesbcaretc",
+  "type": "Exercise",
+  "number": "A.5.5.16",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusgroupbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusgroupbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.17",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusgroupbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusgroupbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.18",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-atimesgroupbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-atimesgroupbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.19",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaplusbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaplusbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.20",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-atimesgroupbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-atimesgroupbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.21",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaminusbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaminusbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.22",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-agroupbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-agroupbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.23",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaplusbc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaplusbc",
+  "type": "Exercise",
+  "number": "A.5.5.24",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-agroupbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-agroupbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.25",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaminusbc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaminusbc",
+  "type": "Exercise",
+  "number": "A.5.5.26",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivgroupbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivgroupbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.27",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaplusbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaplusbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.28",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivgroupbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivgroupbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.29",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaminusbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaminusbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.30",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivgroupbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivgroupbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.31",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivgroupbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivgroupbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.32",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaplusbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaplusbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.33",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupaminusbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupaminusbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.34",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupatimesbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupatimesbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.35",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupadivbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupadivbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.36",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-neggroupaplusb",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-neggroupaplusb",
+  "type": "Exercise",
+  "number": "A.5.5.37",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-neggroupaminusb",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-neggroupaminusb",
+  "type": "Exercise",
+  "number": "A.5.5.38",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-neggroupatimeesb",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-neggroupatimeesb",
+  "type": "Exercise",
+  "number": "A.5.5.39",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-neggroupadivb",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-neggroupadivb",
+  "type": "Exercise",
+  "number": "A.5.5.40",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-neggroupatob",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-neggroupatob",
+  "type": "Exercise",
+  "number": "A.5.5.41",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-groupnegatob",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-groupnegatob",
+  "type": "Exercise",
+  "number": "A.5.5.42",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminusabsbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminusabsbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.43",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-atimesabsbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-atimesabsbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.44",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-absaminusbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-absaminusbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.45",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aabsbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aabsbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.46",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-absaminusbc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-absaminusbc",
+  "type": "Exercise",
+  "number": "A.5.5.47",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-adivabsbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-adivabsbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.48",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-absaminusbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-absaminusbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.49",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-absaminusbtoc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-absaminusbtoc",
+  "type": "Exercise",
+  "number": "A.5.5.50",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-negabsaplusb",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-negabsaplusb",
+  "type": "Exercise",
+  "number": "A.5.5.51",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-negabsaminusb",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-negabsaminusb",
+  "type": "Exercise",
+  "number": "A.5.5.52",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-sqrtaplusbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-sqrtaplusbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.53",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aplussqrtbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aplussqrtbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.54",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-sqrtaminusbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-sqrtaminusbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.55",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-aminussqrtbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-aminussqrtbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.56",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-asqrtbplusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-asqrtbplusc",
+  "type": "Exercise",
+  "number": "A.5.5.57",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-asqrtbminusc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-asqrtbminusc",
+  "type": "Exercise",
+  "number": "A.5.5.58",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-asqrtbtimesc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-asqrtbtimesc",
+  "type": "Exercise",
+  "number": "A.5.5.59",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-asqrtbdivc",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-asqrtbdivc",
+  "type": "Exercise",
+  "number": "A.5.5.60",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-fractiongrouping",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-fractiongrouping",
+  "type": "Exercise",
+  "number": "A.5.5.61",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "section-order-of-operations-7-1-4-21",
+  "level": "2",
+  "url": "section-order-of-operations.html#section-order-of-operations-7-1-4-21",
+  "type": "Exercise",
+  "number": "A.5.5.62",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "section-order-of-operations-7-1-4-22",
+  "level": "2",
+  "url": "section-order-of-operations.html#section-order-of-operations-7-1-4-22",
+  "type": "Exercise",
+  "number": "A.5.5.63",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "section-order-of-operations-7-1-4-23",
+  "level": "2",
+  "url": "section-order-of-operations.html#section-order-of-operations-7-1-4-23",
+  "type": "Exercise",
+  "number": "A.5.5.64",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-exponentgrouping",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-exponentgrouping",
+  "type": "Exercise",
+  "number": "A.5.5.65",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "section-order-of-operations-7-1-4-25",
+  "level": "2",
+  "url": "section-order-of-operations.html#section-order-of-operations-7-1-4-25",
+  "type": "Exercise",
+  "number": "A.5.5.66",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "section-order-of-operations-7-1-4-26",
+  "level": "2",
+  "url": "section-order-of-operations.html#section-order-of-operations-7-1-4-26",
+  "type": "Exercise",
+  "number": "A.5.5.67",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "section-order-of-operations-7-1-4-27",
+  "level": "2",
+  "url": "section-order-of-operations.html#section-order-of-operations-7-1-4-27",
+  "type": "Exercise",
+  "number": "A.5.5.68",
+  "title": "",
+  "body": "            "
+},
+{
+  "id": "order-of-operations-challenge",
+  "level": "2",
+  "url": "section-order-of-operations.html#order-of-operations-challenge",
+  "type": "Exercise",
+  "number": "A.5.5.69",
+  "title": "",
+  "body": "  In this challenge, your job is to create expressions, using addition, subtraction, multiplication, and parentheses. You may use the numbers, and in your expression, using each number only once. For example, you could make the expression:    The greatest value that it is possible to create under these conditions is .    The least value that it is possible to create under these conditions is .                 The greatest value is which comes from    The least value is which comes from        "
+},
+{
   "id": "section-set-notation-and-types-of-numbers",
   "level": "1",
   "url": "section-set-notation-and-types-of-numbers.html",
   "type": "Section",
   "number": "A.6",
   "title": "Set Notation and Types of Numbers",
-  "body": " Set Notation and Types of Numbers   When we talk about how many or how much of something we have, it often makes sense to use different types of numbers. For example, if we are counting dogs in a shelter, the possibilities are only . (It would be difficult to have of a dog.) On the other hand if you were weighing a dog in pounds, it doesn't make sense to only allow yourself to work with whole numbers. The dog might weigh something like pounds. These examples highlight how certain kinds of numbers are appropriate for certain situations. We'll classify various types of numbers in this section.   Alternative Video Lesson      Set Notation  What is the mathematical difference between these three lists ? To a mathematician, the last one, is an ordered triple. What matters is not merely the three numbers, but also the order in which they come. The ordered triple is not the same as ; they have the same numbers in them, but the order has changed. For some context, February has days; then March has days; then April has days. The order of the three numbers is meaningful in that context.  With curly braces and , a mathematician sees a collection of numbers and does not particularly care in which order they are written. Such a collection is called a set . All that matters is that these numbers are part of a collection. They've Set been written in some particular order because that's necessary to write them down. But you might as well have put the three numbers in a bag and shaken up the bag. For some context, maybe your favorite three NBA players have jersey numbers , , and , and you like them all equally well. It doesn't really matter what order you use to list them.  So we can say:   What about just writing ? This list of three numbers is ambiguous. Without the curly braces or parentheses, it's unclear to a reader if the order is important. Set notation is the use of curly braces to surround a list\/collection of numbers, Set notation and we will use set notation frequently in this section.  Set Notation  Practice using (and not using) set notation.    According to Google, the three most common error codes from visiting a web site are 403 , 404 , and 500 .   Without knowing which error code is most common, express this set mathematically.      Since we only have to describe a collection of three numbers and their order doesn t matter, we can write {403,404,500}.   Error code 500 is the most common. Error code 403 is the least common of these three. And that leaves 404 in the middle. Express the error codes in a mathematical way that appreciates how frequently they happen, from most often to least often.      Now we must describe the same three numbers and we want readers to know that the order we are writing the numbers matters. We can write (500,404,403).         Different Number Sets  In the introduction, we mentioned how different sets of numbers are appropriate for different situations. Here are the basic sets of numbers that are used in basic algebra.     Natural Numbers  Natural numbers  Types of numbers natural  When we count, we begin: and continue on in that pattern. These numbers are known as natural numbers .       Whole Numbers  Whole numbers  Types of numbers whole  If we include zero, then we have the set of whole numbers .   has no standard symbol, but some options are , , and .    Integers  Integers  Types of numbers integers  If we include the negatives of whole numbers, then we have the set of integers .   .  A is used because one word in German for numbers is Zahlen .    Rational Numbers  Rational numbers  Types of numbers rational  A rational number is any number that can be written as a fraction of integers, where the denominator is nonzero. Alternatively, a rational number is any number that can be written with a decimal Rational numbers as decimals that terminates or that repeats. Repeating decimal  Terminating decimal         A is used because fractions are q uotients of integers.    Irrational Numbers  Irrational numbers  Types of numbers irrational  Any number that cannot be written as a fraction of integers belongs to the set of irrational numbers . Another way to say this is that any number whose decimal places goes on forever without repeating is an irrational number . Some examples include , ,   There is no standard symbol for the set of irrational numbers.    Real Numbers  Real numbers  Types of numbers real  Any number that can be marked somewhere on a number line is a real number . Real numbers might be the only numbers you are familiar with. For a number to not be real, you have to start considering things called complex numbers , which are not our concern right now.  The set of real numbers can be denoted with for short.      Types of Numbers   a disc represents all real numbers; the disc is separated into two areas: one for irrational numbers with examples like pi, e, sqrt(15), and 1.010010001..., and the other for rational numbers with examples like 3\/17, 1.25, and 4.3 repeating; within the rational area, there is a disc representing integers, with -42 as an example; within the integer area there is a region representing whole numbers with 0 as an example; within the whole numbers area there is a region representing natural numbers, with 23 as an example     Rational Numbers in Other Forms  Any number that can be written as a ratio of integers is rational, even if it's not written that way at first. For example, these numbers might not look rational to you at first glance: , , , and . But they are all rational, because they can respectively be written as , , , and .    Determine If Numbers Are This Type or That Type   Determine which numbers from the set are natural numbers, whole numbers, integers, rational numbers, irrational numbers, and real numbers.    All of these numbers are real numbers, because all of these numbers can be positioned on the real number line.  Each real number is either rational or irrational, and not both. , , , and are rational because we can see directly that their decimal expressions terminate. is also rational, because its decimal expression repeats. is rational because it is a ratio of integers. And last but not least, is rational, because that's the same thing as .  This leaves only and as irrational numbers. Their decimal expressions go on forever without entering a repetitive cycle.  Only , , , and (which is really ) are integers.  Of these, only , , and are whole numbers, because whole numbers exclude the negative integers.  Of these, only and are natural numbers, because the natural numbers exclude .        Give an example of a whole number that is not an integer.    Give an example of an integer that is not a whole number.    Give an example of a rational number that is not an integer.    Give an example of a irrational number.    Give an example of a irrational number that is also an integer.                                Since all whole numbers belong to integers, we cannot write any whole number which is not an integer. Type DNE (does not exist) for this question.    Any negative integer, like , is not a whole number, but is an integer.    Any terminating decimal, like , is a rational number, but is not an integer.    is the easiest number to remember as an irrational number. Another constant worth knowing is . Finally, the square root of most integers are irrational, like and .    All irrational numbers are non-repeating and non-terminating decimals. No irrational numbers are integers.          In the introduction, we mentioned that the different types of numbers are appropriate in different situation. Which number set do you think is most appropriate in each of the following situations?    The number of people in a math class that play the ukulele.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      The number of people who play the ukulele could be so the whole numbers are the appropriate set.   The hypotenuse s length in a given right triangle.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      A hypotenuse s length could be   (which is irrational), or any other positive number. So the real numbers are the appropriate set.   The proportion of people in a math class that have a cat.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      This proportion will be a ratio of integers, as both the total number of people in the class and the number of people who have a cat are integers. So the rational numbers are the appropriate set.   The number of people in the room with you who have the same birthday as you.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      We know that the number of people must be a counting number, and since you are in the room with yourself, there is at least one person in that room with your birthday. So the natural numbers are the appropriate set.   The total revenue (in dollars) generated for ticket sales at a Timbers soccer game.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      The total revenue will be some number of dollars and cents, such as which is a terminating decimal and thus a rational number. So the rational numbers are the appropriate set.         Converting Repeating Decimals to Fractions  Rational numbers as decimals  We have learned that a terminating decimal number is a rational number. It's easy to convert a terminating decimal number into a fraction of integers: you just need to multiply and divide by one of the numbers in the set . For example, when we say the number out loud, we say one hundred and twenty-three thousandths . While that's a lot to say, it makes it obvious that this number can be written as a ratio: . Similarly, , demonstrating how any terminating decimal can be written as a fraction.  Repeating decimals can also be written as a fraction. To understand how, use a calculator to find the decimal for, say, and You will find that . The pattern is that dividing a number by a number from with the same number of digits will create a repeating decimal that starts as and then repeats the numerator. We can use this observation to reverse engineer some fractions from repeating decimals.    Write the rational number as a fraction.      The three -digit number repeats after the decimal. So we will make use of the three -digit denominator And we have   Write the rational number as a fraction.      The two -digit number repeats after the decimal. So we will make use of the two -digit denominator And we have But this fraction can be reduced to       Converting a repeating decimal to a fraction is not always quite this straightforward. There are complications if the number takes a few digits before it begins repeating. For your interest, here is one example on how to do that.   Can we convert the repeating decimal to a fraction? The trick is to separate its terminating part from its repeating part, like this: . Now note that the terminating part is , and the repeating part is almost like our earlier examples, except it has an extra right after the decimal. So we have: . With what we learned in the earlier examples and basic fraction arithmetic, we can continue:   Check that this is right by entering into a calculator and seeing if it returns the decimal we started with, .      Exercises for this section are available in the HTML version of this book.     "
+  "body": " Set Notation and Types of Numbers   When we talk about how many or how much of something we have, it often makes sense to use different types of numbers. For example, if we are counting dogs in a shelter, the possibilities are only . (It would be difficult to have of a dog.) On the other hand if you were weighing a dog in pounds, it doesn't make sense to only allow yourself to work with whole numbers. The dog might weigh something like pounds. These examples highlight how certain kinds of numbers are appropriate for certain situations. We'll classify various types of numbers in this section.   Alternative Video Lesson      Set Notation  What is the mathematical difference between these three lists ? To a mathematician, the last one, is an ordered triple. What matters is not merely the three numbers, but also the order in which they come. The ordered triple is not the same as ; they have the same numbers in them, but the order has changed. For some context, February has days; then March has days; then April has days. The order of the three numbers is meaningful in that context.  With curly braces and , a mathematician sees a collection of numbers and does not particularly care in which order they are written. Such a collection is called a set . All that matters is that these numbers are part of a collection. They've Set been written in some particular order because that's necessary to write them down. But you might as well have put the three numbers in a bag and shaken up the bag. For some context, maybe your favorite three NBA players have jersey numbers , , and , and you like them all equally well. It doesn't really matter what order you use to list them.  So we can say:   What about just writing ? This list of three numbers is ambiguous. Without the curly braces or parentheses, it's unclear to a reader if the order is important. Set notation is the use of curly braces to surround a list\/collection of numbers, Set notation and we will use set notation frequently in this section.  Set Notation  Practice using (and not using) set notation.    According to Google, the three most common error codes from visiting a web site are 403 , 404 , and 500 .   Without knowing which error code is most common, express this set mathematically.      Since we only have to describe a collection of three numbers and their order doesn t matter, we can write {403,404,500}.   Error code 500 is the most common. Error code 403 is the least common of these three. And that leaves 404 in the middle. Express the error codes in a mathematical way that appreciates how frequently they happen, from most often to least often.      Now we must describe the same three numbers and we want readers to know that the order we are writing the numbers matters. We can write (500,404,403).         Different Number Sets  In the introduction, we mentioned how different sets of numbers are appropriate for different situations. Here are the basic sets of numbers that are used in basic algebra.     Natural Numbers  Natural numbers  Types of numbers natural  When we count, we begin: and continue on in that pattern. These numbers are known as natural numbers .       Whole Numbers  Whole numbers  Types of numbers whole  If we include zero, then we have the set of whole numbers .   has no standard symbol, but some options are , , and .    Integers  Integers  Types of numbers integers  If we include the negatives of whole numbers, then we have the set of integers .   .  A is used because one word in German for numbers is Zahlen .    Rational Numbers  Rational numbers  Types of numbers rational  A rational number is any number that can be written as a fraction of integers, where the denominator is nonzero. Alternatively, a rational number is any number that can be written with a decimal Rational numbers as decimals that terminates or that repeats. Repeating decimal  Terminating decimal         A is used because fractions are q uotients of integers.    Irrational Numbers  Irrational numbers  Types of numbers irrational  Any number that cannot be written as a fraction of integers belongs to the set of irrational numbers . Another way to say this is that any number whose decimal places goes on forever without repeating is an irrational number . Some examples include , ,   There is no standard symbol for the set of irrational numbers.    Real Numbers  Real numbers  Types of numbers real  Any number that can be marked somewhere on a number line is a real number . Real numbers might be the only numbers you are familiar with. For a number to not be real, you have to start considering things called complex numbers , which are not our concern right now.  The set of real numbers can be denoted with for short.      Types of Numbers   a disc represents all real numbers; the disc is separated into two areas: one for irrational numbers with examples like pi, e, sqrt(15), and 1.010010001..., and the other for rational numbers with examples like 3\/17, 1.25, and 4.3 repeating; within the rational area, there is a disc representing integers, with -42 as an example; within the integer area there is a region representing whole numbers with 0 as an example; within the whole numbers area there is a region representing natural numbers, with 23 as an example     Rational Numbers in Other Forms  Any number that can be written as a ratio of integers is rational, even if it's not written that way at first. For example, these numbers might not look rational to you at first glance: , , , and . But they are all rational, because they can respectively be written as , , , and .    Determine If Numbers Are This Type or That Type   Determine which numbers from the set are natural numbers, whole numbers, integers, rational numbers, irrational numbers, and real numbers.    All of these numbers are real numbers, because all of these numbers can be positioned on the real number line.  Each real number is either rational or irrational, and not both. , , , and are rational because we can see directly that their decimal expressions terminate. is also rational, because its decimal expression repeats. is rational because it is a ratio of integers. And last but not least, is rational, because that's the same thing as .  This leaves only and as irrational numbers. Their decimal expressions go on forever without entering a repetitive cycle.  Only , , , and (which is really ) are integers.  Of these, only , , and are whole numbers, because whole numbers exclude the negative integers.  Of these, only and are natural numbers, because the natural numbers exclude .        Give an example of a whole number that is not an integer.    Give an example of an integer that is not a whole number.    Give an example of a rational number that is not an integer.    Give an example of a irrational number.    Give an example of a irrational number that is also an integer.                                Since all whole numbers belong to integers, we cannot write any whole number which is not an integer. Type DNE (does not exist) for this question.    Any negative integer, like , is not a whole number, but is an integer.    Any terminating decimal, like , is a rational number, but is not an integer.    is the easiest number to remember as an irrational number. Another constant worth knowing is . Finally, the square root of most integers are irrational, like and .    All irrational numbers are non-repeating and non-terminating decimals. No irrational numbers are integers.          In the introduction, we mentioned that the different types of numbers are appropriate in different situation. Which number set do you think is most appropriate in each of the following situations?    The number of people in a math class that play the ukulele.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      The number of people who play the ukulele could be so the whole numbers are the appropriate set.   The hypotenuse s length in a given right triangle.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      A hypotenuse s length could be   (which is irrational), or any other positive number. So the real numbers are the appropriate set.   The proportion of people in a math class that have a cat.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      This proportion will be a ratio of integers, as both the total number of people in the class and the number of people who have a cat are integers. So the rational numbers are the appropriate set.   The number of people in the room with you who have the same birthday as you.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      We know that the number of people must be a counting number, and since you are in the room with yourself, there is at least one person in that room with your birthday. So the natural numbers are the appropriate set.   The total revenue (in dollars) generated for ticket sales at a Timbers soccer game.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      The total revenue will be some number of dollars and cents, such as which is a terminating decimal and thus a rational number. So the rational numbers are the appropriate set.         Converting Repeating Decimals to Fractions  Rational numbers as decimals  We have learned that a terminating decimal number is a rational number. It's easy to convert a terminating decimal number into a fraction of integers: you just need to multiply and divide by one of the numbers in the set . For example, when we say the number out loud, we say one hundred and twenty-three thousandths . While that's a lot to say, it makes it obvious that this number can be written as a ratio: . Similarly, , demonstrating how any terminating decimal can be written as a fraction.  Repeating decimals can also be written as a fraction. To understand how, use a calculator to find the decimal for, say, and You will find that . The pattern is that dividing a number by a number from with the same number of digits will create a repeating decimal that starts as and then repeats the numerator. We can use this observation to reverse engineer some fractions from repeating decimals.    Write the rational number as a fraction.      The three -digit number repeats after the decimal. So we will make use of the three -digit denominator And we have   Write the rational number as a fraction.      The two -digit number repeats after the decimal. So we will make use of the two -digit denominator And we have But this fraction can be reduced to       Converting a repeating decimal to a fraction is not always quite this straightforward. There are complications if the number takes a few digits before it begins repeating. For your interest, here is one example on how to do that.   Can we convert the repeating decimal to a fraction? The trick is to separate its terminating part from its repeating part, like this: . Now note that the terminating part is , and the repeating part is almost like our earlier examples, except it has an extra right after the decimal. So we have: . With what we learned in the earlier examples and basic fraction arithmetic, we can continue:   Check that this is right by entering into a calculator and seeing if it returns the decimal we started with, .       Review and Warmup    Write the decimal number as a fraction.  =        is read as thirty-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.         Write the decimal number as a fraction.  =        is read as forty-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.         Write the decimal number as a fraction.  =        The integer part of the decimal will not change. We will only change the decimal part--0.95.  is read as ninety-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.          Write the decimal number as a fraction.  =        The integer part of the decimal will not change. We will only change the decimal part--0.55.  is read as fifty-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.          Write the decimal number as a fraction.  =        is read as 718 thousandths, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.         Write the decimal number as a fraction.  =        is read as 884 thousandths, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.           Write the fraction as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator.                 Write the fraction as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator.                   Write the mixed number as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator. We can simply copy over the integer part of a mixed number.                 Write the mixed number as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator. We can simply copy over the integer part of a mixed number.                 Set Notation    There are two numbers that you can square to get Express this collection of two numbers using set notation.              There are four positive, even, one-digit numbers. Express this collection of four numbers using set notation.              There are six two-digit perfect square numbers. Express this collection of six numbers using set notation.              There is a set of three small positive integers where you can square all three numbers, then add the results, and get Express this collection of three numbers using set notation.              Types of Numbers    Which of the following are whole numbers? There may be more than one correct answer.                             To be a whole number, you have to be one of the numbers . Sometimes whole numbers are explicitly written this way, and sometimes they are hidden. For example is a whole number, since . So the correct answers are BE.         Which of the following are whole numbers? There may be more than one correct answer.                             To be a whole number, you have to be one of the numbers . Sometimes whole numbers are explicitly written this way, and sometimes they are hidden. For example is a whole number, since . So the correct answers are AH.           Which of the following are integers? There may be more than one correct answer.                             To be an integer, you have to be one of the numbers . Sometimes integers are explicitly written this way, and sometimes they are hidden. For example is an integer, since . So the correct answers are ABEG.         Which of the following are integers? There may be more than one correct answer.                             To be an integer, you have to be one of the numbers . Sometimes integers are explicitly written this way, and sometimes they are hidden. For example is an integer, since . So the correct answers are BDFH.           Which of the following are rational numbers? There may be more than one correct answer.                             To be an rational number, you either have to be a fraction with whole numbers for the numerator and denominator, or you have to be a number with a terminating decimal expression, or you have to be a number with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . So the correct answers are ABCEGH.         Which of the following are rational numbers? There may be more than one correct answer.                             To be an rational number, you either have to be a fraction with whole numbers for the numerator and denominator, or you have to be a number with a terminating decimal expression, or you have to be a number with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . So the correct answers are CDEFGH.           Which of the following are irrational numbers? There may be more than one correct answer.                             To be an irrational number, you simply have to not be a rational number. A rational number is a number that can be written as a fraction with whole numbers for the numerator and denominator, or with a terminating decimal expression, or with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . The irrational numbers here are are FG.         Which of the following are irrational numbers? There may be more than one correct answer.                             To be an irrational number, you simply have to not be a rational number. A rational number is a number that can be written as a fraction with whole numbers for the numerator and denominator, or with a terminating decimal expression, or with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . The irrational numbers here are are AG.           Which of the following are real numbers? There may be more than one correct answer.                             All of these numbers are real numbers, since they can all be located on a number line.         Which of the following are real numbers? There may be more than one correct answer.                             All of these numbers are real numbers, since they can all be located on a number line.           Determine the validity of each statement by selecting True or False.    The number is irrational    The number is an integer    The number is rational    The number is rational    The number is irrational           Determine the validity of each statement by selecting True or False.    The number is a real number, but not an irrational number    The number is an integer that is also a natural number    The number is rational    The number is rational, but not an integer    The number is rational, but not an integer            In each situation, which number set do you think is most appropriate?    The number of dogs a student has owned throughout their lifetime.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The difference between the projected annual expenditures and the actual annual expenditures for a given company.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The length around swimming pool in the shape of a half circle with radius  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The proportion of students at a college who own a car.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The width of a sheet of paper, in inches.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The number of people eating in a non-empty restaurant.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .                                           Give an example of a whole number that is not an integer.    Give an example of an integer that is not a whole number.    Give an example of a rational number that is not an integer.    Give an example of a irrational number.    Give an example of a irrational number that is also an integer.                                Since all whole numbers belong to integers, we cannot write any whole number which is not an integer. Type DNE (does not exist) for this question.    Any negative integer, like , is not a whole number, but is an integer.    Any terminating decimal, like , is a rational number, but is not an integer.    is the easiest number to remember as an irrational number. Another constant worth knowing is . Finally, the square root of most integers are irrational, like and .    All irrational numbers are non-repeating and non-terminating decimals. No irrational numbers are integers.          Writing Decimals as Fractions    Write the rational number as a fraction.              Write the rational number as a fraction.              Write the rational number as a fraction.              Write the rational number as a fraction.              Write the rational number as a fraction.              Write the rational number as a fraction.              Challenge    Imagine making up a number with the following pattern. After the decimal point, write the natural numbers 1, 2, 3, 4, 5, etc. The decimal digits will extend forever with this pattern:  Is the number a rational number or an irrational number?  ?   rational   irrational         The number is irrational. The decimal will never end and it will never repeat.         "
 },
 {
   "id": "section-set-notation-and-types-of-numbers-2-2",
@@ -20644,7 +23785,7 @@ var ptx_lunr_docs = [
   "type": "Checkpoint",
   "number": "A.6.7",
   "title": "",
-  "body": " In the introduction, we mentioned that the different types of numbers are appropriate in different situation. Which number set do you think is most appropriate in each of the following situations?    The number of people in a math class that play the ukulele.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      The number of people who play the ukulele could be so the whole numbers are the appropriate set.   The hypotenuse s length in a given right triangle.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      A hypotenuse s length could be   (which is irrational), or any other positive number. So the real numbers are the appropriate set.   The proportion of people in a math class that have a cat.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      This proportion will be a ratio of integers, as both the total number of people in the class and the number of people who have a cat are integers. So the rational numbers are the appropriate set.   The number of people in the room with you who have the same birthday as you.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      We know that the number of people must be a counting number, and since you are in the room with yourself, there is at least one person in that room with your birthday. So the natural numbers are the appropriate set.   The total revenue (in dollars) generated for ticket sales at a Timbers soccer game.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .      The total revenue will be some number of dollars and cents, such as which is a terminating decimal and thus a rational number. So the rational numbers are the appropriate set.      "
+  "body": " In the introduction, we mentioned that the different types of numbers are appropriate in different situation. Which number set do you think is most appropriate in each of the following situations?    The number of people in a math class that play the ukulele.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      The number of people who play the ukulele could be so the whole numbers are the appropriate set.   The hypotenuse s length in a given right triangle.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      A hypotenuse s length could be   (which is irrational), or any other positive number. So the real numbers are the appropriate set.   The proportion of people in a math class that have a cat.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      This proportion will be a ratio of integers, as both the total number of people in the class and the number of people who have a cat are integers. So the rational numbers are the appropriate set.   The number of people in the room with you who have the same birthday as you.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      We know that the number of people must be a counting number, and since you are in the room with yourself, there is at least one person in that room with your birthday. So the natural numbers are the appropriate set.   The total revenue (in dollars) generated for ticket sales at a Timbers soccer game.  This number is best considered as a  natural number   whole number   integer   rational number   irrational number   real number  .      The total revenue will be some number of dollars and cents, such as which is a terminating decimal and thus a rational number. So the rational numbers are the appropriate set.      "
 },
 {
   "id": "section-set-notation-and-types-of-numbers-5-5",
@@ -20663,6 +23804,321 @@ var ptx_lunr_docs = [
   "number": "A.6.9",
   "title": "",
   "body": " Can we convert the repeating decimal to a fraction? The trick is to separate its terminating part from its repeating part, like this: . Now note that the terminating part is , and the repeating part is almost like our earlier examples, except it has an extra right after the decimal. So we have: . With what we learned in the earlier examples and basic fraction arithmetic, we can continue:   Check that this is right by entering into a calculator and seeing if it returns the decimal we started with, .  "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-1-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-1-2",
+  "type": "Exercise",
+  "number": "A.6.4.1",
+  "title": "",
+  "body": "  Write the decimal number as a fraction.  =        is read as thirty-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-1-3",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-1-3",
+  "type": "Exercise",
+  "number": "A.6.4.2",
+  "title": "",
+  "body": "  Write the decimal number as a fraction.  =        is read as forty-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-1-4",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-1-4",
+  "type": "Exercise",
+  "number": "A.6.4.3",
+  "title": "",
+  "body": "  Write the decimal number as a fraction.  =        The integer part of the decimal will not change. We will only change the decimal part--0.95.  is read as ninety-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.       "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-1-5",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-1-5",
+  "type": "Exercise",
+  "number": "A.6.4.4",
+  "title": "",
+  "body": "  Write the decimal number as a fraction.  =        The integer part of the decimal will not change. We will only change the decimal part--0.55.  is read as fifty-five hundredth, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.       "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-1-6",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-1-6",
+  "type": "Exercise",
+  "number": "A.6.4.5",
+  "title": "",
+  "body": "  Write the decimal number as a fraction.  =        is read as 718 thousandths, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-1-7",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-1-7",
+  "type": "Exercise",
+  "number": "A.6.4.6",
+  "title": "",
+  "body": "  Write the decimal number as a fraction.  =        is read as 884 thousandths, so it can be written as , which can be reduced to by dividing in both the numerator and denominator.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-2-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-2-1",
+  "type": "Exercise",
+  "number": "A.6.4.7",
+  "title": "",
+  "body": "  Write the fraction as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator.              "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-2-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-2-2",
+  "type": "Exercise",
+  "number": "A.6.4.8",
+  "title": "",
+  "body": "  Write the fraction as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator.              "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-3-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-3-1",
+  "type": "Exercise",
+  "number": "A.6.4.9",
+  "title": "",
+  "body": "  Write the mixed number as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator. We can simply copy over the integer part of a mixed number.              "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-3-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-3-2",
+  "type": "Exercise",
+  "number": "A.6.4.10",
+  "title": "",
+  "body": "  Write the mixed number as a decimal number.    =    =               To change a fraction to decimal, we divide the numerator by the denominator. We can simply copy over the integer part of a mixed number.              "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-4-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-4-2",
+  "type": "Exercise",
+  "number": "A.6.4.11",
+  "title": "",
+  "body": "  There are two numbers that you can square to get Express this collection of two numbers using set notation.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-4-3",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-4-3",
+  "type": "Exercise",
+  "number": "A.6.4.12",
+  "title": "",
+  "body": "  There are four positive, even, one-digit numbers. Express this collection of four numbers using set notation.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-4-4",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-4-4",
+  "type": "Exercise",
+  "number": "A.6.4.13",
+  "title": "",
+  "body": "  There are six two-digit perfect square numbers. Express this collection of six numbers using set notation.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-4-5",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-4-5",
+  "type": "Exercise",
+  "number": "A.6.4.14",
+  "title": "",
+  "body": "  There is a set of three small positive integers where you can square all three numbers, then add the results, and get Express this collection of three numbers using set notation.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-5-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-5-2",
+  "type": "Exercise",
+  "number": "A.6.4.15",
+  "title": "",
+  "body": "  Which of the following are whole numbers? There may be more than one correct answer.                             To be a whole number, you have to be one of the numbers . Sometimes whole numbers are explicitly written this way, and sometimes they are hidden. For example is a whole number, since . So the correct answers are BE.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-5-3",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-5-3",
+  "type": "Exercise",
+  "number": "A.6.4.16",
+  "title": "",
+  "body": "  Which of the following are whole numbers? There may be more than one correct answer.                             To be a whole number, you have to be one of the numbers . Sometimes whole numbers are explicitly written this way, and sometimes they are hidden. For example is a whole number, since . So the correct answers are AH.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-6-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-6-1",
+  "type": "Exercise",
+  "number": "A.6.4.17",
+  "title": "",
+  "body": "  Which of the following are integers? There may be more than one correct answer.                             To be an integer, you have to be one of the numbers . Sometimes integers are explicitly written this way, and sometimes they are hidden. For example is an integer, since . So the correct answers are ABEG.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-6-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-6-2",
+  "type": "Exercise",
+  "number": "A.6.4.18",
+  "title": "",
+  "body": "  Which of the following are integers? There may be more than one correct answer.                             To be an integer, you have to be one of the numbers . Sometimes integers are explicitly written this way, and sometimes they are hidden. For example is an integer, since . So the correct answers are BDFH.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-7-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-7-1",
+  "type": "Exercise",
+  "number": "A.6.4.19",
+  "title": "",
+  "body": "  Which of the following are rational numbers? There may be more than one correct answer.                             To be an rational number, you either have to be a fraction with whole numbers for the numerator and denominator, or you have to be a number with a terminating decimal expression, or you have to be a number with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . So the correct answers are ABCEGH.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-7-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-7-2",
+  "type": "Exercise",
+  "number": "A.6.4.20",
+  "title": "",
+  "body": "  Which of the following are rational numbers? There may be more than one correct answer.                             To be an rational number, you either have to be a fraction with whole numbers for the numerator and denominator, or you have to be a number with a terminating decimal expression, or you have to be a number with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . So the correct answers are CDEFGH.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-8-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-8-1",
+  "type": "Exercise",
+  "number": "A.6.4.21",
+  "title": "",
+  "body": "  Which of the following are irrational numbers? There may be more than one correct answer.                             To be an irrational number, you simply have to not be a rational number. A rational number is a number that can be written as a fraction with whole numbers for the numerator and denominator, or with a terminating decimal expression, or with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . The irrational numbers here are are FG.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-8-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-8-2",
+  "type": "Exercise",
+  "number": "A.6.4.22",
+  "title": "",
+  "body": "  Which of the following are irrational numbers? There may be more than one correct answer.                             To be an irrational number, you simply have to not be a rational number. A rational number is a number that can be written as a fraction with whole numbers for the numerator and denominator, or with a terminating decimal expression, or with a repeating decimal expression. (Actually, these descriptions are a little redundant.) Sometimes rational numbers are explicitly written in one of these ways, and sometimes they are hidden. For example is a rational number, since . The irrational numbers here are are AG.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-9-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-9-1",
+  "type": "Exercise",
+  "number": "A.6.4.23",
+  "title": "",
+  "body": "  Which of the following are real numbers? There may be more than one correct answer.                             All of these numbers are real numbers, since they can all be located on a number line.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-9-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-9-2",
+  "type": "Exercise",
+  "number": "A.6.4.24",
+  "title": "",
+  "body": "  Which of the following are real numbers? There may be more than one correct answer.                             All of these numbers are real numbers, since they can all be located on a number line.      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-10-1",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-10-1",
+  "type": "Exercise",
+  "number": "A.6.4.25",
+  "title": "",
+  "body": "  Determine the validity of each statement by selecting True or False.    The number is irrational    The number is an integer    The number is rational    The number is rational    The number is irrational        "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-10-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-10-2",
+  "type": "Exercise",
+  "number": "A.6.4.26",
+  "title": "",
+  "body": "  Determine the validity of each statement by selecting True or False.    The number is a real number, but not an irrational number    The number is an integer that is also a natural number    The number is rational    The number is rational, but not an integer    The number is rational, but not an integer        "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-11",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-11",
+  "type": "Exercise",
+  "number": "A.6.4.27",
+  "title": "",
+  "body": "  In each situation, which number set do you think is most appropriate?    The number of dogs a student has owned throughout their lifetime.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The difference between the projected annual expenditures and the actual annual expenditures for a given company.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The length around swimming pool in the shape of a half circle with radius  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The proportion of students at a college who own a car.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The width of a sheet of paper, in inches.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .    The number of people eating in a non-empty restaurant.  This number is best considered as a  ?   natural number   whole number   integer   rational number   irrational number   real number  .                                      "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-12",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-12",
+  "type": "Exercise",
+  "number": "A.6.4.28",
+  "title": "",
+  "body": "    Give an example of a whole number that is not an integer.    Give an example of an integer that is not a whole number.    Give an example of a rational number that is not an integer.    Give an example of a irrational number.    Give an example of a irrational number that is also an integer.                                Since all whole numbers belong to integers, we cannot write any whole number which is not an integer. Type DNE (does not exist) for this question.    Any negative integer, like , is not a whole number, but is an integer.    Any terminating decimal, like , is a rational number, but is not an integer.    is the easiest number to remember as an irrational number. Another constant worth knowing is . Finally, the square root of most integers are irrational, like and .    All irrational numbers are non-repeating and non-terminating decimals. No irrational numbers are integers.        "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-13-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-13-2",
+  "type": "Exercise",
+  "number": "A.6.4.29",
+  "title": "",
+  "body": "  Write the rational number as a fraction.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-13-3",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-13-3",
+  "type": "Exercise",
+  "number": "A.6.4.30",
+  "title": "",
+  "body": "  Write the rational number as a fraction.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-13-4",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-13-4",
+  "type": "Exercise",
+  "number": "A.6.4.31",
+  "title": "",
+  "body": "  Write the rational number as a fraction.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-13-5",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-13-5",
+  "type": "Exercise",
+  "number": "A.6.4.32",
+  "title": "",
+  "body": "  Write the rational number as a fraction.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-13-6",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-13-6",
+  "type": "Exercise",
+  "number": "A.6.4.33",
+  "title": "",
+  "body": "  Write the rational number as a fraction.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-13-7",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-13-7",
+  "type": "Exercise",
+  "number": "A.6.4.34",
+  "title": "",
+  "body": "  Write the rational number as a fraction.           "
+},
+{
+  "id": "section-set-notation-and-types-of-numbers-6-14-2",
+  "level": "2",
+  "url": "section-set-notation-and-types-of-numbers.html#section-set-notation-and-types-of-numbers-6-14-2",
+  "type": "Exercise",
+  "number": "A.6.4.35",
+  "title": "",
+  "body": "  Imagine making up a number with the following pattern. After the decimal point, write the natural numbers 1, 2, 3, 4, 5, etc. The decimal digits will extend forever with this pattern:  Is the number a rational number or an irrational number?  ?   rational   irrational         The number is irrational. The decimal will never end and it will never repeat.      "
 },
 {
   "id": "ccog-mth60",

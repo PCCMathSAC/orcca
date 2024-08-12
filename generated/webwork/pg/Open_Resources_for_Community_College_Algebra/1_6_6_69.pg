@@ -1,0 +1,93 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T11:35:02-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.6.69)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$name = randomPerson();
+$profession = list_random(
+  'a radiography technician',
+  'a microelectronics engineer',
+  'a dental hygienist',
+  'a high school teacher',
+  'an office manager',
+  'a restaurant manager',
+  'a web designer',
+  'a tax accountant',
+  'a paralegal',
+  'a structural engineer'
+);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 65000 + random(-8000,8000);
+$current = Currency($final);
+Context("Percent");
+$decimal = random(0.02,0.06,0.001);
+$percent = Percent($decimal);
+Context("LinearRelation")->variables->are(S => 'Real');
+$equation = LinearRelation("S + $decimal S < $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an inequality to model the scenario. There is no need to solve the inequality.
+
+[$name]'s current annual salary as [$profession] is [`[$current]\text{.}`] This is with a raise by more than [`[$percent]`] over last year's salary. What might [$name->possessive] salary have been last year? Set up an inequality where the solution set represents the possible answers to this question. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|S|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

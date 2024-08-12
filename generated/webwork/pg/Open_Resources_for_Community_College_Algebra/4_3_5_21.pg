@@ -1,0 +1,126 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:32-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.3.5.21)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PCCmacros.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+Context("Fraction")->variables->are($X => 'Real', $Y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+parser::Assignment->Allow;
+$A[0] = Fraction(random_coprime([1..5],[2..6]));
+$B[0] = Fraction(random_coprime([-5..-1,1..5],[2..6]));
+$A[1] = Fraction(random_coprime([1..5],[2..6]));
+$B[1] = $B[0]*$A[1]/$A[0];
+$C[0] = Fraction(random_coprime([-5..-1,1..5],[2..6]));
+$C[1] = $C[0]*$A[1]/$A[0];
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$solution = Compute("infinitely many solutions");
+$answer = $solution->cmp(
+  typeMatch => List("$X = 0, $Y = 0"),
+  mathQuillOpts => 'disabled'
+);
+@left = map{Formula("$A[$_] $X + $B[$_] $Y")->reduce} (0,1);
+@right = map{Formula("$C[$_]")->reduce} (0,1);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the system of equations using elimination.
+
+[`\newcommand{\amp}{&}\left\{
+                  \begin{alignedat}{4}
+                  \amp [$left[0]] = [$right[0]] \\
+                  \amp [$left[1]] = [$right[1]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+[@KeyboardInstructions('Write the solution in the format [| = number,  = number|]*. If there is no solution, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$answer}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

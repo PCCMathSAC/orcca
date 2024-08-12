@@ -1,0 +1,88 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:27-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.71)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserImplicitPlane.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("ImplicitPlane");
+Context()->variables->are(x=>'Real');
+$solstring = "x+1=6";
+$solution = ImplicitPlane($solstring);
+$evaluator = $solution->cmp(
+  cmp_class=>'a linear equation',
+  correct_ans=>$solstring,
+  correct_ans_latex_string=>$solstring,
+  checker => sub {
+    my ($correct,$student,$ansHash) = @_;
+    ($left, $right) = split('=',$ansHash->{original_student_ans});
+    $left = Formula($left);
+    $right= Formula($right);
+    $ansHash->{preview_latex_string} = $ansHash->{original_student_ans};
+    $ansHash->{preview_text_string} = $ansHash->{original_student_ans};
+    $ansHash->{student_ans} = $ansHash->{original_student_ans};
+    Value::Error('Your left side is just x') if ($left == Formula('x'));
+    Value::Error('Your right side is just x') if ($right == Formula('x'));
+    return ($correct == $student);
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write a linear equation whose solution is [`x = 5\text{.}`] You may not write an equation whose left side is just "[`x`]" or whose right side is just "[`x`]".
+
+There are infinitely many correct answers to this problem. _Be creative._ After finding an equation that works, see if you can come up with a different one that also works.
+
+[_]{$evaluator}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,147 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:27-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.4)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Interval");
+$interval = Interval("[3, inf)");
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->variables->are(p => 'Real');
+$setbuilder = Compute("{ p | p >= 3}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => 'p',
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[numberline, xlabel={\(p\)}]
+    \addplot[closedinfiniteinterval] coordinates {(3,0) (10,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the inequality [`12\leq4p\text{.}`] Graph the solution set on a number line. State the solution set using interval notation and using set-builder notation.
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation.')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{,}`] [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+To solve this inequality, we divided each side by [`4\text{.}`]
+
+[```\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+12\amp\leq4p\\
+\divideunder{12}{4}\amp\leq\divideunder{4p}{4}\\
+3\amp\leq p
+\end{aligned}
+```]
+
+
+
+The last line says that "[`3`] is less than or equal to [`p`]". It may feel more natural to say the same thing but in the opposite order with the opposite comparison: "[`p`] is greater than or equal to [`3`]". So you could write
+
+[```
+              p\geq 3
+            ```]
+
+Graphically, we represent this solution set as:
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+Using interval notation, we write the solution set as [`[3, \infty)\text{.}`] Using set-builder notation, we write it as [`\{p \mid p \geq 3\}\text{.}`]
+
+We should check that some number less than [`3`] is _not_ a solution, that [`3`] itself _is_ a solution, and that some number greater than [`3`] _is_ a solution.
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\reject}[1]{\stackrel{\text{no}}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\amp}{&}
+\begin{aligned}
+\amp\amp 12\amp\leq4p\amp\amp\\
+12\amp\wonder{\leq}4(\substitute{0})\amp 12\amp\wonder{\leq}4(\substitute{3})\amp 12\amp\wonder{\leq}4(\substitute{5})\\
+12\amp\reject{\leq}0\amp12\amp\confirm{\leq}12\amp12\amp\confirm{\leq}20
+\end{aligned}
+```]
+
+Everything worked out as expected, so our solution is reasonably checked.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

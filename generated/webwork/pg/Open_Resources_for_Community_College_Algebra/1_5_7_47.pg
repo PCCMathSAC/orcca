@@ -1,0 +1,79 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-26T13:44:39-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.7.47)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Numeric")->variables->add(y=>'Real');
+$m = Real(non_zero_random(-0.9,0.9,0.1));
+$b = non_zero_random(-7,7);
+Context()->noreduce('(-x)+y','(-x)-y');
+parser::Assignment->Allow;
+$equation = Formula("y = $m x + $b")->reduce;
+$gt = GraphTool("{line, solid, (0, $b), (10, $b + 10*$m)}")->with(
+  bBox => [-11, 11, 11, -11],
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Graph the equation.
+
+[`[$equation]`]
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

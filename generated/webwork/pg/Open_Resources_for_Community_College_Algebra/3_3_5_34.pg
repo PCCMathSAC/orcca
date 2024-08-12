@@ -1,0 +1,118 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.3.5.34)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+$a = random(2,5);
+$b = random(1,20);
+$f = Formula("$a*x + $b");
+$start = random(0,10);
+@x = map{$_ + $start} (0..5);
+@y = map{$f->eval(x => $_)}(@x);
+for my $i (0..4) {
+    $diff[$i] = $y[$i+1] - $y[$i];
+};
+$yes = DropDown(['yes','no'], 0, showInStatic => 0);
+$no = DropDown(['yes','no'], 1, showInStatic => 0);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Does the table show that [`x`] and [`y`] have a linear relationship?
+
+>> [@DataTable(
+  [
+    [[PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+    [PGML('[`[$x[4]]`]'),
+     PGML('[`[$y[4]]`]'),
+    ],
+    [PGML('[`[$x[5]]`]'),
+     PGML('[`[$y[5]]`]'),
+    ],
+  ],
+      align => '*{2}{r}',
+      valign => 'middle',
+);@]* <<
+
+[_]{$no}{5}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+As each [`x`]-value increases by [`1\text{,}`] the [`y`]-values increases by [`[$diff[0]]\text{,}`] then [`[$diff[1]]\text{,}`] then [`[$diff[2]]\text{,}`] then [`[$diff[3]]\text{,}`] then [`[$diff[4]]\text{.}`] So this table shows that [`x`] and [`y`] do not have a linear relationship.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

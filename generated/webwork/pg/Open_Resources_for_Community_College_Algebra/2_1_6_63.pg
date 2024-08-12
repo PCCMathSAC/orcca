@@ -1,0 +1,75 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.63)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Numeric")->flags->set(
+  trimTrailingZeros => 1, tolType => 'absolute', tolerance => 0.5
+);
+$initial = 100;
+$start = NumberWithUnits("$initial lb");
+$rate = random(7,12);
+$speed = NumberWithUnits("$rate lb");
+$final = random(20,30,5);
+$end = NumberWithUnits("$final lb");
+$solution = -($final - $initial)/$rate;
+$time = NumberWithUnits("$solution days");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A restaurant stocks its pantry with [`[$start]`] of onions. When the supply reaches [`[$end]\text{,}`] it's time to order more. Recently, the restaurant has been using [`[$speed]`] of onions per day. How long since restocking will it take until another order must be placed?
+
+[_]{$time}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

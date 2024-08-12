@@ -1,0 +1,79 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:31-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.9.5.31)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+Context()->noreduce('(-x)-y','(-x)+y');
+($h,$k,$m) = random_subset(3, 2..5);
+$k = -$k;
+$f = Formula("$m(x - $h) + $k")->reduce;
+$x1 = $h + 1;
+$y1 = $k + $m;
+$gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+  bBox => [-11, 11, 11, -11],
+  showInStatic => 0,
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Use the slope and the apparent point to plot the line.
+
+[`y=[$f]`]
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

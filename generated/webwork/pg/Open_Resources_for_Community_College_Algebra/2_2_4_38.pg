@@ -1,0 +1,131 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.4.38)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$p = randomPerson();
+$r = list_random(18,20);
+$c = random(85,185,5);
+$sol = $c/(1 + $r/100);
+Context("Currency");
+$bill = Currency("$sol");
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = Interval("[50,$sol]");
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("x + ($r/100)x <= $c");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The bill at a restaurant came and [$p] offered to pay for the whole table. We are not sure what the bill was, but it was at least [`\$50\text{.}`] [$p] added a tip, and the total came to [`\$[$c]\text{.}`] We are sure that [$p->they] added _at least_ [`[$r]\%`] tip. What might the original bill total have been before tip?
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent the bill total before tip was added.
+
+[_]{$relation}{16}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. What's the most the bill could have been before tip?
+
+[_]{$bill}{16}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express what the bill could have been before tip was added.
+
+[_]{$interval}{16}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,81 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:27-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.63)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitEquation.pl",
+  "parserNumberWithUnits.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$rise = random(6.125, 8.75, 0.125);
+Context("ImplicitEquation");
+Context()->variables->are(N => 'Real');
+$answer = 17.5 - $rise;
+Context()->variables->set(N => {limits=>[$answer - 10, $answer + 10]});
+$equation = ImplicitEquation("$rise + N = 17.5");
+$answer = NumberWithUnits("$answer in");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A convention among contractors is that steps in a staircase should have rise [`S`] and run [`N\text{,}`] both in inches, such that [`S + N = 17.5\text{.}`] (See Example[$NBSP]*1.1.6.) To bridge the first floor to the second floor, contractors determined the rise of each stair should be the given number of inches. Write an equation that can be used to find the run of each step. Then solve that equation and report what the run should be.
+
+The rise is [`[$rise]`] inches.
+
+[@KeyboardInstructions('Write the equation here.')@]**
+
+[_]{$equation}{15}
+
+[@KeyboardInstructions('Write the run here.')@]**
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

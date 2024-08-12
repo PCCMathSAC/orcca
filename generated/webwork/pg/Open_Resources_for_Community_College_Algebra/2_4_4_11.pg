@@ -1,0 +1,77 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.4.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($m, $b, $c) = random_subset(3,-9..-1,1..9);
+$x = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+Context()->variables->are($x => 'Real');
+Context()->noreduce('(-x)+y', '(-x)-y');
+$left = Formula("$m ($x + $b)")->reduce;
+$right = Formula("$m ($x + $c)")->reduce;
+Context("FiniteSolutionSets");
+$solution = String("no real solutions")->cmp(typeMatch => Formula("{1}"));
+#$solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the equation for its variable.
+
+[`[$left]=[$right]`]
+
+[_]{$solution}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

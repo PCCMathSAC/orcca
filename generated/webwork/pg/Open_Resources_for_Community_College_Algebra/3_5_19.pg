@@ -1,0 +1,129 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:30-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.5.19)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "bizarroArithmetic.pl",
+  "AnswerFormatHelp.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->operators->set(
+'+'=>{class=>'bizarro::BOP::add',isCommand=>1},
+'-'=>{class=>'bizarro::BOP::subtract',isCommand=>1},
+);
+Context()->flags->set(reduceConstants=>0);
+parser::Assignment->Allow;
+Context()->variables->add(y=>'Real');
+$eq=Formula("y=5/3x+23/4");
+$ev=$eq->cmp(checker=>sub{
+my($co,$st,$aH)=@_;
+return 0 if$aH->{isPreview}||$co!=$st;
+$st=$aH->{student_formula};
+$co=$co->{original_formula} if defined $co->{original_formula};
+$st=Formula("$st");$co=Formula("$co");
+return 0 unless($co==$st);
+Context()->flags->set(bizarroAdd=>1,bizarroSub=>1);
+delete $co->{test_values},$st->{test_values};
+Value->Error("Your answer is an equation for this line, but it is not in simplified slope-intercept form")unless(($co==$st)or($st==$co));
+Context()->flags->set(bizarroAdd=>0,bizarroSub=>0);
+return 1;
+})->withPostFilter(sub{my$ans=shift;
+$ans->{ans_message}="An equation for a line in slope-intercept form should start with 'y='"
+if $ans->{ans_message} eq "The left side of an assignment must be a variable or function";
+return $ans;
+});
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Find the slope-intercept form of an equation for the line that passes through the points [`\left(-3,\frac{3}{4}\right)`] and [`\left(-6,-\frac{17}{4}\right)\text{.}`]
+
+[_]{$ev}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+First find the slope through our points: [`\left(-3,\frac{3}{4}\right)`] and [`\left(-6,-\frac{17}{4}\right)\text{.}`]
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\amp}{&}
+\begin{aligned}
+m\amp=\frac{y_2-y_1}{x_2-x_1}\\
+\amp=\frac{\substitute{-\frac{17}{4}}-\substitute{\frac{3}{4}}}{\substitute{-6}-\substitute{(-3)}}\\
+\amp=\frac{\frac{-20}{4}}{-3}\\
+\amp=\frac{-5}{-3}=\frac{5}{3}
+\end{aligned}
+```]
+
+
+
+At this point we have [`y=\frac{5}{3}x+b\text{.}`] Now we need to solve for [`b`] since neither of the points given to us were the vertical intercept. To do this, we choose one of the two points and plug it into our equation. We choose [`\left(-3,\frac{3}{4}\right)\text{.}`]
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\addright}[1]{{\highlight{{{}+#1}}}}\newcommand{\amp}{&}
+\begin{aligned}
+y\amp=\frac{5}{3}x+b\\
+\substitute{\frac{3}{4}}\amp=\frac{5}{3}(\substitute{-3})+b\\
+\frac{3}{4}\amp=-5+b\\
+\frac{3}{4}\addright{5}\amp=-5+b\addright{5}\\
+\frac{3}{4}+\frac{20}{4}\amp=b\\
+\frac{23}{4}\amp=b
+\end{aligned}
+```]
+
+
+
+So we have [`y=\frac{5}{3}x+\frac{23}{4}\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

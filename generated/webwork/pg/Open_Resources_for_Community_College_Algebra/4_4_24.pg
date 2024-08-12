@@ -1,0 +1,134 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:33-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.4.24)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+do {
+  $A[0] = list_random(1..10, 12, 14..16, 18, 24, 27, 28)/10 * list_random(-1,1);
+  $A[1] = list_random(1..10, 12, 14..16, 18, 24, 27, 28)/10 * list_random(-1,1);
+  $B[0] = list_random(1..10, 12, 14..16, 18, 24, 27, 28)/10 * list_random(-1,1);
+  $B[1] = list_random(1..10, 12, 14..16, 18, 24, 27, 28)/10 * list_random(-1,1);
+  $roll = random(0,3);
+  if ($roll == 0) {$A[0] = list_random(-1,1)};
+  if ($roll == 1) {$A[1] = list_random(-1,1)};
+  if ($roll == 2) {$B[0] = list_random(-1,1)};
+  if ($roll == 3) {$B[1] = list_random(-1,1)};
+} until ($A[0]*$B[1] != $A[1]*$B[0]);
+$C[0] = non_zero_random(-8,8,0.1);
+$C[1] = non_zero_random(-8,8,0.1);
+@left = map{Formula("$A[$_] $X + $B[$_] $Y")->reduce} (0,1);
+@f = map{Formula("$left[$_] = $C[$_]")} (0,1);
+$x = Real(($B[1]*$C[0] - $B[0]*$C[1])/($A[0]*$B[1] - $A[1]*$B[0]));
+$y = Real((-$A[1]*$C[0] + $A[0]*$C[1])/($A[0]*$B[1] - $A[1]*$B[0]));
+$xis = Formula("$X = $x");
+$yis = Formula("$Y = $y");
+$solution = List($xis,$yis);
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$answer = $solution->cmp(
+  mathQuillOpts => 'disabled'
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the system of equations using elimination.
+
+[`\newcommand{\amp}{&}\left\{
+                  \begin{alignedat}{4}
+                  \amp [$f[0]] \\
+                  \amp [$f[1]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+[@KeyboardInstructions('Write the solution in the format [| = number,  = number|]*. If there is no solution, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$answer}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

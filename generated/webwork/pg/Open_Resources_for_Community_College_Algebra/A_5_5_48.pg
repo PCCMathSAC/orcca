@@ -1,0 +1,72 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:33-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.5.5.48)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($answer,$absbminusc) = (3..9)[NchooseK(7,2)];
+$a = $answer*$absbminusc;
+$c = random(1,9,1);
+$b = list_random($absbminusc,-$absbminusc) + $c;
+Context("LimitedNumeric");
+$answer = Real($a/abs($b-$c));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Use the order of operations to simplify the expression that has absolute value or implied grouping.
+
+[`\newcommand{\abs}[1]{\left\lvert#1\right\rvert}[$a] \div \abs{[$b] - [$c]}`]
+
+[_]{$answer}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

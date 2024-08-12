@@ -1,0 +1,93 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:32-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.3.5.37)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$p2 = random(2, 6, 2);
+$q2 = random(-7, -3, 2);
+$r2 = non_zero_random(-5, 5);
+$factor = non_zero_random(-5, -2);
+$p = $p2*$factor;
+$q = $q2*$factor;
+$r = $r2*$factor;
+Context()->variables->are(x=>'Real', y=>'Real', b=>'Real');
+Context()->noreduce('(-x)+y', '(-x)-y');
+$exp1 = Formula("$p x + $q y")->reduce;
+$exp2 = Formula("$p2 x - b y")->reduce;
+$answer = Formula("-$q2");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Find the value of [`b`] so that the system of equations has an infinite number of solutions.
+
+[```\newcommand{\amp}{&}
+                \left\{\begin{aligned} [$exp1] \amp = [$r]\\
+                [$exp2] \amp = [$r2] \end{aligned}\right.
+              ```]
+
+
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+To have an infinite numbers of solutions, the two equations must represeent the same line coinciding. So the second equation comes from multiplying or dividing all the terms in the first equation by a certain factor. In this case, if you divide the first equation's terms by [$factor], the result is the second equation.  So [`b`] must equal [`[$answer]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

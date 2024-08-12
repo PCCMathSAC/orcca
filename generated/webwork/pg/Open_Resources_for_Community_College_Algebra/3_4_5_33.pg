@@ -1,0 +1,76 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:30-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.4.5.33)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextFraction.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@x = num_sort(random_subset(3, -90..90));
+@y = num_sort(random_subset(3, -90..90));
+Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
+$m[0] = Fraction($y[1] - $y[0], $x[1] - $x[0]);
+$m[1] = Fraction($y[2] - $y[0], $x[2] - $x[0]);
+$m[2] = Fraction($y[2] - $y[1], $x[2] - $x[1]);
+$m = max(@m);
+Context("Point");
+@p = map {Point($x[$_], $y[$_])} (0..2);
+@p = random_subset(3, @p);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Determine the steepest slope for a line connecting two points from the list.
+
+[`[$p[0]]\text{,}`] [`[$p[1]]\text{,}`] [`[$p[2]]`]
+
+[_]{$m}{10}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

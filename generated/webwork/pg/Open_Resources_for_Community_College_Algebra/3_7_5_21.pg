@@ -1,0 +1,138 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:30-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.7.5.21)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserImplicitPlane.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("ImplicitPlane");
+Context()->flags->set(reduceConstants=>0);
+Context()->flags->set(reduceConstantFormulas=>0);
+Context()->flags->set(showExtraParens=>0);
+Context()->variables->are(x=>'Real', y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+$a = random(2,9,1);
+do {$b = random(2,9,1);} until (gcd($a,$b)==1);
+$c = non_zero_random(-9,9,1);
+$bc = $b*$c;
+$nbc = -$bc;
+$left0 = Compute("y");
+$right0 = Compute("$a/$b*x+$c");
+$ansPSstring = "$a*x-$b*y=-$bc";
+$left1 = Compute("$a*x-$b*y")->reduce;
+$ansPSstringTeX = $left1->TeX."=$nbc";
+$s1 = Compute("-$a*x+$b*y")->reduce;
+$s2 = Compute("$a*x-$b*y")->reduce;
+$ansPS = ImplicitPlane($ansPSstring);
+$evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
+   ) -> withPostFilter(sub {
+      my $ansHash = shift;
+        my $student = $ansHash->{original_student_ans};
+        my @sides = split('=',"$student");
+      #if it's an implicit plane object, reset how student's answer is displayed:
+      if (defined $ansHash->{student_formula}) {
+      if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+        $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+        my $leftTex = Formula("$sides[0]")->TeX;
+        my $rightTex = Formula("$sides[1]")->TeX;
+        $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+        $ansHash->{student_ans} = $ansHash->{original_student_ans};
+      }
+      };
+      # if they have it correct, then check each side to see
+      # whether x and y are on the same side of =
+      if ($ansHash->{score}) {
+         if ( (($sides[0] =~ /x/) && ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) && ($sides[0] =~ /y/)) ) {
+         $ansHash->{score} = 0;
+         $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form.";
+         }
+      }
+      return $ansHash;
+    });
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write the linear equation in standard form.
+
+[`[$left0]=[$right0]`]
+
+[_]{$evaluator}{30}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+A line's standard form is [`Ax+By=C\text{.}`] We need to move [`x`] and [`y`] terms to the same side of the equal sign.
+
+[```\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+[$left0]\amp=[$right0]\\
+\multiplyleft{[$b]}[$left0]\amp=\multiplyleft{[$b]}\left([$right0]\right)\\
+[$b]y\amp=[$b]\left( \frac{[$a]}{[$b]}x \right)+[$b]([$c])\\
+[$b]y\amp=[$a]x+[$bc]\\
+[$b]y\subtractright{[$a]x}\amp=[$a]x+[$bc]\subtractright{[$a]x}\\
+[$s1]\amp=[$bc]\\
+\multiplyleft{-1}([$s1])\amp=\multiplyleft{-1}([$bc])\\
+[$s2]\amp=[$nbc]
+\end{aligned}
+```]
+
+
+
+Note that [`[$s1]=[$bc]`] is already in standard form, but it's better to get rid of the leading negative sign in an equation.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

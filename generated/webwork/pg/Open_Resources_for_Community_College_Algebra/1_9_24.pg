@@ -1,0 +1,143 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.24)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "PGlateximage.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction");
+Context()->operators->remove("U");
+@orig_vars = ('a'..'n','p'..'z','A'..'N','P'..'Z')[NchooseK(50,3)];
+@vars = (@orig_vars, @orig_vars);
+@vars = (@vars)[NchooseK(6,6)];
+Context()->variables->are();
+for my $i (1,2,3) {
+  Context()->variables->add($orig_vars[$i-1] => 'Real');
+}
+
+@fracs = ();
+for my $j (2..10) {
+  for my $i (1..10) {
+    push(@fracs, Fraction($i,$j));
+  }
+}
+
+@coefs = num_sort((@fracs)[NchooseK(90,6)]);
+@terms = ();
+for my $i (1..6) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]")->reduce);
+}
+$sum = Formula(join('+', @terms))->reduce;
+
+%combinedcoefs = ();
+$combinedcoefs{$orig_vars[0]} = Fraction($sum->eval($orig_vars[0] => 1, $orig_vars[1] => 0, $orig_vars[2] => 0));
+$combinedcoefs{$orig_vars[1]} = Fraction($sum->eval($orig_vars[0] => 0, $orig_vars[1] => 1, $orig_vars[2] => 0));
+$combinedcoefs{$orig_vars[2]} = Fraction($sum->eval($orig_vars[0] => 0, $orig_vars[1] => 0, $orig_vars[2] => 1));
+$ans = Formula("$combinedcoefs{$orig_vars[0]} $orig_vars[0] + $combinedcoefs{$orig_vars[1]} $orig_vars[1] + $combinedcoefs{$orig_vars[2]} $orig_vars[2]")->reduce;
+
+Context("Form");
+Context()->operators->remove("U");
+Context()->variables->are();
+for my $i (1,2,3) {
+  Context()->variables->add($orig_vars[$i-1] => 'Real');
+}
+
+$ans = Formula("$ans");
+
+$polygon = list_random(
+  [[0,2,4,2,-1,-1], [0,0,1,3,2,1], [2,3,4,5,0,1]],
+  [[0,1,3,2,-1,-1], [0,0,1,3,3,1], [0,3,4,5,2,1]],
+  [[0,2,3,0,-1,-1], [0,0,1,3,3,1], [3,1,5,0,4,2]],
+  [[0,2,3,2,0,-1], [-1,0,1,2,2,1], [4,0,1,3,2,5]],
+);
+
+@x = @{$polygon->[0]};
+@y = @{$polygon->[1]};
+@termsTeX = map{$terms[$_]->TeX} (@{$polygon->[2]});
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \draw[fill=wood] ($x[0],$y[0])
+  -- node[pos=0.5,below]{\($termsTeX[0]\)} ($x[1],$y[1])
+  -- node[pos=0.5,below right]{\($termsTeX[1]\)} ($x[2],$y[2])
+  -- node[pos=0.5,above right]{\($termsTeX[2]\)} ($x[3],$y[3])
+  -- node[pos=0.5,above left]{\($termsTeX[3]\)} ($x[4],$y[4])
+  -- node[pos=0.5,left]{\($termsTeX[4]\)} ($x[5],$y[5])
+  -- node[pos=0.5,below left]{\($termsTeX[5]\)} cycle;   
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write a simplified expression for the perimeter of the given shape (which is not drawn to scale).
+
+>> [@image(insertGraph($image_1), width=>564, alt=>qq"a quadrilateral whose sides are labeled $terms[0], $terms[1], $terms[2], and $terms[3].")@]*  <<
+
+[_]{$ans}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The perimeter is the result from adding the six sides together: [`[$termsTeX[0]] + [$termsTeX[1]] + [$termsTeX[2]] + [$termsTeX[3]] + [$termsTeX[4]] + [$termsTeX[5]]\text{.}`] There are two [`[$orig_vars[0]]`]-terms, two [`[$orig_vars[1]]`]-terms, and two [`[$orig_vars[2]]`]-terms. We combine each pair of like terms and the perimeter is [`[$ans]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,86 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.4.23)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$m = random(2,9);
+$b = non_zero_random(-9,9);
+$x = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+Context()->variables->are($x => 'Real');
+$left = Formula("$m $x");
+$right = Formula("$m $x + $b")->reduce;
+$symbol = list_random('\lt', '\gt', '\leq', '\geq');
+sub weigh {
+  my ($a, $b, $s) = @_;
+  if ($s eq '\lt') {return ($a < $b)}
+  elsif ($s eq '\gt') {return ($a > $b)}
+  elsif ($s eq '\leq') {return ($a <= $b)}
+  elsif ($s eq '\geq') {return ($a >= $b)}
+}
+Context("FiniteSolutionSets");
+$solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
+  ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+  : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the inequality for its variable.
+
+[`[$left][$symbol][$right]`]
+
+[_]{$solution}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,109 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:30-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.5.7.25)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$b = non_zero_random(-4,4);
+Context("Fraction");
+$m = Fraction(random_coprime([-5..2],[2..5]));
+$x1 = 0;
+$y1 = $b;
+$x2 = ($m->value)[1];
+$y2 = $b+($m->value)[0];
+$rise = $y2-$y1;
+$run = $x2-$x1;
+Context()->variables->add(y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y');
+parser::Assignment->Allow;
+$ansSI = Formula("y = $m*x+$b")->reduce;
+$xmax = 7;
+$xmin = -7;
+$ymin = -7;
+$ymax = 7;
+($start,$stop) = (num_sort($xmin,$xmax,($ymin-$b)/$m,($ymax-$b)/$m))[1,2];
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin = $xmin,
+      xmax = $xmax,
+      ymin = $ymin,
+      ymax = $ymax,
+      xtick =,
+      ytick =,
+      minor xtick = {$xmin,...,$xmax},
+      minor ytick = {$ymin,...,$ymax},
+      grid = minor,
+      width=0.47\orccaprintwidth
+    ]
+    \addplot+[domain=$start:$stop] {$m*x+$b};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+In the given graph, what is the line's slope-intercept equation?
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[_]{$ansSI}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

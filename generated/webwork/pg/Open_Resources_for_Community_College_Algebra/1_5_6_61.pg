@@ -1,0 +1,81 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:27-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.61)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitEquation.pl",
+  "parserNumberWithUnits.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$K = list_random(1..39,41..100);
+Context("ImplicitEquation");
+Context()->variables->are(C => 'Real');
+$answer = $K - 273;
+Context()->variables->set(C => {limits=>[$answer - 10, $answer + 10]});
+$equation = ImplicitEquation("$K = C + 273");
+$answer = NumberWithUnits("$answer degC");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+To convert a temperature in degrees Celsius to degrees Kelvin, there is a formula [`K = C + 273\text{.}`] Suppose the temperature of something in space is the given Kelvin temperature. Write an equation that can be used to find that temperature in degrees Celsius. Then solve that equation and report the corresponding Celsius temperature.
+
+[`[$K]`] Kelvin
+
+[@KeyboardInstructions('Write the equation here.')@]**
+
+[_]{$equation}{15}
+
+[@KeyboardInstructions('Write the Celsius temperature here. You may enter [|degC|]* for ℃.')@]**
+
+[_]{$answer}{10}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,144 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.4)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+$t = NumberWithUnits("8 months");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Your savings account starts with [`\$500\text{.}`] Then each month, there is an automatic deposit of [`\$150\text{.}`] You need [`\$1700`] to afford a deposit on a new apartment. How long will this take?
+
+[_]{$t}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+With any word problem, it is best to clearly define the variable you will use once you really understand what the question is asking for. In this case, we let [`t`] (for time) be the number of months until you have saved up [`\$1700\text{.}`]
+
+To set up an equation, we might start by making a table in order to identify a general pattern for the total amount in the savings account after [`t`] months.
+
+>> [@DataTable(
+  [
+    [[PGML('Time Passed  
+ (in Months)  
+'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('Account Balance  
+ (in Dollars)  
+'),
+    ],
+    [PGML('[`0`]'),
+     PGML('[`500`]'),
+    ],
+    [PGML('[`1`]'),
+     PGML('[`650`] ([`150`] more than [`500`])'),
+    ],
+    [PGML('[`2`]'),
+     PGML('[`800`] ([`300`] more than [`500`])'),
+    ],
+    [PGML('[`3`]'),
+     PGML('[`950`] ([`450`] more than [`500`])'),
+    ],
+    [PGML('[`4`]'),
+     PGML('[`1100`] ([`600`] more than [`500`])'),
+    ],
+    [PGML('[`\vdots`]'),
+     [PGML('[`\vdots`]'),
+      halign => 'c',],
+    ],
+  ],
+      align => 'cl',
+      valign => 'middle',
+);@]* <<
+
+We find the pattern is that after [`t`] months, the total amount saved is [`150t + 500\text{.}`] Using this pattern, we set up the equation
+
+[```
+              150t + 500 = 1700
+            ```]
+
+to represent when we will have saved up [`\$1700\text{.}`] To solve this equation, we start by subtracting [`500`] from each side. Then we can divide each side by [`150\text{.}`]
+
+[```\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+500+150m\amp=1700\\
+500+150m\subtractright{500}\amp=1700\subtractright{500}\\
+150m\amp=1200\\
+\divideunder{150m}{150}\amp=\divideunder{1200}{150}\\
+m\amp=8
+\end{aligned}
+```]
+
+Checking the solution [`8\text{:}`]
+
+[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\amp}{&}
+\begin{aligned}
+500+150m\amp=1700\\
+500+150\amp(\substitute{8})\wonder{=}1700\\
+500+1200\amp\confirm{=}1700
+\end{aligned}
+```]
+
+So [`8`] is the solution, and it checks out. This means it will take [`8`] months for the account balance to reach [`\$1700\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

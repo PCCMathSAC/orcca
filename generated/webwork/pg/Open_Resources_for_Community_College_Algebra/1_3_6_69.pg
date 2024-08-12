@@ -1,0 +1,95 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T16:43:18-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.6.69)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$b = random(80, 150, 10);
+$r = random(36, 44, 4);
+$n = random(18, 26);
+$total = $b + $r*$n;
+Context()->variables->are(n => 'Real');
+$proposed_solution = (random(0,2)) ? $n : $n + non_zero_random(-3, 3);
+$left = Formula("$b + $r n");
+$right = Formula($total);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(n => $proposed_solution));
+$righteval = Real($right->eval(n => $proposed_solution));
+$dropdown = DropDown(
+  ["Yes, it is a solution.", "No, it is not a solution."],
+  ($lefteval <= $righteval) ? 0 : 1, showInStatic => 0
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+An elementary school classroom needs a minimum of [`[$b]`] square feet for the teacher plus a minimum of [`[$r]`] square feet per student. So if there are [`n`] students, the total necessary area is [`[$left]`] square feet. If a classroom has [`[$total]`] square feet of area, then we have an inequality [`[$left]\leq[$right]\text{.}`] Could this classroom support [`[$proposed_solution]`] students?
+
+>> [@DataTable(
+  [
+    [PGML('[`[$left->TeX]`]'),
+     PGML('[`\leq`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{\leq}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

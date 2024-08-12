@@ -1,0 +1,179 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.2.15)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "parserMultiAnswer.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Point")->noreduce('(-x)-y', '(-x)+y');
+$a = list_random(-1,1);
+$b = list_random(-1,1);
+$c = list_random(-1,1);
+$d = list_random(-3..3);
+$f = Formula("$a x^3 + $b x^2 + $c x + $d")->reduce;
+@x = -2..2;
+@y = map {$f->eval(x => $_)} (@x);
+@p = map {Point($x[$_],$y[$_])} (0..4);
+$mp = MultiAnswer(map {($y[$_], $p[$_])} (0..4) )->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+    my ($c,$s,$self) = @_;
+    my $return = 1;
+    my %numWord = (
+      0 => 'first', 1 => 'second',  2 => 'third',  3 => 'fourth', 4 => 'fifth',
+      5 =>'sixth',  6 => 'seventh', 7 => 'eighth', 8 => 'ninth',  9 => 'tenth'
+    );
+    my $error = '';
+    for (0..9) {
+      $error .= "Your $numWord{$_} answer is incorrect.~~n" unless ($c->[$_] == $s->[$_]);
+    }
+    Value::Error($error) if $error;
+    return 1;
+  }
+);
+($ymin, $ymax) = (min(@y,-10), max(@y,10));
+$gt = GraphTool( (map {"{point,$p[$_]}"} (0..4)), "{cubic,solid,$p[0],$p[1],$p[2],$p[3]}")->with(
+  availableTools => [ "PointTool", "LineTool", "QuadraticTool", "CubicTool" ],
+  showCoordinateHints => 0,
+  showInStatic => 0,
+  cmpOptions => {
+    list_checker => sub {
+      my ($c, $s, $a, $v) = @_;
+      return 0 if $a->{isPreview};
+      my $score = 0;
+      my @errors;
+      my $ptcount = 0;
+      my $cubicCmp = ($graphToolObjectCmps->{cubic}->($c->[5]))[1];
+      for my $i (0 .. $#$s) {
+        if ($cubicCmp->($s->[$i])) { ++$score; next; }
+        my $nth = Value::List->NameForNumber($i + 1);
+        if ($s->[$i]->extract(1) eq 'line' || $s->[$i]->extract(1) eq 'quadratic' || $s->[$i]->extract(1) eq 'cubic') {
+          push(@errors, "The $nth object graphed is not the correct graph.");
+          next;
+        }
+        if ($s->[$i]->extract(1) eq 'point') {
+          my ($px,$py) = $s->[$i]->extract(2)->value;
+          if ($py == $f->eval(x => $px)) {
+            my $seen = 0;
+            for my $j (0..($i-1)) {
+              if ($s->[$i]->extract(2) == $s->[$j]->extract(2)) {
+                $seen = 1;
+                last;
+              }
+            }
+            unless ($seen) {++$ptcount; ++$score;}
+            next;
+          }
+          push(@errors, "The $nth object graphed is a point not on the graph.");
+          next;
+        }
+        push(@errors, "The $nth object graphed is incorrect.");
+      }
+      return ($score, @errors);
+    }
+  }
+);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Make a table and then plot the equation.
+
+[`y=[$f]`]
+
+>> [@DataTable(
+  [
+    [[PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     [PGML('[`y`]'),
+      halign => 'c',],
+     PGML('Point'),
+    ],
+    [[PGML('[`[$x[0]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [[PGML('[`[$x[1]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [[PGML('[`[$x[2]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [[PGML('[`[$x[3]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [PGML('[`[$x[4]]`]'),
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+  ],
+      align => 'r|r|c',
+);@]* <<
+
+[_]{$gt}{1}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

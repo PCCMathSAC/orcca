@@ -1,0 +1,91 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.2.1)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserCheckboxList.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+($m,$b) = random_coprime([2..9],[-9..-1,1..9]);
+$f = Formula("$m x + $b")->reduce;
+@x = random_subset(4,-4..4);
+@y = map {$f->eval(x => $_)} (@x);
+$y[2] += non_zero_random(-5,5);
+($x[3],$y[3]) = ($y[3],$x[3]);
+Context("Point");
+@p = map {Point($x[$_],$y[$_])} (random_subset(4,0..3));
+@ans;
+for (0..3) {
+  push(@ans, $_) if ($f->eval(x => ($p[$_]->value)[0]) == ($p[$_]->value)[1]);
+}
+$checks = CheckboxList([map {'\(' . $_->TeX . '\)'} (@p)], [@ans], options);
+$corstring = join(', ', (@p)[@ans]);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.
+
+[`y=[$f]`]
+
+[_]{$checks}{5}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+Only the points [`[$corstring]`] are solutions. The other points cause the equation to be false when [`x`] and [`y`] are substituted.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

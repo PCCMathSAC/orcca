@@ -1,0 +1,97 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.10)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("FiniteSolutionSets");
+$solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve for [`x`] in the equation [`3(x+2)-8=(5x+4)-2(x+1)\text{.}`]
+
+[_]{$solution}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+A lot could be simplified on each side before continuing, by distributing and combining like terms.
+
+[```\newcommand{\amp}{&}
+\begin{aligned}
+3(x+2)-8\amp=(5x+4)-2(x+1)\\
+3x+6-8\amp=5x+4-2x-2\\
+3x-2\amp=3x+2
+\end{aligned}
+```]
+
+From here, we subtract [`3x`] from each side:
+
+[```\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\amp}{&}
+\begin{aligned}
+3x-2\subtractright{3x}\amp=3x+2\subtractright{3x}\\
+-2\amp=2
+\end{aligned}
+```]
+
+As the equation [`-2=2`] is outright false, there is no solution to this equation.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

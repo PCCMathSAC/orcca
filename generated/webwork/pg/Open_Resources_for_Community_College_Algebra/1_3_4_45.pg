@@ -1,0 +1,108 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:26-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.45)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$a = random(-7, 7);
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$set_builder = Compute("{ x | x < $a}");
+Context("Interval");
+$interval = Compute("(-inf, $a)");
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xlabel={\(x\)},
+      width=\orccaprintwidth,
+    ]
+    \addplot[infiniteopeninterval] coordinates {(-12,0) ($a,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Express the given interval in set-builder notation and interval notation.
+
+>> [@image(insertGraph($image_1), width=>600, alt=>qq"a numberline with a shaded region; the shaded region extends all the way to the left with an arrowhead; it extends to the right up to $a where there is a right parenthesis")@]*  <<
+
+[@KeyboardInstructions('In set-builder notation:')@]**
+
+[_]{$set_builder}{12}
+
+[@KeyboardInstructions('In interval notation:')@]**
+
+[_]{$interval}{12}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+The interval represents all numbers less than [`[$a]\text{.}`] So in set-builder notation, the interval is [`[$set_builder]\text{.}`]
+
+And we read the number line from left to right, with the shading extending to [`-\infty`] on the left and going all the way up to [`[$a]`] but not including [`[$a]\text{.}`] So in interval notation, the interval is [`[$interval]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

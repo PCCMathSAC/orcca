@@ -1,0 +1,73 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.70)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$decimal = random(0.16,0.20,0.01);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 90 + random(-30, 30, 0.05);
+$current = Currency($final);
+$solution = $final/(1 + $decimal);
+$before = Currency($solution);
+Context("Percent");
+$percent = Percent($decimal);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The final bill at a restaurant one night was [`[$current]\text{,}`] including a [`[$percent]`] tip. What was the bill before the tip was added?
+
+[_]{$before}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

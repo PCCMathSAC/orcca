@@ -1,0 +1,195 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.6.16)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$sol = non_zero_random(-6, 6);
+$m = list_random(-9..-2);
+$b = non_zero_random(-9, 9);
+$c = $m*$sol + $b;
+$left = Formula("$b + $m $var")->reduce;
+$right = Formula("$c")->reduce;
+$sign = list_random('\lt', '\gt', '\leq', '\geq');
+%interval = (
+  '\gt'  => "(-inf, $sol)",
+  '\lt'  => "($sol, inf)",
+  '\geq' => "(-inf, $sol]",
+  '\leq' => "[$sol, inf)"
+);
+Context("Interval");
+$interval = Interval($interval{$sign});
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->variables->are($var => 'Real');
+%perlsign = (
+  '\gt'  => "<",
+  '\lt'  => ">",
+  '\geq' => "<=",
+  '\leq' => ">="
+);
+$perlsign = $perlsign{$sign};
+$setbuilder = Compute("{ $var | $var $perlsign $sol}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => "$var",
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+Context("Fraction")->variables->are($var => 'Real');
+Context()->flags->set(reduceConstants => 0, reduceFractions => 0);
+Context()->noreduce('(-x)-y', '(-x)+y', '(-x)/y', 'x/(-y)');
+$solleft[0] = Formula("$b + $m $var - $b")->reduce;
+$solright[0] = Formula("$var - $b")->reduce;
+$solright[0] = $solright[0]->substitute($var => Formula("$c"));
+$solleft[1] = Formula("$m $var")->reduce;
+$solright[1] = Formula("$c - $b")->reduce;
+$solleft[2] = Formula("($m $var)/($m)");
+$solright[2] = Formula("($solright[1])/($m)");
+%oppsign = (
+  '\lt'  => '\gt',
+  '\gt'  => '\lt',
+  '\leq' => '\geq',
+  '\geq' => '\leq'
+);
+$oppsign = $oppsign{$sign};
+%words = (
+  '\lt'  => "less than",
+  '\gt'  => "greater than",
+  '\leq' => "less than or equal to",
+  '\geq' => "greater than or equal to"
+);
+$words = $words{$oppsign};
+if ($oppsign eq '\lt' || $oppsign eq '\gt') {
+  $sol[0] = "does not allow";
+  $sol[1] = "parenthesis";
+  $sol[2] = "infiniteopeninterval";
+} else {
+  $sol[0] = "allows";
+  $sol[1] = "bracket";
+  $sol[2] = "infiniteclosedinterval";
+}
+if ($oppsign eq '\lt' || $oppsign eq '\leq') {
+  $sol[3] = -12;
+} else {
+  $sol[3] = 12;
+}
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[numberline, xlabel={\($var\)}]
+    \addplot[$sol[2]] coordinates {($sol[3],0) ($sol,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the inequality. Graph the solution set, and write the solution set using both interval notation and set-builder notation.
+
+[`[$left][$sign][$right]`]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{.}`])')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+
+
+[```
+\begin{gathered}
+[$solleft[0]][$sign][$solright[0]]\\
+[$solleft[1]][$sign][$solright[1]]\\
+[$solleft[2]][$oppsign][$solright[2]]\\
+[$var][$oppsign][$sol]
+\end{gathered}
+```]
+
+So in set-builder notation, the solution set is [`[$setbuilder]\text{.}`]
+
+We can graph this by shading all numbers [$words] [`[$sol]\text{.}`] Since the sign in the inequality [$sol[0]] for [`[$var]`] to equal [`[$sol]\text{,}`] we use a [$sol[1]] at [`[$sol]\text{.}`]
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+We read the graph from left to right to tell us the interval notation for the solution set: [`[$interval]\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

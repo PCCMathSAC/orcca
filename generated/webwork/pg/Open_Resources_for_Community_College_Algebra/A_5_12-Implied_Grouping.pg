@@ -1,0 +1,94 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:33-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.5.12)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Use the order of operations to evaluate
+
+[```\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+              \dfrac{3^{3-1}+3\abs{9-10}}{\sqrt{3+18\div3}}
+            \text{.}```]
+
+
+
+[_]{3}{15}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We start by identifying the innermost, highest priority operations:
+
+[```\newcommand{\abs}[1]{\left\lvert#1\right\rvert}\newcommand{\highlight}[1]{\mathchoice{\colorbox{lightsapphire}{$\displaystyle #1$}}{\colorbox{lightsapphire}{$\textstyle #1$}}{\colorbox{lightsapphire}{$\scriptstyle #1$}}{\colorbox{lightsapphire}{$\scriptscriptstyle #1$}}}\newcommand{\nextoperation}[1]{\mathord{\boxed{#1}}}\newcommand{\amp}{&}
+\begin{aligned}
+\frac{3^{3-1}+3\abs{9-10}}{\sqrt{3+18\div3}}\amp=\frac{3^{\nextoperation{3-1}}+3\abs{\nextoperation{9-10}}}{\sqrt{3+\nextoperation{18\div3}}}\\
+\amp=\frac{3^{\highlight{2}}+3\nextoperation{\abs{\highlight{-1}}}}{\sqrt{\nextoperation{3+\highlight{6}}}}\\
+\amp=\frac{\nextoperation{3^2}+3(\highlight{1})}{\sqrt{\highlight{9}}}\\
+\amp=\frac{\highlight{9}+\nextoperation{3(1)}}{\nextoperation{\sqrt{9}}}\\
+\amp=\frac{\nextoperation{9+\highlight{3}}}{\highlight{3}}\\
+\amp=\frac{\highlight{12}}{3}=\highlight{4}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

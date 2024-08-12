@@ -1,0 +1,98 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.27)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextInequalitySetBuilder.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Fraction-NoDecimals");
+($m,$c) = random_subset(2,2..12);
+$b = Fraction(random_coprime([1..12],[2..12]));
+$left = Formula("$m x + $b");
+$right = Formula("$c");
+$sol = ($c - $b)/$m;
+%cmp = (
+  '\gt'  => {interval => ($m > 0) ? "($sol,inf)"  : "(-inf,$sol)", sign => ($m > 0) ? '>'     : '<' },
+  '\lt'  => {interval => ($m > 0) ? "(-inf,$sol)" : "($sol,inf)",  sign => ($m > 0) ? '<'  : '>'    },
+  '\geq' => {interval => ($m > 0) ? "[$sol,inf)"  : "(-inf,$sol]", sign => ($m > 0) ? '>='    : '<='},
+  '\leq' => {interval => ($m > 0) ? "(-inf,$sol]" : "[$sol,inf)",  sign => ($m > 0) ? '<=' : '>='   },
+);
+$texcmp = list_random(lex_sort(keys %cmp));
+$in = Interval($cmp{$texcmp}{interval});
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->flags->set(reduceConstants=>0);
+$sb = Compute("{ x | x $cmp{$texcmp}{sign} $sol}");
+$lcd = ($b->value)[1];
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve the given inequality. Practice clearing the denominator(s) as a first step.
+
+[`[$left] [$texcmp] [$right]`]
+
+[@KeyboardInstructions('What LCD will you use?')@]**
+
+[_]{$lcd}{4}
+
+[@KeyboardInstructions('Write the solution set using set-builder notation.')@]**
+
+[_]{$sb}{16}
+
+[@KeyboardInstructions('Write the solution set using interval notation.')@]**
+
+[_]{$in}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,158 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:30-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.5.6)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context()->noreduce('(-x)+y','(-x)-y');
+Context()->flags->set(reduceConstants => 0);
+@m = (3.1,-17,Formula("3/7"),-8,Formula("-2/3"),2,0);
+@b = (1.78,112,Formula("-(2/3)"),13,1,0,3);
+@f = map{Formula("$m[$_]*x+$b[$_]")}(0..4);
+$f[2] = Formula("3/7 x - 2/3");
+$f[3] = Formula("$b[3]+$m[3]*x")->reduce;
+$f[4] = Formula("1-2x/3");
+$f[5] = Formula("2x");
+$f[6] = Formula("3");
+Context("Point");
+@yi = map{Compute("(0,$_)")}(@b);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+What are the slope and [`y`]-intercept for each of the following line equations?
+
+>> [@DataTable(
+  [
+    [[PGML('Equation'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('Slope'),
+     PGML('[`y`]-intercept'),
+    ],
+    [[PGML('[`y=[$f[0]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[0]}{5}'),
+     PGML('[_]{$yi[0]}{5}'),
+    ],
+    [[PGML('[`y=[$f[1]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[1]}{5}'),
+     PGML('[_]{$yi[1]}{5}'),
+    ],
+    [[PGML('[`y=[$f[2]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[2]}{5}'),
+     PGML('[_]{$yi[2]}{5}'),
+    ],
+    [[PGML('[`y=[$f[3]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[3]}{5}'),
+     PGML('[_]{$yi[3]}{5}'),
+    ],
+    [[PGML('[`y=[$f[4]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[4]}{5}'),
+     PGML('[_]{$yi[4]}{5}'),
+    ],
+    [[PGML('[`y=[$f[5]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[5]}{5}'),
+     PGML('[_]{$yi[5]}{5}'),
+    ],
+    [[PGML('[`y=[$f[6]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$m[6]}{5}'),
+     PGML('[_]{$yi[6]}{5}'),
+    ],
+  ],
+      align => 'lcc',
+      valign => 'middle',
+);@]* <<
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+In the first three equations, simply read the slope [`m`] according to slope-intercept form. The slopes are [`[$m[0]]\text{,}`] [`[$m[1]]\text{,}`] and [`[$m[2]]\text{.}`]
+
+The fourth equation was written with the terms not in the slope-intercept form order. It could be written [`y=-8x+13\text{,}`] and then it is clear that its slope is [`-8\text{.}`] In any case, the slope is the coefficient of [`x\text{.}`]
+
+The fifth equation is also written with the terms not in the slope-intercept form order. Changing the order of the terms, it could be written [`y=-\frac{2x}{3}+1\text{,}`] but this still does not match the pattern of slope-intercept form. Considering how fraction multiplication works, [`\frac{2x}{3}=\frac{2}{3}\cdot\frac{x}{1}=\frac{2}{3}x\text{.}`] So we can write this equation as [`y=-\frac{2}{3}x+1\text{,}`] and we see the slope is [`-\frac{2}{3}\text{.}`]
+
+The last two equations could be written [`y=2x+0`] and [`y=0x+3\text{,}`] allowing us to read their slopes as [`2`] and [`0\text{.}`]
+
+For the [`y`]-intercepts, remember that we are expected to answer using an ordered pair [`(0,b)\text{,}`] not just a single number [`b\text{.}`] We can simply read that the first two [`y`]-intercepts are [`[$yi[0]]`] and [`[$yi[1]]\text{.}`]
+
+The third equation does not exactly match the slope-intercept form, until you view it as [`y=\frac{3}{7}x+\left(-\frac{2}{3}\right)\text{,}`] and then you can see that its [`y`]-intercept is [`\left(0,-\frac{2}{3}\right)\text{.}`]
+
+With the fourth equation, after rewriting it as [`y=-8x+13\text{,}`] we can see that its [`y`]-intercept is [`(0,13)\text{.}`]
+
+We already explored rewriting the fifth equation as [`y=-\frac{2}{3}x+1\text{,}`] where we can see that its [`y`]-intercept is [`(0,1)\text{.}`]
+
+The last two equations could be written [`y=2x+0`] and [`y=0x+3\text{,}`] allowing us to read their [`y`]-intercepts as [`(0,0)`] and [`(0,3)\text{.}`]
+
+Alternatively, we know that [`y`]-intercepts happen where [`x=0\text{,}`] and substituting [`x=0`] into each equation gives you the [`y`]-value of the [`y`]-intercept.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

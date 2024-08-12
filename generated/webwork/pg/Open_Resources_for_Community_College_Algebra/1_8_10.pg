@@ -1,0 +1,89 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:27-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.10)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("LinearRelation")->variables->are(x => 'Real');
+$equation = LinearRelation("x + 0.19x = 150");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Kirima offered to pay the bill and tip at a restaurant where she and her friends had dinner. In total she paid [`\$150`] even, which meant the tip was a little more than [`19\%\text{.}`] We'd like to know what was the bill before tip. Set up an equation for this situation.
+
+[@KeyboardInstructions('Use [|x|]* for any variable you define and use.')@]**
+
+[_]{$equation}{25}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+A common mistake is to translate a question like this into "what is [`19\%`] of [`\$150\text{?}`]" as a way to calculate the tip amount, and then subtract that from [`\$150\text{.}`] But that is not how tipping works. The [`19\%`] is applied to the _original bill_, not the _final total_. So please read carefully.
+
+If we let [`x`] represent the original bill, we can apply (1.8.2) and we have:
+
+[```\newcommand{\pinover}[2]{\overset{\overset{\mathrm{\ #2\ }}{|}}{\strut #1 \strut}}\newcommand{\amp}{&}
+\begin{aligned}
+\pinover{x}{bill}\pinover{+}{plus}\pinover{0.19}{19\%}\pinover{\cdot}{of}\pinover{x}{bill}\amp\pinover{=}{is}\pinover{150}{\$150}
+\end{aligned}
+```]
+
+Again, we are not currently trying to solve this equation, just write it down.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

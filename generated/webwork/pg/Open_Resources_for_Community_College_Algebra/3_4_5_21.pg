@@ -1,0 +1,95 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:30-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.4.5.21)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
+@x = random_subset(2, 1 .. 9);
+@y = random_subset(2, 1 .. 9);
+$m = Fraction($y[1] - $y[0], $x[1] - $x[0]);
+Context("Numeric");
+$f = Formula("$m (x - $x[0]) + $y[0]");
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-1,
+      xmax=10,
+      ymin=-1,
+      ymax=10,
+      xtick={2,4,...,8},
+      minor xtick={1,...,9},
+      ytick={5,10},
+      minor ytick={1,...,9},
+      width=0.47\orccaprintwidth
+    ]
+    \addplot+[-,domain=-1:10,samples=2] {$f};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Find the slope of the line given its graph.
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[_]{$m}{10}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

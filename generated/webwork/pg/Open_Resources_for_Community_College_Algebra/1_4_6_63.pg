@@ -1,0 +1,116 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:27-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.63)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "parserCheckboxList.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Numeric");
+Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
+Context()->noreduce('(-x)-y');
+Context()->flags->set(reduceConstantFunctions => 0);
+@allvars=('x','y','z','r','q','p','V');
+@var=(
+    (@allvars)[NchooseK(7,2)],
+    (@allvars)[NchooseK(7,2)],
+    list_random(@allvars),
+    list_random(@allvars),
+    'r',
+    list_random(@allvars),
+);
+@left=(
+    Formula(non_zero_random(1, 9) . "$var[0]$var[1]")->reduce,
+    Formula("$var[2]^2 + $var[3]^2")->reduce,
+    Formula(random(1, 19) . "$var[4] + " . non_zero_random(-9, 9))->reduce,
+    Formula("$var[5] sqrt(" . list_random(2, 3 , 5..8, 10..15, 17..24, 26..35) . ')'),
+    Formula("pi r^2")->reduce,
+    Formula("abs(" . non_zero_random(-9, 9, 0.1) . "$var[7] + " . non_zero_random(-9, 9) . ")")->reduce
+);
+@right=(
+    Compute(random(-99, 99)),
+    Compute(random(-99, 99)),
+    Compute(random(-99, 99)),
+    Compute(random(-99, 99)),
+    Formula(random(1, 99).'pi')->reduce,
+    Compute(random(-99, 99))
+);
+@symbol = map{(random(0, 1)) ? '=' : list_random('\lt', '\gt', '\leq', '\geq', '\neq')} (0..5);
+@type = map{($_ eq '=') ? 'equation' : 'inequality'} (@symbol);
+@eq = map{$left[$_]->TeX . $symbol[$_] . $right[$_]->TeX} (0..5);
+@meq = map{$BM . $_ . $EM} (@eq);
+$options = CheckboxList([~~@meq, "None of the above"], [2,3]);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Select the equations/inequalities that are linear with one variable.
+
+[_]{$options}{5}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+[`[$eq[0]]`] is not linear because it multiplies two variables together.
+
+[`[$eq[1]]`] and [`[$eq[4]]`] are not linear because variables are raised to the second power.
+
+[`[$eq[5]]`] is not linear because a variable is within absolute value bars.
+
+That leaves [`[$eq[2]]`] and [`[$eq[3]]\text{,}`] which are both linear.
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

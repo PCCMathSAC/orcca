@@ -1,0 +1,106 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:32-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.56)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "parserNumberWithUnits.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$ainitial = random(80000,100000,1000);
+$binitial = random(40000,60000,1000);
+$brate = random(2000,3000,500);
+$arate = random(3500,5000,500);
+Context("LinearRelation")->variables->are(t => 'Real', R => 'Real');
+@eq = (LinearRelation("R = $ainitial - $arate t"), LinearRelation("R = $binitial + $brate t"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+Context("Numeric");
+$t = ($ainitial - $binitial)/($brate + $arate);
+$r = $aflat - $arate*$d;
+$T = NumberWithUnits("$t months");
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$Ainitial = Currency("$ainitial");
+$Arate = Currency("$arate");
+$Binitial = Currency("$binitial");
+$Brate = Currency("$brate");
+$R = Currency($r);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+A local restaurant has two locations. At one location, the revenue this month is [`[$Ainitial]`] but it has been decreasing by [`[$Arate]`] per month. At the other location, the annual revenue this month is [`[$Binitial]`] and it has been increasing by [`[$Brate]`] per month. How long will it be until the two restaurant locations are taking in the same monthly revenue? And what will that monthly revenue be?
+
+[@KeyboardInstructions('Using [|t|]* and [|R|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the amount of time here.')@]**
+
+[_]{$T}{16}
+
+[@KeyboardInstructions('Enter the monthly revenue here.')@]**
+
+[_]{$R}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,93 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("FiniteSolutionSets");
+$solution = OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve for [`z`] in the inequality [`\frac{3z}{5}+\frac{1}{2}\le\left(\frac{z}{10}+\frac{3}{4}\right)+\left(\frac{z}{2}-\frac{1}{4}\right)\text{.}`]
+
+[_]{$solution}{16}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+We start by multiplying each side of the inequality by the LCD, which is [`20\text{.}`] Then we can continue:
+
+[```\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+\frac{3z}{5}+\frac{1}{2}\amp\le\left(\frac{z}{10}+\frac{3}{4}\right)+\left(\frac{z}{2}-\frac{1}{4}\right)\\
+\multiplyleft{20}\left(\frac{3z}{5}+\frac{1}{2}\right)\amp\le \multiplyleft{20}\left(\left(\frac{z}{10}+\frac{3}{4}\right)+\left(\frac{z}{2}-\frac{1}{4}\right)\right)\\
+\multiplyleft{20}\left(\frac{3z}{5}\right)+\multiplyleft{20}\left(\frac{1}{2}\right)\amp\le \multiplyleft{20}\left(\frac{z}{10}+\frac{3}{4}\right)+\multiplyleft{20}\left(\frac{z}{2}-\frac{1}{4}\right)\\
+20\cdot\left(\frac{3z}{5}\right)+20\cdot\left(\frac{1}{2}\right)\amp\le \multiplyleft{20}\left(\frac{z}{10}\right)+\multiplyleft{20}\left(\frac{3}{4}\right)+\multiplyleft{20}\left(\frac{z}{2}\right)-\multiplyleft{20}\left(\frac{1}{4}\right)\\
+12z+10\amp\le 2z+15+10z-5\\
+12z+10\amp\le 12z+10\\
+12z+10\subtractright{12z}\amp\le 12z+10\subtractright{12z}\\
+10\amp\le10
+\end{aligned}
+```]
+
+As the equation [`10\le10`] is true for all values of [`z\text{,}`] all real numbers are solutions to the original inequality. So the solution set is [`(-\infty,\infty)\text{,}`] or just [`\mathbb{R}\text{.}`]
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

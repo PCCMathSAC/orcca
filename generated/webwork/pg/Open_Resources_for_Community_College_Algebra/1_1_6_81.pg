@@ -1,0 +1,126 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:26-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.1.6.81)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserNumberWithUnits.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context('Numeric');
+$a = random(0.5, 2.5, 0.1);
+$b = random(2.5, 5.5, 0.1);
+$heighta = NumberWithUnits(-2*abs($a - 3) + 6, 'ft');
+$heightb = NumberWithUnits(-2*abs($b - 3) + 6, 'ft');
+$introduction_image_1 = createLaTeXImage();
+$introduction_image_1->addToPreamble(latexImagePreamble());
+$introduction_image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \draw (0,0) --++ (3,6) --++ (3,-6) -- cycle;
+  \draw[fill=wood!20] (3,6) --++ (2,1) --++ (2,-4) --++ (-1,-3) -- cycle;
+  \draw (0,0) --++ (3,3) --++ (0.75,1.5);
+  \draw (3,3) --++ (1.5,0);
+  \draw (1,1) --++ (1,0) node[pos=0.5,below] {\(d\)} --++ (0,2) node[pos=0.5,right] {\(h\)};
+  \draw (2,3) --++ (0.1,0.2);
+  \draw (2,3) --++ (-0.1,-0.2);
+  \draw (2,3) --++ (-0.12,-0.1);
+  \draw (2,3) --++ (0.12,0.1);
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+The height inside a tent when you are [`d`] feet from the west side of the tent is given by the formula [`\newcommand{\abs}[1]{\left\lvert#1\right\rvert}h=-2\abs{d-3}+6\text{,}`] where [`h`] is in feet.
+
+>> [@image(insertGraph($introduction_image_1), width=>240, alt=>qq"an A-frame tent with guidelines indicating that d feet inward from one side, the height to the ceiling at that point is d feet")@]*  <<
+
+
+END_PGML
+
+############################################################
+# Scaffold
+############################################################
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+When you are [`[$a]`][$NBSP]*ft from the west side, how high up is the ceiling?
+
+[_]{$heighta}{10}
+
+
+END_PGML
+
+Section::End();
+
+############################################################
+# Section
+############################################################
+Section::Begin("");
+
+BEGIN_PGML
+When you are [`[$b]`][$NBSP]*ft from the west side, how high up is the ceiling?
+
+[_]{$heightb}{10}
+
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

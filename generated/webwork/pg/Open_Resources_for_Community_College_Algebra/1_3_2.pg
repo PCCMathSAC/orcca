@@ -1,0 +1,100 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:26-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.2)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextOrdering.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+package context::Ordering::BOP::ordering;
+*isOrdering = sub {
+  my $self = shift;
+  my $obj = shift;
+  my $class = $obj->class;
+  return $class;
+};
+package main;
+Context("Ordering");
+Context()->strings->add('age' => {isLetter => 1, TeX => '\text{age}'});
+Context()->strings->add('a' => {isLetter => 1, TeX => '\text{a}'});
+Context()->strings->add('x' => {isLetter => 1, TeX => '\text{x}'});
+$overage = OneOf(Compute("age > 20"), Compute("a > 20"), Compute("x > 20"));
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+a.  Use mathematical notation to write "[`11.5`] is greater than [`4.2`]".
+
+    [_]{'11.5>4.2'}{15}
+
+
+a.  Use mathematical notation to write "age is greater than [`20`]".
+
+    [_]{$overage}{15}
+
+
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+a.  This is "[`\newcommand{\gt}{>}11.5\gt4.2`]".
+
+
+a.  We can use the word [|age|]* to represent age, and write [`\newcommand{\gt}{>}\text{age}\gt20\text{.}`] Or we could use an abbreviation like [`a`] for age, and write [`\newcommand{\gt}{>}a\gt20\text{.}`] Or we could use [`x`] as a generic variable, and write [`\newcommand{\gt}{>}x\gt20\text{.}`]
+
+
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

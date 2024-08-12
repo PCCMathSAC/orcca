@@ -1,0 +1,90 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.5.6)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Numeric")->variables->add(y=>'Real');
+parser::Assignment->Allow;
+$answer = Formula("y=(10-2x)/5");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Solve for [`y`] in [`2x+5y=10\text{.}`] (This is a linear equation in standard form, studied more in Section[$NBSP]*3.7.)
+
+[_]{$answer}{20}
+
+
+END_PGML
+
+############################################################
+# Solution
+############################################################
+
+BEGIN_PGML_SOLUTION
+To solve for [`y\text{,}`] we first isolate [`5y`] by subtracting [`2x`] from each side of the equation. After that, we can divide each side by [`5`] to finish solving for [`y\text{:}`]
+
+[```\newcommand{\attention}[1]{\mathord{\overset{\downarrow}{#1}}}\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}\newcommand{\amp}{&}
+\begin{aligned}
+2x+5\attention{y}\amp=10\\
+2x+5\attention{y}\subtractright{2x}\amp=10\subtractright{2x}\\
+5\attention{y}\amp=10-2x\\
+\divideunder{5\attention{y}}{5}\amp=\divideunder{10-2x}{5}\\
+y\amp=\frac{10-2x}{5}
+\end{aligned}
+```]
+
+
+
+
+END_PGML_SOLUTION
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,75 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:29-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.5.3.16)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+@x = random_subset(4, ('a'..'n','p'..'w','A'..'N','P'..'T','V'..'Z'));
+$x[0] = 'x';
+$x[3] = 'y';
+Context()->variables->are(map {$_ => 'Real'} (@x));
+$right = Formula("$x[1] $x[0] + $x[2]")->reduce;
+$left = Formula("$x[3]")->reduce;
+parser::Assignment->Allow;
+$ans = Assignment("$x[0] = ($x[3] - $x[2])/$x[1]");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Isolate the indicated variable.
+
+[`[$x[0]]`] in [`[$left]=[$right]`]
+
+[_]{$ans}{16}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

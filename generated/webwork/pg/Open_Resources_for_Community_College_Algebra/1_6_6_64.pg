@@ -1,0 +1,79 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-07-11T11:35:02-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.6.64)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 1400 + random(-300, 300, 10);
+$current = Currency($final);
+Context("Percent");
+$decimal = random(0.01,0.03,0.001);
+$percent = Percent($decimal);
+Context("LinearRelation")->variables->are(r => 'Real');
+$equation = LinearRelation("r + $decimal r = $final");
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+One year, the median rent for a one-bedroom apartment in a city was reported to be [`[$current]\text{.}`] This was reported to be an increase of [`[$percent]`] over the previous year. Based on this reporting, what was the median rent for of a one-bedroom apartment the previous year? Set up an equation to answer this question. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|r|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();

@@ -1,0 +1,112 @@
+#############################################
+###       Generated from PreTeXt source      
+###       on 2024-08-11T14:51:28-07:00       
+###   A recent stable commit (2022-07-01):   
+### 6c761d3dba23af92cba35001c852aac04ae99a5f 
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.42)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+############################################################
+# Load Macros
+############################################################
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "AnswerFormatHelp.pl",
+  "parserVectorUtils.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+############################################################
+# Header
+############################################################
+TEXT(beginproblem());
+
+
+############################################################
+# PG Setup Code
+############################################################
+$actual_solution = Real(random(-9,9) + random(1,9)/10);
+$m = random(2,9);
+$b = non_zero_random(-9,9,0.1);
+$left = Formula("$m x + $b")->reduce;
+$right = Formula($left->eval(x => $actual_solution))->reduce;
+$proposed_solution = random(0,2) ? $actual_solution : $actual_solution + non_zero_random(-3,3,0.1);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(x => $proposed_solution));
+$righteval = Real($right->eval(x => $proposed_solution));
+$inequality = list_random('\lt', '\gt', '\leq', '\geq', '\neq');
+$truefalse = (
+  ($inequality eq '\lt') ?
+  ($lefteval < $righteval) :
+  (
+    ($inequality eq '\gt') ?
+    ($lefteval > $righteval) :
+    (
+      ($inequality eq '\leq') ?
+      ($lefteval <= $righteval) :
+      (
+        ($inequality eq '\geq') ?
+        ($lefteval >= $righteval) :
+        ($lefteval != $righteval)
+      )
+    )
+  )
+);
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], $truefalse ? 0 : 1, showInStatic => 0);
+
+############################################################
+# Body
+############################################################
+
+BEGIN_PGML
+Check if the given number is a solution to the given inequality.
+
+Is [`[$proposed_solution]`] a solution to [`[$left][$inequality][$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [PGML('[`[$left->TeX]`]'),
+     PGML('[`[$inequality]`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{[$inequality]}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',
+);@]* <<
+
+[_]{$dropdown}{5}
+
+
+END_PGML
+
+############################################################
+# End Problem
+############################################################
+
+ENDDOCUMENT();
