@@ -1353,7 +1353,8 @@
         <exercise label="slope-from-coordinates-integer">
           <webwork xml:id="webwork-slope-from-coordinates-integer">
             <pg-code>
-              $m = random(1, 9);
+              Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+              $m = Fraction(random(1, 9));
               $b = non_zero_random(-9, 9);
               @x = random_subset(2, 1 .. 9);
               @y = map {$m*$_ + $b} (@x);
@@ -1390,7 +1391,8 @@
         <exercise label="slope-from-coordinates-neg-integer">
           <webwork xml:id="webwork-slope-from-coordinates-neg-integer">
             <pg-code>
-              $m = random(-9, -1);
+              Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+              $m = Fraction(random(-9, -1));
               $b = non_zero_random(-9, 9);
               @x = random_subset(2, 1 .. 9);
               @y = map {$m*$_ + $b} (@x);
@@ -1413,7 +1415,7 @@
         <exercise label="slope-from-coordinates-fraction">
           <webwork xml:id="webwork-slope-from-coordinates-fraction">
             <pg-code>
-              Context("Fraction");
+              Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
               ($run, $rise) = random_coprime([2 .. 9], [1 .. 9]);
               $m = Fraction($rise, $run);
               $x[0] = non_zero_random(-9, 9);
@@ -1439,7 +1441,7 @@
         <exercise label="slope-from-coordinates-neg-fraction">
           <webwork xml:id="webwork-slope-from-coordinates-neg-fraction">
             <pg-code>
-              Context("Fraction");
+              Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
               ($run, $rise) = random_coprime([2 .. 9], [-9 .. -1]);
               $m = Fraction($rise, $run);
               $x[0] = non_zero_random(-9, 9);
@@ -1498,7 +1500,8 @@
               } until ($x[0] != $x[1]);
               $y[0] = random(-9,9) + random(0.1,0.9,0.1);
               $y[1] = random(-9,9) + random(0.1,0.9,0.1);
-              $m = ($y[1] - $y[0])/($x[1] - $x[0]);
+              Context("Numeric")->operators->undefine("+","-");
+              $m = Real(($y[1] - $y[0])/($x[1] - $x[0]));
               Context("Point");
               @p = map {Point($x[$_], $y[$_])} (0,1);
             </pg-code>
@@ -1683,7 +1686,7 @@
               @y = random_subset(2, -9 .. -1, 1 .. 9);
               $m = Fraction(($y[1] - $y[0])/($x[1] - $x[0]));
               Context("Numeric");
-              $f = Formula("$m (x - $x[0]) + $y[0]");
+              $f = Formula("$m (x - $x[0]) + $y[0]")->reduce;
             </pg-code>
             <statement>
               <image>

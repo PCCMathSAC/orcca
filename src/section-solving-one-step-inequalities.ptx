@@ -1383,10 +1383,10 @@
               $right = Formula("$c")->reduce;
               $sign = list_random('\lt', '\gt', '\leq', '\geq');
               %interval = (
-                '\lt'  => "($c, inf)",
-                '\gt'  => "(-inf, $c)",
-                '\leq' => "[$c, inf)",
-                '\geq' => "(-inf, $c]"
+                '\lt'  => "(-$c, inf)",
+                '\gt'  => "(-inf, -$c)",
+                '\leq' => "[-$c, inf)",
+                '\geq' => "(-inf, -$c]"
               );
               Context("Interval");
               $interval = Interval($interval{$sign});
@@ -1400,7 +1400,7 @@
                 '\geq' => "&lt;="
               );
               $perlsign = $perlsign{$sign};
-              $setbuilder = Compute("{ $var | $var $perlsign $c}");
+              $setbuilder = Compute("{ $var | $var $perlsign -$c}");
               $gt = GraphTool("{interval, $interval}")->with(
                 availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
                 numberLine => 1,

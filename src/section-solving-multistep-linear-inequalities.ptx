@@ -1976,7 +1976,7 @@
             $rate = NumberWithUnits($sol, 'min/mi');
             Context("Interval");
             Context()->flags->set(ignoreEndpointTypes => 1);
-            $interval = Interval("($sol,inf)");
+            $interval = OneOf(Interval("(0,$sol)"), Interval("(-inf,$sol)"));
             Context("LinearRelation")->variables->are(x => 'Real');
             Context()->noreduce('(-x)-y', '(-x)+y');
             $relation = Formula("$b+x*$d &lt; 60");
@@ -2015,7 +2015,8 @@
           <task>
             <statement>
               <p>
-                Use interval notation to express what <var name="$p"/>'s jogging rate might be.
+                Use interval notation to express what <var name="$p"/>'s jogging rate (in minutes
+                per mile) might be.
               </p>
               <p>
                 <var name="$interval" width="16"/>
