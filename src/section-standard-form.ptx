@@ -930,7 +930,7 @@
               $xi = Point($x,0);
               $yi = Point(0,$y);
               Context("Fraction");
-              $m = Fraction(-$x/$y);
+              $m = Fraction(-$y/$x);
             </pg-code>
             <statement>
               <p>
@@ -978,7 +978,7 @@
               $xi = Point($x,0);
               $yi = Point(0,$y);
               Context("Fraction");
-              $m = Fraction(-$x/$y);
+              $m = Fraction(-$y/$x);
               Context()->variables->add(solvar => 'Real');
               Context()->flags->set(reduceConstants => 0);
               $sol = Formula("solvar - ($A x)")->reduce;
@@ -1042,13 +1042,14 @@
               Context("Fraction");
               $x = Fraction($C/$A);
               $y = Fraction($C/$B);
-              $m = Fraction(-$x/$y);
+              $m = Fraction(-$y/$x);
               Context()->variables->add(y => 'Real');
               Context()->noreduce('(-x)-y', '(-x)+y');
               $left = Formula("$A x + $B y")->reduce;
               $right = Formula("$C");
-              $xi = Point($x,0);
-              $yi = Point(0,$y);
+              Context("Point");
+              $xi = Compute("($x,0)");
+              $yi = Compute("(0,$y)");
             </pg-code>
             <statement>
               <p>
@@ -1088,13 +1089,14 @@
               Context("Fraction");
               $x = Fraction($C/$A);
               $y = Fraction($C/$B);
-              $m = Fraction(-$x/$y);
+              $m = Fraction(-$y/$x);
               Context()->variables->add(y => 'Real');
               Context()->noreduce('(-x)-y', '(-x)+y');
               $left = Formula("$A x + $B y")->reduce;
               $right = Formula("$C");
-              $xi = Point($x,0);
-              $yi = Point(0,$y);
+              Context("Point");
+              $xi = Compute("($x,0)");
+              $yi = Compute("(0,$y)");
             </pg-code>
             <statement>
               <p>
@@ -1133,13 +1135,14 @@
               $C = Fraction(random_coprime([1 .. 9], [2 .. 9]));
               $x = $C/$A;
               $y = $C/$B;
-              $m = -$x/$y;
+              $m = -$y/$x;
               Context()->variables->add(y => 'Real');
               Context()->noreduce('(-x)-y', '(-x)+y');
               $left = Formula("$A x + $B y")->reduce;
               $right = Formula("$C");
-              $xi = Point($x,0);
-              $yi = Point(0,$y);
+              Context("Point");
+              $xi = Compute("($x,0)");
+              $yi = Compute("(0,$y)");
             </pg-code>
             <statement>
               <p>
@@ -1180,7 +1183,7 @@
                 : ($A, -$B);
               $x = $C/$A;
               $y = $C/$B;
-              $m = -$x/$y;
+              $m = -$y/$x;
               Context()->variables->add(y => 'Real');
               Context()->noreduce('(-x)-y', '(-x)+y');
               $left = Formula("$A x + $B y")->reduce;
@@ -1488,6 +1491,9 @@
               );
             </pg-code>
             <statement>
+              <instruction>
+                Plot the <m>x</m>- and <m>y</m>-intercepts, as well as the line.
+              </instruction>
               <p>
                 <m><var name="$left"/>=<var name="$right"/></m>
               </p>
@@ -1537,6 +1543,9 @@
               $f = Formula("$m x + $b");
             </pg-code>
             <statement>
+              <instruction>
+                Plot the <m>x</m>- and <m>y</m>-intercepts, as well as the line.
+              </instruction>
               <p>
                 <m><var name="$left"/>=<var name="$right"/></m>
               </p>
@@ -1611,6 +1620,9 @@
               );
             </pg-code>
             <statement>
+              <instruction>
+                Plot the <m>x</m>- and <m>y</m>-intercepts, as well as the line.
+              </instruction>
               <p>
                 <m><var name="$left"/>=<var name="$right"/></m>
               </p>

@@ -1622,8 +1622,8 @@
             <pg-code>
               ($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
               do {
-                @A = (-9..-1, 1..9)[NchooseK(19,2)];
-                @B = (-9..-1, 1..9)[NchooseK(19,2)];
+                @A = (-9..-1, 1..9)[NchooseK(18,2)];
+                @B = (-9..-1, 1..9)[NchooseK(18,2)];
                 $roll = random(0,3);
                 if ($roll == 0) {$A[0] = list_random(-1,1)};
                 if ($roll == 1) {$A[1] = list_random(-1,1)};
@@ -1711,8 +1711,8 @@
             <pg-code>
               ($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
               do {
-                @A = (-9..-2, 2..9)[NchooseK(19,2)];
-                @B = (-9..-2, 2..9)[NchooseK(19,2)];
+                @A = (-9..-2, 2..9)[NchooseK(16,2)];
+                @B = (-9..-2, 2..9)[NchooseK(16,2)];
               } until (abs($A[0]*$B[1] - $A[1]*$B[0]) > 1 &amp;&amp; abs($A[0]*$B[1] - $A[1]*$B[0]) &lt; 10);
               @C = (-9..-1, 1..9)[NchooseK(18,2)];
               Context("Fraction")->variables->are($X => 'Real', $Y => 'Real');
@@ -1898,7 +1898,7 @@
                 } until ($D != 0);
                 @C = map{Fraction(random_coprime([-5..-1,1..5],[2..6]))} (0,1);
                 $x = Fraction(( $B[1]*$C[0] - $B[0]*$C[1])/$D);
-                $y = Fraction((-$A[1]*$C[0] + $B[1]*$C[1])/$D);
+                $y = Fraction((-$A[1]*$C[0] + $A[0]*$C[1])/$D);
               } until (($x->value)[1] &lt;= 50 &amp;&amp; ($y->value)[1] &lt;= 50);
               $xis = Formula("$X = $x");
               $yis = Formula("$Y = $y");
@@ -2574,7 +2574,7 @@
               <m><var name="$sa"/></m> points. How many questions are there of each type?
             </p>
             <instruction>
-              Using <c>M</c> and <c>S</c> as the variables, give two equations that form a system of
+              Using <m>M</m> and <m>S</m> as the variables, give two equations that form a system of
               equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -2635,7 +2635,7 @@
               How many adult tickets and how many child tickets were sold?
             </p>
             <instruction>
-              Using <c>A</c> and <c>C</c> as the variables, give two equations that form a system
+              Using <m>A</m> and <m>C</m> as the variables, give two equations that form a system
               of equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -2704,7 +2704,7 @@
               invest in each account?
             </p>
             <instruction>
-              Using <c>x</c> (savings investment) and <c>y</c> (stock investment) as the variables,
+              Using <m>x</m> (savings investment) and <m>y</m> (stock investment) as the variables,
               give two equations that form a system of equations that is appropriate for this
               exercise.
             </instruction>
@@ -2749,10 +2749,10 @@
             $Y = Currency($y);
             $t = $x + $y;
             $total = Currency($t);
-            $i = $r1 * $x + $r2 * $y;
-            $final = $total - Currency($i);
+            $i = $r1 * $x - $r2 * $y;
+            $final = $total + Currency($i);
             Context("LinearRelation")->variables->are(x => 'Real', y => 'Real');
-            @eq = (LinearRelation("x + y = $t"), LinearRelation("$r1 x - $r2 y = -$i"));
+            @eq = (LinearRelation("x + y = $t"), LinearRelation("$r1 x - $r2 y = $i"));
             $m = MultiAnswer(@eq)->with(
               singleResult => 0,
               checker => sub {
@@ -2774,7 +2774,7 @@
               <var name="$p->they"/> invest in each account?
             </p>
             <instruction>
-              Using <c>x</c> (savings investment) and <c>y</c> (stock investment) as the variables,
+              Using <m>x</m> (savings investment) and <m>y</m> (stock investment) as the variables,
               give two equations that form a system of equations that is appropriate for this
               exercise.
             </instruction>

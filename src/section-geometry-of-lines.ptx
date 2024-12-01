@@ -1337,7 +1337,7 @@
                 }
               );
               $gt = GraphTool("{line,solid,$p[0],$p[1]}")->with(
-                availableTools => [ "PointTool", "LineTool" ],
+                availableTools => [ "LineTool" ],
                 showCoordinateHints => 0,
                 showInStatic => 0,
               );
@@ -1427,7 +1427,7 @@
                 }
               );
               $gt = GraphTool("{line,solid,$p[0],$p[1]}")->with(
-                availableTools => [ "PointTool", "LineTool" ],
+                availableTools => [ "LineTool" ],
                 showCoordinateHints => 0,
                 showInStatic => 0,
               );
@@ -1863,18 +1863,20 @@
               Context("Fraction");
               $m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
               do {
-                $x[2] = random(-9,9);
-                $y[2] = random(-9,9);
-              } until (($y[2] - $y[0]) / ($x[2] - $x[0]) != $m[0]);
-              $d = ($m[0]->value)[1];
-              $x[3] = $x[2] + non_zero_random(-3,3)*$d;
-              $y[3] = $y[2] + ($x[3] - $x[2])*$m[0];
+                do {
+                  $x[2] = random(-9,9);
+                  $y[2] = random(-9,9);
+                } until ($x[2] != $x[0] && ($y[2] - $y[0]) / ($x[2] - $x[0]) != $m[0]);
+                $d = ($m[0]->value)[1];
+                $x[3] = $x[2] + non_zero_random(-3,3)*$d;
+                $y[3] = $y[2] + ($x[3] - $x[2])*$m[0];
+              } until (abs($x[3]) <= 9 && abs($y[3] <= 9));
               @p = map {Point($x[$_],$y[$_])} (0..3);
               Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
               $eq = Compute("y = $m[0](x - $x[2]) + $y[2]");
               $gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
                 staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
-                availableTools => [ "PointTool", "LineTool" ],
+                availableTools => [ "LineTool" ],
                 showCoordinateHints => 0,
                 showInStatic => 0,
               );
@@ -1946,18 +1948,20 @@
               $m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
               $m[1] = -1/$m[0];
               do {
-                $x[2] = random(-9,9);
-                $y[2] = random(-9,9);
-              } until (($y[2] - $y[0]) / ($x[2] - $x[0]) != $m[0]);
-              $d = ($m[1]->value)[1];
-              $x[3] = $x[2] + non_zero_random(-3,3)*$d;
-              $y[3] = $y[2] + ($x[3] - $x[2])*$m[1];
+                do {
+                  $x[2] = random(-9,9);
+                  $y[2] = random(-9,9);
+                } until ($x[2] != $x[0] && ($y[2] - $y[0]) / ($x[2] - $x[0]) != $m[0]);
+                $d = ($m[0]->value)[1];
+                $x[3] = $x[2] + non_zero_random(-3,3)*$d;
+                $y[3] = $y[2] + ($x[3] - $x[2])*$m[1];
+              } until (abs($x[3]) <= 9 && abs($y[3] <= 9));              
               @p = map {Point($x[$_],$y[$_])} (0..3);
               Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
               $eq = Compute("y = $m[1](x - $x[2]) + $y[2]");
               $gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
                 staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
-                availableTools => [ "PointTool", "LineTool" ],
+                availableTools => [ "LineTool" ],
                 showCoordinateHints => 0,
                 showInStatic => 0,
               );
@@ -2000,7 +2004,7 @@
               $eq = Compute("x = $x[2]");
               $gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
                 staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
-                availableTools => [ "PointTool", "LineTool" ],
+                availableTools => [ "LineTool" ],
                 showCoordinateHints => 0,
                 showInStatic => 0,
               );
@@ -2043,7 +2047,7 @@
               $eq = Compute("y = $y[2]");
               $gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
                 staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
-                availableTools => [ "PointTool", "LineTool" ],
+                availableTools => [ "LineTool" ],
                 showCoordinateHints => 0,
                 showInStatic => 0,
               );

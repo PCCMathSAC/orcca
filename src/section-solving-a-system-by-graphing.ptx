@@ -2634,6 +2634,7 @@
                 );
               }
               $pt = list_random(@pts);
+              ($ptx, $pty) = @$pt;
               $b[1] = list_random(-9..$b[0]-1,$b[0]+1..9);
               $m[1] = Fraction(($pt->[1] - $b[1])/($pt->[0]));
               $f[1] = Formula("$m[1] x + $b[1]")->reduce;
@@ -2643,7 +2644,7 @@
               $f[0] = ImplicitPlane("$b[0]/$g[0] x + $a[0]/$g[0] y =  $a[$0]*$b[$0]/$g[$0]")->reduce;
               $gt = GraphTool(
                 "{line, solid, ($a[0], 0), (0, $b[0])}",
-                "{line, solid, (@$pt), (0, $b[1])}",
+                "{line, solid, ($ptx, $pty), (0, $b[1])}",
               )->with(
                 availableTools => [ "LineTool" ],
                 showInStatic => 0,
@@ -2712,10 +2713,6 @@
                 Context()->strings->add($_ => {alias => "infinitely many solutions"});
               }
               $solution = Point(@$pt)->cmp(
-                mathQuillOpts => 'disabled'
-              );
-              $solution = Compute("no solutions")->cmp(
-                typeMatch => Point(1,2),
                 mathQuillOpts => 'disabled'
               );
               $fplot[0] = Formula("$b[0] - $b[0]/$a[0] x")->reduce;

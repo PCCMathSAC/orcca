@@ -1855,7 +1855,7 @@
               Context()->noreduce('(-x)-y', '(-x)+y');
               ($x, $y) = (-7..-1, 1..7)[NchooseK(14,2)];
               do {
-                @A = (-5..-2, 2..5)[NchooseK(10,2)];
+                @A = (-5..-2, 2..5)[NchooseK(8,2)];
                 @B = (-5..-1, 1..5)[NchooseK(10,2)];
                 $B[1] = 1;
               } until ($A[0]*$B[1] != $A[1]*$B[0]);
@@ -2383,8 +2383,8 @@
             <pg-code>
               ($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
               do {
-                @A = (-9..-1, 1..9)[NchooseK(19,2)];
-                @B = (-9..-1, 1..9)[NchooseK(19,2)];
+                @A = (-9..-1, 1..9)[NchooseK(18,2)];
+                @B = (-9..-1, 1..9)[NchooseK(18,2)];
                 $roll = random(0,3);
                 if ($roll == 0) {$A[0] = list_random(-1,1)};
                 if ($roll == 1) {$A[1] = list_random(-1,1)};
@@ -2476,8 +2476,8 @@
               parser::Assignment->Allow;
               do {
                 do {
-                  @A = (-9..-1, 1..9)[NchooseK(19,2)];
-                  @B = (-9..-1, 1..9)[NchooseK(19,2)];
+                  @A = (-9..-1, 1..9)[NchooseK(18,2)];
+                  @B = (-9..-1, 1..9)[NchooseK(18,2)];
                   $B[0] = 1;
                 } until (abs($A[0]*$B[1] - $A[1]*$B[0]) > 1 &amp;&amp; abs($A[0]*$B[1] - $A[1]*$B[0]) &lt; 10);
                 @C = (-9..-1, 1..9)[NchooseK(18,2)];
@@ -2565,8 +2565,8 @@
               parser::Assignment->Allow;
               do {
                 do {
-                  @A = (-9..-2, 2..9)[NchooseK(19,2)];
-                  @B = (-9..-1, 1..9)[NchooseK(19,2)];
+                  @A = (-9..-2, 2..9)[NchooseK(18,2)];
+                  @B = (-9..-1, 1..9)[NchooseK(18,2)];
                   $B[0] = 1;
                 } until (abs($A[0]*$B[1] - $A[1]*$B[0]) > 1 &amp;&amp; abs($A[0]*$B[1] - $A[1]*$B[0]) &lt; 10);
                 @C = (-9..-1, 1..9)[NchooseK(18,2)];
@@ -2652,8 +2652,8 @@
             <pg-code>
               ($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
               do {
-                @A = (-9..-2, 2..9)[NchooseK(19,2)];
-                @B = (-9..-2, 2..9)[NchooseK(19,2)];
+                @A = (-9..-2, 2..9)[NchooseK(18,2)];
+                @B = (-9..-2, 2..9)[NchooseK(18,2)];
               } until (abs($A[0]*$B[1] - $A[1]*$B[0]) > 1 &amp;&amp; abs($A[0]*$B[1] - $A[1]*$B[0]) &lt; 10);
               @C = (-9..-1, 1..9)[NchooseK(18,2)];
               Context("Fraction")->variables->are($X => 'Real', $Y => 'Real');
@@ -2744,7 +2744,7 @@
               } until ($m[0] != $m[1]);
               $b[0] = non_zero_random(-8,8,0.1);
               $b[1] = non_zero_random(-8,8,0.1);
-              $x = ($b[1] - $b[0])/($m[1] - $m[0]);
+              $x = -($b[1] - $b[0])/($m[1] - $m[0]);
               $y = $m[0]*$x + $b[0];
               @right = map{Formula("$m[$_] $X + $b[$_]")->reduce} (0,1);
               @f = map{Formula("$Y = $right[$_]")->reduce} (0,1);
@@ -3090,7 +3090,7 @@
                 } until ($D != 0);
                 @C = map{Fraction(random_coprime([-5..-1,1..5],[2..6]))} (0,1);
                 $x = Fraction(( $B[1]*$C[0] - $B[0]*$C[1])/$D);
-                $y = Fraction((-$A[1]*$C[0] + $B[1]*$C[1])/$D);
+                $y = Fraction((-$A[1]*$C[0] + $A[0]*$C[1])/$D);
               } until (($x->value)[1] &lt;= 50 &amp;&amp; ($y->value)[1] &lt;= 50);
               $xis = Formula("$X = $x");
               $yis = Formula("$Y = $y");
@@ -3257,7 +3257,7 @@
                 } until ($D != 0);
                 @C = map{Fraction(random_coprime([-5..-1,1..5],[2..6]))} (0,1);
                 $x = Fraction(( $B[1]*$C[0] - $B[0]*$C[1])/$D);
-                $y = Fraction((-$A[1]*$C[0] + $B[1]*$C[1])/$D);
+                $y = Fraction((-$A[1]*$C[0] + $A[0]*$C[1])/$D);
               } until (($x->value)[1] &lt;= 50 &amp;&amp; ($y->value)[1] &lt;= 50);
               $xis = Formula("$X = $x");
               $yis = Formula("$Y = $y");
@@ -3539,7 +3539,7 @@
               the rectangle's length and width.
             </p>
             <instruction>
-              Using <c>L</c> and <c>W</c> as the variables, give two equations that form a system
+              Using <m>L</m> and <m>W</m> as the variables, give two equations that form a system
               of equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -3600,7 +3600,7 @@
               How many adult tickets and how many child tickets were sold?
             </p>
             <instruction>
-              Using <c>A</c> and <c>C</c> as the variables, give two equations that form a system
+              Using <m>A</m> and <m>C</m> as the variables, give two equations that form a system
               of equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -3667,7 +3667,7 @@
               would that monthly bill be?
             </p>
             <instruction>
-              Using <c>D</c> (amount data, in GB) and <c>B</c> (bill) as the variables, give two
+              Using <m>D</m> (amount data, in GB) and <m>B</m> (bill) as the variables, give two
               equations that form a system of equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -3715,7 +3715,7 @@
             );
             Context("Numeric");
             $t = ($ainitial - $binitial)/($brate + $arate);
-            $r = $aflat - $arate*$d;
+            $r = $ainitial - $arate*$t;
             $T = NumberWithUnits("$t months");
             Context("Currency")->flags->set(trimTrailingZeros => 1);
             $Ainitial = Currency("$ainitial");
@@ -3735,7 +3735,7 @@
               be?
             </p>
             <instruction>
-              Using <c>t</c> and <c>R</c> as the variables, give two equations that form a system of
+              Using <m>t</m> and <m>R</m> as the variables, give two equations that form a system of
               equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -3798,7 +3798,7 @@
               <m><var name="$sa"/></m> points. How many questions are there of each type?
             </p>
             <instruction>
-              Using <c>M</c> and <c>S</c> as the variables, give two equations that form a system of
+              Using <m>M</m> and <m>S</m> as the variables, give two equations that form a system of
               equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -3867,7 +3867,7 @@
               invest in each account?
             </p>
             <instruction>
-              Using <c>x</c> (savings investment) and <c>y</c> (stock investment) as the variables,
+              Using <m>x</m> (savings investment) and <m>y</m> (stock investment) as the variables,
               give two equations that form a system of equations that is appropriate for this
               exercise.
             </instruction>
@@ -3937,7 +3937,7 @@
               <var name="$p->they"/> invest in each account?
             </p>
             <instruction>
-              Using <c>x</c> (savings investment) and <c>y</c> (stock investment) as the variables,
+              Using <m>x</m> (savings investment) and <m>y</m> (stock investment) as the variables,
               give two equations that form a system of equations that is appropriate for this
               exercise.
             </instruction>
@@ -4004,7 +4004,7 @@
               <var name="$group"/>. How many residents did each town have before the merge?
             </p>
             <instruction>
-              Using <c>A</c> and <c>B</c> as the variables, give two equations that form a system of
+              Using <m>A</m> and <m>B</m> as the variables, give two equations that form a system of
               equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -4070,7 +4070,7 @@
               solution. How much of each solution did <var name="$p"/> pour into the beaker?
             </p>
             <instruction>
-              Using <c>x</c> (weaker solution) and <c>y</c> (stronger solution) as the variables,
+              Using <m>x</m> (weaker solution) and <m>y</m> (stronger solution) as the variables,
               give two equations that form a system of equations that is appropriate for this
               exercise.
             </instruction>
@@ -4122,6 +4122,7 @@
             );
             $c = ($r1 - $r3)/($r1 - $r2);
             $p = 1 - $c;
+            Context("Numeric")->flags->set(tolerance => 2);
             $C = NumberWithUnits("$c lb");
             $P = NumberWithUnits("$p lb");
           </pg-code>
@@ -4134,7 +4135,7 @@
               type of nut should go into a bag?
             </p>
             <instruction>
-              Using <c>P</c> and <c>C</c> as the variables, give two equations that form a system of
+              Using <m>P</m> and <m>C</m> as the variables, give two equations that form a system of
               equations that is appropriate for this exercise.
             </instruction>
             <p>
@@ -4150,7 +4151,7 @@
               <var name="$P" width="16"/>
             </p>
             <instruction>
-              Enter the amount cashews here.
+              Enter the amount of cashews here.
             </instruction>
             <p>
               <var name="$C" width="16"/>

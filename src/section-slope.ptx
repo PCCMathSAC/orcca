@@ -1647,6 +1647,7 @@
               @y = random_subset(2, 1 .. 9);
               $m = Fraction($y[1] - $y[0], $x[1] - $x[0]);
               Context("Numeric");
+              Context()->noreduce('(-x)-y', '(-x)+y');
               $f = Formula("$m (x - $x[0]) + $y[0]");
             </pg-code>
             <statement>
@@ -1686,6 +1687,7 @@
               @y = random_subset(2, -9 .. -1, 1 .. 9);
               $m = Fraction(($y[1] - $y[0])/($x[1] - $x[0]));
               Context("Numeric");
+              Context()->noreduce('(-x)-y', '(-x)+y');
               $f = Formula("$m (x - $x[0]) + $y[0]")->reduce;
             </pg-code>
             <statement>
@@ -1764,6 +1766,7 @@
                 }
               }
               Context("Numeric");
+              Context()->noreduce('(-x)-y', '(-x)+y');
               $f = Formula("$m (x - $x[0]) + $y[0]");
               Context("Fraction");
               @p = map {Point($x[$_], $y[$_])} (0,1);
