@@ -2614,7 +2614,8 @@
               @symbol = map{(random(0, 1)) ? '=' : list_random('\lt', '\gt', '\leq', '\geq', '\neq')} (0..5);
               @type = map{($_ eq '=') ? 'equation' : 'inequality'} (@symbol);
               @eq = map{$BM . $left[$_]->TeX . $symbol[$_] . $right[$_]->TeX . $EM} (0..5);
-              $options = CheckboxList([~~@eq, "None of the above"], [1,3]);
+              $correct = ($var[1] == $var[2]) ? [1,3,4] : [1,3];
+              $options = CheckboxList([~~@eq, "None of the above"], $correct);
             </pg-code>
             <statement>
               <p>
@@ -2810,11 +2811,11 @@
           </pg-code>
           <statement>
             <p>
-              To kill bedbug eggs using heat, they must be exposed to at least <m>118℉</m> for at
+              To kill bedbug eggs using heat, they must be exposed to at least <m>118^{\circ}F</m> for at
               least 90 minutes. If you only know the Celsius temperature <m>C</m>, then to kill the
               eggs means we have the inequality <m>\frac{9}{5}C+32\geq118</m>. You have some
               infested blankets that you put in a sauna for 90 minutes, but the sauna temperature is
-              <m><var name="$proposed_solution"/>℃</m>. Was this hot enough to kill the eggs?
+              <m><var name="$proposed_solution"/>^{\circ}C</m>. Was this hot enough to kill the eggs?
             </p>
             <tabular>
               <col halign="right" />

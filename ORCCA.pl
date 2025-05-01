@@ -5,19 +5,36 @@
 
 
 # Return a string containing the latex-image-preamble contents.
-# To be used by TikZImage objects as in:
+# To be used by LaTeXImage objects as in:
 # $image->addToPreamble(latexImagePreamble())
 
 sub latexImagePreamble {
 return <<'END_LATEX_IMAGE_PREAMBLE'
+\newlength{\orccaprintwidth}
+\setlength{\orccaprintwidth}{350pt}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pifont}                                         %needed for symbols, s.a. airplane symbol
+\usetikzlibrary{positioning,fit,backgrounds}                %needed for nested diagrams
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}   %needed for set diagrams
+\usetikzlibrary{decorations.text}                           %needed for text following a curve
 \usetikzlibrary{arrows,arrows.meta}                         %needed for open/closed intervals
+\usetikzlibrary{positioning,3d,shapes.geometric}            %needed for 3d number sets tower
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}                                    %needed for triangle diagrams
+\usepgfplotslibrary{fillbetween}                            %shade regions of a plot
+\usetikzlibrary{shadows}                                    %function diagrams
+\usetikzlibrary{positioning}                                %function diagrams
+\usetikzlibrary{shapes}                                     %function diagrams
+%%% global colors from https://www.pcc.edu/web-services/style-guide/basics/color/ %%%
 \definecolor{ruby}{HTML}{9e0c0f}
 \definecolor{turquoise}{HTML}{008099}
 \definecolor{emerald}{HTML}{1c8464}
+\definecolor{lightemerald}{HTML}{12A983} %(lightened to contrast ratio just above 7 with black)
+\definecolor{sapphire}{HTML}{3b5a7d}
+\definecolor{lightsapphire}{HTML}{7898bf} %(lightened to contrast ratio just above 7 with black)
 \definecolor{amber}{HTML}{c7502a}
 \definecolor{amethyst}{HTML}{70485b}
-\definecolor{sapphire}{HTML}{263c53}
 \colorlet{firstcolor}{ruby}
 \colorlet{secondcolor}{turquoise}
 \colorlet{thirdcolor}{emerald}
@@ -73,12 +90,14 @@ return <<'END_LATEX_IMAGE_PREAMBLE'
                                         xtick={-10,-5,...,10},
                                         every tick/.append style={thick},
                                         axis y line=none,
-                                        y=15pt,
                                         axis lines=middle,
                                         enlarge x limits,
                                         grid=none,
                                         clip=false,
+                                        y=1cm,
+                                        ymin = -1,ymax = 1,
                                         axis background/.style={},
+                                        width=\orccaprintwidth,
                                         after end axis/.code={
                                           \path (axis cs:0,0)
                                           node [anchor=north,yshift=-0.075cm] {\footnotesize 0};
@@ -111,8 +130,8 @@ return <<'END_LATEX_IMAGE_PREAMBLE'
   axis line style={<->}, % arrows on the axis
   scaled ticks=false,
   tick label style={/pgf/number format/fixed},
-  xlabel={$x$},          % default put x on x-axis
-  ylabel={$y$},          % default put y on y-axis
+  xlabel={\(x\)},          % default put x on x-axis
+  ylabel={\(y\)},          % default put y on y-axis
   xmin = -7,xmax = 7,    % most graphs have this window
   ymin = -7,ymax = 7,    % most graphs have this window
   domain = -7:7,
@@ -134,6 +153,34 @@ return <<'END_LATEX_IMAGE_PREAMBLE'
 %%% other tikz (not pgfplots) settings %%%
 %\tikzset{axisnode/.style={font=\scriptsize,text=black}}
 \tikzset{>=stealth}
+%%% for nested diagram in types of numbers section %%%
+\newcommand\drawnestedsets[4]{
+  \def\position{#1}             % initial position
+  \def\nbsets{#2}               % number of sets
+  \def\listofnestedsets{#3}     % list of sets
+  \def\reversedlistofcolors{#4} % reversed list of colors
+  % position and draw labels of sets
+  \coordinate (circle-0) at (#1);
+  \coordinate (set-0) at (#1);
+  \foreach \set [count=\c] in \listofnestedsets {
+    \pgfmathtruncatemacro{\cminusone}{\c - 1}
+    % label of current set (below previous nested set)
+    \node[below=3pt of circle-\cminusone,inner sep=0]
+    (set-\c) {\set};
+    % current set (fit current label and previous set)
+    \node[circle,inner sep=0,fit=(circle-\cminusone)(set-\c)]
+    (circle-\c) {};
+  }
+  % draw and fill sets in reverse order
+  \begin{scope}[on background layer]
+    \foreach \col[count=\c] in \reversedlistofcolors {
+      \pgfmathtruncatemacro{\invc}{\nbsets-\c}
+      \pgfmathtruncatemacro{\invcplusone}{\invc+1}
+      \node[circle,draw,fill=\col,inner sep=0,
+      fit=(circle-\invc)(set-\invcplusone)] {};
+    }
+  \end{scope}
+  }
 
 END_LATEX_IMAGE_PREAMBLE
 }

@@ -35,7 +35,7 @@
 <!-- For questions regarding this license, please contact                 -->
 <!-- orcca-group@pcc.edu.                                                 -->
 <!-- *********************************************************************-->
-<section xml:id="section-introduction-to-exponent-rules">
+<section xml:id="section-introduction-to-exponent-properties">
   <title>Introduction to Exponent Rules</title>
   <objectives>
     <title>PCC Course Content and Outcome Guide</title>
@@ -62,16 +62,13 @@
     <title>Exponent Basics</title>
     <p>
       Before we discuss any exponent rules, let's remind ourselves about exponent fundamentals.
-    </p>
-    <p>
-      When working with expressions with exponents,
-      we have the following vocabulary:
+      When working with expressions with exponents, we have the following vocabulary:
       <me>
         \text{base}^{\text{exponent}} = \text{power}
       </me>
       For example, when we calculate <m>8^{2} = 64</m>, the <term>base</term> is <m>8</m>, the                <idx><h>exponent</h><h>base</h></idx>
-      <term>exponent</term> is <m>8</m>, the <term>exponent</term> is <m>2</m>, and the expression            <idx><h>base</h></idx>
-      <m>8^{2}</m> is called the 2nd <term>power</term> of <m>8</m>.                                          <idx><h>exponent</h></idx>
+      <term>exponent</term> is <m>2</m>, and the expression <m>8^{2}</m> is called the 2nd                    <idx><h>base</h></idx>
+      <term>power</term> of <m>8</m>.                                                                         <idx><h>exponent</h></idx>
                                                                                                               <idx><h>exponent</h><h>power</h></idx>
                                                                                                               <idx><h>power</h></idx>
     </p>
@@ -278,11 +275,11 @@
       <webwork source="Contrib/PCC/BasicAlgebra/Exponents/exponentsMultiplication23.pg" />
     </exercise>
 
-    <list xml:id="list-rules-of-exponents">
+    <list xml:id="list-properties-of-exponents">
       <title>Summary of the Rules of Exponents for Multiplication</title>                                     <idx><h>exponent</h><h>introductory rules</h></idx>
       <introduction>
         <p>
-          If <m>a</m> and <m>b</m> are real numbers, and <m>m</m> and <m>n</m> are positive
+          If <m>b</m> and <m>c</m> are real numbers, and <m>m</m> and <m>n</m> are positive
           integers, then we have the following rules:
         </p>
       </introduction>
@@ -291,30 +288,29 @@
         <li xml:id="item-exponent-product-rule">
           <title>Product Rule</title>
           <p>
-            <m>a^{m} \cdot a^{n} = a^{m+n}</m>
+            <m>b^{m} \cdot b^{n} = b^{m+n}</m>
           </p>
         </li>
 
         <li xml:id="item-exponent-power-to-a-power-rule">
           <title>Power to a Power Rule</title>
           <p>
-            <m>(a^{m})^{n} = a^{m\cdot n}</m>
+            <m>(b^{m})^{n} = b^{m\cdot n}</m>
           </p>
         </li>
 
         <li xml:id="item-exponent-product-to-a-power-rule">
           <title>Product to a Power Rule</title>
           <p>
-            <m>(ab)^{m} = a^{m} \cdot b^{m}</m>
+            <m>(bc)^{m} = b^{m} \cdot c^{m}</m>
           </p>
         </li>
       </dl>
     </list>
 
     <p>
-      Many examples will make use of more than one exponent rule.
-      In deciding which exponent rule to work with first,
-      it's important to remember that the order of operations still applies.
+      Many examples will make use of more than one exponent rule. In deciding which exponent rule to
+      work with first, it's important to remember that the order of operations still applies.
     </p>
 
     <example>
@@ -1479,6 +1475,95 @@
     </subexercises>
 
     <subexercises>
+      <title>Applications</title>
+      <exercise label="simplify-dilated-volume">
+        <webwork>
+          <pg-code>
+            $var = list_random(@ORCCA_variables);
+            $scale = random(2,9);
+            $scaleWord = numberWord($scale);
+            $c = $scale**3;
+            Context("Form")->variables->are($var => 'Real');;
+            $answer = Formula("$c $var^3");
+          </pg-code>
+          <statement>
+            <p>
+              If a cube has sides of length <m><var name="$var"/></m>, its volume is
+              <m><var name="$var"/>^3</m>. If we grew the side lengths to make them
+              <var name="$scaleWord"/> times as long, the volume would become
+              <m>(<var name="$scale"/><var name="$var"/>)^3</m>. Simplify this expression using the
+              product-to-power rule.
+            </p>
+            <p>
+              <var name="$answer" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <exercise label="simplify-dilated-area">
+        <webwork>
+          <pg-code>
+            $var = list_random(@ORCCA_variables);
+            $scale = random(2,9);
+            $scaleWord = numberWord($scale);
+            $c = $scale**2;
+            Context("Form")->variables->are($var => 'Real');
+            $answer = Formula("$c $var^3");
+          </pg-code>
+          <statement>
+            <p>
+              If a square has side of length <m><var name="$var"/></m>, its area is
+              <m><var name="$var"/>^2</m>. If we grew the side lengths to make them
+              <var name="$scaleWord"/> times as long, the area would become
+              <m>(<var name="$scale"/><var name="$var"/>)^2</m>. Simplify this expression using the
+              product-to-power rule.
+            </p>
+            <p>
+              <var name="$answer" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <exercise label="simplify-bit-counts">
+        <webwork>
+          <pg-code>
+            Context("Form");
+            $answer = Formula("10^38");
+          </pg-code>
+          <statement>
+            <p>
+              There are about <m>10^{19}</m> grains of sand on Earth. On average there are also
+              about <m>10^{19}</m> atoms in a grain of sand. Using these numbers, how many total
+              atoms are there on Earth in grains of sand?
+            </p>
+            <p>
+              <var name="$answer" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+      <exercise label="simplify-star-count">
+        <webwork>
+          <pg-code>
+            Context("Form");
+            $answer = Formula("10^20");
+          </pg-code>
+          <statement>
+            <p>
+              There are roughly <m>10^8</m> stars in an average galaxy, and there are roughly
+              <m>10^{12}</m> galaxies in the observable universe. Using these numbers, how many
+              stars are there in the observable universe? Answer using a simplified exponent
+              expression, not the actual result.
+            </p>
+            <p>
+              <var name="$answer" width="10"/>
+            </p>
+          </statement>
+        </webwork>
+      </exercise>
+    </subexercises>
+
+    <subexercises>
       <title>Challenge</title>
       <exercise>
         <webwork>
@@ -1520,7 +1605,7 @@
             </statement>
             <solution>
               <p>
-                Let <m>x^{b}\cdot x^{c}=x^{<var name="$p"/>}</m>.  Many possibilities exist for
+                Let <m>x^{b}\cdot x^{c}=x^{<var name="$p"/>}</m>. Many possibilities exist for
                 <m>b</m> and <m>c</m>. Since <m>b</m> and <m>c</m> must be natural numbers, let's
                 start with <m>b</m> equal to <m>1</m>. Then <m>c</m> must equal <var name="$p-1"/>,
                 because <m>x^{1}\cdot x^{<var name="$p-1"/>}=x^{<var name="$p"/>}</m>. Considering
