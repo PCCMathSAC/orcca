@@ -1480,7 +1480,7 @@
                 Context("Fraction");
                 Context()->noreduce('(-x)+y', '(-x)-y');
                 @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
-              } until ($m[0] != 1 &amp;&amp; $m[1] != 1);
+              } until ($m[0] != 1 &amp;&amp; $m[1] != 1 &amp;&amp; $m[1] != $m[0]);
               @n = map{($_->value)[0]} (@m);
               @d = map{($_->value)[1]} (@m);
               @f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
@@ -1536,7 +1536,7 @@
               @ab = ();
               for $p (@pts) {
                 for $b (-9..-1,1..9) {
-                  my $m = Fraction(($p->[1] - $b)/($p->[0]));
+                  $m = Fraction(($p->[1] - $b)/($p->[0]));
                   if ($m != 0) {
                     my ($n, $d) = $m->value;
                     push(@ab, [Real(-$b/$m)->value, $b]) if ($b % $n == 0
@@ -1713,7 +1713,7 @@
                 Context("Fraction");
                 Context()->noreduce('(-x)+y', '(-x)-y');
                 @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
-              } until ($m[0] != 1 &amp;&amp; $m[1] != 1);
+              } until ($m[0] != 1 &amp;&amp; $m[1] != 1 &amp;&amp; $m[1] != $m[0]);
               @f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
               @high = map{(7 - $k[$_])/$m[$_] + $h[$_]} (0,1);
               @low = map{(-7 - $k[$_])/$m[$_] + $h[$_]} (0,1);
@@ -1781,7 +1781,7 @@
                 Context("Fraction");
                 Context()->noreduce('(-x)+y', '(-x)-y');
                 @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
-              } until ($m[0] != 1 &amp;&amp; $m[1] != 1);
+              } until ($m[0] != 1 &amp;&amp; $m[1] != 1 &amp;&amp; $m[1] != $m[0]);
               $m[1] = $m[0];
               @f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
               @high = map{(7 - $k[$_])/$m[$_] + $h[$_]} (0,1);
@@ -2136,7 +2136,7 @@
                 Context("Fraction");
                 Context()->noreduce('(-x)+y', '(-x)-y');
                 @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
-              } until ($m[0] != 1 &amp;&amp; $m[1] != 1);
+              } until ($m[0] != 1 &amp;&amp; $m[1] != 1 &amp;&amp; $m[1] != $m[0]);
               @n = map{($_->value)[0]} (@m);
               @d = map{($_->value)[1]} (@m);
               @f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
@@ -2454,7 +2454,7 @@
               @ab = ();
               for $p (@pts) {
                 for $b (-9..-1,1..9) {
-                  my $m = Fraction(($p->[1] - $b)/($p->[0]));
+                  $m = Fraction(($p->[1] - $b)/($p->[0]));
                   if ($m != 0) {
                     my ($n, $d) = $m->value;
                     push(@ab, [Real(-$b/$m)->value, $b]) if ($b % $n == 0
