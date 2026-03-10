@@ -1221,7 +1221,7 @@
           <webwork copy="webwork-find-point-slope-two-points-pos-frac"/>
         </exercise>
       </exercisegroup>
-      <exercisegroup cols="2">
+      <exercisegroup cols="4">
         <title>Testing Points as Solutions</title>
         <introduction>
           <p>
@@ -1293,7 +1293,7 @@
 
     <subexercises>
       <title>Skills Practice</title>
-      <exercisegroup cols="2">
+      <exercisegroup cols="4">
         <title>Tables for Horizontal and Vertical Lines</title>
         <introduction>
           <p>
@@ -1482,7 +1482,7 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
+      <exercisegroup cols="3">
         <title>Identify the Line Equation</title>
         <introduction>
           <p>
@@ -1501,7 +1501,7 @@
                 <latex-image>
                   \begin{tikzpicture}
                     \begin{axis}[
-                        width=0.47\orccaprintwidth
+                        width=0.33\orccaprintwidth
                       ]
                       \addplot+ {$k};
                     \end{axis}
@@ -1529,7 +1529,7 @@
                 <latex-image>
                   \begin{tikzpicture}
                     \begin{axis}[
-                        width=0.47\orccaprintwidth
+                        width=0.33\orccaprintwidth
                       ]
                       \addplot+ coordinates {($h,-7) ($h,7)};
                     \end{axis}
@@ -1591,7 +1591,7 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
+      <exercisegroup cols="4">
         <title>Intercepts</title>
         <introduction>
           <p>
@@ -1660,7 +1660,7 @@
         </exercise>
       </exercisegroup>
 
-      <exercisegroup cols="2">
+      <exercisegroup>
         <title>Parallel or Perpendicular</title>
         <introduction>
           <p>
@@ -1674,9 +1674,9 @@
               <macro-file>parserPopUp.pl</macro-file>
             </pg-macros>
             <pg-code>
+              Context("Fraction");
               @x = random_subset(2, -9..9);
               @y = random_subset(2, -9..9);
-              Context("Fraction");
               $m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
               # construct parallel line points
               do {
@@ -1870,7 +1870,7 @@
                 $d = ($m[0]->value)[1];
                 $x[3] = $x[2] + non_zero_random(-3,3)*$d;
                 $y[3] = $y[2] + ($x[3] - $x[2])*$m[0];
-              } until (abs($x[3]) &lt;= 9 &amp;&amp; abs($y[3] &lt;= 9));
+              } until (abs($x[3]) &lt;= 9 &amp;&amp; abs($y[3]) &lt;= 9);
               @p = map {Point($x[$_],$y[$_])} (0..3);
               Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
               $eq = Compute("y = $m[0](x - $x[2]) + $y[2]");
@@ -1942,12 +1942,12 @@
               <macro-file>parserGraphTool.pl</macro-file>
             </pg-macros>
             <pg-code>
-              @x = random_subset(2, -5..5);
-              @y = random_subset(2, -5..5);
               Context("Fraction");
-              $m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
-              $m[1] = -1/$m[0];
               do {
+                @x = random_subset(2, -5..5);
+                @y = random_subset(2, -5..5);
+                $m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
+                $m[1] = -1/$m[0];
                 do {
                   $x[2] = random(-9,9);
                   $y[2] = random(-9,9);
@@ -1955,7 +1955,7 @@
                 $d = ($m[0]->value)[1];
                 $x[3] = $x[2] + non_zero_random(-3,3)*$d;
                 $y[3] = $y[2] + ($x[3] - $x[2])*$m[1];
-              } until (abs($x[3]) &lt;= 9 &amp;&amp; abs($y[3] &lt;= 9));
+              } until (abs($x[3]) &lt;= 9 &amp;&amp; abs($y[3]) &lt;= 9);
               @p = map {Point($x[$_],$y[$_])} (0..3);
               Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
               $eq = Compute("y = $m[1](x - $x[2]) + $y[2]");

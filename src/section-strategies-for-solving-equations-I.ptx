@@ -1671,9 +1671,6 @@
 
       <exercise>
         <webwork>
-          <pg-macros>
-            <macro-file>parserRoot.pl</macro-file>
-          </pg-macros>
             <pg-code>
               Context()->variables->are(V=>'Real', s=>'Real');
               parser::Assignment->Allow;
@@ -1698,18 +1695,15 @@
       </exercise>
       <exercise>
         <webwork>
-          <pg-macros>
-            <macro-file>parserRoot.pl</macro-file>
-          </pg-macros>
-            <pg-code>
-              Context()->variables->are(V=>'Real', r=>'Real');
-              parser::Assignment->Allow;
-              $equationstring = 'V=\frac{4}{3} \pi r^3';
-              $var = 'r';
-              parser::Root->Enable;
-              $answer = Formula("r=root(3,3V/(4 pi))");
-              Context()->variables->set(V=>{limits=>[1,10]});
-            </pg-code>
+          <pg-code>
+            Context()->variables->are(V=>'Real', r=>'Real');
+            parser::Assignment->Allow;
+            $equationstring = 'V=\frac{4}{3} \pi r^3';
+            $var = 'r';
+            parser::Root->Enable;
+            $answer = Formula("r=root(3,3V/(4 pi))");
+            Context()->variables->set(V=>{limits=>[1,10]});
+          </pg-code>
           <statement>
             <p>
               Solve the equation <m><var name="$equationstring"/></m> for <m><var name="$var"/></m>.

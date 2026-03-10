@@ -1,0 +1,3668 @@
+%********************************************%
+%*       Generated from PreTeXt source      *%
+%*       on 2024-11-05T11:02:17-08:00       *%
+%*   A recent stable commit (2022-07-01):   *%
+%* 6c761d3dba23af92cba35001c852aac04ae99a5f *%
+%*                                          *%
+%*         https://pretextbook.org          *%
+%*                                          *%
+%********************************************%
+\documentclass[twoside,10pt,]{book}
+%% Custom Preamble Entries, early (use latex.preamble.early)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{euler}
+\usepackage{xcoffins}
+\NewCoffin\Framex
+\NewCoffin\Theox
+\usepackage{changepage}
+\strictpagecheck
+
+
+
+%% Always open on odd page
+%%   The following adjusts cleardoublepage to remove twosided
+%%   check so that we open on odd pages even in one-sided mode
+%%   by adding an extra blank page on the preceding even page.
+\makeatletter%
+\def\cleardoublepage{%
+\clearpage\ifodd\c@page\else\thispagestyle{empty}\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi%
+}
+\makeatother%
+%% Default LaTeX packages
+%%   1.  always employed (or nearly so) for some purpose, or
+%%   2.  a stylewriter may assume their presence
+\usepackage{geometry}
+%% Some aspects of the preamble are conditional,
+%% the LaTeX engine is one such determinant
+\usepackage{ifthen}
+%% etoolbox has a variety of modern conveniences
+%% Symbols, align environment, commutative diagrams, bracket-matrix
+\usepackage{amsmath, nccmath}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{etoolbox}
+\usepackage{ifxetex,ifluatex}
+%% Raster graphics inclusion
+\usepackage{graphicx}
+%% Color support, xcolor package
+%% Always loaded, for: add/delete text, author tools
+%% Here, since tcolorbox loads tikz, and tikz loads xcolor
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,table}{xcolor}
+\usepackage{xcolor}
+%% begin: defined colors, via xcolor package, for styling
+%% end: defined colors, via xcolor package, for styling
+%% Colored boxes, and much more, though mostly styling
+%% skins library provides "enhanced" skin, employing tikzpicture
+%% boxes may be configured as "breakable" or "unbreakable"
+%% "raster" controls grids of boxes, aka side-by-side
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{raster}
+%% We load some "stock" tcolorbox styles that we use a lot
+%% Placement here is provisional, there will be some color work also
+%% First, black on white, no border, transparent, but no assumption about titles
+\tcbset{ bwminimalstyle/.style={size=minimal, boxrule=-0.3pt, frame empty,
+colback=white, colbacktitle=white, coltitle=black, opacityfill=0.0} }
+%% Second, bold title, run-in to text/paragraph/heading
+%% Space afterwards will be controlled by environment,
+%% independent of constructions of the tcb title
+%% Places \blocktitlefont onto many block titles
+\tcbset{ runintitlestyle/.style={fonttitle=\blocktitlefont\upshape\bfseries, attach title to upper} }
+%% Spacing prior to each exercise, anywhere
+\tcbset{ exercisespacingstyle/.style={before skip={1.5ex plus 0.5ex}} }
+%% Spacing prior to each block
+\tcbset{ blockspacingstyle/.style={before skip={2.0ex plus 0.5ex}} }
+%% xparse allows the construction of more robust commands,
+%% this is a necessity for isolating styling and behavior
+%% The tcolorbox library of the same name loads the base library
+\tcbuselibrary{xparse}
+%% The tcolorbox library loads TikZ, its calc package is generally useful,
+%% and is necessary for some smaller documents that use partial tcolor boxes
+%% See:  https://github.com/PreTeXtBook/pretext/issues/1624
+\usetikzlibrary{calc}
+%% We use some more exotic tcolorbox keys to restore indentation to parboxes
+\tcbuselibrary{hooks}
+%% Save default paragraph indentation and parskip for use later, when adjusting parboxes
+\newlength{\normalparindent}
+\newlength{\normalparskip}
+\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
+\AtBeginDocument{\setlength{\normalparskip}{\parskip}}
+\newcommand{\setparstyle}{\setlength{\parindent}{\normalparindent}\setlength{\parskip}{\normalparskip}}%% Hyperref should be here, but likes to be loaded late
+%%
+%% Inline math delimiters, \(, \), need to be robust
+%% 2016-01-31:  latexrelease.sty  supersedes  fixltx2e.sty
+%% If  latexrelease.sty  exists, bugfix is in kernel
+%% If not, bugfix is in  fixltx2e.sty
+%% See:  https://tug.org/TUGboat/tb36-3/tb114ltnews22.pdf
+%% and read "Fewer fragile commands" in distribution's  latexchanges.pdf
+\IfFileExists{latexrelease.sty}{}{\usepackage{fixltx2e}}
+%% shorter subnumbers in some side-by-side require manipulations
+\usepackage{xstring}
+%% Footnote counters and part/chapter counters are manipulated
+%% April 2018:  chngcntr  commands now integrated into the kernel,
+%% but circa 2018/2019 the package would still try to redefine them,
+%% so we need to do the work of loading conditionally for old kernels.
+%% From version 1.1a,  chngcntr  should detect defintions made by LaTeX kernel.
+\ifdefined\counterwithin
+\else
+    \usepackage{chngcntr}
+\fi
+%% Text height identically 9 inches, text width varies on point size
+%% See Bringhurst 2.1.1 on measure for recommendations
+%% 75 characters per line (count spaces, punctuation) is target
+%% which is the upper limit of Bringhurst's recommendations
+\geometry{letterpaper,total={340pt,9.0in}}
+%% Custom Page Layout Adjustments (use publisher page-geometry entry)
+\geometry{papersize={8.625in,11.25in},total={350pt,8in},inner=1in}
+%% This LaTeX file may be compiled with pdflatex, xelatex, or lualatex executables
+%% LuaTeX is not explicitly supported, but we do accept additions from knowledgeable users
+%% The conditional below provides  pdflatex  specific configuration last
+%% begin: engine-specific capabilities
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific default configuration
+%% realscripts is the only part of xltxtra relevant to lualatex 
+\ifluatex\usepackage{realscripts}\fi
+%% end:   xelatex and lualatex-specific default configuration
+}{
+%% begin: pdflatex-specific default configuration
+%% We assume a PreTeXt XML source file may have Unicode characters
+%% and so we ask LaTeX to parse a UTF-8 encoded file
+%% This may work well for accented characters in Western language,
+%% but not with Greek, Asian languages, etc.
+%% When this is not good enough, switch to the  xelatex  engine
+%% where Unicode is better supported (encouraged, even)
+\ifxetex\else\usepackage[utf8]{inputenc}\fi
+%% end: pdflatex-specific default configuration
+}
+%% end:   engine-specific capabilities
+%%
+%% Fonts.  Conditional on LaTex engine employed.
+%% Default Text Font: The Latin Modern fonts are
+%% "enhanced versions of the [original TeX] Computer Modern fonts."
+%% We use them as the default text font for PreTeXt output.
+%% Default Monospace font: Inconsolata (aka zi4)
+%% Sponsored by TUG: http://levien.com/type/myfonts/inconsolata.html
+%% Loaded for documents with intentional objects requiring monospace
+%% See package documentation for excellent instructions
+%% fontspec will work universally if we use filename to locate OTF files
+%% Loads the "upquote" package as needed, so we don't have to
+%% Upright quotes might come from the  textcomp  package, which we also use
+%% We employ the shapely \ell to match Google Font version
+%% pdflatex: "varl" package option produces shapely \ell
+%% pdflatex: "var0" package option produces plain zero (not used)
+%% pdflatex: "varqu" package option produces best upright quotes
+%% xelatex,lualatex: add OTF StylisticSet 1 for shapely \ell
+%% xelatex,lualatex: add OTF StylisticSet 2 for plain zero (not used)
+%% xelatex,lualatex: add OTF StylisticSet 3 for upright quotes
+%%
+%% Automatic Font Control
+%% Portions of a document, are, or may, be affected by defined commands
+%% These are perhaps more flexible when using  xelatex  rather than  pdflatex
+%% The following definitions are meant to be re-defined in a style, using \renewcommand
+%% They are scoped when employed (in a TeX group), and so should not be defined with an argument
+\newcommand{\divisionfont}{\relax}
+\newcommand{\blocktitlefont}{\relax}
+\newcommand{\contentsfont}{\relax}
+\newcommand{\pagefont}{\relax}
+\newcommand{\tabularfont}{\relax}
+\newcommand{\xreffont}{\relax}
+\newcommand{\titlepagefont}{\relax}
+%%
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: font setup and configuration for use with xelatex
+%% Generally, xelatex is necessary for non-Western fonts
+%% fontspec package provides extensive control of system fonts,
+%% meaning *.otf (OpenType), and apparently *.ttf (TrueType)
+%% that live *outside* your TeX/MF tree, and are controlled by your *system*
+%% (it is possible that a TeX distribution will place fonts in a system location)
+%%
+%% The fontspec package is the best vehicle for using different fonts in  xelatex
+%% So we load it always, no matter what a publisher or style might want
+%%
+\usepackage[math]{mathspec}%%
+%% begin: xelatex main font ("font-xelatex-main" template)
+%% Latin Modern Roman is the default font for xelatex and so is loaded with a TU encoding
+%% *in the format* so we can't touch it, only perhaps adjust it later
+%% in one of two ways (then known by NFSS names such as "lmr")
+%% (1) via NFSS with font family names such as "lmr" and "lmss"
+%% (2) via fontspec with commands like \setmainfont{Latin Modern Roman}
+%% The latter requires the font to be known at the system-level by its font name,
+%% but will give access to OTF font features through optional arguments
+%% https://tex.stackexchange.com/questions/470008/
+%% where-and-how-does-fontspec-sty-specify-the-default-font-latin-modern-roman
+%% http://tex.stackexchange.com/questions/115321
+%% /how-to-optimize-latin-modern-font-with-xelatex
+%%
+%% end:   xelatex main font ("font-xelatex-main" template)
+%% begin: xelatex mono font ("font-xelatex-mono" template)
+%% (conditional on non-trivial uses being present in source)
+\IfFontExistsTF{Inconsolatazi4-Regular.otf}{}{\GenericError{}{The font "Inconsolatazi4-Regular.otf" requested by PreTeXt output is not available.  Either a file cannot be located in default locations via a filename, or a font is not known by its name as part of your system.}{Consult the PreTeXt Guide for help with LaTeX fonts.}{}}
+\IfFontExistsTF{Inconsolatazi4-Bold.otf}{}{\GenericError{}{The font "Inconsolatazi4-Bold.otf" requested by PreTeXt output is not available.  Either a file cannot be located in default locations via a filename, or a font is not known by its name as part of your system.}{Consult the PreTeXt Guide for help with LaTeX fonts.}{}}
+\usepackage{zi4}
+\setmonofont[BoldFont=Inconsolatazi4-Bold.otf,StylisticSet={1,3}]{Inconsolatazi4-Regular.otf}
+%% end:   xelatex mono font ("font-xelatex-mono" template)
+%% begin: xelatex font adjustments ("font-xelatex-style" template)
+%% end:   xelatex font adjustments ("font-xelatex-style" template)
+%%
+%% Extensive support for other languages
+\usepackage{polyglossia}
+%% Set main/default language based on pretext/@xml:lang value
+%% document language code is "en-US", US English
+%% usmax variant has extra hypenation
+\setmainlanguage[variant=usmax]{english}
+%% Enable secondary languages based on discovery of @xml:lang values
+%% Enable fonts/scripts based on discovery of @xml:lang values
+%% Western languages should be ably covered by Latin Modern Roman
+%% end:   font setup and configuration for use with xelatex
+}{%
+%% begin: font setup and configuration for use with pdflatex
+%% begin: pdflatex main font ("font-pdflatex-main" template)
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+%% end:   pdflatex main font ("font-pdflatex-main" template)
+%% begin: pdflatex mono font ("font-pdflatex-mono" template)
+%% (conditional on non-trivial uses being present in source)
+\usepackage[varqu,varl]{inconsolata}
+%% end:   pdflatex mono font ("font-pdflatex-mono" template)
+%% begin: pdflatex font adjustments ("font-pdflatex-style" template)
+%% end:   pdflatex font adjustments ("font-pdflatex-style" template)
+%% end:   font setup and configuration for use with pdflatex
+}
+%% Micromanage spacing, etc.  The named "microtype-options"
+%% template may be employed to fine-tune package behavior
+\usepackage{microtype}
+%% allow page breaks within display mathematics anywhere
+%% level 4 is maximally permissive
+%% this is exactly the opposite of AMSmath package philosophy
+%% there are per-display, and per-equation options to control this
+%% split, aligned, gathered, and alignedat are not affected
+\allowdisplaybreaks[4]
+%% allow more columns to a matrix
+%% can make this even bigger by overriding with  latex.preamble.late  processing option
+\setcounter{MaxMatrixCols}{30}
+%%
+%%
+%% Division Titles, and Page Headers/Footers
+%% titlesec package, loading "titleps" package cooperatively
+%% See code comments about the necessity and purpose of "explicit" option.
+%% The "newparttoc" option causes a consistent entry for parts in the ToC 
+%% file, but it is only effective if there is a \titleformat for \part.
+%% "pagestyles" loads the  titleps  package cooperatively.
+\usepackage[explicit, newparttoc, pagestyles]{titlesec}
+%% The companion titletoc package for the ToC.
+\usepackage{titletoc}
+%% Fixes a bug with transition from chapters to appendices in a "book"
+%% See generating XSL code for more details about necessity
+\newtitlemark{\chaptertitlename}
+%% begin: customizations of page styles via the modal "titleps-style" template
+%% Designed to use commands from the LaTeX "titleps" package
+%% Plain pages should have the same font for page numbers
+\renewpagestyle{plain}{%
+\setfoot{}{\pagefont\thepage}{}%
+}%
+%% Two-page spread as in default LaTeX
+\renewpagestyle{headings}{%
+\sethead%
+[\pagefont\thepage]%
+[]
+[\pagefont\slshape\MakeUppercase{\ifthechapter{\chaptertitlename\space\thechapter.\space}{}\chaptertitle}]%
+{\pagefont\slshape\MakeUppercase{\ifthesection{\thesection.\space\sectiontitle}{}}}%
+{}%
+{\pagefont\thepage}%
+}%
+\pagestyle{headings}
+%% end: customizations of page styles via the modal "titleps-style" template
+%%
+%% Create globally-available macros to be provided for style writers
+%% These are redefined for each occurence of each division
+\newcommand{\divisionnameptx}{\relax}%
+\newcommand{\titleptx}{\relax}%
+\newcommand{\subtitleptx}{\relax}%
+\newcommand{\shortitleptx}{\relax}%
+\newcommand{\authorsptx}{\relax}%
+\newcommand{\epigraphptx}{\relax}%
+%% Create environments for possible occurences of each division
+%% Environment for a PTX "acknowledgement" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{acknowledgement}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter*{#2}%
+\addcontentsline{toc}{chapter}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "preface" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{preface}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter*{#2}%
+\addcontentsline{toc}{chapter}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "part" at the level of a LaTeX "part"
+\NewDocumentEnvironment{partptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\part[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "chapter" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{chapterptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "section" at the level of a LaTeX "section"
+\NewDocumentEnvironment{sectionptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\section[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "subsection" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{subsectionptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\subsection[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "reading-questions" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{reading-questions-subsection}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\subsection[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "reading-questions" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{reading-questions-subsection-numberless}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\subsection*{#2}%
+\addcontentsline{toc}{subsection}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "exercises" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{exercises-subsection}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\subsection[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "exercises" at the level of a LaTeX "subsection"
+\NewDocumentEnvironment{exercises-subsection-numberless}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\subsection*{#2}%
+\addcontentsline{toc}{subsection}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "appendix" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{appendixptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "solutions" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{solutions-chapter}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "solutions" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{solutions-chapter-numberless}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter*{#2}%
+\addcontentsline{toc}{chapter}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "index" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{indexptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter*{#2}%
+\addcontentsline{toc}{chapter}{#4}
+\label{#7}%
+}{}%
+%%
+%% Styles for six traditional LaTeX divisions
+\titleformat{\part}[display]
+{\divisionfont\Huge\bfseries\centering}{\divisionnameptx\space\thepart}{30pt}{\Huge#1}
+[{\Large\centering\authorsptx}]
+\titleformat{\chapter}[display]
+{\divisionfont\huge\bfseries}{\divisionnameptx\space\thechapter}{20pt}{\Huge#1}
+[{\Large\authorsptx}]
+\titleformat{name=\chapter,numberless}[display]
+{\divisionfont\huge\bfseries}{}{0pt}{#1}
+[{\Large\authorsptx}]
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titleformat{\section}[hang]
+{\divisionfont\Large\bfseries}{\thesection}{1ex}{#1}
+[{\large\authorsptx}]
+\titleformat{name=\section,numberless}[block]
+{\divisionfont\Large\bfseries}{}{0pt}{#1}
+[{\large\authorsptx}]
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titleformat{\subsection}[hang]
+{\divisionfont\large\bfseries}{\thesubsection}{1ex}{#1}
+[{\normalsize\authorsptx}]
+\titleformat{name=\subsection,numberless}[block]
+{\divisionfont\large\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\subsubsection}[hang]
+{\divisionfont\normalsize\bfseries}{\thesubsubsection}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\subsubsection,numberless}[block]
+{\divisionfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\paragraph}[hang]
+{\divisionfont\normalsize\bfseries}{\theparagraph}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\paragraph,numberless}[block]
+{\divisionfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5em}
+%%
+%% Styles for five traditional LaTeX divisions
+\titlecontents{part}%
+[0pt]{\contentsmargin{0em}\addvspace{1pc}\contentsfont\bfseries}%
+{\Large\thecontentslabel\enspace}{\Large}%
+{}%
+[\addvspace{.5pc}]%
+\titlecontents{chapter}%
+[0pt]{\contentsmargin{0em}\addvspace{1pc}\contentsfont\bfseries}%
+{\large\thecontentslabel\enspace}{\large}%
+{\hfill\bfseries\thecontentspage}%
+[\addvspace{.5pc}]%
+\dottedcontents{section}[3.8em]{\contentsfont}{2.3em}{1pc}%
+\dottedcontents{subsection}[6.1em]{\contentsfont}{3.2em}{1pc}%
+\dottedcontents{subsubsection}[9.3em]{\contentsfont}{4.3em}{1pc}%
+%%
+%% Begin: Semantic Macros
+%% To preserve meaning in a LaTeX file
+%%
+%% \mono macro for content of "c", "cd", "tag", etc elements
+%% Also used automatically in other constructions
+%% Simply an alias for \texttt
+%% Always defined, even if there is no need, or if a specific tt font is not loaded
+\newcommand{\mono}[1]{\texttt{#1}}
+%%
+%% Following semantic macros are only defined here if their
+%% use is required only in this specific document
+%%
+%% Used for warnings, typically bold and italic
+\newcommand{\alert}[1]{\textbf{\textit{#1}}}
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
+%% Titles of longer works (e.g. books, versus articles)
+\newcommand{\pubtitle}[1]{\textsl{#1}}
+%% Used for fillin answer blank in text
+%% Relies on calc package, loaded via tcolorbox
+%% Argument is intended number of characters of blank
+%% Length may compress for output to fit in one line
+\newlength{\fillinmaxwidth}
+\newlength{\fillincontract}
+\newlength{\charmaxwidth}\setlength{\charmaxwidth}{0.5em}
+\newlength{\charminwidth}\setlength{\charminwidth}{0.1em}
+\newlength{\fillinheight}
+\definecolor{fillintextshade}{gray}{0.9}
+\newcommand{\fillintext}[1]{%
+\setlength{\fillinmaxwidth}{#1\charmaxwidth}%
+\setlength{\fillincontract}{#1\charminwidth}%
+\setlength{\fillinheight}{\baselineskip}\addtolength{\fillinheight}{1.2pt}%
+{\color{fillintextshade}\strut\nobreak\leaders\vbox{\hrule width 0.3pt height \fillinheight \vskip -1.2pt}\hskip 1\fillinmaxwidth minus \fillincontract}%
+}
+%% Used for units and number formatting
+\usepackage[per-mode=fraction]{siunitx}
+%% v3 dated 2021-05-17, fix major behavior change
+\makeatletter%
+\@ifpackagelater{siunitx}{2021/05/17}
+{%
+\typeout{PTX: discovered siunitx v3, >= 2021-05-17}%
+\sisetup{parse-numbers = false}%
+}
+{%
+\typeout{PTX: discovered siunitx v2, < 2021-05-17}%
+}%
+\makeatother%
+\sisetup{inter-unit-product=\cdot}
+\ifxetex\sisetup{math-micro=\text{µ},text-micro=µ}\fi\ifluatex\sisetup{math-micro=\text{µ},text-micro=µ}\fi%% Common non-SI units
+\DeclareSIUnit\degreeFahrenheit{\SIUnitSymbolDegree{F}}
+\DeclareSIUnit\fahrenheit{\degreeFahrenheit}
+\DeclareSIUnit\pound{lb}
+\DeclareSIUnit\ounce{oz}
+\DeclareSIUnit\ton{T}
+\DeclareSIUnit\foot{ft}
+\DeclareSIUnit\inch{in}
+\DeclareSIUnit\yard{yd}
+\DeclareSIUnit\mile{mi}
+\DeclareSIUnit\millennium{millennium}
+\DeclareSIUnit\century{century}
+\DeclareSIUnit\decade{decade}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\month{mo}
+\DeclareSIUnit\week{wk}
+\DeclareSIUnit\kilometerperhour{kph}
+\DeclareSIUnit\kilometreperhour{kph}
+\DeclareSIUnit\mileperhour{mph}
+\DeclareSIUnit\gallon{gal}
+\DeclareSIUnit\cubiccentimeter{cc}
+\DeclareSIUnit\tablespoon{tbsp}
+\DeclareSIUnit\teaspoon{tsp}
+\DeclareSIUnit\cup{c}
+\DeclareSIUnit\pint{pt}
+\DeclareSIUnit\quart{qt}
+\DeclareSIUnit\fluidounce{fl oz}
+\DeclareSIUnit\milepergallon{mpg}
+\DeclareSIUnit\kilometerpergallon{kpg}
+\DeclareSIUnit\revolution{rev}
+\DeclareSIUnit\revolutionperminute{rpm}
+\DeclareSIUnit\cycle{cycle}
+\DeclareSIUnit\bit{b}
+\DeclareSIUnit\byte{B}
+\DeclareSIUnit\bitpersecond{bps}
+\DeclareSIUnit\bytepersecond{Bps}
+%% End: Semantic Macros
+%% begin: environments for duplicates in solutions divisions
+%% Solutions to inline exercises, style and environment
+\tcbset{ inlinesolutionstyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, after title={\space}, breakable, before upper app={\setparstyle} } }
+\newtcolorbox{inlinesolution}[4]{inlinesolutionstyle, title={\hyperref[#4]{#1~#2}\notblank{#3}{\space#3}{}}}
+%% Solutions to division exercises, not in exercise group
+%% Parameter #1 is type-name and is ignored
+\tcbset{ divisionsolutionstyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, after title={\space}, breakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionsolution}[4]{divisionsolutionstyle, title={\hyperlink{#4}{#2}.\notblank{#3}{\space#3}{}}}
+%% Solutions to division exercises, in exercise group, no columns
+%% Parameter #1 is type-name and is ignored
+\tcbset{ divisionsolutionegstyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, after title={\space}, left skip=\egindent, breakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionsolutioneg}[4]{divisionsolutionegstyle, title={\hyperlink{#4}{#2}.\notblank{#3}{\space#3}{}}}
+%% Solutions to division exercises, in exercise group with columns
+%% Parameter #1 is type-name and is ignored
+\tcbset{ divisionsolutionegcolstyle/.style={bwminimalstyle, runintitlestyle,  exercisespacingstyle, after title={\space}, halign=flush left, unbreakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionsolutionegcol}[4]{divisionsolutionegcolstyle, title={\hyperlink{#4}{#2}.\notblank{#3}{\space#3}{}}}
+%% Divisional exercises (and worksheet) as LaTeX environments
+%% Third argument is option for extra workspace in worksheets
+%% Hanging indent occupies a 5ex width slot prior to left margin
+%% Experimentally this seems just barely sufficient for a bold "888."
+%% Division exercises, not in exercise group
+\tcbset{ divisionexercisestyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, left=5ex, breakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionexercise}[4]{divisionexercisestyle, before title={\hspace*{-5ex}\makebox[5ex][l]{#1.}}, title={\notblank{#2}{#2\space}{}}, phantom={\hypertarget{#4}{}}, after={\notblank{#3}{\newline\rule{\workspacestrutwidth}{#3}\newline\vfill}{\par}}}
+%% Division exercises, in exercise group, no columns
+\tcbset{ divisionexerciseegstyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, left=5ex, left skip=\egindent, breakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionexerciseeg}[4]{divisionexerciseegstyle, before title={\hspace*{-5ex}\makebox[5ex][l]{#1.}}, title={\notblank{#2}{#2\space}{}}, phantom={\hypertarget{#4}{}}, after={\notblank{#3}{\newline\rule{\workspacestrutwidth}{#3}\newline\vfill}{\par}}}
+%% Division exercises, in exercise group with columns
+\tcbset{ divisionexerciseegcolstyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, left=5ex, halign=flush left, unbreakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionexerciseegcol}[4]{divisionexerciseegcolstyle, before title={\hspace*{-5ex}\makebox[5ex][l]{#1.}}, title={\notblank{#2}{#2\space}{}}, phantom={\hypertarget{#4}{}}, after={\notblank{#3}{\newline\rule{\workspacestrutwidth}{#3}\newline\vfill}{\par}}}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+%% No adjustment here implies document-wide numbering
+\numberwithin{equation}{section}
+%% "tcolorbox" environment for a single image, occupying entire \linewidth
+%% arguments are left-margin, width, right-margin, as multiples of
+%% \linewidth, and are guaranteed to be positive and sum to 1.0
+\tcbset{ imagestyle/.style={bwminimalstyle} }
+\NewTColorBox{tcbimage}{mmm}{imagestyle,left skip=#1\linewidth,width=#2\linewidth}
+%% Wrapper environment for tcbimage environment with a fourth argument
+%% Fourth argument, if nonempty, is a vertical space adjustment
+%% and implies image will be preceded by \leavevmode\nopagebreak
+%% Intended use is for alignment with a list marker
+\NewDocumentEnvironment{image}{mmmm}{\notblank{#4}{\leavevmode\nopagebreak\vspace{#4}}{}\begin{tcbimage}{#1}{#2}{#3}}{\end{tcbimage}%
+}%% For improved tables
+\usepackage{array}
+%% Some extra height on each row is desirable, especially with horizontal rules
+%% Increment determined experimentally
+\setlength{\extrarowheight}{0.2ex}
+%% Define variable thickness horizontal rules, full and partial
+%% Thicknesses are 0.03, 0.05, 0.08 in the  booktabs  package
+\newcommand{\hrulethin}  {\noalign{\hrule height 0.04em}}
+\newcommand{\hrulemedium}{\noalign{\hrule height 0.07em}}
+\newcommand{\hrulethick} {\noalign{\hrule height 0.11em}}
+%% We preserve a copy of the \setlength package before other
+%% packages (extpfeil) get a chance to load packages that redefine it
+\let\oldsetlength\setlength
+\newlength{\Oldarrayrulewidth}
+\newcommand{\crulethin}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.04em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}%
+\newcommand{\crulemedium}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.07em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+\newcommand{\crulethick}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.11em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+%% Single letter column specifiers defined via array package
+\newcolumntype{A}{!{\vrule width 0.04em}}
+\newcolumntype{B}{!{\vrule width 0.07em}}
+\newcolumntype{C}{!{\vrule width 0.11em}}
+%% tcolorbox to place tabular outside of a sidebyside
+\tcbset{ tabularboxstyle/.style={bwminimalstyle,} }
+\newtcolorbox{tabularbox}[3]{tabularboxstyle, left skip=#1\linewidth, width=#2\linewidth,}
+\newcommand{\tablecelllines}[3]%
+{\begin{tabular}[#2]{@{}#1@{}}#3\end{tabular}}
+%% Footnote Numbering
+%% Specified by numbering.footnotes.level
+%% Undo counter reset by chapter for a book
+\counterwithout{footnote}{chapter}
+\counterwithin*{footnote}{section}
+%% More flexible list management, esp. for references
+%% But also for specifying labels (i.e. custom order) on nested lists
+\usepackage{enumitem}
+%% Description lists as tcolorbox sidebyside
+%% "dli" short for "description list item"
+\newlength{\dlititlewidth}
+\newlength{\dlimaxnarrowtitle}\setlength{\dlimaxnarrowtitle}{11ex}
+\newlength{\dlimaxmediumtitle}\setlength{\dlimaxmediumtitle}{18ex}
+\tcbset{ dlistyle/.style={sidebyside, sidebyside align=top seam, lower separated=false, bwminimalstyle, bottomtitle=0.75ex, after skip=1.5ex, boxsep=0pt, left=0pt, right=0pt, top=0pt, bottom=0pt} }
+\tcbset{ dlinarrowstyle/.style={dlistyle, lefthand width=\dlimaxnarrowtitle, sidebyside gap=1ex, halign=flush left, righttitle=10ex} }
+\tcbset{ dlimediumstyle/.style={dlistyle, lefthand width=\dlimaxmediumtitle, sidebyside gap=4ex, halign=flush right} }
+\NewDocumentEnvironment{descriptionlist}{}{\par\vspace*{1.5ex}\setparstyle}{\par\vspace*{1.5ex}}%
+%% begin enviroment has an if/then to open the tcolorbox
+\NewDocumentEnvironment{dlinarrow}{mm}{%
+\settowidth{\dlititlewidth}{{\textbf{#1}}}%
+\ifthenelse{\dlititlewidth > \dlimaxnarrowtitle}%
+{\begin{tcolorbox}[title={\textbf{#1}}, phantom={\hypertarget{#2}{}}, dlinarrowstyle]\tcblower}%
+{\begin{tcolorbox}[dlinarrowstyle, phantom={\hypertarget{#2}{}}]\textbf{#1}\tcblower}%
+}%
+{\end{tcolorbox}}%
+%% medium option is simpler
+\NewDocumentEnvironment{dlimedium}{mm}%
+{\begin{tcolorbox}[dlimediumstyle, phantom={\hypertarget{#2}{}}]\textbf{#1}\tcblower}%
+{\end{tcolorbox}}%
+%% Indented groups of "exercise" within an "exercises" division
+%% Lengths control the indentation (always) and gaps (multi-column)
+\newlength{\egindent}\setlength{\egindent}{0.05\linewidth}
+\newlength{\exggap}\setlength{\exggap}{0.05\linewidth}
+%% Thin "xparse" environments will represent the entire exercise
+%% group, in the case when it does not hold multiple columns.
+\NewDocumentEnvironment{exercisegroup}{}
+{}{}
+%% An exercise group with multiple columns is a tcbraster.
+%% If the contained exercises are explicitly unbreakable,
+%% the raster should break at rows for page breaks.
+%% The number of columns is a parameter, passed to tcbraster.
+\tcbset{ exgroupcolstyle/.style={raster equal height=rows, raster left skip=\egindent, raster column skip=\exggap} }
+\NewDocumentEnvironment{exercisegroupcol}{m}
+{\begin{tcbraster}[exgroupcolstyle,raster columns=#1]}{\end{tcbraster}}
+%% Support for index creation
+%% imakeidx package does not require extra pass (as with makeidx)
+%% Title of the "Index" section set via a keyword
+%% Language support for the "see" and "see also" phrases,
+%% but to do so presumes exactly one "index-list" generator is present
+\usepackage{imakeidx}
+\makeindex[title=Index, intoc=true]
+\renewcommand{\seename}{See}
+\renewcommand{\alsoname}{See also}
+%% hyperref driver does not need to be specified, it will be detected
+%% Footnote marks in tcolorbox have broken linking under
+%% hyperref, so it is necessary to turn off all linking
+%% It *must* be given as a package option, not with \hypersetup
+\usepackage[hyperfootnotes=false]{hyperref}
+%% configure hyperref's  \href{}{}  and  \nolinkurl  to match listings' inline verbatim
+\renewcommand\UrlFont{\small\ttfamily}
+%% For a print PDF, no surrounding boxes, so simply textcolor (but still active to preserve spacing)
+\hypersetup{hidelinks}
+%% Less-clever names for hyperlinks are more reliable, *especially* for structural parts
+%% See comments in the code to learn more about the importance of this setting
+\hypersetup{hypertexnames=false}
+%%The  hypertexnames  setting then confuses the hyperlinking from the index
+%%This patch resolves the incorrect links, see code for StackExchange post.
+\makeatletter
+\patchcmd\Hy@EveryPageBoxHook{\Hy@EveryPageAnchor}{\Hy@hypertexnamestrue\Hy@EveryPageAnchor}{}{\fail}
+\makeatother
+\hypersetup{pdftitle={Open Resources for Community College Algebra}}
+%% If you manually remove hyperref, leave in this next command
+%% This will allow LaTeX compilation, employing this no-op command
+\providecommand\phantomsection{}
+%% Division Numbering: Chapters, Sections, Subsections, etc
+%% Division numbers may be turned off at some level ("depth")
+%% A section *always* has depth 1, contrary to us counting from the document root
+%% The latex default is 3.  If a larger number is present here, then
+%% removing this command may make some cross-references ambiguous
+%% The precursor variable $numbering-maxlevel is checked for consistency in the common XSL file
+\setcounter{secnumdepth}{3}
+%%
+%% AMS "proof" environment is no longer used, but we leave previously
+%% implemented \qedhere in place, should the LaTeX be recycled
+\newcommand{\qedhere}{\relax}
+%%
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for most blocks (possibly not projects, 2D displays)
+%% Controlled by  numbering.theorems.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{block}{}
+%%
+%% This document is set to number PROJECT-LIKE on a separate numbering scheme
+%% So, a faux tcolorbox whose only purpose is to provide this numbering
+%% Controlled by  numbering.projects.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{project-distinct}{}
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for 2D displays which are subnumbered as part of a "sidebyside"
+\makeatletter
+\newtcolorbox[auto counter, number within=tcb@cnt@block, number freestyle={\noexpand\thetcb@cnt@block(\noexpand\alph{\tcbcounter})}]{subdisplay}{}
+\makeatother
+%%
+%% tcolorbox, with styles, for THEOREM-LIKE
+%%
+%% fact: fairly simple numbered block/structure
+\tcbset{ factstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=block]{fact}[4]{title={{#1~\thetcbcounter\notblank{#2#3}{\space}{}\notblank{#2}{\space#2}{}\notblank{#3}{\space(#3)}{}}}, phantomlabel={#4}, breakable, after={\par}, fontupper=\itshape, factstyle, }
+%% theorem: fairly simple numbered block/structure
+\tcbset{ theoremstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=block]{theorem}[4]{title={{#1~\thetcbcounter\notblank{#2#3}{\space}{}\notblank{#2}{\space#2}{}\notblank{#3}{\space(#3)}{}}}, phantomlabel={#4}, breakable, after={\par}, fontupper=\itshape, theoremstyle, }
+%%
+%% tcolorbox, with styles, for DEFINITION-LIKE
+%%
+%% definition: fairly simple numbered block/structure
+\tcbset{ definitionstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper app={\setparstyle}, after upper={\space\space\hspace*{\stretch{1}}\(\lozenge\)}, } }
+\newtcolorbox[use counter from=block]{definition}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, definitionstyle, }
+%%
+%% tcolorbox, with styles, for REMARK-LIKE
+%%
+%% remark: fairly simple numbered block/structure
+\tcbset{ remarkstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=block]{remark}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, remarkstyle, }
+%%
+%% tcolorbox, with styles, for EXAMPLE-LIKE
+%%
+%% example: fairly simple numbered block/structure
+\tcbset{ examplestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper ={\setparstyle}, after upper={\space\space\hspace*{\stretch{1}}\(\square\)}, } }
+\newtcolorbox[use counter from=block]{example}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, examplestyle, }
+%%
+%% tcolorbox, with styles, for inline exercises
+%%
+%% inlineexercise: fairly simple numbered block/structure
+\tcbset{ inlineexercisestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=block]{inlineexercise}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, inlineexercisestyle, }
+%%
+%% tcolorbox, with styles, for GOAL-LIKE
+%%
+%% objectives: early in a subdivision, introduction/list/conclusion
+\tcbset{ objectivesstyle/.style={bwminimalstyle, blockspacingstyle, fonttitle=\blocktitlefont\large\bfseries, toprule=0.1ex, toptitle=0.5ex, top=2ex, bottom=0.5ex, bottomrule=0.1ex} }
+\newtcolorbox{objectives}[2]{title={#1}, phantomlabel={#2}, breakable, before upper app={\setparstyle}, objectivesstyle}
+%%
+%% tcolorbox, with styles, for FIGURE-LIKE
+%%
+%% figureptx: 2-D display structure
+\tcbset{ figureptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, fontlower=\blocktitlefont} }
+\newtcolorbox[use counter from=block]{figureptx}[4]{lower separated=false, before lower={{\textbf{#1~\thetcbcounter}\space#2}}, phantomlabel={#3}, unbreakable, figureptxstyle, }
+%% listptx: 2-D display structure
+\tcbset{ listptxstyle/.style={middle=1ex, blockspacingstyle, colback=white, colbacktitle=white, coltitle=black, colframe=black, titlerule=-0.3pt, toprule at break=-0.3pt, bottomrule at break=-0.3pt, sharp corners, fonttitle=\blocktitlefont} }
+\newtcolorbox[use counter from=block]{listptx}[4]{title={{\textbf{#1~\thetcbcounter}\space#2}}, phantomlabel={#3}, breakable, before upper app={\setparstyle}, listptxstyle, }
+%%
+%% tcolorbox, with styles, for (PANEL)FIGURE-LIKE
+%%
+%% panelfigureptx: 2-D display structure
+\tcbset{ panelfigureptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, fontlower=\blocktitlefont} }
+\newtcolorbox[use counter from=block]{panelfigureptx}[4]{lower separated=false, before lower={{\textbf{#1~\thetcbcounter}\space#2}}, phantomlabel={#3}, unbreakable, panelfigureptxstyle, }
+%% paneltableptx: 2-D display structure
+\tcbset{ paneltableptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, coltitle=black, bottomtitle=2ex, titlerule=-0.3pt, fonttitle=\blocktitlefont, breakable} }
+\newtcolorbox[use counter from=block]{paneltableptx}[4]{lower separated=false, before lower={{\textbf{#1~\thetcbcounter}\space#2}}, phantomlabel={#3}, unbreakable, paneltableptxstyle, }
+%%
+%% xparse environments for introductions and conclusions of divisions
+%%
+%% introduction: in a structured division
+\NewDocumentEnvironment{introduction}{m}
+{\notblank{#1}{\noindent\textbf{#1}\space}{}}{\par\medskip}
+%%
+%% tcolorbox, with styles, for miscellaneous environments
+%%
+%% paragraphs: the terminal, pseudo-division
+%% We use the lowest LaTeX traditional division
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{#1}
+\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\NewDocumentEnvironment{paragraphs}{mm}
+{\subparagraph*{#1}\hypertarget{#2}{}}{}
+%% Graphics Preamble Entries
+\newlength{\orccaprintwidth}
+\setlength{\orccaprintwidth}{350pt}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pifont}                                         %needed for symbols, s.a. airplane symbol
+\usetikzlibrary{positioning,fit,backgrounds}                %needed for nested diagrams
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes}   %needed for set diagrams
+\usetikzlibrary{decorations.text}                           %needed for text following a curve
+\usetikzlibrary{arrows,arrows.meta}                         %needed for open/closed intervals
+\usetikzlibrary{positioning,3d,shapes.geometric}            %needed for 3d number sets tower
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}                                    %needed for triangle diagrams
+\usepgfplotslibrary{fillbetween}                            %shade regions of a plot
+\usetikzlibrary{shadows}                                    %function diagrams
+\usetikzlibrary{positioning}                                %function diagrams
+\usetikzlibrary{shapes}                                     %function diagrams
+%%% global colors from https://www.pcc.edu/web-services/style-guide/basics/color/ %%%
+\definecolor{ruby}{HTML}{9e0c0f}
+\definecolor{turquoise}{HTML}{008099}
+\definecolor{emerald}{HTML}{1c8464}
+\definecolor{lightemerald}{HTML}{12A983} %(lightened to contrast ratio just above 7 with black)
+\definecolor{sapphire}{HTML}{3b5a7d}
+\definecolor{lightsapphire}{HTML}{7898bf} %(lightened to contrast ratio just above 7 with black)
+\definecolor{amber}{HTML}{c7502a}
+\definecolor{amethyst}{HTML}{70485b}
+\colorlet{firstcolor}{ruby}
+\colorlet{secondcolor}{turquoise}
+\colorlet{thirdcolor}{emerald}
+\colorlet{fourthcolor}{amber}
+\colorlet{fifthcolor}{amethyst}
+\colorlet{sixthcolor}{sapphire}
+\colorlet{highlightcolor}{green!50!black}
+\colorlet{graphbackground}{yellow!30}
+\colorlet{wood}{brown!60!white}
+%%% curve, dot, and graph custom styles %%%
+\pgfplotsset{firstcurve/.style      = {color=firstcolor,  mark=none, line width=1pt, {Kite}-{Kite}, solid}}
+\pgfplotsset{secondcurve/.style     = {color=secondcolor, mark=none, line width=1pt, {Kite}-{Kite}, solid}}
+\pgfplotsset{thirdcurve/.style      = {color=thirdcolor,  mark=none, line width=1pt, {Kite}-{Kite}, solid}}
+\pgfplotsset{fourthcurve/.style     = {color=fourthcolor, mark=none, line width=1pt, {Kite}-{Kite}, solid}}
+\pgfplotsset{fifthcurve/.style      = {color=fifthcolor,  mark=none, line width=1pt, {Kite}-{Kite}, solid}}
+\pgfplotsset{highlightcurve/.style  = {color=highlightcolor,  mark=none, line width=5pt, -, opacity=0.3}}   % thick, opaque curve for highlighting
+\pgfplotsset{asymptote/.style       = {color=gray, mark=none, line width=1pt, <->, dashed}}
+\pgfplotsset{symmetryaxis/.style    = {color=gray, mark=none, line width=1pt, <->, dashed}}
+\pgfplotsset{guideline/.style       = {color=gray, mark=none, line width=1pt, -}}
+\tikzset{guideline/.style           = {color=gray, mark=none, line width=1pt, -}}
+\pgfplotsset{altitude/.style        = {dashed, color=gray, thick, mark=none, -}}
+\tikzset{altitude/.style            = {dashed, color=gray, thick, mark=none, -}}
+\pgfplotsset{radius/.style          = {dashed, thick, mark=none, -}}
+\tikzset{radius/.style              = {dashed, thick, mark=none, -}}
+\pgfplotsset{rightangle/.style      = {color=gray, mark=none, -}}
+\tikzset{rightangle/.style          = {color=gray, mark=none, -}}
+\pgfplotsset{closedboundary/.style  = {color=black, mark=none, line width=1pt, {Kite}-{Kite},solid}}
+\tikzset{closedboundary/.style      = {color=black, mark=none, line width=1pt, {Kite}-{Kite},solid}}
+\pgfplotsset{openboundary/.style    = {color=black, mark=none, line width=1pt, {Kite}-{Kite},dashed}}
+\tikzset{openboundary/.style        = {color=black, mark=none, line width=1pt, {Kite}-{Kite},dashed}}
+\tikzset{verticallinetest/.style    = {color=gray, mark=none, line width=1pt, <->,dashed}}
+\pgfplotsset{soliddot/.style        = {color=firstcolor,  mark=*, only marks}}
+\pgfplotsset{hollowdot/.style       = {color=firstcolor,  mark=*, only marks, fill=graphbackground}}
+\pgfplotsset{blankgraph/.style      = {xmin=-10, xmax=10,
+                                        ymin=-10, ymax=10,
+                                        axis line style={-, draw opacity=0 },
+                                        axis lines=box,
+                                        major tick length=0mm,
+                                        xtick={-10,-9,...,10},
+                                        ytick={-10,-9,...,10},
+                                        grid=major,
+                                        grid style={solid,gray!40},
+                                        xticklabels={,,},
+                                        yticklabels={,,},
+                                        minor xtick=,
+                                        minor ytick=,
+                                        xlabel={},ylabel={},
+                                        width=0.75\textwidth,
+                                      }
+            }
+\pgfplotsset{numberline/.style      = {xmin=-10,xmax=10,
+                                        minor xtick={-11,-10,...,11},
+                                        xtick={-10,-5,...,10},
+                                        every tick/.append style={thick},
+                                        axis y line=none,
+                                        axis lines=middle,
+                                        enlarge x limits,
+                                        grid=none,
+                                        clip=false,
+                                        y=1cm,
+                                        ymin = -1,ymax = 1,
+                                        axis background/.style={},
+                                        width=\orccaprintwidth,
+                                        after end axis/.code={
+                                          \path (axis cs:0,0)
+                                          node [anchor=north,yshift=-0.075cm] {\footnotesize 0};
+                                        },
+                                        every axis x label/.style={at={(current axis.right of origin)},anchor=north},
+                                      }
+            }
+\pgfplotsset{openinterval/.style={color=firstcolor,mark=none,ultra thick,{Parenthesis}-{Parenthesis}}}
+\pgfplotsset{openclosedinterval/.style={color=firstcolor,mark=none,ultra thick,{Parenthesis}-{Bracket}}}
+\pgfplotsset{closedinterval/.style={color=firstcolor,mark=none,ultra thick,{Bracket}-{Bracket}}}
+\pgfplotsset{closedopeninterval/.style={color=firstcolor,mark=none,ultra thick,{Bracket}-{Parenthesis}}}
+\pgfplotsset{infiniteopeninterval/.style={color=firstcolor,mark=none,ultra thick,{Kite}-{Parenthesis}}}
+\pgfplotsset{openinfiniteinterval/.style={color=firstcolor,mark=none,ultra thick,{Parenthesis}-{Kite}}}
+\pgfplotsset{infiniteclosedinterval/.style={color=firstcolor,mark=none,ultra thick,{Kite}-{Bracket}}}
+\pgfplotsset{closedinfiniteinterval/.style={color=firstcolor,mark=none,ultra thick,{Bracket}-{Kite}}}
+\pgfplotsset{infiniteinterval/.style={color=firstcolor,mark=none,ultra thick,{Kite}-{Kite}}}
+\pgfplotsset{interval/.style= {ultra thick, -}}
+%%% cycle list of plot styles for graphs with multiple plots %%%
+\pgfplotscreateplotcyclelist{pccstylelist}{%
+  firstcurve\\%
+  secondcurve\\%
+  thirdcurve\\%
+  fourthcurve\\%
+  fifthcurve\\%
+}
+%%% default plot settings %%%
+\pgfplotsset{every axis/.append style={
+  axis x line=middle,    % put the x axis in the middle
+  axis y line=middle,    % put the y axis in the middle
+  axis line style={<->}, % arrows on the axis
+  scaled ticks=false,
+  tick label style={/pgf/number format/fixed},
+  xlabel={\(x\)},          % default put x on x-axis
+  ylabel={\(y\)},          % default put y on y-axis
+  xmin = -7,xmax = 7,    % most graphs have this window
+  ymin = -7,ymax = 7,    % most graphs have this window
+  domain = -7:7,
+  xtick = {-6,-4,...,6}, % label these ticks
+  ytick = {-6,-4,...,6}, % label these ticks
+  yticklabel style={inner sep=0.333ex},
+  minor xtick = {-7,-6,...,7}, % include these ticks, some without label
+  minor ytick = {-7,-6,...,7}, % include these ticks, some without label
+  scale only axis,       % don't consider axis and tick labels for width and height calculation
+  cycle list name=pccstylelist,
+  tick label style={font=\footnotesize},
+  legend cell align=left,
+  grid = both,
+  grid style = {solid,gray!40},
+  axis background/.style={fill=graphbackground},
+}}
+\pgfplotsset{framed/.style={axis background/.style ={draw=gray}}}
+%\pgfplotsset{framed/.style={axis background/.style ={draw=gray,fill=graphbackground,rounded corners=3ex}}}
+%%% other tikz (not pgfplots) settings %%%
+%\tikzset{axisnode/.style={font=\scriptsize,text=black}}
+\tikzset{>=stealth}
+%%% for nested diagram in types of numbers section %%%
+\newcommand\drawnestedsets[4]{
+  \def\position{#1}             % initial position
+  \def\nbsets{#2}               % number of sets
+  \def\listofnestedsets{#3}     % list of sets
+  \def\reversedlistofcolors{#4} % reversed list of colors
+  % position and draw labels of sets
+  \coordinate (circle-0) at (#1);
+  \coordinate (set-0) at (#1);
+  \foreach \set [count=\c] in \listofnestedsets {
+    \pgfmathtruncatemacro{\cminusone}{\c - 1}
+    % label of current set (below previous nested set)
+    \node[below=3pt of circle-\cminusone,inner sep=0]
+    (set-\c) {\set};
+    % current set (fit current label and previous set)
+    \node[circle,inner sep=0,fit=(circle-\cminusone)(set-\c)]
+    (circle-\c) {};
+  }
+  % draw and fill sets in reverse order
+  \begin{scope}[on background layer]
+    \foreach \col[count=\c] in \reversedlistofcolors {
+      \pgfmathtruncatemacro{\invc}{\nbsets-\c}
+      \pgfmathtruncatemacro{\invcplusone}{\invc+1}
+      \node[circle,draw,fill=\col,inner sep=0,
+      fit=(circle-\invc)(set-\invcplusone)] {};
+    }
+  \end{scope}
+  }
+%% If tikz has been loaded, replace ampersand with \amp macro
+\ifdefined\tikzset
+    \tikzset{ampersand replacement = \amp}
+\fi
+%% tcolorbox styles for sidebyside layout
+\tcbset{ sbsstyle/.style={raster before skip=2.0ex, raster equal height=rows, raster force size=false,raster after skip=0.7\baselineskip} }
+\tcbset{ sbspanelstyle/.style={bwminimalstyle, fonttitle=\blocktitlefont, before upper app={\setparstyle}} }
+%% Enviroments for side-by-side and components
+%% Necessary to use \NewTColorBox for boxes of the panels
+%% "newfloat" environment to squash page-breaks within a single sidebyside
+%% "xparse" environment for entire sidebyside
+\NewDocumentEnvironment{sidebyside}{mmmm}
+  {\begin{tcbraster}
+    [sbsstyle,raster columns=#1,
+    raster left skip=#2\linewidth,raster right skip=#3\linewidth,raster column skip=#4\linewidth]}
+  {\end{tcbraster}}
+%% "tcolorbox" environment for a panel of sidebyside
+\NewTColorBox{sbspanel}{mO{top}}{sbspanelstyle,width=#1\linewidth,valign=#2}
+%% Custom Preamble Entries, late (use latex.preamble.late)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont{AvantGarde Bk BT}[
+  ItalicFont = {AvantGarde Italic}
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Asides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{floatflt}
+\usepackage{changepage}
+\strictpagecheck
+\newtcolorbox{asideinsideleft}[2]
+  {breakable,phantomlabel={#2},
+   bwminimalstyle,
+   width=\dimexpr1.2in+0.6in\relax,
+   enlarge left by=-0.6in,
+   coltitle=black, fonttitle=\bfseries, title={\footnotesize#1}, detach title, before upper={\tcbtitle\ \ }}
+\newtcolorbox{asideinsideright}[2]
+  {breakable,phantomlabel={#2},
+   bwminimalstyle,
+   width=\dimexpr1.2in+0.6in\relax,
+   enlarge right by=-0.6in,
+   coltitle=black, fonttitle=\bfseries, title={\footnotesize#1}, detach title, before upper={\tcbtitle\ \ }}
+%\renewenvironment{aside}[2]{
+%  \begin{floatingfigure}{1.2in}%
+%  \vspace{\dimexpr-\topskip}
+%  \checkoddpage
+%  \ifoddpage
+%    \begin{asideinsideright}{#1}{#2}
+%  \else
+%    \begin{asideinsideleft}{#1}{#2}
+%  \fi
+%  \footnotesize\quad}
+%  {
+%    \ifoddpage
+%  \end{asideinsideright}
+%    \else
+%  \end{asideinsideleft}
+%    \fi
+%  \end{floatingfigure}
+%}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CC icon at bottom of each page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[automark,headsepline]{scrpage2}
+%\deftripstyle{ccfooter}
+%  {}
+%  {}
+%  {}
+%  {}
+%  {}
+%  {\includegraphics[height=1pc]{images/by.pdf}}
+%\renewcommand{\chapterpagestyle}{ccfooter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start sections on new page, just not the first one
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\oldsection\section
+\renewcommand\section{\znewpage\oldsection}
+
+\let\oldchapter\chapter
+\renewcommand\chapter{\clearpage\gdef\znewpage{\global\let\znewpage\clearpage}\oldchapter}
+
+\global\let\znewpage\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic paragraph parameters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5pc}
+\setlength{\marginparsep}{2em}
+\usepackage[hang,flushmargin]{footmisc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Greg's L
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newtheorem{mdexample}[cthm]{Example}
+%\newtheorem{mdexploration}[project]{Preview Activity}
+%\usepackage{mdframed}
+%\renewenvironment{example}[1][]%
+%  {\begin{mdframed}[linecolor=ORCCABlue,topline=false,
+%    rightline=false,
+%    bottomline=false,
+%    linewidth=1pt,
+%    innerleftmargin=15pt,
+%    innerrightmargin=0pt,
+%    skipabove=0.5\baselineskip,
+%    skipabove=0.5\baselineskip,]\begin{mdexample}[#1]}
+%  {\end{mdexample}\end{mdframed}}
+%\renewenvironment{exploration}[1][]%
+%  {\begin{mdframed}[linecolor=ActiveBlue,topline=false,
+%    rightline=false,
+%    bottomline=false,
+%    linewidth=3pt,
+%    innerleftmargin=15pt,
+%    innerrightmargin=0pt,
+%    skipabove=\baselineskip,
+%    skipabove=1.2\baselineskip,]\begin{mdexploration}[#1]}
+%  {\end{mdexploration}\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Unicode characters that might not be in the font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newfontfamily{\symbola}{Symbola}
+\usepackage{newunicodechar}
+\newunicodechar{🍎}{{\symbola{🍎}}}%
+\newunicodechar{🍐}{{\symbola{🍐}}}%
+\newunicodechar{🍌}{{\symbola{🍌}}}%
+\newunicodechar{🐱}{{\symbola{🐱}}}%
+\newunicodechar{🐶}{{\symbola{🐶}}}%
+\newunicodechar{℃}{\,^{\circ}\mathrm{C}}%
+\newunicodechar{℉}{\,^{\circ}\mathrm{F}}%
+\newunicodechar{⚖}{{\symbola{⚖}}}%
+
+\tcbset{ examplestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, enhanced,
+    before upper app={\setlength{\parindent}{\normalparindent}\setlength{\parskip}{\normalparskip}},
+     overlay unbroken = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
+     overlay first = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
+     overlay middle = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
+     overlay last = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
+} }%
+
+\tcbset{ inlineexercisestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, enhanced,
+    before upper app={\setlength{\parindent}{\normalparindent}\setlength{\parskip}{\normalparskip}},
+     overlay unbroken = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=-15pt, xshift=-1.5em]frame.north west);
+       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{external/images/webwork-logo-bw.pdf}};},
+     overlay first = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=-15pt, xshift=-1.5em]frame.north west);
+       \node[anchor=north west,inner sep=0pt, xshift=-18pt, yshift=1pt] at (frame.north west) {\includegraphics[height=12pt]{external/images/webwork-logo-bw.pdf}};},
+     overlay middle = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
+     overlay last = {\draw[sixthcolor,line width=1pt]
+       ([yshift=1pt, xshift=-15pt]frame.south west)--([yshift=3pt, xshift=-1.5em]frame.north west); },
+} }%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Used for certain systems of equations to align better
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{nccmath}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Index page numbering and edge index
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\indexsetup{
+  firstpagestyle=empty,
+  othercode=\pagenumbering{Roman}\renewcommand{\thepage}{\Roman{page}}{\begin{tikzpicture}[remember picture,overlay]\draw [color=amber, fill=amber] ([xshift=-0.625in]current page.north east) rectangle (current page.south east);\end{tikzpicture}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Used with inserting edge indexing on parts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xpatch}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figures in the
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{breaklinks=true}
+\newlength{\Textw} % save textwidth outside the boxes
+\setlength{\Textw}{\textwidth}
+\newlength{\Hshift}
+\newlength{\Mshift}
+\newcommand*{\calculateMshift}{%
+  \checkoddpage
+  \ifoddpage
+    \setlength{\Mshift}{\marginparsep}
+  \else
+    \setlength{\Mshift}{\dimexpr-\marginparsep-\textwidth-\marginparwidth\relax}
+  \fi
+}
+
+\newcommand*{\calculateHshift}{%
+  \checkoddpage
+  \ifoddpage
+    \setlength{\Hshift}{\dimexpr\Textw/2-\tcbtextwidth/2\relax}
+  \else
+    \setlength{\Hshift}{\dimexpr-\Textw/2+\tcbtextwidth/2\relax}
+  \fi
+}
+\newcommand{\tcbmarginbox}[2]{%
+  \par %start a new line
+  \calculateMshift
+  \calculateHshift
+  \SetHorizontalCoffin\Framex{} %clear box Framex
+  \SetVerticalCoffin\Theox{\marginparwidth}{#1}% fill box \Theox
+  \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)%join boxes
+  \noindent\TypesetCoffin\Framex(\Hshift,0pt)\\[-2\baselineskip] %typset assembly
+}
+\newcommand{\listmarginbox}[2]{%
+  \par %start a new line
+  \calculateMshift
+  \calculateHshift
+  \SetHorizontalCoffin\Framex{\color{black}\rule{\tcbtextwidth}{0pt}} %clear box Framex
+  \SetVerticalCoffin\Theox{\marginparwidth}{#1}% fill box \Theox
+  \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\Hshift-9mm\relax,#2)%join boxes
+  \noindent\TypesetCoffin\Framex\\[-2\baselineskip] %typeset assembly
+}
+\newcommand{\parmarginbox}[2]{%
+  \par %start a new line
+  \calculateMshift
+  \SetHorizontalCoffin\Framex{}
+  \SetVerticalCoffin\Theox{\marginparwidth}{#1}
+  \JoinCoffins*\Framex[r,vc]\Theox[l,vc](\dimexpr\Mshift+\textwidth\relax,#2)
+  \noindent\TypesetCoffin\Framex(0mm,0pt)\\[-2\baselineskip]
+}
+\newtcolorbox[use counter from=block]{qrptx}{width=3cm, lower separated=false, unbreakable, figureptxstyle, halign lower=flush center}
+%\usepackage{ucharclasses}
+%\setTransitionTo{LetterlikeSymbols}{TeX Gyre Termes}
+
+
+
+
+\colorlet{chaptercolor}{black}
+\colorlet{ruby}{black}
+\colorlet{turquoise}{black}
+\colorlet{emerald}{black}
+\colorlet{amber}{black}
+\colorlet{amethyst}{black}
+\colorlet{sapphire}{black}
+\colorlet{firstcolor}{black}
+\colorlet{secondcolor}{black!70!white}
+\colorlet{thirdcolor}{gray}
+\colorlet{fourthcolor}{gray}
+\colorlet{fifthcolor}{gray}
+\colorlet{sixthcolor}{gray}
+\colorlet{highlightcolor}{gray}
+\colorlet{yellow}{white}
+\colorlet{graphbackground}{white}
+\colorlet{wood}{gray!60!white}
+\colorlet{blue}{black}
+\colorlet{red}{black}
+\colorlet{cyan}{black}
+\colorlet{green}{black!15!white}
+\colorlet{orange}{black!25!white}
+\colorlet{brown}{black!35!white}
+\colorlet{magenta}{gray}
+\definecolor{lightgray}{HTML}{959594}
+\colorlet{lightsapphire}{lightgray!50}
+\colorlet{lightemerald}{lightgray}
+\hypersetup{colorlinks=false}
+
+%% Begin: Author-provided TeX/LaTeX packages
+%% (From  docinfo/math-package  elements)
+\usepackage{cancel}
+%% End: Author-provided TeX/LaTeX packages
+%% Begin: Author-provided macros
+%% (From  docinfo/macros  element)
+%% Plus three from PTX for XML characters
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\highlight}[1]{\mathchoice{\colorbox{lightsapphire}{$\displaystyle #1$}}{\colorbox{lightsapphire}{$\textstyle #1$}}{\colorbox{lightsapphire}{$\scriptstyle #1$}}{\colorbox{lightsapphire}{$\scriptscriptstyle #1$}}}
+\newcommand{\firsthighlight}[1]{\mathchoice{\colorbox{lightsapphire}{$\displaystyle #1$}}{\colorbox{lightsapphire}{$\textstyle #1$}}{\colorbox{lightsapphire}{$\scriptstyle #1$}}{\colorbox{lightsapphire}{$\scriptscriptstyle #1$}}}
+\newcommand{\secondhighlight}[1]{\mathchoice{\colorbox{lightemerald}{$\displaystyle #1$}}{\colorbox{lightemerald}{$\textstyle #1$}}{\colorbox{lightemerald}{$\scriptstyle #1$}}{\colorbox{lightemerald}{$\scriptscriptstyle #1$}}}
+\newcommand{\unhighlight}[1]{{\color{black}{{#1}}}}
+\newcommand{\lowlight}[1]{{\color{lightgray}{#1}}}
+\newcommand{\attention}[1]{\mathord{\overset{\downarrow}{#1}}}
+\newcommand{\nextoperation}[1]{\mathord{\boxed{#1}}}
+\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}
+\newcommand{\pinover}[2]{\overset{\overset{\mathrm{\ #2\ }}{|}}{\strut #1 \strut}}
+\newcommand{\addright}[1]{{\highlight{{{}+#1}}}}
+\newcommand{\addleft}[1]{{\highlight{{#1+{}}}}}
+\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}
+\newcommand{\multiplyright}[2][\cdot]{{\highlight{{{}#1#2}}}}
+\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}
+\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}
+\newcommand{\divideright}[1]{{\highlight{{{}\div#1}}}}
+\newcommand{\negate}[1]{{\highlight{{-}}}\left(#1\right)}
+\newcommand{\cancelhighlight}[1]{{\color{sapphire}{{\cancel{#1}}}}}
+\newcommand{\secondcancelhighlight}[1]{{\color{emerald}{{\bcancel{#1}}}}}
+\newcommand{\thirdcancelhighlight}[1]{\definecolor{amethyst}{RGB}{112,72,91}{\color{amethyst}{{\xcancel{#1}}}}}
+\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}
+\newcommand{\reject}[1]{\stackrel{\text{no}}{#1}}
+\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}
+\newcommand{\apple}{\text{🍎}}
+\newcommand{\banana}{\text{🍌}}
+\newcommand{\pear}{\text{🍐}}
+\newcommand{\cat}{\text{🐱}}
+\newcommand{\dog}{\text{🐶}}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\amp}{&}
+%% End: Author-provided macros
+\begin{document}
+%% bottom alignment is explicit, since it normally depends on oneside, twoside
+\raggedbottom
+\frontmatter
+%% begin: half-title
+\thispagestyle{empty}
+{\titlepagefont\centering
+\vspace*{0.28\textheight}
+{\Huge Open Resources for Community College Algebra}\\}
+\clearpage
+%% end:   half-title
+%% begin: adcard (empty)
+\thispagestyle{empty}
+\null%
+\clearpage
+%% end:   adcard (empty)
+%% begin: title page
+%% Inspired by Peter Wilson's "titleDB" in "titlepages" CTAN package
+\thispagestyle{empty}
+{\titlepagefont\centering
+\vspace*{0.14\textheight}
+%% Target for xref to top-level element is ToC
+\addtocontents{toc}{\protect\hypertarget{orcca}{}}
+{\Huge Open Resources for Community College Algebra}\\[3\baselineskip]
+{\Large Faculty}\\[0.5\baselineskip]
+{\Large Portland Community College}\\[3\baselineskip]
+{\Large November 5, 2024}\\}
+\clearpage
+%% end:   title page
+%% begin: copyright-page
+\thispagestyle{empty}
+\hypertarget{frontmatter-2}{}\vspace*{\stretch{2}}
+\par\noindent
+\textbf{Project Lead}:\ \ Alex Jordan\\
+\textbf{Contributing Authors}:\ \ Ann Cary, Alex Jordan, Ross Kouzes, Scot Leavitt, Cara Lee, Carl Yao, Ralf Youtz\\
+\textbf{WeBWorK Problem Coding}:\ \ Chris Hughes, Alex Jordan, Carl Yao\\
+\textbf{Significant Contributors}:\ \ Kara Colley, Wendy Lightheart, Ian Kit Nicolas\\
+\textbf{Cover Image}:\ \ Ralf Youtz
+\par\vspace*{\stretch{2}}
+\noindent{\bfseries Edition}: 3\par\medskip
+\noindent{\bfseries Website}: \href{https://www.pcc.edu/ORCCA}{\nolinkurl{pcc.edu/ORCCA}}\par\medskip
+\noindent\textcopyright{}2024\quad{}Portland Community College\\[0.5\baselineskip]
+Open Resources for Community College Algebra is licensed under a Creative Commons Attribution 4.0 International License. Under this license, any user of this textbook or the textbook contents must provide proper attribution. We recommend attribution as follows. If you redistribute all or part of this textbook, include in every digital format page view (including but not limited to EPUB, PDF, and HTML) and on every physical printed page the following attribution: ``Original source material and other information freely available at \href{https://www.pcc.edu/orcca}{\nolinkurl{pcc.edu/orcca}}.'' The Portland Community College name, Portland Community College logo, ORCCA name, Open Resources for Community College Algebra name, ORCCA logo, and front and back cover designs are not subject to the Creative Commons license and may not be reproduced without the prior and express written consent of Portland Community College. For questions regarding this license, please contact \href{mailto:orcca-group@pcc.edu}{\nolinkurl{orcca-group@pcc.edu}}.\par\medskip
+\vspace*{\stretch{1}}
+\null\clearpage
+%% end:   copyright-page
+%
+%
+\typeout{************************************************}
+\typeout{Acknowledgements  Acknowledgements}
+\typeout{************************************************}
+%
+\begin{acknowledgement}{Acknowledgements}{Acknowledgements}{}{Acknowledgements}{}{}{frontmatter-3}
+This book was originally made possible through Portland Community College's Strategic Investment Funding, approved by PCC's Budget Planning Advisory Council and the Board of Directors. Subsequent revisions have been funded by PCC as well. Without significant funding to provide the authors with the adequate time, an ambitious project such as this one would not be possible.%
+\par
+The technology that makes it possible to create integrated print, HTML, and WeBWorK content is PreTeXt, created by Rob Beezer. David Farmer and several other PreTeXt contributors are credited with the PreTeXt HTML layout being feature-rich and easy to navigate. A grant from OpenOregon funded the original bridge between WeBWorK and PreTeXt.%
+\par
+This book uses WeBWorK to provide most of its exercises, which may be used for online homework. WeBWorK was created in the early 1990s by Mike Gage and Arnie Pizer, and has had decades of contributions from open source developers. In 2013, Chris Hughes, Alex Jordan, and Carl Yao programmed most of the first edition WeBWorK questions with a PCC curriculum development grant.%
+\par
+The Javascript library MathJax, maintained by David Cervone and Volker Sorge, allows math content to render nicely on screen in the HTML version. Additionally, MathJax makes web accessible mathematics possible.%
+\par
+The PDF versions are built using the typesetting software \LaTeX{}, created by Donald Knuth and enhanced by Leslie Lamport.%
+\par
+Some exercises in this textbook use features developed for Runestone Academy, a hosting platform for interactive open-source textbooks. You may create a course on Runestone Academy that uses this textbook, and track student progress and grades there. Brad Miller is the creator and maintainer of Runestone Academy.%
+\par
+Each of these open technologies, along with many that we use but have not listed here, has been enhanced by many additional contributors over many decades. We are indebted to these contributors for their many contributions. By releasing this book with an open license, we honor their dedication to open software and open education.%
+\end{acknowledgement}
+%
+%
+\typeout{************************************************}
+\typeout{Preface  To All}
+\typeout{************************************************}
+%
+\begin{preface}{Preface}{To All}{}{To All}{}{}{preface-to-all}
+\begin{paragraphs}{HTML, PDF, and print.}{preface-to-all-2}%
+This book is freely available in the following formats: HTML, ePub, PDF-for-screen, PDF-for-print, and Braille. Additionally, a printed and bound copy is available for purchase at low cost. All versions offer essentially the same content and are synchronized such that cross-references match across versions. (The printed and bound versions omit the appendix exercises.) Information about all versions can be found at \href{https://www.pcc.edu/orcca}{\nolinkurl{pcc.edu/orcca}}.%
+\par
+There are some notable differences between the HTML version, PDF-for-screen, and PDF-for-print.%
+\begin{itemize}[label=\textbullet]
+\item{}The HTML version offers interactive elements, easier navigation than print, and its content is web accessible.%
+\item{}Two PDF versions can be downloaded.  One version is intended to be read on a screen with a PDF viewer. This version retains full color, has its text centered on the page, and includes hyperlinking. The other version is intended for printing on two-sided paper and then binding. Most of its color has been converted with care to grayscale. Text is positioned to the left or right of each page in a manner to support two-sided binding. Hyperlinks have been disabled.%
+\item{}Printed and bound copies are available for purchase online. Up-to-date information about purchasing a copy should be available at \href{https://www.pcc.edu/orcca}{\nolinkurl{pcc.edu/orcca}}. Contact \href{mailto:orcca-group@pcc.edu}{\nolinkurl{orcca-group@pcc.edu}} if you have trouble finding the latest version online.%
+\end{itemize}
+%
+\end{paragraphs}%
+\begin{paragraphs}{Copying Content.}{preface-to-all-3}%
+The source files for this book are available through \href{https://www.pcc.edu/orcca}{\nolinkurl{pcc.edu/orcca'}}, and openly licensed for use. However, it may be more convenient to copy certain things directly from the HTML version.%
+\par
+The graphs and other images that appear in this book are available in various file formats. While viewing the book with a web browser, right-click on an image to view it in a new tab. The web browser will reveal the path to the image. In almost all cases, you will initially see an \mono{.svg} version of the image. But editing that extension to \mono{.png}, \mono{.eps}, \mono{.pdf}, and \mono{.tex} will provide access to these other formats.%
+\par
+Mathematical content can be copied from the HTML version. To copy math content into \pubtitle{MS Word}, right-click or control-click over the math content, and click to \mono{Show Math As MathML Code}. Click ``Copy to Clipboard''. In \pubtitle{Word}, use \mono{Paste Special} to paste the content as \mono{Unformatted Text}. To copy math content into \LaTeX{} source, right-click or control-click over the math content, and click to \mono{Show Math As TeX Commands}.%
+\par
+Tables can be copied from the HTML version and pasted into applications like \pubtitle{MS Word}. However, mathematical content within tables will not always paste correctly without a little extra effort as described above.%
+\end{paragraphs}%
+\begin{paragraphs}{Accessibility.}{preface-to-all-4}%
+The eBook version is intended to meet or exceed web accessibility standards. If you encounter an accessibility issue, please report it.%
+\begin{itemize}[label=\textbullet]
+\item{}All graphs and images should have meaningful alt text that communicates what a sighted person would see, without necessarily giving away anything that is intended to be deduced from the image.%
+\item{}All math content is rendered using MathJax. MathJax has a contextual menu that can be accessed in several ways, depending on what operating system and browser you are using. The most common way is to right-click or control-click on some piece of math content.%
+\item{}In the MathJax contextual menu, you may set options for triggering a zoom effect on math content, and also by what factor the zoom will be. Also in the MathJax contextual menu, you can activate more accessibility tools, including the ability to display speech strings for math expressions. Setting the speech strings to the ``Clearspeak'' rules produces speech strings that are intended to match how the math would be spoken aloud.%
+\item{}A screen reader will generally have success verbalizing the math content from MathJax. With certain screen reader and browser combinations, you may need to set some configuration settings in the MathJax contextual menu.%
+\end{itemize}
+%
+\end{paragraphs}%
+\begin{paragraphs}{Tablets and Smartphones.}{preface-to-all-5}%
+PreTeXt documents like this book are ``mobile-friendly''. When you view the HTML version, the display adapts to whatever screen size or window size you are using. A math teacher will usually recommend that you do not study from the small screen on a phone, but if it's necessary, the HTML version gives you that option.%
+\end{paragraphs}%
+\begin{paragraphs}{WeBWorK for Online Homework.}{preface-to-all-6}%
+Most exercises are available in a ready-to-use collection of WeBWorK problem sets. Anyone interested in using these problem sets may contact the project leads. The WeBWorK set definition files and supporting files should be available for download from \href{https://www.pcc.edu/orcca}{\nolinkurl{www.pcc.edu/orcca}}.%
+\end{paragraphs}%
+\begin{paragraphs}{Odd Answers.}{preface-to-all-7}%
+The answers to exercises are not printed in the PDF versions for economy. But the HTML version offers answers to odd-numbered exercises in an appendix.%
+\end{paragraphs}%
+\begin{paragraphs}{Interactive and Static Examples.}{preface-to-all-8}%
+Traditionally, a math textbook has examples throughout each section. This textbook uses two types of ``example'':%
+\par
+%
+\begin{descriptionlist}
+\begin{dlinarrow}{Static}{preface-to-all-8-3-1-1}%
+These are labeled ``Example''. Static examples may or may not be subdivided into a ``statement'' followed by a walk-through solution. This is basically what traditional examples from math textbooks do.%
+\end{dlinarrow}%
+\begin{dlinarrow}{Active}{preface-to-all-8-3-1-2}%
+These are labeled ``Checkpoint''. In the HTML version, active examples have WeBWorK answer blanks where a reader may try submitting an answer. In the PDF output, active examples are almost indistinguishable from static examples, but there is a WeBWorK icon indicating that a reader could interact more actively using the HTML version. Most of the time, a walk-through solution is provided immediately following the answer blank.%
+\par
+Some readers using the HTML version will skip the opportunity to try an active example and go straight to its solution. That is OK. Some readers will try an active example once and then move on to just read the solution. That is also OK. Some readers will tough it out for a period of time and resist reading the solution until they answer the active example themselves.%
+\par
+For readers of the PDF, the expectation is to read the example and its solution just as they would read a static example.%
+\par
+A reader is \emph{not} required to try submitting an answer to an active example before moving on. A reader \emph{is} expected to read the solution to an active example, even if they succeed on their own at finding an answer.%
+\end{dlinarrow}%
+\end{descriptionlist}
+%
+\end{paragraphs}%
+\begin{paragraphs}{Reading Questions.}{preface-to-all-9}%
+Each section has a few ``reading questions'' immediately before the exercises. These may be treated as regular homework questions, but they are intended to be something more. The intention is that reading questions could be used in certain classroom models as a tool to encourage students to do their assigned reading, and as a tool to measure what basic concepts might have been misunderstood by students following the reading.%
+\end{paragraphs}%
+\begin{paragraphs}{Alternative Video Lessons.}{preface-to-all-10}%
+Most sections open with an alternative video lesson (that is visible in the HTML version and linked using a QR code in PDF). These video playlists are managed through a YouTube account, and it is possible to swap videos out for better ones at any time, provided that does not disrupt courses at PCC. Please contact us if you would like to submit a different video into these video collections.%
+\end{paragraphs}%
+\end{preface}
+%% begin: table of contents
+%% Adjust Table of Contents
+\setcounter{tocdepth}{1}
+\renewcommand*\contentsname{Contents}
+\tableofcontents
+%% end:   table of contents
+\mainmatter
+%
+%
+\typeout{************************************************}
+\typeout{Part I Linear Equations and Lines}
+\typeout{************************************************}
+%
+\begin{partptx}{Part}{Linear Equations and Lines}{}{Linear Equations and Lines}{}{}{part-linear-equations-and-lines}
+\renewcommand*{\partname}{Part}
+    \end{partptx}
+%
+%
+\typeout{************************************************}
+\typeout{Part II Preparation for STEM}
+\typeout{************************************************}
+%
+\begin{partptx}{Part}{Preparation for STEM}{}{Preparation for STEM}{}{}{part-preparation-for-stem}
+\renewcommand*{\partname}{Part}
+   %
+%
+\typeout{************************************************}
+\typeout{Chapter 1 Solving Quadratic Equations}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Chapter}{Solving Quadratic Equations}{}{Solving Quadratic Equations}{}{}{chapter-solving-quadratic-equations}
+\begin{tikzpicture}[remember picture,overlay]
+\node (A) at ( $ (current page.north east) - (0,0.125) $ ) {};
+\node (B) at ( $ (current page.south east) + (0,0.125) $ ) {};
+\draw [color=emerald, fill=emerald] ([xshift=-0.625in] $ (A)!1/13-1/13!(B) $ ) rectangle ( $ (A)!1/13!(B) $ );
+\end{tikzpicture}
+\renewcommand*{\chaptername}{Chapter}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.1 Solving Quadratic Equations by Using a Square Root}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{Solving Quadratic Equations by Using a Square Root}{}{Solving Quadratic Equations by Using a Square Root}{}{}{section-solving-quadratic-equations-by-using-a-square-root}
+\begin{introduction}{}%
+In this section, we learn how to solve certain types of quadratic equations by using a square root. We will also learn about the Pythagorean Theorem, which is used to find a right triangle's side length when the other two lengths are known.%
+
+\noindent\hskip0pt\begin{minipage}{360pt}
+\parmarginbox{\begin{qrptx}\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/qrcode/section-solving-quadratic-equations-by-using-a-square-root-3-2-2.png}
+\end{image}\tcblower
+\scshape Video Lessons\end{qrptx}%
+}{0pt}
+
+\end{minipage}
+
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.1.1 Solving Quadratic Equations Using the Square Root Property}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Solving Quadratic Equations Using the Square Root Property}{}{Solving Quadratic Equations Using the Square Root Property}{}{}{section-solving-quadratic-equations-by-using-a-square-root-4}
+\index{solving!quadratic equations!using the square root property}%
+When we learned how to solve linear equations, we used inverse operations to isolate the variable. For example, we use \emph{subtraction} to remove an unwanted term that is \emph{added} to one side of a linear equation. When a variable appears in an equation and it is \emph{squared}, we might be able to do something similar and use a \emph{square root} to help find the solution(s). Taking the square root is the inverse of squaring if you happen to know the original number was positive. Even if you don't know that, we can still come to a conclusion about solutions to certain types of equation where the variable is squared.%
+\par
+For example, if \(x^2=9\), we can think of undoing the square with a square root, and we know \(\sqrt{9}=3\). However, there are actually \emph{two} numbers that we can square to get \(9\): \(-3\) as well as \(3\). Both are solutions, and both are in the solution set. This demonstrates something called the Square Root Property.%
+\begin{fact}{Fact}{Square Root Property.}{}{fact-square-root-property}%
+\index{square root property}%
+\index{properties!square root property}%
+If \(k\) is positive and \(x^2=k\), then%
+\begin{equation*}
+x=-\sqrt{k}\qquad\text{ or }\qquad x=\sqrt{k}\text{.}
+\end{equation*}
+%
+\par
+It is common to write \(x=\pm\sqrt{k}\) for short, but it is important to remember that this means \(x\) could possibly be one of two things: \(\sqrt{k}\) or \(-sqrt{k}\). It does not mean that \(x\) is two things at the same time. The positive solution, \(\sqrt{k}\), is called the \terminology{principal square root} of \(k\).%
+\end{fact}
+\begin{example}{Example}{}{example-solve-using-square-root-property}%
+Solve for \(y\) in \(y^2=49\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{example-solve-using-square-root-property-2}{}\quad{}%
+\begin{align*}
+y^2\amp=49\\
+y\amp=\pm\sqrt{49}\\
+y\amp=\pm7
+\end{align*}
+%
+\begin{align*}
+y\amp=-7\amp\text{ or }\amp\amp y\amp=7
+\end{align*}
+%
+}\par
+To check these solutions, we substitute \(-7\) and \(7\) in for \(y\) in the original equation:%
+\begin{align*}
+y^2\amp=49\amp y^2\amp=49\\
+(\substitute{-7})^2\amp\wonder{=}49\amp (\substitute{7})^2\amp\wonder{=}49\\
+49\amp\confirm{=}49\amp 49\amp\confirm{=}49
+\end{align*}
+Both potential solutions work, and we conclude that the solution set is \(\{-7,7\}\).%
+\end{example}
+\begin{remark}{Remark}{}{section-solving-quadratic-equations-by-using-a-square-root-4-7}%
+Every solution to a quadratic equation can be checked, as was done in \hyperref[example-solve-using-square-root-property]{Example~3}. In the examples that follow, we won't check solutions. But you should check solutions when solving exercises for your homework or exams.%
+\end{remark}
+\begin{inlineexercise}{Checkpoint}{}{section-solving-quadratic-equations-by-using-a-square-root-4-8}%
+Solve for \(z\) in \(4z^2-81=0\text{.}\)%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-solving-quadratic-equations-by-using-a-square-root-4-8-3}{}\quad{}Before we can use the square root property we need to isolate the squared quantity.%
+}\par
+%
+\begin{equation*}
+\begin{aligned}
+4z^2-81\amp=0\\
+4z^2\amp=81\\
+z^2\amp=\frac{81}{4}
+\end{aligned}
+\end{equation*}
+Now we can use the square root property%
+\begin{equation*}
+\begin{aligned}
+z\amp=\pm\sqrt{\frac{81}{4}}\\
+z\amp=\pm\frac{9}{2}
+\end{aligned}
+\end{equation*}
+%
+\par
+%
+\begin{equation*}
+\begin{aligned}
+z\amp=-\frac{9}{2}\amp\text{ or }\amp\amp z\amp=\frac{9}{2}
+\end{aligned}
+\end{equation*}
+%
+\par
+The solution set is \(\left\{-\frac{9}{2},\frac{9}{2}\right\}\text{.}\)%
+\end{inlineexercise}%
+We can also use the square root property to solve an equation that has a squared \emph{expression} (as opposed to an equation that only has a squared variable).%
+\begin{example}{Example}{}{section-solving-quadratic-equations-by-using-a-square-root-4-10}%
+Solve for \(p\) in \(50=2(p-1)^2\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-solving-quadratic-equations-by-using-a-square-root-4-10-2}{}\quad{}It's important here to suppress any urge you may have to expand the squared binomial. Perhaps you recently learned how to do that and practiced that skill. Good! But it would not be helpful to do that here. We will begin by isolating the squared expression.%
+\begin{align*}
+50\amp=2(p-1)^2\\
+\divideunder{50}{2}\amp=\divideunder{2(p-1)^2}{2}\\
+25\amp=(p-1)^2
+\end{align*}
+%
+}\par
+Now that we have the squared expression isolated, we can use the square root property.%
+\begin{align*}
+p-1\amp=\pm\sqrt{25}\\
+p-1\amp=\pm5\\
+p\amp=\pm5+1
+\end{align*}
+%
+\begin{align*}
+p\amp=-5+1\amp\text{or}\amp\amp p\amp=5+1\\
+p\amp=-4\amp\text{or}\amp\amp p\amp=6
+\end{align*}
+The solution set is \(\{-4,6\}\).%
+\end{example}
+This method of solving quadratic equations is not limited to equations that have rational solutions, or solutions where the radicands are perfect squares. Here are a few examples where the solutions are irrational numbers.%
+\begin{inlineexercise}{Checkpoint}{}{section-solving-quadratic-equations-by-using-a-square-root-4-12}%
+Solve for \(q\) in \((q+2)^2-12=0\text{.}\)%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-solving-quadratic-equations-by-using-a-square-root-4-12-3}{}\quad{}It's important to suppress any urge to expand the squared binomial.%
+}\par
+%
+\begin{equation*}
+\begin{aligned}
+(q+2)^2-12\amp=0\\
+(q+2)^2\amp=12\\
+q+2\amp=\pm\sqrt{12}\\
+q+2\amp=\pm\sqrt{4\cdot3}\\
+q+2\amp=\pm2\sqrt{3}\\
+q\amp=\pm2\sqrt{3}-2
+\end{aligned}
+\end{equation*}
+%
+\par
+%
+\begin{equation*}
+\begin{aligned}
+q\amp=-2\sqrt{3}-2\amp\text{or}\amp\amp q\amp=2\sqrt{3}-2
+\end{aligned}
+\end{equation*}
+%
+\par
+The solution set is \(\left\{-2\sqrt{3}-2,2\sqrt{3}-2\right\}\text{.}\)%
+\end{inlineexercise}%
+If we solve an equation like the ones we have been solving and end up with a radical in the denominator, we may be expected to rationalize it as covered in \mono{[cross-reference to target(s) \textquotedbl{}section-rationalizing-the-denominator\textquotedbl{} missing or not unique]}. We will rationalize a denominator in the next example.%
+\begin{example}{Example}{}{example-solve-using-square-root-property-irrational-cannot-factor}%
+Solve for \(n\) in \(2n^2-3=0\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{example-solve-using-square-root-property-irrational-cannot-factor-2}{}\quad{}%
+\begin{align*}
+2n^2-3\amp=0\\
+2n^2\amp=3\\
+n^2\amp=\frac{3}{2}\\
+n\amp=\pm\sqrt{\frac{3}{2}}\\
+n\amp=\pm\sqrt{\frac{6}{4}}\\
+n\amp=\pm\frac{\sqrt{6}}{2}
+\end{align*}
+%
+\begin{align*}
+n\amp=-\frac{\sqrt{6}}{2}\amp\text{ or }\amp\amp n\amp=\frac{\sqrt{6}}{2}
+\end{align*}
+The solution set is \(\left\{-\frac{\sqrt{6}}{2},\frac{\sqrt{6}}{2}\right\}\).%
+}\end{example}
+Recall that we have no meaning for the square root of a negative number. (Later we will give meaning to that idea, but for now it is meaningless). So if the solving process we are using leads to the square root of a negative number, the original equation has no real solution. Here is an example of an equation with no real solution.%
+\begin{example}{Example}{}{example-no-real-solution}%
+Solve for \(x\) in \(x^2+49=0\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{example-no-real-solution-2}{}\quad{}%
+\begin{align*}
+x^2+49\amp=0\\
+x^2\amp=-49
+\end{align*}
+Since \(\sqrt{-49}\) is not a real number, we say the equation has no real solution.%
+}\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.1.2 The Pythagorean Theorem}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{The Pythagorean Theorem}{}{The Pythagorean Theorem}{}{}{subsection-pythagorean-theorem}
+Right triangles have an important property called the \terminology{Pythagorean Theorem}.%
+\begin{theorem}{Theorem}{The Pythagorean Theorem.}{}{theorem-pythagorean-theorem}%
+\index{Pythagorean theorem}%
+For any right triangle, the lengths of the three sides have the following relationship:%
+\begin{equation*}
+a^2+b^2=c^2
+\end{equation*}
+where \(a\) and \(b\) are the lengths of the shorter sides that meet the right angle (referred to as \terminology{legs}), and \(c\) is the length of the longest side \(c\) (which is known as the \terminology{hypotenuse}).%
+\begin{figureptx}{Figure}{In a right triangle, the length of its three sides satisfy the equation \(a^2+b^2=c^2\)}{theorem-pythagorean-theorem-4}{}%
+\begin{image}{0.35}{0.3}{0.35}{}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+  \draw (0,0) -- node[pos=0.5,below]{$a$} (4,0) --node[pos=0.5,right]{$b$} (4,3) --node[pos=0.5,above,sloped]{$c$} cycle;
+  \draw (4,0.2) -- (3.8,0.2) -- (3.8,0);
+\end{tikzpicture}
+}%
+\end{image}%
+\tcblower
+\end{figureptx}%
+\end{theorem}
+\begin{example}{Example}{}{subsection-pythagorean-theorem-4}%
+Find the missing length in this right triangle.%
+\begin{figureptx}{Figure}{A Right Triangle}{subsection-pythagorean-theorem-4-1-2}{}%
+\begin{image}{0.265}{0.47}{0.265}{}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+  \draw (-8.7,0) --node[pos=0.5,below]{$x$} (0,0) --node[pos=0.5,right]{$5$} (0,5) --node[pos=0.5,sloped,above]{$10$} cycle;
+  \draw (-0.4,0) -- (-0.4,0.4) -- (0,0.4);
+\end{tikzpicture}
+}%
+\end{image}%
+\tcblower
+\end{figureptx}%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{subsection-pythagorean-theorem-4-2}{}\quad{}We will use the Pythagorean Theorem to solve for \(x\):%
+\begin{align*}
+5^2+x^2\amp=10^2\\
+25+x^2\amp=100\\
+x^2\amp=75\\
+x\amp=\sqrt{75}\amp\text{(no need to consider }{-\sqrt{75}}\text{ in this context)}\\
+x\amp=\sqrt{25\cdot3}\\
+x\amp=5\sqrt{3}
+\end{align*}
+The missing length is \(x=5\sqrt{3}\).%
+}\end{example}
+\begin{example}{Example}{}{subsection-pythagorean-theorem-5}%
+Keisha is designing a wooden frame in the shape of a right triangle, as shown in \hyperref[figure-wooden-frame]{Figure~15}. The legs of the triangle are \SI{3}{\foot} and \SI{4}{\foot}. How long should she make the diagonal side? Use the Pythagorean Theorem to find the length of the hypotenuse.%
+\begin{sidebyside}{2}{0}{0}{0.06}%
+\begin{sbspanel}{0.65}%
+According to Pythagorean Theorem, we have:%
+\begin{align*}
+c^2\amp=a^2+b^2\\
+c^2\amp=3^2+4^2\\
+c^2\amp=25
+\end{align*}
+%
+\end{sbspanel}%
+\begin{sbspanel}{0.29}%
+\begin{panelfigureptx}{Figure}{}{figure-wooden-frame}{}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+  \draw (0,0) node[below left]{$B$} -- node[pos=0.5,below]{$a=4\,\text{ft}$}
+    (4,0) node[below right]{$C$} -- node[pos=0.5,right]{$b=3\,\text{ft}$}
+    (4,3) node[above right]{$A$} -- node[pos=0.5,above,sloped]{$c$}
+    cycle;
+  \draw (4,0.2) -- (3.8,0.2) -- (3.8,0);
+\end{tikzpicture}
+}%
+\tcblower
+\end{panelfigureptx}%
+\end{sbspanel}%
+\end{sidebyside}%
+\par
+Now we have a quadratic equation that we need to solve. We need to find the number that has a square of \(25\). That is what the square root operation does.%
+\begin{align*}
+c\amp=\sqrt{25}\\
+c\amp=5
+\end{align*}
+The diagonal side Keisha will cut is \SI{5}{\foot} long.%
+\par
+Note that \(-5\) is also a solution of \(c^2=25\) because \((-5)^2=25\). But a length cannot be a negative number. We need to include both solutions when they are relevant, but also understand when some physical context makes one of the solutions nonsensical.%
+\end{example}
+\begin{example}{Example}{}{subsection-pythagorean-theorem-6}%
+A \(16.5\)ft ladder is leaning against a wall. The distance from the base of the ladder to the wall is \(4.5\) feet. How high on the wall does the ladder reach?%
+\begin{sidebyside}{2}{0}{0}{0.06}%
+\begin{sbspanel}{0.66}%
+The Pythagorean Theorem says:%
+\begin{align*}
+a^2+b^2\amp=c^2\\
+4.5^2+b^2\amp=16.5^2\\
+20.25+b^2\amp=272.25\\
+\intertext{Now we need to isolate \(b^2\) in order to solve for \(b\):}
+20.25+b^2\subtractright{20.25}\amp=272.25\subtractright{20.25}\\
+b^2\amp=252\\
+\intertext{We use the square root property. Because this is a geometric situation we only need to use the principal square root:}
+b\amp=\sqrt{252}\\
+\intertext{Now simplify this radical and then approximate it:}
+b\amp=\sqrt{36\cdot 7}\\
+b\amp=6\sqrt{7}\\
+b\amp\approx 15.87
+\end{align*}
+%
+\end{sbspanel}%
+\begin{sbspanel}{0.28}%
+\begin{panelfigureptx}{Figure}{Leaning Ladder}{subsection-pythagorean-theorem-6-2-2}{}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+  \draw (-9,0) -- (-4.5,0) --node[pos=0.5,below]{$a=4.5\,\text{ft}$} (0,0) --node[pos=0.5,right]{$b$}  (0,15.9) -- (0,18);
+  \draw[ultra thick] (-4.5,0) --node[sloped,pos=0.5,above]{$c=16.5\,\text{ft}$} (0,15.9);
+  \draw (-0.6,0) -- (-0.6,0.6) -- (0,0.6);
+\end{tikzpicture}
+}%
+\tcblower
+\end{panelfigureptx}%
+\end{sbspanel}%
+\end{sidebyside}%
+\par
+The ladder reaches about \(15.87\) feet high on the wall.%
+\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Reading Questions 1.1.3 Reading Questions}
+\typeout{************************************************}
+%
+\begin{reading-questions-subsection}{Reading Questions}{Reading Questions}{}{Reading Questions}{}{}{section-solving-quadratic-equations-by-using-a-square-root-6}
+\begin{divisionexercise}{1}{}{}{section-solving-quadratic-equations-by-using-a-square-root-6-1}%
+Typically, how many solutions might there be with a quadratic equation?%
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{section-solving-quadratic-equations-by-using-a-square-root-6-2}%
+When you see a \(\pm\) sign, as in \(x=\pm2\), is that saying that \(x\) is both \(-2\) and \(2\)? Explain.%
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{section-solving-quadratic-equations-by-using-a-square-root-6-3}%
+Have you memorized the Pythagorean Theorem? State the formula.%
+\end{divisionexercise}%
+\end{reading-questions-subsection}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 1.1.4 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection}{Exercises}{Exercises}{}{Exercises}{}{}{section-solving-quadratic-equations-by-using-a-square-root-7}
+\paragraph{Skills Practice}\hypertarget{section-solving-quadratic-equations-by-using-a-square-root-7-1}{}
+\par\medskip\noindent%
+\textbf{Solving Quadratic Equations with the Square Root Property.}\space\space%
+Solve the equation.%
+\begin{exercisegroupcol}{2}
+\begin{divisionexerciseegcol}{1}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad30}%
+\(x^2 = 36\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{2}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad30-copy}%
+\(x^2 = 64\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{3}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad35}%
+\(x^2 = {{\frac{1}{81}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{4}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad35-copy}%
+\(x^2 = {{\frac{1}{100}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{5}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad40}%
+\(x^2 = 12\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{6}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad40-copy}%
+\(x^2 = 20\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{7}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad45}%
+\(x^2 = 3\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{8}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad45-copy}%
+\(x^2 = 11\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{9}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad50}%
+\(4x^2 = 100\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{10}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad50-copy}%
+\(5x^2 = 45\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{11}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad55}%
+\(x^2 = {{\frac{9}{100}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{12}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad55-copy}%
+\(x^2 = {{\frac{81}{100}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{13}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad60}%
+\(16x^2 = 49\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{14}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad60-copy}%
+\(64x^2 = 9\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{15}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad70}%
+\(43x^2  - 67= 0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{16}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad70-copy}%
+\(19x^2  - 3= 0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{17}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad71}%
+\(0-2x^2 = -7\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{18}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad71-copy}%
+\(11-5y^2 = 8\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{19}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad75}%
+\(17x^2  + 23= 0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{20}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad75-copy}%
+\(67x^2  + 31= 0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{21}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad80}%
+\(\left(x+3\right)^2 = 81\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{22}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad80-copy}%
+\(\left(x+6\right)^2 = 25\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{23}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad80-copy2}%
+\(\left(x+8\right)^2 = 144\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{24}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad80-copy3}%
+\(\left(x+10\right)^2 = 64\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{25}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad85}%
+\(\left(4x+2\right)^2 = 25\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{26}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad85-copy}%
+\(\left(8x+4\right)^2 = 121\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{27}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad81}%
+\(1 - 4 ( y - 2 )^2 = -3\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{28}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad81-copy}%
+\(4 - 3 ( y - 2 )^2 = -8\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{29}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad90}%
+\((x+7)^2  = 31\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{30}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad90-copy}%
+\((x - 5)^2  = 41\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{31}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad115}%
+\((t - 5)^2 = 20\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{32}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad115-copy}%
+\((t+10)^2 = 98\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{33}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad116}%
+\(-4 = 41 - (t+4)^2\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{34}{}{}{PCC-ORCCA-ed3_BasicAlgebra_QuadraticEquations_solveQuad116-copy}%
+\(-4 = 24 - (x - 1)^2\)%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Isolating a Variable.}\space\space%
+In the given scenario, isolate the variable that is requested.%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{35}{}{}{falling-object-feet}%
+If you drop an object from height \(H\) measured in feet, then after \(t\) seconds, its height will be given by \(h = H - 16t^2\text{.}\) Solve this equation for \(t\text{.}\)%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{36}{}{}{falling-object-meters}%
+If you drop an object from height \(H\) measured in meters, then after \(t\) seconds, its height will be given by \(h = H - 4.9t^2\text{.}\) Solve this equation for \(t\text{.}\)%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{37}{}{}{parabola-equation-circle-isolate-r}%
+The equation for a circle centered at the origin with radius \(r\) is \(x^2+y^2=r^2\text{.}\) Solve this equation for \(r\text{.}\)%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{38}{}{}{parabola-equation-circle-isolate-y}%
+The equation for a circle centered at the origin with radius \(r\) is \(x^2+y^2=r^2\text{.}\) Solve this equation for \(y\text{.}\)%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{39}{}{}{parabola-equation-isolate-x}%
+The equation for an upward-opening parabola whose vertex is at \((h,k)\) with ``curvature'' \(1\) (this is a technical measurement of how curvy a curve is, which you can learn about in calculus) is \(y=\frac{1}{2}(x-h)^2+k\text{.}\) Solve this equation for \(x\text{.}\)%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{40}{}{}{parabola-equation-isolate-h}%
+The equation for an upward-opening parabola whose vertex is at \((h,k)\) with ``curvature'' \(1\) (this is a technical measurement of how curvy a curve is, which you can learn about in calculus) is \(y=\frac{1}{2}(x-h)^2+k\text{.}\) Solve this equation for \(h\text{.}\)%
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\paragraph{Applications}\hypertarget{section-solving-quadratic-equations-by-using-a-square-root-7-2}{}
+\par\medskip\noindent%
+\textbf{Pythagorean Theorem.}\space\space%
+Find \(x\).%
+\begin{exercisegroupcol}{2}
+\begin{divisionexerciseegcol}{41}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem10}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-53-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{42}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem10-copy}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-54-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{43}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem20}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-55-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{44}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem20-copy}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-56-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{45}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem30}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-57-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{46}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem30-copy}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-58-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{47}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem40}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-59-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{48}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem40-copy}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-60-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{49}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem50}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-61-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{50}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem50-copy}%
+\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-62-image-1.pdf}
+\end{image}%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Pythagorean Theorem Applications.}\space\space%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{51}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem60}%
+Valentina is designing a rectangular garden. The garden's diagonal must be \(1\) feet, and the ratio between the garden's width and length must be \(4:3\). Find the size of the garden's width and length.%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{52}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem60-copy}%
+Aracely is designing a rectangular garden. The garden's diagonal must be \(30.6\) feet, and the ratio between the garden's width and length must be \(15:8\). Find the size of the garden's width and length.%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{53}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem70}%
+Conor is designing a rectangular garden. The garden's width must be \(42\) feet, and the ratio between the garden's diagonal and length (in the other dimension from its width) must be \(13:5\). Find the size of the garden's diagonal and the garden's length.%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{54}{}{}{PCC-ORCCA-ed3_BasicAlgebra_PythagoreanTheorem_pythagoreanTheorem70-copy}%
+Elliott is designing a rectangular garden. The garden's width must be \(4.8\) feet, and the ratio between the garden's diagonal and length (in the other dimension from its width) must be \(5:3\). Find the size of the garden's diagonal and the garden's length.%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{55}{}{}{leaning-ladder}%
+A \(12\)-ft ladder is leaning against a wall. The distance from the base of the ladder to the wall is \(12\) feet. How high on the wall does the ladder reach?%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{56}{}{}{leaning-ladder-copy}%
+A \(14\)-ft ladder is leaning against a wall. The distance from the base of the ladder to the wall is \(14\) feet. How high on the wall does the ladder reach?%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{57}{}{}{leaning-ladder-unknown-length}%
+To hang some decorations on a home's roof line, you need a ladder that can reach \(16\) feet. However, the base of the ladder needs to be at least \(16\) feet removed from direcly below the roofline because of some bushes at the base of the house. Rounding up to the nearest foot, how long of a ladder do you need?%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{58}{}{}{leaning-ladder-unknown-length-copy}%
+To hang some decorations on a home's roof line, you need a ladder that can reach \(16\) feet. However, the base of the ladder needs to be at least \(16\) feet removed from direcly below the roofline because of some bushes at the base of the house. Rounding up to the nearest foot, how long of a ladder do you need?%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{59}{}{}{television-set}%
+Rodney is designing a \(50\)-inch TV, which means that the diagonal of the TV's screen will be \(50\) inches long.%
+\begin{image}{0.25}{0.5}{0.25}{-0.5\baselineskip}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-television-set-image-1.pdf}
+\end{image}%
+He needs the screen's width-to-height ratio to be \(16:9\text{.}\) Find the TV screen's width and height.%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{60}{}{}{bench}%
+Tyrese wanted to make a bench.%
+\par
+\begin{sidebyside}{2}{0.0325}{0.0325}{0.065}%
+\begin{sbspanel}{0.47}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-bench-image-1.pdf}
+\end{sbspanel}%
+\begin{sbspanel}{0.4}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-bench-image-2.pdf}
+\end{sbspanel}%
+\end{sidebyside}%
+%
+\par
+He wanted the top of the bench back to be a perfect portion of a circle, in the shape of an arc, as in the image. (Note that this won't be a half-circle, just a small portion of a circular edge.) He started with a rectangular board \(11\) inches wide and \(36\) inches long, and a piece of string, like a compass, to draw a circular arc on the board. How long should the string be so that it can be swung round to draw the arc?%
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\paragraph{Challenge}\hypertarget{section-solving-quadratic-equations-by-using-a-square-root-7-3}{}
+\begin{divisionexercise}{61}{}{}{flat-tire}%
+Imagine that you are in Math Land, where roads are perfectly straight, and Mathlanders can walk along a perfectly straight line between any two points. One day, you bike 2 miles west, 6 miles north, and 4 miles east. Then, your bike gets a flat tire and you have to walk home. How far do you have to walk?%
+\par
+You have to walk \fillintext{10} miles home.%
+\end{divisionexercise}%
+\end{exercises-subsection}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.2 The Quadratic Formula}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{The Quadratic Formula}{}{The Quadratic Formula}{}{}{section-the-quadratic-formula}
+\begin{introduction}{}%
+In \hyperref[section-solving-quadratic-equations-by-using-a-square-root]{Section~1}, we solved certain quadratic equations using the square root property. This worked when the equations were in the right format where it was possible to use a square root radical. Now we learn another method to solve quadratic equations in general: the quadratic formula.%
+
+\noindent\hskip0pt\begin{minipage}{360pt}
+\parmarginbox{\begin{qrptx}\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/qrcode/section-the-quadratic-formula-3-2-2.png}
+\end{image}\tcblower
+\scshape Video Lessons\end{qrptx}%
+}{0pt}
+
+\end{minipage}
+
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.2.1 Solving Quadratic Equations with the Quadratic Formula}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Solving Quadratic Equations with the Quadratic Formula}{}{Solving Quadratic Equations with the Quadratic Formula}{}{}{section-the-quadratic-formula-4}
+The standard form for a quadratic equation is%
+\begin{equation*}
+ax^2+bx+c=0
+\end{equation*}
+where \(a\) is some nonzero number.%
+\par
+When \(b=0\) and the equation's form is \(ax^2+c=0\), then we can simply use the square root property to solve it as we did with equations like this in \hyperref[section-solving-quadratic-equations-by-using-a-square-root]{Section~1}. But can we solve equations where \(b\neq0\)? A general method for doing this is to use the \terminology{quadratic formula}.%
+\begin{fact}{Fact}{The Quadratic Formula.}{}{fact-the-quadratic-formula}%
+\index{solving!quadratic equations!quadratic formula}%
+For any quadratic equation \(ax^2+bx+c=0\) with \(a\neq0\), the solutions are given by%
+\begin{equation*}
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation*}
+%
+\end{fact}
+As we have seen from solving quadratic equations in \hyperref[section-solving-quadratic-equations-by-using-a-square-root]{Section~1}, there can be two solutions to a quadratic equation. Both solutions are represented in the quadratic formula because of the \(\pm\) symbol. We could write the two solutions separately:%
+\begin{align*}
+x=\frac{-b-\sqrt{b^2-4ac}}{2a}\amp\amp\text{ or }\amp\amp x=\frac{-b+\sqrt{b^2-4ac}}{2a}
+\end{align*}
+%
+\par
+This method for solving quadratic equations will work to solve \emph{every} quadratic equation. It is most helpful when \(b\ne0\).%
+\begin{example}{Example}{}{example-quadratic-equation-flying-object}%
+Linh is in a physics class that launches a tennis ball from a rooftop that is \(90.2\) feet above the ground. They fire it directly upward at a speed of \(14.4\) feet per second and measure the time it takes for the ball to hit the ground below. We can model the height of the tennis ball, \(h\), in feet, with the quadratic equation \(h=-16t^2+14.4t+90.2\), where \(x\) represents the time in seconds after the launch. According to the model, when should the ball hit the ground?%
+\par
+The ground has height \(0\) feet, so we should substitute \(0\) in for \(h\). This gives us the quadratic equation:%
+\begin{equation*}
+0=-16t^2+14.4t+90.2
+\end{equation*}
+We cannot solve this equation with the square root property, so we will use the quadratic formula. First we will identify \(\highlight{a=-16}\), \(\highlight{b=14.4}\), and \(\highlight{c=90.2}\), and substitute these into the quadratic formula:%
+\begin{align*}
+t\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+t\amp=\frac{-(\substitute{14.4})\pm\sqrt{(\substitute{14.4})^2-4(\substitute{-16})(\substitute{90.2})}}{2(\substitute{-16})}\\
+t\amp=\frac{-14.4\pm\sqrt{5980.16}}{-32}
+\end{align*}
+These are the exact solutions but because we have a physical context we want to approximate the solutions with decimals.%
+\begin{equation*}
+t\amp\approx-1.966\qquad\text{or}\qquad t\approx2.866
+\end{equation*}
+We don't use the negative solution because a negative time does not make sense in this context. The ball will hit the ground approximately \(2.866\) seconds after it is launched.%
+\end{example}
+The quadratic formula can be used to solve any quadratic equation, but it requires that you remembering the formula correctly and that you correctly identify \(a\), \(b\), and \(c\). Also, that you don't make any arithmetic mistakes when you simplify. We recommend that you always check if you could use the square root property before using the quadratic formula.%
+\begin{example}{Example}{}{section-the-quadratic-formula-4-9}%
+Solve for \(x\) in \(2x^2-9x+5=0\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-the-quadratic-formula-4-9-2}{}\quad{}First, we check and see that we cannot use the square root property (because \(b\neq0\)) so we will use the quadratic formula. We identify \(a=2\), \(b=-9\), and \(c=5\). Substituting these into the quadratic formula:%
+\begin{align*}
+x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+x\amp=\frac{-(\substitute{-9})\pm\sqrt{(\substitute{-9})^2-4(\substitute{2})(\substitute{5})}}{2(\substitute{2})}\\
+x\amp=\frac{9\pm\sqrt{81-40}}{4}\\
+x\amp=\frac{9\pm\sqrt{41}}{4}
+\end{align*}
+This is fully simplified because we cannot simplify \(\sqrt{41}\) or reduce the fraction. The solution set is \(\left\{\frac{9-\sqrt{41}}{4},\frac{9+\sqrt{41}}{4}\right\}\). In this exercise, there is no reason to approximate these with decimals.%
+}\end{example}
+When a quadratic equation does not start out in standard form we must convert it to standard form before we can clearly identify the values of \(a\), \(b\), and \(c\).%
+\begin{example}{Example}{}{example-solve-quadratic-equation-using-quadratic-formula}%
+Solve for \(x\) in \(x^2=-10x-3\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{example-solve-quadratic-equation-using-quadratic-formula-2}{}\quad{}First, we convert the equation into standard form by adding \(10x\) and \(3\) to each side of the equation:%
+\begin{equation*}
+x^2+10x+3=0
+\end{equation*}
+Next, we check that we cannot use the square root property so we will use the quadratic formula. We identify \(a=1\), \(b=10\) and \(c=3\). Substituting them into the quadratic formula:%
+\begin{align*}
+x\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+x\amp=\frac{-\substitute{10}\pm\sqrt{(\substitute{10})^2-4(\substitute{1})(\substitute{3})}}{2(\substitute{1})}\\
+x\amp=\frac{-10\pm\sqrt{100-12}}{2}\\
+x\amp=\frac{-10\pm\sqrt{88}}{2}
+\end{align*}
+We notice that the radical can be simplified:%
+\begin{align*}
+x\amp=\frac{-10\pm2\sqrt{22}}{2}\\
+x\amp=\frac{-10}{2}\pm\frac{2\sqrt{22}}{2}\\
+x\amp=-5\pm\sqrt{22}
+\end{align*}
+The solution set is \(\{-5-\sqrt{22}, -5+\sqrt{22}\}\).%
+}\end{example}
+\begin{remark}{Remark}{}{section-the-quadratic-formula-4-12}%
+The irrational solutions to quadratic equations can be checked, but doing this sometimes takes a lot of simplification and is not shown throughout this section. As an example of how much effort goes into a direct check, we will check the solution of \(-5+\sqrt{22}\) from \hyperref[example-solve-quadratic-equation-using-quadratic-formula]{Example~5}. We need to replace \(x\) with \(-5+\sqrt{22}\) and check that the two sides of the equation are equal. This check is shown here:%
+\begin{align*}
+x^2\amp=-10x-3\\
+(\substitute{-5+\sqrt{22}})^2\amp\wonder{=}-10(\substitute{-5+\sqrt{22}})-3\\
+(-5)^2+2(-5)(\sqrt{22})+(\sqrt{22})^2\amp\wonder{=}-10(-5+\sqrt{22})-3\\
+25-10\sqrt{22}+22 \amp\wonder{=}50-10\sqrt{22}-3\\
+47-10\sqrt{22}\amp\confirm{=}47-10\sqrt{22}
+\end{align*}
+It worked, and it took a lot of effort. As an alternative, we could use a calculator to find \(-5+\sqrt{22}\approx-0.3096\) and see if this decimal approximation appears to be close to working.%
+\begin{align*}
+x^2\amp=-10x-3\\
+(\substitute{-0.3096})^2\amp\wonder{=}-10(\substitute{-0.3096})-3\\
+0.09585216\amp\wonder{=}0.096
+\end{align*}
+These are close. So with the help of a calculator, checking like this can give reasonable confidence that the solution we found is valid.%
+\end{remark}
+The radicand from the quadratic formula, \(b^2-4ac\), is called the \terminology{discriminant}. When it is a negative number, the quadratic equation has no real             \index{discriminant} solution.%
+\begin{example}{Example}{}{example-quadratic-equation-no-solution}%
+Solve for \(y\) in \(y^2-4y+8=0\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{example-quadratic-equation-no-solution-2}{}\quad{}Identify \(a=1\), \(b=-4\) and \(c=8\). Substitute them into the quadratic formula:%
+\begin{align*}
+y\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+\amp=\frac{-(\substitute{-4})\pm\sqrt{(\substitute{-4})^2-4(\substitute{1})(\substitute{8})}}{2(\substitute{1})}\\
+\amp=\frac{4\pm\sqrt{16-32}}{2}\\
+\amp=\frac{4\pm\sqrt{-16}}{2}
+\end{align*}
+The discriminant worked out to be \(-16\), which is negative. The square root of a negative number is not a real number, so we will conclude that this equation has no real solutions.%
+}\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.2.2 Applications}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Applications}{}{Applications}{}{}{section-the-quadratic-formula-5}
+Certain ``word problems'' lead to a quadratic equation where the quadratic formula may be useful.%
+\begin{example}{Example}{}{section-the-quadratic-formula-5-3}%
+A rectangle is \(5\) inches longer than it is wide. The total area of the rectangle is 60 square inches. How wide is the rectangle? (This is asking for the shorter dimension.)%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-the-quadratic-formula-5-3-2}{}\quad{}The area of a rectangle is given by multipying its two dimensions. If we let \(w\) stand for the width of the rectangle (the shorter dimension), then \(w+5\) is the length, and the total area is \(w(w+5)\). A diagram can help make more clear what needs to be done.%
+}
+
+\noindent\hskip-30pt\begin{minipage}{400pt}
+\parmarginbox{%
+\begin{image}{0}{1}{0}{}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}
+  \draw (0,0) -| node[pos=0.25, below] {\(w+5\)} node[pos=0.75, right] {\(w\)} (5,3) -| cycle;
+  \node at (2.5,1.5) {\(60\)};
+\end{tikzpicture}
+}%
+\end{image}%
+}{0pt}
+
+\end{minipage}
+
+So we must solve the equation \(w(w+5)=60\). After multiplying and moving to standard form, we have \(w^2+5w-60=0\). Using the quadratic formula:%
+\begin{align*}
+w\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+\amp=\frac{-5\pm\sqrt{5^2-4(1)(-60)}}{2(1)}\\
+\amp=\frac{-5\pm\sqrt{265}}{2}\\
+w\amp\approx-10.64\quad\text{or}\quad w\approx5.64
+\end{align*}
+Only the solution \(w\approx5.64\) makes sense as the width of a rectangle. So the rectangle is about \(5.64\) inches wide.%
+\end{example}
+\begin{inlineexercise}{Checkpoint}{}{section-the-quadratic-formula-5-4}%
+Two numbers have sum \(35\text{,}\) and their product is \(-30\text{.}\) Find these two numbers.%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-the-quadratic-formula-5-4-3}{}\quad{}Let \(x\) be one of these numbers. Since the two numbers have sum \(35\text{,}\) it means that the other number must be \(35-x\text{.}\) Since the two numbers have product \(-30\text{,}\) we have the equation%
+}\par
+%
+\begin{equation*}
+\begin{aligned}
+x(35-x)\amp=-30\\
+35x-x^2\amp=-30
+\end{aligned}
+\end{equation*}
+%
+\par
+This is a quadratic equation which can be rewritten into standard form by adding \(30\) to each side:%
+\par
+%
+\begin{equation*}
+\begin{gathered}
+-x^2+35x+30=0
+\end{gathered}
+\end{equation*}
+%
+\par
+Then, to solve for \(x\text{,}\) we apply the quadratic formula:%
+\par
+%
+\begin{equation*}
+\begin{aligned}
+x\amp=\frac{-35\pm\sqrt{35^2-4(-1)(30)}}{2(-1)}\\
+\amp=\frac{-35\pm\sqrt{1225+120}}{-2}\\
+\amp=\frac{-35\pm\sqrt{1345}}{-2}\\
+\amp=\frac{35\pm\sqrt{1345}}{2}
+\end{aligned}
+\end{equation*}
+%
+\par
+So the two possible solutions for \(x\) are:%
+\par
+%
+\begin{equation*}
+\begin{gathered}
+x=\frac{35-\sqrt{1345}}{2}\quad\text{or}\quad x=\frac{35+\sqrt{1345}}{2}
+\end{gathered}
+\end{equation*}
+%
+\par
+Actually these are the two numbers we were looking for. They sum to \(35\) and multiply to \(-30\text{.}\)%
+\end{inlineexercise}%
+\begin{example}{Example}{}{section-the-quadratic-formula-5-5}%
+Amita has a food stand where she sells momo (Nepali dumplings). If she charges \(p\) dollars for each momo, she estimates that she'd sell \(80{,}000-20{,}000p\) over the course of a year. (This reflects how raising the price can lead to fewer people making purchases.) What is the largest price that Amita could set to end up with a revenue of \(\$70{,}000\) for the year? (Note that revenue is not the same as profit, and we will not be accounting for Amita's expenses.)%
+\par
+%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-the-quadratic-formula-5-5-2}{}\quad{}If Amita sets the price at \(p\) dollars per momo, her total revenue will be \((\text{number sold})\cdot\text{price}\), which is \((80000-20000p)p\), which simplifies to \(80000p-20000p^2\). We have been asked to set that equal to \(70000\).%
+\begin{align*}
+80000p-20000p^2 \amp = 70000\\
+-20000p^2+80000p-70000 \amp = 0\\
+\intertext{So many zeros! We have the option to divide by \(10000\).}
+-2p^2+8p-7 \amp = 0
+\end{align*}
+%
+\begin{align*}
+p\amp=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+\amp=\frac{-8\pm\sqrt{8^2-4(-2)(-7)}}{2(-2)}\\
+\amp=\frac{-8\pm\sqrt{8}}{-4}\\
+p\approx\amp 2.71 \quad\text{or}\quad x\approx1.29
+\end{align*}
+The possible solutions are about \(2.71\) and \(1.29\). They are both valid solutions. Amita can reach the target revenue of \(\$70{,}000\) by setting the price per momo to either \(\$1.29\) or \(\$2.71\).%
+}\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.2.3 Radical Equations}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Radical Equations}{}{Radical Equations}{}{}{section-the-quadratic-formula-6}
+Sometimes a radical equation gives rise to a quadratic equation, and the quadratic formula can then be useful.%
+\begin{example}{Example}{}{section-the-quadratic-formula-6-3}%
+Solve for \(z\) in \(\sqrt{z}+2=z\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-the-quadratic-formula-6-3-2}{}\quad{}We will isolate the radical first, and then square both sides.%
+\begin{align*}
+\sqrt{z}+2\amp=z\\
+\sqrt{z}\amp=z-2\\
+\left(\sqrt{z}\right)^{\highlight{2}}\amp=(z-2)^{\highlight{2}}\\
+z\amp=z^2-4z+4\\
+0\amp=z^2-5z+4\\
+z\amp=\frac{5\pm\sqrt{(-5)^2-4(1)(4)}}{2}\\
+\amp=\frac{5\pm\sqrt{25-16}}{2}\\
+\amp=\frac{5\pm\sqrt{9}}{2}\\
+\amp=\frac{5\pm3}{2}
+\end{align*}
+%
+\begin{align*}
+z\amp=\frac{5-3}{2}\amp\text{ or }\amp\amp z\amp=\frac{5+3}{2}\\
+z\amp=1\amp\text{ or }\amp\amp z\amp=4
+\end{align*}
+There was a step in this process where we squared both sides of an equation. Squaring both sides of an equation can cause false equations to become true. For example \(-2=2\) is false, but if you square both sides then \(4=4\) is true. This means that when an equation solving process involves squaring both sides, and we end up with ``solutions'' like the two \(z\)-values above, they are only \emph{potential} solutions. Logically we've whittled down the list of possible solutions to just these two numbers. But we need to actually check whether or not they actually work.%
+\begin{align*}
+\sqrt{\substitute{1}}+2\amp\wonder{=}1\amp\sqrt{\substitute{4}}+2\amp\wonder{=}4\\
+1+2\amp\reject{=}1\amp2+2\amp\confirm{=}4
+\end{align*}
+It turned out that \(1\) is an \terminology{extraneous solution}, but \(4\) is a valid solution. So the equation has one solution, \(4\), and the solution set is \(\{4\}\).%
+}\end{example}
+\begin{example}{Example}{}{section-the-quadratic-formula-6-4}%
+Solve the equation \(\sqrt{2n-6}=1+\sqrt{n-2}\) for \(n\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-the-quadratic-formula-6-4-2}{}\quad{}We cannot isolate two radicals at the same time. One of the radicals is already isolated, so we will simply square both sides and then try to clean up what remains.%
+\begin{align*}
+\sqrt{2n-6}\amp=1+\sqrt{n-2}\\
+\left(\sqrt{2n-6}\right)^{\highlight{2}}\amp=\left(1+\sqrt{n-2}\right)^{\highlight{2}}\\
+2n-6\amp=1^2+2\sqrt{n-2}+\left(\sqrt{n-2}\right)^2\\
+2n-6\amp=1+2\sqrt{n-2}+n-2\\
+2n-6\amp=2\sqrt{n-2}+n-1\\
+n-5\amp=2\sqrt{n-2}\\
+\intertext{Note here that we can leave the factor of \(2\) next to the radical. We will square the \(2\) also.}
+(n-5)^{\highlight{2}}\amp=\left(2\sqrt{n-2}\right)^{\highlight{2}}\\
+n^2-10n+25\amp=4(n-2)\\
+n^2-10n+25\amp=4n-8\\
+n^2-14n+33\amp=0
+\end{align*}
+%
+\begin{align*}
+n\amp=\frac{14\pm\sqrt{14^2-4(1)(33)}}{2}\\
+\amp=\frac{14\pm\sqrt{196-132}}{2}\\
+\amp=\frac{14\pm\sqrt{64}}{2}\\
+\amp=\frac{14\pm8}{2}
+\end{align*}
+%
+\begin{align*}
+n\amp=\frac{14-8}{2}\amp\text{ or }\amp\amp n\amp=\frac{14+8}{2}\\
+n\amp=3\amp\text{ or }\amp\amp n\amp=11
+\end{align*}
+So our two potential solutions are \(3\) and \(11\). We should now verify that they truly are solutions.%
+\begin{align*}
+\sqrt{2(\substitute{3})-6}\amp\wonder{=}1+\sqrt{\substitute{3}-2}\amp\sqrt{2(\substitute{11})-6}\amp\wonder{=}1+\sqrt{\substitute{11}-2}\\
+\sqrt{6-6}\amp\wonder{=}1+\sqrt{1}\amp\sqrt{22-6}\amp\wonder{=}1+\sqrt{9}\\
+\sqrt{0}\amp\wonder{=}1+1\amp\sqrt{16}\amp\wonder{=}1+3\\
+0\amp\reject{=}2\amp4\amp\confirm{=}4
+\end{align*}
+So, \(11\) is the only solution. The solution set is \(\{11\}\).%
+}\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Reading Questions 1.2.4 Reading Questions}
+\typeout{************************************************}
+%
+\begin{reading-questions-subsection}{Reading Questions}{Reading Questions}{}{Reading Questions}{}{}{section-the-quadratic-formula-7}
+\begin{divisionexercise}{1}{}{}{section-the-quadratic-formula-7-1}%
+What is the formula for the discriminant?%
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{section-the-quadratic-formula-7-2}%
+Are there any kinds of quadratic equations where the quadratic formula is not the best tool to use?%
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{section-the-quadratic-formula-7-3}%
+Given a quadratic equation, will the quadratic formula always lead you to two solutions?%
+\end{divisionexercise}%
+\end{reading-questions-subsection}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 1.2.5 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection}{Exercises}{Exercises}{}{Exercises}{}{}{section-the-quadratic-formula-8}
+\paragraph{Review and Warmup}\hypertarget{section-the-quadratic-formula-8-1}{}
+\par\medskip\noindent%
+\textbf{Exercise Group.}\space\space%
+Write each fraction in simplified form.%
+\begin{exercisegroupcol}{4}
+\begin{divisionexerciseegcol}{1}{}{}{section-the-quadratic-formula-8-1-2-2}%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*,topsep=-\parskip, before={\vspace{-\baselineskip}}, after={\vspace{\baselineskip}}]%
+\item{}\(\frac{3}{36}\)%
+\item{}\(\frac{-4}{-18}\)%
+\item{}\(\frac{72}{-8}\)%
+\item{}\(\frac{-10}{2}\)%
+\end{enumerate}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{2}{}{}{section-the-quadratic-formula-8-1-2-3}%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*,topsep=-\parskip, before={\vspace{-\baselineskip}}, after={\vspace{\baselineskip}}]%
+\item{}\(\frac{33}{36}\)%
+\item{}\(\frac{36}{-12}\)%
+\item{}\(\frac{-40}{10}\)%
+\item{}\(\frac{-10}{-16}\)%
+\end{enumerate}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{3}{}{}{section-the-quadratic-formula-8-1-2-4}%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*,topsep=-\parskip, before={\vspace{-\baselineskip}}, after={\vspace{\baselineskip}}]%
+\item{}\(\frac{-15}{12}\)%
+\item{}\(\frac{-16}{-28}\)%
+\item{}\(\frac{24}{14}\)%
+\item{}\(\frac{20}{28}\)%
+\end{enumerate}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{4}{}{}{section-the-quadratic-formula-8-1-2-5}%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*,topsep=-\parskip, before={\vspace{-\baselineskip}}, after={\vspace{\baselineskip}}]%
+\item{}\(\frac{16}{24}\)%
+\item{}\(\frac{-3}{-30}\)%
+\item{}\(\frac{52}{18}\)%
+\item{}\(\frac{-57}{24}\)%
+\end{enumerate}%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Exercise Group.}\space\space%
+Evaluate the given expression for the given values.%
+\begin{exercisegroupcol}{2}
+\begin{divisionexerciseegcol}{5}{}{}{section-the-quadratic-formula-8-1-3-2}%
+\({b^{2}-4ac}\) for \(a=4\text{,}\) \(b=8\text{,}\) and \(c=3\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{6}{}{}{section-the-quadratic-formula-8-1-3-3}%
+\({b^{2}-4ac}\) for \(a=5\text{,}\) \(b=4\text{,}\) and \(c=2\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{7}{}{}{section-the-quadratic-formula-8-1-3-4}%
+\({b^{2}-4ac}\) for \(a=5\text{,}\) \(b=-6\text{,}\) and \(c=4\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{8}{}{}{section-the-quadratic-formula-8-1-3-5}%
+\({b^{2}-4ac}\) for \(a=-5\text{,}\) \(b=-4\text{,}\) and \(c=2\)%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Exercise Group.}\space\space%
+Simplify the radical.%
+\begin{exercisegroupcol}{4}
+\begin{divisionexerciseegcol}{9}{}{}{section-the-quadratic-formula-8-1-4-2}%
+\(\sqrt{27}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{10}{}{}{section-the-quadratic-formula-8-1-4-3}%
+\(\sqrt{96}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{11}{}{}{section-the-quadratic-formula-8-1-4-4}%
+\(\sqrt{63}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{12}{}{}{section-the-quadratic-formula-8-1-4-5}%
+\(\sqrt{40}\)%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\paragraph{Skills Practice}\hypertarget{section-the-quadratic-formula-8-2}{}
+\par\medskip\noindent%
+\textbf{Exercise Group.}\space\space%
+Use the quadratic formula to solve the equation.%
+\begin{exercisegroupcol}{2}
+\begin{divisionexerciseegcol}{13}{}{}{section-the-quadratic-formula-8-2-2-2}%
+\({x^{2}+14x+48}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{14}{}{}{section-the-quadratic-formula-8-2-2-3}%
+\({x^{2}+2x-35}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{15}{}{}{section-the-quadratic-formula-8-2-2-4}%
+\({3x^{2}-28x+49}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{16}{}{}{section-the-quadratic-formula-8-2-2-5}%
+\({8x^{2}+23x-36}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{17}{}{}{section-the-quadratic-formula-8-2-2-6}%
+\({45x^{2}+52x-32}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{18}{}{}{section-the-quadratic-formula-8-2-2-7}%
+\({56x^{2}-39x+4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{19}{}{}{section-the-quadratic-formula-8-2-2-8}%
+\({x^{2}+2x+3}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{20}{}{}{section-the-quadratic-formula-8-2-2-9}%
+\({x^{2}+2x+4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{21}{}{}{section-the-quadratic-formula-8-2-2-10}%
+\({x^{2}+{\frac{71}{8}}x+7}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{22}{}{}{section-the-quadratic-formula-8-2-2-11}%
+\({x^{2} - {\frac{37}{7}}x+{\frac{10}{7}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{23}{}{}{section-the-quadratic-formula-8-2-2-12}%
+\({x^{2}-10x+25}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{24}{}{}{section-the-quadratic-formula-8-2-2-13}%
+\({x^{2}-14x+49}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{25}{}{}{section-the-quadratic-formula-8-2-2-14}%
+\({x^{2}+x+7}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{26}{}{}{section-the-quadratic-formula-8-2-2-15}%
+\({x^{2}-2x+4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{27}{}{}{section-the-quadratic-formula-8-2-2-16}%
+\({x^{2} - {\frac{5}{3}}x - {\frac{14}{9}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{28}{}{}{section-the-quadratic-formula-8-2-2-17}%
+\({x^{2}+{\frac{64}{63}}x+{\frac{16}{63}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{29}{}{}{section-the-quadratic-formula-8-2-2-18}%
+\({x^{2}+6x+4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{30}{}{}{section-the-quadratic-formula-8-2-2-19}%
+\({x^{2}+9x+5}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{31}{}{}{section-the-quadratic-formula-8-2-2-20}%
+\({x^{2} - {\frac{2}{3}}x+{\frac{1}{9}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{32}{}{}{section-the-quadratic-formula-8-2-2-21}%
+\({x^{2} - {\frac{5}{2}}x+{\frac{25}{16}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{33}{}{}{section-the-quadratic-formula-8-2-2-22}%
+\({x^{2}-9x+7}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{34}{}{}{section-the-quadratic-formula-8-2-2-23}%
+\({x^{2}+8x+9}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{35}{}{}{section-the-quadratic-formula-8-2-2-24}%
+\({2x^{2}-8x-8}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{36}{}{}{section-the-quadratic-formula-8-2-2-25}%
+\({-6x^{2}+2x+9}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{37}{}{}{section-the-quadratic-formula-8-2-2-26}%
+\({9x^{2}+12x+4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{38}{}{}{section-the-quadratic-formula-8-2-2-27}%
+\({9x^{2}+12x+4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{39}{}{}{section-the-quadratic-formula-8-2-2-28}%
+\({x^{2}+{\frac{3}{2}}x - {\frac{1}{2}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{40}{}{}{section-the-quadratic-formula-8-2-2-29}%
+\({x^{2}+{\frac{1}{2}}x - {\frac{2}{3}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{41}{}{}{section-the-quadratic-formula-8-2-2-30}%
+\({{\frac{1}{2}}x^{2} - {\frac{1}{2}}x - {\frac{1}{2}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{42}{}{}{section-the-quadratic-formula-8-2-2-31}%
+\({{\frac{1}{3}}x^{2}+x+{\frac{1}{2}}}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{43}{}{}{section-the-quadratic-formula-8-2-2-32}%
+\({x^{2}-17.8x+79.21}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{44}{}{}{section-the-quadratic-formula-8-2-2-33}%
+\({x^{2}+17.6x+77.44}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{45}{}{}{section-the-quadratic-formula-8-2-2-34}%
+\({-2.6x^{2}-28.6x-78.65}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{46}{}{}{section-the-quadratic-formula-8-2-2-35}%
+\({6.8x^{2}+57.12x+119.952}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{47}{}{}{section-the-quadratic-formula-8-2-2-36}%
+\({x^{2}+11.6x+19.2}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{48}{}{}{section-the-quadratic-formula-8-2-2-37}%
+\({x^{2}-5.8x+7.2}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{49}{}{}{section-the-quadratic-formula-8-2-2-38}%
+\({x^{2}-3.1x+1.7}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{50}{}{}{section-the-quadratic-formula-8-2-2-39}%
+\({x^{2}-6.8x+3.1}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{51}{}{}{section-the-quadratic-formula-8-2-2-40}%
+\({6.3x^{2}+15.1x+7.1}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{52}{}{}{section-the-quadratic-formula-8-2-2-41}%
+\({8.6x^{2}-4.9x-4.4}=0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{53}{}{}{section-the-quadratic-formula-8-2-2-42}%
+\({x^{2}-10x}={-9}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{54}{}{}{section-the-quadratic-formula-8-2-2-43}%
+\({x^{2}-4x}={12}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{55}{}{}{section-the-quadratic-formula-8-2-2-44}%
+\({x^{2}}={-x+12}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{56}{}{}{section-the-quadratic-formula-8-2-2-45}%
+\({x^{2}}={-5x+36}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{57}{}{}{section-the-quadratic-formula-8-2-2-46}%
+\({5x^{2}-36x}={-7}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{58}{}{}{section-the-quadratic-formula-8-2-2-47}%
+\({3x^{2}+12}={20x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{59}{}{}{section-the-quadratic-formula-8-2-2-48}%
+\({2x^{2}}={-11x+6}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{60}{}{}{section-the-quadratic-formula-8-2-2-49}%
+\({6x^{2}}={-31x-28}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{61}{}{}{section-the-quadratic-formula-8-2-2-50}%
+\({16x^{2}+74x}={-63}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{62}{}{}{section-the-quadratic-formula-8-2-2-51}%
+\({30x^{2}+41x}={-7}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{63}{}{}{section-the-quadratic-formula-8-2-2-52}%
+\({15x^{2}}={17x+42}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{64}{}{}{section-the-quadratic-formula-8-2-2-53}%
+\({27x^{2}}={-48x-16}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{65}{}{}{section-the-quadratic-formula-8-2-2-54}%
+\({x^{2}+4}={-3x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{66}{}{}{section-the-quadratic-formula-8-2-2-55}%
+\({x^{2}-2x}={-5}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{67}{}{}{section-the-quadratic-formula-8-2-2-56}%
+\({x^{2}-4}={-{\frac{15}{2}}x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{68}{}{}{section-the-quadratic-formula-8-2-2-57}%
+\({x^{2}+{\frac{36}{7}}}={ + {\frac{67}{7}}x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{69}{}{}{section-the-quadratic-formula-8-2-2-58}%
+\({x^{2} - {\frac{13}{15}}x}={ + {\frac{2}{5}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{70}{}{}{section-the-quadratic-formula-8-2-2-59}%
+\({x^{2}+{\frac{3}{10}}x}={ + {\frac{27}{10}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{71}{}{}{section-the-quadratic-formula-8-2-2-60}%
+\({x^{2}+4x}={8}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{72}{}{}{section-the-quadratic-formula-8-2-2-61}%
+\({x^{2}-6}={3x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{73}{}{}{section-the-quadratic-formula-8-2-2-62}%
+\({4x^{2}+1}={x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{74}{}{}{section-the-quadratic-formula-8-2-2-63}%
+\({5x^{2}+6}={5x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{75}{}{}{section-the-quadratic-formula-8-2-2-64}%
+\({x^{2}}={ + {\frac{59}{9}}x + {\frac{28}{9}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{76}{}{}{section-the-quadratic-formula-8-2-2-65}%
+\({x^{2}}={-{\frac{34}{9}}x + {\frac{8}{9}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{77}{}{}{section-the-quadratic-formula-8-2-2-66}%
+\({x^{2}}={ + {\frac{5}{3}}x-{\frac{2}{3}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{78}{}{}{section-the-quadratic-formula-8-2-2-67}%
+\({x^{2}}={-2x + {\frac{21}{4}}}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{79}{}{}{section-the-quadratic-formula-8-2-2-68}%
+\({-3x^{2}+9x}={4}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{80}{}{}{section-the-quadratic-formula-8-2-2-69}%
+\({-8x^{2}-9}={-19x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{81}{}{}{section-the-quadratic-formula-8-2-2-70}%
+\({x^{2}}={5x+2}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{82}{}{}{section-the-quadratic-formula-8-2-2-71}%
+\({x^{2}}={-7x+4}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{83}{}{}{section-the-quadratic-formula-8-2-2-72}%
+\({-3x^{2}}={5x-3}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{84}{}{}{section-the-quadratic-formula-8-2-2-73}%
+\({2x^{2}}={-3x+6}\)%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Radical Equations That Give Rise to Quadratic Equations.}\space\space%
+Solve the equation.%
+\begin{exercisegroupcol}{2}
+\begin{divisionexerciseegcol}{85}{}{}{section-the-quadratic-formula-8-2-3-3}%
+\({5\sqrt{x}}={x+6}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{86}{}{}{section-the-quadratic-formula-8-2-3-4}%
+\({6\sqrt{x}}={x+8}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{87}{}{}{section-the-quadratic-formula-8-2-3-5}%
+\({2\sqrt{x}}={x-8}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{88}{}{}{section-the-quadratic-formula-8-2-3-6}%
+\({\sqrt{x}}={12-x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{89}{}{}{section-the-quadratic-formula-8-2-3-7}%
+\({3\sqrt{x}}={2x+4}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{90}{}{}{section-the-quadratic-formula-8-2-3-8}%
+\({3\sqrt{x}}={x+5}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{91}{}{}{section-the-quadratic-formula-8-2-3-9}%
+\({4\sqrt{x}}={-x-3}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{92}{}{}{section-the-quadratic-formula-8-2-3-10}%
+\({5\sqrt{x}}={-x-4}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{93}{}{}{section-the-quadratic-formula-8-2-3-11}%
+\({5\sqrt{3x+4}}={3x+8}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{94}{}{}{section-the-quadratic-formula-8-2-3-12}%
+\({\sqrt{5x-6}}={x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{95}{}{}{section-the-quadratic-formula-8-2-3-13}%
+\({6\sqrt{5x+5}-5x}={13}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{96}{}{}{section-the-quadratic-formula-8-2-3-14}%
+\({6\sqrt{5x+7}-15}={5x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{97}{}{}{section-the-quadratic-formula-8-2-3-15}%
+\({\sqrt{3x+12}}={-3x}\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{98}{}{}{section-the-quadratic-formula-8-2-3-16}%
+\({\sqrt{2x+2}+2x}={0}\)%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\paragraph{Applications}\hypertarget{section-the-quadratic-formula-8-3}{}
+\begin{divisionexercise}{99}{}{}{section-the-quadratic-formula-8-3-2}%
+While standing on a rooftop that is 5 m high off the ground, you throw a tennis ball off the roof in an arc. Because of the speed that you throw the ball, its height from the ground, in meters, \(t\) seconds after the throw is \({-4.9t^{2}+26t+7}\text{.}\) How long will it be until the ball hits the ground?%
+\end{divisionexercise}%
+\begin{divisionexercise}{100}{}{}{section-the-quadratic-formula-8-3-3}%
+While standing on a tree branch that is 23 ft high off the ground, a squirrel kicks a nut in an arc. The nut falls cleanly to the ground without hitting anything on the way down. While the nut is in the air, its height from the ground, in feet, \(t\) seconds after the kick is \({-16t^{2}+3.1t+23}\text{.}\) How long will it be until the nut hits the ground?%
+\end{divisionexercise}%
+\begin{divisionexercise}{101}{}{}{section-the-quadratic-formula-8-3-4}%
+An astronaut on the moon makes a running jump off a cliff onto a broad flat plain. The clifftop is 4 m higher than the plain. Because of the slight upward jump, the astronaut's height from the plain, in meters, \(t\) seconds after the jump is \({-0.81t^{2}+1.2t+6}\text{.}\) How long will it be until the astronaut lands in the plain?%
+\end{divisionexercise}%
+\begin{divisionexercise}{102}{}{}{section-the-quadratic-formula-8-3-5}%
+An robot on Mars makes a running jump off a cliff onto a broad flat plain. The clifftop is 15 m higher than the plain. Because of the slight upward jump, the robot's height from the plain, in meters, \(t\) seconds after the jump is \({-1.85t^{2}+3.9t+17}\text{.}\) How long will it be until the robot lands in the plain?%
+\end{divisionexercise}%
+\begin{divisionexercise}{103}{}{}{section-the-quadratic-formula-8-3-6}%
+One rectangular wall in your classroom is \({13.5\ {\rm ft}}\) longer than it is tall. The total area of the wall is \({252\ {\rm ft^{2}}}\text{.}\) How tall is the wall?%
+\end{divisionexercise}%
+\begin{divisionexercise}{104}{}{}{section-the-quadratic-formula-8-3-7}%
+The rectangular floor of your classroom is \({9\ {\rm m}}\) longer than it is wide. The total floor area is \({220\ {\rm m^{2}}}\text{.}\) How wide is the floor? (This is asking for the shorter dimension.)%
+\end{divisionexercise}%
+\begin{divisionexercise}{105}{}{}{section-the-quadratic-formula-8-3-8}%
+A metals factory will produce steel picture frames in the form of a rectagle with a smaller rectangle cut out, as in the diagram. The widths of the four edges is to be consistent, and leave a \({88\ {\rm cm}}\) by \({55\ {\rm cm}}\) visible area for photos and other images. There is a standard thickness for the metal from which these frames will be cut, and the manufacturer has a target weight in mind for the final product so that shipping costs will be kept low. This leads to the decision that the surface area of the frame needs to be \({1661\ {\rm cm^{2}}}\text{.}\) How wide should the four edges be? (What is the value of \(x\) in the diagram?)%
+\begin{image}{0.3}{0.4}{0.3}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-179-image-1.pdf}
+\end{image}%
+\end{divisionexercise}%
+\begin{divisionexercise}{106}{}{}{section-the-quadratic-formula-8-3-9}%
+A vegetable garden will be surrounded by a frame of grass sod. The garden itself will be \({20\ {\rm ft}}\) by \({14\ {\rm ft}}\text{.}\) The widths of the four edges of the frame will be equal to each other. There is only \({177\ {\rm ft^{2}}}\) of grass sod available, and it will all be used for this frame. How wide should the four edges be? (What is the value of \(x\) in the diagram?)%
+\begin{image}{0.3}{0.4}{0.3}{}%
+\includegraphics[width=\linewidth]{generated/webwork/images/webwork-180-image-1.pdf}
+\end{image}%
+\end{divisionexercise}%
+\begin{divisionexercise}{107}{}{}{section-the-quadratic-formula-8-3-10}%
+You are ready to self-publish a book online. If the book were free, you estimate \(50000\) would order a copy. If you increase the price to \(p\) dollars per book you will have fewer orders, and after studying similar book sales you estimate you would have \({50000-1000p}\) sales. What is the largest price that you could set to end up with a revenue of \({\$40{,}000}\text{?}\)%
+\end{divisionexercise}%
+\begin{divisionexercise}{108}{}{}{section-the-quadratic-formula-8-3-11}%
+A new electric car company is ready to sell its debut model. Studying the current state of the electric car market, they estimate that if they charge each customer \(p\) dollars, they will have \({1000000-4p}\) sales. What is the lowest price that they could use so that they end up with a revenue of \({\$1}\) billion?%
+\end{divisionexercise}%
+\begin{divisionexercise}{109}{}{}{section-the-quadratic-formula-8-3-12}%
+If you add \({5}\) to a certain positive number, then also subtract \(2\) from that same number, and multiply the results, you get \({-{\frac{33}{4}}}\text{.}\) What was the original number?%
+\end{divisionexercise}%
+\begin{divisionexercise}{110}{}{}{section-the-quadratic-formula-8-3-13}%
+If you double a certain positive number, then also add  \({{\frac{13}{2}}}\) to that same number, and multiply the results, you get \({24}\text{.}\) What was the original number?%
+\end{divisionexercise}%
+\paragraph{Challenge}\hypertarget{section-the-quadratic-formula-8-4}{}
+\begin{divisionexercise}{111}{}{}{section-the-quadratic-formula-8-4-2}%
+Solve for \(x\) in the equation \(mx^{2}+nx+p=0\text{,}\) assuming \(m\neq0\text{.}\)%
+\end{divisionexercise}%
+\end{exercises-subsection}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.3 Complex Solutions to Quadratic Equations}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{Complex Solutions to Quadratic Equations}{}{Complex Solutions to Quadratic Equations}{}{}{section-complex-solutions-to-quadratic-equations}
+\begin{introduction}{}%
+
+\noindent\hskip0pt\begin{minipage}{360pt}
+\parmarginbox{\begin{qrptx}\begin{image}{0}{1}{0}{}%
+\includegraphics[width=\linewidth]{generated/qrcode/section-complex-solutions-to-quadratic-equations-3-1-2.png}
+\end{image}\tcblower
+\scshape Video Lessons\end{qrptx}%
+}{0pt}
+
+\end{minipage}
+
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.3.1 Imaginary Numbers}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Imaginary Numbers}{}{Imaginary Numbers}{}{}{section-complex-solutions-to-quadratic-equations-4}
+Let's take a fresh look at a square root with a negative radicand. Remember that the reason \(\sqrt{16}=4\) is because \(4\cdot4=16\). So what might \(\sqrt{-16}\) mean? There is no real number that we can square to get \(-16\), because when you square a real number, the result simply cannot be negative. You might think about \(4\) and \(-4\), but:%
+\begin{equation*}
+4\cdot4=16\text{ and }(-4)(-4)=16
+\end{equation*}
+so neither of those could be \(\sqrt{-16}\). Mathematicians realized it was possible to keep track of square roots of negative numbers \emph{symbolically} even though the symbols do not represent real numbers.%
+\begin{definition}{Definition}{Imaginary Numbers.}{definition-imaginary-number}%
+\index{imaginary unit}%
+\index{imaginary numbers}%
+The \terminology{imaginary unit}, \(i\), is defined by \(i=\sqrt{-1}\). The \href{https://en.wikipedia.org/wiki/Imaginary_number}{imaginary unit}\footnotemark{} satisfies the equation \(i^2=-1\). A real number times \(i\), such as \(4i\), is called an \terminology{imaginary number}.%
+\end{definition}
+\footnotetext[1]{\nolinkurl{en.wikipedia.org/wiki/Imaginary_number}\label{definition-imaginary-number-4-1-5}}%
+Now we can simplify square roots with negative radicands like \(\sqrt{-16}\).%
+\begin{align*}
+\sqrt{-16}\amp=\sqrt{-1\cdot16}\\
+\amp=\sqrt{-1}\cdot\sqrt{16}\\
+\amp=i\cdot4\\
+\amp=4i
+\end{align*}
+%
+\par
+Imaginary numbers are used in electrical engineering, physics, computer science, and advanced mathematics. Let's look at some more examples.%
+\begin{example}{Example}{}{section-complex-solutions-to-quadratic-equations-4-6}%
+Simplify \(\sqrt{-2}\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-complex-solutions-to-quadratic-equations-4-6-2}{}\quad{}%
+\begin{align*}
+\sqrt{-2}\amp=\sqrt{-1\cdot2}\\
+\amp=\sqrt{-1}\cdot\sqrt{2}\\
+\amp=i\sqrt{2}
+\end{align*}
+We write the \(i\) in front of the radical because it can be easy to mix up \(\sqrt{2}i\) with \(\sqrt{2i}\) if you don't draw the radical very carefully. It's more clear as \(i\sqrt{2}\).%
+}\end{example}
+\begin{example}{Example}{}{section-complex-solutions-to-quadratic-equations-4-7}%
+Simplify \(\sqrt{-72}\).%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-complex-solutions-to-quadratic-equations-4-7-2}{}\quad{}Not only can we separate the \(\sqrt{-1}\) factor, but also in this example there is a square factor of \(72\) that can be used to simplify the expression more.%
+\begin{align*}
+\sqrt{-72}\amp=\sqrt{-1\cdot36\cdot2}\\
+\amp=\sqrt{-1}\cdot\sqrt{36}\cdot\sqrt{2}\\
+\amp=6i\sqrt{2}
+\end{align*}
+%
+}\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.3.2 Solving Quadratic Equations with Imaginary Solutions}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Solving Quadratic Equations with Imaginary Solutions}{}{Solving Quadratic Equations with Imaginary Solutions}{}{}{section-complex-solutions-to-quadratic-equations-5}
+Back in \hyperref[example-no-real-solution]{Example~{\xreffont\ref{example-no-real-solution}}}, we examined an equation that had no real solution. Let's revisit that example now that we are aware of imaginary numbers.%
+\begin{example}{Example}{}{section-complex-solutions-to-quadratic-equations-5-3}%
+Solve for \(x\) in \(x^2+49=0\), where \(x\) might not be a real number.%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-complex-solutions-to-quadratic-equations-5-3-2}{}\quad{}There is no ``\(x\)'' term, so we will use the square root method to solve this equation.%
+\begin{align*}
+x^2+49\amp=0\\
+x^2\amp=-49\\
+x\amp=\pm\sqrt{-49}\\
+x\amp=\pm\sqrt{49\cdot-1}\\
+x\amp=\pm\sqrt{49}\cdot\sqrt{-1}\\
+x\amp=\pm 7i
+\end{align*}
+%
+\begin{align*}
+x\amp=-7i\amp\text{ or }\amp\amp x\amp=7i
+\end{align*}
+The solution set is \(\{-7i,7i\}\).%
+}\end{example}
+\begin{example}{Example}{}{section-complex-solutions-to-quadratic-equations-5-4}%
+Solve for \(p\) in \(p^2+75=0\), where \(p\) might not be a real number.%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-complex-solutions-to-quadratic-equations-5-4-2}{}\quad{}There is no ``\(p\)'' term so we will use the square root method.%
+\begin{align*}
+p^2+75\amp=0\\
+p^2\amp=-75\\
+p\amp=\pm\sqrt{-75}\\
+p\amp=\pm\sqrt{25\cdot-1\cdot3}\\
+p\amp=\pm\sqrt{25}\cdot\sqrt{-1}\cdot\sqrt{3}\\
+p\amp=\pm 5i\sqrt{3}
+\end{align*}
+%
+\begin{align*}
+p\amp=-5i\sqrt{3}\amp\text{ or }\amp\amp p\amp=5i\sqrt{3}
+\end{align*}
+The solution set is \(\left\{-5i\sqrt{3},5i\sqrt{3}\right\}\).%
+}\end{example}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 1.3.3 Solving Quadratic Equations with Complex Solutions}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Subsection}{Solving Quadratic Equations with Complex Solutions}{}{Solving Quadratic Equations with Complex Solutions}{}{}{section-complex-solutions-to-quadratic-equations-6}
+Sometimes we need to work with a sum of a real number and an imaginary number, like \(3+2i\) or \(-4-8i\). These combinations are called ``complex numbers''.%
+\begin{definition}{Definition}{Complex Number.}{definition-complex-number}%
+\index{complex number}%
+A \terminology{complex number} is a number that can be expressed in the form \(a + bi\), where \(a\) and \(b\) are real numbers and \(i\) is the imaginary unit. In this expression, \(a\) is the \terminology{real part} and \(b\) (not \(bi\)) is the \terminology{imaginary part} of the \href{https://en.wikipedia.org/wiki/Complex_number}{complex number}\footnotemark{}.%
+\end{definition}
+\footnotetext[2]{\nolinkurl{en.wikipedia.org/wiki/Complex_number}\label{definition-complex-number-3-1-12}}%
+Note that technically, real numbers (like \(5\)) are complex numbers too (like \(5+0i\)). And similarly, imaginary numbers (like \(7i\)) are complex numbers too (like \(0+7i\)).%
+\begin{example}{Example}{}{section-complex-solutions-to-quadratic-equations-6-5}%
+Solve for \(m\) in \((m-1)^2+18=0\), where \(m\) might not be a real number.%
+\par\smallskip%
+{\makeatletter\@beginparpenalty=10000\makeatother\noindent\textbf{\blocktitlefont Explanation}.\hypertarget{section-complex-solutions-to-quadratic-equations-6-5-2}{}\quad{}This equation has a squared expression so we will use the square root method.%
+\begin{align*}
+(m-1)^2+18\amp=0\\
+(m-1)^2\amp=-18\\
+m-1\amp=\pm\sqrt{-18}\\
+m-1\amp=\pm\sqrt{-1\cdot9\cdot2}\\
+m-1\amp=\pm\sqrt{-1}\cdot\sqrt{9}\cdot\sqrt{2}\\
+m-1\amp=\pm i\cdot3\sqrt{2}\\
+m\amp=1\pm i\cdot3\sqrt{2}
+\end{align*}
+%
+\begin{align*}
+m\amp=1-3i\sqrt{2}\amp\text{ or }\amp\amp m\amp=1+3i\sqrt{2}
+\end{align*}
+The solution set is \(\left\{1-3i\sqrt{2}, 1+3i\sqrt{2}\right\}\).%
+}\end{example}
+\begin{example}{Example}{}{example-solve-quadratic-complex-solution}%
+In an advanced math course, you might study the relationship between a lynx polulation (or any generic predator) and a hare population (or any generic prey) as time passes. For example, if the predator population is high, they will eat many prey. But then the prey population will become low, so the predators will go hungry and have fewer offspring. With time, the predator population will decline, and that will lead to a rebound in the prey population. Then prey will be plentiful, and the preadator population will rebound, and the whole situaiton starts over. This cycle may take years or even decades to play out.%
+\par
+Strange as it may seem, to understand this phenomenon mathematically, you will need to solve equations similar to:%
+\begin{equation*}
+(1-t)(3-t)+10=0
+\end{equation*}
+Let's practice solving this equation now.%
+\begin{align*}
+(1-t)(3-t)+10\amp=0\\
+3-t-3t+t^2+10\amp=0\\
+t^2-4t+13\amp=0
+\end{align*}
+We can try the quadratic formula.%
+\begin{align*}
+t\amp=\frac{4\pm\sqrt{(-4)^2-4(1)(13)}}{2(1)}\\
+\amp=\frac{4\pm\sqrt{16-52}}{2}\\
+\amp=\frac{4\pm\sqrt{-36}}{2}\\
+\amp=\frac{4\pm\sqrt{-1}\cdot\sqrt{36}}{2}\\
+\amp=\frac{4\pm i\cdot6}{2}\\
+\amp=2\pm3i
+\end{align*}
+These two solutions, \(2-3i\) and \(2+3i\) have implications for how fast the predator and prey populations rise and fall over time, but you will study that in a later math course.%
+\end{example}
+Note that in \hyperref[example-solve-quadratic-complex-solution]{Example~9}, the expressions \(2+3i\) and \(2-3i\) are fully simplified. In the same way that the terms \(2\) and \(3x\) cannot be combined, the terms \(2\) and \(3i\) can not be combined.%
+\begin{remark}{Remark}{}{section-complex-solutions-to-quadratic-equations-6-8}%
+Each complex solution to a quadratic equation can be checked, just as every real solution can be checked. To check the solution \(2+3i\) from \hyperref[example-solve-quadratic-complex-solution]{Example~9}, we can replace \(t\) with \(2+3i\) and check that the two sides of the equation are equal. In doing so, we will need to use the fact that \(i^2=-1\). This check is shown here:%
+\begin{align*}
+(1-t)(3-t)+10\amp=0\\
+(1-\substitute{(2+3i)})(3-\substitute{(2+3i)})+10\amp\wonder{=}0\\
+(1-2-3i)(3-2-3i)+10\amp\wonder{=}0\\
+(-1-3i)(1-3i)+10\amp\wonder{=}0\\
+-1+3i-3i+(3i)^2+10\amp\wonder{=}0\\
+9+9i^2\amp\wonder{=}0\\
+9-9\amp\confirm{=}0
+\end{align*}
+%
+\end{remark}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Reading Questions 1.3.4 Reading Questions}
+\typeout{************************************************}
+%
+\begin{reading-questions-subsection}{Reading Questions}{Reading Questions}{}{Reading Questions}{}{}{section-complex-solutions-to-quadratic-equations-7}
+\begin{divisionexercise}{1}{}{}{section-complex-solutions-to-quadratic-equations-7-1}%
+What is \(\left(i^2\right)^2\)?%
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{section-complex-solutions-to-quadratic-equations-7-2}%
+A number like \(4i\) is called a \fillintext{9} number. A number like \(3+4i\) is called a \fillintext{7} number.%
+\end{divisionexercise}%
+\end{reading-questions-subsection}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 1.3.5 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection}{Exercises}{Exercises}{}{Exercises}{}{}{section-complex-solutions-to-quadratic-equations-8}
+\par\medskip\noindent%
+\textbf{Simplifying Square Roots with Negative Radicands.}\space\space%
+\begin{exercisegroupcol}{3}
+\begin{divisionexerciseegcol}{1}{}{}{section-complex-solutions-to-quadratic-equations-8-1-2}%
+Simplify the radical and write it as a complex number using \(i\).%
+\par
+\(\displaystyle{ \sqrt{-105} = }\) \fillintext{13}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{2}{}{}{section-complex-solutions-to-quadratic-equations-8-1-3}%
+Simplify the radical and write it as a complex number using \(i\).%
+\par
+\(\displaystyle{ \sqrt{-30} = }\) \fillintext{13}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{3}{}{}{section-complex-solutions-to-quadratic-equations-8-1-4}%
+Simplify the radical and write it as a complex number using \(i\).%
+\par
+\(\displaystyle{ \sqrt{-48} =}\) \fillintext{15}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{4}{}{}{section-complex-solutions-to-quadratic-equations-8-1-5}%
+Simplify the radical and write it as a complex number using \(i\).%
+\par
+\(\displaystyle{ \sqrt{-28} =}\) \fillintext{15}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{5}{}{}{section-complex-solutions-to-quadratic-equations-8-1-6}%
+Simplify the radical and write it as a complex number using \(i\).%
+\par
+\(\displaystyle{ \sqrt{-420} =}\) \fillintext{15}%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{6}{}{}{section-complex-solutions-to-quadratic-equations-8-1-7}%
+Simplify the radical and write it as a complex number using \(i\).%
+\par
+\(\displaystyle{ \sqrt{-300} =}\) \fillintext{15}%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Quadratic Equations with Imaginary and Complex Solutions.}\space\space%
+\begin{exercisegroupcol}{3}
+\begin{divisionexerciseegcol}{7}{}{}{section-complex-solutions-to-quadratic-equations-8-2-2}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(y^2 = -25\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{8}{}{}{section-complex-solutions-to-quadratic-equations-8-2-3}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(y^2 = -4\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{9}{}{}{section-complex-solutions-to-quadratic-equations-8-2-4}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(5y^2 - 3 = -248\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{10}{}{}{section-complex-solutions-to-quadratic-equations-8-2-5}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(-3r^2 - 3 = 45\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{11}{}{}{section-complex-solutions-to-quadratic-equations-8-2-6}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\({-2r^{2}}  - 3 = 7\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{12}{}{}{section-complex-solutions-to-quadratic-equations-8-2-7}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\({-t^{2}} + 3 = 6\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{13}{}{}{section-complex-solutions-to-quadratic-equations-8-2-8}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(-4t^2 - 4 = 44\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{14}{}{}{section-complex-solutions-to-quadratic-equations-8-2-9}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(-9x^2 - 9 = 441\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{15}{}{}{section-complex-solutions-to-quadratic-equations-8-2-10}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(-8(x - 4)^2 - 4 = 388\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{16}{}{}{section-complex-solutions-to-quadratic-equations-8-2-11}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\(6(y+7)^2 - 5 = -101\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{17}{}{}{section-complex-solutions-to-quadratic-equations-8-2-12}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\({y^{2}-2y+10} = 0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{18}{}{}{section-complex-solutions-to-quadratic-equations-8-2-13}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\({y^{2}+2y+5} = 0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{19}{}{}{section-complex-solutions-to-quadratic-equations-8-2-14}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\({r^{2}+4r+11} =0\)%
+\end{divisionexerciseegcol}%
+\begin{divisionexerciseegcol}{20}{}{}{section-complex-solutions-to-quadratic-equations-8-2-15}%
+Solve the quadratic equation. Solutions could be complex numbers.%
+\par
+\({r^{2}-6r+16} =0\)%
+\end{divisionexerciseegcol}%
+\end{exercisegroupcol}
+\par\medskip\noindent
+\end{exercises-subsection}
+\end{sectionptx}
+\end{chapterptx}
+  \end{partptx}
+%
+\appendix%
+%
+\part*{Appendices}%
+%
+%
+\typeout{************************************************}
+\typeout{Appendix A Unit Conversions}
+\typeout{************************************************}
+%
+\begin{appendixptx}{Appendix}{Unit Conversions}{}{Unit Conversions}{}{}{appendix-unit-conversions}
+\begin{tikzpicture}[remember picture,overlay]
+\draw [color=ruby, fill=ruby] ([xshift=-0.625in]current page.north east) rectangle (current page.south east);
+\end{tikzpicture}
+\renewcommand*{\appendixname}{Appendix}
+\begin{sidebyside}{2}{0}{0}{0.02}%
+\begin{sbspanel}{0.92}%
+\begin{paneltableptx}{Table}{\textbf{Length Unit Conversion Factors}}{appendix-unit-conversions-2-1}{}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\centering%
+{\tabularfont%
+\begin{tabular}{lBlBl}\hrulethick
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{Units of Length\\
+in the US\slash{}Imperial System}
+}&\tablecelllines{l}{m}
+{Units of Length\\
+in the Metric System}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{System to System\\
+Length Conversions}
+}\tabularnewline\hrulemedium
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{\(1\) foot (\si{\foot})\\
+\({}=12\) inches (\si{\inch})}
+}&\tablecelllines{l}{m}
+{\(1\) meter (\si{\meter})\\
+\({}=1000\) millimeters (\si{\milli\meter})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) inch (\si{\inch})\\
+\({}=2.54\) centimeters (\si{\centi\meter})}
+}\tabularnewline\hrulethin
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{\(1\) yard (\si{\yard})\\
+\({}=3\) feet (\si{\foot})}
+}&\tablecelllines{l}{m}
+{\(1\) meter (\si{\meter})\\
+\({}=100\) centimeters (\si{\centi\meter})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) meter (\si{\meter})\\
+\({}\approx3.281\) feet (\si{\foot})}
+}\tabularnewline\hrulethin
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{\(1\) yard (\si{\yard})\\
+\({}=36\) inches (\si{\inch})}
+}&\tablecelllines{l}{m}
+{\(1\) meter (\si{\meter})\\
+\({}=10\) decimeters (\si{\deci\meter})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) meter (\si{\meter})\\
+\({}\approx1.094\) yard (\si{\yard})}
+}\tabularnewline\hrulethin
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{\(1\) mile (\si{\mile})\\
+\({}=5280\) feet (\si{\foot})}
+}&\tablecelllines{l}{m}
+{\(1\) dekameter (\si{\deka\meter})\\
+\({}=10\) meters (\si{\meter})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) mile (\si{\mile})\\
+\({}\approx1.609\) kilometer (\si{\kilo\meter})}
+}\tabularnewline\crulethick{1-1}\crulethin{2-2}\crulethick{3-3}
+&\tablecelllines{l}{m}
+{\(1\) hectometer (\si{\hecto\meter})\\
+\({}=100\) meters (\si{\meter})}
+&\tabularnewline\crulethin{2-2}
+&\tablecelllines{l}{m}
+{\(1\) kilometer (\si{\kilo\meter})\\
+\({}=1000\) meters (\si{\meter})}
+&\tabularnewline\crulethick{2-2}
+\end{tabular}
+}%
+\par}
+}%
+\tcblower
+\end{paneltableptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.06}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}
+  \draw[line width=2pt, fill=firstcolor!10] (0,0) --++ (0,12) --++ (1.5,0) --++ (0,-12) -- cycle;
+  \foreach \x in {1,2,...,11}
+    {\draw (0,\x) --++ (0.3,0) node[above,rotate=-90] {\x};}
+  \foreach \x in {0.5,1.5,...,11.5}
+    {\draw (0,\x) --++ (0.2,0);}
+  \foreach \x in {0.25,0.75,...,11.75}
+    {\draw (0,\x) --++ (0.1,0);}
+\end{tikzpicture}
+}%
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{sidebyside}{2}{0}{0}{0.02}%
+\begin{sbspanel}{0.88}%
+\begin{paneltableptx}{Table}{\textbf{Area Unit Conversion Factors}}{appendix-unit-conversions-3-1}{}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\centering%
+{\tabularfont%
+\begin{tabular}{BlBlBl}\hrulethick
+\tablecelllines{l}{m}
+{Units of Area\\
+in the US\slash{}Imperial System}
+&\tablecelllines{l}{m}
+{Units of Area\\
+in the Metric System}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{System to System\\
+Area Conversions}
+}\tabularnewline\hrulemedium
+\tablecelllines{l}{m}
+{\(1\) acre\\
+\({}=43560\) square feet (\si{\foot\tothe{2}})}
+&\tablecelllines{l}{m}
+{\(1\) hectare (\si{\hectare})\\
+\({}=10000\) square meters (\si{\meter\tothe{2}})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) hectare (\si{\hectare})\\
+\({}\approx2.471\) acres}
+}\tabularnewline\crulethin{1-2}\crulethick{3-3}
+\tablecelllines{l}{m}
+{\(640\) acres\\
+\({}=1\) square mile (\si{\mile\tothe{2}})}
+&\tablecelllines{l}{m}
+{\(100\) hectares (\si{\hectare})\\
+\({}=1\) square kilometer (\si{\kilo\meter\tothe{2}})}
+&\tabularnewline\crulethick{1-2}
+\end{tabular}
+}%
+\par}
+}%
+\tcblower
+\end{paneltableptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.1}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}
+  \coordinate (v) at (14,12);
+  \draw[fill=secondcolor!30,opacity=0.5] (0,3) -- (2,3) -- ( $ (2,3)!{0.04}!(v) $) -- ( $ (4,3)!{0.04}!(v) $) -- ( $ (4,3)!{0.142}!(v) $) -- ( $ (0,3)!{0.142}!(v) $) -- cycle;
+  \foreach \i in {0,...,2}{
+    \draw (\i,3) -- ( $ (\i,3)!.142!(v) $ );
+  }
+  \foreach \i in {3,...,4}{
+    \draw ( $ (\i,3)!.04!(v) $ ) -- ( $ (\i,3)!.142!(v) $ );
+  }
+  \foreach \k in {0.04,0.076,0.110,0.142}{
+    \draw ( $ (4,3)!{\k}!(v) $) -- ( $ (0,3)!{\k}!(v) $);
+  }
+  \draw (0,3) -- (2,3);
+\end{tikzpicture}
+}%
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{sidebyside}{2}{0}{0}{0.02}%
+\begin{sbspanel}{0.93}%
+\begin{paneltableptx}{Table}{\textbf{Volume Unit Conversion Factors}}{appendix-unit-conversions-4-1}{}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\centering%
+{\tabularfont%
+\begin{tabular}{BlBll}\hrulethick
+\tablecelllines{l}{m}
+{Units of Volume\\
+in the US\slash{}Imperial System}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{Units of Volume\\
+in the Metric System}
+}&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{System to System\\
+Volume Conversions}
+}\tabularnewline\hrulemedium
+\tablecelllines{l}{m}
+{\(1\) tablespoon (\si{\tablespoon})\\
+\({}=3\) teaspoon (\si{\teaspoon})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) cubic centimeter (\si{\cubiccentimeter})\\
+\({}=1\) cubic centimeter (\si{\centi\meter\tothe{3}})}
+}&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) cubic inch (\si{\inch\tothe{3}})\\
+\({}\approx16.39\) milliliters (\si{\milli\liter})}
+}\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) fluid ounce (\si{\fluidounce})\\
+\({}=2\) tablespoons (\si{\tablespoon})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) milliliter (\si{\milli\liter})\\
+\({}=1\) cubic centimeter (\si{\centi\meter\tothe{3}})}
+}&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) fluid ounce (\si{\fluidounce})\\
+\({}\approx29.57\) milliliters (\si{\milli\liter})}
+}\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) cup (\si{\cup})\\
+\({}=8\) fluid ounces (\si{\fluidounce})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) liter (\si{\liter})\\
+\({}=1000\) milliliters (\si{\milli\liter})}
+}&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) liter (\si{\liter})\\
+\({}\approx1.057\) quarts (\si{\quart})}
+}\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) pint (\si{\pint})\\
+\({}=2\) cups (\si{\cup})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) liter (\si{\liter})\\
+\({}=1000\) cubic centimeters (\si{\centi\meter\tothe{3}})}
+}&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) gallon (\si{\gallon})\\
+\({}\approx3.785\) liters (\si{\liter})}
+}\tabularnewline\crulethin{1-1}\crulethick{2-3}
+\tablecelllines{l}{m}
+{\(1\) quart (\si{\quart})\\
+\({}=2\) pints (\si{\pint})}
+&&\tabularnewline\crulethin{1-1}
+\tablecelllines{l}{m}
+{\(1\) gallon (\si{\gallon})\\
+\({}=4\) quarts (\si{\quart})}
+&&\tabularnewline\crulethin{1-1}
+\tablecelllines{l}{m}
+{\(1\) gallon (\si{\gallon})\\
+\({}=231\) cubic inches (\si{\inch\tothe{3}})}
+&&\tabularnewline\crulethick{1-1}
+\end{tabular}
+}%
+\par}
+}%
+\tcblower
+\end{paneltableptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.05}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=0.3cm,y=0.3cm]
+    \draw[fill=firstcolor!20] (0,0) ellipse (3 and 0.45);
+    \draw[fill=firstcolor!10] (3,0) arc (0:180:3 and -0.45) -- (-3,-8) arc (180:360:3 and 0.5) -- cycle;
+    \draw [dashed] (-3,-8) arc (180:360:3 and -0.5);
+\end{tikzpicture}
+}%
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{sidebyside}{2}{0}{0}{0.02}%
+\begin{sbspanel}{0.91}%
+\begin{paneltableptx}{Table}{\textbf{Weight\slash{}Mass Unit Conversion Factors}}{appendix-unit-conversions-5-1}{}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\centering%
+{\tabularfont%
+\begin{tabular}{lBlBl}\hrulethick
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{Units of Mass\slash{}Weight\\
+in the US\slash{}Imperial System}
+}&\tablecelllines{l}{m}
+{Units of Mass\slash{}Weight\\
+in the Metric System}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{System to System\\
+Mass\slash{}Weight Conversions}
+}\tabularnewline\hrulemedium
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{\(1\) pound (\si{\pound})\\
+\({}=16\) ounces (\si{\ounce})}
+}&\tablecelllines{l}{m}
+{\(1\) gram (\si{\gram})\\
+\({}=1000\) milligrams (\si{\milli\gram})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) ounce (\si{\ounce})\\
+\({}\approx28.35\) grams (\si{\gram})}
+}\tabularnewline\hrulethin
+\multicolumn{1}{BlB}{\tablecelllines{l}{m}
+{\(1\) ton (\si{\ton})\\
+\({}=2000\) pounds (\si{\pound})}
+}&\tablecelllines{l}{m}
+{\(1\) kilogram (\si{\kilo\gram})\\
+\({}=1000\) grams (\si{\gram})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) kilogram (\si{\kilo\gram})\\
+\({}\approx2.205\) pounds (\si{\pound})}
+}\tabularnewline\crulethick{1-1}\crulethin{2-2}\crulethick{3-3}
+&\tablecelllines{l}{m}
+{\(1\) metric ton (\si{\tonne})\\
+\({}=1000\) kilograms (\si{\kilo\gram})}
+&\tabularnewline\crulethick{2-2}
+\end{tabular}
+}%
+\par}
+}%
+\tcblower
+\end{paneltableptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.07}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,0) --++ (0,-3);
+\fill[
+  left color=thirdcolor!50!black,
+  right color=thirdcolor!50!black,
+  middle color=thirdcolor!50,
+  shading=axis,
+  opacity=0.25
+  ] 
+  (2,-4) -- (0,-3) -- (-2,-4) arc (180:360:2cm and 0.2cm);
+\draw 
+  (-2,-4) arc (180:360:2cm and 0.2cm) -- (0,-3) -- cycle;
+\draw 
+  (-1,-2) arc (0:360:1cm and 0.1cm);
+\draw 
+  (3,-2) arc (0:360:1cm and 0.1cm);
+\fill[
+  left color=secondcolor!50!black,
+  right color=secondcolor!50!black,
+  middle color=secondcolor!50,
+  shading=axis,
+  opacity=0.25
+  ] 
+  (-1,-2) arc (-45:-135:1.414 and 1.414) arc (180:360:1cm and 0.1cm) -- cycle;
+\fill[
+  left color=secondcolor!50!black,
+  right color=secondcolor!50!black,
+  middle color=secondcolor!50,
+  shading=axis,
+  opacity=0.25
+  ] 
+  (-1,-2) arc (-45:-135:1.414 and 1.414) arc (180:0:1cm and 0.1cm) -- cycle;
+\fill[
+  left color=firstcolor!50!black,
+  right color=firstcolor!50!black,
+  middle color=firstcolor!50,
+  shading=axis,
+  opacity=0.25
+  ] 
+  (3,-2) arc (-45:-135:1.414 and 1.414) arc (180:360:1cm and 0.1cm) -- cycle;
+\fill[
+  left color=firstcolor!50!black,
+  right color=firstcolor!50!black,
+  middle color=firstcolor!50,
+  shading=axis,
+  opacity=0.25
+  ] 
+  (3,-2) arc (-45:-135:1.414 and 1.414) arc (180:0:1cm and 0.1cm) -- cycle;
+\draw
+  (-2,0) --++ (1*0.707,-2+0.1*0.707);
+\draw
+  (-2,0) --++ (1*-0.966,-2+0.1*0.259);
+\draw
+  (-2,0) --++ (1*0.259,-2+0.1*-0.966);
+\draw
+  (2,0) --++ (1*0.707,-2+0.1*0.707);
+\draw
+  (2,0) --++ (1*-0.966,-2+0.1*0.259);
+\draw
+  (2,0) --++ (1*0.259,-2+0.1*-0.966);
+\end{tikzpicture}
+}%
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{sidebyside}{2}{0}{0}{0.12}%
+\begin{sbspanel}{0.78}%
+\begin{paneltableptx}{Table}{\textbf{Time Unit Conversion Factors}}{appendix-unit-conversions-6-1}{}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\centering%
+{\tabularfont%
+\begin{tabular}{BlBlBl}\hrulethick
+\tablecelllines{l}{m}
+{Precise Units\\
+of Time}
+&\tablecelllines{l}{m}
+{Imprecise Units\\
+of Time}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{Units of Time\\
+in the Metric System}
+}\tabularnewline\hrulemedium
+\tablecelllines{l}{m}
+{\(1\) week (\si{\week})\\
+\({}=7\) days (\si{\day})}
+&\tablecelllines{l}{m}
+{\(1\) year (\si{\year})\\
+\({}\approx12\) months (\si{\month})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) second (\si{\second})\\
+\({}=1000\) milliseconds (\si{\milli\second})}
+}\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) day (\si{\day})\\
+\({}=24\) hours (\si{\hour})}
+&\tablecelllines{l}{m}
+{\(1\) year (\si{\year})\\
+\({}\approx52\) weeks (\si{\week})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) second (\si{\second})\\
+\({}=10^6\) microseconds (\si{\micro\second})}
+}\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) hour (\si{\hour})\\
+\({}=60\) minutes (\si{\minute})}
+&\tablecelllines{l}{m}
+{\(1\) year (\si{\year})\\
+\({}\approx365\) days (\si{\day})}
+&\multicolumn{1}{lB}{\tablecelllines{l}{m}
+{\(1\) second (\si{\second})\\
+\({}=10^9\) nanoseconds (\si{\nano\second})}
+}\tabularnewline\crulethin{1-2}\crulethick{3-3}
+\tablecelllines{l}{m}
+{\(1\) minute (\si{\minute})\\
+\({}=60\) seconds (\si{\second})}
+&\tablecelllines{l}{m}
+{\(1\) month (\si{\month})\\
+\({}\approx30\) days (\si{\day})}
+&\tabularnewline\crulethick{1-2}
+\end{tabular}
+}%
+\par}
+}%
+\tcblower
+\end{paneltableptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.1}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[line width=3pt]
+\filldraw [fill=secondcolor!10] (0,0) circle (2cm);
+\foreach \angle [count=\xi] in {60,30,...,-270}
+{
+  \draw[line width=1pt] (\angle:1.8cm) -- (\angle:2cm);
+  \node[font=\large] at (\angle:1.36cm) {\textsf{\xi}};
+}
+\foreach \angle in {0,90,180,270}
+  \draw[line width=2pt] (\angle:1.6cm) -- (\angle:2cm);
+\draw (0,0) -- (120:0.8cm);
+\draw (0,0) -- (90:1cm);
+\end{tikzpicture}
+}%
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{sidebyside}{2}{0}{0}{0.3}%
+\begin{sbspanel}{0.6}%
+\begin{paneltableptx}{Table}{\textbf{Computer Storage\slash{}Memory Conversion Factors}}{appendix-unit-conversions-7-1}{}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\centering%
+{\tabularfont%
+\begin{tabular}{BlBlBlB}\hrulethick
+Bytes and Bits&Bytes and Bytes&Bits and Bits\tabularnewline\hrulemedium
+\tablecelllines{l}{m}
+{\(1\) byte (\si{\byte})\\
+\({}=8\) bits (\si{\bit})}
+&\tablecelllines{l}{m}
+{\(1\) kilobyte (\si{\kilo\byte})\\
+\({}=1024\) bytes (\si{\byte})}
+&\tablecelllines{l}{m}
+{\(1\) kilobit (\si{\kilo\bit})\\
+\({}=1024\) bits (\si{\bit})}
+\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) kilobyte (\si{\kilo\byte})\\
+\({}=8\) kilobits (\si{\kilo\bit})}
+&\tablecelllines{l}{m}
+{\(1\) megabyte (\si{\mega\byte})\\
+\({}=1024\) kilobytes (\si{\kilo\byte})}
+&\tablecelllines{l}{m}
+{\(1\) megabit (\si{\mega\bit})\\
+\({}=1024\) kilobits (\si{\kilo\bit})}
+\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) megabyte (\si{\mega\byte})\\
+\({}=8\) megabits (\si{\mega\bit})}
+&\tablecelllines{l}{m}
+{\(1\) gigabyte (\si{\giga\byte})\\
+\({}=1024\) megabytes (\si{\mega\byte})}
+&\tablecelllines{l}{m}
+{\(1\) gigabit (\si{\giga\bit})\\
+\({}=1024\) megabits (\si{\mega\bit})}
+\tabularnewline\hrulethin
+\tablecelllines{l}{m}
+{\(1\) gigabyte (\si{\giga\byte})\\
+\({}=8\) gigabits (\si{\giga\bit})}
+&\tablecelllines{l}{m}
+{\(1\) terabyte (\si{\tera\byte})\\
+\({}=1024\) gigabytes (\si{\giga\byte})}
+&\tablecelllines{l}{m}
+{\(1\) terabit (\si{\tera\bit})\\
+\({}=1024\) gigabits (\si{\giga\bit})}
+\tabularnewline\hrulethick
+\end{tabular}
+}%
+\par}
+}%
+\tcblower
+\end{paneltableptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.1}%
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}
+  \ttfamily\node[draw, align=left,fill=thirdcolor!10,rounded corners = 0.4em, line width=2pt] {01001111\\01010010\\01000011\\01000011\\01000001};
+\end{tikzpicture}
+}%
+\end{sbspanel}%
+\end{sidebyside}%
+\end{appendixptx}
+%
+\backmatter%
+%
+\clearpage\phantomsection%
+\addcontentsline{toc}{part}{Back Matter}%
+%
+%% The index is here, setup is all in preamble
+%% Index locators are cross-references, so same font here
+{\xreffont\printindex}
+%
+\end{document}
