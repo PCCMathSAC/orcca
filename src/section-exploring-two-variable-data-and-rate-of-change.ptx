@@ -383,8 +383,8 @@
           The equation <m>y=2x</m> summarizes the pattern in the table.
         </p>
       </stack>
-      <figure xml:id="figure-pattern-double">
-        <caption>Table with a mathematical pattern</caption>
+      <table xml:id="figure-pattern-double">
+        <title>Table with a mathematical pattern</title>
         <tabular>
           <col halign="center"/>
           <col halign="center"/>
@@ -420,7 +420,7 @@
             <cell colspan="2">Pattern: <m>y=2x</m></cell>
           </row>
         </tabular>
-      </figure>
+      </table>
     </sidebyside>
     <p>
       Only the third table in <xref ref="example-three-tables"/> is a table of numbers. Let's
@@ -848,15 +848,15 @@
         What was the <term>rate of change</term> in Oregon invasive cancer diagnoses between 2000
         and 2010?
         The total (net) change in diagnoses over that timespan is
-        <me>
+        <md>
           19887 - 17458 = 2429
-        </me>
+        </md>
         meaning that there were <m>2429</m> more invasive cancer incidents in 2010 than in 2000.
         Since <m>10</m> years passed (which you can calculate as <m>2010-2000</m>), the rate of
         change is <m>2429</m> diagnoses per <m>10</m> years, or
-        <me>
+        <md>
           \frac{2429\,\text{diagnoses}}{10\,\text{year}}=242.9\,\frac{\text{diagnoses}}{\text{year}}
-        </me>
+        </md>
         We read that last quantity as <q><m>242.9</m> diagnoses per year</q>. This rate of change
         means that between the years <m>2000</m> and <m>2010</m>, there were <m>242.9</m> more
         diagnoses <em>each</em> year, on average. This is just an average over those ten
@@ -898,9 +898,9 @@
           <solution>
             <p>
               To find the rate of change between 2000 and 2003, calculate
-              <me>
+              <md>
                 \frac{17590 - 17458}{2003 - 2000} = 44
-              </me>.
+              </md>.
               So the rate of change was <m><var name="$rate[0]"/></m>.
             </p>
           </solution>
@@ -917,9 +917,9 @@
           <solution>
             <p>
               To find the rate of change between 2005 and 2020, calculate
-              <me>
+              <md>
                 \frac{20151 - 22154}{2020 - 2015} = -400.6
-              </me>.
+              </md>.
               So the rate of change was <m><var name="$rate[1]"/></m>.
             </p>
           </solution>
@@ -936,9 +936,9 @@
         <p>
           If <m>\left(x_1,y_1\right)</m> and <m>\left(x_2,y_2\right)</m> are two data points from a
           set of two-variable data, then the <term>rate of change</term> between them is
-          <me>
+          <md>
             \frac{\text{change in $y$}}{\text{change in $x$}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}
-          </me>.
+          </md>.
           The Greek letter delta, <m>\Delta</m>, is used to represent <q>change in</q> since it is
           the first letter of the Greek word for <q>difference</q>.
         </p>
@@ -1305,9 +1305,9 @@
     </figure>
     <p>
       The rate of change between those two points is
-      <me>
+      <md>
         \frac{(31-27.7)\,\text{pct. points}}{(2018-2005)\,\text{years}}=\frac{3.4\,\text{pct. points}}{13\,\text{years}}\approx0.2615\,\frac{\text{pct. points}}{\text{year}}
-      </me>
+      </md>
       So we might say that <em>on average</em>, the rate of change expressed by this data is
       <m>0.2615</m> percentage points per year.
     </p>
@@ -2555,9 +2555,9 @@
                 The <m>x</m>-values in this table jump erratically. However, if we compute the rate of
                 change between consecutive rows in the table, the result is always <var name="$m"/>.
                 For example, the rate of change between the first and second rows is
-                <me>
+                <md>
                   \frac{<var name="$y[1]"/>-<var name="$y[0]"/>}{<var name="$x[1]"/>-<var name="$x[0]"/>}=\frac{<var name="$ydiff"/>}{<var name="$xdiff"/>}=<var name="$m"/>
-                </me>.
+                </md>.
               </p>
             </solution>
           </webwork>
@@ -2572,28 +2572,23 @@
       <title>Applications</title>
       <exercise label="portland-population">
         <webwork xml:id="webwork-portland-population">
+          <pg-macros>
+            <macro-file>contextUnits.pl</macro-file>
+          </pg-macros>
           <pg-code>
             @x=(2000..2022);
             @y=(529897,535753,539892,541447,535366,536827,541026,549781,559504,569796,585476,595610,604521,610254,620975,631945,643065,648176,651154,654378,652388,641162,635067);
-            %f=map{$x[$_] => $y[$_]}(0..21);
+            %f=map{$x[$_]=>$y[$_]}(0..21);
             @yr=num_sort(random_subset(4,@x));
-            $n=[
-            {name => 'people'},
-            {name => 'person',conversion => {factor => 1,people => 1}},
-            {name => 'ppl',conversion => {factor => 1,people => 1}},
-            {name => 'year',conversion => {factor => 365*24*60*60,s => 1}},
-            {name => 'years',conversion => {factor => 365*24*60*60,s => 1}},
-            {name => 'yr',conversion => {factor => 365*24*60*60,s => 1}},
-            {name => 'yrs',conversion => {factor => 365*24*60*60,s => 1}},
-            {name => 'y',conversion => {factor => 365*24*60*60,s => 1}}
-            ];
             @r=map{Real(($f{$yr[2*$_+1]}-$f{$yr[2*$_]})/($yr[2*$_+1]-$yr[2*$_]))}(0,1);
-            @r=map{NumberWithUnits("$_ people/yr",{newUnit => $n})}(@r);
             Context("Interval");
             $d=List('[2003,2004],[2019,2020],[2020,2021], [2021,2022]');
             $p=join(' ',(map{"($x[$_],$y[$_])"}(0..21)));
             $s=Interval('[2006,2016]');
-            $t=NumberWithUnits(($y[16]-$y[6])/10,"people/yr",{newUnit => $n});
+            Context("Units")->withUnitsFor('time')->addUnits(person=>{person=>1,aliases=>['people','ppl']});
+            @r=map{Compute("$_ people/yr")}(@r);
+            $tr=($y[16]-$y[6])/10;
+            $t=Compute("$tr people/yr");
           </pg-code>
           <introduction>
             <p>
@@ -2683,25 +2678,25 @@
             <image width="75%">
               <latex-image>
                 \begin{tikzpicture}
-                  \begin{axis}[
-                      xmin=2000,
-                      xmax=2025,
-                      xtick={2000,2005,...,2025},
-                      xlabel={year},
-                      ymin=500000,
-                      ymax=700000,
-                      ytick={500000,550000,...,700000},
-                      ylabel={population},
-                      /pgf/number format/.cd,
-                      use comma,
-                      1000 sep={},
-                      axis y discontinuity=crunch,
-                      width=\orccaprintwidth,
-                      height=0.33\orccaprintwidth,
-                      axis line style={->},
-                    ]
-                    \addplot[soliddot]coordinates{$p};
-                  \end{axis}
+                \begin{axis}[
+                xmin=2000,
+                xmax=2025,
+                xtick={2000,2005,...,2025},
+                xlabel={year},
+                ymin=500000,
+                ymax=700000,
+                ytick={500000,550000,...,700000},
+                ylabel={population},
+                /pgf/number format/.cd,
+                use comma,
+                1000 sep={},
+                axis y discontinuity=crunch,
+                width=\orccaprintwidth,
+                height=0.33\orccaprintwidth,
+                axis line style={->},
+                ]
+                \addplot[soliddot]coordinates{$p};
+                \end{axis}
                 \end{tikzpicture}
               </latex-image>
             </image>
@@ -2723,9 +2718,9 @@
               <p>
                 To find the rate of change between <var name="$yr[0]"/> and <var name="$yr[1]"/>,
                 calculate
-                <me>
+                <md>
                   \frac{<var name="$f{$yr[1]}"/>-<var name="$f{$yr[0]}"/>}{<var name="$yr[1]"/>-<var name="$yr[0]"/>}=<var name="$r[0]"/>
-                </me>.
+                </md>.
               </p>
             </solution>
           </task>
@@ -2743,9 +2738,9 @@
               <p>
                 To find the rate of change between <var name="$yr[2]"/> and <var name="$yr[3]"/>,
                 calculate
-                <me>
+                <md>
                   \frac{<var name="$f{$yr[3]}"/>-<var name="$f{$yr[2]}"/>}{<var name="$yr[3]"/>-<var name="$yr[2]"/>}=<var name="$r[1]"/>
-                </me>.
+                </md>.
               </p>
             </solution>
           </task>
@@ -2793,26 +2788,26 @@
               <image width="75%">
                 <latex-image>
                   \begin{tikzpicture}
-                    \begin{axis}[
-                        xmin=2000,
-                        xmax=2025,
-                        xtick={2000,2005,...,2025},
-                        xlabel={year},
-                        ymin=500000,
-                        ymax=700000,
-                        ytick={500000,550000,...,700000},
-                        ylabel={population},
-                        /pgf/number format/.cd,
-                        use comma,
-                        1000 sep={},
-                        axis y discontinuity=crunch,
-                        width=\orccaprintwidth,
-                        height=0.33\orccaprintwidth,
-                        axis line style={->},
-                      ]
-                      \addplot[soliddot]coordinates{$p};
-                      \addplot[firstcurve,-]coordinates{(2006,541026)(2016,643065)};
-                    \end{axis}
+                  \begin{axis}[
+                  xmin=2000,
+                  xmax=2025,
+                  xtick={2000,2005,...,2025},
+                  xlabel={year},
+                  ymin=500000,
+                  ymax=700000,
+                  ytick={500000,550000,...,700000},
+                  ylabel={population},
+                  /pgf/number format/.cd,
+                  use comma,
+                  1000 sep={},
+                  axis y discontinuity=crunch,
+                  width=\orccaprintwidth,
+                  height=0.33\orccaprintwidth,
+                  axis line style={->},
+                  ]
+                  \addplot[soliddot]coordinates{$p};
+                  \addplot[firstcurve,-]coordinates{(2006,541026)(2016,643065)};
+                  \end{axis}
                   \end{tikzpicture}
                 </latex-image>
               </image>
@@ -2833,9 +2828,9 @@
             <solution>
               <p>
                 Between 2006 and 2016:
-                <me>
-                  \frac{<var name="$y[16]"/> - <var name="$y[6]"/>}{2016 - 2006} = <var name="$t"/>
-                </me>
+                <md>
+                  \frac{<var name="$y[16]"/>-<var name="$y[6]"/>}{2016-2006}=<var name="$t"/>
+                </md>
               </p>
             </solution>
           </task>
@@ -2979,9 +2974,9 @@
               <p>
                 To find the rate of change between hours <var name="$hr[0]"/> and
                 <var name="$hr[1]"/>, calculate
-                <me>
+                <md>
                   \frac{<var name="$f{$hr[1]}"/>-<var name="$f{$hr[0]}"/>}{<var name="$hr[1]"/>-<var name="$hr[0]"/>}=<var name="$r[0]"/>
-                </me>.
+                </md>.
               </p>
             </solution>
           </task>
@@ -2999,9 +2994,9 @@
               <p>
                 To find the rate of change between hours <var name="$hr[2]"/> and
                 <var name="$hr[3]"/>, calculate
-                <me>
+                <md>
                   \frac{<var name="$f{$hr[3]}"/>-<var name="$f{$hr[2]}"/>}{<var name="$hr[3]"/>-<var name="$hr[2]"/>}=<var name="$r[1]"/>
-                </me>.
+                </md>.
               </p>
             </solution>
           </task>
@@ -3051,9 +3046,9 @@
             <solution>
               <p>
                 Between hour 21 and 22:
-                <me>
+                <md>
                   \frac{<var name="$y[22]"/> - <var name="$y[21]"/>}{22 - 21} = <var name="$t"/>
-                </me>
+                </md>
               </p>
             </solution>
           </task>
