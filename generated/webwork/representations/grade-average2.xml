@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-grade-average2" assembly-id="grade-average2">
+  <static seed="863">
+    <statement><p>In one college math course, the final grade (out of <m>100</m> points) is calculated by adding one-third of the homework average, one-sixth of the class project score, one-fourth of the midterm score, and one-fourth of the final exam score.</p>
+<p>Kaeden has 62 for his homework average, 91 for his class project score, and 70 for his midterm score. His goal is to finish the course with a final grade of 80. What must he score on the final exam?</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>106.667</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_3_5_42.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.42)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+$p = randomPerson();
+do {
+  $homework = random(60,90);
+  $project = random(80,100);
+  $midterm = random(70,90);
+  $goal = list_random(70,80,90);
+  $sol = 4*($goal - ($homework/3 + $project/6 + $midterm/4));
+} until ($goal > 0 && $goal < 100);
+
+######
+# Body
+######
+
+BEGIN_PGML
+In one college math course, the final grade (out of [`100`] points) is calculated by adding one-third of the homework average, one-sixth of the class project score, one-fourth of the midterm score, and one-fourth of the final exam score.
+
+[$p] has [$homework] for [$p->their] homework average, [$project] for [$p->their] class project score, and [$midterm] for [$p->their] midterm score. [$p->Their] goal is to finish the course with a final grade of [$goal]. What must [$p->they] score on the final exam?
+
+[_]{$sol}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

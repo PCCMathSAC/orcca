@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "contextForm.pl",
   "contextFraction.pl",
   "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction-NoDecimals");
 ($m,$b) = random_subset(2,2..12);
 $c = Fraction(random_coprime([1..12],[2..12]));
@@ -67,13 +61,20 @@ Context()->flags->set(reduceConstants=>0);
 $sb = Compute("{ x | x $cmp{$texcmp}{sign} $sol}");
 $lcd = ($c->value)[1];
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the given inequality. Practice clearing the denominator(s) as a first step.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left] [$texcmp] [$right]`]
 
 [@KeyboardInstructions('What LCD will you use?')@]**
@@ -88,11 +89,10 @@ Solve the given inequality. Practice clearing the denominator(s) as a first step
 
 [_]{$in}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

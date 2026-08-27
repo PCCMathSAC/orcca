@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-which-quadrant-copy" assembly-id="which-quadrant-copy">
+  <static seed="1032">
+    <task>
+      <statement><p><m>{\left(3,4\right)}</m> <fillin name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\text{I}</m>
+        </p>
+      </answer>
+      <solution><p>The <m>x</m>-coordinate is positive and the <m>y</m>-coordinate is positive, so the point is in the upper right quadrant, which is Quadrant I.</p>
+</solution>
+    </task>
+    <task>
+      <statement><p><m>{\left(-3,-4\right)}</m> <fillin name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\text{III}</m>
+        </p>
+      </answer>
+      <solution><p>The <m>x</m>-coordinate is negative and the <m>y</m>-coordinate is negative, so the point is in the lower left quadrant, which is Quadrant III.</p>
+</solution>
+    </task>
+    <task>
+      <statement><p><m>{\left(3,-4\right)}</m> <fillin name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\text{IV}</m>
+        </p>
+      </answer>
+      <solution><p>The <m>x</m>-coordinate is positive and the <m>y</m>-coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.</p>
+</solution>
+    </task>
+    <task>
+      <statement><p><m>{\left(4,-3\right)}</m> <fillin name="AnSwEr0004"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\text{IV}</m>
+        </p>
+      </answer>
+      <solution><p>The <m>x</m>-coordinate is positive and the <m>y</m>-coordinate is negative, so the point is in the lower right quadrant, which is Quadrant IV.</p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_1_17.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="which-quadrant"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+@x = random_subset(2,1..9);
+@p = (Point(@x), -Point(@x), Point($x[0], -$x[1]), Point($x[1], -$x[0]));
+@p = random_subset(4, @p);
+for (0..3) {
+  $ans[$_] = 'I'   if (($p[$_]->value)[0] > 0 && ($p[$_]->value)[1] > 0);
+  $ans[$_] = 'II'  if (($p[$_]->value)[0] < 0 && ($p[$_]->value)[1] > 0);
+  $ans[$_] = 'III' if (($p[$_]->value)[0] < 0 && ($p[$_]->value)[1] < 0);
+  $ans[$_] = 'IV'  if (($p[$_]->value)[0] > 0 && ($p[$_]->value)[1] < 0);
+  $d[$_] = DropDown(['I','II','III','IV'], $ans[$_], showInStatic => 0);
+  $xposneg[$_] = (($p[$_]->value)[0] > 0) ? 'positive' : 'negative';
+  $yposneg[$_] = (($p[$_]->value)[1] > 0) ? 'positive' : 'negative';
+}
+%qwords = (
+  I => 'upper right',
+  II => 'upper left',
+  III => 'lower left',
+  IV => 'lower right',
+);
+@ul = map {$qwords{$_}} @ans;
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Which quadrant is the point in?
+
+END_PGML
+
+######
+# Body
+######
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`[$p[0]]`] [_]{$d[0]}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The [`x`]-coordinate is [$xposneg[0]] and the [`y`]-coordinate is [$yposneg[0]], so the point is in the [$ul[0]] quadrant, which is Quadrant [$ans[0]].
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`[$p[1]]`] [_]{$d[1]}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The [`x`]-coordinate is [$xposneg[1]] and the [`y`]-coordinate is [$yposneg[1]], so the point is in the [$ul[1]] quadrant, which is Quadrant [$ans[1]].
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`[$p[2]]`] [_]{$d[2]}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The [`x`]-coordinate is [$xposneg[2]] and the [`y`]-coordinate is [$yposneg[2]], so the point is in the [$ul[2]] quadrant, which is Quadrant [$ans[2]].
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`[$p[3]]`] [_]{$d[3]}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The [`x`]-coordinate is [$xposneg[3]] and the [`y`]-coordinate is [$yposneg[3]], so the point is in the [$ul[3]] quadrant, which is Quadrant [$ans[3]].
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

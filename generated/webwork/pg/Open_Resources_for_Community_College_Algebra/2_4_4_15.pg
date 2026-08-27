@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,36 +20,33 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserOneOf.pl",
-  "contextForm.pl",
   "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 do {
   ($m, $n, $q) = random_subset(3,-5..-2,2..5);
   $p = $m*$n + $q;
   ($c, $d) = random_subset(2,1..9);
   $b = -$d - $m*$c + list_random(-3..3,(0)x5);
 } until ($p != 0 && $d != 0);
-$x = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+$x = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context()->variables->are($x => 'Real');
 Context()->noreduce('(-x)+y', '(-x)-y');
 $left = Formula("$b + $m($c + $n $x)")->reduce;
@@ -62,22 +56,28 @@ $solution = ($b == -$d - $m*$c)
   ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
   : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the equation for its variable.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left]=[$right]`]
 
 [_]{$solution}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

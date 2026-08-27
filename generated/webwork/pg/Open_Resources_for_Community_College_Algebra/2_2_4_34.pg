@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,33 +20,30 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
   "parserNumberWithUnits.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "randomPerson.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $p = randomPerson();
 $b = random(12,20);
 $m = random(0.04, 0.05, 0.002);
@@ -74,24 +68,25 @@ $solright[1] = Formula("1 - $b")->reduce;
 $solleft[2] = Formula("(-$m x)/(-$m)");
 $solright[2] = Formula("($solright[1])/(-$m)");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 [$p] is driving on the highway, and presently has [$start] of gasoline in [$p->their] tank. [$p->Their] car, _under ideal conditions_, uses gas at a rate of [$rate]. When the tank reaches only one gallon of gas, the low gas light will turn on and [$p] will start looking for a gas station. How far will [$p->they] drive before this happens?
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -99,12 +94,11 @@ Write an inequality to represent this situation, using [`x`] to represent how ma
 
 [_]{$relation}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 This is a rate exercise, and we can use
@@ -119,16 +113,14 @@ The question mark in the above is not an equal sign, because we are trying to se
                   [$relation]
                 ```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -136,15 +128,13 @@ Solve this inequality. At most how far will [$p] drive before the low gas light 
 
 [_]{$distance}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
-
 
 [```
 \begin{gathered}
@@ -157,14 +147,14 @@ x \leq [$sol]
 
 So [$p] can drive at most [`[$sol]`] miles.
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -172,16 +162,14 @@ Use interval notation to express the number of miles [$p] might drive before the
 
 [_]{$interval}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 [$p] can drive at most [`[$sol]`] miles, so the right end of the interval notation for this interval will be [`[$sol]\text{,}`] with a bracket. We know [$p] has more than 1 gallon of gas when this all started, so [$p->they] can drive at least some positive number of miles. So the interval notation, accounting for the context of this exercise, is [`[$interval]\text{.}`]
-
 
 END_PGML_SOLUTION
 
@@ -189,8 +177,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

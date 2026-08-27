@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -41,16 +39,11 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context()->variables->are($var => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 $sol = non_zero_random(-6, 6);
@@ -128,6 +121,7 @@ if ($oppsign eq '\lt' || $oppsign eq '\leq') {
 } else {
   $sol[3] = 12;
 }
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -139,13 +133,20 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the inequality. Graph the solution set, and write the solution set using both interval notation and set-builder notation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left][$sign][$right]`]
 
 [_]{$gt}{1}
@@ -158,15 +159,13 @@ Solve the inequality. Graph the solution set, and write the solution set using b
 
 [_]{$setbuilder}{12}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
-
 
 [```
 \begin{gathered}
@@ -185,11 +184,10 @@ We can graph this by shading all numbers [$words] [`[$sol]\text{.}`] Since the s
 
 We read the graph from left to right to tell us the interval notation for the solution set: [`[$interval]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

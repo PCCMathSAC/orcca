@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,36 +20,33 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 ($x, $y) = (-7..-1, 1..7)[NchooseK(14,2)];
 do {
-  @A = (-5..-2, 2..5)[NchooseK(10,2)];
+  @A = (-5..-2, 2..5)[NchooseK(8,2)];
   @B = (-5..-1, 1..5)[NchooseK(10,2)];
   $B[1] = 1;
 } until ($A[0]*$B[1] != $A[1]*$B[0]);
@@ -101,14 +95,21 @@ $answer = $solution->cmp(
   mathQuillOpts => 'disabled'
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the system of equations using substitution.
 
-[`\newcommand{\amp}{&}\left\{
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
                   \begin{alignedat}{4}
                   \amp [$f[0]] \\
                   \amp [$f[1]]
@@ -120,11 +121,10 @@ Solve the system of equations using substitution.
 
 [_]{$answer}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

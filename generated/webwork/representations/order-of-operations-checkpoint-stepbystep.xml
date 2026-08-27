@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-order-of-operations-checkpoint-stepbystep" assembly-id="order-of-operations-checkpoint-stepbystep">
+  <static seed="2026">
+    <introduction><p>Simplify this expression one step at a time, using the order of operations.</p>
+</introduction>
+    <task>
+      <statement><p><m>5-3(7-4)^2={}</m><fillin characters="15" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>5-3\cdot 3^{2}</m>
+        </p>
+      </answer>
+      <solution><p><md>\begin{aligned}
+5-3(\nextoperation{7-4})^2\amp=5-3\nextoperation{(3)^2}
+\end{aligned}</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p><m>\phantom{5-3(7-4)^2}={}</m><fillin characters="15" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>5-3\cdot 9</m>
+        </p>
+      </answer>
+      <solution><p><md>\begin{aligned}
+\amp=5-\nextoperation{3(9)}
+\end{aligned}</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p><m>\phantom{5-3(7-4)^2}={}</m><fillin characters="15" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>5-27</m>
+        </p>
+      </answer>
+      <solution><p><md>\begin{aligned}
+\amp=5-27
+\end{aligned}</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p><m>\phantom{5-3(7-4)^2}={}</m><fillin characters="15" name="AnSwEr0004"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>-22</m>
+        </p>
+      </answer>
+      <solution><p><md>\begin{aligned}
+\amp=-22
+\end{aligned}</md></p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/A_5_8-Practice_with_order_of_operations.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.5.8)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "bizarroArithmetic.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+Context()->operators->set(
+  '+' => {class => 'bizarro::BOP::add', isCommand => 1},
+  '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
+  '*' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+  ' *' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+  '* ' => {class => 'bizarro::BOP::multiply', isCommand => 1},
+  '/' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  ' /' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  '/ ' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  '//' => {class => 'bizarro::BOP::divide', isCommand => 1},
+  '**' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+  '^' => {class => 'bizarro::BOP::power', isCommand => 1, perl=>undef},
+);
+Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+$step[0]=Formula("5-3(3)^2");
+$step[1]=Formula("5-3(9)");
+$step[2]=Formula("5-27");
+$msg = "Just apply one step at a time from the order of operations";
+$ev[0]=$step[0]->cmp(checker=>sub{
+  my ( $correct, $student, $ansHash ) = @_;
+  return 0 if $ansHash->{isPreview} || $correct != $student;
+  $student = $ansHash->{student_formula};
+  $correct = $correct->{original_formula} if defined $correct->{original_formula};
+  $student = Formula("$student"); $correct = Formula("$correct");
+  return 0 unless ($correct == $student);
+  Context()->flags->set(bizarroSub=>1,bizarroPow=>1);
+  delete $correct->{test_values}, $student->{test_values};
+  my $OK = (($correct == $student) or ($student == $correct));
+  Context()->flags->set(bizarroSub=>0,bizarroPow=>0);
+  Value::Error("$msg") unless $OK;
+  return $OK;
+});
+$ev[1]=$step[1]->cmp(checker=>sub{
+  my ( $correct, $student, $ansHash ) = @_;
+  return 0 if $ansHash->{isPreview} || $correct != $student;
+  $student = $ansHash->{student_formula};
+  $correct = $correct->{original_formula} if defined $correct->{original_formula};
+  $student = Formula("$student"); $correct = Formula("$correct");
+  return 0 unless ($correct == $student);
+  Context()->flags->set(bizarroMul=>1,bizarroPow=>1);
+  delete $correct->{test_values}, $student->{test_values};
+  my $OK = (($correct == $student) or ($student == $correct));
+  Context()->flags->set(bizarroMul=>0,bizarroPow=>0);
+  Value::Error("$msg") unless $OK;
+  return $OK;
+});
+$ev[2]=$step[2]->cmp(checker=>sub{
+  my ( $correct, $student, $ansHash ) = @_;
+  return 0 if $ansHash->{isPreview} || $correct != $student;
+  $student = $ansHash->{student_formula};
+  $correct = $correct->{original_formula} if defined $correct->{original_formula};
+  $student = Formula("$student"); $correct = Formula("$correct");
+  return 0 unless ($correct == $student);
+  Context()->flags->set(bizarroMul=>1,bizarroSub=>1);
+  delete $correct->{test_values}, $student->{test_values};
+  my $OK = (($correct == $student) or ($student == $correct));
+  Context()->flags->set(bizarroMul=>0,bizarroSub=>0);
+  Value::Error("$msg") unless $OK;
+    return $OK;
+});
+Context("LimitedNumeric");
+$step[3]=Formula("-22");
+
+######
+# Body
+######
+
+BEGIN_PGML
+Simplify this expression one step at a time, using the order of operations.
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`5-3(7-4)^2={}`][_]{$ev[0]}{15}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+5-3(\nextoperation{7-4})^2\amp=5-3\nextoperation{(3)^2}
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`\phantom{5-3(7-4)^2}={}`][_]{$ev[1]}{15}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+\amp=5-\nextoperation{3(9)}
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`\phantom{5-3(7-4)^2}={}`][_]{$ev[2]}{15}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+\amp=5-27
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+[`\phantom{5-3(7-4)^2}={}`][_]{$step[3]}{15}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+\amp=-22
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

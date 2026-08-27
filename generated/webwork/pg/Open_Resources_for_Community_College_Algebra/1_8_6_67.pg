@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "parserNumberWithUnits.pl",
   "parserLinearRelation.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $name = randomPerson();
 $final = random(0.4, 0.8, 0.1);
 $end = NumberWithUnits("$final L");
@@ -57,24 +51,30 @@ $start = NumberWithUnits("$initial L");
 Context("LinearRelation")->variables->are(t => 'Real');
 $inequality = LinearRelation("$initial - $rate t >= $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an inequality to model the scenario. There is no need to solve the inequality.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [$name]'s maximum lung capacity is [`[$start]\text{.}`] If [$name->possessive] lungs are full and [$name->subject] [$name->verb('exhale')] at a rate of [`[$speed]\text{,}`] write an inequality where the solution set is the possible times when [$name->subject] still [$name->have] at least [`[$end]`] of air left in [$name->possessive] lungs. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|t|]* as the variable.')@]**
 
 [_]{$inequality}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

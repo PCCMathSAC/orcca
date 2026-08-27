@@ -1,0 +1,132 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Give a function's graph, find its domain and range.
+# Function is a rational function.
+#
+# Last update: Carl Yao 08/13/15
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Function')
+## DBsection('Domain and Range')
+## KEYWORDS('function','domain','rational','graph')
+## DBCCSS('8.F','F-IF')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PCCgraphMacros.pl",
+  "PGasu.pl",
+  "PCCmacros.pl",
+  "contextInequalities.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+TEXT(beginproblem());
+
+Context("Numeric");
+Context()->noreduce('(-x)-y','(-x)+y');
+
+
+$a = 6;
+$exclude1 = random(-6,-1,1);
+$exclude2 = random(1,6,1);;
+$func = Compute("($a)/((x-$exclude1)*(x-$exclude2))")->reduce;
+
+$xLimit1 = -10;
+$xLimit2 = 10;
+$yLimit1 = -10;
+$yLimit2 = 10;
+
+($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters([$xLimit1,$xLimit2],[min($yLimit1,$yLimit2),max($yLimit1,$yLimit2)]);
+
+@exc = num_sort(
+	($exclude1+$exclude2+sqrt(($exclude1+$exclude2)**2 - 4*($exclude1*$exclude2 - $a/$min[1])))/2,
+	($exclude1+$exclude2-sqrt(($exclude1+$exclude2)**2 - 4*($exclude1*$exclude2 - $a/$min[1])))/2,
+	($exclude1+$exclude2+sqrt(($exclude1+$exclude2)**2 - 4*($exclude1*$exclude2 - $a/$max[1])))/2,
+	($exclude1+$exclude2-sqrt(($exclude1+$exclude2)**2 - 4*($exclude1*$exclude2 - $a/$max[1])))/2,
+);
+
+@exclude1 = (@exc)[0,1];
+@exclude2 = (@exc)[2,3];
+
+
+@xticks = @$xticks_ref;
+@yticks = @$yticks_ref;
+
+$gr = createTikZImage();
+$gr->addToPreamble(latexImagePreamble());
+$gr->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $min[0],
+    xmax = $max[0],
+    ymin = $min[1],
+    ymax = $max[1],
+    xtick =,
+    ytick =,
+    minor xtick = {$min[0],...,$max[0]},
+    minor ytick =,
+  ]
+  \addplot[firstcurve,domain=$min[0]:$exclude1[0],samples=50] {$a/(x - $exclude1)/(x - $exclude2)};
+  \addplot[firstcurve,domain=$exclude1[1]:$exclude2[0],samples=50] {$a/(x - $exclude1)/(x - $exclude2)};
+  \addplot[firstcurve,domain=$exclude2[1]:$max[0],samples=50] {$a/(x - $exclude1)/(x - $exclude2)};
+  \addplot[asymptote] coordinates {($exclude1,$min[1]) ($exclude1,$max[1])};
+  \addplot[asymptote] coordinates {($exclude2,$min[1]) ($exclude2,$max[1])};
+\end{axis}
+END_TIKZ
+
+
+$ALT = "graph of a function, with two asymptotes at x=$exclude1 and x=$exclude2";
+
+
+Context("Inequalities");
+$ans = Compute("(-inf,$exclude1)U($exclude1,$exclude2)U($exclude2,inf)");
+
+
+##############################################
+
+BEGIN_PGML
+
+A function is graphed.
+
+[@EnlargeImageStatementPGML()@]**
+
+
+>>[@image($gr, width=>300, height=>yScreen(), tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT' title = '$ALT'") @]*<<
+
+What is its domain?
+
+[___________]{$ans}
+
+
+[@KeyboardInstructions('You may use interval notation. If the answer is a union of intervals, use [|U|]* for the union symbol. If you need to enter [`\infty`], type [|inf|]*. You may also use an inequality to express the domain, as in [`x\neq1\text{ and }x\neq2`]. To type the [`\neq`] symbol, use [|!=|]*.')@]**
+
+END_PGML
+
+##############################################
+
+BEGIN_PGML_SOLUTION
+
+We can see two asymptotes at [`x=[$exclude1]`] and [`x=[$exclude2]`], so the domain of this function is [`[$ans]`].
+
+END_PGML_SOLUTION
+
+
+ENDDOCUMENT();

@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-use-additive-associativity-one-var-copy2" assembly-id="use-additive-associativity-one-var-copy2">
+  <static seed="615">
+    <statement><p>Apply associativity to <m>{e+\left({\frac{3}{5}}+e^{2}\right)}\text{.}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left(e+{\frac{3}{5}}\right)+e^{2}</m>
+      </p>
+    </answer>
+    <solution><p>The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us <m>{\left(e+{\frac{3}{5}}\right)+e^{2}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_7_6_15.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="use-additive-associativity-one-var"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.25)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$var = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
+Context("Fraction")->variables->are($var => 'Real');
+Context()->flags->set(reduceConstants => 0, showExtraParens => 0);
+Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+Context()->parens->set("(" => {removable => 0,type => "AbsoluteValue",close => ")"});
+$c = Fraction(random_coprime([1..10],[2..10]));
+@terms = ($var, "$var^2", $c)[NchooseK(3, 3)];
+$given = Compute("$terms[0] + ($terms[1] + $terms[2])")->reduce;
+$ambig = Compute("$terms[0] + $terms[1] + $terms[2]")->reduce;
+$ans = Compute("($terms[0] + $terms[1]) + $terms[2]")->reduce;
+$evaluator = $ans->cmp(checker=>sub{
+  my ($correct, $student, $ans) = @_;
+  $student = Formula("$student")->reduce;
+  for $x ($given, $ambig, $student, $correct) {
+    $x->{test_at} = [[-$c - 0.5], [-$c + 0.5], [-$c**2 - 0.5], [-$c**2 + 0.5], [-$c - sqrt($c)], [-$c + sqrt($c)], [-$c**2 - sqrt($c)], [-$c**2 + sqrt($c)]];
+  }
+  Value->Error("This expression is what was originally given") if ($student eq $given);
+  Value->Error("This expression is technically correct, but please try again with explicit parentheses") if ($student == $ambig && $student eq $ambig);
+  Value->Error("This expression is algebraically equivalent to the given expression, but using associativity would give you something else") if (($student == $given) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+
+######
+# Body
+######
+
+BEGIN_PGML
+Apply associativity to [`[$given]\text{.}`]
+
+[_]{$evaluator}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us [`[$ans]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

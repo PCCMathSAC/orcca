@@ -1,0 +1,98 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Find square root of 4/9, 9/4 and -4/9.
+#
+# Last edited: Carl Yao 12/17/13
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Exponents and Radicals')
+## KEYWORDS('radical','square root','square number','fraction')
+## DBCCSS('8.EE')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Carl Yao')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "contextFraction.pl",
+  "contextForm.pl",
+  "PCCmacros.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+TEXT(beginproblem());
+
+Context("LimitedFraction");
+Context()->flags->set(requirePureFractions=>1);
+Context()->flags->set(showMixedNumbers=>0);
+
+@squareNums = (1,4,9,16,25,36,49,64,81,100,121,144);
+
+$num1=splice(@squareNums,random(0,$#squareNums,1),1);
+do {$index = random(0,$#squareNums,1);} until ((gcd($squareNums[$index],$num1)==1) && ($squareNums[$index]!=1));
+$num2=splice(@squareNums,$index,1);
+
+$num5=splice(@squareNums,random(0,$#squareNums,1),1);
+do {$index = random(0,$#squareNums,1);} until ((gcd($squareNums[$index],$num5)==1) && ($squareNums[$index]!=1));
+$num6=splice(@squareNums,$index,1);
+
+$frac1 = Fraction($num1,$num2);
+$ans1 = sqrt($frac1);
+$frac3 = -Fraction($num5,$num6);
+Context("Form");
+$ans3 = Compute("Not a real number");
+
+##############################################
+
+BEGIN_PGML
+[@ PTX_exercisegroup_introduction('Evaluate the expression without using a calculator.') @]
+
+[@KeyboardInstructions("Don't use mixed numbers. When needed, use improper fractions, like ".'[` \frac{3}{2} `]'.". If a square root does not exist, enter [|not a real number|]*.")@]**
+END_PGML
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt{[$frac1]} ``]
+
+[_]{$ans1}{16}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+For finding the square root of a fraction, we may find the square roots of the numerator and denominator separately.
+Just knowing the first few square numbers, [`\sqrt{[$frac1]} = [$ans1]`].
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt{[$frac3]} ``]
+
+[_]{$ans3}{16}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+The square root of a negative number is not a real number.
+END_PGML_SOLUTION
+Section::End();
+
+Scaffold::End();
+
+ENDDOCUMENT();

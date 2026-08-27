@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-convert-table-to-quadratic-equation-2-copy" assembly-id="convert-table-to-quadratic-equation-2-copy">
+  <static seed="1480">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>0.1</m></cell>
+<cell><m>{0.01}</m></cell>
+</row>
+<row>
+<cell><m>0.5</m></cell>
+<cell><m>{0.25}</m></cell>
+</row>
+<row>
+<cell><m>0.6</m></cell>
+<cell><m>{0.36}</m></cell>
+</row>
+<row>
+<cell><m>0.7</m></cell>
+<cell><m>{0.49}</m></cell>
+</row>
+<row>
+<cell><m>0.8</m></cell>
+<cell><m>{0.64}</m></cell>
+</row>
+</tabular>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>y = x^{2}</m>
+      </p>
+    </answer>
+    <solution><p>Each <m>y</m>-value is the square of the corresponding <m>x</m>-value. So the equation is <m>{y = x^{2}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_3_5_10.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="convert-table-to-quadratic-equation-2"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.15)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@x = num_sort(random_subset(5, 1..9));
+@x = map {$_/10} (@x);
+$f = Formula("x^2");
+@y = map{$f->eval(x => $_)} (@x);
+Context("Numeric")->variables->add(y => 'Real');
+parser::Assignment->Allow;
+$eq=Formula("y = $f");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+    [
+     PGML('[`[$x[4]]`]'),
+     PGML('[`[$y[4]]`]'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
+
+[_]{$eq}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Each [`y`]-value is the square of the corresponding [`x`]-value. So the equation is [`[$eq]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

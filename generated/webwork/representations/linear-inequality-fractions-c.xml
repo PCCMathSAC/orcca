@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-linear-inequality-fractions-c" assembly-id="linear-inequality-fractions-c">
+  <static seed="849">
+    <statement><p><m>{2x+12} \lt {{\frac{9}{4}}}</m></p>
+<p><fillin characters="4" name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>4</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{x \mid x &lt; \frac{-39}{8}\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(-\infty ,-{\frac{39}{8}}\right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_3_5_28.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.28)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction-NoDecimals");
+($m,$b) = random_subset(2,2..12);
+$c = Fraction(random_coprime([1..12],[2..12]));
+$left = Formula("$m x + $b");
+$right = Formula("$c");
+$sol = ($c - $b)/$m;
+%cmp = (
+  '\gt'  => {interval => ($m > 0) ? "($sol,inf)"  : "(-inf,$sol)", sign => ($m > 0) ? '>'     : '<' },
+  '\lt'  => {interval => ($m > 0) ? "(-inf,$sol)" : "($sol,inf)",  sign => ($m > 0) ? '<'  : '>'    },
+  '\geq' => {interval => ($m > 0) ? "[$sol,inf)"  : "(-inf,$sol]", sign => ($m > 0) ? '>='    : '<='},
+  '\leq' => {interval => ($m > 0) ? "(-inf,$sol]" : "[$sol,inf)",  sign => ($m > 0) ? '<=' : '>='   },
+);
+$texcmp = list_random(lex_sort(keys %cmp));
+$in = Interval($cmp{$texcmp}{interval});
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->flags->set(reduceConstants=>0);
+$sb = Compute("{ x | x $cmp{$texcmp}{sign} $sol}");
+$lcd = ($c->value)[1];
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the given inequality. Practice clearing the denominator(s) as a first step.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left] [$texcmp] [$right]`]
+
+[@KeyboardInstructions('What LCD will you use?')@]**
+
+[_]{$lcd}{4}
+
+[@KeyboardInstructions('Write the solution set using set-builder notation.')@]**
+
+[_]{$sb}{16}
+
+[@KeyboardInstructions('Write the solution set using interval notation.')@]**
+
+[_]{$in}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

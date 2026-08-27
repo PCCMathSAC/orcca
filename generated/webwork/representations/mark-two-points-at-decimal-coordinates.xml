@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-mark-two-points-at-decimal-coordinates" assembly-id="mark-two-points-at-decimal-coordinates">
+  <static seed="1021">
+    <statement><p><m>{\left(-4.75,0.5\right)}, {\left(-2.75,-2.5\right)}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{point}, \left(-4.75,0.5\right)\right\}, \left\{\text{point}, \left(-2.75,-2.5\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_1_7.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.7)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+@xy = random_subset(4, -5..-1,1..5);
+@x = map {$_ + list_random(-3..-1,1..3)/4} ((@xy)[0,1]);
+@y = map {$_ + list_random(-3..-1,1..3)/4} ((@xy)[2,3]);
+@p = map {Point($x[$_], $y[$_])} (0,1);
+$gt = GraphTool("{point,$p[0]}", "{point,$p[1]}")->with(
+  availableTools => ['PointTool'],
+  bBox => [-6,6,6,-6],
+  snapSizeX => 1/4,
+  snapSizeY => 1/4,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Make a Cartesian plot with the indicated points marked.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$p[0]], [$p[1]]`]
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

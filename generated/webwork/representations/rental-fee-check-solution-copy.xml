@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-rental-fee-check-solution-copy" assembly-id="rental-fee-check-solution-copy">
+  <static seed="668">
+    <statement><p>The rental fee for a beach house is <m>{\$400}</m> plus <m>{\$190}</m> per night. If you stay <m>n</m> nights, the total is <m>{400+190n}\text{.}</m> You stayed and the total was <m>{\$1{,}350}\text{,}</m> giving the equation <m>{400+190n}={1350}\text{.}</m> Did you stay <m>4</m> nights?</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>400+190n</m></cell>
+<cell><m>=</m></cell>
+<cell><m>1350</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{=}</m></cell>
+<cell><m>1350</m></cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>1160</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{No, it is not a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_68.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="rental-fee-check-solution"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.47)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$b = random(250, 400, 10);
+$r = random(100, 200, 5);
+$n = random(4, 8);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$base = Currency($b);
+$rate = Currency($r);
+$total = Currency($b + $r*$n);
+Context()->variables->are(n => 'Real');
+$proposed_solution = (random(0,1)) ? $n : $n + non_zero_random(-1, 3);
+$left = Formula("$b + $r n");
+$right = Formula($total->value);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(n => $proposed_solution));
+$righteval = Real($right->eval(n => $proposed_solution));
+$dropdown = DropDown(
+  ["Yes, it is a solution.", "No, it is not a solution."],
+  ($lefteval == $righteval) ? 0 : 1, showInStatic => 0
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+The rental fee for a beach house is [`[$base]`] plus [`[$rate]`] per night. If you stay [`n`] nights, the total is [`[$left]\text{.}`] You stayed and the total was [`[$total]\text{,}`] giving the equation [`[$left]=[$right]\text{.}`] Did you stay [`[$proposed_solution]`] nights?
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

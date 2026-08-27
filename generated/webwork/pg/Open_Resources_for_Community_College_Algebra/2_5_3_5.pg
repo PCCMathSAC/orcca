@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,33 +20,30 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
   "parserAssignment.pl",
+  "contextFiniteSolutionSets.pl",
   "contextForm.pl",
   "contextFraction.pl",
-  "contextFiniteSolutionSets.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-@x = random_subset(3, ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z'));
+@x = random_subset(3, ('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z'));
 @a = random_subset(2, 2..9);
 Context("Fraction")->variables->are($x[0] => 'Real');
 $left[0] = Formula("$a[0] $x[0]")->reduce;
@@ -64,24 +58,29 @@ Context("Numeric")->variables->are(map {$_ => 'Real'} (@x));
 parser::Assignment->Allow;
 $ans[1] = Assignment("$x[0] = $x[2]/$x[1]");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the equation for the indicated variable.
 
-
 END_PGML
 
-############################################################
+######
+# Body
+######
+
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -89,14 +88,14 @@ BEGIN_PGML
 
 [_]{$ans[0]}{16}
 
-
 END_PGML
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -104,15 +103,14 @@ BEGIN_PGML
 
 [_]{$ans[1]}{16}
 
-
 END_PGML
 
 Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

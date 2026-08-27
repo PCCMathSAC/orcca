@@ -1,0 +1,104 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Given circumference, find the radius and diameter of a circle. 
+# Circumference in given as a whole number; answers are decimals.
+#
+# Last edited by Jordan 8/29/13; Carl Yao on 7/17/13
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Problem Solving with Equations')
+## KEYWORDS('circumference','circle')
+## DBCCSS('7.EE.4','7.G.4')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "parserNumberWithUnits.pl",
+  "parserFormulaWithUnits.pl",
+  "answerHints.pl",
+  "PCCmacros.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+
+Context("Numeric");
+# An earlier version of this problem required rounding to hundredths place.
+# Bad, because when some students use 3.14 instead of something closer to pi,
+# they could be marked incorrect. Using relative tolerance in the usual way
+# means it is OK to use 3.14 in place of pi. If students are now not showing
+# enough digits and being marked incorrect, that should be handled globally,
+# not in the problem code. For exampl, more studnet education about rounding
+# explectations, or a tooltip that always reminds students of the roudning 
+# convention.
+
+$circum = random(30,50,1);
+$diameter = $circum/pi;
+$radius = $diameter/2;
+
+$circumU = NumberWithUnits("$circum cm");
+$radiusU = NumberWithUnits("$radius cm");
+$diameterU = NumberWithUnits("$diameter cm");
+
+##############################################
+
+TEXT(beginproblem());
+
+BEGIN_PGML
+
+A circle's circumference is [`[$circumU]`]. 
+
+a. What is this circle's diameter?  
+   [_]{$diameterU}{15}
+
+a. What is this circle's radius?  
+   [_]{$radiusU}{15}
+
+
+END_PGML
+
+##############################################
+
+BEGIN_PGML_SOLUTION
+
+We use [`r`] to represent radius, and [`d`] to represent diameter.
+
+A circle's circumference formula is [` C= \pi d `] or [` C= 2 \pi r `].
+
+When you enter [`\pi`]'s value in a calculator, don't round it to [`3.14`]. Use the [`\pi`] button on your calculator instead. This way, your result is more accurate.
+
+a.  To find the diameter, we substitute the given numbers into the first formula for circumference:
+
+    [```
+\begin{aligned}
+      C & = \pi d \\
+    [$circum] & = \pi d \\
+    \frac{[$circum]}{\pi} &= \frac{\pi d}{\pi} \\
+    \frac{[$circum]}{3.1415926 \ldots} &= d \\
+    [$diameter] & \approx d
+\end{aligned}
+    ```]
+
+    This circle's diameter is approximately [`[$diameterU]`]. Don't forget the length unit [`\textrm{cm}`].
+
+a.  Once we find the diameter, the radius is simply half of it: [`[$radiusU]`].
+
+END_PGML_SOLUTION
+
+ENDDOCUMENT();

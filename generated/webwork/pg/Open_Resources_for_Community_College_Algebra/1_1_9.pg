@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-07-26T13:44:38-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,77 +20,149 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "parserGraphTool.pl",
+  "niceTables.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
+@x = (0..3);
+$f = Formula("-1 + 3x");
+@y = map{$f->eval(x => $_)} (@x);
+Context("Numeric")->variables->add(y => 'Real');
+parser::Assignment->Allow;
+$eq=Formula("y = $f")->reduce;
+@t = map{$_*3} (@x);
 
-############################################################
-# PG Setup Code
-############################################################
-Context('Numeric');
-@xy = random_subset(4, 100..200);
-@x = ((@xy)[0,1]);
-@y = ((@xy)[2,3]);
-@p = map {Point($x[$_], $y[$_])} (0,1);
-$gt = GraphTool("{point,$p[0]}", "{point,$p[1]}")->with(
-  availableTools => ['PointTool'],
-  bBox => [-30,220,220,-30],
-  gridX => 10,
-  gridY => 10,
-  ticksDistanceX => 50,
-  ticksDistanceY => 50,
-  snapSizeX => 5,
-  snapSizeY => 5,
-  showInStatic => 0,
-  showCoordinateHints => 0,
-  cmpOptions => {
-    list_checker => sub {
-      my ($c, $s, $ans, $value) = @_;
-      return 0 if $ans->{isPreview};
-      my $score = 0;
-      my @errors;
-      my ($p, $q) = (0, 0);
-      for (0 .. $#$s) {
-        if (!$p && (abs(($s->[$_]->extract(2)->value)[0] - $x[0]) < 5 && abs(($s->[$_]->extract(2)->value)[1] - $y[0]) < 5)) { $p = 1; ++$score; next; }
-        if (!$q && (abs(($s->[$_]->extract(2)->value)[0] - $x[1]) < 5 && abs(($s->[$_]->extract(2)->value)[1] - $y[1]) < 5)) { $q = 1; ++$score; next; }
-        my $nth = Value::List->NameForNumber($_ + 1);
-        push(@errors, "The $nth point graphed is incorrect.");
-      }   
-      return ($score, @errors);
-    }
-  }
-);
-
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Make a Cartesian plot with the indicated points marked.
+Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
 
-[`[$p[0]], [$p[1]]`]
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
 
-[_]{$gt}{1}
-
+[_]{$eq}{20}
 
 END_PGML
 
-############################################################
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The relationship between [`x`] and [`y`] in each row is not as clear here. Another popular approach for finding patterns: in each column, consider how the values change from one row to the next. From row to row, the [`x`]-value increases by [`1\text{.}`] Also, the [`y`]-value increases by [`3`] from row to row.
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[1]]`]'),
+     PGML('[`[$y[1]]`] (add [`3`] from previous)'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[2]]`]'),
+     PGML('[`[$y[2]]`] (add [`3`] from previous)'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[3]]`]'),
+     PGML('[`[$y[3]]`] (add [`3`] from previous)'),
+    ],
+  ],
+      align => 'r|l',
+      valign => 'middle',);@]* <<
+
+Since row-to-row change is always [`1`] for [`x`] and is always [`3`] for [`y\text{,}`] the _rate of change_ from one row to another row is always the same: [`3`] units of [`y`] for every [`1`] unit of [`x\text{.}`] This suggests that [`y=3x`] _might_ be a good equation for the table pattern. But if we try to make a table with that pattern:
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`3x`]'),
+     PGML('Actual value of [`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$t[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$t[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$t[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$t[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+  ],
+      align => '*{3}{c}',
+      valign => 'middle',);@]* <<
+
+We find that the values from [`y=3x`] are too large by [`1\text{.}`] So now we make an adjustment. The equation [`[$eq]`] describes the pattern in the table.
+
+END_PGML_SOLUTION
+
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

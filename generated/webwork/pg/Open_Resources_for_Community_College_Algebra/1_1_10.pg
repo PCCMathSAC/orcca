@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-07-26T13:44:38-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,77 +20,115 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "parserGraphTool.pl",
+  "niceTables.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
+@x = (0..3);
+$f = Formula("x^2");
+@y = map{$f->eval(x => $_)} (@x);
+Context("Numeric")->variables->add(y => 'Real');
+parser::Assignment->Allow;
+$eq = Formula("y = $f");
 
-############################################################
-# PG Setup Code
-############################################################
-Context('Numeric');
-@xy = random_subset(4, 100..200);
-@x = ((@xy)[0,1]);
-@y = ((@xy)[2,3]);
-@p = map {Point($x[$_], $y[$_])} (0,1);
-$gt = GraphTool("{point,$p[0]}", "{point,$p[1]}")->with(
-  availableTools => ['PointTool'],
-  bBox => [-30,220,220,-30],
-  gridX => 10,
-  gridY => 10,
-  ticksDistanceX => 50,
-  ticksDistanceY => 50,
-  snapSizeX => 5,
-  snapSizeY => 5,
-  showInStatic => 0,
-  showCoordinateHints => 0,
-  cmpOptions => {
-    list_checker => sub {
-      my ($c, $s, $ans, $value) = @_;
-      return 0 if $ans->{isPreview};
-      my $score = 0;
-      my @errors;
-      my ($p, $q) = (0, 0);
-      for (0 .. $#$s) {
-        if (!$p && (abs(($s->[$_]->extract(2)->value)[0] - $x[0]) < 5 && abs(($s->[$_]->extract(2)->value)[1] - $y[0]) < 5)) { $p = 1; ++$score; next; }
-        if (!$q && (abs(($s->[$_]->extract(2)->value)[0] - $x[1]) < 5 && abs(($s->[$_]->extract(2)->value)[1] - $y[1]) < 5)) { $q = 1; ++$score; next; }
-        my $nth = Value::List->NameForNumber($_ + 1);
-        push(@errors, "The $nth point graphed is incorrect.");
-      }   
-      return ($score, @errors);
-    }
-  }
-);
-
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Make a Cartesian plot with the indicated points marked.
+Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
 
-[`[$p[0]], [$p[1]]`]
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
 
-[_]{$gt}{1}
-
+[_]{$eq}{20}
 
 END_PGML
 
-############################################################
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Looking for a relationship in each row here, we see that each [`y`]-value is the square of the corresponding [`x`]-value. That may not be obvious to you. It comes down to recognizing what square numbers are. So the equation is [`[$eq]\text{.}`]
+
+What if we had tried the approach we used in the previous exercise, comparing change from row to row in each column?
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[1]]`]'),
+     PGML('[`[$y[1]]`] (add [`1`] from previous)'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[2]]`]'),
+     PGML('[`[$y[2]]`] (add [`3`] from previous)'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[3]]`]'),
+     PGML('[`[$y[3]]`] (add [`5`] from previous)'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
+
+Here, the rate of change is _not_ constant from one row to the next. While the [`x`]-values are increasing by [`1`] from row to row, the [`y`]-values increase more and more from row to row. Do you notice that there is a pattern there as well? Mathematicians are interested in finding patterns and describing them.
+
+END_PGML_SOLUTION
+
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

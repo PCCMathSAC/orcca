@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-compare-positive-fractions" assembly-id="compare-positive-fractions">
+  <static seed="219">
+    <statement><p><m>{{\frac{1}{3}}}</m> <fillin characters="3" name="AnSwEr0001"/> <m>{{\frac{8}{9}}}</m></p>
+</statement>
+    <answer>
+      <p>
+        <m>{\verb!&lt;!}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_29.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.29)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextArbitraryString.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+@d = (2..9)[NchooseK(8,2)];
+($a, $b) = map{Fraction(random_coprime([1..2*$_], [$_]))} (@d);
+Context("ArbitraryString");
+$operator = ($a > $b) ? '>' : '<';
+$answer = Compute($operator)->cmp(
+    checker => sub {
+        my ($correct,$student,$ans) = @_;
+        $correct = $correct->value;
+        $student = $student->value;
+        if ($student =~ /^~~s*$correct~~s*$/) {return 1}
+        elsif ($student !~ /^~~s*>~~s*$/ && $student !~ /^~~s*<~~s*$/ && $student !~ /^~~s*=~~s*$/)
+            {Value->Error("Answer with >, <, or =.")}
+        else {return 0};
+    }
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Decide if one given number is greater than, less than, or equal to another given number.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$a]`] [_]{$answer}{3} [`[$b]`]
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-07-26T13:44:38-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,169 +20,80 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserPopUp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
-COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context('Numeric');
-@x = random_subset(2,1..9);
-@p = (Point(@x), -Point(@x), Point($x[0], -$x[1]), Point($x[1], -$x[0]));
-@p = random_subset(4, @p);
-for (0..3) {
-  $ans[$_] = 'I'   if (($p[$_]->value)[0] > 0 && ($p[$_]->value)[1] > 0);
-  $ans[$_] = 'II'  if (($p[$_]->value)[0] < 0 && ($p[$_]->value)[1] > 0);
-  $ans[$_] = 'III' if (($p[$_]->value)[0] < 0 && ($p[$_]->value)[1] < 0);
-  $ans[$_] = 'IV'  if (($p[$_]->value)[0] > 0 && ($p[$_]->value)[1] < 0);
-  $d[$_] = DropDown(['I','II','III','IV'], $ans[$_], showInStatic => 0);
-}
-@xposneg = (($p[$_]->value)[0] > 0) ? 'positive' : 'negative';
-@yposneg = (($p[$_]->value)[1] > 0) ? 'positive' : 'negative';
-%qwords = (
-  I => 'upper right',
-  II => 'upper left',
-  III => 'lower left',
-  IV => 'lower right',
-);
-@ul = map {$qwords{$_}} @ans;
+@x = (3,6,8,12);
+@y = (-2,-8,-12,-20);
+$popup = DropDown(['The relationship is linear','The relationship is not linear'],0);
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Which quadrant is the point in?
+Is there a linear relationship in the table?
 
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
+
+[_]{$popup}{5}
 
 END_PGML
 
-############################################################
-# Scaffold
-############################################################
-Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
-
-############################################################
-# Section
-############################################################
-Section::Begin("");
-
-BEGIN_PGML
-[`[$p[0]]`]
-
-[_]{$d[0]}{5}
-
-
-END_PGML
-
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
-The [`x`]-coordinate is [$xposneg[0]] and the [`y`]-coordinate is [$yposneg[0]], so the point is in the [$ul[0]] quadrant, which is Quadrant [$ans[0]].
-
+The changes in [`x`] from one row to the next are [`+3\text{,}`][`+2\text{,}`] and [`+8\text{.}`] That's not a consistent pattern, but we need to consider rates of change between points. The rate of change between the first two points is [`\frac{-8-(-2)}{6-3}=-2\text{.}`] The rate of change between the next two points is [`\frac{-12-(-8)}{8-6}=-2\text{.}`] And the rate of change between the last two points is [`\frac{-20-(-12)}{12-8}=-2\text{.}`] So the rate of change, [`-2\text{,}`] is constant regardless of which pairs we choose. That means these pairs describe a linear relationship.
 
 END_PGML_SOLUTION
 
-Section::End();
-
-############################################################
-# Section
-############################################################
-Section::Begin("");
-
-BEGIN_PGML
-[`[$p[1]]`]
-
-[_]{$d[1]}{5}
-
-
-END_PGML
-
-############################################################
-# Solution
-############################################################
-
-BEGIN_PGML_SOLUTION
-The [`x`]-coordinate is [$xposneg[1]] and the [`y`]-coordinate is [$yposneg[1]], so the point is in the [$ul[1]] quadrant, which is Quadrant [$ans[1]].
-
-
-END_PGML_SOLUTION
-
-Section::End();
-
-############################################################
-# Section
-############################################################
-Section::Begin("");
-
-BEGIN_PGML
-[`[$p[2]]`]
-
-[_]{$d[2]}{5}
-
-
-END_PGML
-
-############################################################
-# Solution
-############################################################
-
-BEGIN_PGML_SOLUTION
-The [`x`]-coordinate is [$xposneg[2]] and the [`y`]-coordinate is [$yposneg[2]], so the point is in the [$ul[2]] quadrant, which is Quadrant [$ans[2]].
-
-
-END_PGML_SOLUTION
-
-Section::End();
-
-############################################################
-# Section
-############################################################
-Section::Begin("");
-
-BEGIN_PGML
-[`[$p[3]]`]
-
-[_]{$d[3]}{5}
-
-
-END_PGML
-
-############################################################
-# Solution
-############################################################
-
-BEGIN_PGML_SOLUTION
-The [`x`]-coordinate is [$xposneg[3]] and the [`y`]-coordinate is [$yposneg[3]], so the point is in the [$ul[3]] quadrant, which is Quadrant [$ans[3]].
-
-
-END_PGML_SOLUTION
-
-Section::End();
-
-Scaffold::End();
-
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

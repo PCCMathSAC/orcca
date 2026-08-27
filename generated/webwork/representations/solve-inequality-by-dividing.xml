@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-inequality-by-dividing" assembly-id="solve-inequality-by-dividing">
+  <static seed="424">
+    <statement><p>Solve the inequality <m>12\leq4p\text{.}</m> Graph the solution set on a number line. State the solution set using interval notation and using set-builder notation.</p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+<p><fillin characters="12" name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{interval}, \left[3,\infty \right)\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left[3,\infty \right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{p \mid p\ge 3\right\}</m>
+      </p>
+    </answer>
+    <solution><p>To solve this inequality, we divided each side by <m>4\text{.}</m>
+<md>\begin{aligned}
+12\amp\leq4p\\
+\divideunder{12}{4}\amp\leq\divideunder{4p}{4}\\
+3\amp\leq p
+\end{aligned}</md>
+The last line says that <lq/><m>3</m> is less than or equal to <m>p</m><rq/>. It may feel more natural to say the same thing but in the opposite order with the opposite comparison: <lq/><m>p</m> is greater than or equal to <m>3</m><rq/>. So you could write
+<md>p\geq 3</md>
+Graphically, we represent this solution set as:</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/solve-inequality-by-dividing-image-1" width="100%"/>
+<p>Using interval notation, we write the solution set as <m>[3, \infty)\text{.}</m> Using set-builder notation, we write it as <m>\{p \mid p \geq 3\}\text{.}</m></p>
+<p>We should check that some number less than <m>3</m> is <em>not</em> a solution, that <m>3</m> itself <em>is</em> a solution, and that some number greater than <m>3</m> <em>is</em> a solution.
+<md>\begin{aligned}
+\amp\amp 12\amp\leq4p\amp\amp\\
+12\amp\wonder{\leq}4(\substitute{0})\amp 12\amp\wonder{\leq}4(\substitute{3})\amp 12\amp\wonder{\leq}4(\substitute{5})\\
+12\amp\reject{\leq}0\amp12\amp\confirm{\leq}12\amp12\amp\confirm{\leq}20
+\end{aligned}</md>
+Everything worked out as expected, so our solution is reasonably checked.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_6_4.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.4)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Interval");
+$interval = Interval("[3, inf)");
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->variables->are(p => 'Real');
+$setbuilder = Compute("{ p | p >= 3}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => 'p',
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[numberline, xlabel={\(p\)}]
+    \addplot[closedinfiniteinterval] coordinates {(3,0) (10,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+Solve the inequality [`12\leq4p\text{.}`] Graph the solution set on a number line. State the solution set using interval notation and using set-builder notation.
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation.')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{,}`] [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To solve this inequality, we divided each side by [`4\text{.}`]
+
+[```
+\begin{aligned}
+12\amp\leq4p\\
+\divideunder{12}{4}\amp\leq\divideunder{4p}{4}\\
+3\amp\leq p
+\end{aligned}
+```]
+
+The last line says that "[`3`] is less than or equal to [`p`]". It may feel more natural to say the same thing but in the opposite order with the opposite comparison: "[`p`] is greater than or equal to [`3`]". So you could write
+
+[```
+              p\geq 3
+            ```]
+
+Graphically, we represent this solution set as:
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+Using interval notation, we write the solution set as [`[3, \infty)\text{.}`] Using set-builder notation, we write it as [`\{p \mid p \geq 3\}\text{.}`]
+
+We should check that some number less than [`3`] is _not_ a solution, that [`3`] itself _is_ a solution, and that some number greater than [`3`] _is_ a solution.
+
+[```
+\begin{aligned}
+\amp\amp 12\amp\leq4p\amp\amp\\
+12\amp\wonder{\leq}4(\substitute{0})\amp 12\amp\wonder{\leq}4(\substitute{3})\amp 12\amp\wonder{\leq}4(\substitute{5})\\
+12\amp\reject{\leq}0\amp12\amp\confirm{\leq}12\amp12\amp\confirm{\leq}20
+\end{aligned}
+```]
+
+Everything worked out as expected, so our solution is reasonably checked.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

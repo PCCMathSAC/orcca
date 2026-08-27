@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-graph-point-slope-decimal-copy3" assembly-id="graph-point-slope-decimal-copy3">
+  <static seed="1429">
+    <statement><p><m>y={-0.4\mathopen{}\left(x-4\right)-6}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(4,-6\right), \left(14,-10\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_6_5_47.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="graph-point-slope-decimal"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.9.5.38)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Numeric");
+Context()->noreduce('(-x)-y','(-x)+y');
+do {
+  $m = non_zero_random(-0.9,0.9,0.1);
+  ($h,$k) = random_subset(2, 2..9);
+  if ($m > 0) {
+    if (random(0,1)) {
+      $h = -$h;
+      $k = -$k;
+    }
+  } else {
+    if (random(0,1)) {
+      $h = -$h;
+    } else {
+      $k = -$k;
+    }
+  }
+  $f = Formula("$m(x - $h) + $k")->reduce;
+  $b = $f->eval(x => 0);
+} until ($b != int(Real($b)));
+$x1 = $h + 10;
+$y1 = Real($k + $m*10);
+$gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+  bBox => [-11, 11, 11, -11],
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Use the slope and the apparent point to plot the line.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`y=[$f]`]
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

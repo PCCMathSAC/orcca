@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-cancer-slope" assembly-id="cancer-slope">
+  <static seed="1162">
+    <statement><p>The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/cancer-slope-image-1" width="75%"/>
+<p>Estimate the slope of the trend-line.</p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>274.816\ {\textstyle\frac{\rm\mathstrut diagnoses}{\rm\mathstrut yr}}</m>
+      </p>
+    </answer>
+    <solution><p>Do your best to identify two points on the line (which are not necessarily the plotted data points). With this line, it seems <m>(2000,17500)</m> and <m>(2020,23000)</m> are two such points.
+<md>\frac{\Delta y}{\Delta x}=\frac{(23000-17500)\,\text{diagnoses}}{(2020-2000)\,\text{yr}}=275\,\frac{\text{diagnoses}}{\text{yr}}</md>
+So the slope is about <m>275</m> diagnoses per year. This is only an estimate since we are not certain the two points we chose are actually on the line.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_4_5_48.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.4.5.48)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$newUnits = [
+  {name=>'diagnoses'},
+  {name=>'year',conversion=>{factor=>365*24*60*60,s=>1}},
+  {name=>'years',conversion=>{factor=>365*24*60*60,s=>1}},
+  {name=>'yr',conversion=>{factor=>365*24*60*60,s=>1}},
+  {name=>'yrs',conversion=>{factor=>365*24*60*60,s=>1}},
+  {name=>'y',conversion=>{factor=>365*24*60*60,s=>1}},
+];
+$m=Real(274.8155844);
+Context()->flags->set(tolType=>'absolute',tolerance=>20);
+$rate = NumberWithUnits("$m diagnoses/yr",{newUnit=>$newUnits});
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xlabel={year},
+      ylabel={count},
+      ytick=,
+      xmin=2000,
+      xmax=2020,
+      ymin=15000,
+      ymax=26000,
+      axis line style={->},
+      xtick={2000,2005,...,2020},
+      minor xtick={2000,...,2020},
+      xticklabels={2000,2005,...,2020},
+      xticklabel style={rotate=-45},
+      axis x discontinuity=crunch,
+      axis y discontinuity=crunch,
+      width=\orccaprintwidth,
+      height=0.33\orccaprintwidth,
+    ]
+    \addplot[only marks] coordinates {
+      (2000,17458)
+      (2001,17862)
+      (2002,17879)
+      (2003,17590)
+      (2004,18497)
+      (2005,18732)
+      (2006,19161)
+      (2007,19430)
+      (2008,20459)
+      (2009,20007)
+      (2010,19887)
+      (2011,20867)
+      (2012,20448)
+      (2013,21354)
+      (2014,21686)
+      (2015,22154)
+      (2016,22128)
+      (2017,23011)
+      (2018,22640)
+      (2019,23755)
+      (2020,20151)
+    };
+    \addplot+[domain=2000:2020] {274.8155844*(x - 2010) + 20245.52381};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.
+
+>> [@image(insertGraph($image_1), width=>450)@]*  <<
+
+Estimate the slope of the trend-line.
+
+[@KeyboardInstructions('You can type the unit as [|diagnoses/yr|]*.')@]**
+
+[_]{$rate}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Do your best to identify two points on the line (which are not necessarily the plotted data points). With this line, it seems [`(2000,17500)`] and [`(2020,23000)`] are two such points.
+
+[```
+                \frac{\Delta y}{\Delta x}=\frac{(23000-17500)\,\text{diagnoses}}{(2020-2000)\,\text{yr}}=275\,\frac{\text{diagnoses}}{\text{yr}}
+              ```]
+
+So the slope is about [`275`] diagnoses per year. This is only an estimate since we are not certain the two points we chose are actually on the line.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

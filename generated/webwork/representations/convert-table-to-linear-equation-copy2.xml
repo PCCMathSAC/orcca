@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-convert-table-to-linear-equation-copy2" assembly-id="convert-table-to-linear-equation-copy2">
+  <static seed="1448">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>3</m></cell>
+<cell><m>{11}</m></cell>
+</row>
+<row>
+<cell><m>4</m></cell>
+<cell><m>{12}</m></cell>
+</row>
+<row>
+<cell><m>5</m></cell>
+<cell><m>{13}</m></cell>
+</row>
+<row>
+<cell><m>6</m></cell>
+<cell><m>{14}</m></cell>
+</row>
+<row>
+<cell><m>7</m></cell>
+<cell><m>{15}</m></cell>
+</row>
+</tabular>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>y = x+8</m>
+      </p>
+    </answer>
+    <solution><p>Each <m>y</m>-value is <m>8</m> more than the corresponding <m>x</m>-value. So the equation is <m>{y = x+8}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_3_5_3.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="convert-table-to-linear-equation"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.7)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$x[0] = random(1,8);
+$b = random(4,9);
+@x = map{$x[0] + $_} (0..4);
+$f = Formula("x + $b");
+@y = map{$f->eval(x => $_)} (@x);
+Context("Numeric")->variables->add(y => 'Real');
+parser::Assignment->Allow;
+$eq = Formula("y = $f");
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+    [
+     PGML('[`[$x[4]]`]'),
+     PGML('[`[$y[4]]`]'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
+
+[_]{$eq}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Each [`y`]-value is [`[$b]`] more than the corresponding [`x`]-value. So the equation is [`[$eq]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

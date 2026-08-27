@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-gasoline-and-ethanol-copy" assembly-id="gasoline-and-ethanol-copy">
+  <static seed="1533">
+    <statement><p>To make fuel for an automobile, you could mix <m>x</m> gallons of gasoline with <m>y</m> gallons of ethanol. Suppose that gasoline costs $4.74 per gallon and ethanol costs $2.07 per gallon, and you want to mix these types of fuel together to make fuel that costs $4.47 total. Write a linear equation in standard form that models the amounts of gasoline and ethanol you could mix.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>4.74x+2.07y=4.47</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_7_5_31.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="gasoline-and-ethanol"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.68)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserImplicitPlane.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("ImplicitPlane");
+Context()->flags->set(reduceConstants=>0);
+Context()->flags->set(reduceConstantFormulas=>0);
+Context()->flags->set(showExtraParens=>0);
+Context()->variables->are(x=>'Real', y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+$A = random(4,5,0.01);
+$B = random(2,2.5,0.01);
+$C = 0.9*$A + 0.1*$B;
+$C = int($C*100 + 0.5)/100;
+$ansSTstring = "$A*x+$B*y=$C";
+$left1 = Compute("$A*x+$B*y")->reduce;
+$ansSTstringTeX = $left1->TeX."=$C";
+$ansST = ImplicitPlane($ansSTstring);
+$evaluator=$ansST->cmp(correct_ans_latex_string => $ansSTstringTeX)->withPostFilter(sub{
+  my $ansHash = shift;
+  my $student = $ansHash->{original_student_ans};
+  my @sides = split('=',"$student");
+  #if it's an implicit plane object, reset how student's answer is displayed:
+  if (defined $ansHash->{student_formula}) {
+    if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+      $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+      my $leftTex = Formula("$sides[0]")->TeX;
+      my $rightTex = Formula("$sides[1]")->TeX;
+      $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+      $ansHash->{student_ans} = $ansHash->{original_student_ans};
+    }
+  };
+  # if they have it correct, then check each side to see
+  # whether x and y are on the same side of =
+  if ($ansHash->{score}) {
+    if ((($sides[0] =~ /x/) && ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) && ($sides[0] =~ /y/))) {
+      $ansHash->{score} = 0;
+      $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form.";
+     }
+  }
+  return $ansHash;
+});
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$Ad = Currency($A);
+$Bd = Currency($B);
+$Cd = Currency($C);
+
+######
+# Body
+######
+
+BEGIN_PGML
+To make fuel for an automobile, you could mix [`x`] gallons of gasoline with [`y`] gallons of ethanol. Suppose that gasoline costs [$Ad] per gallon and ethanol costs [$Bd] per gallon, and you want to mix these types of fuel together to make fuel that costs [$Cd] total. Write a linear equation in standard form that models the amounts of gasoline and ethanol you could mix.
+
+[_]{$evaluator}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

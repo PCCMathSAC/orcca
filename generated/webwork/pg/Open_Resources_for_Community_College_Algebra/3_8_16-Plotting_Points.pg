@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,14 +20,15 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "PGlateximage.pl",
   "parserMultiAnswer.pl",
   "ORCCA.pl",
@@ -38,15 +36,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context('Numeric');
 @x=(3.14)x5;
 @y=(-2..2);
@@ -80,6 +73,7 @@ $pts=MultiAnswer(map{($_%2==0)?$x[$_/2]:$y[($_-1)/2]}(0..9))->with(
     return $OK;
   }
 );
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -94,86 +88,94 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Suppose you need to plot the equation [`x=3.14\text{.}`] You decide to try making a table of points. Fill out some points for this table.
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[_]{$pts}{10}'),
+    [
+     PGML('[_]{$pts}{10}'),
      PGML('[_]{$pts}{10}'),
     ],
-    [PGML('[_]{$pts}{10}'),
+    [
+     PGML('[_]{$pts}{10}'),
      PGML('[_]{$pts}{10}'),
     ],
-    [PGML('[_]{$pts}{10}'),
+    [
+     PGML('[_]{$pts}{10}'),
      PGML('[_]{$pts}{10}'),
     ],
-    [PGML('[_]{$pts}{10}'),
+    [
+     PGML('[_]{$pts}{10}'),
      PGML('[_]{$pts}{10}'),
     ],
-    [PGML('[_]{$pts}{10}'),
+    [
+     PGML('[_]{$pts}{10}'),
      PGML('[_]{$pts}{10}'),
     ],
   ],
       align => 'cc',
-      valign => 'middle',
-);@]* <<
-
+      valign => 'middle',);@]* <<
 
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Since the equation says [`x`] is always the number [`3.14\text{,}`] we have to use this for the [`x`] value in all the points. This is different from how we would plot a "[`y=`]" equation, where we would use several different [`x`]-values. We can use whatever values for [`y`] that we like, as long as they are all different.
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[`3.14`]'),
+    [
+     PGML('[`3.14`]'),
      PGML('[`-2`]'),
     ],
-    [PGML('[`3.14`]'),
+    [
+     PGML('[`3.14`]'),
      PGML('[`-1`]'),
     ],
-    [PGML('[`3.14`]'),
+    [
+     PGML('[`3.14`]'),
      PGML('[`0`]'),
     ],
-    [PGML('[`3.14`]'),
+    [
+     PGML('[`3.14`]'),
      PGML('[`1`]'),
     ],
-    [PGML('[`3.14`]'),
+    [
+     PGML('[`3.14`]'),
      PGML('[`2`]'),
     ],
   ],
       align => 'cc',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 The reason we made a table was to help with plotting the line.
 
 >> [@image(insertGraph($image_1), width=>282)@]*  <<
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

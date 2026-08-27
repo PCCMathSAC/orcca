@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -35,19 +33,15 @@ loadMacros(
   "contextPercent.pl",
   "parserLinearRelation.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $name = randomPerson();
 $profession = list_random(
   'a radiography technician',
@@ -70,24 +64,30 @@ $percent = Percent($decimal);
 Context("LinearRelation")->variables->are(S => 'Real');
 $equation = LinearRelation("S + $decimal S < $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an inequality to model the scenario. There is no need to solve the inequality.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [$name]'s current annual salary as [$profession] is [`[$current]\text{.}`] This is with a raise by more than [`[$percent]`] over last year's salary. What might [$name->possessive] salary have been last year? Set up an inequality where the solution set represents the possible answers to this question. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|S|]* as the variable.')@]**
 
 [_]{$equation}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

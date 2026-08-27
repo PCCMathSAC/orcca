@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:33-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,26 +20,23 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $grouping = list_random(['(',')'],['[',']']);
 $c = random(2,4,1);
 $aplusb = random(2,100**(1/$c),1);
@@ -51,22 +45,28 @@ $a = $aplusb - $b;
 Context("LimitedNumeric");
 $answer = Real(($a+$b)**$c);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Use the order of operations to simplify the expression that has grouping symbols.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$grouping->[0]] [$a] + [$b] [$grouping->[1]] ^{[$c]} `]
 
 [_]{$answer}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

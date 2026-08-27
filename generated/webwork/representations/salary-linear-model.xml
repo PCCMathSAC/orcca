@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-salary-linear-model" assembly-id="salary-linear-model">
+  <static seed="572">
+    <statement><p>Everett<rsq/>s current annual salary as a dental hygienist is <m>{\$60{,}659}\text{.}</m> This is with a raise of <m>{4.7\%}</m> over last year<rsq/>s salary. What was his salary last year? Set up an equation to answer this question. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>S+0.047S = 60659</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_55.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.55)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$name = randomPerson();
+$profession = list_random(
+  'a radiography technician',
+  'a microelectronics engineer',
+  'a dental hygienist',
+  'a high school teacher',
+  'an office manager',
+  'a restaurant manager',
+  'a web designer',
+  'a tax accountant',
+  'a paralegal',
+  'a structural engineer'
+);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 65000 + random(-8000,8000);
+$current = Currency($final);
+Context("Percent");
+$decimal = random(0.02,0.06,0.001);
+$percent = Percent($decimal);
+Context("LinearRelation")->variables->are(S => 'Real');
+$equation = LinearRelation("S + $decimal S = $final");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$name]'s current annual salary as [$profession] is [`[$current]\text{.}`] This is with a raise of [`[$percent]`] over last year's salary. What was [$name->possessive] salary last year? Set up an equation to answer this question. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|S|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

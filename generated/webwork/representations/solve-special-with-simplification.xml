@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-special-with-simplification" assembly-id="solve-special-with-simplification">
+  <static seed="886">
+    <statement><p><m>{-5\mathopen{}\left(u+3\right)-\left(-17u-3\right)}={-21-4\mathopen{}\left(-2-3u\right)}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{no real solutions}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_4_4_13.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.4.13)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+do {
+  ($m, $p, $q) = random_subset(3,-5..-2,2..5);
+  $n = $m - $p*$q;
+  ($b, $c, $e) = random_subset(3,-8..-1,1..8);
+  $d = $m*$b - $c - $p*$e + list_random(-3..3,(0)x5);
+} until ($n != 0 && $d != 0);
+$x = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context()->variables->are($x => 'Real');
+Context()->noreduce('(-x)+y', '(-x)-y');
+$left = Formula("$m($x + $b) - ($n $x + $c)")->reduce;
+$right = Formula("$d + $p($e + $q $x)")->reduce;
+Context("FiniteSolutionSets");
+$solution = ($d == $m*$b - $c - $p*$e)
+  ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+  : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the equation for its variable.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$solution}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

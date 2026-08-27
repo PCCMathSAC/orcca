@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-running-with-fractions" assembly-id="running-with-fractions">
+  <static seed="858">
+    <statement><p>Adeline is running on a track. We start the clock as she passes the 18 m mark, and she is running 21 m every 4 s. How long does it take for Adeline to reach the 90 m mark?</p>
+<p><fillin characters="5" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>13.7143\ {\rm s}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_3_5_37.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.37)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserFormulaWithUnits.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$p = randomPerson();
+$b = random(10,20);
+do {
+  $m = random(5,5.7,0.01);
+  $d = random(3,6);
+  $n = int($m*$d);
+  $m = $n/$d;
+  $c = random(60,100,5);
+  $sol = ($c - $b)/$m;
+  ($n,$d) = map{$_/gcd($n,$d)} ($n,$d);
+} until ($d >= 3 && $m > 4.5 && $sol != int($sol));
+$num = NumberWithUnits("$n m");
+$den = NumberWithUnits("$d s");
+$initial = NumberWithUnits("$b m");
+$final = NumberWithUnits("$c m");
+Context()->flags->set(reduceConstants => 0);
+$answer = FormulaWithUnits("$sol s");
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$p] is running on a track. We start the clock as [$p->they] [$p->verb('pass')] the [$initial] mark, and [$p->they] [$p->are] running [$num] every [$den]. How long does it take for [$p] to reach the [$final] mark?
+
+[_]{$answer}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-determine-if-table-data-is-linear-6-copy" assembly-id="determine-if-table-data-is-linear-6-copy">
+  <static seed="1108">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="right"/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>2</m></cell>
+<cell><m>{105}</m></cell>
+</row>
+<row>
+<cell><m>9</m></cell>
+<cell><m>{154}</m></cell>
+</row>
+<row>
+<cell><m>11</m></cell>
+<cell><m>{168}</m></cell>
+</row>
+<row>
+<cell><m>13</m></cell>
+<cell><m>{182}</m></cell>
+</row>
+<row>
+<cell><m>15</m></cell>
+<cell><m>{196}</m></cell>
+</row>
+<row>
+<cell><m>18</m></cell>
+<cell><m>{217}</m></cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{yes}</m>
+      </p>
+    </answer>
+    <solution><p>The <m>x</m>-values in this table jump erratically. However, if we compute the rate of change between consecutive rows in the table, the result is always 7. For example, the rate of change between the first and second rows is
+<md>\frac{{154}-{105}}{9-2}=\frac{{49}}{7}=7
+                \text{.}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_3_5_39.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="determine-if-table-data-is-linear-6"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.3.5.40)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+$m = non_zero_random(2,9,1);
+$b = random(1,100,1);
+$f = Formula("$m*x + $b");
+@x = num_sort(NchooseK(20,6));
+@y = map{$f->eval(x=>$_)}(@x);
+$yes = DropDown(['yes','no'], 0, showInStatic => 0);
+$no = DropDown(['yes','no'], 1, showInStatic => 0);
+$ydiff = $y[1]-$y[0];
+$xdiff = $x[1]-$x[0];
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Does the table show that [`x`] and [`y`] have a linear relationship?
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+    [
+     PGML('[`[$x[4]]`]'),
+     PGML('[`[$y[4]]`]'),
+    ],
+    [
+     PGML('[`[$x[5]]`]'),
+     PGML('[`[$y[5]]`]'),
+    ],
+  ],
+      align => '*{2}{r}',
+      valign => 'middle',);@]* <<
+
+[_]{$yes}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The [`x`]-values in this table jump erratically. However, if we compute the rate of change between consecutive rows in the table, the result is always [$m]. For example, the rate of change between the first and second rows is
+
+[```
+                  \frac{[$y[1]]-[$y[0]]}{[$x[1]]-[$x[0]]}=\frac{[$ydiff]}{[$xdiff]}=[$m]
+                \text{.}```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

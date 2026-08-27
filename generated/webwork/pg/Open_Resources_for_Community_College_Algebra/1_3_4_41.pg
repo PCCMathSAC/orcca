@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGchoicemacros.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction-NoDecimals");
 Context()->operators->redefine('>',using=>',',from=>'Numeric');
 Context()->lists->set('List' => {separator => '>'});
@@ -57,22 +51,28 @@ $bs = join('>', @b);
 
 $comparison = Compute("$bs");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
-Use the [`\newcommand{\gt}{>}\gt`] symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like [`\newcommand{\gt}{>}4 \gt 3 \gt 2 \gt 1 \gt 0\text{.}`]
+Use the [`\gt`] symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like [`4 \gt 3 \gt 2 \gt 1 \gt 0\text{.}`]
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$as]`]
 
 [_]{$comparison}{30}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

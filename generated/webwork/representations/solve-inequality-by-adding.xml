@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-inequality-by-adding" assembly-id="solve-inequality-by-adding">
+  <static seed="423">
+    <statement><p>Solve the inequality <m>x-5\gt-4\text{.}</m> Graph the solution set on a number line. State the solution set using both interval notation and set-builder notation.</p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+<p><fillin characters="12" name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{interval}, \left(1,\infty \right)\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(1,\infty \right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{x \mid x &gt; 1\right\}</m>
+      </p>
+    </answer>
+    <solution><p>To solve this inequality, we add <m>5</m> to each side.
+<md>\begin{aligned}
+x-5\amp\gt-4\\
+x-5\addright{5}\amp\gt-4\addright{5}\\
+x\amp\gt1
+\end{aligned}</md>
+Graphically, we represent this solution set as:</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/solve-inequality-by-adding-image-1" width="100%"/>
+<p>Using interval notation, we write the solution set as <m>(1, \infty)\text{.}</m> Using set-builder notation, we write it as <m>\{x \mid x \gt 1\}\text{.}</m></p>
+<p>We should check that some number less than <m>1</m> is <em>not</em> a solution, that <m>1</m> itself is <em>not</em> a solution, and that some number greater than <m>1</m> <em>is</em> a solution.
+<md>\begin{aligned}
+\amp\amp x-5\amp\gt-4\amp\amp\\
+\substitute{0}-5\amp\wonder{\gt}-4\amp \substitute{1}-5\amp\wonder{\gt}-4\amp \substitute{10}-5\amp\wonder{\gt}-4\\
+-5\amp\reject{\gt}-4\amp -4\amp\reject{\gt}-4\amp 5\amp\confirm{\gt}-4
+\end{aligned}</md>
+Everything worked out as expected, so our solution is reasonably checked.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_6_3.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.3)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Interval");
+$interval = Interval("(1, inf)");
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$setbuilder = Compute("{ x | x > 1}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => 'x',
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[numberline]
+    \addplot[openinfiniteinterval] coordinates {(1,0) (10,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+Solve the inequality [`x-5\gt-4\text{.}`] Graph the solution set on a number line. State the solution set using both interval notation and set-builder notation.
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation.')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{,}`] [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To solve this inequality, we add [`5`] to each side.
+
+[```
+\begin{aligned}
+x-5\amp\gt-4\\
+x-5\addright{5}\amp\gt-4\addright{5}\\
+x\amp\gt1
+\end{aligned}
+```]
+
+Graphically, we represent this solution set as:
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+Using interval notation, we write the solution set as [`(1, \infty)\text{.}`] Using set-builder notation, we write it as [`\{x \mid x \gt 1\}\text{.}`]
+
+We should check that some number less than [`1`] is _not_ a solution, that [`1`] itself is _not_ a solution, and that some number greater than [`1`] _is_ a solution.
+
+[```
+\begin{aligned}
+\amp\amp x-5\amp\gt-4\amp\amp\\
+\substitute{0}-5\amp\wonder{\gt}-4\amp \substitute{1}-5\amp\wonder{\gt}-4\amp \substitute{10}-5\amp\wonder{\gt}-4\\
+-5\amp\reject{\gt}-4\amp -4\amp\reject{\gt}-4\amp 5\amp\confirm{\gt}-4
+\end{aligned}
+```]
+
+Everything worked out as expected, so our solution is reasonably checked.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

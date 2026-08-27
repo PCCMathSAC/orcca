@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-mxequalsmxplusb-fraction-inequality-copy" assembly-id="solve-mxequalsmxplusb-fraction-inequality-copy">
+  <static seed="909">
+    <statement><p><m>{{\frac{6}{7}}K}\gt{{\frac{6}{7}}K-8}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left(-\infty ,\infty \right)\hbox{ or }\text{infinitely many solutions}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_4_4_35.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="solve-mxequalsmxplusb-fraction-inequality"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.4.36)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserOneOf.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+$m = Fraction(random_coprime([1..9], [2..9]));
+$b = non_zero_random(-9,9);
+$x = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context()->variables->are($x => 'Real');
+$left = Formula("$m $x");
+$right = Formula("$m $x + $b")->reduce;
+$symbol = list_random('\lt', '\gt', '\leq', '\geq');
+sub weigh {
+  my ($a, $b, $s) = @_;
+  if ($s eq '\lt') {return ($a < $b)}
+  elsif ($s eq '\gt') {return ($a > $b)}
+  elsif ($s eq '\leq') {return ($a <= $b)}
+  elsif ($s eq '\geq') {return ($a >= $b)}
+}
+Context("FiniteSolutionSets");
+$solution = (weigh($left->eval($x => 0), $right->eval($x => 0), $symbol))
+  ? OneOf(Compute("R"), String("infinitely many solutions"))->cmp(typeMatch => Formula("{1}"))
+  : String("no real solutions")->cmp(typeMatch => Formula("{1}"));
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the inequality for its variable.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left][$symbol][$right]`]
+
+[_]{$solution}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

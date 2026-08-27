@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserGraphTool.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context('Numeric');
 %options = ('positive' => 1, 'negative' => -1);
-$posneg = list_random(keys %options);
+$posneg = list_random(lex_sort(keys %options));
 $x = $options{$posneg}; 
 $gt = GraphTool("{fill,($x,1)}", "{fill,($x,-1)}")->with(
   availableTools => ['FillTool'],
@@ -55,20 +49,19 @@ $gt = GraphTool("{fill,($x,1)}", "{fill,($x,-1)}")->with(
   showCoordinateHints => 0,
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Sketch a Cartesian coordinate plane and then shade the quadrants where the first coordinate is [$posneg].
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

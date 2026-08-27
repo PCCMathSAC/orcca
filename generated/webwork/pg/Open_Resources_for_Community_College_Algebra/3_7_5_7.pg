@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PCCmacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($x, $y) = random_subset(2, 2..9);
 $C = lcm($x,$y);
 $A = $C/$x;
@@ -58,15 +52,22 @@ Context("Point");
 $xi = Point($x,0);
 $yi = Point(0,$y);
 Context("Fraction");
-$m = Fraction(-$x/$y);
+$m = Fraction(-$y/$x);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Find both intercepts and the slope of the line.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left]=[$right]`]
 
 [@KeyboardInstructions('Enter the [`x`]-intercept here.')@]**
@@ -81,11 +82,10 @@ Find both intercepts and the slope of the line.
 
 [_]{$m}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

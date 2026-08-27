@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,31 +20,28 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 ($x, $y) = (-7..-1, 1..7)[NchooseK(14,2)];
@@ -141,14 +135,21 @@ if ($roll == 0) {
   $sol[3] = Formula("$X=$x");
 }
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the system of equations using elimination.
 
-[`\newcommand{\amp}{&}\left\{
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
                   \begin{alignedat}{4}
                   \amp [$f[0]] \\
                   \amp [$f[1]]
@@ -160,17 +161,16 @@ Solve the system of equations using elimination.
 
 [_]{$answer}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 First simplify each equation and add/subtract terms so that each equation is in standard form. This gives
 
-[`\newcommand{\amp}{&}\left\{
+[`\left\{
                   \begin{alignedat}{4}
                   \amp [$f[2]] \\
                   \amp [$f[3]]
@@ -180,11 +180,10 @@ First simplify each equation and add/subtract terms so that each equation is in 
 
 We can multiply the [$nth] equation by [`-[$k]\text{,}`] and then add the sides of each equation to eliminate [`[$eliminated]\text{.}`] This leaves the equation [`[$sol[0]]=[$sol[1]]`] which allows us to find [`[$sol[2]]\text{.}`] From here, substitute this into any of the previous equations that still have both variables to find [`[$sol[2]]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserMultiAnswer.pl",
   "parserGraphTool.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Point");
 $k = non_zero_random(-9,9);
 @x = -2..2;
@@ -77,68 +71,79 @@ $mp = MultiAnswer(map {($x[$_], $y[$_], $p[$_])} (0..4) )->with(
   }
 );
 $gt = GraphTool("{line,solid,$p[0],$p[1]}")->with(
-  availableTools => [ "PointTool", "LineTool" ],
+  availableTools => [ "LineTool" ],
   showCoordinateHints => 0,
   showInStatic => 0,
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Make a table for the equation, and then plot it.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`y=[$k]`]
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      [PGML('[`y`]'),
       halign => 'c',],
      PGML('Point'),
     ],
-    [[PGML('[_]{$mp}{5}'),
+    [
+     [PGML('[_]{$mp}{5}'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [[PGML('[_]{$mp}{5}'),
+    [
+     [PGML('[_]{$mp}{5}'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [[PGML('[_]{$mp}{5}'),
+    [
+     [PGML('[_]{$mp}{5}'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [[PGML('[_]{$mp}{5}'),
+    [
+     [PGML('[_]{$mp}{5}'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [PGML('[_]{$mp}{5}'),
+    [
+     PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
   ],
-      align => 'r|r|c',
-);@]* <<
+      align => 'r|r|c',);@]* <<
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

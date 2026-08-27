@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,15 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
   "PGlateximage.pl",
+  "scaffold.pl",
   "PCCmacros.pl",
   "parserMultiAnswer.pl",
   "contextCurrency.pl",
@@ -45,15 +43,10 @@ loadMacros(
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $nx = list_random([2,10], [2,30], [2,40], [3,15], [3,30], [3,45], [4,20], [4,40]);
 ($n,$x) = @$nx;
 $y = random(2,5);
@@ -104,6 +97,7 @@ return (($l[0]&&$l[1]) ? $score : 0,@errors);
 }});
 $p=randomPerson();
 $w = numberWord($n);
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -116,24 +110,25 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 At the local hardware store, [$p] bought a hammer and [$w] boxes of nails. The total cost was [`[$total]\text{.}`] The hammer costs [`[$difference]`] more than a box of nails. How much does a hammer cost and how much does one box of nails cost?
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -145,26 +140,25 @@ Write two equations that form a system for this scenario.
 
 [_]{$m}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Since the total cost of the hammer and [$w] boxes of nails is [`[$total]\text{,}`] one equation is [`[$eq[0]]\text{.}`]
 
 Since the hammer costs [`[$difference]`] more than a box of nails, another equation is [`[$eq[1]]\text{.}`]
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -172,26 +166,25 @@ Plot the lines for the system of two equations.
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Plotting the two slope-intercept equations:
 
 >> [@image(insertGraph($image_1), width=>282, alt=>qq"a Cartesian grid with two intersecting lines; one line passes through (0,$t/$n) and ($t,0); the other line passes through (0,-$d) and ($d,0); the lines cross at ($x,$y)")@]*  <<
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -203,16 +196,14 @@ How much does a box of nails cost?
 
 [_]{$nails}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The lines cross at [`([$x],[$y])\text{.}`] So a hammer costs [`[$hammer]\text{,}`] and a box of nails costs  [$nails].
-
 
 END_PGML_SOLUTION
 
@@ -220,8 +211,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

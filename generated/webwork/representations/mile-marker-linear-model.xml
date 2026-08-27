@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-mile-marker-linear-model" assembly-id="mile-marker-linear-model">
+  <static seed="558">
+    <statement><p>Paola is driving with an average speed of <m>{51\ {\rm mph}}</m> on Interstate-35. She looks out the window and sees mile marker 156 pass by. How long will it take her to reach her destination, which is at mile marker 343? Write an equation to model this scenario. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>156+51t = 343</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_41.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.41)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$name = randomPerson();
+$rate = random(50,65);
+$speed = NumberWithUnits("$rate mph");
+$I = list_random(5,10,15,20,25,35,40,55,65,70,75,80,90,95);
+$initial = random(100,200);
+$final = $initial + random(80,250);
+Context("LinearRelation")->variables->are(t => 'Real');
+$equation = LinearRelation("$initial + $rate t = $final");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$name] is driving with an average speed of [`[$speed]`] on Interstate-[$I]. [$name->Subject] [$name->verb('look')] out the window and [$name->verb('see')] mile marker [$initial] pass by. How long will it take [$name->object] to reach [$name->possessive] destination, which is at mile marker [$final]? Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

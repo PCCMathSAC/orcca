@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,16 +20,17 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PGlateximage.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "parserGraphTool.pl",
@@ -41,15 +39,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
 Context()->noreduce('(-x)+y', '(-x)-y');
 do {
@@ -128,6 +121,7 @@ for (
 $solution = Point($x,$y)->cmp(
   mathQuillOpts => 'disabled'
 );
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -150,14 +144,21 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the given system of linear equations graphically.
 
-[`\newcommand{\amp}{&}
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`
                   \left\{
                     \begin{alignedat}{3}
                       y \amp= [$f[0]]\\
@@ -172,12 +173,11 @@ Solve the given system of linear equations graphically.
 
 [_]{$solution}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 If we graph these lines, we find they cross.
@@ -186,11 +186,10 @@ If we graph these lines, we find they cross.
 
 So the only solution is [`[$solution->{rh_ans}{correct_ans}]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

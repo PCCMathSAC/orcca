@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "parserNumberWithUnits.pl",
   "contextCurrency.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $name = randomPerson();
 $rate = random(4,8,0.01);
 Context("Currency")->flags->set(
@@ -60,20 +54,19 @@ $solution = ($final - $initial)/$rate;
 $weeks = {newUnit => {name => 'weeks', conversion => {factor => 60*60*24*7, s => 1}}};
 $time = NumberWithUnits("$solution weeks", $weeks);
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 To save up for a new phone that costs [`[$end]\text{,}`] [$name] sets aside 1% of [$name->possessive] pay each week. This works out to [`[$speed]`] per week. At present, [$name->subject] [$name->have] [`[$start]`] saved up. How long will it be until [$name] has saved up enough?
 
 [_]{$time}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

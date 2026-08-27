@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "contextCurrency.pl",
   "contextForm.pl",
   "parserPopUp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $b = random(250, 400, 10);
 $r = random(100, 200, 5);
 $n = random(4, 8);
@@ -66,35 +60,35 @@ $dropdown = DropDown(
   ($lefteval == $righteval) ? 0 : 1, showInStatic => 0
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-The rental fee for a beach house is a flat [`[$base]`] plus [`[$rate]`] per night. So if you stay [`n`] nights, the total is [`[$left]\text{.}`] If the total was [`[$total]\text{,}`] then we have an equation [`[$left]=[$right]\text{.}`] Did you stay [`[$proposed_solution]`] nights?
+The rental fee for a beach house is [`[$base]`] plus [`[$rate]`] per night. If you stay [`n`] nights, the total is [`[$left]\text{.}`] You stayed and the total was [`[$total]\text{,}`] giving the equation [`[$left]=[$right]\text{.}`] Did you stay [`[$proposed_solution]`] nights?
 
 >> [@DataTable(
   [
-    [PGML('[`[$left->TeX]`]'),
+    [
+     PGML('[`[$left->TeX]`]'),
      PGML('[`=`]'),
      PGML('[`[$right->TeX]`]'),
     ],
-    [PGML('[_]{$lefteval}{3}'),
+    [
+     PGML('[_]{$lefteval}{3}'),
      PGML('[`\wonder{=}`]'),
      PGML('[`[$righteval->TeX]`]'),
     ],
   ],
       align => 'rcl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$dropdown}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

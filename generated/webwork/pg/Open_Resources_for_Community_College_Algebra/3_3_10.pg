@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserAssignment.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 @x = (0..3);
 $f = Formula("x^2");
 @y = map{$f->eval(x => $_)} (@x);
@@ -53,45 +47,48 @@ Context("Numeric")->variables->add(y => 'Real');
 parser::Assignment->Allow;
 $eq = Formula("y = $f");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[`[$x[0]]`]'),
+    [
+     PGML('[`[$x[0]]`]'),
      PGML('[`[$y[0]]`]'),
     ],
-    [PGML('[`[$x[1]]`]'),
+    [
+     PGML('[`[$x[1]]`]'),
      PGML('[`[$y[1]]`]'),
     ],
-    [PGML('[`[$x[2]]`]'),
+    [
+     PGML('[`[$x[2]]`]'),
      PGML('[`[$y[2]]`]'),
     ],
-    [PGML('[`[$x[3]]`]'),
+    [
+     PGML('[`[$x[3]]`]'),
      PGML('[`[$y[3]]`]'),
     ],
   ],
       align => 'rl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$eq}{20}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Looking for a relationship in each row here, we see that each [`y`]-value is the square of the corresponding [`x`]-value. That may not be obvious to you. It comes down to recognizing what square numbers are. So the equation is [`[$eq]\text{.}`]
@@ -100,35 +97,38 @@ What if we had tried the approach we used in the previous exercise, comparing ch
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[`[$x[0]]`]'),
+    [
+     PGML('[`[$x[0]]`]'),
      PGML('[`[$y[0]]`]'),
     ],
-    [PGML('(add [`1`] from previous) [`[$x[1]]`]'),
+    [
+     PGML('(add [`1`] from previous) [`[$x[1]]`]'),
      PGML('[`[$y[1]]`] (add [`1`] from previous)'),
     ],
-    [PGML('(add [`1`] from previous) [`[$x[2]]`]'),
+    [
+     PGML('(add [`1`] from previous) [`[$x[2]]`]'),
      PGML('[`[$y[2]]`] (add [`3`] from previous)'),
     ],
-    [PGML('(add [`1`] from previous) [`[$x[3]]`]'),
+    [
+     PGML('(add [`1`] from previous) [`[$x[3]]`]'),
      PGML('[`[$y[3]]`] (add [`5`] from previous)'),
     ],
   ],
       align => 'rl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 Here, the rate of change is _not_ constant from one row to the next. While the [`x`]-values are increasing by [`1`] from row to row, the [`y`]-values increase more and more from row to row. Do you notice that there is a pattern there as well? Mathematicians are interested in finding patterns and describing them.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

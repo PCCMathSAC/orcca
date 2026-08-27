@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGchoicemacros.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-$var = list_random('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z');
+$var = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
 Context("Numeric")->variables->are($var => 'Real');
 ($a, $b) = (2..10)[NchooseK(9,2)];
 $given = Formula("$a ($var + $b)");
@@ -57,22 +51,28 @@ $evaluator = $ans->cmp(checker => sub{
   return ($student eq $correct);
 });
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 Apply commutativity of multiplication to [`[$given]\text{.}`]
 
 [_]{$evaluator}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

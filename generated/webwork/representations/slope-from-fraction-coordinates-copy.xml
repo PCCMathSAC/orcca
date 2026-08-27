@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-slope-from-fraction-coordinates-copy" assembly-id="slope-from-fraction-coordinates-copy">
+  <static seed="1132">
+    <statement><p><m>{\left(-{\frac{7}{9}},{\frac{4}{3}}\right)}</m> and <m>{\left(-{\frac{2}{5}},-{\frac{3}{4}}\right)}</m></p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-{\frac{375}{68}}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_4_5_17.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="slope-from-fraction-coordinates"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.4.5.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
+do {
+  $x[0] = Fraction(random_coprime([-9 .. -1, 1 .. 9], [2 .. 9]));
+  $x[1] = Fraction(random_coprime([-9 .. -1, 1 .. 9], [2 .. 9]));
+} until ($x[0] != $x[1]);
+$y[0] = Fraction(random_coprime([-9 .. -1, 1 .. 9], [2 .. 9]));
+$y[1] = Fraction(random_coprime([-9 .. -1, 1 .. 9], [2 .. 9]));
+$m = ($y[1] - $y[0])/($x[1] - $x[0]);
+@p = map {Point($x[$_], $y[$_])} (0,1);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Find the slope of the line passing through the two given points.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$p[0]]`] and [`[$p[1]]`]
+
+[_]{$m}{10}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

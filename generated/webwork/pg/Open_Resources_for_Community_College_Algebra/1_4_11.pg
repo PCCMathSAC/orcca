@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserRadioButtons.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("LimitedNumeric");
 $yesno=RadioButtons([
   "So -3 is a solution to this equation.",
@@ -52,41 +46,41 @@ $yesno=RadioButtons([
   ], 0, showInStatic => 0
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Is [`-3`] a solution to the equation [`x^2+x+1=\frac{3x+2}{x+2}\text{?}`]
 
 >> [@DataTable(
   [
-    [PGML('[`x^2+x+1`]'),
+    [
+     PGML('[`x^2+x+1`]'),
      PGML('[`{}={}`]'),
      PGML('[`\dfrac{3x+2}{x+2}`]'),
     ],
-    [PGML('[_]{7}{2}'),
+    [
+     PGML('[_]{7}{2}'),
      PGML('[`{}\wonder{=}{}`]'),
      PGML('[_]{7}{2}'),
     ],
   ],
       align => 'rcl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$yesno}{5}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We have to substitute [`-3`] in for [`x`] and simplify each side:
 
-[```\newcommand{\highlight}[1]{\mathchoice{\colorbox{lightsapphire}{$\displaystyle #1$}}{\colorbox{lightsapphire}{$\textstyle #1$}}{\colorbox{lightsapphire}{$\scriptstyle #1$}}{\colorbox{lightsapphire}{$\scriptscriptstyle #1$}}}\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 x^2+x+1\amp=\frac{3x+2}{x+2}\\
 (\substitute{-3})^2+(\substitute{-3})+1\amp\wonder{=}\frac{3(\substitute{-3})+2}{\substitute{-3}+2}\\
@@ -98,11 +92,10 @@ x^2+x+1\amp=\frac{3x+2}{x+2}\\
 
 Since [`7=7`] is true, [`-3`] is indeed a solution to this equation.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

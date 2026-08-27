@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,38 +20,35 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserOneOf.pl",
   "parserVectorUtils.pl",
+  "contextFiniteSolutionSets.pl",
   "contextForm.pl",
   "contextFraction.pl",
-  "contextFiniteSolutionSets.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 do {
   ($m, $n, $q) = random_subset(3,-5..-2,2..5);
   $p = $m*$n + $q;
   ($c, $d) = random_subset(2,1..9);
   $b = -$d - $m*$c + list_random(-3..3,(0)x5);
 } until ($p != 0 && $d != 0);
-$x = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+$x = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context()->variables->are($x => 'Real');
 Context()->noreduce('(-x)+y', '(-x)-y');
 $left = Formula("$b + $m($c + $n $x)")->reduce;
@@ -86,28 +80,34 @@ $rightsol[1] = Formula("($p - $q) $x - $d")->reduce;
 $leftsol[2] = Formula("$b + $m*$c")->reduce;
 $rightsol[2] = Formula("-$d")->reduce;
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the inequality for its variable.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left][$symbol][$right]`]
 
 [_]{$solution}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We try to use the standard steps for solving an inequality:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$left] \amp[$symbol] [$right]\\
 [$leftsol[0]] \amp[$symbol] [$rightsol[0]]\\
@@ -118,11 +118,10 @@ We try to use the standard steps for solving an inequality:
 
 This is an outright [$truefalse] inequality. [$conclusion]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

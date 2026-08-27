@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,38 +20,37 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-Context("Numeric")->variables->add(c=>'Real',m=>'Real',n=>'Real',q=>'Real',r=>'Real');
+$m='This is the original expression';
+$e='This is algebraically equivalent to the given expression, but using the %s would give you something else';
+Context("Numeric")->variables->add(map{$_=>'Real'}(qw(c m n q r)));
 Context()->reduction->set('(-x)-y'=>0,'(-x)+y'=>0);
 $giv1=Formula("53m");
 $ans1=Formula("m*53");
 $ev1=$ans1->cmp(checker=>sub{
-  my ($correct,$student,$ans)=@_;
-  Value->Error("This is the original expression") if ($student eq $giv1);
-  Value->Error("This is algebraically equivalent to the given expression, but using the commutative property of multiplication would give you something else") if (($student == $correct) && ($student ne $correct));
-  return ($student eq $correct);
+  my ($c,$s,$ans)=@_;
+  Value->Error($m) if $s eq $giv1;
+  Value->Error(sprintf($e,'commutative property of multiplication')) if $s == $c && $s ne $c;
+  return ($s eq $c);
 });
 Context()->flags->set(reduceConstants=>0);
 Context()->lists->set(AbsoluteValue=>{open=>"(",close=>")"});
@@ -63,47 +59,49 @@ $giv2=Formula("3*(5 n)");
 $ans2=Formula("(3*5)*n");
 $alt2=Formula("15*n");
 $ev2=$ans2->cmp(checker=>sub{
-  my ($correct,$student,$ans)=@_;
-  $student->{test_at}=[[0,0,-1,0,0,0],[0,0,1,0,0,0]];
-  $correct->{test_at}=[[0,0,-1,0,0,0],[0,0,1,0,0,0]];
-  Value->Error("This is algebraically equivalent to the given expression, but using the associative property of multiplication would give you something else") if (($student == $giv2) || (($student == $correct) && ($student ne $correct) && ($student ne $alt2)));
-  return (($student eq $correct) or ($student eq $alt2));
+  my ($c,$s,$ans)=@_;
+  $s->{test_at}=[[0,0,-1,0,0,0],[0,0,1,0,0,0]];
+  $c->{test_at}=[[0,0,-1,0,0,0],[0,0,1,0,0,0]];
+  Value->Error(sprintf($e,'associative property of multiplication')) if ($s == $giv2 || $s == $c) && $s ne $c && $s ne $alt2;
+  return $s eq $c || $s eq $alt2;
 });
 $giv3=Formula("q+84");
 $ans3=Formula("84+q");
 $ev3=$ans3->cmp(checker=>sub{
-  my ($correct,$student,$ans)=@_;
-  Value->Error("This is the original expression") if ($student eq $giv3);
-  Value->Error("This is algebraically equivalent to the given expression, but using the commutative property of addition would give you something else") if (($student == $correct) && ($student ne $correct));
-  return ($student eq $correct);
+  my ($c,$s,$ans)=@_;
+  Value->Error($m) if ($s eq $giv3);
+  Value->Error(sprintf($e,'commutative property of addition')) if $s == $c && $s ne $c;
+  return $s eq $c;
 });
 $giv4=Compute("x+(20+c)");
 $amb4=Compute("x+20+c");
 $ans4=Compute("(x+20)+c");
 $ev4=$ans4->cmp(checker=>sub{
-  my ($correct,$student,$ans)=@_;
-  for my $x ($giv4,$student,$amb4,$correct) {
+  my ($c,$s,$ans)=@_;
+  for my $x ($giv4,$s,$amb4,$c) {
     $x->{test_at}=[[-21,0,0,0,0,-21],[-21,0,0,0,0,-19],[-19,0,0,0,0,-21],[-19,0,0,0,0,-19]];
   }
-  Value->Error("This expression is algebraically equivalent to the given expression, but using the associative property of addition would give you something else") if (($student == $giv4) || ($student == $amb4) || (($student == $correct) && ($student ne $correct)));
-  return ($student eq $correct);
+  Value->Error(sprintf($e,'associative property of addition')) if ($s == $giv4 || $s == $amb4 || $s == $c) && $s ne $c;
+  return $s eq $c;
 });
 $giv5=Compute("3*(r+7)")->reduce;
 Context("Form")->variables->are(r=>'Real');
 $ans5=Compute("3*r+3*7");
 
-############################################################
+######
 # Body
-############################################################
+######
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -111,12 +109,11 @@ Use the commutative property of multiplication to write an equivalent expression
 
 [_]{$ev1}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To use the commutative property of multiplication, change the order the two factors are multiplied:
@@ -125,16 +122,14 @@ To use the commutative property of multiplication, change the order the two fact
                 53m=m\cdot 53
               \text{.}```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -142,12 +137,11 @@ Use the associative property of multiplication to write an equivalent expression
 
 [_]{$ev2}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To use the associative property of multiplication, leave factors written in their original order, but change the grouping symbols so that a different multiplication has higher priority:
@@ -158,7 +152,7 @@ To use the associative property of multiplication, leave factors written in thei
 
 You may further simplify by multiplying the two numbers:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 3(5n)\amp=(3\cdot5)n\\
 \amp=15n
@@ -167,14 +161,14 @@ You may further simplify by multiplying the two numbers:
 
 but that is going a step beyond simply using the associative property.
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -182,12 +176,11 @@ Use the commutative property of addition to write an equivalent expression to [`
 
 [_]{$ev3}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To use the commutative property of addition, change the order the two terms are added:
@@ -196,16 +189,14 @@ To use the commutative property of addition, change the order the two terms are 
                 q+84=84+q
               \text{.}```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -213,12 +204,11 @@ Use the associative property of addition to write an equivalent expression to [`
 
 [_]{$ev4}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To use the associative property of addition, leave terms written in their original order, but change the grouping symbols so that a different addition has higher priority:
@@ -227,16 +217,14 @@ To use the associative property of addition, leave terms written in their origin
                 x+(20+c)=(x+20)+c
               ```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -244,25 +232,21 @@ Use the distributive property to write an equivalent expression to [`[$giv5]`] t
 
 [_]{$ans5}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To use the distributive property, multiply the number outside the parentheses, [`3\text{,}`] with each term inside the parentheses:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 3(r+7)\amp=3\cdot r+3\cdot7\\
 \amp=3r+21\text{.}
 \end{aligned}
 ```]
-
-
-
 
 END_PGML_SOLUTION
 
@@ -270,8 +254,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

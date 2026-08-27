@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-standard-form-plot-positive-integers-one-neg-copy4" assembly-id="standard-form-plot-positive-integers-one-neg-copy4">
+  <static seed="1437">
+    <statement><p><m>{-3x+y}={6}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(-2,0\right), \left(0,6\right)\right\}, \left\{\text{point}, \left(-2,0\right)\right\}, \left\{\text{point}, \left(0,6\right)\right\}</m>
+      </p>
+    </answer>
+    <solution><sidebyside xmlns:pi="http://pretextbook.org/2020/pretext/internal" valign="top" widths="47% 47%">
+<p>We can plot this by finding the <m>x</m>-intercept, which is at <m>{\left(-2,0\right)}\text{,}</m> and the <m>y</m>-intercept, which is at <m>{\left(0,6\right)}\text{.}</m> After plotting these, we can just connect the dots and extend the line past them. It is highly recommended to do some quality control by checking that a few more points on the line you<rsq/>ve drawn actually satisfy the equation.</p>
+<image pi:generated="webwork/images/standard-form-plot-positive-integers-one-neg-copy4-image-1" width="47%"/>
+</sidebyside>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_7_5_25.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="standard-form-plot-positive-integers-one-neg"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.9.5.46)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($x, $y) = random_subset(2, 2..9);
+$C = lcm($x,$y);
+$A = $C/$x;
+$B = $C/$y;
+($A, $B) = (random(0,1))
+  ? (-$A, $B)
+  : ($A, -$B);
+$x = $C/$A;
+$y = $C/$B;
+$m = -$A/$B;
+$b = $C/$B;
+Context()->variables->add(y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$left = Formula("$A x + $B y")->reduce;
+$right = Formula("$C");
+$xi = Point($x,0);
+$yi = Point(0,$y);
+Context("Point");
+Context()->flags->set(reduceConstants=>0);
+$xi=Compute("($x,0)");
+$yi=Compute("(0,$y)");
+$gt = GraphTool("{line, solid, $xi, $yi}, {point, $xi}, {point, $yi}")->with(
+  bBox => [-11, 11, 11, -11],
+  availableTools => [ "PointTool", "LineTool" ],
+  showInStatic => 0,
+);
+@domain = num_sort(-10,10,(10 - $b)/$m,(-10 - $b)/$m);
+($l,$r) = (@domain)[1,2];
+$f = Formula("$m x + $b");
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-10,
+      xmax=10,
+      ymin=-10,
+      ymax=10,
+      xtick={-10,-5,5,10},
+      ytick={-10,-5,5,10},
+      minor xtick={-10,...,10},
+      minor ytick={-10,...,10},
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot+[domain=$l:$r] {$f};
+    \addplot[soliddot] coordinates {$xi $yi};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Use whatever method you think best to plot the line.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[@KeyboardInstructions('Plot the [`x`]\- and [`y`]-intercepts, as well as the line.')@]**
+
+[`[$left]=[$right]`]
+
+[_]{$gt}{1}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+[#
+    [.
+        We can plot this by finding the [`x`]-intercept, which is at [`[$xi]\text{,}`] and the [`y`]-intercept, which is at [`[$yi]\text{.}`] After plotting these, we can just connect the dots and extend the line past them. It is highly recommended to do some quality control by checking that a few more points on the line you've drawn actually satisfy the equation.
+    .]
+    [.
+        [@image(insertGraph($image_1), width=>282)@]* 
+
+    .]
+#]*{align => 'p{0.47}p{0.47}'}
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

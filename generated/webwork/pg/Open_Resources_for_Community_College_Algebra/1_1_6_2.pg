@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
   "parserOneOf.pl",
   "contextArbitraryString.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context()->variables->are();
 for my $i (1..26) {
   Context()->variables->add($ALPHABET[$i-1] => 'Real');
@@ -72,66 +66,68 @@ $sqftorsqm = Compute("ft^2 or m^2")->cmp(
   }
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Identify a variable you might use to represent each quantity. Then identify what units would be most appropriate.
 
-
 END_PGML
 
-############################################################
+######
+# Body
+######
+
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 Let [_]{$t}{3} be the amount of time a person sleeps each night, measured in [_]{$hormin}{5}.
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The unknown quantity is time, and "time" starts with a "t". The amount of time a person sleeps would typically be measured in hours. So we could define this variable as:
 
 "Let [`t`] be the amount of time a person sleeps each night, measured in hours."
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 Let [_]{$a}{3} be the surface area of a patio, measured in [_]{$sqftorsqm}{5}.
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The unknown quantity is area, and "area" starts with an "a". Patio area is usually measured in square feet. (Square meters is another reasonable unit.) So we could define this variable as:
 
 "Let [`A`] be the area of a patio, measured in [`\text{ft}^2\text{.}`]"
-
 
 END_PGML_SOLUTION
 
@@ -139,8 +135,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

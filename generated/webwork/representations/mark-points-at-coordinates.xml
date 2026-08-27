@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-mark-points-at-coordinates" assembly-id="mark-points-at-coordinates">
+  <static seed="1014">
+    <statement><p>Plot the point <m>(3,5)\text{,}</m> the origin, some point on the negative <m>x</m>-axis, and some point in quadrant IV.</p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{point}, \left(3,5\right)\right\}, \left\{\text{point}, \left(0,0\right)\right\}, \left\{\text{point}, \left(-3,0\right)\right\}, \left\{\text{point}, \left(1,-1\right)\right\}</m>
+      </p>
+    </answer>
+    <solution><p>The point <m>(3,5)</m> is <m>3</m> units to the right of the origin and <m>5</m> units up. The origin itself, <m>(0,0)</m> is where the axes cross. A point on the negative <m>x</m>-axis can be any point directly to the left of the origin, and not up or down from there. A point in quadrant IV can be anything in the lower right region.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/mark-points-at-coordinates-image-1" width="47%"/>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_1_12.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.12)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+$gt = GraphTool("{point,(3,5)}", "{point,(0,0)}", "{point,(-3,0)}", "{point,(1,-1)}")->with(
+  availableTools => ['PointTool'],
+  bBox => [-6,6,6,-6],
+  showInStatic => 0,
+  showCoordinateHints => 0,
+  cmpOptions => {
+    list_checker => sub {
+      my ($c, $s, $ans, $value) = @_;
+      return 0 if $ans->{isPreview};
+      my $score = 0;
+      my @errors;
+      my ($p, $o, $x, $q) = (0, 0, 0, 0);
+      my ($pCmp, $oCmp) = map {($graphToolObjectCmps->{point}->($c->[$_]))[1]} (0..1);
+      for (0 .. $#$s) {
+        if ($pCmp->($s->[$_]) && !$p) { $p = 1; ++$score; next; }
+        if ($oCmp->($s->[$_]) && !$o) { $o = 1; ++$score; next; }
+        if (!$x && ($s->[$_]->extract(2)->value)[0] < 0 && ($s->[$_]->extract(2)->value)[1] == 0) { $x = 1; ++$score; next; }
+        if (!$q && ($s->[$_]->extract(2)->value)[0] > 0 && ($s->[$_]->extract(2)->value)[1] < 0) { $q = 1; ++$score; next; }
+        my $nth = Value::List->NameForNumber($_ + 1);
+        push(@errors, "The $nth point graphed is incorrect.");
+      }
+      return ($score, @errors);
+    }
+  }
+);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth,
+      clip=false,
+    ]
+    \addplot[soliddot] coordinates {(3,5)} node[above] {\((3,5\))};
+    \addplot[soliddot] coordinates {(0,0)} node[above right] {origin};
+    \addplot[soliddot] coordinates {(-4,0)} node[above] {on negative \(x\)-axis};
+    \addplot[soliddot] coordinates {(4,-4)} node[above] {in quadrant IV};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+Plot the point [`(3,5)\text{,}`] the origin, some point on the negative [`x`]-axis, and some point in quadrant IV.
+
+[_]{$gt}{1}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The point [`(3,5)`] is [`3`] units to the right of the origin and [`5`] units up. The origin itself, [`(0,0)`] is where the axes cross. A point on the negative [`x`]-axis can be any point directly to the left of the origin, and not up or down from there. A point in quadrant IV can be anything in the lower right region.
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

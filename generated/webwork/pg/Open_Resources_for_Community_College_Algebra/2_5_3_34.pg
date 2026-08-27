@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,89 +20,74 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
   "parserAssignment.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-$B = non_zero_random(20,90,1)*list_random(-1,1);
-$A = non_zero_random(20,90,1)*list_random(-1,1);
-$C = non_zero_random(-500,500,1);
-Context("Fraction");
-$b = Fraction($C,$B);
-$m = Fraction(-$A,$B);
-Context()->flags->set(reduceConstants=>0);
-Context()->variables->are(x=>'Real',y=>'Real');
-Context()->noreduce('(-x)-y','(-x)+y');
+@x = qw(A r h);
+Context("Fraction")->variables->are(map {$_ => 'Real'} (@x));
+$left = Formula("A")->reduce;
+$right = Formula("2 pi r^2 + 2 pi r h")->reduce;
 parser::Assignment->Allow;
-$left = Formula("$A x+$B y")->reduce;
-$right = Formula("$C")->reduce;
-$answer = Formula("y=$m x + $b")->reduce->reduce;
-$leftsteps[0] = Formula("$left-$A x")->reduce;
-$leftsteps[1] = Formula("$B y")->reduce;
-$leftsteps[2] = $leftsteps[1]/Formula("$B");
-$leftsteps[3] = Formula("y");
-$rightsteps[0] = Formula("$right-$A x")->reduce;
-$rightsteps[1] = $rightsteps[0];
-$rightsteps[2] = $rightsteps[1]/Formula("$B");
-$rightsteps[3] = Formula("$m x + $b")->reduce;
+$ans = Assignment("h = (A - 2 pi r^2)/(2 pi r)");
 
-############################################################
-# Body
-############################################################
+$introduction_image_1 = createLaTeXImage();
+$introduction_image_1->addToPreamble(latexImagePreamble());
+$introduction_image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \draw[fill=firstcolor!20] (0,0) ellipse (3 and 0.45);
+  \draw[fill=firstcolor!10] (3,0) arc (0:180:3 and -0.45) -- (-3,-2) arc (180:360:3 and 0.5) -- cycle;
+  \draw [dashed] (-3,-2) arc (180:360:3 and -0.5);
+  \draw [dashed] (0,0) -- (3,0) node[pos=0.5,above] {radius \(r\)};
+  \node at (-3,-1) [left] {height \(h\)};
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
-Isolate [`y`] in the standard form linear equation (a topic covered later in this book).
+The volume of a cylinder can be found with the equation [`V=\pi r^2h\text{,}`] where [`r`] is the radius and [`h`] is the height. Its surface area can be found with the equation [`A=2\pi r^2+2\pi rh\text{.}`]
 
-[`[$left]=[$right]`]
-
-[_]{$answer}{20}
-
+>> [@image(insertGraph($introduction_image_1), width=>300)@]*  <<
 
 END_PGML
 
-############################################################
-# Solution
-############################################################
+######
+# Body
+######
 
-BEGIN_PGML_SOLUTION
+BEGIN_PGML
+Solve [`[$left]=[$right]`] for [`h\text{.}`]
 
+[@KeyboardInstructions('You may type [`\pi`] as [|pi|]* or [|π|]*.')@]**
 
-[```\newcommand{\amp}{&}
-\begin{aligned}
-[$left] \amp = [$right]\\
-[$leftsteps[0]] \amp = [$rightsteps[0]]\\
-[$leftsteps[1]] \amp = [$rightsteps[1]]\\
-[$leftsteps[2]] \amp = [$rightsteps[2]]\\
-[$leftsteps[3]] \amp = [$rightsteps[3]]
-\end{aligned}
-```]
+[_]{$ans}{16}
 
+END_PGML
 
-
-
-END_PGML_SOLUTION
-
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

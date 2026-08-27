@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,16 +20,17 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PGlateximage.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "ORCCA.pl",
@@ -40,15 +38,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($x,$y) = (-5..-1,1..5)[NchooseK(10,2)];
 @b = (-6..$y-1,$y+1..6)[NchooseK(12,2)];
 Context("Fraction");
@@ -82,12 +75,13 @@ for (
 $solution = Point($x,$y)->cmp(
   mathQuillOpts => 'disabled'
 );
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
 \begin{tikzpicture}
   \begin{axis}[
-      width=0.47\orccaprintwidth
+      width=0.33\orccaprintwidth
     ]
     \addplot[firstcurve,domain=$start[0]:$stop[0]]{$f[0]};
     \addplot[secondcurve,domain=$start[1]:$stop[1]]{$f[1]};
@@ -96,24 +90,30 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 The graph of two lines represents a system of two linear equations. Use the graph to identify the solution to the system.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 >> [@image(insertGraph($image_1), width=>600, alt=>qq"a coordinate plot of two lines that cross at ($x, $y)")@]*  <<
 
 [@KeyboardInstructions('Enter the solution here. If there are no solutions, enter [|no solutions|]*.')@]**
 
 [_]{$solution}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

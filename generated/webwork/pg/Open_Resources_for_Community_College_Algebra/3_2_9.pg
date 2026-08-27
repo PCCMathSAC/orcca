@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserMultiAnswer.pl",
   "contextForm.pl",
   "parserGraphTool.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Point");
 ($m,$b) = random_subset(2,-3..-1,1..3);
 $f = Formula("$m x + $b")->reduce;
@@ -113,63 +107,74 @@ $gt = GraphTool( (map {"{point,$p[$_]}"} (0..4)), "{line,solid,$p[0],$p[1]}")->w
   }
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Make a table and then plot the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`y=[$f]`]
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      [PGML('[`y`]'),
       halign => 'c',],
      PGML('Point'),
     ],
-    [[PGML('[`[$x[0]]`]'),
+    [
+     [PGML('[`[$x[0]]`]'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [[PGML('[`[$x[1]]`]'),
+    [
+     [PGML('[`[$x[1]]`]'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [[PGML('[`[$x[2]]`]'),
+    [
+     [PGML('[`[$x[2]]`]'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [[PGML('[`[$x[3]]`]'),
+    [
+     [PGML('[`[$x[3]]`]'),
       rowbottom => '1',
       midrule => '1',],
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
-    [PGML('[`[$x[4]]`]'),
+    [
+     PGML('[`[$x[4]]`]'),
      PGML('[_]{$mp}{5}'),
      PGML('[_]{$mp}{5}'),
     ],
   ],
-      align => 'r|r|c',
-);@]* <<
+      align => 'r|r|c',);@]* <<
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

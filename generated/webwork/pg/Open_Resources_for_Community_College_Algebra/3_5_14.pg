@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,15 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "bizarroArithmetic.pl",
   "AnswerFormatHelp.pl",
   "PGlateximage.pl",
+  "bizarroArithmetic.pl",
   "parserAssignment.pl",
   "contextForm.pl",
   "ORCCA.pl",
@@ -39,15 +37,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context()->operators->set(
   '+'=>{class=>'bizarro::BOP::add',isCommand=>1},
   '-'=>{class=>'bizarro::BOP::subtract',isCommand=>1},
@@ -72,6 +65,7 @@ $ev=$eq->cmp(checker=>sub{
     if $ans->{ans_message} eq "The left side of an assignment must be a variable or function";
   return $ans;
 });
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -90,6 +84,7 @@ $image_1->BEGIN_LATEX_IMAGE
 \end{tikzpicture}
 
 END_LATEX_IMAGE
+
 $image_2 = createLaTeXImage();
 $image_2->addToPreamble(latexImagePreamble());
 $image_2->BEGIN_LATEX_IMAGE
@@ -113,9 +108,9 @@ $image_2->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Use the graph to write an equation of the line in slope-intercept form.
@@ -124,12 +119,11 @@ Use the graph to write an equation of the line in slope-intercept form.
 
 [_]{$ev}{20}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 On the line, pick two points with easy-to-read integer coordinates so that we can calculate slope. It doesn't matter which two points we use; the slope will be the same.
@@ -137,6 +131,7 @@ On the line, pick two points with easy-to-read integer coordinates so that we ca
 [#
     [.
         [@image(insertGraph($image_2), width=>282)@]* 
+
     .]
     [.
         Using the slope triangle, we can calculate the line's slope:
@@ -146,8 +141,8 @@ On the line, pick two points with easy-to-read integer coordinates so that we ca
               \text{.}```]
 
         Also, from the graph, we can see the [`y`]-intercept is [`(0,6)\text{.}`]
-    .]*
-#]*{align => 'p{47%}p{47%}',}
+    .]
+#]*{align => 'p{0.47}p{0.47}'}
 
 With the slope and [`y`]-intercept found, we can write the line's equation:
 
@@ -155,13 +150,10 @@ With the slope and [`y`]-intercept found, we can write the line's equation:
               y=-\frac{1}{2}x+6
             \text{.}```]
 
-
-
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

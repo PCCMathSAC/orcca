@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-equation-add-left-fraction-copy3" assembly-id="solve-equation-add-left-fraction-copy3">
+  <static seed="710">
+    <statement><p><m>{{\frac{3}{4}}+F}={-{\frac{7}{12}}}</m></p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\frac{-4}{3}\right\}</m>
+      </p>
+    </answer>
+    <solution><p>The opposite action to addition is subtraction.
+<md>\begin{aligned}
+{{\frac{3}{4}}+F} \amp= {-{\frac{7}{12}}}\\
+{{\frac{3}{4}}+F}\subtractright{{{\frac{3}{4}}}} \amp= {-{\frac{7}{12}}}\subtractright{{{\frac{3}{4}}}}\\
+F \amp= {-{\frac{4}{3}}}
+\end{aligned}</md>
+The solution set is <m>{\left\{\frac{-4}{3}\right\}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_5_6_41.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="solve-equation-add-left-fraction"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.4)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+do {
+  ($a, $b) = random_coprime([1..10], [2..10,12]);
+  ($c, $d) = random_coprime([1..10], [2..10,12]);
+} until ($b != $d);
+$A = Fraction($a, $b);
+$B = Fraction($c, $d);
+$B = random(0,1) ? $B : -$B;
+$left = Formula("$A + $var")->reduce;
+$right = Formula("$B")->reduce;
+Context("FiniteSolutionSets");
+Context()->variables->are($var => 'Real');
+$solution = $B - $A;
+$solset = Formula("{$solution}");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$solset}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The opposite action to addition is subtraction.
+
+[```
+\begin{aligned}
+[$left] \amp= [$right]\\
+[$left]\subtractright{[$A]} \amp= [$right]\subtractright{[$A]}\\
+[$var] \amp= [$solution]
+\end{aligned}
+```]
+
+The solution set is [`[$solset]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

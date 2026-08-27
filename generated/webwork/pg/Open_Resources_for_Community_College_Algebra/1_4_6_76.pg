@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "parserPopUp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
 $r = Fraction(random_coprime([1..5],[2..9]));
 $Vbar = Fraction(4, 3) * $r**3;
@@ -63,35 +57,35 @@ $dropdown = DropDown(
   ($lefteval == $righteval) ? 0 : 1, showInStatic => 0
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 The formula for a sphere's volume is [`V=\frac{4}{3}\pi r^3\text{,}`] where [`V`] is the volume and [`r`] is the radius. And [`\pi`] is a number that is about [`3.14\text{.}`] If we know the volume of a sphere is [`[$left]`] then we have the equation [`[$left]=[$right]\text{.}`] Is the radius [`[$proposed_solution]\text{?}`]
 
 >> [@DataTable(
   [
-    [PGML('[`[$left->TeX]`]'),
+    [
+     PGML('[`[$left->TeX]`]'),
      PGML('[`=`]'),
      PGML('[`[$right->TeX]`]'),
     ],
-    [PGML('[`[$lefteval->TeX]`]'),
+    [
+     PGML('[`[$lefteval->TeX]`]'),
      PGML('[`\wonder{=}`]'),
      PGML('[_]{$righteval}{3}'),
     ],
   ],
       align => 'rcl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$dropdown}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-savings-account-linear-model" assembly-id="savings-account-linear-model">
+  <static seed="562">
+    <statement><p>To save up for a new phone that costs <m>{\$690}\text{,}</m> Darion sets aside 1% of his pay each week. This works out to <m>{\$6.90}</m> per week. At present, he has <m>{\$305.75}</m> saved up. How long will it be until Darion has saved up enough? Write an equation to model this scenario. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>305.75+6.9t = 690</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_45.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.45)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$name = randomPerson();
+$rate = random(4,8,0.01);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$speed = Currency("$rate");
+$initial = random(300,400,0.25);
+$start = Currency("$initial");
+$final = random(600,800,5);
+$end = Currency("$final");
+Context("LinearRelation")->variables->are(t => 'Real');
+$equation = LinearRelation("$initial + $rate t = $final");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+To save up for a new phone that costs [`[$end]\text{,}`] [$name] sets aside 1% of [$name->possessive] pay each week. This works out to [`[$speed]`] per week. At present, [$name->subject] [$name->have] [`[$start]`] saved up. How long will it be until [$name] has saved up enough? Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserAssignment.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-@x = random_subset(4, ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z'));
+@x = random_subset(4, ('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z'));
 Context()->variables->are(map {$_ => 'Real'} (@x));
 $left = Formula("$x[1] $x[0] + $x[2]")->reduce;
 $right = Formula("$x[3]")->reduce;
@@ -58,28 +52,34 @@ $rightsol[1] = Formula("$x[3] - $x[2]")->reduce;
 $leftsol[2] = Formula("$x[0]")->reduce;
 $rightsol[2] = Formula("($x[3] - $x[2])/$x[1]")->reduce;
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Isolate the indicated variable.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$x[0]]`] in [`[$left]=[$right]`]
 
 [_]{$ans}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We need to keep our focus on [`[$x[0]]`] and take algebra steps that bring us closer to isolating [`[$x[0]]\text{.}`]
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$left] \amp= [$right]\\
 [$leftsol[0]] \amp= [$rightsol[0]]\\
@@ -88,13 +88,10 @@ We need to keep our focus on [`[$x[0]]`] and take algebra steps that bring us cl
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

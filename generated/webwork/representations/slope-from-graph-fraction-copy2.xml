@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-slope-from-graph-fraction-copy2" assembly-id="slope-from-graph-fraction-copy2">
+  <static seed="1452">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/slope-from-graph-fraction-copy2-image-1" width="47%"/>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-{\frac{7}{4}}</m>
+      </p>
+    </answer>
+    <solution><p>First we use the graph to identify two points. We find <m>(7, 1)</m> and <m>(3, 8)\text{,}</m> but you might find another pair of points and the slope will work out to be the same. Using the slope formula:
+<md>\begin{aligned}
+m \amp= \frac{y_2 - y_1}{x_2 - x_1}\\
+\amp= \frac{{8-1}}{{3-7}}\\
+\amp= \frac{{7}}{{-4}}
+\end{aligned}</md>
+So the slope is <m>{-{\frac{7}{4}}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_10_11.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
+@x = random_subset(2, 1 .. 9);
+@y = random_subset(2, 1 .. 9);
+$m = Fraction($y[1] - $y[0], $x[1] - $x[0]);
+Context("Numeric");
+Context()->noreduce('(-x)-y', '(-x)+y');
+$f = Formula("$m (x - $x[0]) + $y[0]");
+Context()->flags->set(reduceConstants => 0);
+$top = Formula("x - $y[0]");
+$top = $top->substitute(x => $y[1]);
+$bottom = Formula("x - $x[0]");
+$bottom = $bottom->substitute(x => $x[1]);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-1,
+      xmax=10,
+      ymin=-1,
+      ymax=10,
+      xtick={2,4,...,8},
+      minor xtick={1,...,9},
+      ytick={5,10},
+      minor ytick={1,...,9},
+      width=0.47\orccaprintwidth
+    ]
+    \addplot+[domain=-1:10,samples=2] {$f};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+[_]{$m}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+First we use the graph to identify two points. We find [`([$x[0]], [$y[0]])`] and [`([$x[1]], [$y[1]])\text{,}`] but you might find another pair of points and the slope will work out to be the same. Using the slope formula:
+
+[```
+\begin{aligned}
+m \amp= \frac{y_2 - y_1}{x_2 - x_1}\\
+\amp= \frac{[$top]}{[$bottom]}\\
+\amp= \frac{[$top->reduce]}{[$bottom->reduce]}
+\end{aligned}
+```]
+
+So the slope is [`[$m]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

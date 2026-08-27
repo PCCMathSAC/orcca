@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-equation-divide-decimal" assembly-id="solve-equation-divide-decimal">
+  <static seed="407">
+    <statement><p><m>{-4.6}={\frac{d}{6.4}}</m></p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{-29.44\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_5_6_57.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.5.6.57)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+($a, $b) = (0..10)[NchooseK(11,2)];
+($a, $b) = map{$_ + random(0.1, 0.9, 0.1)} ($a, $b);
+$b = random(0,1) ? $b : -$b;
+$left = Formula("$var/$a")->reduce;
+$right = Formula("$b")->reduce;
+($left, $right) = ($left, $right)[NchooseK(2,2)];
+Context("FiniteSolutionSets");
+Context()->flags->remove("NumberCheck");
+Context()->variables->are($var => 'Real');
+$solution = $b*$a;
+$solset = Formula("{$solution}");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$solset}{10}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

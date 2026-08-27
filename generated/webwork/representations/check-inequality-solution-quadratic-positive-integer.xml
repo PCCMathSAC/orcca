@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-inequality-solution-quadratic-positive-integer" assembly-id="check-inequality-solution-quadratic-positive-integer">
+  <static seed="315">
+    <statement><p>Is <m>{6}</m> a solution to <m>{6x^{2}-9}\leq{2x+195}\text{?}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>6x^{2}-9</m></cell>
+<cell><m>\leq</m></cell>
+<cell><m>2x+195</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{\leq}</m></cell>
+<cell><fillin characters="3" name="AnSwEr0002"/>
+</cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>207</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>207</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{Yes, it is a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_47.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.47)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGchoicemacros.pl",
+  "parserVectorUtils.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$actual_solution = Real(random(1,6));
+($a, $b, $c) = (2..9)[NchooseK(8,3)];
+$c = list_random($c, -$c);
+$left = Formula("$a x^2 + $c")->reduce;
+$right = Formula("$b x");
+$right += $left->eval(x => $actual_solution) - $right->eval(x => $actual_solution);
+$proposed_solution = random(0,2) ? $actual_solution : $actual_solution + non_zero_random(-3,3);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(x => $proposed_solution));
+$righteval = Real($right->eval(x => $proposed_solution));
+$inequality = list_random('\lt', '\gt', '\leq', '\geq', '\neq');
+$truefalse = (
+  ($inequality eq '\lt') ?
+  ($lefteval < $righteval) :
+  (
+    ($inequality eq '\gt') ?
+    ($lefteval > $righteval) :
+    (
+      ($inequality eq '\leq') ?
+      ($lefteval <= $righteval) :
+      (
+        ($inequality eq '\geq') ?
+        ($lefteval >= $righteval) :
+        ($lefteval != $righteval)
+      )
+    )
+  )
+);
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], $truefalse ? 0 : 1, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Check if the given number is a solution to the given inequality.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution to [`[$left][$inequality][$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`[$inequality]`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{[$inequality]}`]'),
+     PGML('[_]{$righteval}{3}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

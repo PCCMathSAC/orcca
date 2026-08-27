@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-retiring-coworker" assembly-id="retiring-coworker">
+  <static seed="1061">
+    <statement><p>A beloved coworker is retiring and you want to give them a gift of week-long vacation rental at the coast that costs <m>{\$1{,}680.00}</m> for the week. You might end up paying for all of it yourself, but you ask around to see if any of the other office coworkers want to split the cost evenly. The equation <m>y={\frac{1680}{x}}</m> models this situation, where <m>x</m> people contribute to the gift, and <m>y</m> is the dollar amount each individual will contribute. Plot a graph of this equation.</p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{point}, \left(1,1680\right)\right\}, \left\{\text{point}, \left(2,840\right)\right\}, \left\{\text{point}, \left(3,560\right)\right\}, \left\{\text{point}, \left(4,420\right)\right\}, \left\{\text{point}, \left(5,336\right)\right\}, \left\{\text{point}, \left(6,280\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_2_22.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.2.22)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$a = random(960,2400,120);
+$ymax = (int($a/1000) + 1)*1000;
+$f = Formula("$a / x");
+@pts = map {"{point,($_," . $f->eval(x => $_) . ')}'} (1..6);
+Context("Currency");
+$ac = Currency($a);
+$gt = GraphTool(join(',', @pts))->with(
+  bBox => [-1, $ymax, 6.5, -100],
+  availableTools => [ "PointTool" ],
+  gridY => 100,
+  ticksDistanceY => 200,
+  snapSizeY => $a/120,
+  showInStatic => 0,
+  xAxisLabel => 'x\\text{ (people)}',
+  yAxisLabel => 'y\\text{ (dollars)}'
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+A beloved coworker is retiring and you want to give them a gift of week-long vacation rental at the coast that costs [`[$ac]`] for the week. You might end up paying for all of it yourself, but you ask around to see if any of the other office coworkers want to split the cost evenly. The equation [`y=[$f]`] models this situation, where [`x`] people contribute to the gift, and [`y`] is the dollar amount each individual will contribute. Plot a graph of this equation.
+
+[@KeyboardInstructions('Include as many points as you are able to.')@]**
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

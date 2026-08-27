@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-interval-graph-to-set-builder-and-interval-notation-closed-infinite" assembly-id="interval-graph-to-set-builder-and-interval-notation-closed-infinite">
+  <static seed="239">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/interval-graph-to-set-builder-and-interval-notation-closed-infinite-image-1" width="100%">
+<shortdescription>a numberline with a shaded region; the shaded region begins at -1 where there is a left bracket; it extends to the right all the way with an arrowhead</shortdescription>
+</image>
+<p><fillin characters="12" name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{x \mid x\ge -1\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left[-1,\infty \right)</m>
+      </p>
+    </answer>
+    <solution><p>The interval represents all numbers greater than or equal to <m>-1\text{.}</m> So in set-builder notation, the interval is <m>{\{ x \mid x \ge -1 \}}\text{.}</m></p>
+<p>And we read the number line from left to right, with the shading starting at <m>-1</m> (and including <m>-1</m>) and extending on to <m>\infty\text{.}</m> So in interval notation, the interval is <m>{\left[-1,\infty \right)}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_49.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.49)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$a = random(-7, 7);
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$set_builder = Compute("{ x | x >= $a}");
+Context("Interval");
+$interval = Compute("[$a, inf)");
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xlabel={\(x\)},
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[closedinfiniteinterval] coordinates {($a,0) (12,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Express the given interval in set-builder notation and interval notation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@image(insertGraph($image_1), width=>600, alt=>qq"a numberline with a shaded region; the shaded region begins at $a where there is a left bracket; it extends to the right all the way with an arrowhead")@]*  <<
+
+[@KeyboardInstructions('In set-builder notation:')@]**
+
+[_]{$set_builder}{12}
+
+[@KeyboardInstructions('In interval notation:')@]**
+
+[_]{$interval}{12}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The interval represents all numbers greater than or equal to [`[$a]\text{.}`] So in set-builder notation, the interval is [`[$set_builder]\text{.}`]
+
+And we read the number line from left to right, with the shading starting at [`[$a]`] (and including [`[$a]`]) and extending on to [`\infty\text{.}`] So in interval notation, the interval is [`[$interval]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

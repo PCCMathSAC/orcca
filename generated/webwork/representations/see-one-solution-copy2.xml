@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-see-one-solution-copy2" assembly-id="see-one-solution-copy2">
+  <static seed="1706">
+    <statement><p><m>\left\{
+                    \begin{alignedat}{3}
+                      y \amp= {{\frac{9}{2}}\mathopen{}\left(x-9\right)-1}\\
+                      y \amp= {{\frac{1}{2}}x+3}
+                    \end{alignedat}
+                  \right.</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{One}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{None of the above}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_1_5_15.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="see-one-solution"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.4.4)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->noreduce('(-x)+y', '(-x)-y');
+$m[0] = Fraction(random_coprime([1..9],[2..9]));
+do {
+  $m[1] = Fraction(random_coprime([1..9],[2..9]));
+} until ($m[1] != $m[0]);
+($h[0], $k[0], $b[1]) = (-9..9)[NchooseK(19,3)];
+$f[0] = Formula("$m[0](x-$h[0])+$k[0]")->reduce;
+$f[1] = Formula("$m[1] x + $b[1]")->reduce;
+$dropdown = DropDown(["Zero", "One", "Two", "More than two but finitely many", "Infinitely many"], 1, showInStatic => 0);
+$dropdown2 = DropDown(["Dependent", "Inconsistent", "None of the above"], 2, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Simply by looking closely at the linear equations, determine how many solutions the system will have. And state whether the system is dependent, inconsistent, or neither.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`
+                  \left\{
+                    \begin{alignedat}{3}
+                      y \amp= [$f[0]]\\
+                      y \amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$dropdown}{5}
+
+[_]{$dropdown2}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

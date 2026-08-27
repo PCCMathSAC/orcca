@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-naming-variables-age-distance-area" assembly-id="naming-variables-age-distance-area">
+  <static seed="519">
+    <introduction><p>Identify a variable you might use to represent each quantity. Then identify what units would be most appropriate.</p>
+</introduction>
+    <task>
+      <statement><p>Let <fillin characters="2" name="AnSwEr0001"/> be the age of a person, measured in <fillin characters="10" name="AnSwEr0002"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>a\hbox{, }A\hbox{, }x\hbox{, }y\hbox{, or }z</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\text{years}}</m>
+        </p>
+      </answer>
+      <solution><p>The unknown quantity is age, which we generally measure in years. So we could define this variable as:</p>
+<p><lq/>Let <m>a</m> be the age of a person, measured in years.<rq/></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Let <fillin characters="2" name="AnSwEr0003"/> be the distance traveled by a driver that left Portland, Oregon, bound for Boise, Idaho, measured in <fillin characters="10" name="AnSwEr0004"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>d\hbox{, }D\hbox{, }m\hbox{, }M\hbox{, }x\hbox{, }y\hbox{, or }z</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\text{miles}}</m>
+        </p>
+      </answer>
+      <solution><p>The distance traveled is the unknown quantity. Since this is a drive from Portland to Boise, it would make sense to measure this in miles. So we could define this variable as:</p>
+<p><lq/>Let <m>d</m> be the distance traveled by a driver that left Portland, Oregon, bound for Boise, Idaho, measured in miles.<rq/></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Let <fillin characters="2" name="AnSwEr0005"/> be the surface area of the walls of a room, measured in <fillin characters="10" name="AnSwEr0006"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>a\hbox{, }A\hbox{, }x\hbox{, }y\hbox{, or }z</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\verb!ft^2 or m^2!}</m>
+        </p>
+      </answer>
+      <solution><p>The unknown quantity is area. Apartment area is usually measured in square feet. So we<rsq/>ll define this variable as:</p>
+<p><lq/>Let <m>A</m> be the area of a two-bedroom apartment, measured in <m>\text{ft}^2\text{.}</m><rq/></p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_2.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.2)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserOneOf.pl",
+  "contextArbitraryString.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+Context()->variables->are();
+for my $i (1..26) {
+  Context()->variables->add($ALPHABET[$i-1] => 'Real');
+  Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
+};
+$a=OneOf('a','A','x','y','z');
+$d=OneOf('d','D','m','M','x','y','z');
+Context("ArbitraryString");
+$years = Compute("years")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(years|yrs|yr|y|yrs~~.|yr~~.|y~~.)$/);
+    return 0;
+  }
+);
+$miles = Compute("miles")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(miles|mile|mi|mis|mis~~.|mi~~.)$/);
+    return 0;
+  }
+);
+$sqftorsqm = Compute("ft^2 or m^2")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(ft~~^2|square feet|feet squared|feet square|sq ft|sqft|sq~~. ft~~.|ft~~.~~^2|m~~^2|square meters|meters squared|meters square|sq m|sqm|sq~~. m~~.|m~~.~~^2)$/);
+    return 0;
+  }
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Identify a variable you might use to represent each quantity. Then identify what units would be most appropriate.
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$a}{2} be the age of a person, measured in [_]{$years}{10}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The unknown quantity is age, which we generally measure in years. So we could define this variable as:
+
+"Let [`a`] be the age of a person, measured in years."
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$d}{2} be the distance traveled by a driver that left Portland, Oregon, bound for Boise, Idaho, measured in [_]{$miles}{10}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The distance traveled is the unknown quantity. Since this is a drive from Portland to Boise, it would make sense to measure this in miles. So we could define this variable as:
+
+"Let [`d`] be the distance traveled by a driver that left Portland, Oregon, bound for Boise, Idaho, measured in miles."
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$a}{2} be the surface area of the walls of a room, measured in [_]{$sqftorsqm}{10}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The unknown quantity is area. Apartment area is usually measured in square feet. So we'll define this variable as:
+
+"Let [`A`] be the area of a two-bedroom apartment, measured in [`\text{ft}^2\text{.}`]"
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

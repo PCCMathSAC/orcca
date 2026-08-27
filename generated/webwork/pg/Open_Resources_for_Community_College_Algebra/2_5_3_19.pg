@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,85 +20,88 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGlateximage.pl",
   "parserAssignment.pl",
+  "contextForm.pl",
   "contextFraction.pl",
   "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-Context("Fraction")->variables->are(A => 'Real', b => 'Real', h => 'Real');
+$B = non_zero_random(2,5,1)*list_random(-1,1);
+$A = $B*non_zero_random(-9,9,1);
+$C = $B*non_zero_random(-19,19,1);
+Context("Fraction");
+$b = Fraction($C,$B);
+$m = Fraction(-$A,$B);
+Context()->flags->set(reduceConstants=>0);
+Context()->variables->are(x=>'Real',y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y');
 parser::Assignment->Allow;
-$ans = Assignment("b = (2A)/h");
-$introduction_image_1 = createLaTeXImage();
-$introduction_image_1->addToPreamble(latexImagePreamble());
-$introduction_image_1->BEGIN_LATEX_IMAGE
-\begin{tikzpicture}
-  \draw[fill=firstcolor!20!white,thick] (0,0) -| (3,2) -- cycle;
-  \node at (1.5,0) [below] {base \(b\)};
-  \draw [rightangle] (3,0.2) -| (2.8,0);
-  \node at (3,1) [right] {height \(h\)};
-  \node at (2,1) [below] {area \(A\)};
-\end{tikzpicture}
+$left = Formula("$A x+$B y")->reduce;
+$right = Formula("$C")->reduce;
+$answer = Formula("y=$m x + $b")->reduce->reduce;
+$leftsteps[0] = Formula("$left-$A x")->reduce;
+$leftsteps[1] = Formula("$B y")->reduce;
+$leftsteps[2] = $leftsteps[1]/Formula("$B");
+$leftsteps[3] = Formula("y");
+$rightsteps[0] = Formula("$right-$A x")->reduce;
+$rightsteps[1] = $rightsteps[0];
+$rightsteps[2] = $rightsteps[1]/Formula("$B");
+$rightsteps[3] = Formula("$m x + $b")->reduce;
 
-END_LATEX_IMAGE
-
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
-The area of a triangle is given by [`A=\frac12bh\text{,}`] where [`b`] is the base width, and [`h`] is the height.
-
->> [@image(insertGraph($introduction_image_1), width=>300)@]*  <<
-
-Solve the equation [`A=\frac12bh`] for [`b\text{.}`]
-
-[_]{$ans}{16}
-
+Isolate [`y`] in the standard form linear equation (a topic covered later in this book).
 
 END_PGML
 
-############################################################
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$answer}{20}
+
+END_PGML
+
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
-We need to keep our focus on [`b`] and take algebra steps that bring us closer to isolating [`b\text{.}`]
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
-A \amp= \frac12bh\\
-2A \amp= bh\\
-\frac{2A}{h} \amp= b\\
-b \amp= \frac{2A}{h}
+[$left] \amp = [$right]\\
+[$leftsteps[0]] \amp = [$rightsteps[0]]\\
+[$leftsteps[1]] \amp = [$rightsteps[1]]\\
+[$leftsteps[2]] \amp = [$rightsteps[2]]\\
+[$leftsteps[3]] \amp = [$rightsteps[3]]
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

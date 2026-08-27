@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:33-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,53 +20,49 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "contextCurrency.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Currency");
 Context()->flags->set(tolerance=>3);
 $sales=Currency(7857.14);
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Alexis sells cars for a living, and earns [`28\%`] of the dealership's sales profit as commission. In a certain month, she plans to earn [`\$2200`] in commissions. How much total sales profit does she need to bring in for the dealership?
 
 Alexis needs to bring in [_]{$sales}{10} in sales profit.
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Be careful that you do not calculate [`28\%`] of [`\$2200\text{.}`] That might be what a student would do who doesn't thoroughly read the question. If you have ever trained yourself to quickly find numbers in word problems and substitute them into formulas, you must _unlearn_ this. The issue is that [`\$2200`] is not the dealership's sales profit, and if you mistakenly multiply [`0.28\cdot2200=616\text{,}`] then [`\$616`] makes no sense as an answer to this question. How could Alexis bring in only [`\$616`] of sales profit, and earn [`\$2200`] in commission?
 
 We can translate the problem into "[`\$2200`] is [`28\%`] of what?" Letting [`x`] be the sales profit for the dealership (in dollars), we can write and solve the equation:
 
-[```\newcommand{\pinover}[2]{\overset{\overset{\mathrm{\ #2\ }}{|}}{\strut #1 \strut}}\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \pinover{2200}{\$2200}\amp\pinover{=}{is}\pinover{0.28}{28\%}\pinover{\cdot}{of}\pinover{x}{what}\\
 \divideunder{2200}{0.28}\amp=\divideunder{0.28x}{0.28}\\
@@ -78,15 +71,12 @@ x\amp\approx7857.14
 \end{aligned}
 ```]
 
-
-
 To earn [`\$2200`] in commission, Alexis needs to bring in approximately [`\$7857.14`] of sales profit for the dealership.
-
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

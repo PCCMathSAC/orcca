@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -36,15 +34,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 %data = (
   20 => 1,
   24 => 2,
@@ -57,8 +50,9 @@ $x = list_random(num_sort(keys %data));
 $y = $data{$x};
 Context("Point");
 $ans = Point($x, $y);
-@b = num_sort(list_random(2,num_sort(keys %data)));
+@b = num_sort(random_subset(2,num_sort(keys %data)));
 $ans2 = abs($data{$b[0]} - $data{$b[1]});
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -87,14 +81,14 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Here is a graph of the number of SARS-CoV-2 (COVID) cases confirmed by the CDC within the United States during the month of January, 2020.
 
->> [@image(insertGraph($image_1), width=>600)@]*  <<
+>> [@image(insertGraph($image_1), width=>450)@]*  <<
 
 What are the coordinates for the data point corresponding to January [$x]th?
 
@@ -102,13 +96,12 @@ What are the coordinates for the data point corresponding to January [$x]th?
 
 How many additional new cases were there between January [$b[0]]th and January [$b[1]]th?
 
-[_]{$ans}{5}
-
+[_]{$ans2}{5}
 
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

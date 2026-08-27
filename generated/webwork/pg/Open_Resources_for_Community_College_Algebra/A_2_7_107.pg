@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:33-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "contextForm.pl",
   "contextRationalFunction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Numeric");
 Context()->variables->are(a=>'Real');
 $p = random(1,9,1);
@@ -57,39 +51,35 @@ Context("RationalFunction-Strict");
 Context()->variables->are(a=>'Real');
 $answer = Formula("$numerator/a");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Given that [`a\neq0\text{,}`] simplify [`\displaystyle{}[$expression]\text{.}`]
 
 [_]{$answer}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Since the fractions have the same denominator, we can just add numerators and keep that denominator.
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$expression] \amp= \frac{[$p]+[$q]}{a}\\
 \amp = [$answer]
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

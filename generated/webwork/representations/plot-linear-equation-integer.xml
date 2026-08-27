@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-plot-linear-equation-integer" assembly-id="plot-linear-equation-integer">
+  <static seed="1048">
+    <statement><p><m>y={2-3x}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular valign="top">
+<col halign="right" right="minor"/>
+<col halign="right" right="minor"/>
+<col halign="center"/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+<cell>Point</cell>
+</row>
+<row bottom="minor">
+<cell><m>-2</m></cell>
+<cell><fillin characters="5" name="AnSwEr0001"/>
+</cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_1"/>
+</cell>
+</row>
+<row bottom="minor">
+<cell><m>-1</m></cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_2"/>
+</cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_3"/>
+</cell>
+</row>
+<row bottom="minor">
+<cell><m>0</m></cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_4"/>
+</cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_5"/>
+</cell>
+</row>
+<row bottom="minor">
+<cell><m>1</m></cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_6"/>
+</cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_7"/>
+</cell>
+</row>
+<row>
+<cell><m>2</m></cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_8"/>
+</cell>
+<cell><fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_9"/>
+</cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>8;\,\left(-2,8\right);\,5;\,\left(-1,5\right);\,2;\,\left(0,2\right);\,-1;\,\left(1,-1\right);\,-4;\,\left(2,-4\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{\text{point}, \left(-2,8\right)\right\}, \left\{\text{point}, \left(-1,5\right)\right\}, \left\{\text{point}, \left(0,2\right)\right\}, \left\{\text{point}, \left(1,-1\right)\right\}, \left\{\text{point}, \left(2,-4\right)\right\}, \left\{\text{line}, \text{solid}, \left(-2,8\right), \left(-1,5\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_2_9.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.2.9)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "parserMultiAnswer.pl",
+  "contextForm.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Point");
+($m,$b) = random_subset(2,-3..-1,1..3);
+$f = Formula("$m x + $b")->reduce;
+@x = -2..2;
+@y = map {$f->eval(x => $_)} (@x);
+@p = map {Point($x[$_],$y[$_])} (0..4);
+$mp = MultiAnswer(map {($y[$_], $p[$_])} (0..4) )->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+    my ($c,$s,$self) = @_;
+    my $return = 1;
+    my %numWord = (
+      0 => 'first', 1 => 'second',  2 => 'third',  3 => 'fourth', 4 => 'fifth',
+      5 =>'sixth',  6 => 'seventh', 7 => 'eighth', 8 => 'ninth',  9 => 'tenth'
+    );
+    my $error = '';
+    for (0..9) {
+      $error .= "Your $numWord{$_} answer is incorrect.~~n" unless ($c->[$_] == $s->[$_]);
+    }
+    Value::Error($error) if $error;
+    return 1;
+  }
+);
+$gt = GraphTool( (map {"{point,$p[$_]}"} (0..4)), "{line,solid,$p[0],$p[1]}")->with(
+  availableTools => [ "PointTool", "LineTool" ],
+  showCoordinateHints => 0,
+  showInStatic => 0,
+  cmpOptions => {
+    list_checker => sub {
+      my ($c, $s, $a, $v) = @_;
+      return 0 if $a->{isPreview};
+      my $score = 0;
+      my @errors;
+      my $ptcount = 0;
+      my $lineCmp = ($graphToolObjectCmps->{line}->($c->[5]))[1];
+      for my $i (0 .. $#$s) {
+        if ($lineCmp->($s->[$i])) { ++$score; next; }
+        my $nth = Value::List->NameForNumber($i + 1);
+        if ($s->[$i]->extract(1) eq 'line') {
+          push(@errors, "The $nth object graphed is a line that is not the correct graph.");
+          next;
+        }
+        if ($s->[$i]->extract(1) eq 'point') {
+          my ($px,$py) = $s->[$i]->extract(2)->value;
+          if ($py == $f->eval(x => $px)) {
+            my $seen = 0;
+            for my $j (0..($i-1)) {
+              if ($s->[$i]->extract(2) == $s->[$j]->extract(2)) {
+                $seen = 1;
+                last;
+              }
+            }
+            unless ($seen) {++$ptcount; ++$score;}
+            next;
+          }
+          push(@errors, "The $nth object graphed is a point not on the graph.");
+          next;
+        }
+        push(@errors, "The $nth object graphed is incorrect.");
+      }
+      return ($score, @errors);
+    }
+  }
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Make a table and then plot the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`y=[$f]`]
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     [PGML('[`y`]'),
+      halign => 'c',],
+     PGML('Point'),
+    ],
+    [
+     [PGML('[`[$x[0]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [
+     [PGML('[`[$x[1]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [
+     [PGML('[`[$x[2]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [
+     [PGML('[`[$x[3]]`]'),
+      rowbottom => '1',
+      midrule => '1',],
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+    [
+     PGML('[`[$x[4]]`]'),
+     PGML('[_]{$mp}{5}'),
+     PGML('[_]{$mp}{5}'),
+    ],
+  ],
+      align => 'r|r|c',);@]* <<
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

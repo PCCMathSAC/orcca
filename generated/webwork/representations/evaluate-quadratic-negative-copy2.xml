@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-evaluate-quadratic-negative-copy2" assembly-id="evaluate-quadratic-negative-copy2">
+  <static seed="593">
+    <statement><p><m>{9C^{2}+7C-6}</m> for <m>C=-2\text{.}</m></p>
+<p><fillin characters="15" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>16</m>
+      </p>
+    </answer>
+    <solution><p>Substitute <m>-2</m> in for the variable <m>C</m> and simplify:
+<md>\begin{aligned}
+\amp{9\mathopen{}\left(-2\right)^{2}+7\cdot \left(-2\right)-6}\\
+\amp={9\cdot 4+7\cdot \left(-2\right)-6}\\
+\amp={36+\left(-14\right)-6}\\
+\amp={16}
+\end{aligned}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_1_6_39.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="evaluate-quadratic-negative"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.3)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$var = RandomVariableName();
+Context()->variables->are($var => 'Real', solvar => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$x = random(-9, -2);
+$a = non_zero_random(-9, 9);
+$b = random(-9, 9);
+$c = random(-9, 9);
+$expression = Formula("$a $var^2 + $b $var + $c")->reduce;
+$answer = $expression->eval($var => $x);
+$answer = Real($answer);
+Context()->flags->set(reduceConstants => 0);
+$sol[0] = $expression->substitute($var => Formula("$x"));
+$sol[1] = $x**2;
+$sol[2] = Formula("$a solvar + $b $var + $c")->reduce;
+$sol[3] = $sol[2]->substitute($var => Formula("$x"), solvar => Formula("$sol[1]"));
+$sol[4] = $a*$sol[1];
+$sol[5] = $b*$x;
+$sol[6] = Formula("solvar + $var + $c")->reduce;
+$sol[7] = $sol[6]->substitute($var => Formula("$sol[5]"), solvar => Formula("$sol[4]"));
+Context("LimitedNumeric");
+$answer = Real($answer);
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$expression]`] for [`[$var]=[$x]\text{.}`]
+
+[_]{$answer}{15}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Substitute [`[$x]`] in for the variable [`[$var]`] and simplify:
+
+[```
+\begin{aligned}
+\amp[$sol[0]]\\
+\amp=[$sol[3]]\\
+\amp=[$sol[7]]\\
+\amp=[$answer]
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

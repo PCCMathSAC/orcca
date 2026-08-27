@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,23 +31,19 @@ loadMacros(
   "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
 Context()->operators->remove("U");
 Context()->noreduce('(-x)+y','(-x)-y');
-@orig_vars = ('a'..'n','p'..'z','A'..'N','P'..'Z')[NchooseK(50,2)];
+@orig_vars = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'Z');
 $dbldvar = $orig_vars[0];
 @vars = ($dbldvar, @orig_vars);
 Context()->variables->are();
@@ -87,32 +81,37 @@ for my $i (1,2) {
 }
 $ans = Formula("$ans");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Simplify the expression by combining like terms if possible.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$sum]`]
 
 [_]{$ans}{20}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 There are two [`[$dbldvar]`]-terms. Their coefficients are [`[$coefs[0]]`] and [`[$coefs[1]]\text{.}`] We can add those two terms by adding their coefficients to get [`[$coefsum]\text{.}`] So the expression simplifies to [`[$ans]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

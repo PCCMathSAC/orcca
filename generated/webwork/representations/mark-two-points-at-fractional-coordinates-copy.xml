@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-mark-two-points-at-fractional-coordinates-copy" assembly-id="mark-two-points-at-fractional-coordinates-copy">
+  <static seed="1020">
+    <statement><p><m>{\left(5,{\frac{14}{3}}\right)}, {\left(-{\frac{5}{3}},-2\right)}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{point}, \left(5,4.66667\right)\right\}, \left\{\text{point}, \left(-1.66667,-2\right)\right\}</m>
+      </p>
+    </answer>
+    <solution><p>The first point is <m>5</m> to the right and <m>{{\frac{14}{3}}}</m> up from the origin. The second point is <m>{{\frac{5}{3}}}</m> to the left and <m>2</m> down from the origin.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/mark-two-points-at-fractional-coordinates-copy-image-1" width="47%"/>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_1_5.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="mark-two-points-at-fractional-coordinates"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.6)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "contextFraction.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@xy = random_subset(4, -5..-1,1..5);
+@x = (@xy)[0,1];
+@y = (@xy)[2,3];
+@z = random_subset(2,0,1);
+Context("Fraction");
+$x[$z[0]] += Fraction(list_random(-2,-1,1,2),3);
+$y[$z[1]] += Fraction(list_random(-2,-1,1,2),3);
+@p = map {Point($x[$_], $y[$_])} (0,1);
+$gt = GraphTool("{point,$p[0]}", "{point,$p[1]}")->with(
+  availableTools => ['PointTool'],
+  bBox => [-6,6,6,-6],
+  snapSizeX => 1/3,
+  snapSizeY => 1/3,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+@absx = map {abs($_)} @x;
+@absy = map {abs($_)} @y;
+@dirx = map {($_ >= 0) ? 'to the right' : 'to the left'} @x;
+@diry = map {($_ >= 0) ? 'up' : 'down'} @y;
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[soliddot] coordinates {$p[0] $p[1]};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Make a Cartesian plot with the indicated points marked.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$p[0]], [$p[1]]`]
+
+[_]{$gt}{1}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The first point is [`[$absx[0]]`] [$dirx[0]] and [`[$absy[0]]`] [$diry[0]] from the origin. The second point is [`[$absx[1]]`] [$dirx[1]] and [`[$absy[1]]`] [$diry[1]] from the origin.
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

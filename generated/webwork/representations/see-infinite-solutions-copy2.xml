@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-see-infinite-solutions-copy2" assembly-id="see-infinite-solutions-copy2">
+  <static seed="1707">
+    <statement><p><m>\left\{
+                    \begin{alignedat}{3}
+                      y \amp= {{\frac{7}{4}}x-9}\\
+                      y \amp= {{\frac{7}{4}}\mathopen{}\left(x-4\right)-2}
+                    \end{alignedat}
+                  \right.</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{Infinitely many}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{Dependent}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_1_5_17.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="see-infinite-solutions"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.4.5)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->noreduce('(-x)+y', '(-x)-y');
+($b, $h, $k) = (-9..-1,1..9)[NchooseK(18,3)];
+$m = Fraction(($k-$b)/$h);
+$f[0] = Formula("$m x + $b")->reduce;
+$f[1] = Formula("$m(x - $h) + $k")->reduce;
+$dropdown = DropDown(["Zero", "One", "Two", "More than two but finitely many", "Infinitely many"], 4, showInStatic => 0);
+$dropdown2 = DropDown(["Dependent", "Inconsistent", "None of the above"], 0, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Simply by looking closely at the linear equations, determine how many solutions the system will have. And state whether the system is dependent, inconsistent, or neither.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`
+                  \left\{
+                    \begin{alignedat}{3}
+                      y \amp= [$f[0]]\\
+                      y \amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$dropdown}{5}
+
+[_]{$dropdown2}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-more-step-integer-nxminusgroupmxplusbequalsdminusgroupxplusc" assembly-id="more-step-integer-nxminusgroupmxplusbequalsdminusgroupxplusc">
+  <static seed="755">
+    <statement><p><m>{9D-\left(D-8\right)}={22-\left(D-4\right)}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{2\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_1_6_49.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.49)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$x = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
+Context()->variables->are($x => 'Real');
+$sol = non_zero_random(-9, 9);
+do {
+  ($m, $n) = random_subset(2, -9..-1, 1..9);
+} until ($n - $m != -1);
+($b, $c) = random_subset(2, -9..-1, 1..9);
+$d = $n*$sol - ($m*$sol + $b) + $sol + $c;
+Context()->noreduce('(-x)-y', '(-x)+y');
+$left = Formula("$n $x - ($m $x + $b)")->reduce;
+$right = Formula("$d - ($x + $c)")->reduce;
+Context("FiniteSolutionSets");
+Context()->variables->are($x => 'Real');
+$solset = Formula("{$sol}");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$solset}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "parserCheckboxList.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $b = non_zero_random(-9,9);
 Context("Fraction");
 $m = Fraction(random_coprime([1..9],[2..5]));
@@ -63,22 +57,28 @@ for (0..3) {
 }
 $checks = CheckboxList([map {'\(' . $_->TeX . '\)'} (@p)], [@ans], options);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`y=[$f]`]
 
 [_]{$checks}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

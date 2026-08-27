@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "contextCurrency.pl",
   "parserLinearRelation.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $name = randomPerson();
 $initial = random(800,1000,20);
 Context("Currency")->flags->set(trimTrailingZeros => 1);
@@ -58,24 +52,30 @@ $end = Currency($final);
 Context("LinearRelation")->variables->are(t => 'Real');
 $equation = LinearRelation("$initial - $rate t = $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an equation to model the scenario. There is no need to solve the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 At a recent trip to the casino, [$name] brought [`[$start]`] in cash. [$name->Subject] [$name->verb('know')] [$name->subject] [$name->verb('need')] to hold on to [`[$end]`] in reserve to pay for dinner later. Unfortunately [$name] had rough luck and was losing money at the slot machines at an average rate of [`[$speed]`] per hour. How long was [$name] gambling before [$name->subject] had to stop? Write an equation to model this scenario. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|t|]* as the variable.')@]**
 
 [_]{$equation}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

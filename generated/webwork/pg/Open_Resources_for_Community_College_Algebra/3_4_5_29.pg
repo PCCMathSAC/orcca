@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -38,15 +36,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 do {
   @x = map {$_ + random(0.1,0.9,0.1)} (random_subset(2, 10 .. 80));
   @y = map {$_ + random(0.1,0.9,0.1)} (random_subset(2, 10 .. 80));
@@ -66,6 +59,7 @@ Context("Fraction");
 @p = map {Point($x[$_], $y[$_])} (0,1);
 @domain = num_sort(-10, 100, (-10 - $y[0])/$m + $x[0], (100 - $y[0])/$m + $x[0]);
 ($l,$r) = (@domain)[1,2];
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -79,7 +73,7 @@ $image_1->BEGIN_LATEX_IMAGE
       minor xtick=,
       ytick=,
       minor ytick=,
-      width=0.47\orccaprintwidth,
+      width=0.33\orccaprintwidth,
       clip=false
     ]
     \addplot+[-,domain=$l:$r,samples=2] {$f};
@@ -90,22 +84,28 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Find the slope of the line given its graph.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 >> [@image(insertGraph($image_1), width=>600)@]*  <<
 
 [_]{$m}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

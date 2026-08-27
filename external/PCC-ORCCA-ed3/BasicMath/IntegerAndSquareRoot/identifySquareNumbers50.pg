@@ -1,0 +1,100 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Find square root of 25, 2500, 250000
+#
+# Last edited: Carl Yao 12/20/13
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Exponents and Radicals')
+## KEYWORDS('radical','square root','square number','decimal')
+## DBCCSS('8.EE')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Carl Yao')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "scaffold.pl",
+  "PCCmacros.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+TEXT(beginproblem());
+
+Context("LimitedNumeric");
+Context()->{format}{number} = "%9d";
+
+@squareNums = (1,4,9,16,25,36,49,64,81,121,144);
+
+$num1=$squareNums[random(0,$#squareNums,1)];
+$num2=$num1*100;
+$num3=$num1*10000;
+
+
+$ans1 = sqrt($num1);
+$ans2 = sqrt($num2);
+$ans3 = sqrt($num3);
+
+##############################################
+
+BEGIN_PGML
+[@ PTX_exercisegroup_introduction('Evaluate the expression without using a calculator.') @]
+END_PGML
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt{[$num1]} ``]
+
+[_]{$ans1}{16}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Just knowing the first few square numbers, [`\sqrt{[$num1]} = [$ans1]`].
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt{[$num2]} ``]
+
+[_]{$ans2}{16}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Since [`[$num2]=[$num1]\cdot100`], we have [`\sqrt{[$num2]}=\sqrt{[$num1]\cdot100}=[$ans1]\cdot10=[$ans2]`].
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt{[$num3]} ``]
+
+[_]{$ans3}{16}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Since [`[$num3]=[$num1]\cdot10000`], we have [`\sqrt{[$num3]}=\sqrt{[$num1]\cdot10000}=[$ans1]\cdot100=[$ans3]`].
+END_PGML_SOLUTION
+Section::End();
+
+Scaffold::End();
+
+
+ENDDOCUMENT();

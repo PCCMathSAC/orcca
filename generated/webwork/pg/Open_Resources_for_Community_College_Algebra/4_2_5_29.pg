@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,40 +20,37 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "parserAssignment.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context("Fraction")->variables->are($X => 'Real', $Y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 parser::Assignment->Allow;
 do {
   do {
-    @A = (-9..-1, 1..9)[NchooseK(19,2)];
-    @B = (-9..-1, 1..9)[NchooseK(19,2)];
+    @A = (-9..-1, 1..9)[NchooseK(18,2)];
+    @B = (-9..-1, 1..9)[NchooseK(18,2)];
     $B[0] = 1;
   } until (abs($A[0]*$B[1] - $A[1]*$B[0]) > 1 && abs($A[0]*$B[1] - $A[1]*$B[0]) < 10);
   @C = (-9..-1, 1..9)[NchooseK(18,2)];
@@ -107,14 +101,21 @@ $f[0] = Formula("$Y = $right[0]");
 $left[1] = Formula("$A[1] $X + $B[1] $Y")->reduce;
 $f[1] = Formula("$left[1] = $C[1]");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the system of equations using substitution.
 
-[`\newcommand{\amp}{&}\left\{
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
                   \begin{alignedat}{4}
                   \amp [$f[1]] \\
                   \amp [$f[0]]
@@ -126,11 +127,10 @@ Solve the system of equations using substitution.
 
 [_]{$answer}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

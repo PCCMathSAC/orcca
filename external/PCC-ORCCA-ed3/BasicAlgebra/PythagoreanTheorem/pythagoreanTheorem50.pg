@@ -1,0 +1,102 @@
+# WeBWorK problem written by Alex Jordan
+# Portland Community College
+#
+# Use Pythagorean Theorem to find missing length in a right triangle. 
+# The unknown side is the height.
+# Answer is radical that can be simplified. The right angle could be at any corner.
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PGlateximage.pl",
+  "specialTrigValues.pl",
+  "contextForm.pl",
+  "PCCmacros.pl",
+  "PGcourse.pl",
+);
+
+Context("Numeric");
+
+Context("Form");
+
+@squarefree = grep{$_ % 4 != 0 && $_ % 9 != 0 && $_ % 25 != 0 && $_ % 49 != 0} (2 .. 140);
+
+do {
+    $hyp = random(5, 12);
+    $h = random(2, int($hyp/sqrt(2)));
+    $b2 = $hyp**2 - $h**2;
+    $b = sqrt($b2);
+} until (
+    $b != int($b)
+    && (
+      $b2 % 4 == 0
+      || $b2 % 9 == 0
+      || $b2 % 25 == 0
+      || $b2 % 49 == 0
+      || $b2 % 121 == 0
+    )
+);
+
+$b = specialRadical($b, radicands => ~~@squarefree);
+$b = Formula("$b");
+
+# clockwise form top left
+$corner = list_random(1..4);
+
+$dir = ($corner <= 2) ? '|-' : '-|';
+$p = ($corner == 1 || $corner == 4) ? Point(2,1) : Point(-2,1);
+if ($corner == 1) {
+    @label = ($h,'x');
+    @offset = ('left', 'above', 'below right');
+} elsif ($corner == 2) {
+    @label = ($h,'x');
+    @offset = ('right', 'above', 'below left');
+} elsif ($corner == 3) {
+    @label = ('x',$h);
+    @offset = ('below', 'left', 'above right');
+} elsif ($corner == 4) {
+    @label = ('x',$h);
+    @offset = ('below', 'right', 'above left');
+}
+
+$text = "a right triangle with one leg of length $h and a hypotenuse of length $hyp, where the other leg is labeled x";
+
+$image = createLaTeXImage();
+$image->texPackages(['tikz']);
+$image->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}[x=2cm,y=2cm]
+  \draw[fill=lightgray] (0,0) $dir node[pos=0.25, $offset[0]] {\($label[0]\)} node[pos=0.75, $offset[1]] {\($label[1]\)} $p -- node[pos=0.5, $offset[2]] {\($hyp\)} cycle;
+\end{tikzpicture}
+END_LATEX_IMAGE
+
+
+##############################################
+
+BEGIN_PGML
+[@ PTX_exercisegroup_introduction('Find the value of [`x`].') @]**
+
+>> [![$text]!]{$image}{240} <<
+
+[_]{$b}{6}
+END_PGML
+
+##############################################
+
+BEGIN_PGML_SOLUTION
+By the Pythagorean Theorem, we have:
+
+[```\begin{aligned}
+  x^{2}+[$h]^{2} &= [$hyp]^{2} \\
+  x^{2}+[$h**2]  &= [$hyp**2] \\
+           x^{2} &= [$hyp**2-$h**2]\\
+           x     &= \sqrt{[$hyp**2-$h**2]}\\
+           x     &= [$b]
+\end{aligned}```]
+
+END_PGML_SOLUTION
+
+ENDDOCUMENT();
+

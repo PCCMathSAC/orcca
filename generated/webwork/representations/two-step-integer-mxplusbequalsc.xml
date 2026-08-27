@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-two-step-integer-mxplusbequalsc" assembly-id="two-step-integer-mxplusbequalsc">
+  <static seed="715">
+    <statement><p><m>{7i-8}={-1}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{1\right\}</m>
+      </p>
+    </answer>
+    <solution><p><md>\begin{aligned}
+ {7i-8} \amp= {-1} \\
+ {7i-8+8} \amp= {-1+8} \\
+ {7i} \amp= {7} \\
+ {\frac{7i}{7}} \amp= {\frac{7}{7}} \\
+ {i} \amp= {1} 
+\end{aligned}</md>
+The solution set is <m>{\left\{1\right\}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_1_6_9.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.9)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$x = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
+Context()->variables->are($x => 'Real');
+$sol = non_zero_random(-9, 9);
+$m = list_random(-9..-2, 2..9);
+$b = non_zero_random(-9, 9);
+$c = $m*$sol + $b;
+Context()->noreduce('(-x)-y', '(-x)+y');
+$left = Formula("$m $x + $b")->reduce;
+$right = Formula("$c")->reduce;
+Context("FiniteSolutionSets");
+Context()->variables->are($x => 'Real');
+$solset = Formula("{$sol}");
+$solleft[0]  = Formula("$m $x + $b - $b")->reduce;
+$solright[0] = Formula("$x - $b")->reduce;
+$solright[0] = $solright[0]->substitute($x => $c);
+$solleft[1]  = Formula("$m $x")->reduce;
+$solright[1] = Formula("$c - $b")->reduce;
+Context("Fraction")->flags->set(reduceFractions => 0);
+Context()->variables->are($x => 'Real');
+Context()->noreduce('x/(-y)', '(-x)/y');
+$solleft[2]  = Formula("($m $x)/$m")->reduce;
+$solright[2] = $solright[1]/Formula("$m");
+$solleft[3]  = Formula("$x");
+$solright[3] = Formula("$sol");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$solset}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+ [$left] \amp= [$right] \\
+ [$solleft[0]] \amp= [$solright[0]] \\
+ [$solleft[1]] \amp= [$solright[1]] \\
+ [$solleft[2]] \amp= [$solright[2]] \\
+ [$solleft[3]] \amp= [$solright[3]] 
+\end{aligned}
+```]
+
+The solution set is [`[$solset]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

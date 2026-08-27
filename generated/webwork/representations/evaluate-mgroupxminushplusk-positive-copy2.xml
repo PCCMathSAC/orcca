@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-evaluate-mgroupxminushplusk-positive-copy2" assembly-id="evaluate-mgroupxminushplusk-positive-copy2">
+  <static seed="592">
+    <statement><p><m>{-4\mathopen{}\left(p-2\right)-7}</m> for <m>p=-6</m></p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>25</m>
+      </p>
+    </answer>
+    <solution><p>Substitute <m>-6</m> in for the variable <m>p</m> and simplify:
+<md>\begin{aligned}
+\amp{-4\mathopen{}\left(-6-2\right)-7}\\
+\amp={-4\cdot \left(-8\right)+\left(-7\right)}\\
+\amp={32+\left(-7\right)}\\
+\amp={25}
+\end{aligned}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_1_6_27.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="evaluate-mgroupxminushplusk-positive"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.2)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$x = list_random('a'..'d', 'f'..'h', 'j'..'n', 'p'..'z');
+Context()->variables->are($x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+($m, $h, $k, $a) = (-9..-1, 1..9)[NchooseK(18, 4)];
+Context()->flags->set(reduceConstants => 0);
+$expression = Formula("$m($x - $h) + $k")->reduce;
+$sol[0] = $expression->substitute($x => Formula("$a"));
+$sol[1] = $a - $h;
+$sol[2] = Formula("$m($sol[1]) + $k");
+$sol[3] = $m*$sol[1];
+$sol[4] = Formula("$sol[3] + $k");
+Context("LimitedNumeric");
+$r = Real($expression->eval($x => $a));
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$expression]`] for [`[$x]=[$a]`]
+
+[_]{$r}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Substitute [`[$a]`] in for the variable [`[$x]`] and simplify:
+
+[```
+\begin{aligned}
+\amp[$sol[0]]\\
+\amp=[$sol[2]]\\
+\amp=[$sol[4]]\\
+\amp=[$r]
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-median-rent-linear-inequality-model" assembly-id="median-rent-linear-inequality-model">
+  <static seed="589">
+    <statement><p>Overall, the median rent for a one-bedroom apartment in a city rose by <m>{1.6\%}</m> over the previous year. Dane was fortunate in that his rent did not raise by that high of a percentage. It went from last year<rsq/>s amount to <m>{\$1{,}300}\text{.}</m> Set up an inequality where the solution set represents what his rent could might have been last year. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>r+0.016r &gt; 1300</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_72.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.72)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$name = randomPerson();
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 1400 + random(-300, 300, 10);
+$current = Currency($final);
+Context("Percent");
+$decimal = random(0.01,0.03,0.001);
+$percent = Percent($decimal);
+Context("LinearRelation")->variables->are(r => 'Real');
+$equation = LinearRelation("r + $decimal r > $final");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an inequality to model the scenario. There is no need to solve the inequality.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Overall, the median rent for a one-bedroom apartment in a city rose by [`[$percent]`] over the previous year. [$name] was fortunate in that [$name->possessive] rent did not raise by that high of a percentage. It went from last year's amount to [`[$current]\text{.}`] Set up an inequality where the solution set represents what [$name->possessive] rent could might have been last year. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|r|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

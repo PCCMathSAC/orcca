@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-electric-bill-inequality" assembly-id="electric-bill-inequality">
+  <static seed="815">
+    <introduction><p>Dayanara is a runner, and set out this morning on a jog with a goal to reach a nearby summit and return home in under one hour. She jogged a steady uphill path to the top of the nearby summit, and it took 36 min to get there. Now jogging home, she will run a distance of 2.3 mi. What will her rate (in minutes per mile) need to be in order to make the goal of returning home in under 60 minutes?</p>
+</introduction>
+    <task>
+      <statement><p>Write an inequality to represent this situation, using <m>x</m> to represent Dayanara<rsq/>s jogging rate in minutes per mile.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>36+x\cdot 2.3 &lt; 60</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Solve this inequality. Dayanara<rsq/>s jogging rate needs to beat what rate?</p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>10.4348\ {\textstyle\frac{\rm\mathstrut min}{\rm\mathstrut mi}}</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Use interval notation to express what Dayanara<rsq/>s jogging rate (in minutes per mile) might be.</p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left(0,10.4348\right)\hbox{ or }\left(-\infty ,10.4348\right)</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_2_4_36.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.4.36)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserNumberWithUnits.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+$p = randomPerson();
+$b = random(32,37);
+$d = random(2,2.5,0.1);
+$sol = (60 - $b)/$d;
+$start = NumberWithUnits($b, 'min');
+$distance = NumberWithUnits($d, 'mi');
+$rate = NumberWithUnits($sol, 'min/mi');
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = OneOf(Interval("(0,$sol)"), Interval("(-inf,$sol)"));
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("$b+x*$d < 60");
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$p] is a runner, and set out this morning on a jog with a goal to reach a nearby summit and return home in under one hour. [$p->They] jogged a steady uphill path to the top of the nearby summit, and it took [$start] to get there. Now jogging home, [$p->they] will run a distance of [$distance]. What will [$p->their] rate (in minutes per mile) need to be in order to make the goal of returning home in under 60 minutes?
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent [$p]'s jogging rate in minutes per mile.
+
+[_]{$relation}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. [$p]'s jogging rate needs to beat what rate?
+
+[_]{$rate}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express what [$p]'s jogging rate (in minutes per mile) might be.
+
+[_]{$interval}{16}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

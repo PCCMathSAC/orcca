@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,32 +20,30 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
   "parserNumberWithUnits.pl",
+  "parserOneOf.pl",
   "contextForm.pl",
   "randomPerson.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $p = randomPerson();
 $b = random(32,37);
 $d = random(2,2.5,0.1);
@@ -58,29 +53,30 @@ $distance = NumberWithUnits($d, 'mi');
 $rate = NumberWithUnits($sol, 'min/mi');
 Context("Interval");
 Context()->flags->set(ignoreEndpointTypes => 1);
-$interval = Interval("($sol,inf)");
+$interval = OneOf(Interval("(0,$sol)"), Interval("(-inf,$sol)"));
 Context("LinearRelation")->variables->are(x => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 $relation = Formula("$b+x*$d < 60");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 [$p] is a runner, and set out this morning on a jog with a goal to reach a nearby summit and return home in under one hour. [$p->They] jogged a steady uphill path to the top of the nearby summit, and it took [$start] to get there. Now jogging home, [$p->they] will run a distance of [$distance]. What will [$p->their] rate (in minutes per mile) need to be in order to make the goal of returning home in under 60 minutes?
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -88,14 +84,14 @@ Write an inequality to represent this situation, using [`x`] to represent [$p]'s
 
 [_]{$relation}{16}
 
-
 END_PGML
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -103,21 +99,20 @@ Solve this inequality. [$p]'s jogging rate needs to beat what rate?
 
 [_]{$rate}{16}
 
-
 END_PGML
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
-Use interval notation to express what [$p]'s jogging rate might be.
+Use interval notation to express what [$p]'s jogging rate (in minutes per mile) might be.
 
 [_]{$interval}{16}
-
 
 END_PGML
 
@@ -125,8 +120,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

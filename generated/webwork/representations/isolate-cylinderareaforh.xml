@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-isolate-cylinderareaforh" assembly-id="isolate-cylinderareaforh">
+  <static seed="949">
+    <statement><p>Solve <m>{A}={2\pi r^{2}+2\pi rh}</m> for <m>h\text{.}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>h = \frac{A-2\pi r^{2}}{2\pi r}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_5_3_34.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.5.3.34)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@x = qw(A r h);
+Context("Fraction")->variables->are(map {$_ => 'Real'} (@x));
+$left = Formula("A")->reduce;
+$right = Formula("2 pi r^2 + 2 pi r h")->reduce;
+parser::Assignment->Allow;
+$ans = Assignment("h = (A - 2 pi r^2)/(2 pi r)");
+
+$introduction_image_1 = createLaTeXImage();
+$introduction_image_1->addToPreamble(latexImagePreamble());
+$introduction_image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \draw[fill=firstcolor!20] (0,0) ellipse (3 and 0.45);
+  \draw[fill=firstcolor!10] (3,0) arc (0:180:3 and -0.45) -- (-3,-2) arc (180:360:3 and 0.5) -- cycle;
+  \draw [dashed] (-3,-2) arc (180:360:3 and -0.5);
+  \draw [dashed] (0,0) -- (3,0) node[pos=0.5,above] {radius \(r\)};
+  \node at (-3,-1) [left] {height \(h\)};
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+The volume of a cylinder can be found with the equation [`V=\pi r^2h\text{,}`] where [`r`] is the radius and [`h`] is the height. Its surface area can be found with the equation [`A=2\pi r^2+2\pi rh\text{.}`]
+
+>> [@image(insertGraph($introduction_image_1), width=>300)@]*  <<
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Solve [`[$left]=[$right]`] for [`h\text{.}`]
+
+[@KeyboardInstructions('You may type [`\pi`] as [|pi|]* or [|π|]*.')@]**
+
+[_]{$ans}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

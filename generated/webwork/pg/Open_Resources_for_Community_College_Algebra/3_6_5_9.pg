@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserAssignment.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($m,$h,$k) = random_subset(3, 2..9);
 Context("Form")->variables->add(y=>'Real');
 Context()->noreduce('(-x)+y','(-x)-y');
@@ -52,22 +46,28 @@ parser::Assignment->Allow;
 $eq = Formula("y=$m(x - $h) + $k")->reduce;
 $p = Point($h,$k);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 A line passes through the given point with the given slope. Find an equation for the line in point-slope form using the given point.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 through [`[$p]`] with slope [`[$m]`]
 
 [_]{$eq}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

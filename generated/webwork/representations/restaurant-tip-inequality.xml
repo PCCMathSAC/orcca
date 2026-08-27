@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-restaurant-tip-inequality" assembly-id="restaurant-tip-inequality">
+  <static seed="817">
+    <introduction><p>The bill at a restaurant came and Isiah offered to pay for the whole table. We are not sure what the bill was, but it was at least <m>\$50\text{.}</m> Isiah added a tip, and the total came to <m>\$120\text{.}</m> We are sure that he added <em>at least</em> <m>18\%</m> tip. What might the original bill total have been before tip?</p>
+</introduction>
+    <task>
+      <statement><p>Write an inequality to represent this situation, using <m>x</m> to represent the bill total before tip was added.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>x+0.18x\le 120</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Solve this inequality. What<rsq/>s the most the bill could have been before tip?</p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\$101.69</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Use interval notation to express what the bill could have been before tip was added.</p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left[50,101.695\right]</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_2_4_38.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.4.38)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "randomPerson.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+$p = randomPerson();
+$r = list_random(18,20);
+$c = random(85,185,5);
+$sol = $c/(1 + $r/100);
+Context("Currency");
+$bill = Currency("$sol");
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = Interval("[50,$sol]");
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("x + ($r/100)x <= $c");
+
+######
+# Body
+######
+
+BEGIN_PGML
+The bill at a restaurant came and [$p] offered to pay for the whole table. We are not sure what the bill was, but it was at least [`\$50\text{.}`] [$p] added a tip, and the total came to [`\$[$c]\text{.}`] We are sure that [$p->they] added _at least_ [`[$r]\%`] tip. What might the original bill total have been before tip?
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent the bill total before tip was added.
+
+[_]{$relation}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. What's the most the bill could have been before tip?
+
+[_]{$bill}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express what the bill could have been before tip was added.
+
+[_]{$interval}{16}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

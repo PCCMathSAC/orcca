@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-substitution-infinite-solutions-integer-coefficients-point-slope-standard-copy" assembly-id="substitution-infinite-solutions-integer-coefficients-point-slope-standard-copy">
+  <static seed="1616">
+    <statement><p><m>\left\{
+                  \begin{alignedat}{4}
+                  \amp {-12W-3n = 18} \\
+                  \amp {n = -4\mathopen{}\left(W+4\right)+10}
+                  \end{alignedat}
+                  \right.</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{infinitely many solutions}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_2_5_23.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="substitution-infinite-solutions-integer-coefficients-point-slope-standard"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.24)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+($x, $y) = (-7..-1, 1..7)[NchooseK(14,2)];
+$A[1] = list_random(-5..-2, 2..5);
+$B[1] = 1;
+$k = list_random(-5..-2, 2..5);
+$A[0] = $A[1]*$k;
+$B[0] = $B[1]*$k;
+@C = map{$A[$_]*$x + $B[$_]*$y} (0,1);
+$left[0] = Formula("$A[0] $X + $B[0] $Y")->reduce;
+$f[0] = Formula("$left[0] = $C[0]")->reduce;
+$h[1] = non_zero_random(-5, 5);
+$k[1] = $C[1] - $A[1]*$h[1];
+$right[1] = Formula("-$A[1] ($X - $h[1]) + $k[1]")->reduce;
+$f[1] = Formula("$Y = $right[1]");
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$solution = Compute("infinitely many solutions");
+$answer = $solution->cmp(
+  typeMatch => List("$X = 0, $Y = 0"),
+  mathQuillOpts => 'disabled'
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the system of equations using substitution.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
+                  \begin{alignedat}{4}
+                  \amp [$f[0]] \\
+                  \amp [$f[1]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+[@KeyboardInstructions('Write the solution in the format [| = number,  = number|]*. If there is no solution, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$answer}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

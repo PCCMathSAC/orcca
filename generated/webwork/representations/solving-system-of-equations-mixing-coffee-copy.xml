@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solving-system-of-equations-mixing-coffee-copy" assembly-id="solving-system-of-equations-mixing-coffee-copy">
+  <static seed="1698">
+    <introduction><p>Desi owns a coffee shop and they want to mix two different types of coffee beans to make a blend that sells for <m>\$12.50</m> per pound. They have some coffee beans from Columbia that sell for <m>\$9.00</m> per pound and some coffee beans from Honduras that sell for <m>\$14.00</m> per pound. How many pounds of each should they mix to make <m>30</m> pounds of the blend?</p>
+</introduction>
+    <task>
+      <statement><p>Write two equations that form a system for this scenario.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>C+H = 30</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>9C+14H = 375</m>
+        </p>
+      </answer>
+      <solution><p>We have <m>C</m> pounds of Columbian coffee and <m>H</m> pounds of Honduran coffee. Since there must be <m>30</m> pounds total, one equation is <m>C+H=30\text{.}</m></p>
+<p>The total cost of the Colombian coffee in the blend will be <m>9C\text{,}</m> and the total cost of the Honduran coffee in the blend will be <m>14H\text{.}</m> All together, the blend has a total cost of <m>12.50\cdot30=375</m> dollars. So another equation is <m>9C+14H=375\text{.}</m></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Isolate one of the variables in one of the equations.</p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>C = 30-H\hbox{, }H = 30-C\hbox{, }C = \frac{375-14H}{9}\hbox{, or }H = \frac{375-9C}{14}</m>
+        </p>
+      </answer>
+      <solution><p>We choose to isolate <m>C</m> in the first equation. All we need to do subtract <m>H</m> from each side, and then <m>C = 30 - H\text{.}</m></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Substitute the isolated expression into the other equation.</p>
+<p><fillin characters="16" name="AnSwEr0004"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>9\mathopen{}\left(30-H\right)+14H = 375\hbox{, }9C+14\mathopen{}\left(30-C\right) = 375\hbox{, }\frac{375-14H}{9}+H = 30\hbox{, or }C+\frac{375-9C}{14} = 30</m>
+        </p>
+      </answer>
+      <solution><p>Making the substitution: <m>9(30 - H) + 14H = 375\text{.}</m></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Solve this equation in one variable and then solve for the other variable using the isolation from a previous step. Finally, report how much of each type of coffee Desi should use.</p>
+<p><fillin characters="16" name="AnSwEr0005"/></p>
+<p><fillin characters="16" name="AnSwEr0006"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>9\ {\rm lb}</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>21\ {\rm lb}</m>
+        </p>
+      </answer>
+      <solution><p><md>\begin{aligned}
+9(30 - H) + 14H \amp= 375\\
+270 - 9H + 14H \amp= 375\\
+270 + 5H \amp= 375\\
+5H\amp=105\\
+H\amp=21
+\end{aligned}</md>
+<md>\begin{aligned}
+C \amp= 30 - H\\
+C \amp= 30 - 21 = 9
+\end{aligned}</md>
+In summary, Desi needs to mix <m>21</m> pounds of the Honduran coffee beans with <m>9</m> pounds of the Columbian coffee beans to create this blend.</p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_2_12-Mixing_a_Coffee_Blend.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="solving-system-of-equations-mixing-coffee"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.4.5)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "PCCmacros.pl",
+  "parserAssignment.pl",
+  "parserMultiAnswer.pl",
+  "parserNumberWithUnits.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+Context("LinearRelation")->variables->are(C=>'Real',H=>'Real');
+@eq=(LinearRelation("C+H=30"),LinearRelation("9C + 14H = 375"));
+$m=MultiAnswer(@eq)->with(singleResult=>0,allowBlankAnswers=>1,
+checker=>sub{
+my($c,$s,$self)=@_;
+my @s=@{$s};
+my @c=@{$c};
+if (($c[0]==$s[0]&&$c[1]==$s[1])||($c[0]==$s[1]&&$c[1]==$s[0])){return [1,1]}
+elsif ($c[0]==$s[0]||$c[1]==$s[0]){return [1,0]}
+elsif ($c[0]==$s[1]||$c[1]==$s[1]){return [0,1]}
+else {return [0,0]}
+});
+Context("Fraction")->variables->are(C=>'Real',H=>'Real');
+parser::Assignment->Allow;
+@i=(
+Formula("C=30-H"),
+Formula("H=30-C"),
+Formula("C=(375-14H)/9"),
+Formula("H=(375-9C)/14")
+);
+$i=OneOf(@i);
+$C=Real(9);
+$H=Real(21);
+$Clb=NumberWithUnits("$C lb");
+$Hlb=NumberWithUnits("$H lb");
+$Cis=Formula("C=$C");
+$His=Formula("H=$H");
+$one=OneOf($His,$Cis);
+$two=OneOf($Cis,$His);
+Context("LinearRelation")->variables->are(C=>'Real',H=>'Real');
+@sb=(
+Formula("9(30-H)+14H=375"),
+Formula("9C+14(30-C)=375"),
+Formula("(375-14H)/9+H=30"),
+Formula("C+(375-9C)/14=30")
+);
+$sb=OneOf(@sb);
+$m2=MultiAnswer($i,$sb)->with(
+singleResult=>0,
+allowBlankAnswers=>1,
+checker=>sub{
+my($c,$s,$self)=@_;
+my($c_i,$c_sb)=@$c;
+my($s_i,$s_sb)=@$s;
+my $i_r=$c_i->cmp->evaluate($s_i->string);
+$self->setMessage(1,$i_r->{message}) if $i_r->{message};
+if (!$i_r->{score}) {
+  $self->setMessage(2,"Cannot assess this until there is a correct answer to the first part");
+  return [0,0];
+}
+my $index;
+for (0..3) {
+  $index = $_ if ($s_i == $i[$_]);
+}
+my $sb_r = $sb[$index]->cmp->evaluate($s_sb->string);
+$self->setMessage(2,$sb_r->{message}) if $sb_r->{message};
+if (!$sb_r->{score}) {
+  return [1,0];
+}
+return [1,1];
+}
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Desi owns a coffee shop and they want to mix two different types of coffee beans to make a blend that sells for [`\$12.50`] per pound. They have some coffee beans from Columbia that sell for [`\$9.00`] per pound and some coffee beans from Honduras that sell for [`\$14.00`] per pound. How many pounds of each should they mix to make [`30`] pounds of the blend?
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Write two equations that form a system for this scenario.
+
+[@KeyboardInstructions('Use [|C|]* and [|H|]* for the variables representing how many pounds of each type of coffee bean they should use.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We have [`C`] pounds of Columbian coffee and [`H`] pounds of Honduran coffee. Since there must be [`30`] pounds total, one equation is [`C+H=30\text{.}`]
+
+The total cost of the Colombian coffee in the blend will be [`9C\text{,}`] and the total cost of the Honduran coffee in the blend will be [`14H\text{.}`] All together, the blend has a total cost of [`12.50\cdot30=375`] dollars. So another equation is [`9C+14H=375\text{.}`]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Isolate one of the variables in one of the equations.
+
+[_]{$m2}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We choose to isolate [`C`] in the first equation. All we need to do subtract [`H`] from each side, and then [`C = 30 - H\text{.}`]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Substitute the isolated expression into the other equation.
+
+[_]{$m2}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Making the substitution: [`9(30 - H) + 14H = 375\text{.}`]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Solve this equation in one variable and then solve for the other variable using the isolation from a previous step. Finally, report how much of each type of coffee Desi should use.
+
+[@KeyboardInstructions('How much Colombian coffee should Desi use?')@]**
+
+[_]{$Clb}{16}
+
+[@KeyboardInstructions('How much Honduran coffee should Desi use?')@]**
+
+[_]{$Hlb}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+9(30 - H) + 14H \amp= 375\\
+270 - 9H + 14H \amp= 375\\
+270 + 5H \amp= 375\\
+5H\amp=105\\
+H\amp=21
+\end{aligned}
+```]
+
+[```
+\begin{aligned}
+C \amp= 30 - H\\
+C \amp= 30 - 21 = 9
+\end{aligned}
+```]
+
+In summary, Desi needs to mix [`21`] pounds of the Honduran coffee beans with [`9`] pounds of the Columbian coffee beans to create this blend.
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -35,19 +33,15 @@ loadMacros(
   "parserNumberWithUnits.pl",
   "contextCurrency.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $r1 = random(1.60,1.80,0.01);
 $r2 = random(5.60,6.00,0.01);
 $r3 = random(2.50,3,0.10);
@@ -69,17 +63,18 @@ $m = MultiAnswer(@eq)->with(
 );
 $c = ($r1 - $r3)/($r1 - $r2);
 $p = 1 - $c;
+Context("Numeric")->flags->set(tolerance => 2);
 $C = NumberWithUnits("$c lb");
 $P = NumberWithUnits("$p lb");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 A snack company will produce and sell 1-lb bags with a mixture of peanuts and cashews. Peanuts cost [`[$rate1]`] per pound, and cashews cost [`[$rate2]`] per pound. The company is targeting a product that will cost them [`[$rate3]`] per pound worth of ingredients. How much of each type of nut should go into a bag?
 
-[@KeyboardInstructions('Using [|P|]* and [|C|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+[@KeyboardInstructions('Using [`P`] and [`C`] as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
 
 [_]{$m}{16}
 
@@ -89,15 +84,14 @@ A snack company will produce and sell 1-lb bags with a mixture of peanuts and ca
 
 [_]{$P}{16}
 
-[@KeyboardInstructions('Enter the amount cashews here.')@]**
+[@KeyboardInstructions('Enter the amount of cashews here.')@]**
 
 [_]{$C}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-determine-point-slope-form-from-graph-q1-large-y-precise-copy2" assembly-id="determine-point-slope-form-from-graph-q1-large-y-precise-copy2">
+  <static seed="1521">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/determine-point-slope-form-from-graph-q1-large-y-precise-copy2-image-1" width="100%"/>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>y = 62\mathopen{}\left(x-6\right)+348\hbox{ or }y = 62\mathopen{}\left(x-2\right)+100</m>
+      </p>
+    </answer>
+    <solution><p>The slope is <m>{62}</m> and the point <m>(6,348)</m> is on the graph of this line, so one point-slope form equation for this line is <m>y={62\mathopen{}\left(x-6\right)+348}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_6_5_37.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="determine-point-slope-form-from-graph-q1-large-y-precise"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.56)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserAssignment.pl",
+  "parserOneOf.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$xmin = -1;
+$xmax = 11;
+$ymin = -50;
+$ymax = 600;
+Context("Fraction");
+do {
+  ($h,$x1) = random_subset(2,1..9);
+  ($k,$y1) = random_subset(2,100..599);
+  $m = Fraction(($y1 - $k)/($x1 - $h));
+  $f = Formula("$m(x - $h) + $k")->reduce;
+  $b = $f->eval(x => 0);
+} until ($b != 0 && abs($h - $x1) >= 3);
+$g = Formula("$m(x - $x1) + $y1")->reduce;
+$xtop = ($ymax - $k)/$m + $h;
+$xbot = ($ymin - $k)/$m + $h;
+($start, $stop) = (num_sort($xmin,$xmax,$xtop,$xbot))[1,2];
+
+package my::OneOf;
+our @ISA = ('parser::OneOf');
+sub cmp_compare {
+  my ($self,$other,$ans) = @_;
+  foreach $answer (@{$self->{data}}) {
+    if ($answer->typeMatch($other)) {
+      my $result = $answer->cmp->evaluate($other);
+      if ($result->{score}) {
+        $ans->score($result->{score});
+        $ans->{ans_message} = $result->{ans_message};
+        return $ans->{score};
+      }
+      if ($result->{ans_message}) {
+        $ans->{ans_message} = $result->{ans_message}
+          if !$ans->{ans_message} || length($ans->{ans_message}) > length($result->{ans_message});
+      }
+    }
+  }
+  return 0;
+}
+package main;
+sub OneOfForm {my::OneOf->new(@_)}
+
+Context("Form")->variables->add(y=>'Real');
+parser::Assignment->Allow;
+Context()->noreduce('(-x)+y','(-x)-y');
+Context()->flags->set(reduceConstants => 0);
+$eq = OneOfForm(Formula("y = $f"), Formula("y = $g"));
+$leftright = ($m > 0) ? 'right' : 'left';
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin = $xmin,
+      xmax = $xmax,
+      ymin = $ymin,
+      ymax = $ymax,
+      xtick = {2,4,...,$xmax},
+      minor xtick = {1,...,$xmax},
+      ytick = {100,200,...,$ymax},
+      minor ytick = {50,100,...,$ymax},
+      width=0.33\orccaprintwidth,
+      clip=false
+    ]
+    \addplot[firstcurve, domain=$start:$stop]{$f};
+    \addplot[soliddot] coordinates {($h,$k)} node[below $leftright] {\(($h,$k)\)};
+    \addplot[soliddot] coordinates {($x1,$y1)} node[below $leftright] {\(($x1,$y1)\)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Determine a point-slope form line equation for the given line.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+[_]{$eq}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The slope is [`[$m]`] and the point [`([$h],[$k])`] is on the graph of this line, so one point-slope form equation for this line is [`y=[$f]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

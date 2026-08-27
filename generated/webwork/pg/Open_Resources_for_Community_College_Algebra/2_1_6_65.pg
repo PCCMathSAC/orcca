@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "contextCurrency.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $name = randomPerson();
 $initial = random(80,120,5);
 Context("Currency")->flags->set(trimTrailingZeros => 1);
@@ -56,20 +50,19 @@ $end = Currency($final);
 $solution = ($final - $initial)/$rate;
 $n = Real($solution);
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 For [$name]'s 8th birthday party, [$name->possessive] parents rented a venue that charges a flat fee of [`[$start]`] plus [`[$speed]`] per guest. Ultimately it cost [$name]'s parents [`[$end]\text{.}`] How many guests were there?
 
 [_]{$n}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

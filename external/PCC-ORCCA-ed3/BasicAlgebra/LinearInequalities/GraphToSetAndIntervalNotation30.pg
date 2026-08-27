@@ -1,0 +1,114 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Give a graph of an inequality, write the set notation and interval notation.
+# Answer is like (-inf,3).
+#
+# Last edited by Carl Yao on 7/21/13
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Inequalities')
+## KEYWORDS('linear','inequality', 'number line','set notation','interval notation')
+## DBCCSS('7.EE.4')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGgraphmacros.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "parserPopUp.pl",
+  "contextInequalitySetBuilder.pl",
+  "PCCmacros.pl",
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+TEXT(beginproblem());
+Context("Numeric");
+
+$a = random(-4,4,0.5);
+
+$symbol = '<';
+
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$var = list_random('a'..'d','f'..'k','m','n','p'..'r','t'..'z');
+do {Context()->variables->add($var => 'Real');} unless ($var eq 'x');
+$setans = Compute("{ $var | $var $symbol $a}");
+
+Context("Interval");
+Context()->flags->set("formatStudentAnswer"=>'parsed');
+$intans = Compute("(-inf,$a)");
+Context("Numeric");
+
+$numberline = createTikZImage();
+$numberline->addToPreamble(latexImagePreamble());
+$numberline->BEGIN_TIKZ
+\begin{axis}
+  [
+    numberline,
+    xmin=-6,
+    xmax=6,
+    xtick={-5,0,...,5},
+    minor xtick={-5,-4,...,5},
+    xlabel = {\($var\)},
+  ]
+  \addplot[infiniteopeninterval] coordinates {(-6,0) ($a,0)};
+\end{axis}
+END_TIKZ
+
+$alt = "Graph of an interval on a number line. There is a right parenthesis at $a and everything left of that is shaded. To the right of the axis, there is a letter $var.";
+
+##############################################
+
+
+BEGIN_PGML
+For the interval expressed in the number line, write it using set-builder notation and interval notation.
+
+>> [@image(insertGraph($numberline), width => 360, tex_size => 1000, alt => "$alt") @]* <<
+
+[@KeyboardInstructions(q!Type [|INF|]* for [`\infty`], [|<=|]* for [`\leq`], and [|>=|]* for [`\geq`].!)@]**
+
+[@KeyboardInstructions(q!Enter the set in set-builder notation here.!)@]**
+
+[_]{$setans}{30}
+
+[@KeyboardInstructions(q!Enter the set in interval notation here.!)@]**
+
+[_]{$intans}{30}
+
+
+END_PGML
+
+
+
+##############################################
+
+BEGIN_PGML_SOLUTION
+
+Since the given graph shades all the values less than [`[$a]`] (but not equal to [`[$a]`]) the graph represents the inequality [`[$var] [$symbol] [$a]`]. 
+
+The corresponding set notation is [`[$setans]`].
+
+The corresponding interval notation is [`[$intans]`].
+
+END_PGML_SOLUTION
+
+ENDDOCUMENT();
+

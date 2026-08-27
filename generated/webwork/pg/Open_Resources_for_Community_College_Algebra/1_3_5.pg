@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,15 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
   "PGlateximage.pl",
+  "scaffold.pl",
   "PCCmacros.pl",
   "contextFraction.pl",
   "ORCCA.pl",
@@ -40,15 +38,10 @@ loadMacros(
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
 Context()->flags->set(reduceConstants => 0);
 Context()->operators->redefine('>',using=>',',from=>'Numeric');
@@ -68,6 +61,7 @@ $comparison = Compute("$bs");
 $comparison2 = Compute("$bs2");
 $evaluator = $comparison->cmp(ordered => 1);
 $evaluator2 = $comparison2->cmp(ordered => 1);
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -91,6 +85,7 @@ $image_1->BEGIN_LATEX_IMAGE
 \end{tikzpicture}
 
 END_LATEX_IMAGE
+
 $image_2 = createLaTeXImage();
 $image_2->addToPreamble(latexImagePreamble());
 $image_2->BEGIN_LATEX_IMAGE
@@ -115,24 +110,25 @@ $image_2->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Use the [`\newcommand{\gt}{>}\gt`] symbol to arrange the following numbers in order from greatest to least.
-
+Use the [`\gt`] symbol to arrange the following numbers in order from greatest to least.
 
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -142,12 +138,11 @@ BEGIN_PGML
 
 [_]{$evaluator}{30}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We can order these numbers by placing these numbers on a number line.
@@ -156,35 +151,31 @@ We can order these numbers by placing these numbers on a number line.
 
 And so we see the answer is [`[$comparison]\text{.}`]
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
-
 
 [```
                 [$as2]
               ```]
 
-
-
 [@KeyboardInstructions('For example, your answer might look like [|4 > 3 > 2 > 1 > 0|]*. If you need to enter [`\pi\text{,}`] type [|pi|]*.')@]**
 
 [_]{$evaluator2}{30}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We can order these numbers by placing these numbers on a number line. Knowing or computing their decimals helps with this: [`\pi\approx3.141\ldots`] and [`\frac{10}{3}\approx3.333\ldots\text{.}`]
@@ -193,15 +184,14 @@ We can order these numbers by placing these numbers on a number line. Knowing or
 
 And so we see the answer is [`[$comparison2]\text{.}`]
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

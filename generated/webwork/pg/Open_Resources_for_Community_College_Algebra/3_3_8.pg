@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserAssignment.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 @x = (0..3);
 $f = Formula("x + 10");
 @y = map{$f->eval(x => $_)}(@x);
@@ -53,54 +47,56 @@ Context("Numeric")->variables->add(y => 'Real');
 parser::Assignment->Allow;
 $eq = Formula("y = $f");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[`[$x[0]]`]'),
+    [
+     PGML('[`[$x[0]]`]'),
      PGML('[`[$y[0]]`]'),
     ],
-    [PGML('[`[$x[1]]`]'),
+    [
+     PGML('[`[$x[1]]`]'),
      PGML('[`[$y[1]]`]'),
     ],
-    [PGML('[`[$x[2]]`]'),
+    [
+     PGML('[`[$x[2]]`]'),
      PGML('[`[$y[2]]`]'),
     ],
-    [PGML('[`[$x[3]]`]'),
+    [
+     PGML('[`[$x[3]]`]'),
      PGML('[`[$y[3]]`]'),
     ],
   ],
       align => 'rl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$eq}{20}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 One approach to pattern recognition is to look for a relationship in each row. Here, the [`y`]-value in each row is always [`10`] more than the [`x`]-value. So the pattern is described by the equation [`[$eq]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

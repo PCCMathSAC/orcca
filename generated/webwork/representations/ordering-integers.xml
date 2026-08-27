@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-ordering-integers" assembly-id="ordering-integers">
+  <static seed="227">
+    <statement><p><m>{-8}\quad{-6}\quad{-1}\quad{-3}\quad{10}</m></p>
+<p><fillin characters="30" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>10&gt;-1&gt;-3&gt;-6&gt;-8</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_37.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.37)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context()->operators->redefine('>',using=>',',from=>'Numeric');
+Context()->lists->set('List' => {separator => '>'});
+
+@a = (-10..10)[NchooseK(21,5)];
+@a = map{Real($_)} (@a);
+$as = join('\quad', map{'{' . $_ . '}'} (@a));
+@b = PGsort(sub{$_[0] > $_[1]}, @a);
+$bs = join('>', @b);
+
+$comparison = Compute("$bs")->cmp(ordered => 1);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Use the [`\gt`] symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like [`4 \gt 3 \gt 2 \gt 1 \gt 0\text{.}`]
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$as]`]
+
+[_]{$comparison}{30}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

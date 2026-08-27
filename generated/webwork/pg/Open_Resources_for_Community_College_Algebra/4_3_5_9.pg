@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,31 +20,28 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 ($A[0], $B[0], $C[0]) = (-9..-2,2..9)[NchooseK(16,3)];
@@ -99,14 +93,21 @@ $answer = $solution->cmp(
   mathQuillOpts => 'disabled'
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the system of equations using elimination.
 
-[`\newcommand{\amp}{&}\left\{
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
                   \begin{alignedat}{4}
                   \amp [$f[0]] \\
                   \amp [$f[1]]
@@ -118,11 +119,10 @@ Solve the system of equations using elimination.
 
 [_]{$answer}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

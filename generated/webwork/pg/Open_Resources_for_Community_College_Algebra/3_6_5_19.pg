@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "parserOneOf.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 package my::OneOf;
 our @ISA = ('parser::OneOf');
 sub cmp_compare {
@@ -94,28 +88,34 @@ $top = $top->substitute(x => $y1);
 $bottom = Formula("x - $h");
 $bottom = $bottom->substitute(x => $x1);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$p0]`] and [`[$p1]`]
 
 [_]{$eq}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 First we must find this line's slope using the slope formula:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \amp\frac{y_2-y_1}{x_2-x_1}\\
 \amp= \frac{[$top]}{[$bottom]}\\
@@ -125,11 +125,10 @@ First we must find this line's slope using the slope formula:
 
 So the slope is [`[$m]\text{.}`] Using the point [`[$p0]`] and point-slope form, an equation for the line is [`y=[$f]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

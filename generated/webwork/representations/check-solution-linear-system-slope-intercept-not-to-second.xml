@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-solution-linear-system-slope-intercept-not-to-second" assembly-id="check-solution-linear-system-slope-intercept-not-to-second">
+  <static seed="1553">
+    <statement><p>Is <m>{\left(0,-5\right)}</m> a solution?</p>
+<p><m>\left\{
+                    \begin{alignedat}{3}
+                      y\amp= {-{\frac{1}{8}}x-5}\\
+                      y\amp= {-{\frac{13}{8}}x+7}
+                    \end{alignedat}
+                  \right.</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{No, it is not a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_1_5_7.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.1.5.7)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($x,$y) = (-8..-1,1..8)[NchooseK(16,2)];
+@b = (-9..$y-1,$y+1..9)[NchooseK(18,2)];
+Context("Fraction");
+Context()->noreduce('(-x)+y', '(-x)-y');
+@m = map{Fraction(($y - $_)/$x)} (@b);
+@n = map{($_->value)[0]} (@m);
+@d = map{($_->value)[1]} (@m);
+@f = map{Formula("$m[$_] x + $b[$_]")->reduce} (0,1);
+Context("Point");
+$solution = Point($x,$y);
+do {
+  $x1 = random(0, 9, $d[0]);
+  $y1 = $f[0]->eval(x => $x1);
+} until ($x1 != $x);
+$proposed_solution = Point($x1,$y1);
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], 1, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Check if the given point is a solution to the given system of two linear equations.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution?
+
+[`
+                  \left\{
+                    \begin{alignedat}{3}
+                      y\amp= [$f[0]]\\
+                      y\amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

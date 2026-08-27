@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "parserMultiAnswer.pl",
   "contextPercent.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $group = list_random('Democrats', 'Republicans', 'retirees', 'married');
 $a = random(1000, 2000, 100);
 $b = random(2100, 4000, 100);
@@ -73,14 +67,14 @@ $m = MultiAnswer(@eq)->with(
 $B = Round(($p1*$total - $pfinal*$total)/($p1 - $p2));
 $A = $total - $B;
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Asterton and Balsamburg were two towns located close to each other, and recently they merged into one city. Asterton had a population with [`[$P1]`] [$group]. Balsamburg had a population with [`[$P2]`] [$group]. After the merge, the new city has a total of [`[$total]`] residents, with [`[$Pfinal]`] [$group]. How many residents did each town have before the merge?
 
-[@KeyboardInstructions('Using [|A|]* and [|B|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+[@KeyboardInstructions('Using [`A`] and [`B`] as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
 
 [_]{$m}{16}
 
@@ -94,11 +88,10 @@ Asterton and Balsamburg were two towns located close to each other, and recently
 
 [_]{$B}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

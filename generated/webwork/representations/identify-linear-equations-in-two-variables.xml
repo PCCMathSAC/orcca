@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-identify-linear-equations-in-two-variables" assembly-id="identify-linear-equations-in-two-variables">
+  <static seed="1056">
+    <statement><ul form="checkboxes" name="AnSwEr0001">
+<li>
+<p><m>2\pi r=5\pi </m></p>
+</li>
+<li>
+<p><m>5.5x=6.5V</m></p>
+</li>
+<li>
+<p><m>4x+\left|r\right|=26</m></p>
+</li>
+<li>
+<p><m>\sqrt{-3V-9}=\frac{5}{V}</m></p>
+</li>
+<li>
+<p><m>5V+6x^{2}=26</m></p>
+</li>
+<li>
+<p><m>-4V-V=-6</m></p>
+</li>
+<li>
+<p>None of the above</p>
+</li>
+</ul>
+<p>
+</p></statement>
+    <answer>
+      <p>
+        <m>\text{Choice 1, Choice 2, Choice 6}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_2_17.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.2.17)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "parserCheckboxList.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Numeric");
+Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
+Context()->noreduce('(-x)-y');
+@allvars=('x','y','z','r','q','p','V');
+@var=(
+    list_random(@allvars),
+    (@allvars)[NchooseK(7,2)],
+    list_random(@allvars),
+    list_random(@allvars),
+    list_random(@allvars),
+    'r',
+);
+@left=(
+    Formula(non_zero_random(-9, 9) . " $var[0] + " . non_zero_random(-19, 19) . " $var[1]")->reduce,
+    Formula(random(1, 9) . " $var[1] + " . random(1, 9) . " $var[2]^2")->reduce,
+    Formula(random(1, 9) . " $var[2] + " . non_zero_random(-9, 9) . "|$var[3]|")->reduce,
+    Formula(random(0.1, 9, 0.1) . $var[4])->reduce,
+    Formula("sqrt(" . non_zero_random(-9, 9, 0.1) . "$var[5] + " . non_zero_random(-9, 9) . ")")->reduce,
+    Formula("2 pi r")->reduce
+);
+@right=(
+    Compute(random(-9, 9)),
+    Compute(random(2, 29)),
+    Compute(random(-29, 29)),
+    Formula(random(0.1, 9, 0.1) . $var[5])->reduce,
+    Formula(random(0, 9) . " / $var[0]")->reduce,
+    Formula(random(1, 20).'pi')->reduce
+);
+@eq = map{$BM . $left[$_]->TeX . '=' . $right[$_]->TeX . $EM} (0..5);
+$options = CheckboxList([~~@eq, "None of the above"], [0,3,5]);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Select the equations that are linear in two variables, including any where you must imagine an additional variable with coefficient [`0\text{.}`]
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[_]{$options}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

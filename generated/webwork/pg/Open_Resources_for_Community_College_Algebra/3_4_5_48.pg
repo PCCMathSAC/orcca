@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -38,15 +36,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $newUnits = [
   {name=>'diagnoses'},
   {name=>'year',conversion=>{factor=>365*24*60*60,s=>1}},
@@ -58,6 +51,7 @@ $newUnits = [
 $m=Real(274.8155844);
 Context()->flags->set(tolType=>'absolute',tolerance=>20);
 $rate = NumberWithUnits("$m diagnoses/yr",{newUnit=>$newUnits});
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -109,14 +103,14 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 The graph plots the number of invasive cancer diagnoses in Oregon over time, and a trend-line has been drawn.
 
->> [@image(insertGraph($image_1), width=>600)@]*  <<
+>> [@image(insertGraph($image_1), width=>450)@]*  <<
 
 Estimate the slope of the trend-line.
 
@@ -124,31 +118,25 @@ Estimate the slope of the trend-line.
 
 [_]{$rate}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Do your best to identify two points on the line (which are not necessarily the plotted data points). With this line, it seems [`(2000,17500)`] and [`(2020,23000)`] are two such points.
-
-
 
 [```
                 \frac{\Delta y}{\Delta x}=\frac{(23000-17500)\,\text{diagnoses}}{(2020-2000)\,\text{yr}}=275\,\frac{\text{diagnoses}}{\text{yr}}
               ```]
 
-
-
 So the slope is about [`275`] diagnoses per year. This is only an estimate since we are not certain the two points we chose are actually on the line.
-
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

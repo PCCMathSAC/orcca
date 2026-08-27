@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-restauraunt-bill-check-solution" assembly-id="restauraunt-bill-check-solution">
+  <static seed="335">
+    <statement><p>If your restaurant bill is <m>x</m> and you add <m>20\%</m> tip, the total is <m>x + 0.20x\text{.}</m> If the total was <m>{\$50.16}\text{,}</m> then we have an equation <m>{x+0.2x}={50.16}\text{.}</m> Was the bill before tip <m>{\$41.80}\text{?}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>x+0.2x</m></cell>
+<cell><m>=</m></cell>
+<cell><m>50.16</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{=}</m></cell>
+<cell><m>50.16</m></cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>50.16</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{Yes, it is a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_67.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.67)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "contextCurrency.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$before = random(40, 60, 0.10);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$after = Currency($before*1.2);
+$proposed_solution = (random(0,1)) ? $before : $before + non_zero_random(-10, 10, 0.5);
+$proposed_bill = Currency($proposed_solution);
+$left = Formula("x + 0.2x");
+$right = Formula($after->value);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(x => $proposed_solution));
+$righteval = Real($right->eval(x => $proposed_solution));
+$dropdown = DropDown(
+  ["Yes, it is a solution.", "No, it is not a solution."],
+  ($lefteval == $righteval) ? 0 : 1, showInStatic => 0
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+If your restaurant bill is [`x`] and you add [`20\%`] tip, the total is [`x + 0.20x\text{.}`] If the total was [`[$after]\text{,}`] then we have an equation [`[$left]=[$right]\text{.}`] Was the bill before tip [`[$proposed_bill]\text{?}`]
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,20 +31,16 @@ loadMacros(
   "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-$var = list_random('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z');
+$var = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
 Context("Fraction")->variables->are($var => 'Real');
 Context()->flags->set(reduceConstants => 0, showExtraParens => 0);
 Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
@@ -68,32 +62,37 @@ $evaluator = $ans->cmp(checker=>sub{
   return ($student eq $correct);
 });
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 Apply associativity to [`[$given]\text{.}`]
 
 [_]{$evaluator}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The expression has three terms. To apply associativity, we write the three terms in the same order from left to right, but change which two terms are grouped. This gives us [`[$ans]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-alcohol-solution-mixture" assembly-id="alcohol-solution-mixture">
+  <static seed="1653">
+    <statement><p>Alessandro poured some <m>{6\%}</m> alcohol solution and some <m>{18\%}</m> alcohol solution together into a beaker, and then the beaker had <m>{540\ {\rm ml}}</m> of <m>{10.2\%}</m> alcohol solution. How much of each solution did Alessandro pour into the beaker?</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+<p><fillin characters="16" name="AnSwEr0004"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>x+y = 540</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0.06x+0.18y = 55.08</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>350\ {\rm ml}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>190\ {\rm ml}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_2_5_61.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.61)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "parserNumberWithUnits.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$p = randomPerson();
+$x = random(300, 400, 25);
+$y = random(100, 200, 10);
+$t = $x + $y;
+$X = NumberWithUnits("$x ml");
+$Y = NumberWithUnits("$y ml");
+$total = NumberWithUnits("$t ml");
+Context("Percent");
+$r1 = random(0.06, 0.12, 0.01);
+$rate1 = Percent($r1);
+$r2 = random(0.15, 0.25, 0.01);
+$rate2 = Percent($r2);
+$r3 = Round(($r1*$x + $r2*$y)/($x+$y),3);
+$rate3 = Percent($r3);
+Context("LinearRelation")->variables->are(x => 'Real', y => 'Real');
+@eq = (LinearRelation("x + y = $t"), LinearRelation("$r1 x + $r2 y = $r3*$t"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$p] poured some [`[$rate1]`] alcohol solution and some [`[$rate2]`] alcohol solution together into a beaker, and then the beaker had [`[$total]`] of [`[$rate3]`] alcohol solution. How much of each solution did [$p] pour into the beaker?
+
+[@KeyboardInstructions('Using [`x`] (weaker solution) and [`y`] (stronger solution) as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the amount of the weaker solution here.')@]**
+
+[_]{$X}{16}
+
+[@KeyboardInstructions('Enter the amount of the stronger solution here.')@]**
+
+[_]{$Y}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

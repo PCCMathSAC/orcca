@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-graph-point-slope-neg-frac-copy" assembly-id="graph-point-slope-neg-frac-copy">
+  <static seed="1299">
+    <statement><p><m>y={-{\frac{3}{4}}\mathopen{}\left(x-5\right)-4}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(5,-4\right), \left(9,-7\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_6_5_45.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="graph-point-slope-neg-frac"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.6.5.46)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->noreduce('(-x)-y','(-x)+y');
+do {
+  ($n,$d) = random_coprime([-9..-1],[2..9]);
+  $m = Fraction($n/$d);
+  ($h,$k) = random_subset(2, 2..9);
+  if (random(0,1)) {
+    $h = -$h;
+  } else {
+    $k = -$k;
+  }
+  $f = Formula("$m(x - $h) + $k")->reduce;
+  $b = $f->eval(x => 0);
+} until ($b != int(Real($b)));
+$x1 = $h + $d;
+$y1 = $k + $n;
+$gt = GraphTool("{line, solid, ($h, $k), ($x1, $y1)}")->with(
+  bBox => [-11, 11, 11, -11],
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Graph the linear equation by identifying the slope and one point on this line.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`y=[$f]`]
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

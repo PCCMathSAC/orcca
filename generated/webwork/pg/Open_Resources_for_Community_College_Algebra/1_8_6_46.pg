@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PCCmacros.pl",
   "contextCurrency.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $rate = random(60000,200000,5000);
 Context("Currency")->flags->set(trimTrailingZeros => 1);
 $speed = Currency("$rate");
@@ -57,24 +51,30 @@ $start = Currency("$initial");
 Context("LinearRelation")->variables->are(t => 'Real');
 $equation = LinearRelation("$initial + $rate t = $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an equation to model the scenario. There is no need to solve the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 A small town would like to replace its aging water treatment system. This will cost [`[$total]\text{,}`] but the town just needs [`[$end]`] up front for downpayment on a loan that will cover the rest. The town treasury has [`[$start]`] in it already for this need, and the town can gather [`[$speed]`] per month from taxes. How long will it take to reach enough for downpayment on that loan? Write an equation to model this scenario. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|t|]* as the variable.')@]**
 
 [_]{$equation}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

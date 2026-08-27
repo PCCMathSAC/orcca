@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PCCmacros.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $var = RandomVariableName();
 Context()->variables->are($var => 'Real', solvar => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
@@ -67,28 +61,34 @@ $sol[7] = $sol[6]->substitute($var => Formula("$sol[5]"), solvar => Formula("$so
 Context("LimitedNumeric");
 $answer = Real($answer);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Evaluate the expression for the given value of the variable.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$expression]`] for [`[$var]=[$x]\text{.}`]
 
 [_]{$answer}{15}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Substitute [`[$x]`] in for the variable [`[$var]`] and simplify:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \amp[$sol[0]]\\
 \amp=[$sol[3]]\\
@@ -97,13 +97,10 @@ Substitute [`[$x]`] in for the variable [`[$var]`] and simplify:
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

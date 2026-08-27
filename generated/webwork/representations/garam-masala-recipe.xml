@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-garam-masala-recipe" assembly-id="garam-masala-recipe">
+  <static seed="865">
+    <statement><p>An internet recipe for <m>3</m> tbsp of garam masala calls for <m>2.5</m> tbsp of ground black pepper. You want to use up the last of your ground black pepper supply, which is <m>1.67</m> tbsp. Assuming you have enough of all of the other ingredients, how much garam masala will you make?</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>2.004\ {\rm tbsp}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_3_5_44.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.44)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+($recipeA, $recipeB) = random_subset(2, 1, 1.25, 1.33, 1.5, 1.67, 1.75, 2, 2.25, 2.33, 2.5, 2.67, 2.75);
+$volA = random(3,4);
+$ans = $recipeB*$volA/$recipeA;
+$tbsp = {name => 'tbsp', conversion => {factor =>1.4787*10**-5, m=>3}};
+$answer = NumberWithUnits("$ans tbsp", {newUnit=>$tbsp});
+$spice = list_random("cumin", "coriander", "cardamom", "black pepper", "cinnamon", "cloves", "nutmeg");
+
+######
+# Body
+######
+
+BEGIN_PGML
+An internet recipe for [`[$volA]`] tbsp of garam masala calls for [`[$recipeA]`] tbsp of ground [$spice]. You want to use up the last of your ground [$spice] supply, which is [`[$recipeB]`] tbsp. Assuming you have enough of all of the other ingredients, how much garam masala will you make?
+
+[_]{$answer}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

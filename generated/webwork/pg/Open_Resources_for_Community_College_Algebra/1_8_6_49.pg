@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PCCmacros.pl",
   "parserLinearRelation.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $name = randomPerson();
 $initial = 425;
 $rate = random(20,30);
@@ -53,24 +47,30 @@ $final = random(200,300,25);
 Context("LinearRelation")->variables->are(t => 'Real');
 $equation = LinearRelation("$initial - $rate t = $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an equation to model the scenario. There is no need to solve the equation.
 
-[$name] baked a pie at [`[$initial]\,℉`] and just took it out of the oven. It immediately starts to cool at a rate of [`[$rate]\,\frac{℉}{\text{min}}\text{.}`] How long will it take to cool to [`[$final]\,℉\text{?}`] Write an equation to model this scenario. There is no need to solve it.
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$name] baked a pie at [`[$initial]\,^{\circ}F`] and just took it out of the oven. It immediately starts to cool at a rate of [`[$rate]\,\frac{^{\circ}F}{\text{min}}\text{.}`] How long will it take to cool to [`[$final]\,^{\circ}F\text{?}`] Write an equation to model this scenario. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|t|]* as the variable.')@]**
 
 [_]{$equation}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

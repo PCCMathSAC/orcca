@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:33-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "bizarroArithmetic.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "bizarroArithmetic.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context()->operators->set(
   '+' => {class => 'bizarro::BOP::add', isCommand => 1},
   '-' => {class => 'bizarro::BOP::subtract', isCommand => 1},
@@ -110,140 +104,124 @@ $ev[2]=$step[2]->cmp(checker=>sub{
 Context("LimitedNumeric");
 $step[3]=Formula("-22");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Simplify this expression one step at a time, using the order of operations.
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 [`5-3(7-4)^2={}`][_]{$ev[0]}{15}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 
-
-[```\newcommand{\nextoperation}[1]{\mathord{\boxed{#1}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 5-3(\nextoperation{7-4})^2\amp=5-3\nextoperation{(3)^2}
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 [`\phantom{5-3(7-4)^2}={}`][_]{$ev[1]}{15}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 
-
-[```\newcommand{\nextoperation}[1]{\mathord{\boxed{#1}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \amp=5-\nextoperation{3(9)}
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 [`\phantom{5-3(7-4)^2}={}`][_]{$ev[2]}{15}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 
-
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \amp=5-27
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 [`\phantom{5-3(7-4)^2}={}`][_]{$step[3]}{15}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 
-
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \amp=-22
 \end{aligned}
 ```]
-
-
-
 
 END_PGML_SOLUTION
 
@@ -251,8 +229,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

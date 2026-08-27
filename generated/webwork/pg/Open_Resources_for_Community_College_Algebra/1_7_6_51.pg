@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGchoicemacros.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Form");
-$var = list_random('a'..'n', 'p'..'z', 'A'..'N', 'P'..'T', 'V'..'Z');
+$var = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
 Context()->variables->are($var => 'Real');
 ($a, $b, $c, $d, $e, $f) = (2..9)[NchooseK(8,6)];
 $given = Formula("$a($b $var + $c) - $d($e $var - $f)");
@@ -54,22 +48,28 @@ $abde = $a*$b - $d*$e;
 $acdf = $a*$c + $d*$f;
 $ans = Formula("$abde $var + $acdf");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Simplify the given expression. Ideally, you are thinking about how the properties of algebra are helping you simplify.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$given]`]
 
 [_]{$ans}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

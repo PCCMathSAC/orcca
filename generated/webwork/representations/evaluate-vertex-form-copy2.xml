@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-evaluate-vertex-form-copy2" assembly-id="evaluate-vertex-form-copy2">
+  <static seed="628">
+    <statement><p><m>{{\frac{1}{4}}\mathopen{}\left(A-1\right)^{2}-6}</m> for <m>A=5\text{.}</m></p>
+<p><fillin characters="15" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-2</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_1_6_35.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="evaluate-vertex-form"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.7)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+$var = RandomVariableName();
+Context()->variables->are($var => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+($x, $h) = map{$_-9} (NchooseK(19, 2));
+$k = random(-9, 9, 1);
+$denom = $x - $h;
+$expression = Formula("1/$denom($var - $h)^2 + $k")->reduce;
+$answer = $expression->eval($var => $x);
+$answer = Real($answer);
+Context("LimitedNumeric");
+$answer = Real($answer);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Evaluate the expression for the given value of the variable.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$expression]`] for [`[$var]=[$x]\text{.}`]
+
+[_]{$answer}{15}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

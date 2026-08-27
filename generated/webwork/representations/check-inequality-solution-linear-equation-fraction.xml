@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-inequality-solution-linear-equation-fraction" assembly-id="check-inequality-solution-linear-equation-fraction">
+  <static seed="307">
+    <statement><p>Is <m>{{\frac{3}{2}}}</m> a solution to <m>{5x+{\frac{5}{4}}}\leq{{\frac{55}{8}}}\text{?}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>5x+{\frac{5}{4}}</m></cell>
+<cell><m>\leq</m></cell>
+<cell><m>{\frac{55}{8}}</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{\leq}</m></cell>
+<cell><m>{\frac{55}{8}}</m></cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>{\frac{35}{4}}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{No, it is not a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_39.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.39)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "parserVectorUtils.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+$actual_solution = Fraction(random_coprime([1..9],[2..9]));
+$m = random(2,9);
+$b = Fraction(random_coprime([-9..-1,1..9],[2..9]));
+$left = Formula("$m x + $b")->reduce;
+$right = Formula($left->eval(x => $actual_solution))->reduce;
+$proposed_solution = random(0,2) ? $actual_solution : $actual_solution + non_zero_random(-3,3)/($actual_solution->value)[1];
+Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+$lefteval = Fraction($left->eval(x => $proposed_solution));
+$righteval = Fraction($right->eval(x => $proposed_solution));
+$inequality = list_random('\lt', '\gt', '\leq', '\geq', '\neq');
+$truefalse = (
+  ($inequality eq '\lt') ?
+  ($lefteval < $righteval) :
+  (
+    ($inequality eq '\gt') ?
+    ($lefteval > $righteval) :
+    (
+      ($inequality eq '\leq') ?
+      ($lefteval <= $righteval) :
+      (
+        ($inequality eq '\geq') ?
+        ($lefteval >= $righteval) :
+        ($lefteval != $righteval)
+      )
+    )
+  )
+);
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], $truefalse ? 0 : 1, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Check if the given number is a solution to the given inequality.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution to [`[$left][$inequality][$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`[$inequality]`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{[$inequality]}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

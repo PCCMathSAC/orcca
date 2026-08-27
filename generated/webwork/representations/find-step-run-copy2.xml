@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-find-step-run-copy2" assembly-id="find-step-run-copy2">
+  <static seed="676">
+    <statement><p>The rise is <m>8.375</m> inches.</p>
+<p><fillin characters="15" name="AnSwEr0001"/></p>
+<p><fillin characters="10" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>8.375+N = 17.5</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>9.125\ {\rm in}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_5_6_63.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="find-step-run"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.55)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitEquation.pl",
+  "parserNumberWithUnits.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$rise = random(6.125, 8.75, 0.125);
+Context("ImplicitEquation");
+Context()->variables->are(N => 'Real');
+$answer = 17.5 - $rise;
+Context()->variables->set(N => {limits=>[$answer - 10, $answer + 10]});
+$equation = ImplicitEquation("$rise + N = 17.5");
+$answer = NumberWithUnits("$answer in");
+
+######
+# Body
+######
+
+BEGIN_PGML
+The rise is [`[$rise]`] inches.
+
+[@KeyboardInstructions('Write the equation here.')@]**
+
+[_]{$equation}{15}
+
+[@KeyboardInstructions('Write the run here.')@]**
+
+[_]{$answer}{10}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

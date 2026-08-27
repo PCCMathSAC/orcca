@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "contextCurrency.pl",
   "contextPercent.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Currency")->flags->set(trimTrailingZeros => 1);
 $final = 90 + random(-30, 30, 0.05);
 $current = Currency($final);
@@ -56,24 +50,30 @@ $percent = Percent($decimal);
 Context("LinearRelation")->variables->are(b => 'Real');
 $equation = LinearRelation("b + $decimal b = $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an equation to model the scenario. There is no need to solve the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 The final bill at a restaurant one night was [`[$current]\text{,}`] including a [`[$percent]`] tip. What was the bill before the tip was added? Set up an equation to answer this question. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|b|]* as the variable.')@]**
 
 [_]{$equation}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

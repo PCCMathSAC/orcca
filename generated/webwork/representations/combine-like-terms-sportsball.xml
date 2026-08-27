@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-combine-like-terms-sportsball" assembly-id="combine-like-terms-sportsball">
+  <static seed="185">
+    <introduction><p>Sportsball is a game similar to basketball. There are three ways for a team to score points: a <lq/>long field goal<rq/> earns <m>L</m> points; a <lq/>short field goal<rq/> earns <m>S</m> points; and a <lq/>penalty shot<rq/> earns <m>P</m> points.</p>
+<p>In the first half of one game, a team scored <m>24</m> penalty shots, <m>41</m> long field goals, and <m>45</m> short field goals. So they earned <m>{24P+41L+45S}</m> points.</p>
+</introduction>
+    <task>
+      <statement><p>In the second half of the game, that same team scored <m>25</m> penalty shots, <m>43</m> long field goals, and <m>47</m> short field goals. How many points did they earn during the second half?</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>25P+43L+47S</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>How many points did the team score in total?</p>
+<p><fillin characters="20" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>49P+84L+92S</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_2_5_77-Sportsball.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.77)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+@vars = ('P','P','L','L','S','S');
+Context()->variables->are(P => 'Real', L => 'Real', S => 'Real');
+
+@coefs = num_sort((2..50)[NchooseK(49,6)]);
+@terms = ();
+for my $i (1..6) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]")->reduce);
+}
+$one = Formula("$coefs[0] P + $coefs[2] L + $coefs[4] S");
+$two = Formula("$coefs[1] P + $coefs[3] L + $coefs[5] S");
+$ans = Formula("($coefs[0] + $coefs[1]) P + ($coefs[2] + $coefs[3]) L +  ($coefs[4] + $coefs[5]) S");
+
+Context("Form");
+Context()->variables->are(P => 'Real', L => 'Real', S => 'Real');
+
+$ans = Formula("$ans");
+
+######
+# Body
+######
+
+BEGIN_PGML
+Sportsball is a game similar to basketball. There are three ways for a team to score points: a "long field goal" earns [`L`] points; a "short field goal" earns [`S`] points; and a "penalty shot" earns [`P`] points.
+
+In the first half of one game, a team scored [`[$coefs[0]]`] penalty shots, [`[$coefs[2]]`] long field goals, and [`[$coefs[4]]`] short field goals. So they earned [`[$one]`] points.
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+In the second half of the game, that same team scored [`[$coefs[1]]`] penalty shots, [`[$coefs[3]]`] long field goals, and [`[$coefs[5]]`] short field goals. How many points did they earn during the second half?
+
+[_]{$two}{20}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+How many points did the team score in total?
+
+[_]{$ans}{20}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

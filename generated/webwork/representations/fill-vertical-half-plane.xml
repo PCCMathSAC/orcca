@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-fill-vertical-half-plane" assembly-id="fill-vertical-half-plane">
+  <static seed="1025">
+    <statement><p>Sketch a Cartesian coordinate plane and then shade the quadrants where the second coordinate is negative.</p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{fill}, \left(1,-1\right)\right\}, \left\{\text{fill}, \left(-1,-1\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_1_11.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.1.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+%options = ('positive' => 1, 'negative' => -1);
+$posneg = list_random(lex_sort(keys %options));
+$y = $options{$posneg}; 
+$gt = GraphTool("{fill,(1,$y)}", "{fill,(-1,$y)}")->with(
+  availableTools => ['FillTool'],
+  staticObjects => ["{line,solid,(0,0),(0,1)}","{line,solid,(0,0),(1,0)}"],
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Sketch a Cartesian coordinate plane and then shade the quadrants where the second coordinate is [$posneg].
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

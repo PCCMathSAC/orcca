@@ -1,0 +1,90 @@
+# WeBWorK problem written by Chris Hughes, 2013
+# Portland Community College
+#
+# Template:
+# Solve the following quadratic equation
+#
+#       (ax + b)(cx + d) = 0
+#
+# If you need to use the square root symbol, 
+# as in x=sqrt{17}, type it like: *sqrt(17)*
+#
+# a = c = 1, 
+#
+# b =- d 
+#
+# Last updated: Hughes 8/20/13
+#
+# ENDDESCRIPTION
+
+## DBCCSS('A-REI.4.b')
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('equations', 'Simplification')
+## KEYWORDS('solve','quadratic','equation','factor','zero product principle')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+DOCUMENT();
+
+loadMacros(
+      "PGstandard.pl",
+      "MathObjects.pl",
+      "parserAssignment.pl",
+      "answerHints.pl",
+      "PGML.pl",
+      "PCCmacros.pl",
+      "contextFiniteSolutionSets.pl",
+      "PGcourse.pl",
+);
+
+##############################################
+    
+
+$var = "x";
+$a = 1;
+$b = non_zero_random(-10,10,1);
+$c = 1;
+$d = -$b;
+
+$soln1 = -$b;
+$soln2 = -$d;
+$questionFormula = Formula("$a*$c*$var^2+($b*$c+$a*$d)*$var+($b*$d)")->reduce->reduce;
+$questionFormula1 = Formula("($a*$var+$b)($c*$var+$d)")->reduce;
+Context("FiniteSolutionSets");
+$ans = Formula("{$soln1, $soln2}");
+
+TEXT(beginproblem());
+BEGIN_PGML
+Solve the equation.
+
+     [` [$questionFormula] = 0 `]
+  
+     [_]{$ans}{20}
+
+END_PGML
+
+
+
+
+BEGIN_PGML_SOLUTION
+There are a few ways you can approach this problem- you might like to use
+the _square root method_ or else you might prefer to _factor_ the equation
+and then use the _zero product principle_. 
+
+    [`
+       \begin{aligned}
+                     [$questionFormula]=0 &\Rightarrow [$questionFormula1]=0 \\
+                                    & \Rightarrow [$ans]
+       \end{aligned}
+    `]
+
+Note that _all_ quadratic equations have *two* (possibly repeated) solutions; in this problem both solutions are real. Each solution can be checked by substituting it into the original equation- this is left as an exercise.
+
+You might have solved the equation using the Quadratic Formula- the final 
+result is the same.
+END_PGML_SOLUTION
+
+##############################################
+ENDDOCUMENT();

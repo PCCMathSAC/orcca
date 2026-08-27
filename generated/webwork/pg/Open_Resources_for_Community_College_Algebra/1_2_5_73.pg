@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,15 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PGlateximage.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "ORCCA.pl",
@@ -39,18 +37,13 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
 Context()->operators->remove("U");
-@orig_vars = ('a'..'n','p'..'z','A'..'N','P'..'Z')[NchooseK(50,3)];
+@orig_vars = random_subset(3, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'Z');
 @vars = (@orig_vars, @orig_vars);
 @vars = (@vars)[NchooseK(6,6)];
 Context()->variables->are();
@@ -97,6 +90,7 @@ $polygon = list_random(
 @x = @{$polygon->[0]};
 @y = @{$polygon->[1]};
 @termsTeX = map{$terms[$_]->TeX} (@{$polygon->[2]});
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -112,32 +106,37 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write a simplified expression for the perimeter of the given shape (which is not drawn to scale).
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 >> [@image(insertGraph($image_1), width=>564, alt=>qq"a quadrilateral whose sides are labeled $terms[0], $terms[1], $terms[2], and $terms[3].")@]*  <<
 
 [_]{$ans}{20}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The perimeter is the result from adding the six sides together: [`[$termsTeX[0]] + [$termsTeX[1]] + [$termsTeX[2]] + [$termsTeX[3]] + [$termsTeX[4]] + [$termsTeX[5]]\text{.}`] There are two [`[$orig_vars[0]]`]-terms, two [`[$orig_vars[1]]`]-terms, and two [`[$orig_vars[2]]`]-terms. We combine each pair of like terms and the perimeter is [`[$ans]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

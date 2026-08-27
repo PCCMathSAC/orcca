@@ -1,0 +1,94 @@
+# WeBWorK problem written by Alex Jordan 
+# Portland Community College
+# ENDDESCRIPTION
+
+
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "contextFraction.pl"
+);
+
+TEXT(beginproblem());
+
+##############################################
+
+Context("Fraction-NoDecimals");
+Context()->operators->undefine('+','-','*','^');
+$n = random(1,5,1);
+$d = random(max(1,$n-3),$n+3,1);
+
+$m = Fraction("$n","$d");
+$mperl = $n/$d;
+$bperl = random(-3,3,1);
+$b = Compute("$bperl");
+$ans = $m;
+
+$xmin = min(-6,-$d-2);
+$xmax = max(6,$d+2);
+$ymin = -6;
+$ymax = 6;
+
+($start,$stop) = (num_sort($xmin,$xmax,($ymin-$bperl)/$mperl,($ymax-$bperl)/$mperl))[1,2];
+
+$gr = createTikZImage();
+$gr->addToPreamble(latexImagePreamble());
+$gr->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $xmin,
+    xmax = $xmax,
+    ymin = $ymin,
+    ymax = $ymax,
+    xtick =,
+    ytick =,
+    minor xtick = {$xmin,...,$xmax},
+    minor ytick = {$ymin,...,$ymax},
+  ]
+  \addplot+[domain=$start:$stop] {$mperl*x+$b};
+\end{axis}
+END_TIKZ
+
+##############################################
+
+
+
+Context()->texStrings;
+
+BEGIN_TEXT
+
+Below is a line's graph.
+$PAR
+
+
+$BBLOCKQUOTE
+\{ image( insertGraph($gr), 
+width=>240,height=>240,tex_size=>800 ) \}
+
+$PAR
+The slope of this line is \{ ans_rule(10) \}.
+
+$EBLOCKQUOTE
+
+END_TEXT
+
+Context()->normalStrings;
+
+##############################################
+
+ANS( $ans->cmp());
+
+
+
+
+
+
+
+
+ENDDOCUMENT();

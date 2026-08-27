@@ -1,0 +1,170 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Given a graph, find a line's slope. Slope is a negative integer.
+# 
+# Last updated Jordan 8/30/13; 
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Lines')
+## KEYWORDS('coordinate','line','linear','equation','graph','slope')
+## DBCCSS('8.EE','F-IF.7.a')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "parserAssignment.pl",
+  "PCCgraphMacros.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+
+Context("Numeric");
+TEXT(beginproblem());
+Context()->flags->set(showExtraParens=>0);
+
+
+$m = -random(1,5,1);
+$b = random(-4,4,1);
+
+$x1 = 0;
+$y1 = $b;
+$x2 = 1;
+$y2 = $m*$x2+$b;
+$rise = $y2-$y1;
+$run = $x2-$x1;
+
+Context("Point");
+Context()->parens->set("[" => {type => "Interval", close => "]"});
+Context()->parens->set("{" => {type => "Set", close => "}"});
+Context()->parens->set("<" => {type => "Vector", close => ">"});
+$pt1=Compute("($x1,$y1)");
+$pt2=Compute("($x2,$y2)");
+
+Context("Numeric");
+Context()->flags->set(showExtraParens=>0);
+Context()->variables->add(y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y');
+parser::Assignment->Allow;
+Context()->flags->set(showExtraParens=>0);
+$ansSI=Formula("y=$m*x+$b")->reduce;
+
+$xmin = -5;
+$xmax = -$xmin;
+$ymin = -5*(int(abs($y2) /5)+1);
+$ymax = -$ymin;
+$sizex = 240;
+$sizey = 240;
+
+($start,$stop) = (num_sort($xmin,$xmax,($ymin-$b)/$m+$h,($ymax-$b)/$m+$h))[1,2];
+
+$gr = createTikZImage();
+$gr->addToPreamble(latexImagePreamble());
+$gr->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $xmin,
+    xmax = $xmax,
+    ymin = $ymin,
+    ymax = $ymax,
+    xtick =,
+    ytick =,
+    minor xtick = {$xmin,...,$xmax},
+    minor ytick = {$ymin,...,$ymax},
+    grid = minor,
+  ]
+  \addplot+[domain=$start:$stop] {$m*x+$b};
+\end{axis}
+END_TIKZ
+
+$ALTtext = "Graph of a coordinate system with a linear function that goes through ($x1,$y1) and ($x2,$y2).";
+##############################################
+
+BEGIN_PGML
+
+A line's graph is given. What is this line's slope-intercept equation? 
+
+[@EnlargeImageStatementPGML()@]*
+
+>>[@image($gr, width=>300, extra_html_tags=>'title="$ALTtext" alt="$ALTtext"'  )@]*<<
+
+[__]{$ansSI}{width => 15}
+
+END_PGML
+
+##############################################
+
+Context("Numeric");
+
+$grCorrect = createTikZImage();
+$grCorrect->addToPreamble(latexImagePreamble());
+$grCorrect->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $xmin,
+    xmax = $xmax,
+    ymin = $ymin,
+    ymax = $ymax,
+    xtick =,
+    ytick =,
+    minor xtick = {$xmin,...,$xmax},
+    minor ytick = {$ymin,...,$ymax},
+    grid = minor,
+  ]
+  \addplot+[domain=$start:$stop] {$m*x+$b};
+  \addplot[soliddot] coordinates {($x1,$y1)} node[left] {\(($x1,$y1)\)};
+  \addplot[soliddot] coordinates {($x2,$y2)} node[left] {\(($x2,$y2)\)};
+  \addplot[guideline] coordinates {($x1,$y1) ($x2,$y1) ($x2,$y2)};
+\end{axis}
+END_TIKZ
+
+Context()->texStrings;
+BEGIN_SOLUTION
+
+A line's slope-intercept equation has the form \( y=mx+b \), where \(m\) is the slope and \(b\) is the \(y\)-coordinate of the \(y\)-intercept. We first find the slope.
+$PAR
+
+To find the slope of a line from its graph, we identify two points, and then draw a slope triangle. It's wise to choose points with integer coordinates. For this problem, we choose \( ($x1,$y1) \) and \( ($x2,$y2) \).
+$PAR
+
+Next, we draw a slope triangle and find the "rise" and "run". In this problem, the rise is \( $rise \) and the run is \( $run \).
+
+$PAR
+$BCENTER
+\{ image($grCorrect, width=>300, tex_size=>400,
+   extra_html_tags=>'title="$ALTtext" alt="$ALTtext"'  ) \}
+$ECENTER
+$PAR
+
+\[ \begin{aligned}\text{slope}&=\frac{\text{rise}}{\text{run}}\\&=\frac{$rise}{$run}\\&=$m\end{aligned} \]
+$PAR
+
+This line's slope is \( $m \).
+$PAR
+
+It's clear in the graph that this line's \(y\)-intercept is \( (0,$b) \).
+$PAR
+
+So this line's slope-intercept equation is \(y= $m x+ $b \).
+
+END_SOLUTION
+Context()->normalStrings;
+
+ENDDOCUMENT();
+

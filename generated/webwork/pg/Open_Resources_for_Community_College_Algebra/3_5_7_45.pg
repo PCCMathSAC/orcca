@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "contextForm.pl",
   "contextFraction.pl",
   "parserGraphTool.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction")->variables->add(y=>'Real');
 $m = -Fraction(random_coprime([2..9],[2..9]));
 $b = non_zero_random(-5,5);
@@ -60,22 +54,28 @@ $gt = GraphTool("{line, solid, (0, $b), ($d, $b + $n)}")->with(
   showInStatic => 0,
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Graph the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$equation]`]
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

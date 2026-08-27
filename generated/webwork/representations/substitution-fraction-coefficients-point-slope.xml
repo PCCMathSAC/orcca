@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-substitution-fraction-coefficients-point-slope" assembly-id="substitution-fraction-coefficients-point-slope">
+  <static seed="1633">
+    <statement><p><m>\left\{
+                  \begin{alignedat}{4}
+                  \amp {s = {\frac{4}{3}}\mathopen{}\left(Q+1\right)-{\frac{23}{15}}} \\
+                  \amp {s = {\frac{5}{6}}\mathopen{}\left(Q-3\right)+{\frac{19}{6}}}
+                  \end{alignedat}
+                  \right.</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>Q = {\frac{26}{15}}, s = {\frac{19}{9}}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_2_5_41.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.41)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context("Fraction")->variables->are($X => 'Real', $Y => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+parser::Assignment->Allow;
+do {
+  do {
+      $m[0] = Fraction(random_coprime([1..5],[2..6]));
+      $m[1] = Fraction(random_coprime([1..5],[2..6]));
+  } until ($m[0] != $m[1]);
+  @b = map{Fraction(random_coprime([-5..-1,1..5],[2..6]))} (0,1);
+  $i = random(0,1);
+  $b[$i] = Fraction(random_coprime([-5..-1,1..5],[($m[1-$i]->value)[1]]));
+  $x = Fraction(($b[0] - $b[1])/($m[1] - $m[0]));
+  $y = Fraction(($m[1]*$b[0] - $m[0]*$b[1])/($m[1] - $m[0]));
+} until (($x->value)[1] <= 50 && ($y->value)[1] <= 50);
+$xis = Formula("$X = $x");
+$yis = Formula("$Y = $y");
+$solution = List($xis,$yis);
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$answer = $solution->cmp(
+  mathQuillOpts => 'disabled'
+);
+@h = map{non_zero_random(-5,5)} (0,1);
+@k = map{$b[$_] + $m[$_]*$h[$_]} (0,1);
+@right = map{Formula("$m[$_] ($X - $h[$_]) + $k[$_]")->reduce} (0,1);
+@f = map{Formula("$Y = $right[$_]")} (0,1);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the system of equations using substitution.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
+                  \begin{alignedat}{4}
+                  \amp [$f[0]] \\
+                  \amp [$f[1]]
+                  \end{alignedat}
+                  \right.
+                `]
+
+[@KeyboardInstructions('Write the solution in the format [| = number,  = number|]*. If there is no solution, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$answer}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

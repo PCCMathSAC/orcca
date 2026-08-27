@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-out-of-gas-inequality-copy" assembly-id="out-of-gas-inequality-copy">
+  <static seed="955">
+    <introduction><p>Miguel is driving on the highway, and presently has 12 gal of gasoline in his tank. His car, <em>under ideal conditions</em>, uses gas at a rate of 0.05 gal/mi. When the tank reaches only one gallon of gas, the low gas light will turn on and Miguel will start looking for a gas station. How far will he drive before this happens?</p>
+</introduction>
+    <task>
+      <statement><p>Write an inequality to represent this situation, using <m>x</m> to represent how many miles Miguel might drive before the low gas light turns on.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>12-0.05x\ge 1</m>
+        </p>
+      </answer>
+      <solution><p>This is a rate exercise, and we can use
+<md>(\text{initial value}) \pm (\text{rate})\cdot\text{variable} \mathrel{?} (\text{final value})</md>
+The question mark in the above is not an equal sign, because we are trying to set up an inequality. The initial value for the gas in his tank is <m>12\text{,}</m> Miguel is losing gas (so we will subtract, not add), the rate is <m>0.05\text{,}</m> and the gas amount we are interested in reaching is <m>1\text{.}</m> We do not know far Miguel can drive until the gas gets that low, and we decide to use <m>x</m> to represent that distance. The rate of gas consumption we are using is only valid under ideal conditions. So the quantity <m>12 - 0.05 x</m> will be <em>greater</em> than or equal to the actual amount of gas left in the tank after driving <m>x</m> miles. And we want this to reach <m>1\text{.}</m> So the inequality we set up is:
+<md>{12-0.05x\ge 1}</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Solve this inequality. At most how far will Miguel drive before the low gas light turns on?</p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>220\ {\rm mi}</m>
+        </p>
+      </answer>
+      <solution><p><md>\begin{gathered}
+{12-0.05x-12} \geq {1-12}\\
+{-0.05x} \geq {-11}\\
+{\frac{-0.05x}{-0.05}} \leq {\frac{-11}{-0.05}}\\
+x \leq {220}
+\end{gathered}</md>
+So Miguel can drive at most <m>{220}</m> miles.</p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Use interval notation to express the number of miles Miguel might drive before the low gas light turns on.</p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left(0,220\right]</m>
+        </p>
+      </answer>
+      <solution><p>Miguel can drive at most <m>{220}</m> miles, so the right end of the interval notation for this interval will be <m>{220}\text{,}</m> with a bracket. We know Miguel has more than 1 gallon of gas when this all started, so he can drive at least some positive number of miles. So the interval notation, accounting for the context of this exercise, is <m>{\left(0,220\right]}\text{.}</m></p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_2_4_34.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="out-of-gas-inequality"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.6.6)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "randomPerson.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+$p = randomPerson();
+$b = random(12,20);
+$m = random(0.04, 0.05, 0.002);
+$sol = Real(($b - 1)/$m);
+$distance = NumberWithUnits($sol, 'mi');
+$start = NumberWithUnits($b, 'gal');
+$rate = NumberWithUnits($m, 'gal/mi');
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = Interval("(0,$sol]");
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("$b - $m x >= 1");
+Context("Fraction")->variables->are(x => 'Real');
+Context()->flags->set(reduceConstants => 0, reduceFractions => 0);
+Context()->noreduce('(-x)-y', '(-x)+y', '(-x)/y', 'x/(-y)');
+$solleft[0] = Formula("$b - $m x - $b")->reduce;
+$solright[0] = Formula("x - $b")->reduce;
+$solright[0] = $solright[0]->substitute(x => Formula("1"));
+$solleft[1] = Formula("-$m x")->reduce;
+$solright[1] = Formula("1 - $b")->reduce;
+$solleft[2] = Formula("(-$m x)/(-$m)");
+$solright[2] = Formula("($solright[1])/(-$m)");
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$p] is driving on the highway, and presently has [$start] of gasoline in [$p->their] tank. [$p->Their] car, _under ideal conditions_, uses gas at a rate of [$rate]. When the tank reaches only one gallon of gas, the low gas light will turn on and [$p] will start looking for a gas station. How far will [$p->they] drive before this happens?
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent how many miles [$p] might drive before the low gas light turns on.
+
+[_]{$relation}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+This is a rate exercise, and we can use
+
+[```
+                  (\text{initial value}) \pm (\text{rate})\cdot\text{variable} \mathrel{?} (\text{final value})
+                ```]
+
+The question mark in the above is not an equal sign, because we are trying to set up an inequality. The initial value for the gas in [$p->their] tank is [`[$b]\text{,}`] [$p] is losing gas (so we will subtract, not add), the rate is [`[$m]\text{,}`] and the gas amount we are interested in reaching is [`1\text{.}`] We do not know far [$p] can drive until the gas gets that low, and we decide to use [`x`] to represent that distance. The rate of gas consumption we are using is only valid under ideal conditions. So the quantity [`[$b] - [$m] x`] will be _greater_ than or equal to the actual amount of gas left in the tank after driving [`x`] miles. And we want this to reach [`1\text{.}`] So the inequality we set up is:
+
+[```
+                  [$relation]
+                ```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. At most how far will [$p] drive before the low gas light turns on?
+
+[_]{$distance}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{gathered}
+[$solleft[0]] \geq [$solright[0]]\\
+[$solleft[1]] \geq [$solright[1]]\\
+[$solleft[2]] \leq [$solright[2]]\\
+x \leq [$sol]
+\end{gathered}
+```]
+
+So [$p] can drive at most [`[$sol]`] miles.
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express the number of miles [$p] might drive before the low gas light turns on.
+
+[_]{$interval}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+[$p] can drive at most [`[$sol]`] miles, so the right end of the interval notation for this interval will be [`[$sol]\text{,}`] with a bracket. We know [$p] has more than 1 gallon of gas when this all started, so [$p->they] can drive at least some positive number of miles. So the interval notation, accounting for the context of this exercise, is [`[$interval]\text{.}`]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

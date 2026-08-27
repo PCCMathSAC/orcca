@@ -1,0 +1,30 @@
+echo "checking out develop"
+git checkout develop
+#
+for each in folberg jordan leavitt spoddeck yao
+do ( echo "pulling from $each develop";
+     git fetch $each develop;
+     git pull $each develop )
+done
+
+#
+echo "checking out master"
+git checkout master
+echo "merging develop into master"
+git merge develop
+#
+for each in folberg jordan leavitt spoddeck yao
+do ( echo "pushing to $each master";
+     git push $each master )
+done
+#
+for each in folberg jordan leavitt spoddeck yao
+do ( cd /opt/webwork/courses/$each-LibDev/templates/local/PCC/;
+   echo "merging $each master into $each develop";
+   git merge master;
+)
+done
+#
+chmod -R 775 /opt/webwork/libraries/webwork-open-problem-library
+cp -r /opt/webwork/libraries/PCC /opt/webwork/libraries/webwork-open-problem-library/Contrib/
+

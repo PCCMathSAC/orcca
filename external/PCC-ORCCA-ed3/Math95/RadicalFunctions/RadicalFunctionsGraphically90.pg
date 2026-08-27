@@ -1,0 +1,139 @@
+# WeBWorK problem written by Heiko Spoddeck
+# Portland Community College
+#
+# Template:
+# Use the graph of G below to estimate its domain and range.
+#
+#       G(x) = sqrt(x)
+#
+#
+# Last updated: Spoddeck 10/24/15
+# ENDDESCRIPTION
+ 
+## DBsubject('')
+## DBchapter('')
+## DBsection('')
+## KEYWORDS('')
+## DBCCSS('')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan', 'Heiko Spoddeck')
+## Institution('PCC')
+
+
+##############################################
+
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PCCmacros.pl",
+  "PCCgraphMacros.pl",
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+
+
+##############################################
+
+
+TEXT(beginproblem());
+
+$fname = RandomVariableName(type=>function);
+
+
+Context("Numeric");
+$h = 0;
+$k = 0;
+
+$f = Formula("sqrt(x)");
+
+$left = $h;
+$right = 5;
+
+
+Context("Interval");
+$domain = Compute("[$left,inf)");
+$range = Compute("[$k,inf)");
+
+
+$xmin = -5;
+$xmax = 5;
+$ymin = -5;
+$ymax = 5;
+
+
+$gr = createTikZImage();
+$gr->addToPreamble(latexImagePreamble());
+$gr->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $xmin,
+    xmax = $xmax,
+    ymin = $ymin,
+    ymax = $ymax,
+    xtick =,
+    ytick =,
+    minor xtick =,
+    minor ytick =,
+  ]
+  \addplot+[-{Kite},domain=$left:$right,smooth] {$f};
+  \addplot[soliddot] coordinates {(0,0)};
+\end{axis}
+END_TIKZ
+
+$starty = $f->eval(x=>$left); 
+$endy = $f->eval(x=>$right); 
+
+$ALT = "a graph of a square root function, which is a curve that starts at ($left,$starty) and then moves up and right, not ending";
+
+
+##############################################
+
+
+BEGIN_PGML
+
+A function is graphed.
+
+[@EnlargeImageStatementPGML()@]**
+
+>>[@image($gr, width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT' title = '$ALT'")@]*<<
+
+[@KeyboardInstructions('If you need to enter [`\infty`], you can type [|inf|]* or [|infinity|]*.  If you need to union two (or more) intervals, use the letter [|U|]*.  For example, to enter [`(-\infty,5)\cup(5,10]`] you can type [|(-inf,5)U(5,10]|]*.')@]**
+
+    The function has domain [__________]{$domain} and range [__________]{$range}.
+
+
+END_PGML
+
+
+##############################################
+
+
+BEGIN_PGML_SOLUTION
+
+*Domain:*
+
+The function [`[$fname]`] is shown in blue. In order to determine the domain, we read the graph from left to right. At first, there is no graph, but as we keep going to the right, we find the blue graph starting at the point [`([$left],[$starty])`]. For the domain, we are only looking at [`x`]. Therefore, our domain interval starts at [`x=[$h]`].
+
+We now keep walking to the right and find that the graph keeps going and going without ending point. If the graph ended at the edge of the coordinate system, we would find a solid or open dot there. Since there is no such dot, we know that the graph will keep going and going without end; it will go to infinity. Therefore, our domain in interval notation is [`[$domain]`]. In WeBWorK, we enter the answer as [`[[$left],\text{inf})`].
+
+*Range:*
+
+For the range, we move in [`y`] direction from bottom to top. We find that in this case, we again meet nothing until the point [`([$left],[$starty])`]. This time, however, we focus on the [`y`] so our range starts at [`y=[$starty]`].
+
+As we keep going up, the graph keeps going without ending. Therefore the range is [`[$range]`]. In WeBWorK, we enter the answer as [`[[$starty],\text{inf})`].
+
+END_PGML_SOLUTION
+
+
+##############################################
+
+
+ENDDOCUMENT();

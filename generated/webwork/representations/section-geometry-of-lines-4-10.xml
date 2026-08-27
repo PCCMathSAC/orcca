@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-section-geometry-of-lines-4-10" assembly-id="section-geometry-of-lines-4-10">
+  <static seed="1346">
+    <statement><p>Suppose you need to plot the equation <m>y=-4.25\text{.}</m> Since the equation is in <lq/><m>y=</m><rq/> form, you decide to make a table of points. Fill out some points for this table.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="center"/>
+<col halign="center"/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><fillin characters="10" name="AnSwEr0001"/>
+</cell>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_1"/>
+</cell>
+</row>
+<row>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_2"/>
+</cell>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_3"/>
+</cell>
+</row>
+<row>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_4"/>
+</cell>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_5"/>
+</cell>
+</row>
+<row>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_6"/>
+</cell>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_7"/>
+</cell>
+</row>
+<row>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_8"/>
+</cell>
+<cell><fillin characters="10" name="MuLtIaNsWeR_AnSwEr0001_9"/>
+</cell>
+</row>
+</tabular>
+</statement>
+    <answer>
+      <p>
+        <m>-2;\,-4.25;\,-1;\,-4.25;\,0;\,-4.25;\,1;\,-4.25;\,2;\,-4.25</m>
+      </p>
+    </answer>
+    <solution><p>We can use whatever values for <m>x</m> that we like, as long as they are all different. The equation tells us the <m>y</m>-value has to be <m>-4.25</m> each time.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="center"/>
+<col halign="center"/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>-2</m></cell>
+<cell><m>-4.25</m></cell>
+</row>
+<row>
+<cell><m>-1</m></cell>
+<cell><m>-4.25</m></cell>
+</row>
+<row>
+<cell><m>0</m></cell>
+<cell><m>-4.25</m></cell>
+</row>
+<row>
+<cell><m>1</m></cell>
+<cell><m>-4.25</m></cell>
+</row>
+<row>
+<cell><m>2</m></cell>
+<cell><m>-4.25</m></cell>
+</row>
+</tabular>
+<p>Now that we have a table, we could use its values to assist with plotting the line.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/section-geometry-of-lines-4-10-image-1" width="47%"/>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_8_11-Plotting_Points.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGlateximage.pl",
+  "parserMultiAnswer.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+@x=(-2..2);
+@y=(-4.25)x5;
+$pts=MultiAnswer(map{($_%2==0)?$x[$_/2]:$y[($_-1)/2]}(0..9))->with(
+  singleResult => 1,
+  allowBlankAnswers => 1,
+  checker => sub {
+    my ($correct,$student,$self) = @_;
+    my @sx = @{$student}[0,2,4,6,8];
+    my @sy = @{$student}[1,3,5,7,9];
+    my $OK=1;
+    if ($sy[0]!=-4.25) {
+        $self->setMessage(1,"This point is not on the line.");
+        $self->setMessage(2,"This point is not on the line.");
+        $OK=0;
+      }
+    for my $i(1..4){
+      if ($sy[$i]!=-4.25) {
+        $self->setMessage(2*$i+1,"This point is not on the line.");
+        $self->setMessage(2*$i+2,"This point is not on the line.");
+        $OK=0;
+      }
+      for my $j(0..$i-1){
+        if ($sy[$i]==-4.25 and $sx[$i]==$sx[$j]) {
+          $self->setMessage(2*$i+1,"This point was already used.");
+          $self->setMessage(2*$i+2,"This point was already used.");
+          $OK=0;
+        }
+      }
+    }
+    return $OK;
+  }
+);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot+ {-4.25};
+    \addplot[soliddot] coordinates {(-2,-4.25) (-1,-4.25) (0,-4.25) (1,-4.25) (2,-4.25)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+Suppose you need to plot the equation [`y=-4.25\text{.}`] Since the equation is in "[`y=`]" form, you decide to make a table of points. Fill out some points for this table.
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [
+     PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [
+     PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [
+     PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+    [
+     PGML('[_]{$pts}{10}'),
+     PGML('[_]{$pts}{10}'),
+    ],
+  ],
+      align => 'cc',
+      valign => 'middle',);@]* <<
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We can use whatever values for [`x`] that we like, as long as they are all different. The equation tells us the [`y`]-value has to be [`-4.25`] each time.
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`-2`]'),
+     PGML('[`-4.25`]'),
+    ],
+    [
+     PGML('[`-1`]'),
+     PGML('[`-4.25`]'),
+    ],
+    [
+     PGML('[`0`]'),
+     PGML('[`-4.25`]'),
+    ],
+    [
+     PGML('[`1`]'),
+     PGML('[`-4.25`]'),
+    ],
+    [
+     PGML('[`2`]'),
+     PGML('[`-4.25`]'),
+    ],
+  ],
+      align => 'cc',
+      valign => 'middle',);@]* <<
+
+Now that we have a table, we could use its values to assist with plotting the line.
+
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

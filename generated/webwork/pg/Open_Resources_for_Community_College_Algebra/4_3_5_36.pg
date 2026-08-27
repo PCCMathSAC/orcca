@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -36,19 +34,15 @@ loadMacros(
   "contextPercent.pl",
   "parserLinearRelation.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $p = randomPerson();
 Context("Percent");
 $r1 = random(0.01, 0.03, 0.005);
@@ -62,10 +56,10 @@ $X = Currency($x);
 $Y = Currency($y);
 $t = $x + $y;
 $total = Currency($t);
-$i = $r1 * $x + $r2 * $y;
-$final = $total - Currency($i);
+$i = $r1 * $x - $r2 * $y;
+$final = $total + Currency($i);
 Context("LinearRelation")->variables->are(x => 'Real', y => 'Real');
-@eq = (LinearRelation("x + y = $t"), LinearRelation("$r1 x - $r2 y = -$i"));
+@eq = (LinearRelation("x + y = $t"), LinearRelation("$r1 x - $r2 y = $i"));
 $m = MultiAnswer(@eq)->with(
   singleResult => 0,
   checker => sub {
@@ -77,14 +71,14 @@ $m = MultiAnswer(@eq)->with(
   }
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 [$p] invested a total of [`[$total]`] in two investments. [$p->Their] savings account pays [`[$rate1]`] interest annually. A riskier stock investment lost [`[$rate2]`] at the end of the year. At the end of the year, [$p]'s total fell from [`[$total]`] to [`[$final]\text{.}`] How much money did [$p->they] invest in each account?
 
-[@KeyboardInstructions('Using [|x|]* (savings investment) and [|y|]* (stock investment) as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+[@KeyboardInstructions('Using [`x`] (savings investment) and [`y`] (stock investment) as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
 
 [_]{$m}{16}
 
@@ -98,11 +92,10 @@ BEGIN_PGML
 
 [_]{$Y}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

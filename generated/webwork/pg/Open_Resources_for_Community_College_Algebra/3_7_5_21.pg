@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserImplicitPlane.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("ImplicitPlane");
 Context()->flags->set(reduceConstants=>0);
 Context()->flags->set(reduceConstantFormulas=>0);
@@ -90,28 +84,34 @@ $evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
       return $ansHash;
     });
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write the linear equation in standard form.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left0]=[$right0]`]
 
 [_]{$evaluator}{30}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 A line's standard form is [`Ax+By=C\text{.}`] We need to move [`x`] and [`y`] terms to the same side of the equal sign.
 
-[```\newcommand{\subtractright}[1]{{\highlight{{{}-#1}}}}\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$left0]\amp=[$right0]\\
 \multiplyleft{[$b]}[$left0]\amp=\multiplyleft{[$b]}\left([$right0]\right)\\
@@ -124,15 +124,12 @@ A line's standard form is [`Ax+By=C\text{.}`] We need to move [`x`] and [`y`] te
 \end{aligned}
 ```]
 
-
-
 Note that [`[$s1]=[$bc]`] is already in standard form, but it's better to get rid of the leading negative sign in an equation.
-
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

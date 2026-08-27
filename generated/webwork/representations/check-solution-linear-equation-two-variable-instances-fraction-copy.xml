@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-solution-linear-equation-two-variable-instances-fraction-copy" assembly-id="check-solution-linear-equation-two-variable-instances-fraction-copy">
+  <static seed="286">
+    <statement><p>Is <m>{2}</m> a solution to <m>{7x+{\frac{8}{7}}}={9x-{\frac{41}{7}}}\text{?}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>7x+{\frac{8}{7}}</m></cell>
+<cell><m>=</m></cell>
+<cell><m>9x-{\frac{41}{7}}</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{=}</m></cell>
+<cell><fillin characters="3" name="AnSwEr0002"/>
+</cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>{\frac{106}{7}}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>{\frac{85}{7}}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{No, it is not a solution.}</m>
+      </p>
+    </answer>
+    <solution><p>We have to substitute <m>{2}</m> in for <m>x</m> and simplify each side. The left side simplifies to <m>{{\frac{106}{7}}}</m> and the right side simplifies to <m>{{\frac{85}{7}}}\text{.}</m> Since these are not equal, <m>{2}</m>  is not a solution to  <m>{7x+{\frac{8}{7}}}={9x-{\frac{41}{7}}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_17.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="check-solution-linear-equation-two-variable-instances-fraction"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+$actual_solution = Fraction(random_coprime([1..9],[2..9]));
+($m, $n) = (2..9)[NchooseK(8,2)];
+$b = Fraction(random_coprime([-9..-1,1..9],[2..9]));
+$left = Formula("$m x + $b")->reduce;
+$right = Formula("$n x");
+$right += $left->eval(x => $actual_solution) - $right->eval(x => $actual_solution);
+$right = $right->reduce;
+$proposed_solution = random(0,1) ? $actual_solution : $actual_solution + non_zero_random(-3,3)/($actual_solution->value)[1];
+Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+$lefteval = Fraction($left->eval(x => $proposed_solution));
+$righteval = Fraction($right->eval(x => $proposed_solution));
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], ($lefteval == $righteval) ? 0 : 1, showInStatic => 0);
+if ($lefteval == $righteval) {
+  $sol[0] = "Since these are equal, ";
+  $sol[1] = " is a solution to ";
+} else {
+  $sol[0] = "Since these are not equal,";
+  $sol[1] = " is not a solution to ";
+}
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Check if the given number is a solution to the given equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution to [`[$left]=[$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[_]{$righteval}{3}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We have to substitute [`[$proposed_solution]`] in for [`x`] and simplify each side. The left side simplifies to [`[$lefteval]`] and the right side simplifies to [`[$righteval]\text{.}`] [$sol[0]] [`[$proposed_solution]`] [$sol[1]] [`[$left]=[$right]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

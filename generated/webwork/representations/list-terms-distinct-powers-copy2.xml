@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-list-terms-distinct-powers-copy2" assembly-id="list-terms-distinct-powers-copy2">
+  <static seed="639">
+    <statement><p><m>{t-t^{2}-t^{6}+6.6t^{7}}</m></p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>t, -t^{2}, -t^{6}, 6.6t^{7}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_2_5_37.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="list-terms-distinct-powers"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->noreduce('(-x)-y','(-x)+y');
+$n = random(3,4);
+$var = list_random('x','y','z','t');
+@powers = (0..9)[NchooseK(10,$n)];
+@ones = (1) x 90;
+@ints = (2..91);
+@decimals = map {$_ / 10} (1..9,11..19,21..29,31..39,41..49,51..59,61..69,71..79,81..89,91..99);
+@fracs = ();
+for my $j (2..10) {
+  for my $i (1..10) {
+    push(@fracs, Fraction($i,$j));
+  }
+}
+@coefs = (@ones, @ints, @decimals, @fracs)[NchooseK(360,$n)];
+@signs = (1,-1);
+for my $i (2..$n) {
+  push(@signs,list_random(-1,1))
+}
+@signs = (@signs)[NchooseK($n,$n)];
+@coefs = map {$signs[$_-1]*$coefs[$_-1]} (1..$n);
+Context()->variables->are($var => 'Real');
+@terms = ();
+for my $i (1..$n) {
+  push(@terms, Formula("$coefs[$i-1]*$var^$powers[$i-1]")->reduce);
+}
+$ans = List(@terms);
+$sum = Formula(join('+', @terms))->reduce;
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$sum]`]
+
+[@KeyboardInstructions('Separate the terms in your list using commas.')@]**
+
+[_]{$ans}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

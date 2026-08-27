@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,31 +20,28 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGchoicemacros.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context()->operators->remove("U");
 Context()->noreduce('(-x)+y','(-x)-y');
-$var = list_random('a'..'n','p'..'z','A'..'N','P'..'Z');
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'Z');
 Context()->variables->are($var => 'Real');
 
 @ones = (1) x 90;
@@ -73,22 +67,28 @@ Context()->flags->remove("NumberCheck");
 Context()->variables->are($var => 'Real');
 $ans = Formula("$combinedcoef $var");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Simplify the expression by combining like terms if possible.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$sum]`]
 
 [_]{$ans}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

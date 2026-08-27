@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-solution-absolute-value-two-variable-instances-decimal" assembly-id="check-solution-absolute-value-two-variable-instances-decimal">
+  <static seed="299">
+    <statement><p>Is <m>{-6.8}</m> a solution to <m>{\left|5x-9\right|}={\left|-4x-70.2\right|}\text{?}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>\left|5x-9\right|</m></cell>
+<cell><m>=</m></cell>
+<cell><m>\left|-4x-70.2\right|</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{=}</m></cell>
+<cell><fillin characters="3" name="AnSwEr0002"/>
+</cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>43</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>43</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{Yes, it is a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_31.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.31)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context()->noreduce('(-x)-y', '(-x)+y');
+$actual_solution = Real(random(-9,9) + random(1,9)/10);
+($m, $n) = (2..9)[NchooseK(8,2)];
+$b = non_zero_random(-9,9,0.1);
+$left = Formula("abs($m x + $b)")->reduce;
+$right = Formula("$n x");
+$right += $left->eval(x => $actual_solution) - $right->eval(x => $actual_solution);
+if (random(0,1)) {
+  $right = Formula("-$n x") - $right->eval(x => 0);
+}
+$right = $right->reduce;
+$right = Formula("abs($right)");
+$proposed_solution = random(0,1) ? $actual_solution : $actual_solution + non_zero_random(-3,3,0.1);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(x => $proposed_solution));
+$righteval = Real($right->eval(x => $proposed_solution));
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], ($lefteval == $righteval) ? 0 : 1, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Check if the given number is a solution to the given equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution to [`[$left]=[$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`=`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[_]{$righteval}{3}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

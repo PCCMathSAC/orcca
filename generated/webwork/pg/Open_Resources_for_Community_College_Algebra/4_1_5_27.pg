@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,16 +20,17 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PGlateximage.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "parserImplicitPlane.pl",
   "contextForm.pl",
   "contextFraction.pl",
@@ -42,15 +40,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 # Get first line's intercepts
 ($a[0], $b[0]) = (-5..-1, 1..5)[NchooseK(10,2)];
 # Get first line's slope
@@ -69,7 +62,7 @@ for $i (-9..-1,1..9) {
 @ab = ();
 for $p (@pts) {
   for $b (-9..-1,1..9) {
-    my $m = Fraction(($p->[1] - $b)/($p->[0]));
+    $m = Fraction(($p->[1] - $b)/($p->[0]));
     if ($m != 0) {
       my ($n, $d) = $m->value;
       push(@ab, [Real(-$b/$m)->value, $b]) if ($b % $n == 0
@@ -167,6 +160,7 @@ $solution = Point($x, $y)->cmp(
 ($l[0], $r[0]) = (@dom0)[1,2];
 @dom1 = num_sort(-10, 10, $low[1], $high[1]);
 ($l[1], $r[1]) = (@dom1)[1,2];
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -189,14 +183,21 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the given system of linear equations graphically.
 
-[`\newcommand{\amp}{&}
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`
                   \left\{
                     \begin{alignedat}{3}
                       \amp [$f[0]]\\
@@ -211,12 +212,11 @@ Solve the given system of linear equations graphically.
 
 [_]{$solution}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 If we graph these lines, we find they cross.
@@ -225,11 +225,10 @@ If we graph these lines, we find they cross.
 
 The only solution is where they cross, which is at [`[$solution->{rh_ans}{correct_ans}]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

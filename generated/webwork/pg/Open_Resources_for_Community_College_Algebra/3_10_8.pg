@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,69 +20,93 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "parserCheckboxList.pl",
+  "PGlateximage.pl",
   "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-($m,$b) = random_coprime([2..9],[-9..-1,1..9]);
-$f = Formula("$m x + $b")->reduce;
-@x = random_subset(4,-4..4);
-@y = map {$f->eval(x => $_)} (@x);
-$y[2] += non_zero_random(-5,5);
-($x[3],$y[3]) = ($y[3],$x[3]);
 Context("Point");
-@p = map {Point($x[$_],$y[$_])} (random_subset(4,0..3));
-@ans;
-for (0..3) {
-  push(@ans, $_) if ($f->eval(x => ($p[$_]->value)[0]) == ($p[$_]->value)[1]);
-}
-$checks = CheckboxList([map {'\(' . $_->TeX . '\)'} (@p)], [@ans], options);
-$corstring = join(', ', (@p)[@ans]);
+do {
+  @a = random_subset(4, -5 .. 5)
+} until (min(@a) < 0 && max(@a) > 0);
+$A = Point((@a)[0,1]);
+$B = Point((@a)[2,3]);
+Context("Fraction");
+$m = Fraction($a[3] - $a[1], $a[2] - $a[0]);
+Context()->flags->set(reduceConstants => 0);
+$top = Formula("x - $a[1]");
+$top = $top->substitute(x => $a[3]);
+$bottom = Formula("x - $a[0]");
+$bottom = $bottom->substitute(x => $a[2]);
 
-############################################################
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-6,
+      ymin=-6,
+      xmax=6,
+      ymax=6,
+      xtick=,
+      ytick=,
+      minor xtick=,
+      minor ytick=,
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[soliddot] coordinates {$A $B};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
 
-[`y=[$f]`]
-
-[_]{$checks}{5}
-
+[_]{$m}{5}
 
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
-Only the points [`[$corstring]`] are solutions. The other points cause the equation to be false when [`x`] and [`y`] are substituted.
+The coordinates of the points are [`[$A]`] and [`[$B]\text{.}`] We apply the rate of change formula:
 
+[```
+\begin{aligned}
+\amp\frac{y_2-y_1}{x_2-x_1}\\
+\amp= \frac{[$top]}{[$bottom]}\\
+\amp= \frac{[$top->reduce]}{[$bottom->reduce]}
+\end{aligned}
+```]
+
+So the rate of change is [`[$m]\text{.}`]
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

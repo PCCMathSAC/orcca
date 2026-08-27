@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,14 +20,15 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
+  "scaffold.pl",
   "PCCmacros.pl",
   "parserAssignment.pl",
   "parserMultiAnswer.pl",
@@ -39,20 +37,16 @@ loadMacros(
   "contextForm.pl",
   "contextFraction.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("LinearRelation")->variables->are(C=>'Real',H=>'Real');
 @eq=(LinearRelation("C+H=30"),LinearRelation("9C + 14H = 375"));
 $m=MultiAnswer(@eq)->with(singleResult=>0,allowBlankAnswers=>1,
@@ -116,24 +110,25 @@ return [1,1];
 }
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Desi owns a coffee shop and they want to mix two different types of coffee beans to make a blend that sells for [`\$12.50`] per pound. They have some coffee beans from Columbia that sell for [`\$9.00`] per pound and some coffee beans from Honduras that sell for [`\$14.00`] per pound. How many pounds of each should they mix to make [`30`] pounds of the blend?
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -145,26 +140,25 @@ Write two equations that form a system for this scenario.
 
 [_]{$m}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We have [`C`] pounds of Columbian coffee and [`H`] pounds of Honduran coffee. Since there must be [`30`] pounds total, one equation is [`C+H=30\text{.}`]
 
 The total cost of the Colombian coffee in the blend will be [`9C\text{,}`] and the total cost of the Honduran coffee in the blend will be [`14H\text{.}`] All together, the blend has a total cost of [`12.50\cdot30=375`] dollars. So another equation is [`9C+14H=375\text{.}`]
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -172,24 +166,23 @@ Isolate one of the variables in one of the equations.
 
 [_]{$m2}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We choose to isolate [`C`] in the first equation. All we need to do subtract [`H`] from each side, and then [`C = 30 - H\text{.}`]
-
 
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -197,24 +190,23 @@ Substitute the isolated expression into the other equation.
 
 [_]{$m2}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Making the substitution: [`9(30 - H) + 14H = 375\text{.}`]
-
 
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -228,17 +220,15 @@ Solve this equation in one variable and then solve for the other variable using 
 
 [_]{$Hlb}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 
-
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 9(30 - H) + 14H \amp= 375\\
 270 - 9H + 14H \amp= 375\\
@@ -248,21 +238,14 @@ H\amp=21
 \end{aligned}
 ```]
 
-
-
-
-
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 C \amp= 30 - H\\
 C \amp= 30 - 21 = 9
 \end{aligned}
 ```]
 
-
-
 In summary, Desi needs to mix [`21`] pounds of the Honduran coffee beans with [`9`] pounds of the Columbian coffee beans to create this blend.
-
 
 END_PGML_SOLUTION
 
@@ -270,8 +253,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

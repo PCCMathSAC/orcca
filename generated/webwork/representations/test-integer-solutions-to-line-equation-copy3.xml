@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-test-integer-solutions-to-line-equation-copy3" assembly-id="test-integer-solutions-to-line-equation-copy3">
+  <static seed="1473">
+    <statement><p><m>y={2x+7}</m></p>
+<p><ul form="checkboxes" name="AnSwEr0001">
+<li>
+<p><m>\left(3,13\right)</m></p>
+</li>
+<li>
+<p><m>\left(11,2\right)</m></p>
+</li>
+<li>
+<p><m>\left(-4,-1\right)</m></p>
+</li>
+<li>
+<p><m>\left(-3,-2\right)</m></p>
+</li>
+</ul></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{Choice 1, Choice 3}</m>
+      </p>
+    </answer>
+    <solution><p>Only the points <m>(3,13), (-4,-1)</m> are solutions. The other points cause the equation to be false when <m>x</m> and <m>y</m> are substituted.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_2_1.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="test-integer-solutions-to-line-equation"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.8)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserCheckboxList.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($m,$b) = random_coprime([2..9],[-9..-1,1..9]);
+$f = Formula("$m x + $b")->reduce;
+@x = random_subset(4,-4..4);
+@y = map {$f->eval(x => $_)} (@x);
+$y[2] += non_zero_random(-5,5);
+($x[3],$y[3]) = ($y[3],$x[3]);
+Context("Point");
+@p = map {Point($x[$_],$y[$_])} (random_subset(4,0..3));
+@ans;
+for (0..3) {
+  push(@ans, $_) if ($f->eval(x => ($p[$_]->value)[0]) == ($p[$_]->value)[1]);
+}
+$checks = CheckboxList([map {'\(' . $_->TeX . '\)'} (@p)], [@ans], options);
+$corstring = join(', ', (@p)[@ans]);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`y=[$f]`]
+
+[_]{$checks}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Only the points [`[$corstring]`] are solutions. The other points cause the equation to be false when [`x`] and [`y`] are substituted.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,30 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGchoicemacros.pl",
-  "contextForm.pl",
   "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context()->variables->are($var => 'Real');
 ($a, $b) = (0..10)[NchooseK(11,2)];
 ($a, $b) = map{$_ + random(0.1, 0.9, 0.1)} ($a, $b);
@@ -60,22 +54,28 @@ Context()->variables->are($var => 'Real');
 $solution = $b*$a;
 $solset = Formula("{$solution}");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left]=[$right]`]
 
 [_]{$solset}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

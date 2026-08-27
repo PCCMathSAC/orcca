@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-use-multiplicative-associativity" assembly-id="use-multiplicative-associativity">
+  <static seed="466">
+    <statement><p>Apply associativity to <m>{\left(2D\right)e}\text{.}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>2\mathopen{}\left(De\right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_7_6_17.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.17)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@var = random_subset(2, 'a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
+Context("Numeric")->variables->are($var[0] => 'Real', $var[1] => 'Real');
+Context()->flags->set(reduceConstants => 0);
+Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+Context()->parens->set("(" => {removable => 0,type => "AbsoluteValue",close => ")"});
+$c = random(2, 20);
+$given = Formula("($c $var[0]) $var[1]");
+$ambig = Formula("$c $var[0] $var[1]");
+$ans = Formula("$c($var[0] $var[1])");
+$evaluator = $ans->cmp(checker=>sub{
+  my ($correct, $student, $ans) = @_;
+  $student->{test_at} = [[1, 1], [1, -1], [-1, 1] ,[-1, -1]];
+  $correct->{test_at} = [[1, 1], [1, -1], [-1, 1] ,[-1, -1]];
+  Value->Error("This is algebraically equivalent to the given expression, but using associativity would give you something else") if (($student == $given) || ($student == $ambig) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Demonstrate that you know the meanings of the various algebraic properties by applying the given algebraic property to the given expression to get a new expression.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Apply associativity to [`[$given]\text{.}`]
+
+[_]{$evaluator}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

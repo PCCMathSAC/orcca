@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-sales-tax-linear-model-copy2" assembly-id="sales-tax-linear-model-copy2">
+  <static seed="620">
+    <statement><p>A designer dress is for sale in a state where sales tax applies. The sales tax rate is <m>{4.7\%}</m> and the total was <m>{\$412}\text{.}</m> What was the price before sales tax? Set up an equation to answer this question. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>p+0.047p = 412</m>
+      </p>
+    </answer>
+    <solution><p>This is a percent exercise, and we can use
+<md>(\text{initial value}) \pm (\text{percent as decimal})\cdot(\text{initial value}) = (\text{final value})</md>
+In this case, the initial value is the cost before the sales tax is applied, and this is the thing we do not yet know. We decide to use <m>p</m> to represent this quantity, standing for <lq/>price<rq/>. The sales tax makes the final cost increase, so we use addition (not subtraction). The decimal for the percent of increase is <m>0.047\text{.}</m> And the final value is the total, which is <m>412\text{.}</m> So the equation to set up is:
+<md>{p+0.047p = 412}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_57.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="sales-tax-linear-model"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.30)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "contextPercent.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$item = list_random(
+  'A bicycle',
+  'A dishwasher',
+  'A cell phone',
+  'A television',
+  'A car stereo',
+  'A formal suit',
+  'A designer dress',
+  'A tool shed',
+  'A tablet',
+  'An annual wine subscription',
+);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$final = 400 + random(-100,100);
+$current = Currency($final);
+Context("Percent");
+$decimal = random(0.04,0.07,0.001);
+$percent = Percent($decimal);
+Context("LinearRelation")->variables->are(p => 'Real');
+$equation = LinearRelation("p + $decimal p = $final");
+
+######
+# Body
+######
+
+BEGIN_PGML
+[$item] is for sale in a state where sales tax applies. The sales tax rate is [`[$percent]`] and the total was [`[$current]\text{.}`] What was the price before sales tax? Set up an equation to answer this question. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|p|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+This is a percent exercise, and we can use
+
+[```
+                  (\text{initial value}) \pm (\text{percent as decimal})\cdot(\text{initial value}) = (\text{final value})
+                ```]
+
+In this case, the initial value is the cost before the sales tax is applied, and this is the thing we do not yet know. We decide to use [`p`] to represent this quantity, standing for "price". The sales tax makes the final cost increase, so we use addition (not subtraction). The decimal for the percent of increase is [`[$decimal]\text{.}`] And the final value is the total, which is [`[$final]\text{.}`] So the equation to set up is:
+
+[```
+                  [$equation]
+                ```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

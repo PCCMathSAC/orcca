@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PGchoicemacros.pl",
   "parserCheckboxList.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Numeric");
 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
 Context()->noreduce('(-x)-y');
@@ -77,20 +71,26 @@ Context()->noreduce('(-x)-y');
 @eq = map{$BM . $left[$_]->TeX . '=' . $right[$_]->TeX . $EM} (0..5);
 $options = CheckboxList([~~@eq, "None of the above"], [0,3,5]);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Select the equations that are linear in two variables, including any where you must imagine an additional variable with coefficient [`0\text{.}`]
 
-[_]{$options}{5}
+END_PGML
 
+######
+# Body
+######
+
+BEGIN_PGML
+[_]{$options}{5}
 
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

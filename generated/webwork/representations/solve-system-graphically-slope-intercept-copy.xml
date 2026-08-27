@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-system-graphically-slope-intercept-copy" assembly-id="solve-system-graphically-slope-intercept-copy">
+  <static seed="1568">
+    <statement><p><m>\left\{
+                    \begin{alignedat}{3}
+                      y \amp= {{\frac{9}{2}}x-1}\\
+                      y \amp= {{\frac{5}{2}}x+3}
+                    \end{alignedat}
+                  \right.</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(0,-1\right), \left(2,8\right)\right\}, \left\{\text{line}, \text{solid}, \left(0,3\right), \left(2,8\right)\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(2,8\right)</m>
+      </p>
+    </answer>
+    <solution><p>If we graph these lines, we find they cross.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/solve-system-graphically-slope-intercept-copy-image-1" width="47%">
+<shortdescription>a coordinate plot of two lines that cross at (2, 8)</shortdescription>
+</image>
+<p>So the only solution is <m>(2,8)\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_1_5_21.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="solve-system-graphically-slope-intercept"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.1.5.22)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($x,$y) = (-8..-1,1..8)[NchooseK(16,2)];
+@b = (-9..$y-1,$y+1..9)[NchooseK(18,2)];
+Context("Fraction");
+Context()->noreduce('(-x)+y', '(-x)-y');
+@m = map{Fraction(($y - $_)/$x)} (@b);
+@n = map{($_->value)[0]} (@m);
+@d = map{($_->value)[1]} (@m);
+@f = map{Formula("$m[$_] x + $b[$_]")->reduce} (0,1);
+$gt = GraphTool(
+  "{line, solid, (0, $b[0]), ($d[0], $b[0] + $n[0])}",
+  "{line, solid, (0, $b[1]), ($d[1], $b[1] + $n[1])}",
+)->with(
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+  cmpOptions => {
+    list_checker => sub {
+      my ($correct, $student, $ans, $value) = @_;
+      return 0 if $ans->{isPreview};
+      my $score = 0; my @errors; my $count = 1;
+      my ($p1x, $p1y) = $correct->[0]->extract(3)->value;
+      my ($p2x, $p2y) = $correct->[0]->extract(4)->value;
+      my ($p3x, $p3y) = $correct->[1]->extract(3)->value;
+      my ($p4x, $p4y) = $correct->[1]->extract(4)->value;
+      my @stdform = (
+        $p1y - $p2y, $p2x - $p1x, $p1x * $p2y - $p2x * $p1y,
+        $p3y - $p4y, $p4x - $p3x, $p3x * $p4y - $p4x * $p3y
+      );
+      my $pointOnLine = sub {
+        my ($a, $b, $c, $point) = @_;  my ($x, $y) = $point->value;
+        return $a * $x + $b * $y + $c == 0;
+      };
+      my @line = (0, 0);
+      for (@$student) {
+        my $nth = Value::List->NameForNumber($count++);
+        if ($pointOnLine->(@stdform[0..2],$_->extract(3)) && $pointOnLine->(@stdform[0..2],$_->extract(4))) {
+          $line[0] = 1; $score += 1; next
+        }
+        if ($pointOnLine->(@stdform[3..5],$_->extract(3)) && $pointOnLine->(@stdform[3..5],$_->extract(4))) {
+          $line[1] = 1; $score += 1; next
+        }
+        push(@errors, "The $nth line graphed is incorrect.");
+      }
+      return (($line[0] && $line[1]) ? $score : 0, @errors);
+    }
+  }
+);
+Context("Point");
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$solution = Point($x,$y)->cmp(
+  mathQuillOpts => 'disabled'
+);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-10,
+      xmax=10,
+      ymin=-10,
+      ymax=10,
+      xtick = {-10,-5,5,10},
+      minor xtick = {-10,...,10},
+      ytick = {-10,-5,5,10},
+      minor ytick = {-10,...,10},
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[firstcurve,-,domain=-10:10]{$f[0]};
+    \addplot[secondcurve,-,domain=-10:10]{$f[1]};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the given system of linear equations graphically.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`
+                  \left\{
+                    \begin{alignedat}{3}
+                      y \amp= [$f[0]]\\
+                      y \amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('Enter the solution here. If there are no solutions, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$solution}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+If we graph these lines, we find they cross.
+
+>> [@image(insertGraph($image_1), width=>282, alt=>qq"a coordinate plot of two lines that cross at ($x, $y)")@]*  <<
+
+So the only solution is [`[$solution->{rh_ans}{correct_ans}]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

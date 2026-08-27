@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "parserMultiAnswer.pl",
   "parserNumberWithUnits.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $n = random(2,8);
 $w = numberWord($n);
 $d = random(5,10);
@@ -68,14 +62,14 @@ $m = MultiAnswer(@eq)->with(
 $W = NumberWithUnits(($p+2*$d)/(2*$n+2), "ft");
 $L = NumberWithUnits($n*($p+2*$d)/(2*$n+2) - $d, "ft");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 A rectangle's length is [`[$diff]`] shorter than [$w] times its width. The rectangle's perimeter is [`[$perimeter]\text{.}`] Find the rectangle's length and width.
 
-[@KeyboardInstructions('Using [|L|]* and [|W|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+[@KeyboardInstructions('Using [`L`] and [`W`] as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
 
 [_]{$m}{16}
 
@@ -89,11 +83,10 @@ A rectangle's length is [`[$diff]`] shorter than [$w] times its width. The recta
 
 [_]{$W}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

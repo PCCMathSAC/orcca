@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-ordering-decimals-copy2" assembly-id="ordering-decimals-copy2">
+  <static seed="652">
+    <statement><p><m>{-2.3}\enspace{4}\enspace{5.9}\enspace{5.2}\enspace{-2}</m></p>
+<p><fillin characters="30" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>5.9&gt;5.2&gt;4&gt;-2&gt;-2.3</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_39.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="ordering-decimals"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.31)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context()->operators->redefine('>',using=>',',from=>'Numeric');
+Context()->lists->set('List' => {separator => '>'});
+
+@a = (1..99)[NchooseK(99, 5)];
+@a = map{Real($_/10)} (@a);
+# make two or three negative
+$a[0] = -$a[0];
+$a[1] = -$a[1];
+$a[2] = list_random($a[2], -$a[2]);
+# make two of the negatives close together
+do {
+  $a[1] = $a[0] + non_zero_random(-1,1,0.1);
+} until (0 > $a[1] && $a[1] != $a[2]);
+# shuffle
+@a = (@a)[NchooseK(5,5)];
+$as = join('\enspace', map{'{' . $_ . '}'} (@a));
+@b = PGsort(sub{$_[0] > $_[1]}, @a);
+$bs = join('>', @b);
+
+$comparison = Compute("$bs");
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$as]`]
+
+[_]{$comparison}{30}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

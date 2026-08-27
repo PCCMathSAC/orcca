@@ -1,0 +1,93 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Evaluate 16^(1/4), -16^(1/4), (-16)^(1/4)
+#
+# Last edited: Carl Yao 04/22/2014
+#
+# ENDDESCRIPTION
+
+## Problem Tagging Information
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Exponents and Radicals')
+## KEYWORDS('radical','simplify')
+## DBCCSS('8.EE')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('Portland Community College')
+
+DOCUMENT();
+
+########Begin Load Macro Files############
+
+loadMacros(
+  "PGstandard.pl",       #Always needed
+  "MathObjects.pl",      #Almost always needed
+  "PGML.pl",             #Almost always needed
+  "scaffold.pl",
+  "contextLimitedRadical.pl",
+  "PCCmacros.pl",
+  "PGcourse.pl",
+);
+
+########Begin Problem Setup############
+
+Context("LimitedNumeric");     
+Context()->strings->add("not a real number"=>{alias=>"DNE"});
+Context()->strings->add("not real"=>{alias=>"not a real number"});
+
+$a = list_random(1,2,3);
+$b = $a**4;
+
+
+########Begin What the Student Sees############
+BEGIN_PGML
+[@ PTX_exercisegroup_introduction('Evaluate the expression without help from a calculator.') @]
+
+[@KeyboardInstructions('If a value is not defined as a real number, type [|DNE|]* for "does not exist".')@]**
+END_PGML
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt[4]{[$b]} ``]
+
+[_]{Compute("$a")}{16}
+END_PGML
+BEGIN_PGML_SOLUTION
+[`\sqrt[4]{[$b]} = [$a]`] because [`[$a]^{4}=[$b]`].
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("");
+BEGIN_PGML
+[`` \sqrt[4]{-[$b]} ``]
+
+[_]{Compute("DNE")}{16}
+END_PGML
+BEGIN_PGML_SOLUTION
+[`\sqrt[4]{-[$b]}`] is not a real number because no number raised to the fourth power produces a negative number. For example, [`(-[$a])^{4}=(-[$a])(-[$a])(-[$a])(-[$a])=[$b]`].
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("");
+BEGIN_PGML
+[`` -\sqrt[4]{[$b]} ``]
+
+[_]{Compute("-$a")}{16}
+END_PGML
+BEGIN_PGML_SOLUTION
+To calculate [`-\sqrt[4]{[$b]} `], we first handle the radical part, [`\sqrt[4]{[$b]} `]. By the result of the first part, we have [`\sqrt[4]{[$b]} = [$a]`]. Next, we apply the negative symbol, and we have [`` -\sqrt[4]{[$b]} = -[$a] ``].
+END_PGML_SOLUTION
+Section::End();
+
+Scaffold::End();
+
+ENDDOCUMENT();
+ 

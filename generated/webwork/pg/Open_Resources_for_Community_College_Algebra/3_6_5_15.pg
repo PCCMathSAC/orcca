@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "parserAssignment.pl",
   "parserOneOf.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 package my::OneOf;
 our @ISA = ('parser::OneOf');
 sub cmp_compare {
@@ -85,22 +79,28 @@ Context()->noreduce('(-x)+y','(-x)-y');
 parser::Assignment->Allow;
 $eq=OneOfForm(Formula("y=$f"), Formula("y=$g"));
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 A line passes through two given points. Find an equation for the line in point-slope form using one of the given points.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$p0]`] and [`[$p1]`]
 
 [_]{$eq}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

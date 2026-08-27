@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "contextForm.pl",
   "contextFraction.pl",
   "parserPopUp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($x,$y) = (-8..-1,1..8)[NchooseK(16,2)];
 @b = (-9..$y-1,$y+1..9)[NchooseK(18,2)];
 Context("Fraction");
@@ -64,16 +58,23 @@ do {
 $proposed_solution = Point($x1,$y1);
 $dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], 1, showInStatic => 0);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Check if the given point is a solution to the given system of two linear equations.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 Is [`[$proposed_solution]`] a solution?
 
-[`\newcommand{\amp}{&}
+[`
                   \left\{
                     \begin{alignedat}{3}
                       y\amp= [$f[0]]\\
@@ -84,11 +85,10 @@ Is [`[$proposed_solution]`] a solution?
 
 [_]{$dropdown}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

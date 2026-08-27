@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-casino-linear-model-copy" assembly-id="casino-linear-model-copy">
+  <static seed="697">
+    <statement><p>At a recent trip to the casino, Clayton brought <m>{\$960}</m> in cash. He knows he needs to hold on to <m>{\$80}</m> in reserve to pay for dinner later. Unfortunately Clayton had rough luck and was losing money at the slot machines at an average rate of <m>{\$215}</m> per hour. How long was Clayton gambling before he had to stop? Write an equation to model this scenario. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>960-215t = 80</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_52.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="casino-linear-model"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.76)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "randomPerson.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$name = randomPerson();
+$initial = random(800,1000,20);
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$start = Currency($initial);
+$rate = random(200,250,5);
+$speed = Currency($rate);
+$final = random(80,100,10);
+$end = Currency($final);
+Context("LinearRelation")->variables->are(t => 'Real');
+$equation = LinearRelation("$initial - $rate t = $final");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+At a recent trip to the casino, [$name] brought [`[$start]`] in cash. [$name->Subject] [$name->verb('know')] [$name->subject] [$name->verb('need')] to hold on to [`[$end]`] in reserve to pay for dinner later. Unfortunately [$name] had rough luck and was losing money at the slot machines at an average rate of [`[$speed]`] per hour. How long was [$name] gambling before [$name->subject] had to stop? Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,16 +20,17 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PGlateximage.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
   "ORCCA.pl",
@@ -40,23 +38,18 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 do {
   ($x,$y) = (-4..4)[NchooseK(11,2)];
   @h = (-6..$x-1,$x+1..6)[NchooseK(12,2)];
   @k = (-6..$y-1,$y+1..6)[NchooseK(12,2)];
   Context("Fraction");
   Context()->noreduce('(-x)+y', '(-x)-y');
-  @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
-} until ($m[0] != 1 && $m[1] != 1);
+  $m[0] = Fraction(($y - $k[0])/($x - $h[0]));
+} until ($m[0] != 1 && abs($m[0]*($h[0] - $h[1]) + $k[1] - $k[0]) >= 1);
 $m[1] = $m[0];
 @f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
 @high = map{(7 - $k[$_])/$m[$_] + $h[$_]} (0,1);
@@ -87,12 +80,13 @@ $solution = Compute("no solutions")->cmp(
   typeMatch => Point(1,2),
   mathQuillOpts => 'disabled'
 );
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
 \begin{tikzpicture}
   \begin{axis}[
-      width=0.47\orccaprintwidth
+      width=0.33\orccaprintwidth
     ]
     \addplot[firstcurve,domain=$start[0]:$stop[0]]{$f[0]};
     \addplot[secondcurve,domain=$start[1]:$stop[1]]{$f[1]};
@@ -101,24 +95,30 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 The graph of two lines represents a system of two linear equations. Use the graph to identify the solution to the system.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 >> [@image(insertGraph($image_1), width=>600, alt=>qq"a coordinate plot of two parallel lines")@]*  <<
 
 [@KeyboardInstructions('Enter the solution here. If there are no solutions, enter [|no solutions|]*.')@]**
 
 [_]{$solution}{16}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

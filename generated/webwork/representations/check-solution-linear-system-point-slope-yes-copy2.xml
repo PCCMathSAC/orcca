@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-solution-linear-system-point-slope-yes-copy2" assembly-id="check-solution-linear-system-point-slope-yes-copy2">
+  <static seed="1703">
+    <statement><p>Is <m>{\left(1,-8\right)}</m> a solution?</p>
+<p><m>\left\{
+                    \begin{alignedat}{3}
+                      y \amp= {3\mathopen{}\left(x-5\right)+4}\\
+                      y \amp= {-{\frac{3}{2}}\mathopen{}\left(x+5\right)+1}
+                    \end{alignedat}
+                  \right.</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{Yes, it is a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_1_5_3.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="check-solution-linear-system-point-slope-yes"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.4.1)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+do {
+  ($x,$y) = (-8..8)[NchooseK(17,2)];
+  @h = (-9..$x-1,$x+1..9)[NchooseK(18,2)];
+  @k = (-9..$y-1,$y+1..9)[NchooseK(18,2)];
+  Context("Fraction");
+  Context()->noreduce('(-x)+y', '(-x)-y');
+  @m = map{Fraction(($y - $k[$_])/($x - $h[$_]))} (0,1);
+} until ($m[0] != 1 && $m[1] != 1 && abs(atan2($m[0],1) - atan2($m[1],1)) > 0.2);
+@n = map{($_->value)[0]} (@m);
+@d = map{($_->value)[1]} (@m);
+@f = map{Formula("$m[$_] (x - $h[$_]) + $k[$_]")->reduce} (0,1);
+Context("Point");
+$solution = Point($x,$y);
+$proposed_solution = $solution;
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], 0, showInStatic => 0);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution?
+
+[`
+                  \left\{
+                    \begin{alignedat}{3}
+                      y \amp= [$f[0]]\\
+                      y \amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

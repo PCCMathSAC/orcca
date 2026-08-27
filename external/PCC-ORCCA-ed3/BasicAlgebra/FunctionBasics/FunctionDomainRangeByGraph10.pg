@@ -1,0 +1,154 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Give a function's graph, find its domain and range. 
+# The function consists of 3 points.
+#
+# Last update: Jordan 9/15/13; Carl Yao 09/13/13
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Function')
+## DBsection('Domain and Range')
+## KEYWORDS('function','domain','range','graph')
+## DBCCSS('8.F','F-IF')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGgraphmacros.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PCCmacros.pl",
+  "PCCgraphMacros.pl",
+  "PGchoicemacros.pl",
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+TEXT(beginproblem());
+
+Context("Interval");
+
+
+#Decide the number of points in the graph.
+$numPoints = 3;
+
+#Create ordered pairs with no duplicate values in x, no duplicate values in y.
+@px=();
+@py=();
+@xArray = (-8..8);
+@yArray = (-8..8);
+for my $i (0..$numPoints-1) {
+   $px[$i] = splice @xArray,random(0,$#xArray,1),1;
+   $py[$i] = splice @yArray,random(0,$#yArray,1),1;
+}
+
+#Intentionally create a duplicate y value in two points.
+#But make sure x-values are separated by at least 3 so labels do not overlap
+$dup0 = random(0,$numPoints-1);
+do {$dup1=random(0,$numPoints-1);} until ($dup0!=$dup1);
+$py[$dup0]=$py[$dup1];
+if (abs($px[$dup0] - $px[$dup1]) < 3) {
+  ($px[$dup0],$px[$dup1]) = (-8..8)[NchooseK(17,2)];
+}
+
+#Duplicated y-value should have a corresponding x-value that is at least 2 away form the other x-value, to avoid coordinates crowding in image.
+while (abs($px[$dup0] - $px[$dup1]) < 2)
+{my $newx = $px[$dup1];
+  while (($newx == $px[0]) or ($newx == $px[1]) or ($newx == $px[2]))
+  {$newx = list_random(@xArray);};
+$px[$dup0] = $newx;
+};
+
+$domain=Set();
+$range=Set();
+for my $i (0..$numPoints-1) {
+   $domain = $domain + Set($px[$i]);
+   $domain = Set($domain->value);
+   $range = $range + Set($py[$i]);
+   $range = Set($range->value);
+}
+
+@domarray = ($domain->value);
+@rangearray = ($range->value);
+
+($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters(~~@domarray,~~@rangearray,centerOrigin=>1);
+
+@xticks = @$xticks_ref;
+@yticks = @$yticks_ref;
+
+$ALTPoints="";
+
+$gr = createTikZImage();
+$gr->addToPreamble(latexImagePreamble());
+$gr->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $min[0],
+    xmax = $max[0],
+    ymin = $min[1],
+    ymax = $max[1],
+    xtick =,
+    ytick =,
+    minor xtick = {$min[0],...,$max[0]},
+    minor ytick = {$min[1],...,$max[1]},
+  ]
+  \addplot[soliddot] coordinates {($px[0],$py[0]) ($px[1],$py[1]) ($px[2],$py[2])};
+\end{axis}
+END_TIKZ
+
+for my $j (0,1,2) {
+  $ALTPoints .= "($px[$j],$py[$j]), "
+}
+
+$ALTPoints =~ s/, $//;
+$ALTPoints =~ s|(.+), |$1 and |;
+$ALT = "This is the graph of a function consisting of the following points: $ALTPoints.";
+$ALTPoints =~ s/ and /, /;
+
+##############################################
+Context("LimitedNumeric");
+BEGIN_PGML
+
+A function is graphed.
+
+[@EnlargeImageStatementPGML()@]**
+
+
+>>[@image($gr, width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT' title = '$ALT'") @]*<<
+
+
+[@KeyboardInstructions('To write an answer using set notation, write the elements between braces (for example [|{1,2,4}|]*).')@]**
+
+    This function has domain [______________]{$domain} and range [______________]{$range}.
+
+END_PGML
+##############################################
+
+BEGIN_PGML_SOLUTION
+
+By the graph, the function is completely described with the following ordered pairs: [`\left\{[$ALTPoints]\right\}`].
+
+The function's domain is all of the [`x`] values in these pairs: [`[$domain]`].
+
+The function's range is all of the [`y`] values in these pairs: [`[$range]`].
+
+Note that a set of individual elements is written with set notation, using [`[@$LBRACE@]`]  and [`[@$RBRACE@]`], and we don't write duplicate elements in a set.
+
+END_PGML_SOLUTION
+
+
+ENDDOCUMENT();

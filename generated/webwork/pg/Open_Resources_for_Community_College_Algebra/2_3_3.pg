@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,28 +31,24 @@ loadMacros(
   "PCCmacros.pl",
   "contextForm.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("LinearRelation");
 Context()->variables->are(t => "Real");
 Context()->operators->undefine("/");
 Parser::Number::NoDecimals();
 $equation = Formula("105-3t=40");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 In a science lab, a container had [`21`] ounces of water at 9:00[$NBSP]*AM. Water has been evaporating at the rate of [`3`] ounces every [`5`] minutes. When will there be [`8`] ounces of water left?
@@ -63,19 +57,18 @@ In a science lab, a container had [`21`] ounces of water at 9:00[$NBSP]*AM. Wate
 
 [_]{$equation}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Since the container has been losing [`3`] oz of water every [`5`] minutes, it loses [`\frac{3}{5}`] oz every minute. At [`t`] minutes past 9:00[$NBSP]*AM, the container will have lost [`\frac{3}{5}t`] oz of water. Since the initial amount was [`21`] oz, the amount of water in the container (in oz) can be modeled by [`21-\frac{3}{5}t\text{.}`]
 
 So to work out when there would be only [`8`] oz of water left, we write the following equation. Note there is a denominator of [`5\text{,}`] which we can clear.
 
-[```\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 21-\frac{3}{5}t\amp=8\\
 \multiplyleft{5}\left(21-\frac{3}{5}t\right)\amp=\multiplyleft{5}8\\
@@ -84,15 +77,12 @@ So to work out when there would be only [`8`] oz of water left, we write the fol
 \end{aligned}
 ```]
 
-
-
 From here it is straightforward to use steps from Section[$NBSP]*1 to solve the equation. You can try that on your own and you should find that it will take between [`21`] and [`22`] minutes for the container to only have [`8`] ounces of water left.
-
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

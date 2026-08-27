@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -40,15 +38,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $xmin = -7;
 $xmax = 7;
 $ymin = -7;
@@ -106,12 +99,13 @@ parser::Assignment->Allow;
 Context()->noreduce('(-x)+y','(-x)-y');
 Context()->flags->set(reduceConstants => 0);
 $eq = OneOfForm(map {Formula("y=$_")} @fs);
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
 \begin{tikzpicture}
   \begin{axis}[
-      width=0.47\orccaprintwidth,
+      width=0.33\orccaprintwidth,
     ]
     \addplot[firstcurve, domain=$start:$stop]{$f};
   \end{axis}
@@ -119,32 +113,37 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Determine a point-slope form line equation for the given line.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 >> [@image(insertGraph($image_1), width=>600)@]*  <<
 
 [_]{$eq}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The slope is [`[$m]`] and the point [`([$h],[$k])`] is on the graph of this line, so one point-slope form equation for this line is [`y=[$f]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

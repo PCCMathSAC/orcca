@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-disambiguate-addition" assembly-id="disambiguate-addition">
+  <static seed="510">
+    <introduction><p>The expression <m>{y+Q+s}</m> would be ambiguous if we did not have a left-to-right reading convention.</p>
+</introduction>
+    <task>
+      <statement><p>Use grouping symbols to emphasize the order that these additions should be carried out.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left(y+Q\right)+s</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Use the associative property of addition to write an equivalent (but different) algebraic expression.</p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>y+\left(Q+s\right)</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_7_6_61.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.61)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+@var = ('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z')[NchooseK(49,3)];
+Context("Numeric");
+Context()->variables->are($var[0]=>'Real' ,$var[1]=>'Real', $var[2]=>'Real');
+Context()->lists->set(AbsoluteValue => {open => "(", close => ")"});
+Context()->parens->set("(" => {removable=>0, type => "AbsoluteValue", close => ")"});
+for my $var (@vars) {
+  Context()->variables->set($var => {limits => [-2,2]});
+}
+$given = Formula("$var[0] + $var[1] + $var[2]");
+$ans1 = Formula("($var[0] + $var[1]) + $var[2]");
+$ans2 = Formula("$var[0] + ($var[1] + $var[2])");
+$evaluator1 = $ans1->cmp(checker => sub {
+  my ($correct, $student, $ans) = @_;
+  for my $x ($studnet, $correct) {
+    $x->{test_at} = [[-1,-1,-1],[-1,-1,1],[-1,1,-1],[-1,1,1],[1,-1,-1],[1,-1,1],[1,1,-1],[1,1,1]];
+  }
+  Value->Error("This expression is algebraically equivalent to the given expression, but it is not what is asked for") if (($student == $given) || ($student == $ans2) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+$evaluator2 = $ans2->cmp(checker => sub {
+  my ($correct, $student, $ans) = @_;
+  for my $x ($studnet, $correct) {
+    $x->{test_at} = [[-1,-1,-1],[-1,-1,1],[-1,1,-1],[-1,1,1],[1,-1,-1],[1,-1,1],[1,1,-1],[1,1,1]];
+  }
+  Value->Error("This expression is algebraically equivalent to the given expression, but it is not what is asked for") if (($student == $given) || ($student == $ans1) || (($student == $correct) && ($student ne $correct)));
+  return ($student eq $correct);
+});
+
+######
+# Body
+######
+
+BEGIN_PGML
+The expression [`[$given]`] would be ambiguous if we did not have a left-to-right reading convention.
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use grouping symbols to emphasize the order that these additions should be carried out.
+
+[_]{$evaluator1}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use the associative property of addition to write an equivalent (but different) algebraic expression.
+
+[_]{$evaluator2}{16}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

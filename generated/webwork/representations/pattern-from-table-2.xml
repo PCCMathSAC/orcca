@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-pattern-from-table-2" assembly-id="pattern-from-table-2">
+  <static seed="1063">
+    <statement><p>Write an equation in the form <m>y=\ldots</m> suggested by the pattern in the table.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>0</m></cell>
+<cell><m>{-1}</m></cell>
+</row>
+<row>
+<cell><m>1</m></cell>
+<cell><m>{2}</m></cell>
+</row>
+<row>
+<cell><m>2</m></cell>
+<cell><m>{5}</m></cell>
+</row>
+<row>
+<cell><m>3</m></cell>
+<cell><m>{8}</m></cell>
+</row>
+</tabular>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>y = 3x-1</m>
+      </p>
+    </answer>
+    <solution><p>The relationship between <m>x</m> and <m>y</m> in each row is not as clear here. Another popular approach for finding patterns: in each column, consider how the values change from one row to the next. From row to row, the <m>x</m>-value increases by <m>1\text{.}</m> Also, the <m>y</m>-value increases by <m>3</m> from row to row.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right" right="minor"/>
+<col/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>0</m></cell>
+<cell><m>{-1}</m></cell>
+</row>
+<row>
+<cell>(add <m>1</m> from previous) <m>1</m></cell>
+<cell><m>{2}</m> (add <m>3</m> from previous)</cell>
+</row>
+<row>
+<cell>(add <m>1</m> from previous) <m>2</m></cell>
+<cell><m>{5}</m> (add <m>3</m> from previous)</cell>
+</row>
+<row>
+<cell>(add <m>1</m> from previous) <m>3</m></cell>
+<cell><m>{8}</m> (add <m>3</m> from previous)</cell>
+</row>
+</tabular>
+<p>Since row-to-row change is always <m>1</m> for <m>x</m> and is always <m>3</m> for <m>y\text{,}</m> the <em>rate of change</em> from one row to another row is always the same: <m>3</m> units of <m>y</m> for every <m>1</m> unit of <m>x\text{.}</m> This suggests that <m>y=3x</m> <em>might</em> be a good equation for the table pattern. But if we try to make a table with that pattern:</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="center"/>
+<col halign="center"/>
+<col halign="center"/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>3x</m></cell>
+<cell>Actual value of <m>y</m></cell>
+</row>
+<row>
+<cell><m>0</m></cell>
+<cell><m>0</m></cell>
+<cell><m>{-1}</m></cell>
+</row>
+<row>
+<cell><m>1</m></cell>
+<cell><m>3</m></cell>
+<cell><m>{2}</m></cell>
+</row>
+<row>
+<cell><m>2</m></cell>
+<cell><m>6</m></cell>
+<cell><m>{5}</m></cell>
+</row>
+<row>
+<cell><m>3</m></cell>
+<cell><m>9</m></cell>
+<cell><m>{8}</m></cell>
+</row>
+</tabular>
+<p>We find that the values from <m>y=3x</m> are too large by <m>1\text{.}</m> So now we make an adjustment. The equation <m>{y = 3x-1}</m> describes the pattern in the table.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_3_9.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.3.9)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@x = (0..3);
+$f = Formula("-1 + 3x");
+@y = map{$f->eval(x => $_)} (@x);
+Context("Numeric")->variables->add(y => 'Real');
+parser::Assignment->Allow;
+$eq=Formula("y = $f")->reduce;
+@t = map{$_*3} (@x);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+  ],
+      align => 'rl',
+      valign => 'middle',);@]* <<
+
+[_]{$eq}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The relationship between [`x`] and [`y`] in each row is not as clear here. Another popular approach for finding patterns: in each column, consider how the values change from one row to the next. From row to row, the [`x`]-value increases by [`1\text{.}`] Also, the [`y`]-value increases by [`3`] from row to row.
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[1]]`]'),
+     PGML('[`[$y[1]]`] (add [`3`] from previous)'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[2]]`]'),
+     PGML('[`[$y[2]]`] (add [`3`] from previous)'),
+    ],
+    [
+     PGML('(add [`1`] from previous) [`[$x[3]]`]'),
+     PGML('[`[$y[3]]`] (add [`3`] from previous)'),
+    ],
+  ],
+      align => 'r|l',
+      valign => 'middle',);@]* <<
+
+Since row-to-row change is always [`1`] for [`x`] and is always [`3`] for [`y\text{,}`] the _rate of change_ from one row to another row is always the same: [`3`] units of [`y`] for every [`1`] unit of [`x\text{.}`] This suggests that [`y=3x`] _might_ be a good equation for the table pattern. But if we try to make a table with that pattern:
+
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`3x`]'),
+     PGML('Actual value of [`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$t[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$t[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$t[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$t[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+  ],
+      align => '*{3}{c}',
+      valign => 'middle',);@]* <<
+
+We find that the values from [`y=3x`] are too large by [`1\text{.}`] So now we make an adjustment. The equation [`[$eq]`] describes the pattern in the table.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

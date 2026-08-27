@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-write-slope-intercept-form-in-standard-form-copy3" assembly-id="write-slope-intercept-form-in-standard-form-copy3">
+  <static seed="1529">
+    <statement><p><m>{y}={4x+1}</m></p>
+<p><fillin characters="30" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>4x-y=-1</m>
+      </p>
+    </answer>
+    <solution><p>Standard form is <m>Ax+By=C\text{.}</m> We need to move <m>x</m>- and <m>y</m>-terms to the same side of the equal sign.
+<md>\begin{aligned}
+{y}\amp={4x+1}\\
+{y}\subtractright{4x}\amp={4x+1}\subtractright{4x}\\
+{-4x+y}\amp=1\\
+(-1)({-4x+y})\amp=(-1)(1)\\
+{4x-y}\amp=-1
+\end{aligned}</md>
+Note that <m>{-4x+y}=1</m> is already in standard form, but it<rsq/>s preferable to make the leading coefficient positive.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_7_5_19.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="write-slope-intercept-form-in-standard-form"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.64)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserImplicitPlane.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("ImplicitPlane");
+Context()->flags->set(reduceConstants=>0);
+Context()->flags->set(reduceConstantFormulas=>0);
+Context()->flags->set(showExtraParens=>0);
+Context()->variables->are(x=>'Real', y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y','(-x)*y','x*(-y)','-n');
+$b = random(2,9,1);
+$c = non_zero_random(-9,9,1);
+$left0 = Compute("y");
+$right0 = Compute("$b*x+$c")->reduce;
+$ansPSstring = "$b*x-y=-$c";
+if ($b>0) {
+   $left1 = Compute("$b*x-y")->reduce;
+   $nC = -$c;
+   $ansPSstringTeX = $left1->TeX."=$nC";
+} else {
+   $left1 = Compute("-$b*x+y")->reduce;
+   $ansPSstringTeX = $left1->TeX."=$c";
+}
+$s1 = Compute("-$b*x+y")->reduce;
+$s2 = Compute("$b*x-y")->reduce;
+$ansPS = ImplicitPlane($ansPSstring);
+$evaluator=$ansPS->cmp(correct_ans_latex_string => $ansPSstringTeX
+   ) -> withPostFilter(sub {
+      my $ansHash = shift;
+        my $student = $ansHash->{original_student_ans};
+        my @sides = split('=',"$student");
+      #if it's an implicit plane object, reset how student's answer is displayed:
+      if (defined $ansHash->{student_formula}) {
+      if ($ansHash->{student_formula}->cmp_class eq "an Implicit line") {
+        $ansHash->{preview_text_string} = "$sides[0]=$sides[1]";
+        my $leftTex = Formula("$sides[0]")->TeX;
+        my $rightTex = Formula("$sides[1]")->TeX;
+        $ansHash->{preview_latex_string} = "$leftTex=$rightTex";
+        $ansHash->{student_ans} = $ansHash->{original_student_ans};
+      }
+      };
+      # if they have it correct, then check each side to see
+      # whether x and y are on the same side of =
+      if ($ansHash->{score}) {
+         if ( (($sides[0] =~ /x/) && ($sides[1] =~ /y/)) || (($sides[1] =~ /x/) && ($sides[0] =~ /y/)) ) {
+         $ansHash->{score} = 0;
+         $ansHash->{ans_message} = "This is an equation for the line, but it is not in standard form.";
+         }
+      }
+      return $ansHash;
+    });
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write the linear equation in standard form.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left0]=[$right0]`]
+
+[_]{$evaluator}{30}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Standard form is [`Ax+By=C\text{.}`] We need to move [`x`]\- and [`y`]-terms to the same side of the equal sign.
+
+[```
+\begin{aligned}
+[$left0]\amp=[$right0]\\
+[$left0]\subtractright{[$b]x}\amp=[$right0]\subtractright{[$b]x}\\
+[$s1]\amp=[$c]\\
+(-1)([$s1])\amp=(-1)([$c])\\
+[$s2]\amp=[$nC]
+\end{aligned}
+```]
+
+Note that [`[$s1]=[$c]`] is already in standard form, but it's preferable to make the leading coefficient positive.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-inequality-subtract-integer-copy" assembly-id="solve-inequality-subtract-integer-copy">
+  <static seed="431">
+    <statement><p><m>{K-9}\leq{-12}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+<p><fillin characters="12" name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{interval}, \left(-\infty ,-3\right]\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(-\infty ,-3\right]</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{K \mid K\le -3\right\}</m>
+      </p>
+    </answer>
+    <solution><p>The opposite action to subtraction is addition:
+<md>\begin{gathered}
+{K-9}\leq{-12}\\
+{K-9}\addright{9}\leq{-12}\addright{9}\\
+K \leq -3
+\end{gathered}</md>
+So in set-builder notation, the solution set is <m>{\{ K \mid K \le -3 \}}\text{.}</m></p>
+<p>We can graph this by shading all numbers less than or equal to <m>-3\text{.}</m> Since the sign in the inequality allows for <m>K</m> to equal <m>-3\text{,}</m> we use a bracket at <m>-3\text{.}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/solve-inequality-subtract-integer-copy-image-1" width="100%"/>
+<p>We read the graph from left to right to tell us the interval notation for the solution set: <m>{\left(-\infty ,-3\right]}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_6_4_5.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="solve-inequality-subtract-integer"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.6.4.6)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+$c = random(-6,6);
+$a = random(1,20);
+$b = $c - $a;
+$left = Formula("$var - $a")->reduce;
+$right = Formula("$b")->reduce;
+$sign = list_random('\lt', '\gt', '\leq', '\geq');
+%interval = (
+  '\lt'  => "(-inf, $c)",
+  '\gt'  => "($c, inf)",
+  '\leq' => "(-inf, $c]",
+  '\geq' => "[$c, inf)"
+);
+Context("Interval");
+$interval = Interval($interval{$sign});
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->variables->are($var => 'Real');
+%perlsign = (
+  '\lt'  => "<",
+  '\gt'  => ">",
+  '\leq' => "<=",
+  '\geq' => ">="
+);
+$perlsign = $perlsign{$sign};
+$setbuilder = Compute("{ $var | $var $perlsign $c}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => "$var",
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+%words = (
+  '\lt'  => "less than",
+  '\gt'  => "greater than",
+  '\leq' => "less than or equal to",
+  '\geq' => "greater than or equal to"
+);
+$words = $words{$sign};
+if ($sign eq '\lt' || $sign eq '\gt') {
+  $sol[0] = "does not allow";
+  $sol[1] = "parenthesis";
+  $sol[2] = "infiniteopeninterval";
+} else {
+  $sol[0] = "allows";
+  $sol[1] = "bracket";
+  $sol[2] = "infiniteclosedinterval";
+}
+if ($sign eq '\lt' || $sign eq '\leq') {
+  $sol[3] = -12;
+} else {
+  $sol[3] = 12;
+}
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[numberline, xlabel={\($var\)}]
+    \addplot[$sol[2]] coordinates {($sol[3],0) ($c,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the inequality. Graph the solution set, and write the solution set using both interval notation and set-builder notation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left][$sign][$right]`]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation.')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{,}`] [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The opposite action to subtraction is addition:
+
+[```
+\begin{gathered}
+[$left][$sign][$right]\\
+[$left]\addright{[$a]}[$sign][$right]\addright{[$a]}\\
+[$var] [$sign] [$c]
+\end{gathered}
+```]
+
+So in set-builder notation, the solution set is [`[$setbuilder]\text{.}`]
+
+We can graph this by shading all numbers [$words] [`[$c]\text{.}`] Since the sign in the inequality [$sol[0]] for [`[$var]`] to equal [`[$c]\text{,}`] we use a [$sol[1]] at [`[$c]\text{.}`]
+
+>> [@image(insertGraph($image_1), width=>600)@]*  <<
+
+We read the graph from left to right to tell us the interval notation for the solution set: [`[$interval]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

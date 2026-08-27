@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,91 +20,115 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGlateximage.pl",
-  "contextFraction.pl",
-  "parserGraphTool.pl",
+  "scaffold.pl",
   "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
+Context("Point");
+$bar = Point("(3,-3)");
+$gas = Point("(-2,-4)");
+$carls = Point("(0,0)");
 
-############################################################
-# PG Setup Code
-############################################################
-@xy = random_subset(4, -5..-1,1..5);
-@x = (@xy)[0,1];
-@y = (@xy)[2,3];
-@z = random_subset(2,0,1);
-Context("Fraction");
-$x[$z[0]] += Fraction(list_random(-2,-1,1,2),3);
-$y[$z[1]] += Fraction(list_random(-2,-1,1,2),3);
-@p = map {Point($x[$_], $y[$_])} (0,1);
-$gt = GraphTool("{point,$p[0]}", "{point,$p[1]}")->with(
-  availableTools => ['PointTool'],
-  bBox => [-6,6,6,-6],
-  snapSizeX => 1/3,
-  snapSizeY => 1/3,
-  showInStatic => 0,
-  showCoordinateHints => 0,
-);
-@absx = map {abs($_)} @x;
-@absy = map {abs($_)} @y;
-@dirx = map {($_ >= 0) ? 'to the right' : 'to the left'} @x;
-@diry = map {($_ >= 0) ? 'up' : 'down'} @y;
-$image_1 = createLaTeXImage();
-$image_1->addToPreamble(latexImagePreamble());
-$image_1->BEGIN_LATEX_IMAGE
-\begin{tikzpicture}
-  \begin{axis}[
-      width=0.47\orccaprintwidth,
-    ]
-    \addplot[soliddot] coordinates {$p[0] $p[1]};
-  \end{axis}
-\end{tikzpicture}
-
-END_LATEX_IMAGE
-
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Make a Cartesian plot with the indicated points marked.
-
-[`[$p[0]], [$p[1]]`]
-
-[_]{$gt}{1}
-
+Use Figure[$NBSP]*2 to answer the following questions about Carl's neighborhood.
 
 END_PGML
 
-############################################################
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+What are the coordinates of the bar? [_]{$bar}{10}
+
+END_PGML
+
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
-The first point is [`[$absx[0]]`] [$dirx[0]] and [`[$absy[0]]`] [$diry[0]] from the origin. The second point is [`[$absx[1]]`] [$dirx[1]] and [`[$absy[1]]`] [$diry[1]] from the origin.
-
->> [@image(insertGraph($image_1), width=>282)@]*  <<
-
+We have to move [`3`] units to the right, then [`3`] units down. So the coordinates are [`(3,-3)\text{.}`]
 
 END_PGML_SOLUTION
 
-############################################################
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+What are the coordinates of the gas station? [_]{$gas}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We have to move [`2`] units to the left, then [`4`] units down. So the coordinates are [`(-2,-4)\text{.}`]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+What are the coordinates of Carl's house? [_]{$carls}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We don't move at all to get to Carl's house. That is, we move [`0`] units to the left/right, and then [`0`] units up/down. So the coordinates are [`(0,0)\text{.}`]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

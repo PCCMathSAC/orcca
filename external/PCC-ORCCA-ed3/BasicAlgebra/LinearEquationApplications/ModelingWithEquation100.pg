@@ -1,0 +1,103 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Modeling with a linear equation without solving it.
+#
+# Last updated: Yao 4/20/17
+# ENDDESCRIPTION
+ 
+## DBsubject('Algebra')
+## DBchapter('Basic Algebra')
+## DBsection('Algebraic Expressions')
+## KEYWORDS('solve','linear','equation','application','subtract','divide')
+## DBCCSS('6.EE.2.a','7.EE.4','A-CED.1','A-REI.3')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+ 
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "parserImplicitPlane.pl",
+  "parserNumberWithUnits.pl",
+  "contextTypeset.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+
+Context("ImplicitPlane");
+Context()->variables->are(h=>"Real");
+Context()->flags->set(reduceConstants=>0);
+Context()->flags->set(showExtraParens=>0);
+
+$base1 = random(1,2,0.1);
+$base2 = Round($base1*1.6,1);
+$b1U = NumberWithUnits("$base1 ft");
+$b2U = NumberWithUnits("$base2 ft");
+$volume = Round($base1*$base2*random(0.25,0.75,0.05));
+$vU = NumberWithUnits("$volume ft^3");
+$height = $volume/($base1*$base2);
+
+$ansString = "$volume=$base1*$base2*h";
+$ans = Compute("$ansString");
+
+
+##############################################
+
+TEXT(beginproblem());
+
+BEGIN_PGML
+
+The base of a cat litter box is [`[$b1U]`] by [`[$b2U]`]. What will be the height of the cat litter if [`[$vU]`] of cat litter is poured? (The volume of a rectangular box is [`wdh`], where [`w`] is the width, [`d`] is the depth, and [`h`] is the height.)
+
+Let [`h`] be the number of ft high that the cat litter will occupy if [`[$vU]`] of cat litter is poured. Write an equation to model this scenario. There is no need to solve it.
+
+    [_________________________]
+
+END_PGML
+
+
+##############################################
+
+ANS($ans->cmp(
+  cmp_class => "a linear equation",
+  correct_ans=>Parser::Formula(Context("Typeset") , $ansString)->string,
+  correct_ans_latex_string=>Parser::Formula(Context("Typeset") , $ansString)->TeX, 
+  checker => sub {
+  my ($correct,$student,$ansHash) = @_;
+  $result = ($correct == $student);
+  my $context = Context();
+  Context("Typeset");
+  $student = Parser::Formula(Context("Typeset"), $ansHash->{original_student_ans});
+  $ansHash->{preview_text_string} = $student->string;
+  $ansHash->{preview_latex_string} = $student->TeX;
+  $ansHash->{student_ans} = $student->string;  
+  Context($context);
+  return $result
+}));
+
+##############################################
+
+BEGIN_PGML_SOLUTION
+
+The volume of a rectangular prism can be calculated by the formula:
+
+    [``\text{Volume}=\text{base1}\cdot\text{base2}\cdot\text{height}``]
+
+So  we can write an equation based on the volume formula:
+
+    [``[$volume]=[$base1]\cdot[$base2]h``]
+
+END_PGML_SOLUTION
+
+ENDDOCUMENT();

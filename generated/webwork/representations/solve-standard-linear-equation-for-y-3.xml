@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-standard-linear-equation-for-y-3" assembly-id="solve-standard-linear-equation-for-y-3">
+  <static seed="938">
+    <statement><p><m>{-8x-8y}={7}</m></p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>y = -x+-{\frac{7}{8}}</m>
+      </p>
+    </answer>
+    <solution><p><md>\begin{aligned}
+{-8x-8y} \amp = {7}\\
+{-8x-8y+8x} \amp = {7+8x}\\
+{-8y} \amp = {7+8x}\\
+{\frac{-8y}{-8}} \amp = {\frac{7+8x}{-8}}\\
+{y} \amp = {-x - {\frac{7}{8}}}
+\end{aligned}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_5_3_23.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.5.3.23)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserAssignment.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$B = non_zero_random(2,9,1)*list_random(-1,1);
+$A = non_zero_random(2,9,1)*list_random(-1,1);
+$C = non_zero_random(-19,19,1);
+Context("Fraction");
+$b = Fraction($C,$B);
+$m = Fraction(-$A,$B);
+Context()->flags->set(reduceConstants=>0);
+Context()->variables->are(x=>'Real',y=>'Real');
+Context()->noreduce('(-x)-y','(-x)+y');
+parser::Assignment->Allow;
+$left = Formula("$A x+$B y")->reduce;
+$right = Formula("$C")->reduce;
+$answer = Formula("y=$m x + $b")->reduce->reduce;
+$leftsteps[0] = Formula("$left-$A x")->reduce;
+$leftsteps[1] = Formula("$B y")->reduce;
+$leftsteps[2] = $leftsteps[1]/Formula("$B");
+$leftsteps[3] = Formula("y");
+$rightsteps[0] = Formula("$right-$A x")->reduce;
+$rightsteps[1] = $rightsteps[0];
+$rightsteps[2] = $rightsteps[1]/Formula("$B");
+$rightsteps[3] = Formula("$m x + $b")->reduce;
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Isolate [`y`] in the standard form linear equation (a topic covered later in this book).
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$answer}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+[$left] \amp = [$right]\\
+[$leftsteps[0]] \amp = [$rightsteps[0]]\\
+[$leftsteps[1]] \amp = [$rightsteps[1]]\\
+[$leftsteps[2]] \amp = [$rightsteps[2]]\\
+[$leftsteps[3]] \amp = [$rightsteps[3]]
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

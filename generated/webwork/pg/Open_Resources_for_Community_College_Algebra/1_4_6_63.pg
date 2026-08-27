@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PGchoicemacros.pl",
   "parserCheckboxList.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Numeric");
 Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
 Context()->noreduce('(-x)-y');
@@ -81,21 +75,27 @@ Context()->flags->set(reduceConstantFunctions => 0);
 @meq = map{$BM . $_ . $EM} (@eq);
 $options = CheckboxList([~~@meq, "None of the above"], [2,3]);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Select the equations/inequalities that are linear with one variable.
 
-[_]{$options}{5}
+END_PGML
 
+######
+# Body
+######
+
+BEGIN_PGML
+[_]{$options}{5}
 
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 [`[$eq[0]]`] is not linear because it multiplies two variables together.
@@ -106,11 +106,10 @@ BEGIN_PGML_SOLUTION
 
 That leaves [`[$eq[2]]`] and [`[$eq[3]]\text{,}`] which are both linear.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

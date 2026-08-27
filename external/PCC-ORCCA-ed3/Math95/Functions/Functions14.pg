@@ -1,0 +1,131 @@
+# WeBWorK problem written by Alex Jordan, 2011
+# Portland Community College
+#
+# Evaluate a function. Function is linear.
+#
+# Last updated: Jordan 12/22/13;
+# ENDDESCRIPTION
+ 
+## DBsubject('')
+## DBchapter('')
+## DBsection('')
+## KEYWORDS('')
+## DBCCSS('')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan')
+## Institution('PCC')
+
+
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGgraphmacros.pl",
+  "PCCmacros.pl",
+  "PCCgraphMacros.pl",
+  "PGML.pl",
+  "PGtikz.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+  
+);
+
+
+
+##############################################
+TEXT(beginproblem());
+
+$fname = RandomVariableName(type=>function);
+
+Context("Numeric");
+$a = random(-1,1,2);
+$h = non_zero_random(-4,4,1);
+$k = -random(0,2,1)*$a;
+
+
+$f = Formula("$a (x-$h)^2+$k");
+
+do{
+$x1 = $h-random(0,3,1);
+$x2 = $h+random(1,3,1);
+
+$y1 = $f->eval(x=>$x1);
+$y2 = $f->eval(x=>$x2);
+} until ($y1 != $y2);
+
+$xmin = -10;
+$xmax = 10;
+$ymin = -10;
+$ymax = 10;
+
+
+@xvalues = ($xmin,$xmax);
+if ($a > 0) {
+  push(@xvalues,sqrt(($ymax-$k)/$a)+$h);
+  push(@xvalues,-sqrt(($ymax-$k)/$a)+$h);
+}
+else {
+  push(@xvalues,sqrt(($ymin-$k)/$a)+$h);
+  push(@xvalues,-sqrt(($ymin-$k)/$a)+$h);
+}
+@xvalues = num_sort(@xvalues);
+$start = $xvalues[1];
+$stop = $xvalues[2];
+
+$gr = createTikZImage();
+$gr->addToPreamble(latexImagePreamble());
+$gr->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $xmin,
+    xmax = $xmax,
+    ymin = $ymin,
+    ymax = $ymax,
+    xtick =,
+    ytick =,
+    minor xtick = {$xmin,...,$xmax},
+    minor ytick = {$ymin,...,$ymax},
+  ]
+  \addplot+[domain=$start:$stop, smooth] {$a*(x-$h)^2+$k};
+  \legend{\(y=$fname(x)\)};
+\end{axis}
+END_TIKZ
+
+
+$direction = ($a == 1) ? "upward" : "downward";
+$yint = $f->eval(x=>0);
+
+$ALT = "a graph of a parabola opening $direction with vertex at ($h,$k) and passing through (0,$yint)";
+
+
+##############################################
+
+BEGIN_PGML
+Use the graph of [`[$fname]`] below to evaluate the given expressions. (Estimates are OK.)
+
+[@EnlargeImageStatementPGML()@]**
+
+>>[@image($gr, width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT' title = '$ALT'")@]*<<
+
+
+a. [`[$fname]([$x1])={}`][_____]{$y1->cmp(tolType=>absolute, tolerance=>0.1)}
+
+a. [`[$fname]([$x2])={}`][_____]{$y2->cmp(tolType=>absolute, tolerance=>0.1)}
+
+
+END_PGML
+
+
+##############################################
+
+
+
+
+ENDDOCUMENT();

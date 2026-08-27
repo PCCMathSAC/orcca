@@ -1,0 +1,69 @@
+## DESCRIPTION
+## Algebra, Absolute Value
+## ENDDESCRIPTION
+
+## Tagged by jjh2b
+
+## DBsubject(Algebra)
+## DBchapter(Absolute value expressions and functions)
+## DBsection(Solving equations with absolute values)
+## Institution(ASU)
+## MLT(AbsVal1)
+## MLTleader(1)
+## Level(2)
+## TitleText1('College Algebra')
+## AuthorText1('Stewart, Redlin, Watson')
+## EditionText1('3')
+## Section1('3.6')
+## Problem1('27')
+## KEYWORDS('algebra', 'absolute value','Solve', 'Equation', 'equations','absolute value')
+
+
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "PGasu.pl",
+  "extraAnswerEvaluators.pl",
+  "PGML.pl",
+  "PCCmacros.pl",
+  "contextFraction.pl",
+  "contextFiniteSolutionSets.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 0;
+
+$a = random(1,10,1);
+$b = non_zero_random(-10,10,1);
+$c=random(1,10);
+$pol = nicestring([$a, $b]);
+
+$d=$c-$b;
+$e=-($b+$c);
+$ans1 = "$d/$a";
+$ans2= "$e/$a";
+
+Context("Fraction");
+$ans1 = Fraction($d,$a);
+$ans2 = Fraction($e,$a);
+
+Context("FiniteSolutionSets");
+$ans = Formula("{$ans1,$ans2}");
+
+BEGIN_PGML
+Solve the equation. 
+
+[`` \left\lvert [$pol]  \right\rvert = [$c]  ``]
+
+[@KeyboardInstructions("If there are no solutions, you may type [|no solutions|]*.")@]**
+
+[__]{$ans}{width=>20}
+
+END_PGML
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.;

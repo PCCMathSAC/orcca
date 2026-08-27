@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-find-shelf-price-copy2" assembly-id="find-shelf-price-copy2">
+  <static seed="608">
+    <statement><p>Suppose the profit margin is <m>35\%</m> and the wholesale price is <m>{\$16}\text{.}</m> Write an equation that could be used to find the shelf price. Then find the shelf price.</p>
+<p><fillin characters="15" name="AnSwEr0001"/></p>
+<p><fillin characters="10" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>s\cdot 0.65 = 16</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\$24.62</m>
+      </p>
+    </answer>
+    <solution><p>We start with the equation <m>s(1-m)=w</m> and substitute in what we know. The value for <m>m</m> should be <m>0.35</m> and the value for <m>w</m> should be <m>16\text{.}</m> So we have the equation
+<md>\begin{aligned}
+s(1-0.35) \amp= 16\\
+s(0.65) \amp= 16
+\end{aligned}</md>
+Now to solve for <m>s\text{,}</m> divide on each side by <m>0.65\text{:}</m>
+<md>\begin{aligned}
+\divideunder{s(0.65)}{0.65} \amp= \divideunder{16}{0.65}\\
+s \amp= {24.62}
+\end{aligned}</md>
+So the shelf price is $24.62.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_5_6_65.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="find-shelf-price"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.18)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitEquation.pl",
+  "contextCurrency.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$m = random(10, 90, 5);
+$mdecimal = $m/100;
+$wdecimal = random(5, 20, 0.05);
+Context("ImplicitEquation");
+Context()->variables->are(s => 'Real');
+$r = 1 - $mdecimal;
+$answerdecimal = Real(Round($wdecimal/$r, 2));
+Context()->variables->set(s => {limits=>[$answerdecimal - 100, $answerdecimal + 100]});
+$equation = ImplicitEquation("s(1 - $mdecimal) = $wdecimal");
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$w = Currency($wdecimal);
+$answer = Currency($answerdecimal);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Suppose the profit margin is [`[$m]\%`] and the wholesale price is [`[$w]\text{.}`] Write an equation that could be used to find the shelf price. Then find the shelf price.
+
+[@KeyboardInstructions('Write the equation here.')@]**
+
+[_]{$equation}{15}
+
+[@KeyboardInstructions('Write the shelf price here.')@]**
+
+[_]{$answer}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We start with the equation [`s(1-m)=w`] and substitute in what we know. The value for [`m`] should be [`[$mdecimal]`] and the value for [`w`] should be [`[$wdecimal]\text{.}`] So we have the equation
+
+[```
+\begin{aligned}
+s(1-[$mdecimal]) \amp= [$wdecimal]\\
+s([$r]) \amp= [$wdecimal]
+\end{aligned}
+```]
+
+Now to solve for [`s\text{,}`] divide on each side by [`[$r]\text{:}`]
+
+[```
+\begin{aligned}
+\divideunder{s([$r])}{[$r]} \amp= \divideunder{[$wdecimal]}{[$r]}\\
+s \amp= [$answerdecimal]
+\end{aligned}
+```]
+
+So the shelf price is [$answer].
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

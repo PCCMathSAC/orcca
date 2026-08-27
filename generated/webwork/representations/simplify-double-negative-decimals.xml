@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-simplify-double-negative-decimals" assembly-id="simplify-double-negative-decimals">
+  <static seed="508">
+    <statement><p><m>{4.8\mathopen{}\left(5.1l-3.3\right)-1.8\mathopen{}\left(6.8l-7.1\right)}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>12.24l+\left(-3.06\right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_7_6_59.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.6.59)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Form")->flags->remove("NumberCheck");
+$var = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
+Context()->variables->are($var => 'Real');
+($a, $b, $c, $d, $e, $f) = (0..9)[NchooseK(10,6)];
+for $x ($a, $b, $c, $d, $e, $f) {
+  $x += random(0.1,0.9,0.1);
+}
+$given = Formula("$a($b $var - $c) - $d($e $var - $f)");
+$abde = $a*$b - $d*$e;
+$acdf = -$a*$c + $d*$f;
+$ans = Formula("$abde $var + $acdf");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Simplify the given expression. Ideally, you are thinking about how the properties of algebra are helping you simplify.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$given]`]
+
+[_]{$ans}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

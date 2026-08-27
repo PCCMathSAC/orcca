@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,15 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
   "PGlateximage.pl",
+  "scaffold.pl",
   "PCCmacros.pl",
   "parserMultiAnswer.pl",
   "parserNumberWithUnits.pl",
@@ -43,15 +41,10 @@ loadMacros(
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("LinearRelation")->variables->are(t=>'Real',y=>'Real');
 @eq=(LinearRelation("y=16-0.8t"),LinearRelation("y=2+0.6t"));
 $m=MultiAnswer(@eq)->with(singleResult=>0,
@@ -88,6 +81,7 @@ return (($l[0]&&$l[1]) ? $score : 0,@errors);
 }});
 $years=NumberWithUnits("10 yr");
 $population=Real(8);
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -116,24 +110,25 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 A college has a north campus and a south campus. The north campus has [`16`] thousand students, but enrollment has been declining by [`0.8`] thousand students per year. The newer south campus has only [`2`] thousand students, but enrollment has been increasing by [`0.6`] thousand students per year. If these trends continue, in how many years would the two campuses have the same number of students?
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -145,26 +140,25 @@ Write two equations that form a system for this scenario.
 
 [_]{$m}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The north campus has initial population [`16`] and decreases with rate [`0.8`] thousand students per year. So one equation is [`y=16-0.8t\text{.}`]
 
 The south campus has initial population [`2`] and increases with rate [`0.6`] thousand students per year. So the other equation is [`y=2+0.6t\text{.}`]
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -172,17 +166,16 @@ Plot the two lines.
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 For plotting, it may be helpful to write the system with the decimals converted to fractions:
 
-[```\newcommand{\amp}{&}
+[```
               \left\{
               \begin{alignedat}{3}
               y \amp {}={} \amp -\frac{4}{5}t \amp {}+{} \amp 16 \\
@@ -191,25 +184,24 @@ For plotting, it may be helpful to write the system with the decimals converted 
               \right.
               ```]
 
-
-
 [#
     [.
         So we see that we can use [`(0,16)`] and [`(0,2)`] as [`y`]-intercepts. And then for the first line, use slope triangles where we move [`5`] units to the right and then [`4`] units down. While for the second line, use slope triangles where we move [`5`] units to the right and then [`3`] units up.
     .]
     [.
         [@image(insertGraph($image_1), width=>282, alt=>qq"a Cartesian grid with two intersecting lines; one line passes through (0,16) with slope -0.8; the other line passes through (0,2) with slope 0.6; the lines cross at (10,8)")@]* 
-    .]*
-#]*{align => 'p{47%}p{47%}',}
 
+    .]
+#]*{align => 'p{0.47}p{0.47}'}
 
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
@@ -221,16 +213,14 @@ How many students will each campus have at that time?
 
 [_]{$population}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The lines cross at [`(10,8)\text{.}`] So after [`10`] years, each campus will have [`8`] thousand students.
-
 
 END_PGML_SOLUTION
 
@@ -238,8 +228,8 @@ Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

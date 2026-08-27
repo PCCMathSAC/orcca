@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-tire-pressure-linear-model-copy" assembly-id="tire-pressure-linear-model-copy">
+  <static seed="619">
+    <statement><p>One of the tires on your car looks a little flat. You measure its air pressure and are alarmed to see it so low at <m>{25\ {\rm psi}}\text{.}</m> You have a portable device that can pump air into the tire increasing the pressure at a rate of <m>{2.1\ {\textstyle\frac{\rm\mathstrut psi}{\rm\mathstrut min}}}\text{.}</m> How long will it take to fill the tire to the manual<rsq/>s recommended pressure of <m>{34\ {\rm psi}}\text{?}</m> Write an equation to model this scenario. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>25+2.1t = 34</m>
+      </p>
+    </answer>
+    <solution><p>This is a rate exercise, and we can use
+<md>(\text{initial value}) \pm (\text{rate})\cdot\text{variable} = (\text{final value})</md>
+In this case, the initial value for the pressure is <m>25\text{,}</m> the pressure is increasing (so we will add, not subtract), the rate is <m>2.1\text{,}</m> and the final pressure value is <m>34\text{.}</m> The one thing we do not know is how much time it will take to fill the tire, so we decide to use <m>t</m> to represent that time. So the equation to set up is:
+<md>{25+2.1t = 34}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_44.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="tire-pressure-linear-model"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.29)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserNumberWithUnits.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$rate = random(1,3,0.1);
+$speed = NumberWithUnits("$rate psi/min");
+$initial = random(20,25);
+$start = NumberWithUnits("$initial psi");
+$final = random(30,34);
+$end = NumberWithUnits("$final psi");
+Context("LinearRelation")->variables->are(t => 'Real');
+$equation = LinearRelation("$initial + $rate t = $final");
+
+######
+# Body
+######
+
+BEGIN_PGML
+One of the tires on your car looks a little flat. You measure its air pressure and are alarmed to see it so low at [`[$start]\text{.}`] You have a portable device that can pump air into the tire increasing the pressure at a rate of [`[$speed]\text{.}`] How long will it take to fill the tire to the manual's recommended pressure of [`[$end]\text{?}`] Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+This is a rate exercise, and we can use
+
+[```
+                  (\text{initial value}) \pm (\text{rate})\cdot\text{variable} = (\text{final value})
+                ```]
+
+In this case, the initial value for the pressure is [`[$initial]\text{,}`] the pressure is increasing (so we will add, not subtract), the rate is [`[$rate]\text{,}`] and the final pressure value is [`[$final]\text{.}`] The one thing we do not know is how much time it will take to fill the tire, so we decide to use [`t`] to represent that time. So the equation to set up is:
+
+[```
+                  [$equation]
+                ```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

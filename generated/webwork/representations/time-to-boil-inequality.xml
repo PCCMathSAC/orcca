@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-time-to-boil-inequality" assembly-id="time-to-boil-inequality">
+  <static seed="814">
+    <introduction><p>Water straight out of the tap is <m>42</m> degrees Fahrenheit, and you fill a tea kettle. You place the tea kettle on an old stove burner and turn on the burner, but the heating element is old and not working well. At <em>best</em>, it begins raising the temperature inside the kettle at a rate of <m>21</m> degrees Fahrenheit per minute. How long will it take to boil the water? (Water boils at <m>212</m> degrees Fahrenheit.)</p>
+</introduction>
+    <task>
+      <statement><p>Write an inequality to represent this situation, using <m>x</m> to represent how many minutes it will take for the water to boil.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>42+21x\ge 212</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Solve this inequality. At best, how long will it take for the water to boil?</p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>8.09524\ {\rm min}</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Use interval notation to express the number of minutes it might take for the water to boil.</p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left[8.09524,\infty \right)</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_2_4_35.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.4.35)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+$b = random(40,60);
+$m = random(20,30);
+$sol = (212 - $b)/$m;
+$time = NumberWithUnits($sol, 'min');
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = Interval("[$sol,inf)");
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("$b+$m x >= 212");
+
+######
+# Body
+######
+
+BEGIN_PGML
+Water straight out of the tap is [`[$b]`] degrees Fahrenheit, and you fill a tea kettle. You place the tea kettle on an old stove burner and turn on the burner, but the heating element is old and not working well. At _best_, it begins raising the temperature inside the kettle at a rate of [`[$m]`] degrees Fahrenheit per minute. How long will it take to boil the water? (Water boils at [`212`] degrees Fahrenheit.)
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent how many minutes it will take for the water to boil.
+
+[_]{$relation}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. At best, how long will it take for the water to boil?
+
+[_]{$time}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express the number of minutes it might take for the water to boil.
+
+[_]{$interval}{16}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

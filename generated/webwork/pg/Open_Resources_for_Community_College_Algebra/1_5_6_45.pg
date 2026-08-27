@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,31 +20,28 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
+  "contextFiniteSolutionSets.pl",
   "contextForm.pl",
   "contextFraction.pl",
-  "contextFiniteSolutionSets.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
-$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context()->variables->are($var => 'Real');
 do {
   ($a, $b) = random_coprime([1..10], [2..10,12]);
@@ -64,28 +58,34 @@ Context("FiniteSolutionSets");
 Context()->variables->are($var => 'Real');
 $solset = Formula("{$solution}");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left]=[$right]`]
 
 [_]{$solset}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To undo multiplication by a fraction, we can multiply my its reciprocal.
 
-[```\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$left] \amp= [$right]\\
 \multiplyleft{[$Ainv]}[$left] \amp= \multiplyleft{[$Ainv]}[$right]\\
@@ -95,11 +95,10 @@ To undo multiplication by a fraction, we can multiply my its reciprocal.
 
 The solution set is [`[$solset]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

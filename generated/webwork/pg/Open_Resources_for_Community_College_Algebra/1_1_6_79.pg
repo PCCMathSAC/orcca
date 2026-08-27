@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -36,19 +34,15 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context('Numeric');
 $WL = list_random([3, 4], [6, 8], [5, 12], [9, 12], [8, 15], [12, 16], [15, 20], [7, 24], [10, 24], [20, 21], [18, 24], [16, 30], [21, 28]);
 ($W, $L) = @$WL;
 $D = sqrt($L**2 + $W**2);
+
 $introduction_image_1 = createLaTeXImage();
 $introduction_image_1->addToPreamble(latexImagePreamble());
 $introduction_image_1->BEGIN_LATEX_IMAGE
@@ -58,24 +52,30 @@ $introduction_image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 The diagonal length [`D`] of a rectangle with side lengths [`L`] and [`W`] is given by [`D=\sqrt{L^2+W^2}\text{.}`]
 
 >> [@image(insertGraph($introduction_image_1), width=>150, alt=>qq"rectangle with sides labeled L and W, and diagonal labeled D")@]*  <<
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 Determine the diagonal length of a rectangle with side lengths [`[$L]`] and [`[$W]\text{.}`]
 
 [_]{$D}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

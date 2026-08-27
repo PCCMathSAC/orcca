@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PCCmacros.pl",
   "parserNumberWithUnits.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $final = random(1600, 2000, 100);
 $end = NumberWithUnits("$final lb");
 $rate = 8.3454;
@@ -55,24 +49,30 @@ $start = NumberWithUnits("$initial lb");
 Context("LinearRelation")->variables->are(V => 'Real');
 $inequality = LinearRelation("$initial + $rate V <= $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an inequality to model the scenario. There is no need to solve the inequality.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 A flatbed truck that hauls water is able to carry a maximum of [`[$end]\text{.}`] Water weighs [`[$speed]\text{,}`] and the plastic tank on the truck that holds the water weighs [`[$start]\text{.}`] How many gallons of water can the truck haul? Set up an inequality to answer this question. There is no need to solve it.
 
 [@KeyboardInstructions('Use [|V|]* as the variable.')@]**
 
 [_]{$inequality}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-rate-of-change-graph-neg-copy2" assembly-id="rate-of-change-graph-neg-copy2">
+  <static seed="1449">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/rate-of-change-graph-neg-copy2-image-1" width="47%"/>
+<p><fillin characters="5" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>{\frac{4}{5}}</m>
+      </p>
+    </answer>
+    <solution><p>The coordinates of the points are <m>{\left(-1,-2\right)}</m> and <m>{\left(4,2\right)}\text{.}</m> We apply the rate of change formula:
+<md>\begin{aligned}
+\amp\frac{y_2-y_1}{x_2-x_1}\\
+\amp= \frac{{2-\left(-2\right)}}{{4-\left(-1\right)}}\\
+\amp= \frac{{4}}{{5}}
+\end{aligned}</md>
+So the rate of change is <m>{{\frac{4}{5}}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_10_8.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.8)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Point");
+do {
+  @a = random_subset(4, -5 .. 5)
+} until (min(@a) < 0 && max(@a) > 0);
+$A = Point((@a)[0,1]);
+$B = Point((@a)[2,3]);
+Context("Fraction");
+$m = Fraction($a[3] - $a[1], $a[2] - $a[0]);
+Context()->flags->set(reduceConstants => 0);
+$top = Formula("x - $a[1]");
+$top = $top->substitute(x => $a[3]);
+$bottom = Formula("x - $a[0]");
+$bottom = $bottom->substitute(x => $a[2]);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-6,
+      ymin=-6,
+      xmax=6,
+      ymax=6,
+      xtick=,
+      ytick=,
+      minor xtick=,
+      minor ytick=,
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[soliddot] coordinates {$A $B};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
+
+[_]{$m}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The coordinates of the points are [`[$A]`] and [`[$B]\text{.}`] We apply the rate of change formula:
+
+[```
+\begin{aligned}
+\amp\frac{y_2-y_1}{x_2-x_1}\\
+\amp= \frac{[$top]}{[$bottom]}\\
+\amp= \frac{[$top->reduce]}{[$bottom->reduce]}
+\end{aligned}
+```]
+
+So the rate of change is [`[$m]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

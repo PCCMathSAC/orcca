@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-naming-variables" assembly-id="naming-variables">
+  <static seed="9">
+    <introduction><p>Identify a variable you might use to represent each quantity. Then identify what units would be most appropriate.</p>
+</introduction>
+    <task>
+      <statement><p>Remi is studying college student demographics, including their ages. Let <fillin characters="3" name="AnSwEr0001"/> be the age of a student, measured in <fillin characters="10" name="AnSwEr0002"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>a\hbox{, }A\hbox{, }x\hbox{, }y\hbox{, or }z</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\text{years}}</m>
+        </p>
+      </answer>
+      <solution><p>The unknown quantity is age, which we generally measure in years. So we could say <lq/>Let <m>a</m> be the age of a student, measured in years.<rq/></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Luka needs to drive from Portland, OR to Boise, ID. Let <fillin characters="3" name="AnSwEr0003"/> be the amount of time passed since Luka left Portland, measured in <fillin characters="10" name="AnSwEr0004"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>t\hbox{, }T\hbox{, }x\hbox{, }y\hbox{, or }z</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\text{hours}}</m>
+        </p>
+      </answer>
+      <solution><p>The amount of time passed is the unknown quantity. Since this is a drive from Portland to Boise, it makes sense to measure this in hours, not minutes or weeks. So we could say <lq/>Let <m>t</m> be the amount of time passed since Luka left Portland, measured in hours.<rq/></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>There is a number that you will triple, then add five to, and then take the square root. Let <fillin characters="3" name="AnSwEr0005"/> be this number.</p>
+</statement>
+      <answer>
+        <p>
+          <m>i\hbox{, }j\hbox{, }k\hbox{, }m\hbox{, }n\hbox{, }x\hbox{, }y\hbox{, or }z</m>
+        </p>
+      </answer>
+      <solution><p>The number we are discussing doesn<rsq/>t have any physical context, so we choose to use the generic variable <m>x</m> to represent it.</p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_1_2-Naming_Variables.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.1.2)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserOneOf.pl",
+  "contextArbitraryString.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+Context()->variables->are();
+for my $i (1..26) {
+  Context()->variables->add($ALPHABET[$i-1] => 'Real');
+  Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
+};
+$a = OneOf('a', 'A', 'x', 'y', 'z');
+$t = OneOf('t', 'T', 'x', 'y', 'z');
+$x = OneOf('i', 'j', 'k', 'm', 'n', 'x', 'y', 'z');
+Context("ArbitraryString");
+$years = Compute("years")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(years|yrs|yr|y|yrs~~.|yr~~.|y~~.)$/);
+    return 0;
+  }
+);
+$hours = Compute("hours")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(hours|hour|hrs|hr|h|hrs~~.|hr~~.|h~~.)$/);
+    return 0;
+  }
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Identify a variable you might use to represent each quantity. Then identify what units would be most appropriate.
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Remi is studying college student demographics, including their ages. Let [_]{$a}{3} be the age of a student, measured in [_]{$years}{10}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The unknown quantity is age, which we generally measure in years. So we could say "Let [`a`] be the age of a student, measured in years."
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Luka needs to drive from Portland, OR to Boise, ID. Let [_]{$t}{3} be the amount of time passed since Luka left Portland, measured in [_]{$hours}{10}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The amount of time passed is the unknown quantity. Since this is a drive from Portland to Boise, it makes sense to measure this in hours, not minutes or weeks. So we could say "Let [`t`] be the amount of time passed since Luka left Portland, measured in hours."
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+There is a number that you will triple, then add five to, and then take the square root. Let [_]{$x}{3} be this number.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The number we are discussing doesn't have any physical context, so we choose to use the generic variable [`x`] to represent it.
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

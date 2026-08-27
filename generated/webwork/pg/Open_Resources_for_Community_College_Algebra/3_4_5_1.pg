@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,27 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-$m = random(1, 9);
+Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+$m = Fraction(random(1, 9));
 $b = non_zero_random(-9, 9);
 @x = random_subset(2, 1 .. 9);
 @y = map {$m*$_ + $b} (@x);
@@ -56,28 +52,33 @@ $top = $top->substitute(x => $y[1]);
 $bottom = Formula("x - $x[0]");
 $bottom = $bottom->substitute(x => $x[1]);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Find the slope of the line passing through the two given points.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$p[0]]`] and [`[$p[1]]`]
 
 [_]{$m}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 
-
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 m \amp= \frac{y_2 - y_1}{x_2 - x_1}\\
 \amp= \frac{[$top]}{[$bottom]}\\
@@ -85,13 +86,10 @@ m \amp= \frac{y_2 - y_1}{x_2 - x_1}\\
 \end{aligned}
 ```]
 
-
-
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

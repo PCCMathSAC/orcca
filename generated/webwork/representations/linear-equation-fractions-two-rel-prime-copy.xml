@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-linear-equation-fractions-two-rel-prime-copy" assembly-id="linear-equation-fractions-two-rel-prime-copy">
+  <static seed="843">
+    <statement><p><m>{{\frac{1}{5}}x-{\frac{7}{9}}} = {11x+8}</m></p>
+<p><fillin characters="4" name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>45</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{\frac{-395}{486}\right\}</m>
+      </p>
+    </answer>
+    <solution><p>This equation has terms with denominators <m>5</m> and <m>9\text{.}</m> The least common multiple of these is <m>{45}\text{.}</m> So the first step in solving this equation can be to multiply on each side by <m>{45}\text{.}</m>
+<md>\begin{aligned}
+{45}\left({{\frac{1}{5}}x-{\frac{7}{9}}}\right) \amp= {45}\left({11x+8}\right)\\
+{9x-35} \amp= {495x+360}\\
+{9x-35+35} \amp= {495x+360+35}\\
+{9x} \amp= {495x+395}\\
+{9x-495x} \amp= {495x+395-495x}\\
+{-486x} \amp= {395}\\
+{x} \amp= {-{\frac{395}{486}}}
+\end{aligned}</md>
+The solution set is <m>{\left\{\frac{-395}{486}\right\}}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_3_5_21.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="linear-equation-fractions-two-rel-prime"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.22)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->noreduce('(-x)+y', '(-x)-y');
+do {
+  @den = random_subset(4,random_coprime([2..12],[2..12]),1,1);
+  @num = (
+    (random_coprime([1..12],[$den[0]]))[0],
+    (random_coprime([-12..-1,1..12],[$den[1]]))[0],
+    (random_coprime([-12..-1,1..12],[$den[2]]))[0],
+    (random_coprime([-12..-1,1..12],[$den[3]]))[0]
+  );
+  @c = map{Fraction($num[$_]/$den[$_])} (0..3);
+} until ($c[0] != $c[2]);
+@sorted_dens = num_sort(@den);
+$left = Formula("$c[0] x + $c[1]")->reduce;
+$right = Formula("$c[2] x + $c[3]")->reduce;
+$sol = ($c[3] - $c[1])/($c[0] - $c[2]);
+Context("FiniteSolutionSets");
+$solution = Formula("{$sol}");
+$lcd = Real(lcm(@den));
+Context("Fraction");
+Context()->noreduce('(-x)-y', '(-x)+y');
+$leftsol[0] = Formula("$lcd*$c[0] x + $lcd*$c[1]")->reduce;
+$rightsol[0] = Formula("$lcd*$c[2] x + $lcd*$c[3]")->reduce;
+$leftsol[1] = Formula("$lcd*$c[0] x + $lcd*$c[1] - $lcd*$c[1]")->reduce;
+$rightsol[1] = Formula("$lcd*$c[2] x + $lcd*$c[3] - $lcd*$c[1]")->reduce;
+$leftsol[2] = Formula("$lcd*$c[0] x")->reduce;
+$rightsol[2] = Formula("$lcd*$c[2] x + ($lcd*$c[3] - $lcd*$c[1])")->reduce;
+$leftsol[3] = Formula("$lcd*$c[0] x - $lcd*$c[2] x")->reduce;
+$rightsol[3] = Formula("$lcd*$c[2] x + ($lcd*$c[3] - $lcd*$c[1]) - $lcd*$c[2] x")->reduce;
+$leftsol[4] = Formula("($lcd*$c[0] - $lcd*$c[2])x")->reduce;
+$rightsol[4] = Formula("$lcd*$c[3] - $lcd*$c[1]")->reduce;
+$leftsol[5] = Formula("x")->reduce;
+$rightsol[5] = Formula("($lcd*$c[3] - $lcd*$c[1])/($lcd*$c[0] - $lcd*$c[2])")->reduce;
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the given equation. Practice clearing the denominator(s) as a first step.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left] = [$right]`]
+
+[@KeyboardInstructions('What LCD will you use?')@]**
+
+[_]{$lcd}{4}
+
+[@KeyboardInstructions('Solve the equation.')@]**
+
+[_]{$solution}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+This equation has terms with denominators [`[$sorted_dens[2]]`] and [`[$sorted_dens[3]]\text{.}`] The least common multiple of these is [`[$lcd]\text{.}`] So the first step in solving this equation can be to multiply on each side by [`[$lcd]\text{.}`]
+
+[```
+\begin{aligned}
+[$lcd]\left([$left]\right) \amp= [$lcd]\left([$right]\right)\\
+[$leftsol[0]] \amp= [$rightsol[0]]\\
+[$leftsol[1]] \amp= [$rightsol[1]]\\
+[$leftsol[2]] \amp= [$rightsol[2]]\\
+[$leftsol[3]] \amp= [$rightsol[3]]\\
+[$leftsol[4]] \amp= [$rightsol[4]]\\
+[$leftsol[5]] \amp= [$rightsol[5]]
+\end{aligned}
+```]
+
+The solution set is [`[$solution]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

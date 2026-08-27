@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-integer-nxplusaplusmxplusbineqc2-copy" assembly-id="integer-nxplusaplusmxplusbineqc2-copy">
+  <static seed="799">
+    <statement><p><m>{5x-1+7x-7}\gt{-32}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+<p><fillin characters="12" name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{interval}, \left(-2,\infty \right)\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(-2,\infty \right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{x \mid x &gt; -2\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_2_4_19.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="integer-nxplusaplusmxplusbineqc2"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.2.4.20)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
+Context()->variables->are($var => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$sol = non_zero_random(-6, 6);
+do {($m,$n) = random_subset(2,-9..-2,2..9)} until ($m + $n != 0);
+($a,$b) = random_subset(2,-9..-1,1..9);
+$c = $n*$sol + $a + $m*$sol + $b;
+$left = Formula("$n $var + $a + $m $var + $b")->reduce;
+$right = Formula("$c")->reduce;
+$sign = list_random('\lt', '\gt', '\leq', '\geq');
+%interval = (
+  '\lt'  => ($m + $n > 0) ?  "(-inf, $sol)" :  "($sol, inf)",
+  '\gt'  => ($m + $n > 0) ?  "($sol, inf)"  :  "(-inf, $sol)",
+  '\leq' => ($m + $n > 0) ?  "(-inf, $sol]" :  "[$sol, inf)",
+  '\geq' => ($m + $n > 0) ?  "[$sol, inf)"  :  "(-inf, $sol]"
+);
+Context("Interval");
+$interval = Interval($interval{$sign});
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->variables->are($var => 'Real');
+%perlsign = (
+  '\lt'  => ($m + $n > 0) ?  "<"  : ">",
+  '\gt'  => ($m + $n > 0) ?  ">"     : "<",
+  '\leq' => ($m + $n > 0) ?  "<=" : ">=",
+  '\geq' => ($m + $n > 0) ?  ">="    : "<="
+);
+$perlsign = $perlsign{$sign};
+$setbuilder = Compute("{ $var | $var $perlsign $sol}");
+$gt = GraphTool("{interval, $interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => "$var",
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the inequality. Graph the solution set, and write the solution set using both interval notation and set-builder notation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left][$sign][$right]`]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation. (If needed, type [|inf|]* or [|infinity|]* for [`\infty\text{.}`])')@]**
+
+[_]{$interval}{12}
+
+[@KeyboardInstructions('In set-builder notation. (If needed, type [|>=|]* for [`\geq\text{,}`] and [|<=|]* for [`\leq\text{.}`])')@]**
+
+[_]{$setbuilder}{12}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

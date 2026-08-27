@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-equation-and-plot-parallel-to-horizontal-line" assembly-id="equation-and-plot-parallel-to-horizontal-line">
+  <static seed="1389">
+    <statement><p>A line is parallel to the line passing through <m>{\left(6,6\right)}</m> and <m>{\left(-6,6\right)}\text{,}</m> and passes through <m>{\left(7,8\right)}\text{.}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>y = 8</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(7,8\right), \left(-4,8\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_8_5_39.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.5.39)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitPlane.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@x = random_subset(4, -9..9);
+@y = random_subset(4, -9..9);
+$y[1] = $y[0];
+$y[3] = $y[2];
+@p = map {Point($x[$_],$y[$_])} (0..3);
+Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
+$eq = Compute("y = $y[2]");
+$gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
+  staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
+  availableTools => [ "LineTool" ],
+  showCoordinateHints => 0,
+  showInStatic => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation for the line that is described. Then plot that line.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+A line is parallel to the line passing through [`[$p[0]]`] and [`[$p[1]]\text{,}`] and passes through [`[$p[2]]\text{.}`]
+
+[@KeyboardInstructions('Enter an equation for the line here.')@]**
+
+[_]{$eq}{16}
+
+[@KeyboardInstructions('Now plot the line.')@]**
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

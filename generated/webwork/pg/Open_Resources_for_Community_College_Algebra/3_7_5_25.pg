@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,14 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGlateximage.pl",
+  "PCCmacros.pl",
   "contextForm.pl",
   "parserGraphTool.pl",
   "ORCCA.pl",
@@ -38,15 +37,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($x, $y) = random_subset(2, 2..9);
 $C = lcm($x,$y);
 $A = $C/$x;
@@ -76,6 +70,7 @@ $gt = GraphTool("{line, solid, $xi, $yi}, {point, $xi}, {point, $yi}")->with(
 @domain = num_sort(-10,10,(10 - $b)/$m,(-10 - $b)/$m);
 ($l,$r) = (@domain)[1,2];
 $f = Formula("$m x + $b");
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -98,23 +93,31 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Plot the given standard form linear equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[@KeyboardInstructions('Plot the [`x`]\- and [`y`]-intercepts, as well as the line.')@]**
 
 [`[$left]=[$right]`]
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 [#
@@ -123,14 +126,14 @@ BEGIN_PGML_SOLUTION
     .]
     [.
         [@image(insertGraph($image_1), width=>282)@]* 
-    .]*
-#]*{align => 'p{47%}p{47%}',}
 
+    .]
+#]*{align => 'p{0.47}p{0.47}'}
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

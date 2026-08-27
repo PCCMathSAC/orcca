@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-mortgage-payments" assembly-id="mortgage-payments">
+  <static seed="14">
+    <statement><p>If we borrow <m>L</m> dollars for a home mortgage loan at an annual interest rate <m>r\text{,}</m> and intend to pay off the loan after <m>n</m> months, then the amount we should pay each month <m>M\text{,}</m> in dollars, is given by the formula
+<md>M=\frac{rL\left(1+\frac{r}{12}\right)^{n}}{12\left(\left(1+\frac{r}{12}\right)^{n}-1\right)}</md>
+If we borrow <m>\$200{,}000</m> at an interest rate of <m>6\%</m> with the intent to pay off the loan in <m>30</m> years, what should our monthly payment be? (Using a calculator is appropriate here.)</p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\$1{,}199.10</m>
+      </p>
+    </answer>
+    <solution><p>We must use <m>L=200000\text{.}</m> The interest rate <m>r</m> is a percentage, so we write <m>r=0.06</m> (not <m>r=6</m>). The variable <m>n</m> is supposed to be a number of <em>months</em>, but we will pay off the loan in <m>30</m> <em>years</em>. Therefore we take <m>n=360\text{.}</m>
+<md>\begin{aligned}
+M\amp=\frac{(\substitute{0.06})(\substitute{200000})\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}}{12\left(\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}-1\right)}\\
+\amp=\frac{(0.06)(200000)(1+0.005)^{360}}{12\left((1+0.005)^{360}-1\right)}\\
+\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12\left(6.022575\ldots-1\right)}\\
+\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12(5.022575\ldots)}\\
+\amp\approx\frac{72270.90\ldots}{60.2709\ldots}\approx1199.10
+\end{aligned}</md>
+Our monthly payment should be <m>{\$1{,}199.10}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_1_11-Mortgage_Payments.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.1.11)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextCurrency.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$L = 200000;
+$r = 0.06;
+$n = 360;
+Context("Currency");
+Context("Currency")->currency->addSymbol("dollars", "dollar");
+Context()->flags->set(tolerance => 1, trimTrailingZeros => 1);
+$payment = Currency($r*$L*(1 + $r/12)**($n)/(12*((1 + $r/12)**($n)-1)));
+$paymentev = $payment->cmp(cmp_class => "an amount of money");
+
+######
+# Body
+######
+
+BEGIN_PGML
+If we borrow [`L`] dollars for a home mortgage loan at an annual interest rate [`r\text{,}`] and intend to pay off the loan after [`n`] months, then the amount we should pay each month [`M\text{,}`] in dollars, is given by the formula
+
+[```
+              M=\frac{rL\left(1+\frac{r}{12}\right)^{n}}{12\left(\left(1+\frac{r}{12}\right)^{n}-1\right)}
+            ```]
+
+If we borrow [`\$200{,}000`] at an interest rate of [`6\%`] with the intent to pay off the loan in [`30`] years, what should our monthly payment be? (Using a calculator is appropriate here.)
+
+[_]{$paymentev}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+We must use [`L=200000\text{.}`] The interest rate [`r`] is a percentage, so we write [`r=0.06`] (not [`r=6`]). The variable [`n`] is supposed to be a number of _months_, but we will pay off the loan in [`30`] _years_. Therefore we take [`n=360\text{.}`]
+
+[```
+\begin{aligned}
+M\amp=\frac{(\substitute{0.06})(\substitute{200000})\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}}{12\left(\left(1+\frac{\substitute{0.06}}{12}\right)^{\substitute{360}}-1\right)}\\
+\amp=\frac{(0.06)(200000)(1+0.005)^{360}}{12\left((1+0.005)^{360}-1\right)}\\
+\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12\left(6.022575\ldots-1\right)}\\
+\amp\approx\frac{(0.06)(200000)(6.022575\ldots)}{12(5.022575\ldots)}\\
+\amp\approx\frac{72270.90\ldots}{60.2709\ldots}\approx1199.10
+\end{aligned}
+```]
+
+Our monthly payment should be [`[$payment]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

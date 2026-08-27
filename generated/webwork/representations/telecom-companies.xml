@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-telecom-companies" assembly-id="telecom-companies">
+  <static seed="1647">
+    <statement><p>One telecom company charges a monthly fee of <m>{\$34.95}</m> and <m>{\$4.80}</m> for each Gigabyte (GB) of data transmitted. A rival telecom company charges a monthly fee of <m>{\$42.95}</m> and <m>{\$3.40}</m> for each GB of data transmitted. How many GB of data would you have to use for the monthly bill to be the same for the two providers? And what would that monthly bill be?</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+<p><fillin characters="16" name="AnSwEr0004"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>B = 34.95+4.8D</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>B = 42.95+3.4D</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>5.71429\ {\rm GB}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\$62.38</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_2_5_55.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.2.5.55)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserMultiAnswer.pl",
+  "parserNumberWithUnits.pl",
+  "contextCurrency.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$aflat = random(30.95,40.95,2);
+$bflat = $aflat + random(5,10);
+$brate = random(3,4,0.05);
+$arate = random(4.05,5,0.05);
+Context("LinearRelation")->variables->are(D => 'Real', B => 'Real');
+@eq = (LinearRelation("B = $aflat + $arate D"), LinearRelation("B = $bflat + $brate D"));
+$m = MultiAnswer(@eq)->with(
+  singleResult => 0,
+  checker => sub {
+      my ( $c, $s, $self ) = @_;
+      return [1,1] if ($c->[0] == $s->[0] && $c->[1] == $s->[1] || $c->[1] == $s->[0] && $c->[0] == $s->[1]);
+      return [1,0] if ($c->[0] == $s->[0] || $c->[1] == $s->[0]);
+      return [0,1] if ($c->[0] == $s->[1] || $c->[1] == $s->[1]);
+      return [0,0];
+  }
+);
+Context("Numeric");
+$d = ($aflat - $bflat)/($brate - $arate);
+$b = $aflat + $arate*$d;
+$D = NumberWithUnits("$d GB", {newUnit => [{name=>'GB'}]});
+Context("Currency")->flags->set(trimTrailingZeros => 1);
+$Aflat = Currency("$aflat");
+$Arate = Currency("$arate");
+$Bflat = Currency("$bflat");
+$Brate = Currency("$brate");
+$B = Currency($b);
+
+######
+# Body
+######
+
+BEGIN_PGML
+One telecom company charges a monthly fee of [`[$Aflat]`] and [`[$Arate]`] for each Gigabyte (GB) of data transmitted. A rival telecom company charges a monthly fee of [`[$Bflat]`] and [`[$Brate]`] for each GB of data transmitted. How many GB of data would you have to use for the monthly bill to be the same for the two providers? And what would that monthly bill be?
+
+[@KeyboardInstructions('Using [`D`] (amount data, in GB) and [`B`] (bill) as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+
+[_]{$m}{16}
+
+[_]{$m}{16}
+
+[@KeyboardInstructions('Solve the system and enter the amount of data here.')@]**
+
+[_]{$D}{16}
+
+[@KeyboardInstructions('Enter the monthly bill here.')@]**
+
+[_]{$B}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "contextForm.pl",
   "contextFraction.pl",
   "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction-NoDecimals");
 @den = random_pairwise_coprime([2..7],[2..7],[2..7]);
 $lcd = Real(lcm(@den));
@@ -85,13 +79,20 @@ $rightsol[2] = Formula("$lcd*$c - $lcd*$b")->reduce;
 $leftsol[3] = Formula("x")->reduce;
 $rightsol[3] = Formula("($lcd*$c - $lcd*$b) / ($lcd*$m)")->reduce;
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the given inequality. Practice clearing the denominator(s) as a first step.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left] [$texcmp] [$right]`]
 
 [@KeyboardInstructions('What LCD will you use?')@]**
@@ -106,17 +107,16 @@ Solve the given inequality. Practice clearing the denominator(s) as a first step
 
 [_]{$in}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 This inequality has terms with denominators [`[$den[0]]\text{,}`] [`[$den[1]]\text{,}`] and [`[$den[2]]\text{.}`] The least common multiple of these is [`[$lcd]\text{.}`] So the first step in solving this inequality can be to multiply on each side by [`[$lcd]\text{.}`]
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$lcd]\left([$left]\right) \amp[$texcmp] [$lcd]\left([$right]\right)\\
 [$leftsol[0]] \amp[$texcmp] [$rightsol[0]]\\
@@ -128,11 +128,10 @@ This inequality has terms with denominators [`[$den[0]]\text{,}`] [`[$den[1]]\te
 
 The solution set is [`\{x\mid x [$texcmp] [$sol]\}`] using set-builder notation. In interval notation, we have [`[$in]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

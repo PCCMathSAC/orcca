@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,31 +20,28 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "PGchoicemacros.pl",
   "PCCmacros.pl",
+  "PGchoicemacros.pl",
   "contextForm.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
-($X, $Y) = ('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z')[NchooseK(49,2)];
+($X, $Y) = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context("LinearRelation")->variables->are($X => 'Real', $Y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 $A[0] = list_random(-5..-2, 2..5);
@@ -101,14 +95,21 @@ $sol[0] = $left[0]->substitute($Y => $right[1]);
 $sol[1] = Formula("$A[0] $X - $A[1] $X + ($A[1]*$h[1]) + $k[1]")->reduce;
 $sol[2] = Formula("$B[0]*($A[1]*$h[1] + $k[1])")->reduce;
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the system of equations using substitution.
 
-[`\newcommand{\amp}{&}\left\{
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`\left\{
                   \begin{alignedat}{4}
                   \amp [$f[0]] \\
                   \amp [$f[1]]
@@ -120,17 +121,16 @@ Solve the system of equations using substitution.
 
 [_]{$answer}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Since [`[$Y]`] is already isolated in the second equation line, we will use that and substitute [`[$right[1]]`] in for [`[$Y]`] in the first equation:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$sol[0]]\amp=[$C[0]]\\
 [$sol[1]]\amp=[$C[0]]\\
@@ -140,11 +140,10 @@ Since [`[$Y]`] is already isolated in the second equation line, we will use that
 
 This is an outright false equation, so there is no solution.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

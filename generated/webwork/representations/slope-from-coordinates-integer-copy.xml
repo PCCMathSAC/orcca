@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-slope-from-coordinates-integer-copy" assembly-id="slope-from-coordinates-integer-copy">
+  <static seed="1116">
+    <statement><p><m>{\left(1,-1\right)}</m> and <m>{\left(9,47\right)}</m></p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>6</m>
+      </p>
+    </answer>
+    <solution><p><md>\begin{aligned}
+m \amp= \frac{y_2 - y_1}{x_2 - x_1}\\
+\amp= \frac{{47-\left(-1\right)}}{{9-1}}\\
+\amp= \frac{{48}}{{8}}= {6}
+\end{aligned}</md></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_4_5_1.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="slope-from-coordinates-integer"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.4.5.2)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+$m = Fraction(random(1, 9));
+$b = non_zero_random(-9, 9);
+@x = random_subset(2, 1 .. 9);
+@y = map {$m*$_ + $b} (@x);
+Context("Point");
+@p = map {Point($x[$_], $y[$_])} (0,1);
+Context()->flags->set(reduceConstants => 0);
+$top = Formula("x - $y[0]");
+$top = $top->substitute(x => $y[1]);
+$bottom = Formula("x - $x[0]");
+$bottom = $bottom->substitute(x => $x[1]);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Find the slope of the line passing through the two given points.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$p[0]]`] and [`[$p[1]]`]
+
+[_]{$m}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+
+[```
+\begin{aligned}
+m \amp= \frac{y_2 - y_1}{x_2 - x_1}\\
+\amp= \frac{[$top]}{[$bottom]}\\
+\amp= \frac{[$top->reduce]}{[$bottom->reduce]}= [$m]
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-order-of-operations-fractiongrouping" assembly-id="order-of-operations-fractiongrouping">
+  <static seed="2092">
+    <statement><p><m>4 - \dfrac{8 \cdot  12}{72 \div  9}</m></p>
+<p><fillin characters="5" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-8</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/A_5_5_61.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(A.5.5.61)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($u,$v) = (1..4)[NchooseK(4,2)];
+($p,$q) = (2..4)[NchooseK(3,2)];
+$frac[0] = $p*$q*$u*$v;
+$frac[1] = $p*$q;
+@op = ('+','-','*','/')[NchooseK(4,2)];
+$op[2] = list_random('+','-','*');
+$c = random(2,9,1);
+%latex = ('+'=>'+', '-'=>'-', '*'=>'\cdot ', '/'=>'\div ');
+Context("Numeric");
+for my $i (0,1) {
+  if ($op[$i] eq '+') {
+    $b[$i] = random(2,9,1);
+    $a[$i] = $frac[$i] - $b[$i];
+  }
+  elsif ($op[$i] eq '-') {
+    $b[$i] = random(2,9,1);
+    $a[$i] = $frac[$i] + $b[$i];
+  }
+  elsif ($op[$i] eq '*') {
+    if ($i == 0) {
+      $b[$i] = $u*$p;
+      $a[$i] = $v*$q;
+    } else {
+      $b[$i] = $q;
+      $a[$i] = $p;
+    }
+  }
+  elsif ($op[$i] eq '/') {
+    $b[$i] = random(2,max(2,min(100/$frac[$i],9)),1);
+    $a[$i] = $frac[$i] * $b[$i];
+  }
+}
+if (list_random(0,1)) {
+  $answer = Real("$c $op[2] ($a[0] $op[0] $b[0]) / ($a[1] $op[1] $b[1])");
+  $expression = "$c $latex{$op[2]} \dfrac{$a[0] $latex{$op[0]} $b[0]}{$a[1] $latex{$op[1]} $b[1]}";
+
+} else {
+  $answer = Real("($a[0] $op[0] $b[0]) / ($a[1] $op[1] $b[1]) $op[2] $c");
+  $expression = "\dfrac{$a[0] $latex{$op[0]} $b[0]}{$a[1] $latex{$op[1]} $b[1]} $latex{$op[2]} $c";
+}
+Context("LimitedNumeric");
+$answer = Real($answer);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Use the order of operations to simplify the expression that has absolute value or implied grouping.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$expression]`]
+
+[_]{$answer}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

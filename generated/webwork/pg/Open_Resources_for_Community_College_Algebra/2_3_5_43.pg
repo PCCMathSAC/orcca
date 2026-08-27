@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,48 +20,44 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "parserNumberWithUnits.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context('Numeric');
 $recipe = random(10,20,5);
 ($volA, $volB) = random_subset(2, 1, 1.25, 1.5, 1.75, 2.25, 2.5, 2.75);
 $ans = $volB*$recipe/$volA;
 $answer = NumberWithUnits("$ans g");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 An old cookbook has a recipe for soup that uses [`[$recipe]`] g of flour for thickener. The recipe makes [`[$volA]`] gal of soup, but you are adjusting it to make only [`[$volB]`] gal. How much flour should you use?
 
 [_]{$answer}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Let [`x`] be how many grams of flour we should use. The amount of flour is proportional to the amount of soup, so we can compare the ratios of flour to soup for our batch with the original recipe:
@@ -73,7 +66,7 @@ Let [`x`] be how many grams of flour we should use. The amount of flour is propo
 
 These denominators are not whole numbers, and we decide not to try using the least common multiple. Instead, we just multiply on each side by both denominators:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 [$volA]\cdot [$volB]\cdot \frac{x}{[$volB]} \amp= [$volA]\cdot [$volB]\cdot \frac{[$recipe]}{[$volA]} \\
 [$volA] x \amp= [$recipe*$volB]\\
@@ -84,11 +77,10 @@ x \amp= [$ans]
 
 So we should use [`[$answer]`] of flour.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

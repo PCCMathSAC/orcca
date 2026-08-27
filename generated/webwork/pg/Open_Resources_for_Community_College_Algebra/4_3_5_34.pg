@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:32-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "parserMultiAnswer.pl",
   "contextCurrency.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $C = random(40,60);
 $A = random(2*$C - 10, 2*$C + 40);
 $tickets = $A + $C;
@@ -70,32 +64,31 @@ $revenue = Currency("$r");
 $adult = Currency("$a");
 $child = Currency("$c");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 A school fundraising event sold a total of [`[$tickets]`] tickets and generated a total revenue of [`[$revenue]\text{.}`] Each adult ticket cost [`[$adult]\text{,}`] and each child ticket cost [`[$child]\text{.}`] How many adult tickets and how many child tickets were sold?
 
-[@KeyboardInstructions('Using [|A|]* and [|C|]* as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
+[@KeyboardInstructions('Using [`A`] and [`C`] as the variables, give two equations that form a system of equations that is appropriate for this exercise.')@]**
 
 [_]{$m}{16}
 
 [_]{$m}{16}
 
-[@KeyboardInstructions('Solve the system and enter the cost of an adult ticket here.')@]**
+[@KeyboardInstructions('Solve the system and enter the number of adult tickets that were sold here.')@]**
 
-[_]{$A}{16}
+[_]{$adult}{16}
 
-[@KeyboardInstructions('Enter the cost of a child ticket here.')@]**
+[@KeyboardInstructions('Enter the number of child tickets that were sold here.')@]**
 
-[_]{$C}{16}
-
+[_]{$child}{16}
 
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -39,15 +37,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($m, $b) = random_subset(2, 2..5);
 $b = list_random($b, -$b);
 $m = -$m;
@@ -62,6 +55,7 @@ $gt = GraphTool("{line, solid, (0, $b), (1, $b + $m)}")->with(
 );
 @domain = num_sort(-10,10,(10 - $b)/$m,(-10 - $b)/$m);
 ($l,$r) = (@domain)[1,2];
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -83,34 +77,39 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Graph the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$equation]`]
 
 [_]{$gt}{1}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 Start the plot at the [`y`]-intercept [`(0,[$b])\text{.}`] Then use slope triangles with slope [`[$m]`] to extend a line in two directions.
 
 >> [@image(insertGraph($image_1), width=>282)@]*  <<
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

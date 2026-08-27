@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-ordering-specials-copy" assembly-id="ordering-specials-copy">
+  <static seed="234">
+    <statement><p><m>{{\frac{4}{7}}}\quad{\sqrt{3}}\quad{9.1}\quad{{\frac{8}{5}}}\quad{\frac{\pi }{2}}</m></p>
+<p><fillin characters="30" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>{\frac{8}{5}}&gt;\sqrt{3}&gt;9.1&gt;\frac{\pi }{2}&gt;{\frac{4}{7}}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_43.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="ordering-specials"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.44)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->operators->redefine('>', using => ',' , from => 'Numeric');
+Context()->lists->set(List => {separator => '>'});
+Context()->flags->set(reduceConstantFunctions => 0);
+
+@a = (1..99)[NchooseK(99, 1)];
+@a = map{Real($_/10)} (@a);
+do {
+  @d = (2..9)[NchooseK(8,2)];
+  push @a, map{Fraction(random_coprime([$_], [1..2*$_]))} (@d);
+} until ($a[1] != $a[0] && $a[2] != $a[0]);
+push @a, Formula("pi")/list_random(1,2,3,4,6);
+$a[3] = $a[3]->reduce;
+push @a, map{Formula("sqrt($_)")} (list_random(2,3,5,6,7,10));
+@a = (@a)[NchooseK(5,5)];
+
+$as = join('\quad', map{'{' . $_->TeX . '}'} (@a));
+@b = PGsort(sub{$_[0] > $_[1]}, @a);
+$bs = join('>', @b);
+
+$comparison = Compute("$bs");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Use the [`\gt`] symbol to arrange the following numbers in order from greatest to least. For example, your answer might look like [`4 \gt 3 \gt 2 \gt 1 \gt 0\text{.}`]
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$as]`]
+
+[_]{$comparison}{30}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

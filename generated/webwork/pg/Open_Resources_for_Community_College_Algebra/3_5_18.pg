@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "bizarroArithmetic.pl",
   "AnswerFormatHelp.pl",
+  "bizarroArithmetic.pl",
   "parserAssignment.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context()->operators->set(
   '+'=>{class=>'bizarro::BOP::add',isCommand=>1},
   '-'=>{class=>'bizarro::BOP::subtract',isCommand=>1},
@@ -71,26 +65,25 @@ if $ans->{ans_message} eq "The left side of an assignment must be a variable or 
 return $ans;
 });
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Find the slope-intercept form of an equation for the line that passes through the points [`(-3,150)`] and [`(0,30)\text{.}`]
 
 [_]{$ev}{10}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We first find the slope between our two points: [`(\overset{x_1}{-3},\overset{y_1}{150})`] and [`(\overset{x_2}{0},\overset{y_2}{30})\text{.}`] Using the slope formula, we have:
 
-[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 m\amp=\frac{y_2-y_1}{x_2-x_1}\\
 \amp=\frac{\substitute{30}-\substitute{150}}{\substitute{0}-\substitute{(-3)}}\\
@@ -99,15 +92,12 @@ m\amp=\frac{y_2-y_1}{x_2-x_1}\\
 \end{aligned}
 ```]
 
-
-
 Now we can write [`y=-40x+b`] and to find [`b`] we need look no further than one of the given points: [`(0,30)\text{.}`] The value of [`b`] is [`30\text{.}`] So, the slope-intercept form of the line is [`y=-40x+30\text{.}`]
-
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

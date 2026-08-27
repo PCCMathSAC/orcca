@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PCCmacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($A, $B, $C) = random_subset(3, 20 .. 99);
 ($A, $B) = (random(0,1))
   ? (-$A, $B)
@@ -53,21 +47,29 @@ TEXT(beginproblem());
 Context("Fraction");
 $x = Fraction($C/$A);
 $y = Fraction($C/$B);
-$m = Fraction(-$x/$y);
+$m = Fraction(-$y/$x);
 Context()->variables->add(y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
 $left = Formula("$A x + $B y")->reduce;
 $right = Formula("$C");
-$xi = Point($x,0);
-$yi = Point(0,$y);
+Context("Point");
+$xi = Compute("($x,0)");
+$yi = Compute("(0,$y)");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Find both intercepts and the slope of the line.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left]=[$right]`]
 
 [@KeyboardInstructions('Enter the [`x`]-intercept here.')@]**
@@ -82,11 +84,10 @@ Find both intercepts and the slope of the line.
 
 [_]{$m}{5}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

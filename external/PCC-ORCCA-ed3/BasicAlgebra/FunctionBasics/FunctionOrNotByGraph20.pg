@@ -1,0 +1,215 @@
+# WeBWorK problem written by Carl Yao
+# Portland Community College
+#
+# Decide whether a graph represents a function.
+# There are two graphs. One is a function, the other is not.
+#
+# Last update: Jordan 9/15/13; Carl Yao 09/13/13
+#
+# ENDDESCRIPTION
+
+## DBsubject('Algebra')
+## DBchapter('Function')
+## DBsection('Domain and Range')
+## KEYWORDS('function','domain','range','graph')
+## DBCCSS('8.F','F-IF')
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+## Author('Alex Jordan, Carl Yao, Chris Hughes')
+## Institution('PCC')
+
+##############################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGgraphmacros.pl",
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PCCgraphMacros.pl",
+  "parserPopUp.pl",
+  "PGtikz.pl",
+  "PCCmacros.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+
+##############################################
+TEXT(beginproblem());
+
+Context("Numeric");
+
+
+
+#Decide whether each graphs shows a function or non-function.
+@ALT=();
+@isFunction=();
+@functions=([],[],[],[]);
+for my $i (0..1) {
+  $isFunction[$i]=random(0,1,1);
+  if ($i==1) {do {$isFunction[$i]=random(0,1,1);} until ($isFunction[$i]!=$isFunction[$i-1]);}
+  if ($isFunction[$i]==1) {
+     $a=non_zero_random(-2,2,1);
+     $h=random(-3,3,1);
+     $k=random(-3,3,1);
+     $xfunc[$i] = sub { my $t = shift();
+                        return cos($t)/(1+cos($t+pi/2))/2+$h; };
+     $yfunc[$i] = sub { my $t = shift();
+                        return $a*(sin($t)/(1+cos($t+pi/2))/2+1/4)+$k; };
+     $functions[$i][0]=Compute("$a*(x-$h)**2+$k");
+     $functions[$i][1]=$functions[$i][0];
+     $upOrDown = $a>0 ? "up" : "down";
+     $graphNum = $i+1;
+     $ALT[$i]="Graph $graphNum: This is a graph of a parabola opening $upOrDown.";
+  } else {
+     $d=2;#non_zero_random(-2,2,2);
+     $b=random(-3,3,1);
+     $c=random(-3,3,1);
+     $xfunc[$i] = sub { my $t = shift();
+                        return (-cos($t)/(1+cos($t))/2+1/4)/$d-$b; };
+     $yfunc[$i] = sub { my $t = shift();
+                        return sin($t)/(1+cos($t))/2+$c; };
+     $functions[$i][0]=Compute("sqrt($d*(x+$b))+$c");
+     $functions[$i][1]=Compute("-sqrt($d*(x+$b))+$c");
+     $leftOrRight = $d>0 ? "right" : "left";
+     $graphNum = $i+1;
+     $ALT[$i]="Graph $graphNum: This is a graph of a parabola opening to the $leftOrRight.";
+  }
+
+   $isFunctionText = $isFunction[$i] ? "does" : "does not";
+   $graphNum = $i+1;
+   $popup[$i] = PopUp(['?','does','does not'], "$isFunctionText");
+}
+
+for my $i (2..3) {
+   $xfunc[$i] = $xfunc[$i-2];
+   $yfunc[$i] = $yfunc[$i-2];
+   for my $j (0..1) {
+      $functions[$i][$j] = $functions[$i-2][$j];
+   }
+   $ALT[$i]=$ALT[$i-2];
+}
+
+($min[0], $max[0], $min[1], $max[1], $ticknum[0], $ticknum[1], $xticks_ref, $yticks_ref, $marksep[0], $marksep[1]) = NiceGraphParameters([$h+1, $h-1,$b+1, $b-1],[$k+1, $k-1,$c, $c+1, $c-1],centerOrigin=>1);
+
+if ($a > 0) {@top = (sqrt(($max[1]-$k)/$a)+$h, -sqrt(($max[1]-$k)/$a)+$h)}
+    else {@top = (sqrt(($min[1]-$k)/$a)+$h, -sqrt(($min[1]-$k)/$a)+$h)};
+if ($d > 0) {@right = (sqrt(($max[0]+$b)*$d)+$c, -sqrt(($max[0]+$b)*$d)+$c)}
+    else {@right = (sqrt(($min[0]+$b)*$d)+$c, -sqrt(($min[0]+$b)*$d)+$c)};
+
+
+@xvaluesfunc = num_sort($min[0],$max[0],@top);
+@yvaluesnonfunc = num_sort($min[1],$max[1],@right);
+
+for my $i (0,1) {
+
+$plot[$i] = ($isFunction[$i]) ? "\\addplot+[domain=$xvaluesfunc[1]:$xvaluesfunc[2]] {$a*(x-$h)^2+$k};" : "\\addplot+[domain=$yvaluesnonfunc[1]:$yvaluesnonfunc[2]] ({(x-$c)^2/$d-$b},{x});";
+$points[$i] = "\\addplot[soliddot] coordinates " . (($isFunction[$i]) ? "{($h,$k) ($h-1,$k+$a) ($h+1,$k+$a) ($h-2,$k+4*$a) ($h+2,$k+4*$a)}" : "{(-$b+1/$d,$c+1) (-$b+1/$d,$c-1) (-$b+4/$d,$c+2) (-$b+4/$d,$c-2) (-$b+9/$d,$c+3) (-$b+9/$d,$c-3)}") . ";";
+$guidelines[$i] = "\\addplot[verticallinetest] coordinates " . (($isFunction[$i]) ? "{($h-2,$min[1]) ($h-2,$max[1])}" : "{(-$b+1/$d,$min[1]) (-$b+1/$d,$max[1])}") . ";";
+$guidelines[$i] .= "\\addplot[verticallinetest] coordinates " . (($isFunction[$i]) ? "{($h-1,$min[1]) ($h-1,$max[1])}" : "{(-$b+4/$d,$min[1]) (-$b+4/$d,$max[1])}") . ";";
+$guidelines[$i] .= "\\addplot[verticallinetest] coordinates " . (($isFunction[$i]) ? "{($h,$min[1]) ($h,$max[1])}" : "{(-$b+9/$d,$min[1]) (-$b+9/$d,$max[1])}") . ";";
+$guidelines[$i] .= "\\addplot[verticallinetest] coordinates {($h,$min[1]) ($h,$max[1])};" if ($isFunction[$i]);
+$guidelines[$i] .= "\\addplot[verticallinetest] coordinates {($h+1,$min[1]) ($h+1,$max[1])};" if ($isFunction[$i]);
+$guidelines[$i] .= "\\addplot[verticallinetest] coordinates {($h+2,$min[1]) ($h+2,$max[1])};" if ($isFunction[$i]);
+
+$gr[$i] = createTikZImage();
+$gr[$i]->addToPreamble(latexImagePreamble());
+$gr[$i]->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $min[0],
+    xmax = $max[0],
+    ymin = $min[1],
+    ymax = $max[1],
+    xtick =,
+    ytick =,
+    minor xtick =,
+    minor ytick =,
+  ]
+  $plot[$i]
+\end{axis}
+END_TIKZ
+
+
+$gr[$i+2] = createTikZImage();
+$gr[$i+2]->addToPreamble(latexImagePreamble());
+$gr[$i+2]->BEGIN_TIKZ
+\begin{axis}[
+    xmin = $min[0],
+    xmax = $max[0],
+    ymin = $min[1],
+    ymax = $max[1],
+    xtick =,
+    ytick =,
+    minor xtick =,
+    minor ytick =,
+  ]
+  $plot[$i]
+  $points[$i]
+  $guidelines[$i]
+\end{axis}
+END_TIKZ
+
+
+}
+
+
+
+$ALT0 = $ALT[0];
+$ALT1 = $ALT[1];
+
+for my $i (2..3) {
+   if ($isFunction[$i-2]==1) {
+      $ALT[$i] .= " No vertical line crosses it more than once.";
+   } else {
+      $ALT[$i] .= " A vertical line crosses it at more than one point.";
+   }
+}
+
+##############################################
+
+BEGIN_PGML
+
+The following graphs show two relationships. Decide whether each graph shows a relationship where [`y`] is a function of [`x`].
+
+[@EnlargeImageStatementPGML()@]**
+
+>>[@image($gr[0], width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT0' title = '$ALT0'") @]* [@SPACE@]* [@SPACE@]* [@SPACE@]* [@SPACE@]* [@image($gr[1], width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT1' title = '$ALT1'") @]* <<
+
+The first graph [__]{$popup[0]} give a function of [`x`].  The second graph [__]{$popup[1]} give a function of [`x`].
+
+END_PGML
+
+##############################################
+
+$showPartialCorrectAnswers = 0;
+
+#######################################################
+
+
+$graph1Output1 = $isFunction[0] ? "passed" : "did not pass";
+$graph2Output1 = $isFunction[1] ? "passed" : "did not pass";
+$graph1Output2 = $isFunction[0] ? "represents" : "does not represent";
+$graph2Output2 = $isFunction[1] ? "represents" : "does not represent";
+
+#####################################################
+
+$ALT2 = $ALT[2];
+$ALT3 = $ALT[3];
+
+BEGIN_PGML_SOLUTION
+
+If a graph represents [`y`] as a function of [`x`], it has to pass the vertical line test. 
+
+>>[@image($gr[2], width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT2' title = '$ALT2'") @]* [@SPACE@]* [@SPACE@]* [@SPACE@]* [@SPACE@]* [@image($gr[3], width=>300, tex_size=>TeXscalar(), extra_html_tags=>"alt = '$ALT3' title = '$ALT3'") @]*<<
+
+The first graph [$graph1Output1] the test, and thus it [$graph1Output2] [`y`] as a function of [`x`].
+The second graph [$graph2Output1] the test, and thus it [$graph2Output2] [`y`] as a function of [`x`].
+
+END_PGML_SOLUTION
+
+
+ENDDOCUMENT();

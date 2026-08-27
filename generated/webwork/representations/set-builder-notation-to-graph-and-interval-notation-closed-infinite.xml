@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-set-builder-notation-to-graph-and-interval-notation-closed-infinite" assembly-id="set-builder-notation-to-graph-and-interval-notation-closed-infinite">
+  <static seed="243">
+    <statement><p><m>{\{ x \mid x \ge 6 \}}</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{interval}, \left[6,\infty \right)\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left[6,\infty \right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_53.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.53)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$a = random(-7, 7);
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$set_builder = Compute("{ x | x >= $a}");
+Context("Interval");
+$interval = Compute("[$a, inf)");
+$gt = GraphTool("{interval,$interval}")->with(
+  availableTools => ['IntervalTool', 'IncludeExcludePointTool'],
+  numberLine => 1,
+  xAxisLabel => 'x',
+  bBox => [ -8, 8 ],
+  ticksDistanceX => 1,
+  minorTicksX => 0,
+  useBracketEnds => 1,
+  showInStatic => 0,
+  showCoordinateHints => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Convert the given set-builder notation into a number line graph and interval notation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$set_builder]`]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('In interval notation:')@]**
+
+[_]{$interval}{12}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

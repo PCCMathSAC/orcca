@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:31-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -37,15 +35,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 @xy = random_subset(8, -4..-1, 1..4);
 @x = (@xy)[0..3];
 @y = (@xy)[4..7];
@@ -54,6 +47,11 @@ $x[$z[0]] = 0;
 $y[$z[1]] = 0;
 Context("Point");
 @p = map {Point($x[$_], $y[$_])} (0..3);
+@absx = map {abs($_)} @x;
+@absy = map {abs($_)} @y;
+@dirx = map {($_ >= 0) ? 'to the right' : 'to the left'} @x;
+@diry = map {($_ >= 0) ? 'up' : 'down'} @y;
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -70,14 +68,12 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Identify the coordinates of each point in the graph.
-
->> [@image(insertGraph($image_1), width=>600)@]*  <<
+>> [@image(insertGraph($image_1), width=>282)@]*  <<
 
 [@KeyboardInstructions('The coordinates of [`A`] are:')@]**
 
@@ -95,11 +91,25 @@ Identify the coordinates of each point in the graph.
 
 [_]{$p[3]}{3}
 
-
 END_PGML
 
-############################################################
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Point [`A`] is [`[$absx[0]]`] [$dirx[0]] and [`[$absy[0]]`] [$diry[0]] from the origin, so its coordinates are [`[$p[0]]\text{.}`]
+
+Point [`B`] is [`[$absx[1]]`] [$dirx[1]] and [`[$absy[1]]`] [$diry[1]] from the origin, so its coordinates are [`[$p[1]]\text{.}`]
+
+Point [`C`] is [`[$absx[2]]`] [$dirx[2]] and [`[$absy[2]]`] [$diry[2]] from the origin, so its coordinates are [`[$p[2]]\text{.}`]
+
+Point [`D`] is [`[$absx[3]]`] [$dirx[3]] and [`[$absy[3]]`] [$diry[3]] from the origin, so its coordinates are [`[$p[3]]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,59 +20,76 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
-  "parserCheckboxList.pl",
-  "contextForm.pl",
+  "niceTables.pl",
+  "parserVectorUtils.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
+Context()->variables->add(y => 'Real');
+$y = -5;
+$f = Compute("-2(4) + 3");
+$truefalse = DropDown(['The equation is true.','The equation is fase.'], 0, showInStatic => 0);
 
-############################################################
-# PG Setup Code
-############################################################
-($m,$b) = random_coprime([2..9],[-9..-1,1..9]);
-$f = Formula("$m x + $b")->reduce;
-@x = random_subset(4,-4..4);
-@x = map{$_ + random(0.1,0.9,0.1)} (@x);
-@y = map {$f->eval(x => $_)} (@x);
-$y[2] += non_zero_random(-5,5);
-($x[3],$y[3]) = ($y[3],$x[3]);
-Context("Point");
-@p = map {Point($x[$_],$y[$_])} (random_subset(4,0..3));
-@ans;
-for (0..3) {
-  push(@ans, $_) if ($f->eval(x => ($p[$_]->value)[0]) == ($p[$_]->value)[1]);
-}
-$checks = CheckboxList([map {'\(' . $_->TeX . '\)'} (@p)], [@ans], options);
-
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Which of the ordered pairs are solutions to the given equation? There may be more than one correct answer.
+The point [`(4,-5)`] is on the graph in Figure[$NBSP]*3.2.3(c). What happens when you substitute these values into the equation [`y=-2x+3\text{?}`]
 
-[`y=[$f]`]
+>> [@DataTable(
+  [
+    [
+     [PGML('[`y`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`=`]'),
+     PGML('[`-2x+3`]'),
+    ],
+    [
+     PGML('[_]{$y}{2}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[`-2(`][_]{4}{2}[`)+3`]'),
+    ],
+    [
+     PGML('[_]{$y}{2}'),
+     PGML('[`\wonder{=}`]'),
+     PGML('[_]{$f}{10}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
 
-[_]{$checks}{5}
-
+[_]{$truefalse}{5}
 
 END_PGML
 
-############################################################
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Each side of the equation simplifies to [`-5\text{.}`] In other words, the equation simplifies to an outright true equation.
+
+END_PGML_SOLUTION
+
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

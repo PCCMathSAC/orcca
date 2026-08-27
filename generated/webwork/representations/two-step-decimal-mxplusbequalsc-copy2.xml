@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-two-step-decimal-mxplusbequalsc-copy2" assembly-id="two-step-decimal-mxplusbequalsc-copy2">
+  <static seed="967">
+    <statement><p><m>{8.9d-4.7}={3.4}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{0.910112\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_1_6_21.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="two-step-decimal-mxplusbequalsc"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.6.3)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextFiniteSolutionSets.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$x = list_random('a'..'n', 'p'..'z', 'A'..'D', 'F'..'N', 'P'..'T', 'V'..'Z');
+Context()->variables->are($x => 'Real');
+do {
+  $m = list_random(-9..9) + random(0.1,0.9,0.1);
+  $b = list_random(-9..9) + random(0.1,0.9,0.1);
+  $c = list_random(-9..9) + random(0.1,0.9,0.1);
+  $sol = ($c - $b)/$m;
+} until ($b != $c);
+Context()->noreduce('(-x)-y', '(-x)+y');
+$left = Formula("$m $x + $b")->reduce;
+$right = Formula("$c")->reduce;
+Context("FiniteSolutionSets")->flags->set(useBizarro => 0);
+Context()->flags->remove("NumberCheck");
+Context()->variables->are($x => 'Real');
+$solset = Formula("{$sol}");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left]=[$right]`]
+
+[_]{$solset}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

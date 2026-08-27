@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PCCmacros.pl",
   "parserNumberWithUnits.pl",
   "parserLinearRelation.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $final = random(200,400,5);
 $volume = NumberWithUnits("$final gal");
 $realrate = random(500,600,10);
@@ -53,24 +47,30 @@ $rate = NumberWithUnits("$realrate gal/hr");
 Context("LinearRelation")->variables->are(t => 'Real');
 $equation = LinearRelation("$realrate t = $final");
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Write an equation to model the scenario. There is no need to solve the equation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 When a heating oil tank is decommissioned, it is drained of its remaining oil and then filled with an inert material, such as sand. One cylindrical oil tank has a volume of [`[$volume]`] and is being filled with sand at a rate of [`[$rate]\text{.}`] Write an equation where the solution is the amount of time, in hours, that it will take to fill the tank with sand. There is no need to solve the equation.
 
 [@KeyboardInstructions('Use [|t|]* as the variable.')@]**
 
 [_]{$equation}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,41 +31,38 @@ loadMacros(
   "parserVectorUtils.pl",
   "contextFraction.pl",
   "parserPopUp.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
 $den = list_random(3,7,9,11);
 do {$num = random(1,$den-1,1)} until (gcd($num,$den) == 1);
 $slope[0] = Fraction($num,$den);
 Context("Numeric");
-$slope[1] = Real(Round($slope[0],1));
+$slope[1] = Round(Real("$slope[0]"),1);
 $true = DropDownTF(1, showInStatic => 0);
 $false = DropDownTF(0, showInStatic => 0);
 $popup = ($slope[0] > $slope[1]) ? $true : $false;
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-True or False: A slope of [`[$slope[0]]`] is steeper than a slope of [`[$slope[1]]\text{.}`] [_]{$popup}{5}
+True or False: A slope of [`[$slope[0]]`] is steeper than a slope of [`[$slope[1]]\text{.}`]
 
+[_]{$popup}{5}
 
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

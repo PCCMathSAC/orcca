@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "PGchoicemacros.pl",
   "contextArbitraryString.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($a, $b) = map{$_/100} ((-999..-1)[NchooseK(99,2)]);
 Context("ArbitraryString");
 $operator = ($a > $b) ? '>' : '<';
@@ -60,20 +54,26 @@ $answer = Compute($operator)->cmp(
     }
 );
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Decide if one given number is greater than, less than, or equal to another given number.
 
-[`[$a]`] [_]{$answer}{3} [`[$b]`]
+END_PGML
 
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$a]`] [_]{$answer}{3} [`[$b]`]
 
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-population-inequality-copy" assembly-id="population-inequality-copy">
+  <static seed="986">
+    <introduction><p>The population of a certain country grew by <m>6\%</m> over the course of the past decade. One city in this country grew in population too, but at an <em>even faster</em> rate than the country grew overall. The city<rsq/>s current population is <m>86344\text{.}</m> What might its population have been ten years ago? (Note: the population ten years ago is known to have been at least <m>10{,}000\text{.}</m>)</p>
+</introduction>
+    <task>
+      <statement><p>Write an inequality to represent this situation, using <m>x</m> to represent the city<rsq/>s population from ten years ago.</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>x+0.06x &lt; 86344</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Solve this inequality. What<rsq/>s the most the population could have been ten years ago?</p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>81457</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>Use interval notation to express what the city<rsq/>s population could have been ten years ago.</p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left[10000,81457\right)</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_2_4_37.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="population-inequality"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.6.22)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "contextForm.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+$r = random(5,10);
+$c = random(80000,100000);
+$sol = round($c/(1 + $r/100));
+Context("Interval");
+Context()->flags->set(ignoreEndpointTypes => 1);
+$interval = Interval("[10000,$sol)");
+Context("LinearRelation")->variables->are(x => 'Real');
+Context()->noreduce('(-x)-y', '(-x)+y');
+$relation = Formula("x + ($r/100)x < $c");
+
+######
+# Body
+######
+
+BEGIN_PGML
+The population of a certain country grew by [`[$r]\%`] over the course of the past decade. One city in this country grew in population too, but at an _even faster_ rate than the country grew overall. The city's current population is [`[$c]\text{.}`] What might its population have been ten years ago? (Note: the population ten years ago is known to have been at least [`10{,}000\text{.}`])
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Write an inequality to represent this situation, using [`x`] to represent the city's population from ten years ago.
+
+[_]{$relation}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Solve this inequality. What's the most the population could have been ten years ago?
+
+[_]{$sol}{16}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use interval notation to express what the city's population could have been ten years ago.
+
+[_]{$interval}{16}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

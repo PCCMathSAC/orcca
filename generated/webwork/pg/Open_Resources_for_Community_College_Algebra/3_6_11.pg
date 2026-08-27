@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -34,19 +32,15 @@ loadMacros(
   "parserAssignment.pl",
   "parserOneOf.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 package my::OneOf;
 our @ISA = ('parser::OneOf');
 sub cmp_compare {
@@ -73,11 +67,11 @@ sub OneOfForm {my::OneOf->new(@_)}
 Context("Form")->variables->add(y=>'Real');
 parser::Assignment->Allow;
 $ps = OneOfForm(Formula("y=25/12*(x-37)+40"), Formula("y=25/12*(x+11)-60"));
-$si = Formula("y=25/12-445/12");
+$si = Formula("y=25/12x-445/12");
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 A line passes through [`(37,40)`] and [`(-11,-60)\text{.}`] Find equations for this line using both point-slope and slope-intercept form.
@@ -90,17 +84,16 @@ A line passes through [`(37,40)`] and [`(-11,-60)\text{.}`] Find equations for t
 
 [_]{$si}{16}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 First, use the slope formula to find the slope of this line:
 
-[```\newcommand{\amp}{&}
+[```
 \begin{aligned}
 m=\frac{y_2-y_1}{x_2-x_1}\amp=\frac{-60-40}{-11-37}\\
 \amp=\frac{-100}{-48}\\
@@ -108,13 +101,11 @@ m=\frac{y_2-y_1}{x_2-x_1}\amp=\frac{-60-40}{-11-37}\\
 \end{aligned}
 ```]
 
-
-
 The generic point-slope equation is [`y=m(x-x_0)+y_0\text{.}`] We have found the slope, [`m\text{,}`] and we may use [`(37,40)`] for [`(x_0,y_0)\text{.}`] So an equation in point-slope form is [`[$ps]\text{.}`]
 
 To find a slope-intercept form equation, we can take the generic [`y=mx+b`] and substitute in the value of [`m`] we found. Also, we know that [`(x,y)=(-11,-60)`] should make the equation true. So we have
 
-[```\newcommand{\addright}[1]{{\highlight{{{}+#1}}}}\newcommand{\multiplyright}[2][\cdot]{{\highlight{{{}#1#2}}}}\newcommand{\divideunder}[2]{\frac{#1}{{\highlight{{#2}}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 y\amp=mx+b\\
 -60\amp=\frac{25}{12}(-11)+b\amp\amp\text{(now we may solve for }b\text{)}\\
@@ -129,11 +120,10 @@ y\amp=mx+b\\
 
 So the slope-intercept equation is [`[$si]\text{.}`] Note that the slope-intercept equation has an unfriendly fraction, and the fact that this can happen is another reason to use the point-slope form whenever it is reasonable to do so.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,28 +20,25 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserRadioButtons.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("LimitedNumeric");
 $yesno=RadioButtons([
   "So 2 is a solution to this inequality.",
@@ -52,41 +46,41 @@ $yesno=RadioButtons([
   ], 0, showInStatic => 0
 );
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Is [`2`] a solution to the inequality [`\newcommand{\lt}{<}\frac{z+3}{z-1}\lt\sqrt{18z}\text{?}`]
+Is [`2`] a solution to the inequality [`\frac{z+3}{z-1}\lt\sqrt{18z}\text{?}`]
 
 >> [@DataTable(
   [
-    [PGML('[`\dfrac{z+3}{z-1}`]'),
+    [
+     PGML('[`\dfrac{z+3}{z-1}`]'),
      PGML('[`{}\lt{}`]'),
      PGML('[`\sqrt{18z}`]'),
     ],
-    [PGML('[_]{5}{2}'),
+    [
+     PGML('[_]{5}{2}'),
      PGML('[`{}\wonder{\lt}{}`]'),
      PGML('[_]{6}{2}'),
     ],
   ],
       align => 'rcl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$yesno}{5}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 We have to substitute [`2`] in for [`z`] and simplify each side:
 
-[```\newcommand{\highlight}[1]{\mathchoice{\colorbox{lightsapphire}{$\displaystyle #1$}}{\colorbox{lightsapphire}{$\textstyle #1$}}{\colorbox{lightsapphire}{$\scriptstyle #1$}}{\colorbox{lightsapphire}{$\scriptscriptstyle #1$}}}\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\lt}{<}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \frac{z+3}{z-1}\amp\lt\sqrt{18z}\\
 \frac{\substitute{2}+3}{\substitute{2}-1}\amp\wonder{\lt}\sqrt{18(\substitute{2})}\\
@@ -95,13 +89,12 @@ We have to substitute [`2`] in for [`z`] and simplify each side:
 \end{aligned}
 ```]
 
-Since [`\newcommand{\lt}{<}5\lt6`] is true, [`2`] is indeed a solution to this inequality.
-
+Since [`5\lt6`] is true, [`2`] is indeed a solution to this inequality.
 
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

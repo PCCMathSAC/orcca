@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "PGchoicemacros.pl",
   "contextForm.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 ($x, $y) = ('a'..'n', 'p'..'z')[NchooseK(25, 2)];
 Context()->variables->are($x => 'Real', $y => 'Real');
 Context()->noreduce('(-x)-y', '(-x)+y');
@@ -54,22 +48,28 @@ $expression = Formula("$x/$m + $y/$n")->reduce->reduce;
 Context("LimitedFraction");
 $r = Fraction($expression->eval($x => $a, $y => $b));
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Evaluate the expression for the given value of the variable.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`\displaystyle[$expression]`] for [`[$x]=[$a]\text{,}`] [`[$y]=[$b]`]
 
 [_]{$r}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-combine-three-terms-two-combine-distinct-variables-decimals-copy" assembly-id="combine-three-terms-two-combine-distinct-variables-decimals-copy">
+  <static seed="160">
+    <statement><p><m>{82L-64y+6.6L}</m></p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>88.6L-64y</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_2_5_51.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="combine-three-terms-two-combine-distinct-variables-decimals"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.52)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context()->operators->remove("U");
+Context()->noreduce('(-x)+y','(-x)-y');
+@orig_vars = random_subset(2, 'a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'Z');
+@vars = (@orig_vars, list_random(@orig_vars));
+@vars = (@vars)[NchooseK(3,3)];
+Context()->variables->are();
+for my $i (1,2) {
+  Context()->variables->add($orig_vars[$i-1] => 'Real');
+}
+
+@ones = (1) x 90;
+@ints = (2..91);
+@decimals = map {$_ / 10} (1..9,11..19,21..29,31..39,41..49,51..59,61..69,71..79,81..89,91..99);
+
+@signs = (1,list_random(-1,1),list_random(-1,1));
+@signs = (@signs)[NchooseK(3,3)];
+@coefs = (list_random(@decimals), (@ones, @ints, @decimals)[NchooseK(270,3)]);
+@coefs = (@coefs)[NchooseK(3,3)];
+@coefs = map {$signs[$_-1]*$coefs[$_-1]} (1..3);
+@terms = ();
+for my $i (1..3) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]"));
+}
+$sum = Formula(join('+', @terms))->reduce;
+
+%combinedcoefs = ();
+$combinedcoefs{$orig_vars[0]} = $sum->eval($orig_vars[0] => 1, $orig_vars[1] => 0);
+$combinedcoefs{$orig_vars[1]} = $sum->eval($orig_vars[0] => 0, $orig_vars[1] => 1);
+$ans = Formula("$combinedcoefs{$orig_vars[0]} $orig_vars[0] + $combinedcoefs{$orig_vars[1]} $orig_vars[1]")->reduce;
+
+Context("Form");
+Context()->operators->remove("U");
+Context()->flags->remove("NumberCheck");
+Context()->variables->are();
+for my $i (1,2) {
+  Context()->variables->add($orig_vars[$i-1] => 'Real');
+}
+$ans = Formula("$ans");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Simplify the expression by combining like terms if possible.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$sum]`]
+
+[_]{$ans}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

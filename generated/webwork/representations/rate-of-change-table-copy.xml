@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-rate-of-change-table-copy" assembly-id="rate-of-change-table-copy">
+  <static seed="1094">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right" right="medium"/>
+<col halign="right"/>
+<row bottom="medium">
+<cell><m>x</m></cell>
+<cell><m>y</m></cell>
+</row>
+<row>
+<cell><m>1</m></cell>
+<cell><m>1</m></cell>
+</row>
+<row>
+<cell><m>2</m></cell>
+<cell><m>5</m></cell>
+</row>
+<row>
+<cell><m>6</m></cell>
+<cell><m>6</m></cell>
+</row>
+<row>
+<cell><m>7</m></cell>
+<cell><m>8</m></cell>
+</row>
+<row>
+<cell><m>8</m></cell>
+<cell><m>9</m></cell>
+</row>
+</tabular>
+<p>From <m>x=2</m> to <m>x=7\text{.}</m></p>
+<p><fillin characters="5" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>{\frac{3}{5}}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_3_5_25.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="rate-of-change-table"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.3.5.26)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "contextFraction.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+@x = num_sort(random_subset(5, 1 .. 9));
+@y = num_sort(random_subset(5, 1 .. 9));
+($a,$b) = num_sort(random_subset(2, 0 .. 4));
+Context("LimitedFraction")->flags->set(allowMixedNumbers => 0, showMixedNumbers => 0);
+$m = Fraction($y[$b] - $y[$a], $x[$b] - $x[$a]);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Find the rate of change between the two given points.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@DataTable(
+  [
+    [
+     [PGML('[`x`]'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('[`y`]'),
+    ],
+    [
+     PGML('[`[$x[0]]`]'),
+     PGML('[`[$y[0]]`]'),
+    ],
+    [
+     PGML('[`[$x[1]]`]'),
+     PGML('[`[$y[1]]`]'),
+    ],
+    [
+     PGML('[`[$x[2]]`]'),
+     PGML('[`[$y[2]]`]'),
+    ],
+    [
+     PGML('[`[$x[3]]`]'),
+     PGML('[`[$y[3]]`]'),
+    ],
+    [
+     PGML('[`[$x[4]]`]'),
+     PGML('[`[$y[4]]`]'),
+    ],
+  ],
+      align => 'r!{\vrule width 0.07em}r',
+      valign => 'middle',);@]* <<
+
+From [`x=[$x[$a]]`] to [`x=[$x[$b]]\text{.}`]
+
+[_]{$m}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

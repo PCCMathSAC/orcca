@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-solve-system-graphically-point-slope-no-solution" assembly-id="solve-system-graphically-point-slope-no-solution">
+  <static seed="1571">
+    <statement><p><m>\left\{
+                    \begin{alignedat}{3}
+                      y \amp= {{\frac{8}{5}}\mathopen{}\left(x-3\right)-2}\\
+                      y \amp= {{\frac{8}{5}}\mathopen{}\left(x-6\right)+9}
+                    \end{alignedat}
+                  \right.</m></p>
+<p><fillin name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(3,-2\right), \left(8,6\right)\right\}, \left\{\text{line}, \text{solid}, \left(6,9\right), \left(11,17\right)\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{no solutions}</m>
+      </p>
+    </answer>
+    <solution><p>If we graph these lines, we find they are parallel and do not cross.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/solve-system-graphically-point-slope-no-solution-image-1" width="47%">
+<shortdescription>a coordinate plot of two lines that cross at (8, 6)</shortdescription>
+</image>
+<p>So there are no solutions.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/4_1_5_25.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(4.1.5.25)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+Context()->noreduce('(-x)+y', '(-x)-y');
+do {
+  ($x,$y) = (-8..8)[NchooseK(17,2)];
+  @h = (-9..$x-1,$x+1..9)[NchooseK(18,2)];
+  @k = (-9..$y-1,$y+1..9)[NchooseK(18,2)];
+  $m = Fraction(($y - $k[0])/($x - $h[0]));
+  ($n, $d) = $m->value;
+} until ($m != Fraction(($y - $k[1])/($x - $h[1])) && $m != 1 && (abs($h[1] + $d) < 10 && abs($k[1] + $n) < 10 || abs($h[1] - $d) < 10 && abs($k[1] - $n) < 10));
+@f = map{Formula("$m (x - $h[$_]) + $k[$_]")->reduce} (0,1);
+$gt = GraphTool(
+  "{line, solid, ($h[0], $k[0]), ($h[0] + $d, $k[0] + $n)}",
+  "{line, solid, ($h[1], $k[1]), ($h[1] + $d, $k[1] + $n)}",
+)->with(
+  availableTools => [ "LineTool" ],
+  showInStatic => 0,
+  cmpOptions => {
+    list_checker => sub {
+      my ($correct, $student, $ans, $value) = @_;
+      return 0 if $ans->{isPreview};
+      my $score = 0; my @errors; my $count = 1;
+      my ($p1x, $p1y) = $correct->[0]->extract(3)->value;
+      my ($p2x, $p2y) = $correct->[0]->extract(4)->value;
+      my ($p3x, $p3y) = $correct->[1]->extract(3)->value;
+      my ($p4x, $p4y) = $correct->[1]->extract(4)->value;
+      my @stdform = (
+        $p1y - $p2y, $p2x - $p1x, $p1x * $p2y - $p2x * $p1y,
+        $p3y - $p4y, $p4x - $p3x, $p3x * $p4y - $p4x * $p3y
+      );
+      my $pointOnLine = sub {
+        my ($a, $b, $c, $point) = @_;  my ($x, $y) = $point->value;
+        return $a * $x + $b * $y + $c == 0;
+      };
+      my @line = (0, 0);
+      for (@$student) {
+        my $nth = Value::List->NameForNumber($count++);
+        if ($pointOnLine->(@stdform[0..2],$_->extract(3)) && $pointOnLine->(@stdform[0..2],$_->extract(4))) {
+          $line[0] = 1; $score += 1; next
+        }
+        if ($pointOnLine->(@stdform[3..5],$_->extract(3)) && $pointOnLine->(@stdform[3..5],$_->extract(4))) {
+          $line[1] = 1; $score += 1; next
+        }
+        push(@errors, "The $nth line graphed is incorrect.");
+      }
+      return (($line[0] && $line[1]) ? $score : 0, @errors);
+    }
+  }
+);
+Context("Point");
+Context()->strings->remove("NONE");
+Context()->strings->add(
+  "no solutions" => {},
+);
+for (
+  "no solution",
+  "none",
+  "there are no solutions",
+  "the solution set is empty",
+  "solution set is empty",
+  "empty set",
+  "∅",
+  "{}",
+  "{ }",
+  "{  }",
+  "{   }"
+) {
+  Context()->strings->add($_ => {alias => "no solutions"});
+}
+Context()->strings->add(
+  "infinitely many solutions" => {},
+);
+for (
+  "infinitely many",
+  "infinite solution set",
+  "infinite",
+  "the solution set is infinite",
+  "solution set is infinite"
+) {
+  Context()->strings->add($_ => {alias => "infinitely many solutions"});
+}
+$solution = Compute("no solutions")->cmp(
+  typeMatch => Point(1,2),
+  mathQuillOpts => 'disabled'
+);
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-10,
+      xmax=10,
+      ymin=-10,
+      ymax=10,
+      xtick = {-10,-5,5,10},
+      minor xtick = {-10,...,10},
+      ytick = {-10,-5,5,10},
+      minor ytick = {-10,...,10},
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[firstcurve,-,domain=-10:10]{$f[0]};
+    \addplot[secondcurve,-,domain=-10:10]{$f[1]};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the given system of linear equations graphically.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`
+                  \left\{
+                    \begin{alignedat}{3}
+                      y \amp= [$f[0]]\\
+                      y \amp= [$f[1]]
+                    \end{alignedat}
+                  \right.
+                `]
+
+[_]{$gt}{1}
+
+[@KeyboardInstructions('Enter the solution here. If there are no solutions, enter [|no solutions|]*. If there are infinitely many solutions, enter [|infinitely many solutions|]*.')@]**
+
+[_]{$solution}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+If we graph these lines, we find they are parallel and do not cross.
+
+>> [@image(insertGraph($image_1), width=>282, alt=>qq"a coordinate plot of two lines that cross at ($x, $y)")@]*  <<
+
+So there are no solutions.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

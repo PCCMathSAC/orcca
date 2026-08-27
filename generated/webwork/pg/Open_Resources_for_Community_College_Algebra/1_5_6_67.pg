@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -35,19 +33,15 @@ loadMacros(
   "parserImplicitEquation.pl",
   "parserNumberWithUnits.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $unit = list_random('m', 'cm', 'in', 'ft');
 $dinteger = random(2,20);
 $d = NumberWithUnits("$dinteger $unit");
@@ -58,13 +52,20 @@ Context()->variables->set(d => {limits=>[$dinteger - 10, $dinteger + 10]});
 $equation = ImplicitEquation("$dinteger pi = pi d");
 $answer = $d;
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 The formula for a circle's circumference is [`c=\pi d\text{,}`] where [`c`] represents circumference, [`d`] represents diameter, and [`\pi`] is a constant with the value of [`3.1415926\ldots\text{.}`] Use the given circumference to write an equation that could be used to find that circle's diameter. Then find the diameter.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 The circumference is [`[$c]\text{.}`]
 
 [@KeyboardInstructions('Write the equation here.')@]**
@@ -75,11 +76,10 @@ The circumference is [`[$c]\text{.}`]
 
 [_]{$answer}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-equation-and-plot-perpendicular-line" assembly-id="equation-and-plot-perpendicular-line">
+  <static seed="1385">
+    <statement><p>A line is perpendicular to the line passing through <m>{\left(2,-2\right)}</m> and <m>{\left(-1,-4\right)}\text{,}</m> and passes through <m>{\left(0,8\right)}\text{.}</m></p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>1.5x+y = 8</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{\text{line}, \text{solid}, \left(0,8\right), \left(6,-1\right)\right\}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_8_5_35.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.8.5.35)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserImplicitPlane.pl",
+  "contextFraction.pl",
+  "parserGraphTool.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+do {
+  @x = random_subset(2, -5..5);
+  @y = random_subset(2, -5..5);
+  $m[0] = Fraction(($y[1] - $y[0]) / ($x[1] - $x[0]));
+  $m[1] = -1/$m[0];
+  do {
+    $x[2] = random(-9,9);
+    $y[2] = random(-9,9);
+  } until ($x[2] != $x[0] && ($y[2] - $y[0]) / ($x[2] - $x[0]) != $m[0]);
+  $d = ($m[0]->value)[1];
+  $x[3] = $x[2] + non_zero_random(-3,3)*$d;
+  $y[3] = $y[2] + ($x[3] - $x[2])*$m[1];
+} until (abs($x[3]) <= 9 && abs($y[3]) <= 9);
+@p = map {Point($x[$_],$y[$_])} (0..3);
+Context("ImplicitPlane")->variables->are(x =>'Real', y => 'Real');
+$eq = Compute("y = $m[1](x - $x[2]) + $y[2]");
+$gt = GraphTool("{line,solid,$p[2],$p[3]}")->with(
+  staticObjects => ["{line,solid,$p[0],$p[1]}", "{point,$p[0]}", "{point,$p[1]}"],
+  availableTools => [ "LineTool" ],
+  showCoordinateHints => 0,
+  showInStatic => 0,
+);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation for the line that is described. Then plot that line.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+A line is perpendicular to the line passing through [`[$p[0]]`] and [`[$p[1]]\text{,}`] and passes through [`[$p[2]]\text{.}`]
+
+[@KeyboardInstructions('Enter an equation for the line here.')@]**
+
+[_]{$eq}{16}
+
+[@KeyboardInstructions('Now plot the line.')@]**
+
+[_]{$gt}{1}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

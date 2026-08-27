@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-find-equation-with-special-solution-set" assembly-id="find-equation-with-special-solution-set">
+  <static seed="914">
+    <statement><p>Fill in the right side of the equation to create a linear equation that meets the description.
+<ol label="a.">
+<li>
+<p>Create a linear equation with solution set <m>\{2\}\text{.}</m></p>
+<p><m>6(x + 4) =</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</li>
+<li>
+<p>Create a linear equation with <em>infinitely many solutions</em>.</p>
+<p><m>6(x + 4) =</m> <fillin characters="20" name="AnSwEr0002"/></p>
+</li>
+</ol></p>
+</statement>
+    <answer>
+      <p>
+        <m>5x+26</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>6\mathopen{}\left(x+4\right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_4_4_41.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.4.4.41)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+$a = random(2,20,2);
+$b = $a-1;
+$answer = Formula("$a*(x+4)");
+$answer2 = Formula("$b*x+($a*4+2)");
+$evaluator2 = $answer2->cmp(
+  checker => sub {
+    my ($correct,$student,$ansHash) = @_;
+    Value::Error('This is not a linear equation.') unless ($student->D('x')->D('x') == 0 );
+    Value::Error('x=2 is not a solution to this equation.') unless ($student->eval(x=>2) == $a*6);
+    Value::Error('This equation has infinitely many solutions, not just 2.') unless ($student != $answer);
+    return 1;
+  }
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+Fill in the right side of the equation to create a linear equation that meets the description.
+a.  Create a linear equation with solution set [`\{2\}\text{.}`]
+
+    [` [$a](x + 4) = `] [_]{$evaluator2}{20}
+
+a.  Create a linear equation with _infinitely many solutions_.
+
+    [` [$a](x + 4) = `] [_]{$answer}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

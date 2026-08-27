@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-check-inequality-solution-radical-integer" assembly-id="check-inequality-solution-radical-integer">
+  <static seed="319">
+    <statement><p>Is <m>2</m> a solution to <m>{x+1}\geq{\sqrt{4x+1}}\text{?}</m></p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>x+1</m></cell>
+<cell><m>\geq</m></cell>
+<cell><m>\sqrt{4x+1}</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{\geq}</m></cell>
+<cell><fillin characters="3" name="AnSwEr0002"/>
+</cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>3</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>3</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{Yes, it is a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_51.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.51)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGchoicemacros.pl",
+  "parserVectorUtils.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+($actual_solution, $root) = num_sort((1..9)[NchooseK(9,2)]);
+$square = $root**2;
+$m = int($square / $actual_solution);
+$b = $square % $actual_solution;
+$left = Formula("sqrt($m x + $b)")->reduce;
+$n = non_zero_random(-2,2);
+$right = Formula("$n x");
+$right += ($left->eval(x => $actual_solution) - $right->eval(x => $actual_solution) + (random(0,2) ? 0 : non_zero_random(-3,3)));
+$right = $right->reduce;
+($left, $right) = ($left, $right)[NchooseK(2,2)];
+$proposed_solution = $actual_solution;
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(x => $proposed_solution));
+$righteval = Real($right->eval(x => $proposed_solution));
+$inequality = list_random('\lt', '\gt', '\leq', '\geq', '\neq');
+$truefalse = (
+  ($inequality eq '\lt') ?
+  ($lefteval < $righteval) :
+  (
+    ($inequality eq '\gt') ?
+    ($lefteval > $righteval) :
+    (
+      ($inequality eq '\leq') ?
+      ($lefteval <= $righteval) :
+      (
+        ($inequality eq '\geq') ?
+        ($lefteval >= $righteval) :
+        ($lefteval != $righteval)
+      )
+    )
+  )
+);
+$dropdown = DropDown(["Yes, it is a solution.", "No, it is not a solution."], $truefalse ? 0 : 1, showInStatic => 0);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Check if the given number is a solution to the given inequality.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+Is [`[$proposed_solution]`] a solution to [`[$left][$inequality][$right]\text{?}`]
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`[$inequality]`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{[$inequality]}`]'),
+     PGML('[_]{$righteval}{3}'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

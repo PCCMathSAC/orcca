@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-liquid-leaking-copy" assembly-id="liquid-leaking-copy">
+  <static seed="1496">
+    <statement><p>A liquid solution is slowly leaking from a container. This graph shows how many milliliters <m>y</m> of solution remains in the container after <m>x</m> minutes.</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/liquid-leaking-copy-image-1" width="75%"/>
+<p>What is the slope of this line, including units?</p>
+<p><fillin characters="16" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-10\ {\textstyle\frac{\rm\mathstrut ml}{\rm\mathstrut min}}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/3_4_5_47.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="liquid-leaking"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(3.10.31)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "parserNumberWithUnits.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context('Numeric');
+$b = random(800,1000,100);
+$h = random(10,30,5);
+$k = $b - random(100,200,100);
+$ans = NumberWithUnits(($k - $b)/$h, 'ml/min');
+$m = ($k - $b)/$h;
+$f = Formula("$m x + $b");
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}[
+      xlabel={\(x\) (min)},
+      ylabel={\(y\) (mL)},
+      xmin=0,
+      xmax=35,
+      ymin=0,
+      ymax=1100,
+      xtick={0,5,...,30},
+      minor xtick=,
+      ytick={0,100,...,1000},
+      minor ytick=,
+      width=\orccaprintwidth,
+      height=0.33\orccaprintwidth,
+      axis line style={->},
+    ]
+    \addplot+[-{Kite},domain=0:35] {$f};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+A liquid solution is slowly leaking from a container. This graph shows how many milliliters [`y`] of solution remains in the container after [`x`] minutes.
+
+>> [@image(insertGraph($image_1), width=>450)@]*  <<
+
+What is the slope of this line, including units?
+
+[_]{$ans}{16}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

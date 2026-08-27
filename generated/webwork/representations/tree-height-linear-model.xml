@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-tree-height-linear-model" assembly-id="tree-height-linear-model">
+  <static seed="560">
+    <statement><p>You planted a young tree in front of your house, and it was <m>5</m> feet tall. Ever since, it has been growing by <m>{{\frac{1}{12}}\ {\rm ft}}</m> each year. How many years will it take for the tree to grow to be 10 feet tall? Write an equation to model this scenario. There is no need to solve it.</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>5+0.0833333t = 10</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_8_6_43.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.8.6.43)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "parserFormulaWithUnits.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "parserLinearRelation.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction");
+$rate = Fraction(random(1,11),12);
+$speed = FormulaWithUnits("$rate ft");
+$initial = random(4,6);
+$final = random(10,12);
+Context("LinearRelation")->variables->are(t => 'Real');
+$equation = LinearRelation("$initial + $rate t = $final");
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Write an equation to model the scenario. There is no need to solve the equation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+You planted a young tree in front of your house, and it was [`[$initial]`] feet tall. Ever since, it has been growing by [`[$speed]`] each year. How many years will it take for the tree to grow to be [$final] feet tall? Write an equation to model this scenario. There is no need to solve it.
+
+[@KeyboardInstructions('Use [|t|]* as the variable.')@]**
+
+[_]{$equation}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

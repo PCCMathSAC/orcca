@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-water-treatment-cost-solve-equation" assembly-id="water-treatment-cost-solve-equation">
+  <static seed="764">
+    <statement><p>A small town would like to replace its aging water treatment system. This will cost <m>{\$7{,}500{,}000}\text{,}</m> but the town just needs <m>{\$1{,}500{,}000}</m> up front for downpayment on a loan that will cover the rest. The town treasury has <m>{\$375{,}000}</m> in it already for this need, and the town can gather <m>{\$145{,}000}</m> per month from taxes. How long will it take to reach enough for downpayment on that loan?</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>7.75862\ {\rm months}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_1_6_58.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.1.6.58)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "parserNumberWithUnits.pl",
+  "contextCurrency.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$rate = random(60000,200000,5000);
+Context("Currency")->flags->set(
+  trimTrailingZeros => 1, tolType => 'absolute', tolerance => 0.5
+);
+$speed = Currency("$rate");
+$final = random(1000000,2000000,10000);
+$end = Currency("$final");
+$total = $end*list_random(5,10);
+$initial = $final/list_random(2,4,5);
+$start = Currency("$initial");
+$solution = ($final - $initial)/$rate;
+$time = NumberWithUnits("$solution months");
+
+######
+# Body
+######
+
+BEGIN_PGML
+A small town would like to replace its aging water treatment system. This will cost [`[$total]\text{,}`] but the town just needs [`[$end]`] up front for downpayment on a loan that will cover the rest. The town treasury has [`[$start]`] in it already for this need, and the town can gather [`[$speed]`] per month from taxes. How long will it take to reach enough for downpayment on that loan?
+
+[_]{$time}{20}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

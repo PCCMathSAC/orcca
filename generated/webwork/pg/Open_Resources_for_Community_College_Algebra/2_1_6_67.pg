@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:28-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -33,19 +31,15 @@ loadMacros(
   "contextCurrency.pl",
   "contextPercent.pl",
   "randomPerson.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 $decimal = random(0.02,0.06,0.001);
 $name = randomPerson();
 $profession = list_random(
@@ -68,20 +62,19 @@ $before = Currency($solution);
 Context("Percent");
 $percent = Percent($decimal);
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 [$name]'s current annual salary as [$profession] is [`[$current]\text{.}`] This is with a raise of [`[$percent]`] over last year's salary. What was [$name->possessive] salary last year?
 
 [_]{$before}{20}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

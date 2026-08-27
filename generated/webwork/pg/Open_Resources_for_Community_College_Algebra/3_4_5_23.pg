@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -38,21 +36,18 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
-@x = random_subset(2, random(1,9), random(-9,-1));
-@y = random_subset(2, -9 .. -1, 1 .. 9);
+@x = random_subset(2, 1 .. 4, -4 .. -1);
+@y = random_subset(2, -4 .. -1, 1 .. 4);
 $m = Fraction(($y[1] - $y[0])/($x[1] - $x[0]));
 Context("Numeric");
-$f = Formula("$m (x - $x[0]) + $y[0]");
+Context()->noreduce('(-x)-y', '(-x)+y');
+$f = Formula("$m (x - $x[0]) + $y[0]")->reduce;
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -66,7 +61,7 @@ $image_1->BEGIN_LATEX_IMAGE
       minor xtick={-9,...,9},
       ytick={-5,0,5},
       minor ytick={-9,...,9},
-      width=0.47\orccaprintwidth
+      width=0.33\orccaprintwidth
     ]
     \addplot+[-,domain=-10:10,samples=2] {$f};
   \end{axis}
@@ -74,22 +69,28 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Find the slope of the line given its graph.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 >> [@image(insertGraph($image_1), width=>600)@]*  <<
 
 [_]{$m}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:29-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,29 +20,26 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "niceTables.pl",
   "AnswerFormatHelp.pl",
+  "niceTables.pl",
   "parserAssignment.pl",
   "contextForm.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 @x = (0..3);
 $f = Formula("-1 + 3x");
 @y = map{$f->eval(x => $_)} (@x);
@@ -54,111 +48,121 @@ parser::Assignment->Allow;
 $eq=Formula("y = $f")->reduce;
 @t = map{$_*3} (@x);
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
 Write an equation in the form [`y=\ldots`] suggested by the pattern in the table.
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[`[$x[0]]`]'),
+    [
+     PGML('[`[$x[0]]`]'),
      PGML('[`[$y[0]]`]'),
     ],
-    [PGML('[`[$x[1]]`]'),
+    [
+     PGML('[`[$x[1]]`]'),
      PGML('[`[$y[1]]`]'),
     ],
-    [PGML('[`[$x[2]]`]'),
+    [
+     PGML('[`[$x[2]]`]'),
      PGML('[`[$y[2]]`]'),
     ],
-    [PGML('[`[$x[3]]`]'),
+    [
+     PGML('[`[$x[3]]`]'),
      PGML('[`[$y[3]]`]'),
     ],
   ],
       align => 'rl',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 [_]{$eq}{20}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The relationship between [`x`] and [`y`] in each row is not as clear here. Another popular approach for finding patterns: in each column, consider how the values change from one row to the next. From row to row, the [`x`]-value increases by [`1\text{.}`] Also, the [`y`]-value increases by [`3`] from row to row.
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`y`]'),
     ],
-    [PGML('[`[$x[0]]`]'),
+    [
+     PGML('[`[$x[0]]`]'),
      PGML('[`[$y[0]]`]'),
     ],
-    [PGML('(add [`1`] from previous) [`[$x[1]]`]'),
+    [
+     PGML('(add [`1`] from previous) [`[$x[1]]`]'),
      PGML('[`[$y[1]]`] (add [`3`] from previous)'),
     ],
-    [PGML('(add [`1`] from previous) [`[$x[2]]`]'),
+    [
+     PGML('(add [`1`] from previous) [`[$x[2]]`]'),
      PGML('[`[$y[2]]`] (add [`3`] from previous)'),
     ],
-    [PGML('(add [`1`] from previous) [`[$x[3]]`]'),
+    [
+     PGML('(add [`1`] from previous) [`[$x[3]]`]'),
      PGML('[`[$y[3]]`] (add [`3`] from previous)'),
     ],
   ],
       align => 'r|l',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 Since row-to-row change is always [`1`] for [`x`] and is always [`3`] for [`y\text{,}`] the _rate of change_ from one row to another row is always the same: [`3`] units of [`y`] for every [`1`] unit of [`x\text{.}`] This suggests that [`y=3x`] _might_ be a good equation for the table pattern. But if we try to make a table with that pattern:
 
 >> [@DataTable(
   [
-    [[PGML('[`x`]'),
+    [
+     [PGML('[`x`]'),
       rowbottom => '2',
       midrule => '1',],
      PGML('[`3x`]'),
      PGML('Actual value of [`y`]'),
     ],
-    [PGML('[`[$x[0]]`]'),
+    [
+     PGML('[`[$x[0]]`]'),
      PGML('[`[$t[0]]`]'),
      PGML('[`[$y[0]]`]'),
     ],
-    [PGML('[`[$x[1]]`]'),
+    [
+     PGML('[`[$x[1]]`]'),
      PGML('[`[$t[1]]`]'),
      PGML('[`[$y[1]]`]'),
     ],
-    [PGML('[`[$x[2]]`]'),
+    [
+     PGML('[`[$x[2]]`]'),
      PGML('[`[$t[2]]`]'),
      PGML('[`[$y[2]]`]'),
     ],
-    [PGML('[`[$x[3]]`]'),
+    [
+     PGML('[`[$x[3]]`]'),
      PGML('[`[$t[3]]`]'),
      PGML('[`[$y[3]]`]'),
     ],
   ],
       align => '*{3}{c}',
-      valign => 'middle',
-);@]* <<
+      valign => 'middle',);@]* <<
 
 We find that the values from [`y=3x`] are too large by [`1\text{.}`] So now we make an adjustment. The equation [`[$eq]`] describes the pattern in the table.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

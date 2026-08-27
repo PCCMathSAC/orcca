@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:26-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,15 +20,16 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
-  "scaffold.pl",
   "AnswerFormatHelp.pl",
   "PGlateximage.pl",
+  "scaffold.pl",
   "parserNumberWithUnits.pl",
   "ORCCA.pl",
   "PGcourse.pl",
@@ -39,18 +37,14 @@ loadMacros(
 COMMENT('Authored in PreTeXt');
 COMMENT('This problem is scaffolded with multiple parts');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context('Numeric');
 $height1 = NumberWithUnits("2 ft");
 $height2 = NumberWithUnits("5 ft");
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -68,44 +62,43 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-The height inside a tent when you are [`d`] feet from the west wall of the tent is given by the formula [`\newcommand{\abs}[1]{\left\lvert#1\right\rvert}h=-2\abs{d-3}+6\text{,}`] where [`h`] is in feet.
+The height inside a tent when you are [`d`] feet from the west wall of the tent is given by the formula [`h=-2\abs{d-3}+6\text{,}`] where [`h`] is in feet.
 
 >> [@image(insertGraph($image_1), width=>282, alt=>qq"an A-frame tent with guidelines indicating that d feet inward from one side, the height to the ceiling at that point is d feet")@]*  <<
 
-
 END_PGML
 
-############################################################
+##########
 # Scaffold
-############################################################
+##########
+
 Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 When you are [`5`][$NBSP]*ft from the west side, the height is [_]{$height1}{10}.
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 When [`d=5\text{,}`] we have:
 
-[```\newcommand{\abs}[1]{\left\lvert#1\right\rvert}\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
-h\amp= -2\abs{d-3}+6\\
 h\amp= -2\abs{\substitute{5}-3}+6\amp\amp\text{Review order of operations in }\text{Section A.5}\text{.}\\
 \amp= -2\abs{2}+6\amp\amp\text{Review absolute value in }\text{Section A.3}\text{.}\\
 \amp= -2(2)+6\\
@@ -115,32 +108,30 @@ h\amp= -2\abs{\substitute{5}-3}+6\amp\amp\text{Review order of operations in }\t
 
 So when you are [`5`][$NBSP]*ft from the west side, the height of the tent is [`2`][$NBSP]*ft.
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
-############################################################
+#########
 # Section
-############################################################
+#########
+
 Section::Begin("");
 
 BEGIN_PGML
 When you are [`2.5`][$NBSP]*ft from the west side, the height is [_]{$height2}{10}.
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 When [`d=2.5\text{,}`] we have:
 
-[```\newcommand{\abs}[1]{\left\lvert#1\right\rvert}\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\amp}{&}
+[```
 \begin{aligned}
-h\amp= -2\abs{d-3}+6\\
 h\amp= -2\abs{\substitute{2.5}-3}+6\\
 \amp= -2\abs{-0.5}+6\\
 \amp= -2(0.5)+6\\
@@ -150,15 +141,14 @@ h\amp= -2\abs{\substitute{2.5}-3}+6\\
 
 So when you are [`2.5`][$NBSP]*ft from the west side, the height of the tent is [`5`][$NBSP]*ft.
 
-
 END_PGML_SOLUTION
 
 Section::End();
 
 Scaffold::End();
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

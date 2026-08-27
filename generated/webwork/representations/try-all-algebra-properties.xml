@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-try-all-algebra-properties" assembly-id="try-all-algebra-properties">
+  <static seed="446">
+    <task>
+      <statement><p>Use the commutative property of multiplication to write an equivalent expression to <m>{53m}\text{.}</m></p>
+<p><fillin characters="10" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>m\cdot 53</m>
+        </p>
+      </answer>
+      <solution><p>To use the commutative property of multiplication, change the order the two factors are multiplied:
+<md>53m=m\cdot 53
+              \text{.}</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Use the associative property of multiplication to write an equivalent expression to <m>{3\mathopen{}\left(5n\right)}\text{.}</m></p>
+<p><fillin characters="10" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left(3\cdot 5\right)n</m>
+        </p>
+      </answer>
+      <solution><p>To use the associative property of multiplication, leave factors written in their original order, but change the grouping symbols so that a different multiplication has higher priority:
+<md>3(5n)=(3\cdot5)n
+              \text{.}</md>
+You may further simplify by multiplying the two numbers:
+<md>\begin{aligned}
+3(5n)\amp=(3\cdot5)n\\
+\amp=15n
+\end{aligned}</md>
+but that is going a step beyond simply using the associative property.</p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Use the commutative property of addition to write an equivalent expression to <m>{q+84}\text{.}</m></p>
+<p><fillin characters="10" name="AnSwEr0003"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>84+q</m>
+        </p>
+      </answer>
+      <solution><p>To use the commutative property of addition, change the order the two terms are added:
+<md>q+84=84+q
+              \text{.}</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Use the associative property of addition to write an equivalent expression to <m>{x+\left(20+c\right)}\text{.}</m></p>
+<p><fillin characters="10" name="AnSwEr0004"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>\left(x+20\right)+c</m>
+        </p>
+      </answer>
+      <solution><p>To use the associative property of addition, leave terms written in their original order, but change the grouping symbols so that a different addition has higher priority:
+<md>x+(20+c)=(x+20)+c</md></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Use the distributive property to write an equivalent expression to <m>{3\mathopen{}\left(r+7\right)}</m> that has no grouping symbols.</p>
+<p><fillin characters="10" name="AnSwEr0005"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>3r+3\cdot 7</m>
+        </p>
+      </answer>
+      <solution><p>To use the distributive property, multiply the number outside the parentheses, <m>3\text{,}</m> with each term inside the parentheses:
+<md>\begin{aligned}
+3(r+7)\amp=3\cdot r+3\cdot7\\
+\amp=3r+21\text{.}
+\end{aligned}</md></p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_7_10.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.7.10)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+$m='This is the original expression';
+$e='This is algebraically equivalent to the given expression, but using the %s would give you something else';
+Context("Numeric")->variables->add(map{$_=>'Real'}(qw(c m n q r)));
+Context()->reduction->set('(-x)-y'=>0,'(-x)+y'=>0);
+$giv1=Formula("53m");
+$ans1=Formula("m*53");
+$ev1=$ans1->cmp(checker=>sub{
+  my ($c,$s,$ans)=@_;
+  Value->Error($m) if $s eq $giv1;
+  Value->Error(sprintf($e,'commutative property of multiplication')) if $s == $c && $s ne $c;
+  return ($s eq $c);
+});
+Context()->flags->set(reduceConstants=>0);
+Context()->lists->set(AbsoluteValue=>{open=>"(",close=>")"});
+Context()->parens->set("("=>{removable=>0,type=>"AbsoluteValue",close=>")"});
+$giv2=Formula("3*(5 n)");
+$ans2=Formula("(3*5)*n");
+$alt2=Formula("15*n");
+$ev2=$ans2->cmp(checker=>sub{
+  my ($c,$s,$ans)=@_;
+  $s->{test_at}=[[0,0,-1,0,0,0],[0,0,1,0,0,0]];
+  $c->{test_at}=[[0,0,-1,0,0,0],[0,0,1,0,0,0]];
+  Value->Error(sprintf($e,'associative property of multiplication')) if ($s == $giv2 || $s == $c) && $s ne $c && $s ne $alt2;
+  return $s eq $c || $s eq $alt2;
+});
+$giv3=Formula("q+84");
+$ans3=Formula("84+q");
+$ev3=$ans3->cmp(checker=>sub{
+  my ($c,$s,$ans)=@_;
+  Value->Error($m) if ($s eq $giv3);
+  Value->Error(sprintf($e,'commutative property of addition')) if $s == $c && $s ne $c;
+  return $s eq $c;
+});
+$giv4=Compute("x+(20+c)");
+$amb4=Compute("x+20+c");
+$ans4=Compute("(x+20)+c");
+$ev4=$ans4->cmp(checker=>sub{
+  my ($c,$s,$ans)=@_;
+  for my $x ($giv4,$s,$amb4,$c) {
+    $x->{test_at}=[[-21,0,0,0,0,-21],[-21,0,0,0,0,-19],[-19,0,0,0,0,-21],[-19,0,0,0,0,-19]];
+  }
+  Value->Error(sprintf($e,'associative property of addition')) if ($s == $giv4 || $s == $amb4 || $s == $c) && $s ne $c;
+  return $s eq $c;
+});
+$giv5=Compute("3*(r+7)")->reduce;
+Context("Form")->variables->are(r=>'Real');
+$ans5=Compute("3*r+3*7");
+
+######
+# Body
+######
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use the commutative property of multiplication to write an equivalent expression to [`[$giv1]\text{.}`]
+
+[_]{$ev1}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To use the commutative property of multiplication, change the order the two factors are multiplied:
+
+[```
+                53m=m\cdot 53
+              \text{.}```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use the associative property of multiplication to write an equivalent expression to [`[$giv2]\text{.}`]
+
+[_]{$ev2}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To use the associative property of multiplication, leave factors written in their original order, but change the grouping symbols so that a different multiplication has higher priority:
+
+[```
+                3(5n)=(3\cdot5)n
+              \text{.}```]
+
+You may further simplify by multiplying the two numbers:
+
+[```
+\begin{aligned}
+3(5n)\amp=(3\cdot5)n\\
+\amp=15n
+\end{aligned}
+```]
+
+but that is going a step beyond simply using the associative property.
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use the commutative property of addition to write an equivalent expression to [`[$giv3]\text{.}`]
+
+[_]{$ev3}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To use the commutative property of addition, change the order the two terms are added:
+
+[```
+                q+84=84+q
+              \text{.}```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use the associative property of addition to write an equivalent expression to [`[$giv4]\text{.}`]
+
+[_]{$ev4}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To use the associative property of addition, leave terms written in their original order, but change the grouping symbols so that a different addition has higher priority:
+
+[```
+                x+(20+c)=(x+20)+c
+              ```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Use the distributive property to write an equivalent expression to [`[$giv5]`] that has no grouping symbols.
+
+[_]{$ans5}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To use the distributive property, multiply the number outside the parentheses, [`3\text{,}`] with each term inside the parentheses:
+
+[```
+\begin{aligned}
+3(r+7)\amp=3\cdot r+3\cdot7\\
+\amp=3r+21\text{.}
+\end{aligned}
+```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

@@ -1,0 +1,360 @@
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.1.5.41)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "PGlateximage.pl",
+  "scaffold.pl",
+  "PCCmacros.pl",
+  "contextUnits.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+@x=(2000..2022);
+@y=(529897,535753,539892,541447,535366,536827,541026,549781,559504,569796,585476,595610,604521,610254,620975,631945,643065,648176,651154,654378,652388,641162,635067);
+%f=map{$x[$_]=>$y[$_]}(0..21);
+@yr=num_sort(random_subset(4,@x));
+@r=map{Real(($f{$yr[2*$_+1]}-$f{$yr[2*$_]})/($yr[2*$_+1]-$yr[2*$_]))}(0,1);
+Context("Interval");
+$d=List('[2003,2004],[2019,2020],[2020,2021], [2021,2022]');
+$p=join(' ',(map{"($x[$_],$y[$_])"}(0..21)));
+$s=Interval('[2006,2016]');
+Context("Units")->withUnitsFor('time')->addUnits(person=>{person=>1,aliases=>['people','ppl']});
+@r=map{Compute("$_ people/yr")}(@r);
+$tr=($y[16]-$y[6])/10;
+$t=Compute("$tr people/yr");
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+\begin{axis}[
+xmin=2000,
+xmax=2025,
+xtick={2000,2005,...,2025},
+xlabel={year},
+ymin=500000,
+ymax=700000,
+ytick={500000,550000,...,700000},
+ylabel={population},
+/pgf/number format/.cd,
+use comma,
+1000 sep={},
+axis y discontinuity=crunch,
+width=\orccaprintwidth,
+height=0.33\orccaprintwidth,
+axis line style={->},
+]
+\addplot[soliddot]coordinates{$p};
+\end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+$image_2 = createLaTeXImage();
+$image_2->addToPreamble(latexImagePreamble());
+$image_2->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+\begin{axis}[
+xmin=2000,
+xmax=2025,
+xtick={2000,2005,...,2025},
+xlabel={year},
+ymin=500000,
+ymax=700000,
+ytick={500000,550000,...,700000},
+ylabel={population},
+/pgf/number format/.cd,
+use comma,
+1000 sep={},
+axis y discontinuity=crunch,
+width=\orccaprintwidth,
+height=0.33\orccaprintwidth,
+axis line style={->},
+]
+\addplot[soliddot]coordinates{$p};
+\addplot[firstcurve,-]coordinates{(2006,541026)(2016,643065)};
+\end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+######
+# Body
+######
+
+BEGIN_PGML
+This table gives population estimates for Portland, Oregon from 2000 through 2021, gathered from Google in February of 2024.
+
+>> [@DataTable(
+  [
+    [
+     [PGML('Year'),
+      rowbottom => '2',
+      midrule => '1',],
+     PGML('Population'),
+     PGML('Year'),
+     PGML('Population'),
+     PGML('Year'),
+     PGML('Population'),
+    ],
+    [
+     PGML('2000'),
+     PGML('529897'),
+     PGML('2008'),
+     PGML('559504'),
+     PGML('2016'),
+     PGML('643065'),
+    ],
+    [
+     PGML('2001'),
+     PGML('535753'),
+     PGML('2009'),
+     PGML('569796'),
+     PGML('2017'),
+     PGML('648176'),
+    ],
+    [
+     PGML('2002'),
+     PGML('539892'),
+     PGML('2010'),
+     PGML('585476'),
+     PGML('2018'),
+     PGML('651154'),
+    ],
+    [
+     PGML('2003'),
+     PGML('541447'),
+     PGML('2011'),
+     PGML('595610'),
+     PGML('2019'),
+     PGML('654378'),
+    ],
+    [
+     PGML('2004'),
+     PGML('535366'),
+     PGML('2012'),
+     PGML('604521'),
+     PGML('2020'),
+     PGML('652388'),
+    ],
+    [
+     PGML('2005'),
+     PGML('536827'),
+     PGML('2013'),
+     PGML('610254'),
+     PGML('2021'),
+     PGML('641162'),
+    ],
+    [
+     PGML('2006'),
+     PGML('541026'),
+     PGML('2014'),
+     PGML('620975'),
+     PGML('2022'),
+     PGML('635067'),
+    ],
+    [
+     PGML('2007'),
+     PGML('549781'),
+     PGML('2015'),
+     PGML('631945'),
+     PGML(''),
+     PGML(''),
+    ],
+  ],
+      align => 'rl!{\vrule width 0.07em}rl!{\vrule width 0.07em}rl',
+      valign => 'middle',);@]* <<
+
+>> [@image(insertGraph($image_1), width=>450)@]*  <<
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Find the rate of change in Portland population between [$yr[0]] and [$yr[1]].
+
+[@KeyboardInstructions('You can type the unit as [|people/yr|]*.')@]**
+
+[_]{$r[0]}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To find the rate of change between [$yr[0]] and [$yr[1]], calculate
+
+[```
+                  \frac{[$f{$yr[1]}]-[$f{$yr[0]}]}{[$yr[1]]-[$yr[0]]}=[$r[0]]
+                \text{.}```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+And what was the rate of change between [$yr[2]] and [$yr[3]]?
+
+[_]{$r[1]}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+To find the rate of change between [$yr[2]] and [$yr[3]], calculate
+
+[```
+                  \frac{[$f{$yr[3]}]-[$f{$yr[2]}]}{[$yr[3]]-[$yr[2]]}=[$r[1]]
+                \text{.}```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+List all the year-long intervals where there is a negative rate of change.
+
+[@KeyboardInstructions('(For example, you might answer with [|[2000,2001], [2001,2002]|]* if you think those are the year-long intervals where there is a negative rate of change.)')@]**
+
+[_]{$d}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The rate of change is negative for the years starting in 2003, 2019, and 2020, and no other years. These are the only years in the data table where the population goes down the next year. So the intervals are [$d].
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Over which decade was the rate of change highest?
+
+[@KeyboardInstructions('(For example, you might answer with [|[2000,2010]|]* if you think that is the decade with the highest rate of change.)')@]**
+
+[_]{$s}{20}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The steepest rate of change over a ten-year period was from 2006 to 2016. To find this, calculate each of the rates of change from 2000 to 2010, from 2001 to 2011, and so on. Although looking at the graph, you can see that some rates of change are not as steep as others and narrow down the search.
+
+>> [@image(insertGraph($image_2), width=>450)@]*  <<
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+What was that rate of change?
+
+[@KeyboardInstructions('You can type the unit as [|people/yr|]*.')@]**
+
+[_]{$t}{10}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+Between 2006 and 2016:
+
+[```
+                  \frac{[$y[16]]-[$y[6]]}{2016-2006}=[$t]
+                ```]
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();

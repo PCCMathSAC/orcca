@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-interval-graph-to-set-builder-and-interval-notation-open-infinite" assembly-id="interval-graph-to-set-builder-and-interval-notation-open-infinite">
+  <static seed="241">
+    <statement><!-- PTX:WARNING: PGML wanted to center align here. -->
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/interval-graph-to-set-builder-and-interval-notation-open-infinite-image-1" width="100%">
+<shortdescription>a numberline with a shaded region; the shaded region begins at 3 where there is a left parenthesis; it extends to the right all the way with an arrowhead</shortdescription>
+</image>
+<p><fillin characters="12" name="AnSwEr0001"/></p>
+<p><fillin characters="12" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left\{x \mid x &gt; 3\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(3,\infty \right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_3_4_51.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.3.4.51)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGlateximage.pl",
+  "PCCmacros.pl",
+  "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$a = random(-7, 7);
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+$set_builder = Compute("{ x | x > $a}");
+Context("Interval");
+$interval = Compute("($a, inf)");
+
+$image_1 = createLaTeXImage();
+$image_1->addToPreamble(latexImagePreamble());
+$image_1->BEGIN_LATEX_IMAGE
+\begin{tikzpicture}
+  \begin{axis}
+    [
+      numberline,
+      xlabel={\(x\)},
+      width=0.47\orccaprintwidth,
+    ]
+    \addplot[openinfiniteinterval] coordinates {($a,0) (12,0)};
+  \end{axis}
+\end{tikzpicture}
+
+END_LATEX_IMAGE
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Express the given interval in set-builder notation and interval notation.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+>> [@image(insertGraph($image_1), width=>600, alt=>qq"a numberline with a shaded region; the shaded region begins at $a where there is a left parenthesis; it extends to the right all the way with an arrowhead")@]*  <<
+
+[@KeyboardInstructions('In set-builder notation:')@]**
+
+[_]{$set_builder}{12}
+
+[@KeyboardInstructions('In interval notation:')@]**
+
+[_]{$interval}{12}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

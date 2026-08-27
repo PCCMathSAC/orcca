@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-linear-inequality-fractions-pqr-denom" assembly-id="linear-inequality-fractions-pqr-denom">
+  <static seed="853">
+    <statement><p><m>{{\frac{4}{35}}x+{\frac{3}{20}}} \lt {{\frac{5}{28}}}</m></p>
+<p><fillin characters="4" name="AnSwEr0001"/></p>
+<p><fillin characters="16" name="AnSwEr0002"/></p>
+<p><fillin characters="16" name="AnSwEr0003"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>140</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left\{x \mid x &lt; \frac{1}{4}\right\}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\left(-\infty ,{\frac{1}{4}}\right)</m>
+      </p>
+    </answer>
+    <solution><p>This inequality has terms with denominators <m>{35}\text{,}</m> <m>{20}\text{,}</m> and <m>{28}\text{.}</m> The least common multiple of these is <m>{140}\text{.}</m> So the first step in solving this inequality can be to multiply on each side by <m>{140}\text{.}</m>
+<md>\begin{aligned}
+{140}\left({{\frac{4}{35}}x+{\frac{3}{20}}}\right) \amp\lt {140}\left({{\frac{5}{28}}}\right)\\
+{16x+21} \amp\lt {25}\\
+{16x+21-21} \amp\lt {4}\\
+{16x} \amp\lt {4}\\
+{x} \amp\lt {{\frac{1}{4}}}
+\end{aligned}</md>
+The solution set is <m>\{x\mid x \lt {{\frac{1}{4}}}\}</m> using set-builder notation. In interval notation, we have <m>{\left(-\infty ,{\frac{1}{4}}\right)}\text{.}</m></p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/2_3_5_32.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(2.3.5.32)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PCCmacros.pl",
+  "contextForm.pl",
+  "contextFraction.pl",
+  "contextInequalitySetBuilder.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Fraction-NoDecimals");
+@den = random_pairwise_coprime([2..7],[2..7],[2..7]);
+$lcd = Real(lcm(@den));
+@den = map {$lcd/$_} (@den);
+@num = (
+  (random_coprime([1..8],[$den[0]]))[0],
+  (random_coprime([1..8],[$den[1]]))[0],
+  (random_coprime([1..8],[$den[2]]))[0]
+);
+$m = Fraction($num[0]/$den[0]);
+$b = list_random(-1,1)*Fraction($num[1]/$den[1]);
+$c = Fraction($num[2]/$den[2]);
+$left = Formula("$m x + $b")->reduce;
+$right = Formula("$c");
+$sol = ($c - $b)/$m;
+%cmp = (
+  '\gt'  => {interval => ($m > 0) ? "($sol,inf)"  : "(-inf,$sol)", sign => ($m > 0) ? '>'     : '<' },
+  '\lt'  => {interval => ($m > 0) ? "(-inf,$sol)" : "($sol,inf)",  sign => ($m > 0) ? '<'  : '>'    },
+  '\geq' => {interval => ($m > 0) ? "[$sol,inf)"  : "(-inf,$sol]", sign => ($m > 0) ? '>='    : '<='},
+  '\leq' => {interval => ($m > 0) ? "(-inf,$sol]" : "[$sol,inf)",  sign => ($m > 0) ? '<=' : '>='   },
+);
+$texcmp = list_random(lex_sort(keys %cmp));
+$in = Interval($cmp{$texcmp}{interval});
+InequalitySetBuilder::UseVerticalSuchThat();
+Context("InequalitySetBuilder-Only");
+Context()->flags->set(reduceConstants=>0);
+$sb = Compute("{ x | x $cmp{$texcmp}{sign} $sol}");
+Context("Fraction");
+$leftsol[0] = Formula("$lcd*$m x + $lcd*$b")->reduce;
+$rightsol[0] = Formula("$lcd*$c")->reduce;
+$leftsol[1] = Formula("$lcd*$m x + $lcd*$b - $lcd*$b")->reduce;
+$rightsol[1] = Formula("x - $lcd*$b")->reduce;
+$rightsol[1] = $rightsol[1]->substitute(x => Formula($lcd*$c));
+$leftsol[2] = Formula("$lcd*$m x")->reduce;
+$rightsol[2] = Formula("$lcd*$c - $lcd*$b")->reduce;
+$leftsol[3] = Formula("x")->reduce;
+$rightsol[3] = Formula("($lcd*$c - $lcd*$b) / ($lcd*$m)")->reduce;
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Solve the given inequality. Practice clearing the denominator(s) as a first step.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[`[$left] [$texcmp] [$right]`]
+
+[@KeyboardInstructions('What LCD will you use?')@]**
+
+[_]{$lcd}{4}
+
+[@KeyboardInstructions('Write the solution set using set-builder notation.')@]**
+
+[_]{$sb}{16}
+
+[@KeyboardInstructions('Write the solution set using interval notation.')@]**
+
+[_]{$in}{16}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+This inequality has terms with denominators [`[$den[0]]\text{,}`] [`[$den[1]]\text{,}`] and [`[$den[2]]\text{.}`] The least common multiple of these is [`[$lcd]\text{.}`] So the first step in solving this inequality can be to multiply on each side by [`[$lcd]\text{.}`]
+
+[```
+\begin{aligned}
+[$lcd]\left([$left]\right) \amp[$texcmp] [$lcd]\left([$right]\right)\\
+[$leftsol[0]] \amp[$texcmp] [$rightsol[0]]\\
+[$leftsol[1]] \amp[$texcmp] [$rightsol[1]]\\
+[$leftsol[2]] \amp[$texcmp] [$rightsol[2]]\\
+[$leftsol[3]] \amp[$texcmp] [$rightsol[3]]
+\end{aligned}
+```]
+
+The solution set is [`\{x\mid x [$texcmp] [$sol]\}`] using set-builder notation. In interval notation, we have [`[$in]\text{.}`]
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

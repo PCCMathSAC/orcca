@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-combine-like-terms-metal-recycling" assembly-id="combine-like-terms-metal-recycling">
+  <static seed="186">
+    <introduction><p>A metals recycling plant makes its revenue from selling aluminum at <m>A</m> dollars per ton, steel at <m>S</m> dollars per ton, and tin at <m>T</m> dollars per ton. One week, they processed <m>3.19</m> tons of aluminum, <m>2.61</m> tons of steel, and <m>2.96</m> tons of tin. So they generated <m>{3.19A+2.61S+2.96T}</m> dollars in revenue.</p>
+</introduction>
+    <task>
+      <statement><p>The next week, they processed <m>2.89</m> tons of aluminum, <m>3.29</m> tons of steel, and <m>2.72</m> tons of tin. How much revenue (in dollars) did this generate that week?</p>
+<p><fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>2.89A+3.29S+2.72T</m>
+        </p>
+      </answer>
+    </task>
+    <task>
+      <statement><p>How much revenue (in dollars) was that in total those two weeks?</p>
+<p><fillin characters="20" name="AnSwEr0002"/></p>
+</statement>
+      <answer>
+        <p>
+          <m>6.08A+5.9S+5.68T</m>
+        </p>
+      </answer>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_2_5_78-Metal_Recycling.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.2.5.78)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "PGchoicemacros.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+@vars = ('A','A','S','S','T','T');
+Context()->variables->are(A => 'Real', S => 'Real', T => 'Real');
+
+@coefs = map {$_/100} ((201..400)[NchooseK(200,6)]);
+@terms = ();
+for my $i (1..6) {
+  push(@terms, Formula("$coefs[$i-1]*$vars[$i-1]")->reduce);
+}
+$one = Formula("$coefs[0] A + $coefs[2] S + $coefs[4] T");
+$two = Formula("$coefs[1] A + $coefs[3] S + $coefs[5] T");
+$ans = Formula("($coefs[0] + $coefs[1]) A + ($coefs[2] + $coefs[3]) S +  ($coefs[4] + $coefs[5]) T");
+
+Context("Form");
+Context()->flags->remove("NumberCheck");
+Context()->variables->are(A => 'Real', S => 'Real', T => 'Real');
+
+$ans = Formula("$ans");
+
+######
+# Body
+######
+
+BEGIN_PGML
+A metals recycling plant makes its revenue from selling aluminum at [`A`] dollars per ton, steel at [`S`] dollars per ton, and tin at [`T`] dollars per ton. One week, they processed [`[$coefs[0]]`] tons of aluminum, [`[$coefs[2]]`] tons of steel, and [`[$coefs[4]]`] tons of tin. So they generated [`[$one]`] dollars in revenue.
+
+END_PGML
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+The next week, they processed [`[$coefs[1]]`] tons of aluminum, [`[$coefs[3]]`] tons of steel, and [`[$coefs[5]]`] tons of tin. How much revenue (in dollars) did this generate that week?
+
+[_]{$two}{20}
+
+END_PGML
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+How much revenue (in dollars) was that in total those two weeks?
+
+[_]{$ans}{20}
+
+END_PGML
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

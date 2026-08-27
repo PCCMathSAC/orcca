@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-identify-linear-equations-2" assembly-id="identify-linear-equations-2">
+  <static seed="331">
+    <statement><ul form="checkboxes" name="AnSwEr0001">
+<li>
+<p><m>p^{2}+z^{2}\gt-46</m></p>
+</li>
+<li>
+<p><m>\left|5.6p+3\right|\geq-14</m></p>
+</li>
+<li>
+<p><m>8q-7=-42</m></p>
+</li>
+<li>
+<p><m>\pi r^{2}\geq37\pi </m></p>
+</li>
+<li>
+<p><m>9qx\gt28</m></p>
+</li>
+<li>
+<p><m>r\sqrt{13}=-89</m></p>
+</li>
+<li>
+<p>None of the above</p>
+</li>
+</ul>
+<p>
+</p></statement>
+    <answer>
+      <p>
+        <m>\text{Choice 3, Choice 6}</m>
+      </p>
+    </answer>
+    <solution><p><m>9qx\gt28</m> is not linear because it multiplies two variables together.</p>
+<p><m>p^{2}+z^{2}\gt-46</m> and <m>\pi r^{2}\geq37\pi</m> are not linear because variables are raised to the second power.</p>
+<p><m>\left|5.6p+3\right|\geq-14</m> is not linear because a variable is within absolute value bars.</p>
+<p>That leaves <m>8q-7=-42</m> and <m>r\sqrt{13}=-89\text{,}</m> which are both linear.</p>
+</solution>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_63.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.63)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "PGchoicemacros.pl",
+  "parserCheckboxList.pl",
+  "contextForm.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+Context("Numeric");
+Context()->variables->are(x=>'Real',y=>'Real',z=>'Real',r=>'Real',q=>'Real',p=>'Real',V=>'Real',);
+Context()->noreduce('(-x)-y');
+Context()->flags->set(reduceConstantFunctions => 0);
+@allvars=('x','y','z','r','q','p','V');
+@var=(
+    (@allvars)[NchooseK(7,2)],
+    (@allvars)[NchooseK(7,2)],
+    list_random(@allvars),
+    list_random(@allvars),
+    'r',
+    list_random(@allvars),
+);
+@left=(
+    Formula(non_zero_random(1, 9) . "$var[0]$var[1]")->reduce,
+    Formula("$var[2]^2 + $var[3]^2")->reduce,
+    Formula(random(1, 19) . "$var[4] + " . non_zero_random(-9, 9))->reduce,
+    Formula("$var[5] sqrt(" . list_random(2, 3 , 5..8, 10..15, 17..24, 26..35) . ')'),
+    Formula("pi r^2")->reduce,
+    Formula("abs(" . non_zero_random(-9, 9, 0.1) . "$var[7] + " . non_zero_random(-9, 9) . ")")->reduce
+);
+@right=(
+    Compute(random(-99, 99)),
+    Compute(random(-99, 99)),
+    Compute(random(-99, 99)),
+    Compute(random(-99, 99)),
+    Formula(random(1, 99).'pi')->reduce,
+    Compute(random(-99, 99))
+);
+@symbol = map{(random(0, 1)) ? '=' : list_random('\lt', '\gt', '\leq', '\geq', '\neq')} (0..5);
+@type = map{($_ eq '=') ? 'equation' : 'inequality'} (@symbol);
+@eq = map{$left[$_]->TeX . $symbol[$_] . $right[$_]->TeX} (0..5);
+@meq = map{$BM . $_ . $EM} (@eq);
+$options = CheckboxList([~~@meq, "None of the above"], [2,3]);
+
+#############################
+# Exercise Group Introduction
+#############################
+
+BEGIN_PGML
+Select the equations/inequalities that are linear with one variable.
+
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
+[_]{$options}{5}
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+[`[$eq[0]]`] is not linear because it multiplies two variables together.
+
+[`[$eq[1]]`] and [`[$eq[4]]`] are not linear because variables are raised to the second power.
+
+[`[$eq[5]]`] is not linear because a variable is within absolute value bars.
+
+That leaves [`[$eq[2]]`] and [`[$eq[3]]\text{,}`] which are both linear.
+
+END_PGML_SOLUTION
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

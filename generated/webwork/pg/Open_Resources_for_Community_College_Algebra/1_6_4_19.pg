@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -41,17 +39,12 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Fraction");
-$var = list_random('a'..'n','p'..'z','A'..'N','P'..'T','V'..'Z');
+$var = list_random('a'..'n','p'..'z','A'..'D', 'F'..'N','P'..'T','V'..'Z');
 Context()->variables->are($var => 'Real');
 $c = non_zero_random(-6,6);
 $a = -Fraction(random_coprime([1..10], [2..10]));
@@ -118,6 +111,7 @@ if ($oppsign eq '\lt' || $oppsign eq '\leq') {
 } else {
   $sol[3] = 12;
 }
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -129,13 +123,20 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Solve the inequality. Graph the solution set, and write the solution set using both interval notation and set-builder notation.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$left][$sign][$right]`]
 
 [_]{$gt}{1}
@@ -148,17 +149,16 @@ Solve the inequality. Graph the solution set, and write the solution set using b
 
 [_]{$setbuilder}{12}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 The opposite action to multiplying by a fraction is multiplying by its reciprocal. When we multiply by a negative number, the inequality sign must change direction.
 
-[```\newcommand{\secondhighlight}[1]{\mathchoice{\colorbox{lightemerald}{$\displaystyle #1$}}{\colorbox{lightemerald}{$\textstyle #1$}}{\colorbox{lightemerald}{$\scriptstyle #1$}}{\colorbox{lightemerald}{$\scriptscriptstyle #1$}}}\newcommand{\multiplyleft}[2][\cdot]{{\highlight{{#2#1{}}}}}
+[```
 \begin{gathered}
 [$left][$sign][$right]\\
 \multiplyleft{[$ainv]}[$left]\secondhighlight{[$oppsign]}\multiplyleft{[$ainv]}[$right]\\
@@ -174,11 +174,10 @@ We can graph this by shading all numbers [$words] [`[$c]\text{.}`] Since the sig
 
 We read the graph from left to right to tell us the interval notation for the solution set: [`[$interval]\text{.}`]
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:27-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,9 +20,10 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
@@ -39,15 +37,10 @@ loadMacros(
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 Context("Interval");
 $interval = Interval("(1, inf)");
 InequalitySetBuilder::UseVerticalSuchThat();
@@ -64,6 +57,7 @@ $gt = GraphTool("{interval, $interval}")->with(
   showInStatic => 0,
   showCoordinateHints => 0,
 );
+
 $image_1 = createLaTeXImage();
 $image_1->addToPreamble(latexImagePreamble());
 $image_1->BEGIN_LATEX_IMAGE
@@ -75,12 +69,12 @@ $image_1->BEGIN_LATEX_IMAGE
 
 END_LATEX_IMAGE
 
-############################################################
+######
 # Body
-############################################################
+######
 
 BEGIN_PGML
-Solve the inequality [`\newcommand{\gt}{>}x-5\gt-4\text{.}`] Graph the solution set on a number line. State the solution set using both interval notation and set-builder notation.
+Solve the inequality [`x-5\gt-4\text{.}`] Graph the solution set on a number line. State the solution set using both interval notation and set-builder notation.
 
 [_]{$gt}{1}
 
@@ -92,17 +86,16 @@ Solve the inequality [`\newcommand{\gt}{>}x-5\gt-4\text{.}`] Graph the solution 
 
 [_]{$setbuilder}{12}
 
-
 END_PGML
 
-############################################################
+##########
 # Solution
-############################################################
+##########
 
 BEGIN_PGML_SOLUTION
 To solve this inequality, we add [`5`] to each side.
 
-[```\newcommand{\addright}[1]{{\highlight{{{}+#1}}}}\newcommand{\gt}{>}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 x-5\amp\gt-4\\
 x-5\addright{5}\amp\gt-4\addright{5}\\
@@ -110,17 +103,15 @@ x\amp\gt1
 \end{aligned}
 ```]
 
-
-
 Graphically, we represent this solution set as:
 
 >> [@image(insertGraph($image_1), width=>600)@]*  <<
 
-Using interval notation, we write the solution set as [`(1, \infty)\text{.}`] Using set-builder notation, we write it as [`\newcommand{\gt}{>}\{x \mid x \gt 1\}\text{.}`]
+Using interval notation, we write the solution set as [`(1, \infty)\text{.}`] Using set-builder notation, we write it as [`\{x \mid x \gt 1\}\text{.}`]
 
 We should check that some number less than [`1`] is _not_ a solution, that [`1`] itself is _not_ a solution, and that some number greater than [`1`] _is_ a solution.
 
-[```\newcommand{\substitute}[1]{{\color{blue}{{#1}}}}\newcommand{\confirm}[1]{\stackrel{\checkmark}{#1}}\newcommand{\reject}[1]{\stackrel{\text{no}}{#1}}\newcommand{\wonder}[1]{\stackrel{\text{?}}{#1}}\newcommand{\gt}{>}\newcommand{\amp}{&}
+[```
 \begin{aligned}
 \amp\amp x-5\amp\gt-4\amp\amp\\
 \substitute{0}-5\amp\wonder{\gt}-4\amp \substitute{1}-5\amp\wonder{\gt}-4\amp \substitute{10}-5\amp\wonder{\gt}-4\\
@@ -130,11 +121,10 @@ We should check that some number less than [`1`] is _not_ a solution, that [`1`]
 
 Everything worked out as expected, so our solution is reasonably checked.
 
-
 END_PGML_SOLUTION
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();

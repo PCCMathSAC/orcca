@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-naming-variables-depth-weight-copy" assembly-id="naming-variables-depth-weight-copy">
+  <static seed="591">
+    <task>
+      <statement><p>Let <fillin characters="3" name="AnSwEr0001"/> be the depth of a swimming pool, measured in <fillin characters="5" name="AnSwEr0002"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>d\hbox{, }D\hbox{, }x\hbox{, or }y</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\text{feet}}</m>
+        </p>
+      </answer>
+      <solution><p>The unknown quantity is depth, which starts with <lq/>d<rq/>. We generally measure depth in feet for a swimming pool. (Meters is another reasonable unit.) So we could define this variable as:</p>
+<p><lq/>Let <m>d</m> be the depth of a swimming pool, measured in feet.<rq/></p>
+</solution>
+    </task>
+    <task>
+      <statement><p>Let <fillin characters="3" name="AnSwEr0003"/> be the weight of a dog, measured in <fillin characters="5" name="AnSwEr0004"/>.</p>
+</statement>
+      <answer>
+        <p>
+          <m>w\hbox{, }W\hbox{, }x\hbox{, or }y</m>
+        </p>
+      </answer>
+      <answer>
+        <p>
+          <m>{\text{pounds}}</m>
+        </p>
+      </answer>
+      <solution><p>The weight of the dog is the unknown quantity, and <lq/>weight<rq/> starts with <lq/>w<rq/>. We generally measure the weight of a dog in pounds. (Kilograms is another reasonable unit.) So we could define this variable as:</p>
+<p><lq/>Let <m>w</m> be the weight of a dog, measured in pounds.<rq/></p>
+</solution>
+    </task>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_1_6_1.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg copied-from="naming-variables-depth-weight"><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.9.1)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "scaffold.pl",
+  "parserOneOf.pl",
+  "contextArbitraryString.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+COMMENT('This problem is scaffolded with multiple parts');
+
+#######
+# Setup
+#######
+
+Context()->variables->are();
+for my $i (1..26) {
+  Context()->variables->add($ALPHABET[$i-1] => 'Real');
+  Context()->variables->add(lc($ALPHABET[$i-1]) => 'Real');
+};
+$d = OneOf('d', 'D', 'x', 'y');
+$w = OneOf('w', 'W', 'x', 'y');
+Context("ArbitraryString");
+$ftorm = Compute("feet")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(feet|foot|ft|ft~~.|meters|meter|m|m~~.)$/);
+    return 0;
+  }
+);
+$lborkg = Compute("pounds")->cmp(
+  mathQuillOpts => 'disabled',
+  checker => sub {
+    my ( $correct, $student, $ansHash ) = @_;
+    return 1 if ($student =~ /^(pounds|pound|lb|lbs|lb~~.|lbs~~.|kilograms|kilogram|kg|kgs|kg~~.|kgs~~.)$/);
+    return 0;
+  }
+);
+
+######
+# Body
+######
+
+##########
+# Scaffold
+##########
+
+Scaffold::Begin(numbered => 1,is_open => "correct_or_first_incorrect",can_open => always,);
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$d}{3} be the depth of a swimming pool, measured in [_]{$ftorm}{5}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The unknown quantity is depth, which starts with "d". We generally measure depth in feet for a swimming pool. (Meters is another reasonable unit.) So we could define this variable as:
+
+"Let [`d`] be the depth of a swimming pool, measured in feet."
+
+END_PGML_SOLUTION
+
+Section::End();
+
+#########
+# Section
+#########
+
+Section::Begin("");
+
+BEGIN_PGML
+Let [_]{$w}{3} be the weight of a dog, measured in [_]{$lborkg}{5}.
+
+END_PGML
+
+##########
+# Solution
+##########
+
+BEGIN_PGML_SOLUTION
+The weight of the dog is the unknown quantity, and "weight" starts with "w". We generally measure the weight of a dog in pounds. (Kilograms is another reasonable unit.) So we could define this variable as:
+
+"Let [`w`] be the weight of a dog, measured in pounds."
+
+END_PGML_SOLUTION
+
+Section::End();
+
+Scaffold::End();
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

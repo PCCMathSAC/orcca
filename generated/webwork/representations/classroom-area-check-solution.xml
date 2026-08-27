@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="21" xml:id="extracted-classroom-area-check-solution" assembly-id="classroom-area-check-solution">
+  <static seed="337">
+    <statement><p>An elementary school classroom needs a minimum of <m>100</m> square feet for the teacher plus a minimum of <m>44</m> square feet per student. So if there are <m>n</m> students, the total necessary area is <m>{100+44n}</m> square feet. If a classroom has <m>980</m> square feet of area, then we have an inequality <m>{100+44n}\leq{980}\text{.}</m> Could this classroom support <m>20</m> students?</p>
+<!-- PTX:WARNING: PGML wanted to center align here. -->
+<tabular>
+<col halign="right"/>
+<col halign="center"/>
+<col/>
+<row>
+<cell><m>100+44n</m></cell>
+<cell><m>\leq</m></cell>
+<cell><m>980</m></cell>
+</row>
+<row>
+<cell><fillin characters="3" name="AnSwEr0001"/>
+</cell>
+<cell><m>\wonder{\leq}</m></cell>
+<cell><m>980</m></cell>
+</row>
+</tabular>
+<p><fillin name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>980</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\text{Yes, it is a solution.}</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Open_Resources_for_Community_College_Algebra/1_4_6_69.pg" origin="generated" domain="https://webwork.pcc.edu" course-id="orcca" user-id="orcca" passwd="orcca" language="en-US"/>
+  <pg><![CDATA[
+#############################################
+###       Generated from PreTeXt source      
+###                                          
+###         https://pretextbook.org          
+###                                          
+#############################################
+## DBsubject()
+## DBchapter()
+## DBsection()
+## Level()
+## KEYWORDS()
+## TitleText1()
+## EditionText1()
+## AuthorText1()
+## Section1(not reported)
+## Problem1(1.4.6.69)
+## Author()
+## Institution()
+## Language(en-US)
+
+DOCUMENT();
+
+#############
+# Load Macros
+#############
+
+loadMacros(
+  "PGstandard.pl",
+  "PGML.pl",
+  "AnswerFormatHelp.pl",
+  "niceTables.pl",
+  "contextForm.pl",
+  "parserPopUp.pl",
+  "ORCCA.pl",
+  "PGcourse.pl",
+);
+COMMENT('Authored in PreTeXt');
+
+#######
+# Setup
+#######
+
+$b = random(80, 150, 10);
+$r = random(36, 44, 4);
+$n = random(18, 26);
+$total = $b + $r*$n;
+Context()->variables->are(n => 'Real');
+$proposed_solution = (random(0,2)) ? $n : $n + non_zero_random(-3, 3);
+$left = Formula("$b + $r n");
+$right = Formula($total);
+Context("LimitedNumeric");
+$lefteval = Real($left->eval(n => $proposed_solution));
+$righteval = Real($right->eval(n => $proposed_solution));
+$dropdown = DropDown(
+  ["Yes, it is a solution.", "No, it is not a solution."],
+  ($lefteval <= $righteval) ? 0 : 1, showInStatic => 0
+);
+
+######
+# Body
+######
+
+BEGIN_PGML
+An elementary school classroom needs a minimum of [`[$b]`] square feet for the teacher plus a minimum of [`[$r]`] square feet per student. So if there are [`n`] students, the total necessary area is [`[$left]`] square feet. If a classroom has [`[$total]`] square feet of area, then we have an inequality [`[$left]\leq[$right]\text{.}`] Could this classroom support [`[$proposed_solution]`] students?
+
+>> [@DataTable(
+  [
+    [
+     PGML('[`[$left->TeX]`]'),
+     PGML('[`\leq`]'),
+     PGML('[`[$right->TeX]`]'),
+    ],
+    [
+     PGML('[_]{$lefteval}{3}'),
+     PGML('[`\wonder{\leq}`]'),
+     PGML('[`[$righteval->TeX]`]'),
+    ],
+  ],
+      align => 'rcl',
+      valign => 'middle',);@]* <<
+
+[_]{$dropdown}{5}
+
+END_PGML
+
+#############
+# End Problem
+#############
+
+ENDDOCUMENT();
+]]></pg>
+</webwork-reps>

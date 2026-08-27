@@ -1,8 +1,5 @@
 #############################################
 ###       Generated from PreTeXt source      
-###       on 2024-08-11T14:51:30-07:00       
-###   A recent stable commit (2022-07-01):   
-### 6c761d3dba23af92cba35001c852aac04ae99a5f 
 ###                                          
 ###         https://pretextbook.org          
 ###                                          
@@ -23,27 +20,24 @@
 
 DOCUMENT();
 
-############################################################
+#############
 # Load Macros
-############################################################
+#############
+
 loadMacros(
   "PGstandard.pl",
   "PGML.pl",
   "AnswerFormatHelp.pl",
   "contextFraction.pl",
+  "ORCCA.pl",
   "PGcourse.pl",
 );
 COMMENT('Authored in PreTeXt');
 
-############################################################
-# Header
-############################################################
-TEXT(beginproblem());
+#######
+# Setup
+#######
 
-
-############################################################
-# PG Setup Code
-############################################################
 @x = num_sort(random_subset(3, 1..9));
 @y = num_sort(random_subset(3, 1..19));
 Context("LimitedFraction")->flags->set(requirePureFractions => 1, showMixedNumbers => 0);
@@ -55,22 +49,28 @@ Context("Point");
 @p = map {Point($x[$_], $y[$_])} (0..2);
 @p = random_subset(3, @p);
 
-############################################################
-# Body
-############################################################
+#############################
+# Exercise Group Introduction
+#############################
 
 BEGIN_PGML
 Determine the steepest slope for a line connecting two points from the list.
 
+END_PGML
+
+######
+# Body
+######
+
+BEGIN_PGML
 [`[$p[0]]\text{,}`] [`[$p[1]]\text{,}`] [`[$p[2]]`]
 
 [_]{$m}{10}
 
-
 END_PGML
 
-############################################################
+#############
 # End Problem
-############################################################
+#############
 
 ENDDOCUMENT();
